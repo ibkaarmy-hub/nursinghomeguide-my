@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Nursing Home — NursingHomeGuide.my</title>
+  <meta name="description" id="pageDesc" content="Nursing home details, pricing, and contact information." />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><a href="index.html">NursingHome<span>Guide.my</span></a></div>
+    <div class="nav-links">
+      <a href="facilities.html">All Facilities</a>
+      <a href="#">About</a>
+    </div>
+  </div>
+</nav>
+
+<div id="profileContent">
+  <div class="loading" style="padding:80px 20px"><div class="spinner"></div>Loading facility...</div>
+</div>
+
+<footer>
+  <p>© 2026 NursingHomeGuide.my — A free resource for Malaysian families</p>
+  <p style="margin-top:8px"><a href="facilities.html">← Back to all facilities</a></p>
+</footer>
+
+<script src="data.js"></script>
+<script>
+function row(label, value, fallback='') {
+  const v = value || fallback;
+  if (!v) return '';
+  return `<div class="info-row"><span class="info-label">${label}</span><span class="info-value">${v}</span></div>`;
+}
+
+function renderProfile(f) {
+  document.title = `${f.title} — NursingHomeGuide.my`;
+  document.getElementById('pageDesc').content = `${f.title} in ${f.area||'Johor'}, Malaysia. ${f.pricing_display||''}. Care types: ${f.care_types||''}`;
+
+  const badges = [
+    f.care_types ? f.care_types.split('+')[0].trim() : '',
+    f.religion || '',
+    f.wheelchair === 'Yes' ? '♿ Wheelchair Access' : '',
+    f.subsidy === 'Yes' ? '🏛 Subsidy Accepted' : '',
+  ].filter(Boolean).map(b => `<span class="badge">${b}</span>`).join('');
+
+  const sharedPriceHtml = f.shared_price
+    ? `<div class="price-box"><div class="price-amount">${f.shared_price}</div><div class="price-label">per month — Shared Room</div></div>`
+    : '';
+  const privatePriceHtml = f.private_price
+    ? `<div class="price-box" style="background:#eff6ff; border-color:#bfdbfe;"><div class="price-amount" style="color:var(--primary)">${f.private_price}</div><div class="price-label">per month — Private Room</div></div>`
+    : '';
+  const noPriceHtml = (!f.shared_price && !f.private_price)
+    ? `<div class="price-unknown">💬 Pricing not published<br/><small>Contact facility directly to enquire</small></div>`
+    : '';
+
+  const services = (f.services || '').split(',').map(s => s.trim()).filter(Boolean)
+    .map(s => `<span class="service-tag">${s}</span>`).join('');
+
+  document.getElementById('profileContent').innerHTML = `
+    <div class="profile-hero">
+      <div class="profile-hero-inner">
+        <a href="facilities.html" class="back-link" style="color:rgba(255,255,255,.7); margin-bottom:16px; display:inline-flex;">← All facilities</a>
+        <h1>${f.title}</h1>
+        <div class="area">📍 ${f.area ? f.area + ', ' : ''}Johor, Malaysia</div>
+        <div class="badges">${badges}</div>
+      </div>
+    </div>
+
+    <div class="profile-body">
+      <div style="display:flex; flex-direction:column; gap:20px;">
+
+        ${f.care_types ? `
+        <div class="profile-card">
+          <h2>Care Types</h2>
+          <div class="services-list">
+            ${f.care_types.split('+').map(t => `<span class="service-tag">${t.trim()}</span>`).join('')}
+          </div>
+        </div>` : ''}
+
+        ${services ? `
+        <div class="profile-card">
+          <h2>Services Included</h2>
+          <div class="services-list">${services}</div>
+        </div>` : ''}
+
+        <div class="profile-card">
+          <h2>Facility Details</h2>
+          ${row('Religion Friendly', f.religion)}
+          ${row('Languages', f.languages)}
+          ${row('Subsidy Accepted', f.subsidy)}
+          ${row('Wheelchair Access', f.wheelchair)}
+          ${f.rating ? row('Google Rating', `★ ${parseFloat(f.rating).toFixed(1)} (${f.review_count||''} reviews)`) : ''}
+        </div>
+
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="profile-card">
+          <h2>Monthly Fees</h2>
+          ${sharedPriceHtml}
+          ${privatePriceHtml}
+          ${noPriceHtml}
+        </div>
+
+        <div class="profile-card">
+          <h2>Contact</h2>
+          ${f.phone ? `<a href="tel:${f.phone}" class="cta-btn cta-call">📞 Call ${f.phone}</a>` : ''}
+          ${f.google_maps_url ? `<a href="${f.google_maps_url}" target="_blank" class="cta-btn cta-maps">📍 View on Google Maps</a>` : ''}
+          ${f.website && !f.website.includes('facebook') ? `<a href="${f.website}" target="_blank" class="cta-btn cta-web">🌐 Visit Website</a>` : ''}
+          ${f.website && f.website.includes('facebook') ? `<a href="${f.website}" target="_blank" class="cta-btn cta-web">Facebook Page</a>` : ''}
+        </div>
+
+        <div style="background:#fffbeb; border:1.5px solid #fde68a; border-radius:10px; padding:14px; font-size:.82rem; color:#92400e; line-height:1.5;">
+          ⚠️ Pricing shown is for reference only. Always confirm directly with the facility before making any decisions.
+        </div>
+      </div>
+    </div>`;
+}
+
+const slug = new URLSearchParams(window.location.search).get('slug');
+if (!slug) {
+  window.location.href = 'facilities.html';
+} else {
+  loadFacilities().then(data => {
+    const f = data.find(r => r.slug === slug);
+    if (!f) {
+      document.getElementById('profileContent').innerHTML = '<div class="empty" style="padding:80px 20px">Facility not found. <a href="facilities.html">Browse all facilities →</a></div>';
+    } else {
+      renderProfile(f);
+    }
+  });
+}
+</script>
+</body>
+</html>
