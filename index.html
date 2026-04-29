@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nursing Home Guide Malaysia — Find & Compare Prices in Johor</title>
+  <meta name="description" content="Find and compare 125 licensed nursing homes in Johor, Malaysia. See monthly fees, care types, and contact details. Free directory for families." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">NursingHome<span>Guide.my</span></div>
+    <div class="nav-links">
+      <a href="facilities.html">All Facilities</a>
+      <a href="#">About</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Find the Right Nursing Home<br/>in Johor, Malaysia</h1>
+  <p>Malaysia's first pricing-transparent nursing home directory. Compare monthly fees, care types, and services — for free.</p>
+  <div class="hero-search">
+    <input type="text" id="heroSearch" placeholder="Search by name or area..." />
+    <button onclick="doSearch()">Search</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num" id="statTotal">125</div><div class="label">Facilities</div></div>
+    <div class="hero-stat"><div class="num" id="statPricing">12</div><div class="label">With Pricing</div></div>
+    <div class="hero-stat"><div class="num">14</div><div class="label">Areas in Johor</div></div>
+  </div>
+</section>
+
+<div class="section">
+  <div class="section-title">Browse by Area</div>
+  <div class="section-sub">Find nursing homes near you in Johor</div>
+  <div class="filters" id="areaFilters">
+    <button class="filter-btn active" onclick="filterByArea('', this)">All Areas</button>
+  </div>
+
+  <div class="section-title" style="margin-top:40px">Featured Facilities</div>
+  <div class="section-sub">Highest rated nursing homes in Johor</div>
+  <div class="grid" id="featuredGrid">
+    <div class="loading"><div class="spinner"></div>Loading facilities...</div>
+  </div>
+
+  <div style="text-align:center; margin-top:32px">
+    <a href="facilities.html" style="display:inline-block; background:var(--primary); color:#fff; padding:13px 32px; border-radius:8px; font-weight:700; font-size:1rem;">View All 125 Facilities →</a>
+  </div>
+</div>
+
+<div style="background:#1e3a5f; color:#fff; padding:48px 20px; text-align:center; margin-top:20px;">
+  <div style="max-width:600px; margin:0 auto;">
+    <div style="font-size:1.4rem; font-weight:800; margin-bottom:12px;">Why We Built This</div>
+    <p style="opacity:.8; line-height:1.7;">Finding a nursing home in Malaysia is stressful — and pricing is almost never published online. We built NursingHomeGuide.my so families can compare options, understand costs, and make confident decisions without the runaround.</p>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 NursingHomeGuide.my — A free resource for Malaysian families</p>
+  <p style="margin-top:8px"><a href="facilities.html">All Facilities</a> · <a href="#">Contact</a></p>
+</footer>
+
+<script src="data.js"></script>
+<script>
+let allFacilities = [];
+
+function doSearch() {
+  const q = document.getElementById('heroSearch').value.trim();
+  if (q) window.location.href = `facilities.html?q=${encodeURIComponent(q)}`;
+}
+
+document.getElementById('heroSearch').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doSearch();
+});
+
+function makeCard(f) {
+  const hasPrice = f.shared_price && f.shared_price !== 'Call for pricing';
+  const priceHtml = hasPrice
+    ? `<div class="card-price">From ${f.shared_price}/mo</div>`
+    : `<div class="card-price unknown">Call for pricing</div>`;
+
+  const tags = (f.care_types || '').split('+').map(t => t.trim()).filter(Boolean).slice(0,2)
+    .map(t => `<span class="tag">${t}</span>`).join('');
+
+  const rating = f.rating ? `<div class="card-rating"><span class="stars">★</span> ${parseFloat(f.rating).toFixed(1)}</div>` : '';
+
+  return `
+    <a href="facility.html?slug=${f.slug}" class="card">
+      <div class="card-name">${f.title}</div>
+      ${f.area ? `<div class="card-area">📍 ${f.area}</div>` : ''}
+      ${priceHtml}
+      ${tags ? `<div class="card-tags">${tags}</div>` : ''}
+      ${rating}
+    </a>`;
+}
+
+function filterByArea(area, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = area ? allFacilities.filter(f => f.area === area) : allFacilities;
+  renderFeatured(filtered);
+}
+
+function renderFeatured(facilities) {
+  const sorted = [...facilities].sort((a,b) => parseFloat(b.rating||0) - parseFloat(a.rating||0));
+  const top = sorted.slice(0, 8);
+  document.getElementById('featuredGrid').innerHTML = top.map(makeCard).join('') ||
+    '<div class="empty">No facilities found in this area.</div>';
+}
+
+loadFacilities().then(data => {
+  allFacilities = data;
+
+  // Update stats
+  const withPrice = data.filter(f => f.shared_price && f.shared_price !== 'Call for pricing').length;
+  document.getElementById('statTotal').textContent = data.length;
+  document.getElementById('statPricing').textContent = withPrice;
+
+  // Build area filters
+  const areas = [...new Set(data.map(f => f.area).filter(Boolean))].sort();
+  const filtersEl = document.getElementById('areaFilters');
+  areas.forEach(area => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.textContent = area;
+    btn.onclick = () => filterByArea(area, btn);
+    filtersEl.appendChild(btn);
+  });
+
+  renderFeatured(data);
+});
+</script>
+</body>
+</html>
