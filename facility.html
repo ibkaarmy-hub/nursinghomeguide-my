@@ -1,13 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="pageTitle">Nursing Home — NursingHomeGuide.my</title>
-  <meta name="description" id="pageDesc" content="Nursing home details, pricing, and contact information." />
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title id="pageTitle">Nursing Home — NursingHomeGuide.my</title>
+<meta name="description" id="pageDesc" content="Nursing home details, pricing, and contact information." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
+<style>
+/* Profile-page–specific styles (kept inline to avoid bloating the global stylesheet) */
+.hero { position: relative; height: 460px; background: #1e293b; overflow: hidden; }
+.carousel { position: absolute; inset: 0; }
+.carousel-track { display: flex; height: 100%; transition: transform .4s ease; }
+.carousel-slide { min-width: 100%; height: 100%; background-size: cover; background-position: center; }
+.carousel-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,.2) 0%, rgba(15,23,42,.85) 100%); }
+.carousel-controls { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 3; }
+.carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.4); border: none; cursor: pointer; padding: 0; }
+.carousel-dot.active { background: white; width: 24px; border-radius: 4px; }
+.carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.9); border: none; font-size: 22px; cursor: pointer; z-index: 3; display: none; align-items: center; justify-content: center; }
+.hero:hover .carousel-arrow { display: flex; }
+.carousel-arrow.prev { left: 20px; }
+.carousel-arrow.next { right: 20px; }
+.hero-content { position: absolute; inset: 0; display: flex; align-items: flex-end; z-index: 2; padding: 0 20px 60px; pointer-events: none; }
+.hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; color: white; pointer-events: auto; }
+.back-link-white { color: rgba(255,255,255,.85); font-size: .85rem; display: inline-block; margin-bottom: 16px; }
+.back-link-white:hover { color: white; text-decoration: none; }
+.hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; line-height: 1.15; color: white; }
+.hero-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: .9rem; color: rgba(255,255,255,.9); margin-bottom: 16px; }
+.hero-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.hero-badge { background: rgba(255,255,255,.15); color: white; padding: 4px 10px; border-radius: 999px; font-size: .75rem; font-weight: 500; backdrop-filter: blur(8px); }
+@media (max-width: 600px) { .hero h1 { font-size: 1.5rem; } .hero { height: 380px; } }
+
+.summary-box { max-width: 1200px; margin: -40px auto 24px; padding: 0 20px; position: relative; z-index: 5; }
+.summary-card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.08); padding: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.summary-item .label { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted, #64748b); font-weight: 600; margin-bottom: 6px; }
+.summary-item .value { font-size: 1.05rem; font-weight: 700; color: var(--text, #0f172a); }
+.summary-item .value.unknown { color: #f59e0b; }
+.summary-item .sub { font-size: .8rem; color: var(--text-muted, #64748b); margin-top: 2px; }
+@media (max-width: 768px) { .summary-card { grid-template-columns: 1fr 1fr; gap: 16px; } }
+
+.tabs-nav { background: white; border-bottom: 1px solid var(--border, #e2e8f0); position: sticky; top: 56px; z-index: 40; overflow-x: auto; }
+.tabs-nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; gap: 0; }
+.tab-btn { background: none; border: none; padding: 16px 18px; cursor: pointer; font: inherit; font-weight: 500; color: var(--text-muted, #64748b); white-space: nowrap; border-bottom: 3px solid transparent; transition: all .15s; }
+.tab-btn:hover { color: var(--text, #0f172a); }
+.tab-btn.active { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
+
+.profile-page-body { max-width: 1200px; margin: 0 auto; padding: 24px 20px; display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+.profile-main { min-width: 0; }
+.profile-sidebar { position: sticky; top: 130px; align-self: start; }
+@media (max-width: 960px) { .profile-page-body { grid-template-columns: 1fr; } .profile-sidebar { position: static; } }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.editor-note { background: #f0f9ff; border-left: 4px solid #2563eb; border-radius: 6px; padding: 14px 16px; font-size: .88rem; line-height: 1.6; margin-bottom: 16px; }
+.editor-note strong { color: #1d4ed8; }
+
+/* Care level indicator */
+.care-level-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 14px 0; }
+.care-level-bar .step { padding: 12px 8px; text-align: center; font-size: .78rem; font-weight: 600; border-radius: 6px; background: #f1f5f9; color: var(--text-muted, #64748b); }
+.care-level-bar .step.active { background: #2563eb; color: white; }
+.care-level-bar .step.partial { background: #dbeafe; color: #1d4ed8; }
+.care-level-key { font-size: .8rem; color: var(--text-muted, #64748b); margin-top: 8px; }
+
+/* Pricing components */
+.price-band { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+.price-band-label { font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: #1d4ed8; font-weight: 600; }
+.price-band-value { font-size: 1.8rem; font-weight: 800; color: #1d4ed8; margin: 4px 0; }
+.price-band-note { font-size: .85rem; color: var(--text-muted, #64748b); }
+.price-band.unknown { background: #fffbeb; }
+.price-band.unknown .price-band-label, .price-band.unknown .price-band-value { color: #92400e; }
+
+.includes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.includes-col h4 { font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; font-weight: 700; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid; }
+.includes-col.included h4 { color: #10b981; border-color: #10b981; }
+.includes-col.extra h4 { color: #f59e0b; border-color: #f59e0b; }
+.includes-list { list-style: none; padding: 0; }
+.includes-list li { padding: 6px 0; font-size: .88rem; display: flex; align-items: flex-start; gap: 8px; }
+.includes-col.included li::before { content: "✓"; color: #10b981; font-weight: 700; flex-shrink: 0; }
+.includes-col.extra li::before { content: "+"; color: #f59e0b; font-weight: 700; flex-shrink: 0; }
+.includes-list li.unknown { color: var(--text-muted, #64748b); }
+@media (max-width: 600px) { .includes-grid { grid-template-columns: 1fr; } }
+
+/* Capability grid */
+.check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.check-cell { padding: 10px 12px; border-radius: 8px; display: flex; align-items: center; gap: 8px; font-size: .88rem; }
+.check-cell.yes { background: #ecfdf5; color: #065f46; }
+.check-cell.no { background: #fef2f2; color: #991b1b; }
+.check-cell.unknown { background: #fffbeb; color: #92400e; }
+.check-icon-sm { width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 700; flex-shrink: 0; color: white; }
+.check-cell.yes .check-icon-sm { background: #10b981; }
+.check-cell.no .check-icon-sm { background: #ef4444; }
+.check-cell.unknown .check-icon-sm { background: #f59e0b; }
+@media (max-width: 600px) { .check-grid { grid-template-columns: 1fr; } }
+
+/* Amenity tags */
+.amenity-section { margin-bottom: 18px; }
+.amenity-section h3 { font-size: .9rem; font-weight: 700; margin-bottom: 8px; color: var(--text, #0f172a); }
+.amenity-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.amenity-tag { background: #f1f5f9; padding: 5px 11px; border-radius: 999px; font-size: .82rem; }
+.amenity-tag.unverified { background: #fffbeb; color: #92400e; border: 1px dashed #fbbf24; }
+
+/* Photos tab grid */
+.photo-cats { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.photo-cat { padding: 6px 14px; border-radius: 999px; background: #f1f5f9; border: none; font: inherit; font-size: .85rem; cursor: pointer; }
+.photo-cat.active { background: #2563eb; color: white; }
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.photo-grid a { display: block; aspect-ratio: 4/3; overflow: hidden; border-radius: 8px; background: #f1f5f9; }
+.photo-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .2s; }
+.photo-grid a:hover img { transform: scale(1.04); }
+@media (max-width: 600px) { .photo-grid { grid-template-columns: 1fr 1fr; } }
+
+/* Reviews */
+.review-empty { background: #fffbeb; border: 1px dashed #fbbf24; border-radius: 8px; padding: 18px; color: #92400e; font-size: .9rem; line-height: 1.6; }
+.review-empty strong { display: block; margin-bottom: 4px; color: #78350f; }
+.rating-large { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; }
+.rating-large .num { font-size: 2.2rem; font-weight: 800; color: var(--text, #0f172a); }
+.rating-large .lbl { font-size: .9rem; color: var(--text-muted, #64748b); }
+
+/* Map / nearby */
+.map-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border, #e2e8f0); }
+.map-wrap iframe { display: block; width: 100%; height: 360px; border: 0; }
+.nearby { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.nearby-item { padding: 10px 12px; background: #f8fafc; border-radius: 8px; font-size: .85rem; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.nearby-item .dist { color: var(--text-muted, #64748b); font-size: .8rem; }
+@media (max-width: 600px) { .nearby { grid-template-columns: 1fr; } }
+
+/* Sidebar contact card */
+.contact-card { background: white; border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.05); margin-bottom: 14px; }
+.contact-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+.cta-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: opacity .15s; margin-bottom: 8px; font-size: .9rem; }
+.cta-btn:hover { text-decoration: none; opacity: .9; }
+.cta-call { background: #2563eb; color: white; }
+.cta-wa { background: #25d366; color: white; }
+.cta-maps { background: #f1f5f9; color: var(--text, #0f172a); }
+.cta-web { background: white; color: var(--text, #0f172a); border: 1px solid var(--border, #e2e8f0); }
+.contact-meta { font-size: .82rem; color: var(--text-muted, #64748b); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border, #e2e8f0); line-height: 1.7; }
+.compare-row { background: #fef9c3; border: 1px solid #fde047; border-radius: 8px; padding: 10px 12px; margin-top: 12px; font-size: .82rem; color: #78350f; cursor: pointer; }
+.checklist-card { background: #f0fdf4; border-color: #bbf7d0; }
+.checklist-card h3 { color: #166534; }
+.checklist-card ul { font-size: .85rem; color: #166534; line-height: 1.7; padding-left: 18px; margin-top: 6px; }
+
+/* Sample-schedule disclaimer + table */
+.schedule-disclaimer { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 12px; border-radius: 4px; font-size: .88rem; color: #78350f; margin-bottom: 14px; }
+.schedule-row { display: grid; grid-template-columns: 90px 1fr; gap: 14px; padding: 8px 0; font-size: .88rem; border-bottom: 1px solid #f1f5f9; }
+.schedule-row:last-child { border-bottom: none; }
+.schedule-row .time { font-weight: 600; color: var(--text-muted, #64748b); }
+
+.unverified-pill { display: inline-block; background: #fffbeb; color: #92400e; border: 1px dashed #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: .72rem; font-weight: 500; margin-left: 6px; vertical-align: middle; }
+
+.warning-box { background: #fef3c7; border-radius: 8px; padding: 14px; margin-top: 18px; font-size: .88rem; color: #78350f; line-height: 1.6; }
+</style>
 </head>
 <body>
 
@@ -32,372 +177,423 @@
 
 <script src="data.js"></script>
 <script>
-
-/* ── Helpers ───────────────────────────────── */
+/* ── Helpers ────────────────────────────────────────────── */
 function yn(val) {
-  if (!val) return null;
-  const v = val.toString().toLowerCase();
-  if (v === 'yes' || v === 'y' || v === 'true' || v === '1') return true;
-  if (v === 'no' || v === 'n' || v === 'false' || v === '0') return false;
+  if (val == null) return null;
+  const v = String(val).trim().toLowerCase();
+  if (['yes','y','true','1'].includes(v)) return true;
+  if (['no','n','false','0'].includes(v)) return false;
   return null;
 }
-
-function checkItem(label, value, unknown = true) {
-  const state = yn(value);
-  if (state === true)  return `<div class="check-item check-yes"><span class="check-icon">✓</span>${label}</div>`;
-  if (state === false) return `<div class="check-item check-no"><span class="check-icon">✗</span>${label}</div>`;
-  if (unknown)         return `<div class="check-item check-unknown"><span class="check-icon">?</span>${label}</div>`;
-  return '';
+function isUnknownText(v) {
+  if (!v) return true;
+  const s = String(v).toLowerCase();
+  return ['not stated','not published','not declared','not confirmed','unknown','tbd','—','-'].some(t => s.includes(t));
+}
+function escapeHtml(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function checkCell(label, val) {
+  const state = yn(val);
+  if (state === true)  return `<div class="check-cell yes"><span class="check-icon-sm">✓</span> ${escapeHtml(label)}</div>`;
+  if (state === false) return `<div class="check-cell no"><span class="check-icon-sm">✗</span> ${escapeHtml(label)}</div>`;
+  return `<div class="check-cell unknown"><span class="check-icon-sm">?</span> ${escapeHtml(label)}</div>`;
+}
+function infoRow(label, value, options = {}) {
+  const isUnknown = !value || isUnknownText(value);
+  if (isUnknown && !options.showUnknown) return '';
+  const cls = isUnknown ? 'info-value unknown' : 'info-value';
+  const display = isUnknown ? (options.unknownText || value || 'Not published') : value;
+  return `<div class="info-row"><span class="info-label">${escapeHtml(label)}</span><span class="${cls}">${escapeHtml(display)}</span></div>`;
 }
 
-function infoRow(label, value) {
-  if (!value) return '';
-  return `<div class="info-row"><span class="info-label">${label}</span><span class="info-value">${value}</span></div>`;
+/* ── Section renderers (driven by Details sheet) ──────── */
+function renderInfoSection(rows) {
+  return rows.map(r => infoRow(r.label, r.value, { showUnknown: true })).join('');
+}
+function renderIncludedExtras(included = [], extras = []) {
+  if (!included.length && !extras.length) return '';
+  const incHtml = included.map(r => `<li>${escapeHtml(r.label)}</li>`).join('') || '<li class="unknown">— not yet documented —</li>';
+  const extHtml = extras.map(r => {
+    const cls = isUnknownText(r.value) ? 'unknown' : '';
+    const tail = r.value ? ` <span style="color:var(--text-muted,#64748b)">— ${escapeHtml(r.value)}</span>` : '';
+    return `<li class="${cls}">${escapeHtml(r.label)}${tail}</li>`;
+  }).join('') || '<li class="unknown">— not yet documented —</li>';
+  return `<div class="includes-grid">
+    <div class="includes-col included"><h4>Included</h4><ul class="includes-list">${incHtml}</ul></div>
+    <div class="includes-col extra"><h4>Likely extra cost</h4><ul class="includes-list">${extHtml}</ul></div>
+  </div>`;
+}
+function renderCheckSection(rows) {
+  return `<div class="check-grid">${rows.map(r => checkCell(r.label, r.value)).join('')}</div>`;
+}
+function renderAmenityTags(rows) {
+  return `<div class="amenity-tags">${rows.map(r => {
+    const unknown = isUnknownText(r.value);
+    const text = r.value && !unknown ? `${escapeHtml(r.label)}` : `${escapeHtml(r.label)} — ${escapeHtml(r.value || 'not stated')}`;
+    return `<span class="amenity-tag${unknown ? ' unverified' : ''}">${text}</span>`;
+  }).join('')}</div>`;
+}
+function renderNearby(rows) {
+  return `<div class="nearby">${rows.map(r =>
+    `<div class="nearby-item"><span>${escapeHtml(r.label)}</span><span class="dist">${escapeHtml(r.value || '')}</span></div>`
+  ).join('')}</div>`;
 }
 
-/* ── Tab switching ─────────────────────────── */
+/* ── Care level computation ─────────────────────────── */
+function careLevelHtml(f) {
+  const careStr = (f.care_types || '').toLowerCase();
+  const has = (key, ...alts) => yn(f['care_' + key]) === true || alts.some(a => careStr.includes(a));
+  const independent = has('assisted', 'independent') ? false : false; // never assumed
+  const assisted = has('assisted', 'assisted');
+  const skilled = has('nursing', 'nursing', 'skilled');
+  const memory  = has('dementia', 'dementia', 'memory');
+  const palliative = has('palliative', 'palliative', 'hospice');
+  const cls = (active) => active ? 'step active' : 'step';
+  return `<div class="care-level-bar">
+    <div class="${cls(independent)}">Independent</div>
+    <div class="${cls(assisted)}">Assisted</div>
+    <div class="${cls(skilled)}">Skilled Nursing</div>
+    <div class="${cls(memory)}">Memory / Dementia</div>
+    <div class="${cls(palliative)}">Palliative</div>
+  </div>
+  <div class="care-level-key">Solid blue = clearly accepted. Empty = not stated. Always confirm specific clinical capability with the facility.</div>`;
+}
+
+/* ── Hero carousel ──────────────────────────────────── */
+function buildCarousel(photos) {
+  if (!photos.length) return '';
+  return `
+    <div class="carousel">
+      <div class="carousel-track" id="carouselTrack">
+        ${photos.map(u => `<div class="carousel-slide" style="background-image:url('${escapeHtml(u)}')"></div>`).join('')}
+      </div>
+      ${photos.length > 1 ? `
+        <button class="carousel-arrow prev" id="prevBtn">‹</button>
+        <button class="carousel-arrow next" id="nextBtn">›</button>
+        <div class="carousel-controls" id="carouselDots">
+          ${photos.map((_,i) => `<button class="carousel-dot${i===0?' active':''}" data-i="${i}"></button>`).join('')}
+        </div>` : ''}
+    </div>
+    <div class="carousel-overlay"></div>`;
+}
+
+/* ── Tabs ───────────────────────────────────────────── */
 function showTab(id) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  document.querySelector(`[data-tab="${id}"]`).classList.add('active');
+  const panel = document.getElementById('tab-' + id);
+  if (panel) panel.classList.add('active');
+  document.querySelector(`[data-tab="${id}"]`)?.classList.add('active');
 }
 
-/* ── Main render ───────────────────────────── */
-function renderProfile(f) {
+/* ── Main render ───────────────────────────────────── */
+function render(f) {
+  const D = f._details || {};
   document.title = `${f.title} — NursingHomeGuide.my`;
   document.getElementById('pageDesc').content =
-    `${f.title} in ${f.area || 'Johor'}, Malaysia. ${f.shared_price ? 'From ' + f.shared_price + '/mo. ' : ''}Care types: ${f.care_types || ''}`;
+    `${f.title} in ${f.area || 'Malaysia'}. ${f.shared_price ? 'From RM ' + f.shared_price + '/mo. ' : ''}${f.editorial_summary || ''}`;
 
-  /* Rating */
-  const ratingHtml = f.rating
-    ? `<span class="hero-rating">⭐ ${parseFloat(f.rating).toFixed(1)} <span style="opacity:.7">(${f.review_count || 0} reviews)</span></span>`
-    : '';
-
-  /* Base price */
-  const basePrice = f.shared_price || f.private_price;
-  const priceHtml = basePrice
-    ? `<div class="hero-price">From <strong>${basePrice}</strong>/month</div>`
-    : `<div class="hero-price" style="color:rgba(255,255,255,.6)">📞 Enquire for pricing</div>`;
-
-  /* Care type badges */
-  const careTypes = (f.care_types || '').split('+').map(t => t.trim()).filter(Boolean);
-  const badges = careTypes.map(t => `<span class="badge">${t}</span>`).join('');
-
-  /* ── Tab: Overview ──────────────────────── */
-  const overviewFacts = [
-    infoRow('Area', f.area ? `${f.area}, Johor` : ''),
-    infoRow('Ownership', f.ownership_type || ''),
-    infoRow('Licence No.', f.licence_number || ''),
-    infoRow('Religion Friendly', f.religion || ''),
-    infoRow('Languages', f.languages || ''),
-    infoRow('Halal Certified', yn(f.halal) === true ? '✓ Yes' : yn(f.halal) === false ? '✗ No' : ''),
-    infoRow('Wheelchair Access', f.wheelchair || ''),
-    infoRow('Subsidy Accepted', f.subsidy || ''),
-    infoRow('Visiting Hours', f.visiting_hours || f.working_hours || ''),
-    infoRow('Google Rating', f.rating ? `★ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} reviews)` : ''),
-  ].filter(Boolean).join('');
-
-  /* Best suited for / services tags */
-  const services = (f.services || '').split(',').map(s => s.trim()).filter(Boolean);
-  const suitedTags = [...careTypes, ...services.slice(0, 4)];
-
-  const editorialHtml = f.editorial_summary
-    ? `<div class="editorial-box"><div class="editorial-label">📋 Editorial Note</div><p>${f.editorial_summary}</p></div>`
-    : '';
-
-  /* ── Tab: Pricing ───────────────────────── */
-  const hasPricing = f.shared_price || f.private_price || f.four_bed_price || f.dorm_price;
-
-  const pricingRows = [
-    f.shared_price    ? `<tr><td>Shared Room (2–3 bed)</td><td class="price-cell">${f.shared_price}<span class="per-month">/mo</span></td></tr>` : '',
-    f.four_bed_price  ? `<tr><td>4-Bed Room</td><td class="price-cell">${f.four_bed_price}<span class="per-month">/mo</span></td></tr>` : '',
-    f.dorm_price      ? `<tr><td>Open Ward / Dorm</td><td class="price-cell">${f.dorm_price}<span class="per-month">/mo</span></td></tr>` : '',
-    f.private_price   ? `<tr><td>Private Room</td><td class="price-cell">${f.private_price}<span class="per-month">/mo</span></td></tr>` : '',
-  ].filter(Boolean).join('');
-
-  const servicesIncluded = services.length
-    ? `<div class="included-list">${services.map(s => `<span class="included-tag">✓ ${s}</span>`).join('')}</div>`
-    : '';
-
-  const pricingLastVerified = f.last_verified_date
-    ? `<div class="verified-note">✓ Pricing last verified: <strong>${f.last_verified_date}</strong></div>`
-    : '<div class="verified-note unverified">⚠️ Pricing not yet verified — contact facility to confirm</div>';
-
-  /* ── Tab: Care ──────────────────────────── */
-  const careLevels = [
-    checkItem('Nursing Care',        f.care_nursing     || (careTypes.some(t => /nursing/i.test(t)) ? 'yes' : '')),
-    checkItem('Dementia Care',       f.care_dementia    || (careTypes.some(t => /dementia/i.test(t)) ? 'yes' : '')),
-    checkItem('Palliative / Hospice', f.care_palliative || (careTypes.some(t => /palliative|hospice/i.test(t)) ? 'yes' : '')),
-    checkItem('Rehab / Step-down',   f.care_rehab       || (careTypes.some(t => /rehab|step/i.test(t)) ? 'yes' : '')),
-    checkItem('Respite / Short-stay', f.care_respite    || (careTypes.some(t => /respite/i.test(t)) ? 'yes' : '')),
-    checkItem('Assisted Living',     f.care_assisted    || (careTypes.some(t => /assisted/i.test(t)) ? 'yes' : '')),
-  ].join('');
-
-  const medicalCaps = [
-    checkItem('24/7 Registered Nurse',  f.rn_24_7),
-    checkItem('Physiotherapy',          f.medical_physio  || (services.some(s => /physio/i.test(s)) ? 'yes' : '')),
-    checkItem('Occupational Therapy',   f.medical_ot),
-    checkItem('Wound Care',             f.medical_wound   || (services.some(s => /wound/i.test(s)) ? 'yes' : '')),
-    checkItem('Tube Feeding (NG/PEG)',  f.medical_peg     || (services.some(s => /peg|tube feed/i.test(s)) ? 'yes' : '')),
-    checkItem('Dementia Unit',          f.medical_dementia_unit),
-    checkItem('Dialysis Support',       f.medical_dialysis),
-    checkItem('Oxygen Therapy',         f.medical_oxygen),
-    checkItem('Medication Management',  f.medical_meds    || (services.some(s => /medic/i.test(s)) ? 'yes' : '')),
-  ].join('');
-
-  const clinicalDetails = [
-    infoRow('Doctor Visits',          f.doctor_visits || ''),
-    infoRow('Nurse Ratio (Day)',       f.nurse_ratio_day || ''),
-    infoRow('Nurse Ratio (Night)',     f.nurse_ratio_night || ''),
-    infoRow('Total Beds',             f.total_beds || ''),
-    infoRow('Availability',           f.availability || ''),
-    infoRow('Wheelchair Accepted',    f.wheelchair || ''),
-  ].filter(Boolean).join('');
-
-  /* ── Tab: Location ──────────────────────── */
-  const mapEmbed = (f.latitude && f.longitude)
-    ? `<div class="map-embed-wrap">
-        <iframe
-          src="https://maps.google.com/maps?q=${f.latitude},${f.longitude}&z=15&output=embed"
-          width="100%" height="280" style="border:0; border-radius:10px;"
-          allowfullscreen loading="lazy">
-        </iframe>
-       </div>`
-    : '';
-
-  const locationDetails = [
-    infoRow('Full Address',  f.full_address || (f.area ? `${f.area}, Johor` : '')),
-    infoRow('Area',          f.area || ''),
-    infoRow('Visiting Hours', f.visiting_hours || f.working_hours || ''),
-    infoRow('Parking',       f.parking || ''),
-  ].filter(Boolean).join('');
-
-  /* ── Photos ─────────────────────────────── */
   const photos = (f.photos || '').split('|').map(s => s.trim()).filter(Boolean);
-  const heroImg = f.hero_image || photos[0] || '';
-  const heroBg = heroImg ? `style="background-image:linear-gradient(180deg,rgba(15,23,42,.45),rgba(15,23,42,.85)),url('${heroImg}');background-size:cover;background-position:center;"` : '';
-  const galleryHtml = photos.length > 1 ? `
-    <div class="profile-card">
-      <h2>Photos <span style="font-weight:400;color:var(--text-muted);font-size:.85rem">(${photos.length})</span></h2>
-      <div class="photo-gallery">
-        ${photos.slice(0, 12).map((u,i) => `<a href="${u}" target="_blank" class="gallery-item"><img src="${u}" alt="${f.title} photo ${i+1}" loading="lazy" /></a>`).join('')}
-      </div>
+  if (!photos.length && f.hero_image) photos.push(f.hero_image);
+
+  const ratingMeta = f.rating
+    ? `<span>⭐ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} Google reviews)</span>` : '';
+
+  /* Hero badges from care_types */
+  const careBadges = (f.care_types || '').split(/[+,]/).map(s => s.trim()).filter(Boolean)
+    .slice(0, 5).map(t => `<span class="hero-badge">${escapeHtml(t)}</span>`).join('');
+
+  /* Summary tiles */
+  const priceVal = f.shared_price || f.private_price || f.pricing_display || 'Not published';
+  const priceUnknown = !f.shared_price && !f.private_price && (!f.pricing_display || isUnknownText(f.pricing_display));
+  const summaryTiles = `
+    <div class="summary-item">
+      <div class="label">Monthly Fees</div>
+      <div class="value${priceUnknown ? ' unknown' : ''}">${escapeHtml(priceVal || 'Not published')}</div>
+      <div class="sub">${priceUnknown ? 'Call to enquire' : '/ month'}</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">Care Level</div>
+      <div class="value">${escapeHtml(f.care_types || 'Not stated')}</div>
+      <div class="sub">${f.care_dementia === 'Yes' ? 'incl. dementia' : ''}</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">Languages</div>
+      <div class="value${!f.languages ? ' unknown' : ''}">${escapeHtml(f.languages || 'Not stated')}</div>
+      <div class="sub"></div>
+    </div>
+    <div class="summary-item">
+      <div class="label">Halal Status</div>
+      <div class="value${yn(f.halal) === null ? ' unknown' : ''}">${yn(f.halal) === true ? '✓ Yes' : yn(f.halal) === false ? '✗ No' : 'Not declared'}</div>
+      <div class="sub">${yn(f.halal) === null ? 'ask before visit' : ''}</div>
+    </div>`;
+
+  /* Sidebar contact buttons */
+  const phoneLink   = f.phone        ? `<a href="tel:${escapeHtml(f.phone)}" class="cta-btn cta-call">📞 Call ${escapeHtml(f.phone)}</a>` : '';
+  const waLink      = f.whatsapp     ? `<a href="https://wa.me/${(f.whatsapp || '').replace(/\D/g,'')}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp</a>` : '';
+  const mapsLink    = f.google_maps_url ? `<a href="${escapeHtml(f.google_maps_url)}" target="_blank" class="cta-btn cta-maps">📍 Google Maps</a>` : '';
+  const webLink     = f.website && !f.website.includes('facebook') ? `<a href="${escapeHtml(f.website)}" target="_blank" class="cta-btn cta-web">🌐 Website</a>` : '';
+
+  /* Family checklist (sidebar) — from Details `checklist` section */
+  const checklistRows = D.checklist || [];
+  const checklistHtml = checklistRows.length ? `
+    <div class="contact-card checklist-card">
+      <h3>📋 Family checklist</h3>
+      <p style="font-size:.85rem; color:#166534; line-height:1.6;">Before your visit, ask for:</p>
+      <ul>${checklistRows.map(r => `<li>${escapeHtml(r.label)}</li>`).join('')}</ul>
     </div>` : '';
 
-  /* ── Sidebar contact ────────────────────── */
-  const phoneLink    = f.phone      ? `<a href="tel:${f.phone}" class="cta-btn cta-call">📞 Call ${f.phone}</a>` : '';
-  const waLink       = f.whatsapp   ? `<a href="https://wa.me/${f.whatsapp.replace(/\D/g,'')}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp</a>` : '';
-  const mapsLink     = f.google_maps_url ? `<a href="${f.google_maps_url}" target="_blank" class="cta-btn cta-maps">📍 Google Maps</a>` : '';
-  const websiteLink  = f.website && !f.website.includes('facebook') ? `<a href="${f.website}" target="_blank" class="cta-btn cta-web">🌐 Website</a>` : '';
-  const fbLink       = f.facebook || (f.website && f.website.includes('facebook') ? f.website : '')
-    ? `<a href="${f.facebook || f.website}" target="_blank" class="cta-btn cta-web">Facebook Page</a>` : '';
+  /* OVERVIEW tab content */
+  const overviewQuickFacts = [
+    infoRow('Address', [f.title ? '' : '', D.policies?.find(r => r.label.toLowerCase().includes('address'))?.value, f.area].filter(Boolean).join(', ')),
+    infoRow('Area', f.area),
+    infoRow('Phone', f.phone),
+    infoRow('Languages', f.languages),
+    infoRow('Halal certified', yn(f.halal) === true ? '✓ Yes' : yn(f.halal) === false ? '✗ No' : ''),
+    infoRow('Wheelchair access', f.wheelchair),
+    infoRow('Subsidy accepted', f.subsidy),
+    infoRow('Visiting hours', f.visiting_hours),
+    infoRow('Google rating', f.rating ? `★ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} reviews)` : ''),
+  ].filter(Boolean).join('');
 
-  /* ── Assemble HTML ──────────────────────── */
-  document.getElementById('profileContent').innerHTML = `
+  const policiesHtml = D.policies?.length ? `
+    <div class="profile-card"><h2>Policies &amp; Registration</h2>${renderInfoSection(D.policies)}</div>` : '';
 
-    <!-- HERO -->
-    <div class="profile-hero${heroImg ? ' has-photo' : ''}" ${heroBg}>
-      <div class="profile-hero-inner">
-        <a href="facilities.html" class="back-link-white">← All facilities</a>
-        <h1>${f.title}</h1>
-        <div class="hero-meta">
-          <span>📍 ${f.area ? f.area + ', ' : ''}Johor, Malaysia</span>
-          ${ratingHtml}
+  const editorialHtml = f.editorial_summary
+    ? `<div class="editor-note"><strong>📋 About</strong> ${escapeHtml(f.editorial_summary)}</div>` : '';
+
+  /* PRICING tab */
+  const pricingRows = [
+    f.shared_price    ? `<tr><td>Shared Room</td><td class="price-cell">${escapeHtml(f.shared_price)}<span class="per-month">/mo</span></td></tr>` : '',
+    f.four_bed_price  ? `<tr><td>4-Bed Room</td><td class="price-cell">${escapeHtml(f.four_bed_price)}<span class="per-month">/mo</span></td></tr>` : '',
+    f.dorm_price      ? `<tr><td>Open Ward / Dorm</td><td class="price-cell">${escapeHtml(f.dorm_price)}<span class="per-month">/mo</span></td></tr>` : '',
+    f.private_price   ? `<tr><td>Private Room</td><td class="price-cell">${escapeHtml(f.private_price)}<span class="per-month">/mo</span></td></tr>` : '',
+  ].filter(Boolean).join('');
+  const hasPricing = !!pricingRows;
+  const roomsRows = (D.rooms || []).filter(r => /room|bed|dorm|single/i.test(r.label));
+  const roomsHtml = roomsRows.length ? `<div class="profile-card"><h2>Room Types &amp; Rates</h2>${renderInfoSection(roomsRows)}</div>` : '';
+  const includedExtras = renderIncludedExtras(D.included || [], D.extras || []);
+
+  /* CARE tab */
+  const careCells = [
+    checkCell('Skilled Nursing',     f.care_nursing),
+    checkCell('Assisted Living',     f.care_assisted),
+    checkCell('Dementia Care',       f.care_dementia),
+    checkCell('Palliative Care',     f.care_palliative),
+    checkCell('Rehab / Step-down',   f.care_rehab),
+    checkCell('Respite / Short-stay',f.care_respite),
+  ].join('');
+  const medCells = [
+    checkCell('24/7 Registered Nurse',  f.rn_24_7),
+    checkCell('Doctor Visits',          f.doctor_visits),
+    checkCell('Physiotherapy',          f.medical_physio),
+    checkCell('Occupational Therapy',   f.medical_ot),
+    checkCell('Wound Care',             f.medical_wound),
+    checkCell('Tube Feeding (NG/PEG)',  f.medical_peg),
+    checkCell('Dementia Unit',          f.medical_dementia_unit),
+    checkCell('Dialysis Support',       f.medical_dialysis),
+    checkCell('Oxygen Therapy',         f.medical_oxygen),
+    checkCell('Medication Management',  f.medical_meds),
+  ].join('');
+  const clinicalDetailHtml = D.clinical?.length ? `
+    <div class="profile-card"><h2>Clinical Capability Detail</h2>${renderCheckSection(D.clinical)}</div>` : '';
+  const staffingHtml = D.staffing?.length ? `
+    <div class="profile-card"><h2>Staffing</h2>${renderInfoSection(D.staffing)}</div>` : '';
+
+  /* AMENITIES tab — categorised from Details, with fallback to nothing */
+  const amenityCats = [
+    ['dining',     '🍽️ Dining'],
+    ['activities', '🎯 Activities'],
+    ['rooms',      '🛏️ Room features'],
+    ['services',   '🧰 Services'],
+    ['outdoor',    '🌳 Outdoor & safety'],
+  ];
+  const amenitiesHtml = amenityCats.map(([key, title]) => {
+    const rows = (D[key] || []).filter(r => key !== 'rooms' || !/room|bed|dorm|single/i.test(r.label));
+    if (!rows.length) return '';
+    return `<div class="amenity-section"><h3>${title}</h3>${renderAmenityTags(rows)}</div>`;
+  }).join('');
+
+  const scheduleRows = D.schedule || [];
+  const scheduleHtml = scheduleRows.length ? `
+    <div class="profile-card">
+      <h2>Sample Daily Schedule</h2>
+      ${scheduleRows.length && scheduleRows[0].label.toLowerCase().includes('not') ? '' : ''}
+      <div>${scheduleRows.map(r => `<div class="schedule-row"><span class="time">${escapeHtml(r.label)}</span><span>${escapeHtml(r.value || '')}</span></div>`).join('')}</div>
+    </div>` : '';
+
+  /* PHOTOS tab */
+  const photosTabHtml = photos.length ? `
+    <div class="profile-card">
+      <h2>Photos <span class="count" style="color:var(--text-muted,#64748b);font-weight:400;font-size:.85rem">(${photos.length})</span></h2>
+      <div class="photo-grid">
+        ${photos.map((u,i) => `<a href="${escapeHtml(u)}" target="_blank"><img src="${escapeHtml(u)}" alt="${escapeHtml(f.title)} photo ${i+1}" loading="lazy" /></a>`).join('')}
+      </div>
+    </div>` : `<div class="profile-card"><h2>Photos</h2><p class="text-muted">No photos available yet.</p></div>`;
+
+  /* REVIEWS tab */
+  const reviewsTabHtml = `
+    <div class="profile-card">
+      <h2>Reviews</h2>
+      ${f.rating ? `
+        <div class="rating-large">
+          <div class="num">${parseFloat(f.rating).toFixed(1)}</div>
+          <div class="lbl">${f.review_count || 0} Google reviews</div>
         </div>
-        <div class="badges">${badges}</div>
-        ${priceHtml}
-        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
-          ${f.phone ? `<a href="tel:${f.phone}" class="hero-cta-btn hero-cta-primary">📞 Call Now</a>` : ''}
-          ${f.whatsapp ? `<a href="https://wa.me/${f.whatsapp.replace(/\D/g,'')}" target="_blank" class="hero-cta-btn hero-cta-secondary">💬 WhatsApp</a>` : ''}
+        <div class="review-empty">
+          <strong>Read reviews on Google</strong>
+          We don't republish individual reviews. For decision-making we recommend reading the full reviews on Google and asking the facility if you can speak with current resident families on your visit.
+          <br /><br />
+          <a href="${escapeHtml(f.google_maps_url || '#')}" target="_blank" style="font-weight:600;">Read all reviews on Google →</a>
+        </div>` : `<p class="text-muted">No public ratings yet.</p>`}
+    </div>`;
+
+  /* MAP tab */
+  const mapTabHtml = `
+    <div class="profile-card">
+      <h2>Location${D.nearby?.length ? ' & Nearby' : ''}</h2>
+      ${(f.latitude && f.longitude) ? `
+        <div class="map-wrap">
+          <iframe src="https://maps.google.com/maps?q=${f.latitude},${f.longitude}&z=15&output=embed" allowfullscreen loading="lazy"></iframe>
+        </div>` : '<p class="text-muted">Location not available.</p>'}
+      ${D.nearby?.length ? `<h3 style="margin-top:18px;">Nearby landmarks</h3>${renderNearby(D.nearby)}` : ''}
+      <div style="margin-top:14px; font-size:.85rem;">${infoRow('Address', f.area, { showUnknown: true })}</div>
+    </div>`;
+
+  /* Assemble */
+  document.getElementById('profileContent').innerHTML = `
+    <div class="hero">
+      ${buildCarousel(photos)}
+      <div class="hero-content">
+        <div class="hero-inner">
+          <a href="facilities.html" class="back-link-white">← All facilities</a>
+          <h1>${escapeHtml(f.title)}</h1>
+          <div class="hero-meta">
+            <span>📍 ${escapeHtml(f.area || 'Malaysia')}</span>
+            ${ratingMeta}
+          </div>
+          <div class="hero-badges">${careBadges}</div>
         </div>
       </div>
     </div>
 
-    <!-- TABS NAV -->
-    <div class="tabs-nav" id="tabsNav">
+    <div class="summary-box"><div class="summary-card">${summaryTiles}</div></div>
+
+    <div class="tabs-nav">
       <div class="tabs-nav-inner">
         <button class="tab-btn active" data-tab="overview"  onclick="showTab('overview')">Overview</button>
         <button class="tab-btn"        data-tab="pricing"   onclick="showTab('pricing')">Pricing</button>
-        <button class="tab-btn"        data-tab="care"      onclick="showTab('care')">Care & Medical</button>
-        <button class="tab-btn"        data-tab="location"  onclick="showTab('location')">Location</button>
+        <button class="tab-btn"        data-tab="care"      onclick="showTab('care')">Care</button>
+        <button class="tab-btn"        data-tab="amenities" onclick="showTab('amenities')">Amenities</button>
+        <button class="tab-btn"        data-tab="photos"    onclick="showTab('photos')">Photos</button>
+        <button class="tab-btn"        data-tab="reviews"   onclick="showTab('reviews')">Reviews</button>
+        <button class="tab-btn"        data-tab="map"       onclick="showTab('map')">Map</button>
       </div>
     </div>
 
-    <!-- BODY: tabs + sidebar -->
     <div class="profile-page-body">
-
-      <!-- MAIN CONTENT -->
       <div class="profile-main">
 
-        <!-- TAB: OVERVIEW -->
         <div class="tab-panel active" id="tab-overview">
-
           ${editorialHtml}
-
-          ${galleryHtml}
-
           <div class="profile-card">
             <h2>Quick Facts</h2>
-            ${overviewFacts || '<p class="text-muted">Details not yet collected.</p>'}
+            ${overviewQuickFacts || '<p class="text-muted">Details not yet collected.</p>'}
           </div>
-
-          ${suitedTags.length ? `
           <div class="profile-card">
-            <h2>Services & Care Offered</h2>
-            <div class="services-list">
-              ${suitedTags.map(t => `<span class="service-tag">${t}</span>`).join('')}
-            </div>
-          </div>` : ''}
-
+            <h2>Care Level Indicator</h2>
+            ${careLevelHtml(f)}
+          </div>
+          ${policiesHtml}
         </div>
 
-        <!-- TAB: PRICING -->
         <div class="tab-panel" id="tab-pricing">
           <div class="profile-card">
             <h2>Monthly Fees</h2>
-            ${hasPricing ? `
-              <table class="price-table">
-                <thead><tr><th>Room Type</th><th>Monthly Fee</th></tr></thead>
-                <tbody>${pricingRows}</tbody>
-              </table>
-            ` : `
-              <div class="price-unknown" style="margin-bottom:16px;">
-                💬 Pricing not yet published<br/>
-                <small>Contact this facility directly to get current rates.</small>
-              </div>
-            `}
-
-            ${servicesIncluded ? `
-              <div style="margin-top:20px;">
-                <div class="section-label">What's typically included</div>
-                ${servicesIncluded}
-              </div>` : ''}
-
-            ${pricingLastVerified}
-
-            <div class="disclaimer-box">
-              ⚠️ Prices shown are for reference only. Always confirm directly with the facility before making any decisions. Fees may vary based on care needs, room availability, and subsidies.
-            </div>
+            ${hasPricing ? `<table class="price-table"><thead><tr><th>Room Type</th><th>Monthly Fee</th></tr></thead><tbody>${pricingRows}</tbody></table>`
+                          : `<div class="price-band unknown"><div class="price-band-label">Pricing not yet published</div><div class="price-band-note">Contact this facility directly to get current rates.</div></div>`}
+            ${includedExtras ? '<h3 style="margin-top:18px">What\'s included vs additional cost</h3>' + includedExtras : ''}
+            <div class="warning-box"><strong>⚠️ Always confirm in writing.</strong> Ask for an itemised quote that names the room type, included services, monthly extras (diapers, meds, supplements), deposit, payment frequency, and refund policy. Get it on letterhead before deposit.</div>
           </div>
-
-          <div class="profile-card">
-            <h2>Subsidy Information</h2>
-            ${infoRow('JKM Subsidy Accepted', f.subsidy || '') || '<p class="text-muted">Subsidy eligibility not confirmed.</p>'}
-            <p style="font-size:.85rem; color:var(--text-muted); margin-top:12px; line-height:1.6;">
-              Malaysian families may qualify for JKM (Jabatan Kebajikan Masyarakat) welfare assistance for nursing home fees. Contact JKM or the facility directly to check eligibility.
-            </p>
-          </div>
+          ${roomsHtml}
         </div>
 
-        <!-- TAB: CARE -->
         <div class="tab-panel" id="tab-care">
-
           <div class="profile-card">
-            <h2>Care Levels</h2>
-            <div class="check-grid">${careLevels}</div>
-            <p class="data-note">? = Data not yet collected. <a href="mailto:hello@nursinghomeguide.my">Help us improve →</a></p>
+            <h2>Care Levels Accepted</h2>
+            <div class="check-grid">${careCells}</div>
           </div>
-
           <div class="profile-card">
             <h2>Medical Capabilities</h2>
-            <div class="check-grid">${medicalCaps}</div>
-            <p class="data-note">? = Data not yet collected. <a href="mailto:hello@nursinghomeguide.my">Help us improve →</a></p>
+            <div class="check-grid">${medCells}</div>
           </div>
-
-          ${clinicalDetails ? `
-          <div class="profile-card">
-            <h2>Clinical Details</h2>
-            ${clinicalDetails}
-          </div>` : ''}
-
+          ${clinicalDetailHtml}
+          ${staffingHtml}
         </div>
 
-        <!-- TAB: LOCATION -->
-        <div class="tab-panel" id="tab-location">
-          <div class="profile-card">
-            <h2>Location</h2>
-            ${mapEmbed}
-            <div style="margin-top:16px;">
-              ${locationDetails || '<p class="text-muted">Address details not available.</p>'}
-            </div>
-            ${f.google_maps_url ? `<a href="${f.google_maps_url}" target="_blank" class="cta-btn cta-maps" style="display:inline-block; margin-top:16px;">📍 Open in Google Maps</a>` : ''}
-          </div>
+        <div class="tab-panel" id="tab-amenities">
+          ${amenitiesHtml ? `<div class="profile-card"><h2>Amenities by Category</h2>${amenitiesHtml}</div>` : '<div class="profile-card"><p class="text-muted">Amenity details not yet collected.</p></div>'}
+          ${scheduleHtml}
         </div>
 
-      </div><!-- /profile-main -->
+        <div class="tab-panel" id="tab-photos">${photosTabHtml}</div>
+        <div class="tab-panel" id="tab-reviews">${reviewsTabHtml}</div>
+        <div class="tab-panel" id="tab-map">${mapTabHtml}</div>
 
-      <!-- SIDEBAR -->
-      <div class="profile-sidebar">
-        <div class="sidebar-sticky">
-
-          <div class="profile-card sidebar-contact">
-            <h2>Contact Facility</h2>
-            ${phoneLink}
-            ${waLink}
-            ${mapsLink}
-            ${websiteLink}
-            ${fbLink}
-            ${!phoneLink && !waLink ? '<p class="text-muted" style="font-size:.85rem;">No contact details available yet.</p>' : ''}
-          </div>
-
-          <div class="profile-card sidebar-stats">
-            ${f.shared_price || f.private_price ? `
-              <div class="stat-row">
-                <span class="stat-label">From</span>
-                <span class="stat-value">${f.shared_price || f.private_price}/mo</span>
-              </div>` : ''}
-            ${f.total_beds ? `
-              <div class="stat-row">
-                <span class="stat-label">Total Beds</span>
-                <span class="stat-value">${f.total_beds}</span>
-              </div>` : ''}
-            ${f.availability ? `
-              <div class="stat-row">
-                <span class="stat-label">Availability</span>
-                <span class="stat-value">${f.availability}</span>
-              </div>` : ''}
-            ${f.rating ? `
-              <div class="stat-row">
-                <span class="stat-label">Google Rating</span>
-                <span class="stat-value">★ ${parseFloat(f.rating).toFixed(1)}</span>
-              </div>` : ''}
-          </div>
-
-          <div class="suggest-edit-box">
-            <p>Is this information out of date?</p>
-            <a href="mailto:hello@nursinghomeguide.my?subject=Suggest Edit: ${encodeURIComponent(f.title)}">Suggest an edit →</a>
-          </div>
-
-        </div>
       </div>
 
-    </div><!-- /profile-page-body -->
-  `;
+      <aside class="profile-sidebar">
+        <div class="contact-card">
+          <h3>Contact this facility</h3>
+          ${phoneLink}${waLink}${mapsLink}${webLink}
+          <div class="contact-meta">
+            <strong>${escapeHtml(f.title)}</strong><br />
+            ${escapeHtml(f.area || '')}<br />
+          </div>
+          <div class="compare-row" onclick="alert('Compare feature coming soon')">⚖️ Add to Compare (up to 3)</div>
+          <div class="compare-row" style="background:#f1f5f9; color:var(--text,#0f172a); border-color:var(--border,#e2e8f0); margin-top:6px;" onclick="alert('Save feature coming soon')">❤️ Save this facility</div>
+        </div>
+        ${checklistHtml}
+      </aside>
+    </div>`;
 
-  /* Sticky tabs on scroll */
-  const tabsNav = document.getElementById('tabsNav');
-  const heroH = document.querySelector('.profile-hero').offsetHeight;
-  window.addEventListener('scroll', () => {
-    tabsNav.classList.toggle('tabs-sticky', window.scrollY > heroH);
-  });
+  /* Carousel wiring */
+  if (photos.length > 1) {
+    let cur = 0;
+    const track = document.getElementById('carouselTrack');
+    const goTo = i => {
+      cur = (i + photos.length) % photos.length;
+      track.style.transform = `translateX(-${cur * 100}%)`;
+      document.querySelectorAll('.carousel-dot').forEach((d,j) => d.classList.toggle('active', j === cur));
+    };
+    document.getElementById('prevBtn').onclick = () => goTo(cur - 1);
+    document.getElementById('nextBtn').onclick = () => goTo(cur + 1);
+    document.querySelectorAll('.carousel-dot').forEach(d => d.onclick = () => goTo(+d.dataset.i));
+    setInterval(() => goTo(cur + 1), 6000);
+  }
 }
 
-/* ── Boot ──────────────────────────────────── */
-const slug = new URLSearchParams(window.location.search).get('slug');
-if (!slug) {
-  window.location.href = 'facilities.html';
-} else {
-  loadFacilities().then(data => {
-    const f = data.find(r => r.slug === slug);
+/* ── Boot ───────────────────────────────────────────── */
+(async () => {
+  const slug = new URLSearchParams(location.search).get('slug');
+  if (!slug) {
+    document.getElementById('profileContent').innerHTML = '<div style="padding:60px 20px;text-align:center;"><p>No facility selected. <a href="facilities.html">Browse all facilities</a>.</p></div>';
+    return;
+  }
+  try {
+    const f = await loadFacilityWithDetails(slug);
     if (!f) {
-      document.getElementById('profileContent').innerHTML =
-        '<div class="empty" style="padding:80px 20px">Facility not found. <a href="facilities.html">Browse all →</a></div>';
-    } else {
-      renderProfile(f);
+      document.getElementById('profileContent').innerHTML = `<div style="padding:60px 20px;text-align:center;"><p>Facility not found: ${escapeHtml(slug)}</p></div>`;
+      return;
     }
-  });
-}
+    render(f);
+  } catch (e) {
+    console.error(e);
+    document.getElementById('profileContent').innerHTML = `<div style="padding:60px 20px;text-align:center;"><p>Error loading facility data.</p></div>`;
+  }
+})();
 </script>
+
 </body>
 </html>
