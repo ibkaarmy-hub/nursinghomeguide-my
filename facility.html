@@ -100,8 +100,8 @@
 .amenity-section { margin-bottom: 18px; }
 .amenity-section h3 { font-size: .9rem; font-weight: 700; margin-bottom: 8px; color: var(--text, #0f172a); }
 .amenity-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.amenity-tag { background: #f1f5f9; padding: 5px 11px; border-radius: 999px; font-size: .82rem; }
-.amenity-tag.unverified { background: #fffbeb; color: #92400e; border: 1px dashed #fbbf24; }
+.amenity-tag { background: #dcfce7; color: #166534; font-weight: 600; padding: 5px 11px; border-radius: 999px; font-size: .82rem; border: 1px solid #86efac; }
+.amenity-tag.unverified { background: #f8fafc; color: #94a3b8; font-weight: 400; border: 1px dashed #cbd5e1; }
 
 /* Photos tab grid */
 .photo-cats { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
@@ -171,8 +171,17 @@
 </div>
 
 <footer>
-  <p>© 2026 NursingHomeGuide.my — A free resource for Malaysian families</p>
-  <p style="margin-top:8px"><a href="facilities.html">All Facilities</a> · <a href="#">Contact</a></p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">NursingHomeGuide.my</span>
+      <p class="footer-tagline">A free resource for Malaysian families navigating elderly care.</p>
+    </div>
+    <nav class="footer-links">
+      <a href="facilities.html">All Facilities</a>
+      <a href="mailto:hello@nursinghomeguide.my">Contact</a>
+    </nav>
+    <p class="footer-copy">© 2026 NursingHomeGuide.my</p>
+  </div>
 </footer>
 
 <script src="data.js"></script>
