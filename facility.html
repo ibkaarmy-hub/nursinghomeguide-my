@@ -7,12 +7,13 @@
   <meta name="description" id="pageDesc" content="Nursing home details, pricing, and contact information." />
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <div class="logo"><a href="index.html">NursingHome<span>Guide.my</span></a></div>
+    <div class="logo"><a href="index.html" style="text-decoration:none;">NursingHome<span>Guide.my</span></a></div>
     <div class="nav-links">
       <a href="facilities.html">All Facilities</a>
       <a href="#">About</a>
@@ -21,107 +22,354 @@
 </nav>
 
 <div id="profileContent">
-  <div class="loading" style="padding:80px 20px"><div class="spinner"></div>Loading facility...</div>
+  <div class="loading" style="padding:80px 20px"><div class="spinner"></div><p style="margin-top:12px">Loading facility...</p></div>
 </div>
 
 <footer>
   <p>© 2026 NursingHomeGuide.my — A free resource for Malaysian families</p>
-  <p style="margin-top:8px"><a href="facilities.html">← Back to all facilities</a></p>
+  <p style="margin-top:8px"><a href="facilities.html">All Facilities</a> · <a href="#">Contact</a></p>
 </footer>
 
 <script src="data.js"></script>
 <script>
-function row(label, value, fallback='') {
-  const v = value || fallback;
-  if (!v) return '';
-  return `<div class="info-row"><span class="info-label">${label}</span><span class="info-value">${v}</span></div>`;
+
+/* ── Helpers ───────────────────────────────── */
+function yn(val) {
+  if (!val) return null;
+  const v = val.toString().toLowerCase();
+  if (v === 'yes' || v === 'y' || v === 'true' || v === '1') return true;
+  if (v === 'no' || v === 'n' || v === 'false' || v === '0') return false;
+  return null;
 }
 
+function checkItem(label, value, unknown = true) {
+  const state = yn(value);
+  if (state === true)  return `<div class="check-item check-yes"><span class="check-icon">✓</span>${label}</div>`;
+  if (state === false) return `<div class="check-item check-no"><span class="check-icon">✗</span>${label}</div>`;
+  if (unknown)         return `<div class="check-item check-unknown"><span class="check-icon">?</span>${label}</div>`;
+  return '';
+}
+
+function infoRow(label, value) {
+  if (!value) return '';
+  return `<div class="info-row"><span class="info-label">${label}</span><span class="info-value">${value}</span></div>`;
+}
+
+/* ── Tab switching ─────────────────────────── */
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelector(`[data-tab="${id}"]`).classList.add('active');
+}
+
+/* ── Main render ───────────────────────────── */
 function renderProfile(f) {
   document.title = `${f.title} — NursingHomeGuide.my`;
-  document.getElementById('pageDesc').content = `${f.title} in ${f.area||'Johor'}, Malaysia. ${f.pricing_display||''}. Care types: ${f.care_types||''}`;
+  document.getElementById('pageDesc').content =
+    `${f.title} in ${f.area || 'Johor'}, Malaysia. ${f.shared_price ? 'From ' + f.shared_price + '/mo. ' : ''}Care types: ${f.care_types || ''}`;
 
-  const badges = [
-    f.care_types ? f.care_types.split('+')[0].trim() : '',
-    f.religion || '',
-    f.wheelchair === 'Yes' ? '♿ Wheelchair Access' : '',
-    f.subsidy === 'Yes' ? '🏛 Subsidy Accepted' : '',
-  ].filter(Boolean).map(b => `<span class="badge">${b}</span>`).join('');
-
-  const sharedPriceHtml = f.shared_price
-    ? `<div class="price-box"><div class="price-amount">${f.shared_price}</div><div class="price-label">per month — Shared Room</div></div>`
-    : '';
-  const privatePriceHtml = f.private_price
-    ? `<div class="price-box" style="background:#eff6ff; border-color:#bfdbfe;"><div class="price-amount" style="color:var(--primary)">${f.private_price}</div><div class="price-label">per month — Private Room</div></div>`
-    : '';
-  const noPriceHtml = (!f.shared_price && !f.private_price)
-    ? `<div class="price-unknown">💬 Pricing not published<br/><small>Contact facility directly to enquire</small></div>`
+  /* Rating */
+  const ratingHtml = f.rating
+    ? `<span class="hero-rating">⭐ ${parseFloat(f.rating).toFixed(1)} <span style="opacity:.7">(${f.review_count || 0} reviews)</span></span>`
     : '';
 
-  const services = (f.services || '').split(',').map(s => s.trim()).filter(Boolean)
-    .map(s => `<span class="service-tag">${s}</span>`).join('');
+  /* Base price */
+  const basePrice = f.shared_price || f.private_price;
+  const priceHtml = basePrice
+    ? `<div class="hero-price">From <strong>${basePrice}</strong>/month</div>`
+    : `<div class="hero-price" style="color:rgba(255,255,255,.6)">📞 Enquire for pricing</div>`;
 
+  /* Care type badges */
+  const careTypes = (f.care_types || '').split('+').map(t => t.trim()).filter(Boolean);
+  const badges = careTypes.map(t => `<span class="badge">${t}</span>`).join('');
+
+  /* ── Tab: Overview ──────────────────────── */
+  const overviewFacts = [
+    infoRow('Area', f.area ? `${f.area}, Johor` : ''),
+    infoRow('Ownership', f.ownership_type || ''),
+    infoRow('Licence No.', f.licence_number || ''),
+    infoRow('Religion Friendly', f.religion || ''),
+    infoRow('Languages', f.languages || ''),
+    infoRow('Halal Certified', yn(f.halal) === true ? '✓ Yes' : yn(f.halal) === false ? '✗ No' : ''),
+    infoRow('Wheelchair Access', f.wheelchair || ''),
+    infoRow('Subsidy Accepted', f.subsidy || ''),
+    infoRow('Visiting Hours', f.visiting_hours || f.working_hours || ''),
+    infoRow('Google Rating', f.rating ? `★ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} reviews)` : ''),
+  ].filter(Boolean).join('');
+
+  /* Best suited for / services tags */
+  const services = (f.services || '').split(',').map(s => s.trim()).filter(Boolean);
+  const suitedTags = [...careTypes, ...services.slice(0, 4)];
+
+  const editorialHtml = f.editorial_summary
+    ? `<div class="editorial-box"><div class="editorial-label">📋 Editorial Note</div><p>${f.editorial_summary}</p></div>`
+    : '';
+
+  /* ── Tab: Pricing ───────────────────────── */
+  const hasPricing = f.shared_price || f.private_price || f.four_bed_price || f.dorm_price;
+
+  const pricingRows = [
+    f.shared_price    ? `<tr><td>Shared Room (2–3 bed)</td><td class="price-cell">${f.shared_price}<span class="per-month">/mo</span></td></tr>` : '',
+    f.four_bed_price  ? `<tr><td>4-Bed Room</td><td class="price-cell">${f.four_bed_price}<span class="per-month">/mo</span></td></tr>` : '',
+    f.dorm_price      ? `<tr><td>Open Ward / Dorm</td><td class="price-cell">${f.dorm_price}<span class="per-month">/mo</span></td></tr>` : '',
+    f.private_price   ? `<tr><td>Private Room</td><td class="price-cell">${f.private_price}<span class="per-month">/mo</span></td></tr>` : '',
+  ].filter(Boolean).join('');
+
+  const servicesIncluded = services.length
+    ? `<div class="included-list">${services.map(s => `<span class="included-tag">✓ ${s}</span>`).join('')}</div>`
+    : '';
+
+  const pricingLastVerified = f.last_verified_date
+    ? `<div class="verified-note">✓ Pricing last verified: <strong>${f.last_verified_date}</strong></div>`
+    : '<div class="verified-note unverified">⚠️ Pricing not yet verified — contact facility to confirm</div>';
+
+  /* ── Tab: Care ──────────────────────────── */
+  const careLevels = [
+    checkItem('Nursing Care',        f.care_nursing     || (careTypes.some(t => /nursing/i.test(t)) ? 'yes' : '')),
+    checkItem('Dementia Care',       f.care_dementia    || (careTypes.some(t => /dementia/i.test(t)) ? 'yes' : '')),
+    checkItem('Palliative / Hospice', f.care_palliative || (careTypes.some(t => /palliative|hospice/i.test(t)) ? 'yes' : '')),
+    checkItem('Rehab / Step-down',   f.care_rehab       || (careTypes.some(t => /rehab|step/i.test(t)) ? 'yes' : '')),
+    checkItem('Respite / Short-stay', f.care_respite    || (careTypes.some(t => /respite/i.test(t)) ? 'yes' : '')),
+    checkItem('Assisted Living',     f.care_assisted    || (careTypes.some(t => /assisted/i.test(t)) ? 'yes' : '')),
+  ].join('');
+
+  const medicalCaps = [
+    checkItem('24/7 Registered Nurse',  f.rn_24_7),
+    checkItem('Physiotherapy',          f.medical_physio  || (services.some(s => /physio/i.test(s)) ? 'yes' : '')),
+    checkItem('Occupational Therapy',   f.medical_ot),
+    checkItem('Wound Care',             f.medical_wound   || (services.some(s => /wound/i.test(s)) ? 'yes' : '')),
+    checkItem('Tube Feeding (NG/PEG)',  f.medical_peg     || (services.some(s => /peg|tube feed/i.test(s)) ? 'yes' : '')),
+    checkItem('Dementia Unit',          f.medical_dementia_unit),
+    checkItem('Dialysis Support',       f.medical_dialysis),
+    checkItem('Oxygen Therapy',         f.medical_oxygen),
+    checkItem('Medication Management',  f.medical_meds    || (services.some(s => /medic/i.test(s)) ? 'yes' : '')),
+  ].join('');
+
+  const clinicalDetails = [
+    infoRow('Doctor Visits',          f.doctor_visits || ''),
+    infoRow('Nurse Ratio (Day)',       f.nurse_ratio_day || ''),
+    infoRow('Nurse Ratio (Night)',     f.nurse_ratio_night || ''),
+    infoRow('Total Beds',             f.total_beds || ''),
+    infoRow('Availability',           f.availability || ''),
+    infoRow('Wheelchair Accepted',    f.wheelchair || ''),
+  ].filter(Boolean).join('');
+
+  /* ── Tab: Location ──────────────────────── */
+  const mapEmbed = (f.latitude && f.longitude)
+    ? `<div class="map-embed-wrap">
+        <iframe
+          src="https://maps.google.com/maps?q=${f.latitude},${f.longitude}&z=15&output=embed"
+          width="100%" height="280" style="border:0; border-radius:10px;"
+          allowfullscreen loading="lazy">
+        </iframe>
+       </div>`
+    : '';
+
+  const locationDetails = [
+    infoRow('Full Address',  f.full_address || (f.area ? `${f.area}, Johor` : '')),
+    infoRow('Area',          f.area || ''),
+    infoRow('Visiting Hours', f.visiting_hours || f.working_hours || ''),
+    infoRow('Parking',       f.parking || ''),
+  ].filter(Boolean).join('');
+
+  /* ── Sidebar contact ────────────────────── */
+  const phoneLink    = f.phone      ? `<a href="tel:${f.phone}" class="cta-btn cta-call">📞 Call ${f.phone}</a>` : '';
+  const waLink       = f.whatsapp   ? `<a href="https://wa.me/${f.whatsapp.replace(/\D/g,'')}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp</a>` : '';
+  const mapsLink     = f.google_maps_url ? `<a href="${f.google_maps_url}" target="_blank" class="cta-btn cta-maps">📍 Google Maps</a>` : '';
+  const websiteLink  = f.website && !f.website.includes('facebook') ? `<a href="${f.website}" target="_blank" class="cta-btn cta-web">🌐 Website</a>` : '';
+  const fbLink       = f.facebook || (f.website && f.website.includes('facebook') ? f.website : '')
+    ? `<a href="${f.facebook || f.website}" target="_blank" class="cta-btn cta-web">Facebook Page</a>` : '';
+
+  /* ── Assemble HTML ──────────────────────── */
   document.getElementById('profileContent').innerHTML = `
+
+    <!-- HERO -->
     <div class="profile-hero">
       <div class="profile-hero-inner">
-        <a href="facilities.html" class="back-link" style="color:rgba(255,255,255,.7); margin-bottom:16px; display:inline-flex;">← All facilities</a>
+        <a href="facilities.html" class="back-link-white">← All facilities</a>
         <h1>${f.title}</h1>
-        <div class="area">📍 ${f.area ? f.area + ', ' : ''}Johor, Malaysia</div>
+        <div class="hero-meta">
+          <span>📍 ${f.area ? f.area + ', ' : ''}Johor, Malaysia</span>
+          ${ratingHtml}
+        </div>
         <div class="badges">${badges}</div>
+        ${priceHtml}
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+          ${f.phone ? `<a href="tel:${f.phone}" class="hero-cta-btn hero-cta-primary">📞 Call Now</a>` : ''}
+          ${f.whatsapp ? `<a href="https://wa.me/${f.whatsapp.replace(/\D/g,'')}" target="_blank" class="hero-cta-btn hero-cta-secondary">💬 WhatsApp</a>` : ''}
+        </div>
       </div>
     </div>
 
-    <div class="profile-body">
-      <div style="display:flex; flex-direction:column; gap:20px;">
+    <!-- TABS NAV -->
+    <div class="tabs-nav" id="tabsNav">
+      <div class="tabs-nav-inner">
+        <button class="tab-btn active" data-tab="overview"  onclick="showTab('overview')">Overview</button>
+        <button class="tab-btn"        data-tab="pricing"   onclick="showTab('pricing')">Pricing</button>
+        <button class="tab-btn"        data-tab="care"      onclick="showTab('care')">Care & Medical</button>
+        <button class="tab-btn"        data-tab="location"  onclick="showTab('location')">Location</button>
+      </div>
+    </div>
 
-        ${f.care_types ? `
-        <div class="profile-card">
-          <h2>Care Types</h2>
-          <div class="services-list">
-            ${f.care_types.split('+').map(t => `<span class="service-tag">${t.trim()}</span>`).join('')}
+    <!-- BODY: tabs + sidebar -->
+    <div class="profile-page-body">
+
+      <!-- MAIN CONTENT -->
+      <div class="profile-main">
+
+        <!-- TAB: OVERVIEW -->
+        <div class="tab-panel active" id="tab-overview">
+
+          ${editorialHtml}
+
+          <div class="profile-card">
+            <h2>Quick Facts</h2>
+            ${overviewFacts || '<p class="text-muted">Details not yet collected.</p>'}
           </div>
-        </div>` : ''}
 
-        ${services ? `
-        <div class="profile-card">
-          <h2>Services Included</h2>
-          <div class="services-list">${services}</div>
-        </div>` : ''}
+          ${suitedTags.length ? `
+          <div class="profile-card">
+            <h2>Services & Care Offered</h2>
+            <div class="services-list">
+              ${suitedTags.map(t => `<span class="service-tag">${t}</span>`).join('')}
+            </div>
+          </div>` : ''}
 
-        <div class="profile-card">
-          <h2>Facility Details</h2>
-          ${row('Religion Friendly', f.religion)}
-          ${row('Languages', f.languages)}
-          ${row('Subsidy Accepted', f.subsidy)}
-          ${row('Wheelchair Access', f.wheelchair)}
-          ${f.rating ? row('Google Rating', `★ ${parseFloat(f.rating).toFixed(1)} (${f.review_count||''} reviews)`) : ''}
         </div>
 
+        <!-- TAB: PRICING -->
+        <div class="tab-panel" id="tab-pricing">
+          <div class="profile-card">
+            <h2>Monthly Fees</h2>
+            ${hasPricing ? `
+              <table class="price-table">
+                <thead><tr><th>Room Type</th><th>Monthly Fee</th></tr></thead>
+                <tbody>${pricingRows}</tbody>
+              </table>
+            ` : `
+              <div class="price-unknown" style="margin-bottom:16px;">
+                💬 Pricing not yet published<br/>
+                <small>Contact this facility directly to get current rates.</small>
+              </div>
+            `}
+
+            ${servicesIncluded ? `
+              <div style="margin-top:20px;">
+                <div class="section-label">What's typically included</div>
+                ${servicesIncluded}
+              </div>` : ''}
+
+            ${pricingLastVerified}
+
+            <div class="disclaimer-box">
+              ⚠️ Prices shown are for reference only. Always confirm directly with the facility before making any decisions. Fees may vary based on care needs, room availability, and subsidies.
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <h2>Subsidy Information</h2>
+            ${infoRow('JKM Subsidy Accepted', f.subsidy || '') || '<p class="text-muted">Subsidy eligibility not confirmed.</p>'}
+            <p style="font-size:.85rem; color:var(--text-muted); margin-top:12px; line-height:1.6;">
+              Malaysian families may qualify for JKM (Jabatan Kebajikan Masyarakat) welfare assistance for nursing home fees. Contact JKM or the facility directly to check eligibility.
+            </p>
+          </div>
+        </div>
+
+        <!-- TAB: CARE -->
+        <div class="tab-panel" id="tab-care">
+
+          <div class="profile-card">
+            <h2>Care Levels</h2>
+            <div class="check-grid">${careLevels}</div>
+            <p class="data-note">? = Data not yet collected. <a href="mailto:hello@nursinghomeguide.my">Help us improve →</a></p>
+          </div>
+
+          <div class="profile-card">
+            <h2>Medical Capabilities</h2>
+            <div class="check-grid">${medicalCaps}</div>
+            <p class="data-note">? = Data not yet collected. <a href="mailto:hello@nursinghomeguide.my">Help us improve →</a></p>
+          </div>
+
+          ${clinicalDetails ? `
+          <div class="profile-card">
+            <h2>Clinical Details</h2>
+            ${clinicalDetails}
+          </div>` : ''}
+
+        </div>
+
+        <!-- TAB: LOCATION -->
+        <div class="tab-panel" id="tab-location">
+          <div class="profile-card">
+            <h2>Location</h2>
+            ${mapEmbed}
+            <div style="margin-top:16px;">
+              ${locationDetails || '<p class="text-muted">Address details not available.</p>'}
+            </div>
+            ${f.google_maps_url ? `<a href="${f.google_maps_url}" target="_blank" class="cta-btn cta-maps" style="display:inline-block; margin-top:16px;">📍 Open in Google Maps</a>` : ''}
+          </div>
+        </div>
+
+      </div><!-- /profile-main -->
+
+      <!-- SIDEBAR -->
+      <div class="profile-sidebar">
+        <div class="sidebar-sticky">
+
+          <div class="profile-card sidebar-contact">
+            <h2>Contact Facility</h2>
+            ${phoneLink}
+            ${waLink}
+            ${mapsLink}
+            ${websiteLink}
+            ${fbLink}
+            ${!phoneLink && !waLink ? '<p class="text-muted" style="font-size:.85rem;">No contact details available yet.</p>' : ''}
+          </div>
+
+          <div class="profile-card sidebar-stats">
+            ${f.shared_price || f.private_price ? `
+              <div class="stat-row">
+                <span class="stat-label">From</span>
+                <span class="stat-value">${f.shared_price || f.private_price}/mo</span>
+              </div>` : ''}
+            ${f.total_beds ? `
+              <div class="stat-row">
+                <span class="stat-label">Total Beds</span>
+                <span class="stat-value">${f.total_beds}</span>
+              </div>` : ''}
+            ${f.availability ? `
+              <div class="stat-row">
+                <span class="stat-label">Availability</span>
+                <span class="stat-value">${f.availability}</span>
+              </div>` : ''}
+            ${f.rating ? `
+              <div class="stat-row">
+                <span class="stat-label">Google Rating</span>
+                <span class="stat-value">★ ${parseFloat(f.rating).toFixed(1)}</span>
+              </div>` : ''}
+          </div>
+
+          <div class="suggest-edit-box">
+            <p>Is this information out of date?</p>
+            <a href="mailto:hello@nursinghomeguide.my?subject=Suggest Edit: ${encodeURIComponent(f.title)}">Suggest an edit →</a>
+          </div>
+
+        </div>
       </div>
 
-      <div style="display:flex; flex-direction:column; gap:16px;">
-        <div class="profile-card">
-          <h2>Monthly Fees</h2>
-          ${sharedPriceHtml}
-          ${privatePriceHtml}
-          ${noPriceHtml}
-        </div>
+    </div><!-- /profile-page-body -->
+  `;
 
-        <div class="profile-card">
-          <h2>Contact</h2>
-          ${f.phone ? `<a href="tel:${f.phone}" class="cta-btn cta-call">📞 Call ${f.phone}</a>` : ''}
-          ${f.google_maps_url ? `<a href="${f.google_maps_url}" target="_blank" class="cta-btn cta-maps">📍 View on Google Maps</a>` : ''}
-          ${f.website && !f.website.includes('facebook') ? `<a href="${f.website}" target="_blank" class="cta-btn cta-web">🌐 Visit Website</a>` : ''}
-          ${f.website && f.website.includes('facebook') ? `<a href="${f.website}" target="_blank" class="cta-btn cta-web">Facebook Page</a>` : ''}
-        </div>
-
-        <div style="background:#fffbeb; border:1.5px solid #fde68a; border-radius:10px; padding:14px; font-size:.82rem; color:#92400e; line-height:1.5;">
-          ⚠️ Pricing shown is for reference only. Always confirm directly with the facility before making any decisions.
-        </div>
-      </div>
-    </div>`;
+  /* Sticky tabs on scroll */
+  const tabsNav = document.getElementById('tabsNav');
+  const heroH = document.querySelector('.profile-hero').offsetHeight;
+  window.addEventListener('scroll', () => {
+    tabsNav.classList.toggle('tabs-sticky', window.scrollY > heroH);
+  });
 }
 
+/* ── Boot ──────────────────────────────────── */
 const slug = new URLSearchParams(window.location.search).get('slug');
 if (!slug) {
   window.location.href = 'facilities.html';
@@ -129,7 +377,8 @@ if (!slug) {
   loadFacilities().then(data => {
     const f = data.find(r => r.slug === slug);
     if (!f) {
-      document.getElementById('profileContent').innerHTML = '<div class="empty" style="padding:80px 20px">Facility not found. <a href="facilities.html">Browse all facilities →</a></div>';
+      document.getElementById('profileContent').innerHTML =
+        '<div class="empty" style="padding:80px 20px">Facility not found. <a href="facilities.html">Browse all →</a></div>';
     } else {
       renderProfile(f);
     }
