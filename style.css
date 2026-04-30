@@ -109,6 +109,11 @@ nav { background: #fff; border-bottom: 1px solid var(--border); position: sticky
 footer { background: #1e3a5f; color: rgba(255,255,255,.7); text-align: center; padding: 32px 20px; font-size: .85rem; margin-top: 60px; }
 footer a { color: rgba(255,255,255,.9); }
 
+/* ── Skeleton loading ─────────────────────────────────────── */
+.skeleton-card { background: var(--card-bg); border-radius: var(--radius); border: 1px solid var(--border); padding: 20px; height: 160px; position: relative; overflow: hidden; }
+.skeleton-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.04) 50%, transparent 100%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
 /* ── Loading / Empty ──────────────────────────────────────── */
 .loading { text-align: center; padding: 60px 20px; color: var(--text-muted); }
 .empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
