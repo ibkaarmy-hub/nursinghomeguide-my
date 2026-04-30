@@ -173,6 +173,18 @@ function renderProfile(f) {
     infoRow('Parking',       f.parking || ''),
   ].filter(Boolean).join('');
 
+  /* ── Photos ─────────────────────────────── */
+  const photos = (f.photos || '').split('|').map(s => s.trim()).filter(Boolean);
+  const heroImg = f.hero_image || photos[0] || '';
+  const heroBg = heroImg ? `style="background-image:linear-gradient(180deg,rgba(15,23,42,.45),rgba(15,23,42,.85)),url('${heroImg}');background-size:cover;background-position:center;"` : '';
+  const galleryHtml = photos.length > 1 ? `
+    <div class="profile-card">
+      <h2>Photos <span style="font-weight:400;color:var(--text-muted);font-size:.85rem">(${photos.length})</span></h2>
+      <div class="photo-gallery">
+        ${photos.slice(0, 12).map((u,i) => `<a href="${u}" target="_blank" class="gallery-item"><img src="${u}" alt="${f.title} photo ${i+1}" loading="lazy" /></a>`).join('')}
+      </div>
+    </div>` : '';
+
   /* ── Sidebar contact ────────────────────── */
   const phoneLink    = f.phone      ? `<a href="tel:${f.phone}" class="cta-btn cta-call">📞 Call ${f.phone}</a>` : '';
   const waLink       = f.whatsapp   ? `<a href="https://wa.me/${f.whatsapp.replace(/\D/g,'')}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp</a>` : '';
@@ -185,7 +197,7 @@ function renderProfile(f) {
   document.getElementById('profileContent').innerHTML = `
 
     <!-- HERO -->
-    <div class="profile-hero">
+    <div class="profile-hero${heroImg ? ' has-photo' : ''}" ${heroBg}>
       <div class="profile-hero-inner">
         <a href="facilities.html" class="back-link-white">← All facilities</a>
         <h1>${f.title}</h1>
@@ -222,6 +234,8 @@ function renderProfile(f) {
         <div class="tab-panel active" id="tab-overview">
 
           ${editorialHtml}
+
+          ${galleryHtml}
 
           <div class="profile-card">
             <h2>Quick Facts</h2>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Photo Manager — NursingHomeGuide.my</title>
+<style>
+  body { font-family: system-ui, -apple-system, sans-serif; background:#0f172a; color:#e5e7eb; margin:0; padding:20px; max-width:1100px; margin:0 auto; }
+  h1 { margin:0 0 6px; }
+  .sub { color:#94a3b8; font-size:14px; margin-bottom:20px; }
+  .controls { display:flex; gap:12px; align-items:center; margin-bottom:20px; flex-wrap:wrap; }
+  select, button, input { font:inherit; padding:8px 12px; border-radius:6px; border:1px solid #334155; background:#1e293b; color:#e5e7eb; }
+  select { min-width:320px; }
+  button { cursor:pointer; }
+  button.primary { background:#2563eb; border-color:#2563eb; color:white; font-weight:600; }
+  button.primary:hover { background:#1d4ed8; }
+  .meta { color:#94a3b8; font-size:13px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin-top:14px; }
+  .photo { position:relative; border-radius:8px; overflow:hidden; background:#1e293b; aspect-ratio:16/9; }
+  .photo img { width:100%; height:100%; object-fit:cover; display:block; transition: opacity .2s; }
+  .photo.removed img { opacity:.15; filter:grayscale(1); }
+  .photo .x { position:absolute; top:6px; right:6px; width:32px; height:32px; border-radius:50%; background:#ef4444; color:white; border:none; font-weight:700; cursor:pointer; font-size:18px; line-height:1; }
+  .photo.removed .x { background:#10b981; }
+  .photo.removed .x::after { content:"↺"; }
+  .photo .x::after { content:"✕"; }
+  .photo .x span { display:none; }
+  .output { margin-top:20px; }
+  .output textarea { width:100%; min-height:120px; font-family:ui-monospace,monospace; font-size:12px; background:#0b1220; color:#a5f3fc; border:1px solid #334155; border-radius:6px; padding:10px; resize:vertical; }
+  .legend { font-size:13px; color:#94a3b8; margin-top:8px; }
+  .ok { color:#34d399; }
+</style>
+</head>
+<body>
+
+<h1>Photo Manager</h1>
+<div class="sub">Pick a facility, click ✕ to remove a photo, then copy the updated cell back to the <code>photos</code> column in your Google Sheet.</div>
+
+<div class="controls">
+  <select id="facilitySel"><option>Loading…</option></select>
+  <button id="resetBtn">Reset</button>
+  <span class="meta" id="counter"></span>
+</div>
+
+<div id="grid" class="grid"></div>
+
+<div class="output">
+  <h3 style="margin:24px 0 8px">Updated <code>photos</code> cell value</h3>
+  <div class="legend">Copy this string and paste it into the <code>photos</code> column for this row in the Google Sheet. Also update <code>hero_image</code> with the first URL and <code>photo_count</code> with the count below.</div>
+  <textarea id="outPhotos" readonly></textarea>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+    <div>
+      <div class="legend">hero_image</div>
+      <input id="outHero" readonly style="width:100%;font-family:ui-monospace,monospace;font-size:12px" />
+    </div>
+    <div>
+      <div class="legend">photo_count</div>
+      <input id="outCount" readonly style="width:100%;font-family:ui-monospace,monospace;font-size:12px" />
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;margin-top:10px">
+    <button class="primary" id="copyBtn">Copy photos cell</button>
+    <button id="copyAllBtn">Copy all 3 (TSV)</button>
+    <span class="meta" id="copyMsg"></span>
+  </div>
+</div>
+
+<script>
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub?output=csv";
+
+function parseCSVLine(line) {
+  const r = []; let cur = '', q = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { if (q && line[i+1] === '"') { cur += '"'; i++; } else q = !q; }
+    else if (c === ',' && !q) { r.push(cur); cur = ''; }
+    else cur += c;
+  }
+  r.push(cur); return r;
+}
+function parseCSV(text) {
+  const rows = []; let cur = '', q = false, fields = [];
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i], n = text[i+1];
+    if (c === '"') { if (q && n === '"') { cur += '"'; i++; } else q = !q; }
+    else if (c === ',' && !q) { fields.push(cur); cur = ''; }
+    else if ((c === '\n' || c === '\r') && !q) {
+      if (c === '\r' && n === '\n') i++;
+      fields.push(cur); rows.push(fields); fields = []; cur = '';
+    } else cur += c;
+  }
+  if (cur || fields.length) { fields.push(cur); rows.push(fields); }
+  const headers = rows[0];
+  return rows.slice(1).filter(r => r.length > 1).map(r => {
+    const o = {}; headers.forEach((h,i) => o[h.trim()] = (r[i]||'').trim()); return o;
+  });
+}
+
+let facilities = [], current = null, removed = new Set();
+
+async function init() {
+  const res = await fetch(SHEET_CSV_URL);
+  const text = await res.text();
+  facilities = parseCSV(text).filter(f => f.title);
+  const sel = document.getElementById('facilitySel');
+  sel.innerHTML = '<option value="">— pick a facility —</option>' +
+    facilities.map((f,i) => {
+      const n = (f.photos || '').split('|').filter(Boolean).length;
+      return `<option value="${i}">${f.title} ${n ? `(${n} photos)` : '(no photos)'}</option>`;
+    }).join('');
+  sel.addEventListener('change', e => loadFacility(facilities[+e.target.value]));
+  document.getElementById('resetBtn').addEventListener('click', () => { removed.clear(); render(); });
+  document.getElementById('copyBtn').addEventListener('click', () => copy(document.getElementById('outPhotos').value));
+  document.getElementById('copyAllBtn').addEventListener('click', () => {
+    const t = [document.getElementById('outPhotos').value, document.getElementById('outHero').value, document.getElementById('outCount').value].join('\t');
+    copy(t);
+  });
+}
+function loadFacility(f) {
+  current = f; removed.clear(); render();
+}
+function render() {
+  const grid = document.getElementById('grid');
+  if (!current) { grid.innerHTML = ''; document.getElementById('counter').textContent = ''; document.getElementById('outPhotos').value=''; document.getElementById('outHero').value=''; document.getElementById('outCount').value=''; return; }
+  const all = (current.photos || '').split('|').filter(Boolean);
+  grid.innerHTML = all.map((u,i) => `
+    <div class="photo ${removed.has(i) ? 'removed' : ''}">
+      <img src="${u}" loading="lazy" />
+      <button class="x" data-i="${i}"></button>
+    </div>
+  `).join('');
+  grid.querySelectorAll('.x').forEach(b => b.addEventListener('click', () => {
+    const i = +b.dataset.i;
+    if (removed.has(i)) removed.delete(i); else removed.add(i);
+    render();
+  }));
+  const kept = all.filter((_,i) => !removed.has(i));
+  document.getElementById('counter').textContent = `${kept.length} kept · ${removed.size} removed`;
+  document.getElementById('outPhotos').value = kept.join('|');
+  document.getElementById('outHero').value = kept[0] || '';
+  document.getElementById('outCount').value = String(kept.length);
+}
+function copy(t) {
+  navigator.clipboard.writeText(t).then(() => {
+    const m = document.getElementById('copyMsg');
+    m.textContent = '✓ copied'; m.className = 'ok';
+    setTimeout(() => m.textContent = '', 2000);
+  });
+}
+init();
+</script>
+</body>
+</html>
