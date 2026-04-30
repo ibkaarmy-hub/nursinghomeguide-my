@@ -71,57 +71,54 @@ nav { background: #fff; border-bottom: 1px solid var(--border); position: sticky
 .card-cta { display: block; text-align: center; background: var(--primary); color: #fff; padding: 9px; border-radius: 8px; font-size: .88rem; font-weight: 600; margin-top: 4px; transition: background .2s; }
 .card-cta:hover { background: var(--primary-dark); }
 
-/* ── Profile page ─────────────────────────────────────────── */
-.profile-hero { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color: #fff; padding: 48px 20px 40px; }
-.profile-hero-inner { max-width: 900px; margin: 0 auto; }
-.profile-hero h1 { font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 8px; }
-.profile-hero .area { opacity: .8; font-size: 1rem; margin-bottom: 16px; }
-.profile-hero .badges { display: flex; flex-wrap: wrap; gap: 10px; }
+/* ── Profile Hero ─────────────────────────────────────────── */
+.profile-hero { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color: #fff; padding: 48px 20px 44px; }
+.profile-hero-inner { max-width: 1060px; margin: 0 auto; }
+.profile-hero h1 { font-size: clamp(1.4rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 10px; line-height: 1.2; }
+.hero-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 14px; font-size: .9rem; opacity: .85; }
+.hero-rating { display: flex; align-items: center; gap: 4px; }
+.hero-price { font-size: 1.1rem; font-weight: 700; margin-top: 12px; color: #86efac; }
+.profile-hero .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .badge { background: rgba(255,255,255,.15); padding: 5px 14px; border-radius: 50px; font-size: .82rem; }
+.back-link-white { display: inline-flex; align-items: center; gap: 4px; color: rgba(255,255,255,.65); font-size: .85rem; margin-bottom: 16px; }
+.back-link-white:hover { color: #fff; }
+.hero-cta-btn { display: inline-block; padding: 11px 22px; border-radius: 8px; font-weight: 700; font-size: .9rem; cursor: pointer; transition: all .2s; }
+.hero-cta-primary { background: var(--accent); color: #fff; }
+.hero-cta-primary:hover { background: #15803d; }
+.hero-cta-secondary { background: rgba(255,255,255,.15); color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+.hero-cta-secondary:hover { background: rgba(255,255,255,.25); }
 
-.profile-body { max-width: 900px; margin: 0 auto; padding: 32px 20px; display: grid; grid-template-columns: 1fr 320px; gap: 28px; }
-@media (max-width: 700px) { .profile-body { grid-template-columns: 1fr; } }
+/* ── Tab Navigation ───────────────────────────────────────── */
+.tabs-nav { background: #fff; border-bottom: 1px solid var(--border); z-index: 90; }
+.tabs-nav.tabs-sticky { position: sticky; top: 60px; }
+.tabs-nav-inner { max-width: 1060px; margin: 0 auto; padding: 0 20px; display: flex; gap: 0; overflow-x: auto; }
+.tab-btn { padding: 14px 20px; border: none; background: none; font-size: .9rem; font-weight: 500; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: all .2s; }
+.tab-btn:hover { color: var(--primary); }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+.tab-panel { display: none; }
+.tab-panel.active { display: flex; flex-direction: column; gap: 20px; }
 
+/* ── Profile Page Body ────────────────────────────────────── */
+.profile-page-body { max-width: 1060px; margin: 0 auto; padding: 28px 20px 60px; display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: start; }
+@media (max-width: 780px) { .profile-page-body { grid-template-columns: 1fr; } }
+.profile-main { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+
+/* ── Profile Card ─────────────────────────────────────────── */
 .profile-card { background: #fff; border-radius: var(--radius); border: 1px solid var(--border); padding: 24px; box-shadow: var(--shadow); }
-.profile-card h2 { font-size: 1.05rem; font-weight: 700; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-.info-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: .9rem; gap: 12px; }
+.profile-card h2 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); color: var(--text); }
+.info-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: .88rem; gap: 12px; }
 .info-row:last-child { border-bottom: none; }
 .info-label { color: var(--text-muted); flex-shrink: 0; }
 .info-value { font-weight: 500; text-align: right; }
-.price-box { background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 10px; padding: 16px; margin-bottom: 16px; text-align: center; }
-.price-box .price-amount { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
-.price-box .price-label { font-size: .8rem; color: var(--text-muted); margin-top: 2px; }
-.price-unknown { background: #f9fafb; border: 1.5px dashed var(--border); border-radius: 10px; padding: 16px; text-align: center; color: var(--text-muted); font-size: .9rem; margin-bottom: 16px; }
-.cta-btn { display: block; width: 100%; text-align: center; padding: 13px; border-radius: 10px; font-weight: 700; font-size: 1rem; margin-bottom: 10px; transition: all .2s; }
-.cta-call { background: var(--accent); color: #fff; }
-.cta-call:hover { background: #15803d; }
-.cta-maps { background: #fff; color: var(--primary); border: 2px solid var(--primary); }
-.cta-maps:hover { background: #eff6ff; }
-.cta-web { background: #fff; color: var(--text-muted); border: 1.5px solid var(--border); font-size: .88rem; }
-.services-list { display: flex; flex-wrap: wrap; gap: 8px; }
-.service-tag { background: #eff6ff; color: var(--primary); padding: 5px 12px; border-radius: 50px; font-size: .82rem; }
+.text-muted { color: var(--text-muted); font-size: .88rem; }
+.section-label { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); margin-bottom: 10px; }
 
-/* ── Back link ────────────────────────────────────────────── */
-.back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: .9rem; padding: 8px 0 0; }
-.back-link:hover { color: var(--primary); }
+/* ── Editorial box ────────────────────────────────────────── */
+.editorial-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: var(--radius); padding: 20px 24px; }
+.editorial-label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #0369a1; margin-bottom: 8px; }
+.editorial-box p { font-size: .9rem; line-height: 1.7; color: #1e3a5f; }
 
-/* ── Footer ───────────────────────────────────────────────── */
-footer { background: #1e3a5f; color: rgba(255,255,255,.7); text-align: center; padding: 32px 20px; font-size: .85rem; margin-top: 60px; }
-footer a { color: rgba(255,255,255,.9); }
-
-/* ── Skeleton loading ─────────────────────────────────────── */
-.skeleton-card { background: var(--card-bg); border-radius: var(--radius); border: 1px solid var(--border); padding: 20px; height: 160px; position: relative; overflow: hidden; }
-.skeleton-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.04) 50%, transparent 100%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
-@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-
-/* ── Loading / Empty ──────────────────────────────────────── */
-.loading { text-align: center; padding: 60px 20px; color: var(--text-muted); }
-.empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
-.spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 16px; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 600px) {
-  .hero-stats { gap: 24px; }
-  .nav-links { display: none; }
-}
+/* ── Pricing Table ────────────────────────────────────────── */
+.price-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+.price-table th { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); padding: 8px 12px; text-align: left; border-bottom: 2px solid var(--border); }
+.price-table 
