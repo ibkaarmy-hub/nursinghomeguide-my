@@ -535,18 +535,21 @@ function render(f) {
       <div class="hero-content">
         <div class="hero-inner">
           <div class="hero-breadcrumb">
-            <a href="facilities.html" class="back-link-white">All Facilities</a>
+            <a href="index.html" class="back-link-white">Malaysia</a>
             <span class="bc-sep">/</span>
-            <span>${escapeHtml(f.area || 'Malaysia')}</span>
+            <a href="johor.html" class="back-link-white">Johor</a>
+            <span class="bc-sep">/</span>
+            <span>${escapeHtml(f.area || 'Johor')}</span>
             <span class="bc-sep">/</span>
             <span>${escapeHtml(f.title)}</span>
           </div>
           <h1>${escapeHtml(f.title)}</h1>
           <div class="hero-meta">
-            <span>📍 ${escapeHtml(f.area || 'Malaysia')}</span>
+            <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
             ${ratingMeta}
           </div>
           <div class="hero-badges">${careBadges}</div>
+          ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
         </div>
       </div>
     </div>

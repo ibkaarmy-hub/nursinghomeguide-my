@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Organisation — NursingHomeGuide.my</title>
+  <meta name="description" id="pageDesc" content="Nursing home group profile — branches, pricing, and care services across Malaysia." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">NursingHome<span>Guide.my</span></a>
+    <div class="nav-links">
+      <a href="johor.html">Johor</a>
+      <a href="#">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Org hero -->
+<div class="org-hero">
+  <div class="org-hero-inner">
+    <nav class="breadcrumb" aria-label="breadcrumb" id="orgBreadcrumb">
+      <a href="index.html">Malaysia</a>
+      <span>›</span>
+      <a href="johor.html">Johor</a>
+      <span>›</span>
+      <span id="orgBreadcrumbName">Organisation</span>
+    </nav>
+    <div class="org-hero-badge">Healthcare Group</div>
+    <h1 id="orgName">Loading…</h1>
+    <p id="orgTagline" class="org-tagline"></p>
+    <div class="org-hero-meta" id="orgMeta"></div>
+    <div id="orgActions" class="org-actions"></div>
+  </div>
+</div>
+
+<!-- Org body -->
+<div class="org-body">
+  <div class="org-body-inner">
+
+    <!-- Left: about -->
+    <div class="org-main">
+
+      <div class="profile-card" id="orgAboutCard">
+        <h2>About This Group</h2>
+        <p id="orgDescription" style="font-size:.92rem;line-height:1.75;color:#374151"></p>
+      </div>
+
+      <div class="profile-card" id="orgFactsCard">
+        <h2>Key Facts</h2>
+        <div id="orgFacts"></div>
+      </div>
+
+      <!-- Branches -->
+      <div class="org-branches-header">
+        <div class="section-title" id="branchesTitle">All Branches</div>
+        <div class="section-sub" id="branchesSub"></div>
+      </div>
+      <div class="fac-grid" id="branchesGrid">
+        <div class="fac-card-skeleton"></div>
+        <div class="fac-card-skeleton"></div>
+        <div class="fac-card-skeleton"></div>
+      </div>
+
+    </div>
+
+    <!-- Right: sidebar -->
+    <div class="org-sidebar">
+      <div class="profile-card">
+        <h2>Quick Info</h2>
+        <div id="orgSidebar"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">NursingHomeGuide.my</div>
+      <div class="footer-tagline">A free resource for Malaysian families navigating eldercare</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">All States</a>
+      <a href="johor.html">Johor</a>
+      <a href="#">About</a>
+    </div>
+    <div class="footer-copy">© 2026 NursingHomeGuide.my — Not affiliated with JKM or any facility</div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+const AREA_NORMALIZE = {
+  'JOHOR BAHRU': 'Johor Bahru',
+  'Taman Kebun Teh, Johor Bahru': 'Johor Bahru',
+  'Taman Perling, Johor Bahru': 'Johor Bahru',
+  'Kempas, Johor Bahru': 'Johor Bahru',
+  'Kempas Baru, Johor Bahru': 'Johor Bahru',
+  'Tampoi, Johor Bahru': 'Johor Bahru',
+  'Skudai, Johor Bahru': 'Johor Bahru',
+  'Skudai': 'Johor Bahru',
+  'Ulu Tiram': 'Johor Bahru',
+  'Gelang Patah, Johor Bahru': 'Johor Bahru',
+  'Johor Bahru (Medini / Iskandar Puteri)': 'Johor Bahru',
+  'Johor Bahru (Perling)': 'Johor Bahru',
+  'Batu Pahat, Johor': 'Batu Pahat',
+  'Kluang, Johor': 'Kluang',
+  'Kulai, Johor': 'Kulai',
+  'Senai': 'Kulai',
+  'Senai, Kulai, Johor': 'Kulai',
+  'Pontian District': 'Pontian',
+  'Segamat District': 'Segamat',
+  'Muar, Johor': 'Muar',
+  'Bukit Siput': 'Pontian', 'Bukit Gambir': 'Muar', 'Bukit Pasir': 'Batu Pahat',
+  'Sungai Mati': 'Muar', 'Kayu Ara Pasong': 'Pontian', 'Yong Peng': 'Batu Pahat',
+};
+function normArea(raw) { return AREA_NORMALIZE[raw] || raw || 'Johor'; }
+
+function priceFromShared(f) {
+  const raw = (f.shared_price || '').trim();
+  if (!raw || /call|enquire/i.test(raw)) return null;
+  const n = parseInt(raw.replace(/[^\d]/g,''), 10);
+  return isNaN(n) ? null : n;
+}
+
+function makePhotoUrl(url) {
+  if (!url) return '';
+  if (url.includes('googleusercontent.com') && !url.includes('=')) return url + '=w480-h320-k-no';
+  return url;
+}
+
+function makeBranchCard(f, groupSlug) {
+  const area = normArea(f.area);
+  const price = priceFromShared(f);
+  const priceHtml = price
+    ? `<div class="fac-price-badge">From RM ${price.toLocaleString()}/mo</div>`
+    : `<div class="fac-price-badge unknown">📞 Enquire for pricing</div>`;
+
+  const ratingNum = parseFloat(f.rating);
+  const reviewCount = parseInt(f.review_count) || 0;
+  const ratingHtml = !isNaN(ratingNum) && ratingNum > 0
+    ? `<span class="fac-rating">★ ${ratingNum.toFixed(1)}<span class="fac-reviews">${reviewCount > 0 ? ` (${reviewCount})` : ''}</span></span>`
+    : '';
+
+  const tags = (f.care_types || '').split('+').map(t => t.trim()).filter(Boolean).slice(0,3)
+    .map(t => `<span class="tag">${t}</span>`).join('');
+
+  const excerpt = f.editorial_summary
+    ? `<p class="fac-excerpt">${f.editorial_summary.slice(0, 130)}${f.editorial_summary.length > 130 ? '…' : ''}</p>`
+    : '';
+
+  const photoUrl = makePhotoUrl(f.hero_image);
+  const photoHtml = photoUrl
+    ? `<img src="${photoUrl}" alt="${f.title}" loading="lazy" onerror="this.closest('.fac-card-img').classList.add('no-photo')">`
+    : '';
+
+  return `
+    <a href="facility.html?slug=${f.slug}" class="fac-card">
+      <div class="fac-card-img${photoUrl ? '' : ' no-photo'}">
+        ${photoHtml}
+        ${priceHtml}
+        <div class="fac-branch-tag">Branch</div>
+      </div>
+      <div class="fac-card-body">
+        <h3 class="fac-card-name">${f.title}</h3>
+        <div class="fac-card-meta">
+          <span class="fac-area">📍 ${area}</span>
+          ${ratingHtml}
+        </div>
+        ${excerpt}
+        ${tags ? `<div class="fac-card-tags">${tags}</div>` : ''}
+      </div>
+    </a>`;
+}
+
+function infoRow(label, value) {
+  return `<div class="info-row"><span class="info-label">${label}</span><span class="info-value">${value}</span></div>`;
+}
+
+// ─── Init ───────────────────────────────────────────────────
+const slug = new URLSearchParams(window.location.search).get('slug');
+if (!slug || !GROUPS[slug]) {
+  document.getElementById('orgName').textContent = 'Group not found';
+} else {
+  const org = GROUPS[slug];
+
+  // Page metadata
+  document.title = `${org.name} — Nursing Home Group | NursingHomeGuide.my`;
+  document.getElementById('pageDesc').content = `${org.name}: ${org.tagline}. View all branches, pricing, and care services.`;
+
+  // Hero
+  document.getElementById('orgBreadcrumbName').textContent = org.name;
+  document.getElementById('orgName').textContent = org.name;
+  document.getElementById('orgTagline').textContent = org.tagline;
+
+  // Actions
+  const actionsEl = document.getElementById('orgActions');
+  if (org.website) {
+    actionsEl.innerHTML = `<a href="${org.website}" target="_blank" rel="noopener" class="org-website-btn">Visit Official Website →</a>`;
+  }
+
+  // About
+  document.getElementById('orgDescription').textContent = org.description;
+
+  // Sidebar quick info
+  const sidebarEl = document.getElementById('orgSidebar');
+  sidebarEl.innerHTML = [
+    org.founded ? infoRow('Founded', org.founded) : '',
+    org.ownership ? infoRow('Ownership', org.ownership) : '',
+    infoRow('State', org.state || 'Johor'),
+    infoRow('Branches', `${org.branches.length} locations`),
+    org.website ? infoRow('Website', `<a href="${org.website}" target="_blank" rel="noopener" style="color:var(--primary)">${org.website.replace(/^https?:\/\//,'')}</a>`) : '',
+  ].filter(Boolean).join('');
+
+  // Load facilities and render branches
+  loadFacilities().then(all => {
+    const branches = org.branches.map(bSlug => all.find(f => f.slug === bSlug)).filter(Boolean);
+
+    // Key facts card
+    const areas = [...new Set(branches.map(f => normArea(f.area)))];
+    document.getElementById('orgFacts').innerHTML = [
+      infoRow('Total branches', branches.length),
+      infoRow('Areas covered', areas.join(', ') || 'Johor'),
+    ].join('');
+
+    // Branches title
+    document.getElementById('branchesTitle').textContent = `All Branches (${branches.length})`;
+    document.getElementById('branchesSub').textContent = `Every ${org.name} location in Malaysia`;
+
+    // Hero meta
+    const metaEl = document.getElementById('orgMeta');
+    metaEl.innerHTML = `
+      <span>${branches.length} branches</span>
+      <span>·</span>
+      <span>${areas.slice(0,3).join(', ')}${areas.length > 3 ? ' & more' : ''}</span>
+    `;
+
+    // Branch cards
+    document.getElementById('branchesGrid').innerHTML =
+      branches.map(f => makeBranchCard(f, slug)).join('') ||
+      '<p style="color:#6b7280">No branches found in our database.</p>';
+  });
+}
+</script>
+</body>
+</html>
