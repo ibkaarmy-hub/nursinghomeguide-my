@@ -166,9 +166,20 @@ nav { background: #fff; border-bottom: 1px solid var(--border); position: sticky
 .empty-state button { margin-top: 12px; background: var(--primary); color: #fff; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: .88rem; }
 
 /* ── Leaflet map view ─────────────────────────────────────── */
-#leafletMap { height: calc(100vh - 170px); min-height: 480px; }
+#mapView { width: 100%; }
+#leafletMap { height: calc(100vh - 170px); min-height: 480px; width: 100%; }
 .map-popup { font-family: 'Inter', sans-serif; font-size: .88rem; line-height: 1.5; }
 .leaflet-popup-content-wrapper { border-radius: 10px !important; box-shadow: 0 4px 24px rgba(0,0,0,.15) !important; }
+
+/* Mobile: stack filter bar so area scroll doesn't get clipped by sort/view */
+@media (max-width: 640px) {
+  .filter-bar-inner { flex-direction: column; align-items: stretch; height: auto; padding: 8px 14px; gap: 6px; }
+  .filter-scroll { width: 100%; padding: 4px 0; }
+  .filter-right { width: 100%; justify-content: space-between; gap: 8px; }
+  .sort-select { flex: 1; min-width: 0; }
+  .filter-bar-wrap { top: 52px; }
+  #leafletMap { height: calc(100vh - 240px); min-height: 360px; }
+}
 
 /* ── Org page ─────────────────────────────────────────────── */
 .org-hero { background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%); color: #fff; padding: 48px 20px 44px; }
