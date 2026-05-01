@@ -80,11 +80,14 @@
 .editor-note strong { color: #1d4ed8; }
 
 /* Care level indicator */
-.care-level-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 14px 0; }
-.care-level-bar .step { padding: 12px 8px; text-align: center; font-size: .78rem; font-weight: 600; border-radius: 6px; background: #f1f5f9; color: var(--text-muted, #64748b); }
+.care-level-bar { display: flex; gap: 4px; margin: 14px 0; flex-wrap: wrap; }
+.care-level-bar .step { flex: 1 1 0; min-width: 0; padding: 10px 6px; text-align: center; font-size: .75rem; font-weight: 600; border-radius: 6px; background: #f1f5f9; color: var(--text-muted, #64748b); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .care-level-bar .step.active { background: #2563eb; color: white; }
 .care-level-bar .step.partial { background: #dbeafe; color: #1d4ed8; }
-@media (max-width: 600px) { .care-level-bar .step { padding: 9px 4px; font-size: .68rem; } }
+@media (max-width: 600px) {
+  .care-level-bar { gap: 3px; }
+  .care-level-bar .step { padding: 8px 4px; font-size: .68rem; }
+}
 .care-level-key { font-size: .8rem; color: var(--text-muted, #64748b); margin-top: 8px; }
 
 /* Pricing components */
@@ -294,7 +297,7 @@ function careLevelHtml(f) {
     <div class="${cls(independent)}">Independent</div>
     <div class="${cls(assisted)}">Assisted</div>
     <div class="${cls(skilled)}">Skilled Nursing</div>
-    <div class="${cls(memory)}">Memory / Dementia</div>
+    <div class="${cls(memory)}">Dementia</div>
     <div class="${cls(palliative)}">Palliative</div>
   </div>
   <div class="care-level-key">Solid blue = clearly accepted. Empty = not stated. Always confirm specific clinical capability with the facility.</div>`;
