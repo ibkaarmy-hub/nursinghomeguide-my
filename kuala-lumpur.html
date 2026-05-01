@@ -6,7 +6,7 @@
   <title>Nursing Homes in Kuala Lumpur | Compare Prices & Reviews</title>
   <meta name="description" content="Browse nursing homes, assisted living, day care, and home care in Kuala Lumpur. Detailed profiles across Cheras, Kepong, Bangsar, Setapak and more." />
   <link rel="canonical" href="https://nursinghomeguide.my/kuala-lumpur.html" />
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <!-- Leaflet for map view -->
@@ -213,7 +213,7 @@ function makeCard(f) {
 
   const photoUrl = makePhotoUrl(f.hero_image);
   const photoHtml = photoUrl
-    ? `<img src="${photoUrl}" alt="${f.title}" loading="lazy" onerror="this.closest('.fac-card-img').classList.add('no-photo')">`
+    ? `<img src="${photoUrl}" alt="${f.title}" loading="lazy" onerror="this.parentElement.classList.add('no-photo');this.remove()">`
     : '';
 
   const group = getGroupInfo(f);
@@ -235,7 +235,7 @@ function makeCard(f) {
           ${ratingHtml}
         </div>
         ${excerpt}
-        ${tags ? `<div class="fac-card-tags">${tags}</div>` : ''}
+        <div class="fac-card-tags">${tags}</div>
       </div>
     </a>`;
 }
