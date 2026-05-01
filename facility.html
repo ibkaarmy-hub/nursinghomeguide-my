@@ -487,20 +487,33 @@ function render(f) {
     </div>` : `<div class="profile-card"><h2>Photos</h2><p class="text-muted">No photos available yet.</p></div>`;
 
   /* REVIEWS tab */
+  const mapsUrl = f.google_maps_url || ('https://www.google.com/maps/search/' + encodeURIComponent((f.title || '') + ' ' + (f.area || '') + ' Malaysia'));
   const reviewsTabHtml = `
     <div class="profile-card">
       <h2>Reviews</h2>
       ${f.rating ? `
         <div class="rating-large">
           <div class="num">${parseFloat(f.rating).toFixed(1)}</div>
+          <div class="stars" style="font-size:1.3rem;color:#f59e0b">${'★'.repeat(Math.round(parseFloat(f.rating)))}${'☆'.repeat(5 - Math.round(parseFloat(f.rating)))}</div>
           <div class="lbl">${f.review_count || 0} Google reviews</div>
-        </div>
-        <div class="review-empty">
-          <strong>Read reviews on Google</strong>
-          We don't republish individual reviews. For decision-making we recommend reading the full reviews on Google and asking the facility if you can speak with current resident families on your visit.
-          <br /><br />
-          <a href="${escapeHtml(f.google_maps_url || '#')}" target="_blank" style="font-weight:600;">Read all reviews on Google →</a>
-        </div>` : `<p class="text-muted">No public ratings yet.</p>`}
+        </div>` : ''}
+      <div class="review-empty">
+        <strong>${f.rating ? 'Read the full reviews on Google' : 'No rating captured yet — see Google for reviews'}</strong>
+        We don't republish individual reviews to respect reviewers' privacy. For your decision-making, we recommend reading the full reviews on Google Maps and — on your facility tour — asking to speak with current resident families directly.
+        <br /><br />
+        <a href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener" style="font-weight:600;color:#2563eb;">Open on Google Maps →</a>
+      </div>
+    </div>
+    <div class="profile-card">
+      <h2>What to ask on your tour</h2>
+      <ul style="padding-left:18px;line-height:2;font-size:.9rem;color:#374151;">
+        <li>Can I speak with one or two current resident families?</li>
+        <li>What is the nurse-to-resident ratio during the day and overnight?</li>
+        <li>Who do I call at 2am if there is an emergency?</li>
+        <li>How do you communicate updates to families — WhatsApp, phone, app?</li>
+        <li>When was the last JKM inspection, and can I see the result?</li>
+        <li>What is your policy if a resident's condition deteriorates significantly?</li>
+      </ul>
     </div>`;
 
   /* MAP tab */
