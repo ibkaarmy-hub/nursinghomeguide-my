@@ -37,7 +37,7 @@
 .summary-card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.08); padding: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .summary-item .label { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted, #64748b); font-weight: 600; margin-bottom: 6px; }
 .summary-item .value { font-size: 1.05rem; font-weight: 700; color: var(--text, #0f172a); }
-.summary-item .value.unknown { color: #f59e0b; }
+.summary-item .value.unknown { color: #94a3b8; font-weight: 400; }
 .summary-item .sub { font-size: .8rem; color: var(--text-muted, #64748b); margin-top: 2px; }
 @media (max-width: 768px) { .summary-card { grid-template-columns: 1fr 1fr; gap: 16px; } }
 
@@ -305,6 +305,11 @@ function render(f) {
 
   const photos = (f.photos || '').split('|').map(s => s.trim()).filter(Boolean);
   if (!photos.length && f.hero_image) photos.push(f.hero_image);
+  /* Reorder: hero_image always first, keeping rest in original order */
+  if (f.hero_image && photos.length > 1) {
+    const hi = photos.indexOf(f.hero_image);
+    if (hi > 0) { photos.splice(hi, 1); photos.unshift(f.hero_image); }
+  }
 
   const ratingMeta = f.rating
     ? `<span>⭐ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} Google reviews)</span>` : '';
@@ -324,7 +329,7 @@ function render(f) {
     </div>
     <div class="summary-item">
       <div class="label">Care Level</div>
-      <div class="value">${escapeHtml(f.care_types || 'Not stated')}</div>
+      <div class="value" style="font-size:.92rem;line-height:1.3">${escapeHtml((f.care_types || 'Not stated').replace('Nursing Home','Nursing').replace('Assisted Living','Assisted').replace('Rehabilitation','Rehab'))}</div>
       <div class="sub">${f.care_dementia === 'Yes' ? 'incl. dementia' : ''}</div>
     </div>
     <div class="summary-item">
