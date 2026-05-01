@@ -204,7 +204,7 @@ function makeCard(f) {
     ? `<span class="fac-rating">★ ${ratingNum.toFixed(1)}<span class="fac-reviews">${reviewCount > 0 ? ` (${reviewCount})` : ''}</span></span>`
     : '';
 
-  const tags = (f.care_types || '').split('+').map(t => t.trim()).filter(Boolean).slice(0, 3)
+  const tags = (f.care_types || '').split(/[+,]/).map(t => t.trim()).filter(Boolean).slice(0, 3)
     .map(t => `<span class="tag">${t}</span>`).join('');
 
   const excerpt = f.editorial_summary
@@ -354,7 +354,7 @@ function makeMapCard(f) {
   const ratingHtml = !isNaN(rating) && rating > 0
     ? `<span class="mc-rating">★ ${rating.toFixed(1)} (${reviewCount})</span>`
     : `<span class="mc-no-rating">No Google reviews</span>`;
-  const tags = (f.care_types || '').split('+').map(t => t.trim()).filter(Boolean).slice(0, 3)
+  const tags = (f.care_types || '').split(/[+,]/).map(t => t.trim()).filter(Boolean).slice(0, 3)
     .map(t => `<span class="tag">${t}</span>`).join('');
   const hasCoords = f.latitude && f.longitude;
   return `
