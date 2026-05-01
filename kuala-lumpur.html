@@ -27,8 +27,13 @@
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo">NursingHome<span>Guide.my</span></a>
-    <div class="nav-links">
+    <button class="nav-hamburger" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect y="4" width="22" height="2" rx="1" fill="currentColor"/><rect y="10" width="22" height="2" rx="1" fill="currentColor"/><rect y="16" width="22" height="2" rx="1" fill="currentColor"/></svg>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="johor.html">Johor</a>
+      <a href="kuala-lumpur.html" style="color:var(--primary);font-weight:600">Kuala Lumpur</a>
+      <a href="selangor.html">Selangor</a>
       <a href="#">About</a>
     </div>
   </div>
@@ -396,6 +401,22 @@ loadFacilities().then(data => {
   );
   observer.observe(filterWrap);
 });
+// Hamburger menu
+(function(){
+  const btn = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', e => {
+    if (!btn.contains(e.target) && !links.contains(e.target)) {
+      links.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+    }
+  });
+})();
 </script>
 </body>
 </html>

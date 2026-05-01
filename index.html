@@ -29,8 +29,13 @@
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo">NursingHome<span>Guide.my</span></a>
-    <div class="nav-links">
+    <button class="nav-hamburger" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect y="4" width="22" height="2" rx="1" fill="currentColor"/><rect y="10" width="22" height="2" rx="1" fill="currentColor"/><rect y="16" width="22" height="2" rx="1" fill="currentColor"/></svg>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="johor.html">Johor</a>
+      <a href="kuala-lumpur.html">Kuala Lumpur</a>
+      <a href="selangor.html">Selangor</a>
       <a href="#">About</a>
     </div>
   </div>
@@ -49,7 +54,7 @@
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">269</div><div class="label">Verified Facilities</div></div>
       <div class="hero-stat"><div class="num">3</div><div class="label">States Live</div></div>
-      <div class="hero-stat"><div class="num">100%</div><div class="label">Pricing Published</div></div>
+      <div class="hero-stat"><div class="num">Free</div><div class="label">No Sign-Up Required</div></div>
     </div>
   </div>
 </section>
@@ -133,8 +138,8 @@
     <div class="why-grid">
       <div class="why-item">
         <div class="why-icon">💰</div>
-        <div class="why-title">Transparent Pricing</div>
-        <p>We publish monthly fees so you can budget before you call. No facility on this list hides its prices from us.</p>
+        <div class="why-title">Pricing Where Available</div>
+        <p>We publish monthly fees where facilities share them, so you can budget before you call. Where pricing is unavailable, we tell you that too.</p>
       </div>
       <div class="why-item">
         <div class="why-icon">✅</div>
@@ -198,8 +203,9 @@
     </div>
     <div class="footer-links">
       <a href="johor.html">Johor</a>
+      <a href="kuala-lumpur.html">Kuala Lumpur</a>
+      <a href="selangor.html">Selangor</a>
       <a href="#">About</a>
-      <a href="#">Contact</a>
     </div>
     <div class="footer-copy">© 2026 NursingHomeGuide.my — Not affiliated with JKM or any facility</div>
   </div>
@@ -214,6 +220,22 @@ function doSearch() {
 document.getElementById('heroSearch').addEventListener('keydown', e => {
   if (e.key === 'Enter') doSearch();
 });
+// Hamburger menu
+(function(){
+  const btn = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', e => {
+    if (!btn.contains(e.target) && !links.contains(e.target)) {
+      links.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+    }
+  });
+})();
 </script>
 </body>
 </html>
