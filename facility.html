@@ -174,6 +174,15 @@
 .unverified-pill { display: inline-block; background: #fffbeb; color: #92400e; border: 1px dashed #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: .72rem; font-weight: 500; margin-left: 6px; vertical-align: middle; }
 
 .warning-box { background: #fef3c7; border-radius: 8px; padding: 14px; margin-top: 18px; font-size: .88rem; color: #78350f; line-height: 1.6; }
+
+@media (max-width: 600px) {
+  /* Footer: hide nav links on mobile (CTA bar replaces them) and add space above CTA bar */
+  .footer-links { display: none; }
+  footer { padding-bottom: 100px; }
+  /* Nav: abbreviate logo so it fits with links */
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: .82rem; }
+}
 </style>
 </head>
 <body>
