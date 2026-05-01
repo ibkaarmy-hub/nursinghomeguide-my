@@ -120,7 +120,7 @@ body > nav { background: #fff; border-bottom: 1px solid var(--border); position:
 
 /* ── Facility card grid ───────────────────────────────────── */
 .state-content { max-width: 1160px; margin: 0 auto; padding: 24px 20px 60px; }
-.fac-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; align-items: start; }
+.fac-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
 @media (max-width: 680px) { .fac-grid { grid-template-columns: 1fr; gap: 16px; } }
 
 /* ── Facility card ────────────────────────────────────────── */
