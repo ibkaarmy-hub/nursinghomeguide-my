@@ -1,0 +1,41 @@
+# ── Credentials & secrets ─────────────────────────────────────
+token_sheets.json
+token_*.json
+client_secret*.json
+*.env
+.env
+.env.*
+config.py
+secrets.py
+
+# ── Apify raw data (large, not needed in repo) ────────────────
+*_raw.json
+apify_results.json
+apify_input.json
+photos_results.json
+firecrawl_results.json
+run_*.json
+run_response.json
+kl_selangor_run_id.txt
+
+# ── Working CSVs (intermediate merge stages) ─────────────────
+sheet.csv
+sheet_*.csv
+kl_selangor_slugs.json
+photo_*.json
+photo_files_list.txt
+audit_data.json
+
+# ── Downloaded photos ─────────────────────────────────────────
+photos/
+
+# ── Python cache ──────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+
+# ── OS / editor ───────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
