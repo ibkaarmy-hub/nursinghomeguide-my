@@ -98,6 +98,7 @@
 
 <!-- Map view (hidden by default) -->
 <div id="mapView" style="display:none">
+  <aside id="mapSidebar"></aside>
   <div id="leafletMap"></div>
 </div>
 
@@ -313,37 +314,77 @@ function initMap() {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(leafletMap);
 
-  const filtered = allFacilities.filter(f => f.latitude && f.longitude);
-  updateMapMarkers(filtered);
+  // Render via applyFilters so current area/search filters reflect in sidebar
+  applyFilters();
   if (mapMarkers.length) {
     leafletMap.fitBounds(L.featureGroup(mapMarkers).getBounds().pad(0.1));
   }
+}
+
+let markerIndex = {};
+
+function makeMapPopup(f) {
+  const price = priceFromShared(f);
+  const priceText = price ? `From RM ${price.toLocaleString()}/mo` : 'Enquire for pricing';
+  const rating = parseFloat(f.rating);
+  const reviewCount = parseInt(f.review_count) || 0;
+  const ratingHtml = !isNaN(rating) && rating > 0
+    ? `<div class="mp-rating">★ ${rating.toFixed(1)} <span style="color:#6b7280;font-weight:400">(${reviewCount} Google review${reviewCount !== 1 ? 's' : ''})</span></div>`
+    : `<div class="mp-no-reviews">No Google reviews yet</div>`;
+  const careTypes = (f.care_types || '').split('+').map(t => t.trim()).filter(Boolean).slice(0, 4);
+  const careHtml = careTypes.length ? `<div class="mp-care">🏥 ${careTypes.join(' · ')}</div>` : '';
+  return `
+    <div class="map-popup">
+      <strong>${f.title}</strong><br>
+      <span style="color:#6b7280;font-size:.82rem">📍 ${normArea(f.area)}</span>
+      ${ratingHtml}
+      ${careHtml}
+      <div style="color:#16a34a;font-weight:600;font-size:.85rem;margin-top:6px">${priceText}</div>
+      <a href="facility.html?slug=${f.slug}" style="display:inline-block;margin-top:10px;background:#2563eb;color:#fff;padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none">View Profile →</a>
+    </div>`;
+}
+
+function makeMapCard(f) {
+  const area = normArea(f.area);
+  const price = priceFromShared(f);
+  const priceText = price ? `RM ${price.toLocaleString()}/mo` : 'Enquire';
+  const rating = parseFloat(f.rating);
+  const reviewCount = parseInt(f.review_count) || 0;
+  const ratingHtml = !isNaN(rating) && rating > 0
+    ? `<span class="mc-rating">★ ${rating.toFixed(1)} (${reviewCount})</span>`
+    : `<span class="mc-no-rating">No Google reviews</span>`;
+  const tags = (f.care_types || '').split('+').map(t => t.trim()).filter(Boolean).slice(0, 3)
+    .map(t => `<span class="tag">${t}</span>`).join('');
+  const hasCoords = f.latitude && f.longitude;
+  return `
+    <a href="facility.html?slug=${f.slug}" class="mc-card" data-slug="${f.slug}"${hasCoords ? ` onclick="event.preventDefault();focusMarker('${f.slug}');"` : ''}>
+      <div class="mc-name">${f.title}</div>
+      <div class="mc-meta">📍 ${area} · <span class="mc-price">${priceText}</span></div>
+      <div class="mc-meta">${ratingHtml}</div>
+      ${tags ? `<div class="mc-tags">${tags}</div>` : ''}
+    </a>`;
+}
+
+function focusMarker(slug) {
+  const m = markerIndex[slug];
+  if (!m) return;
+  leafletMap.setView(m.getLatLng(), Math.max(leafletMap.getZoom(), 14));
+  m.openPopup();
+  document.querySelectorAll('.mc-card').forEach(c => c.classList.remove('mc-active'));
+  const card = document.querySelector(`.mc-card[data-slug="${slug}"]`);
+  if (card) card.classList.add('mc-active');
 }
 
 function updateMapMarkers(facilities) {
   if (!leafletMap) return;
   mapMarkers.forEach(m => leafletMap.removeLayer(m));
   mapMarkers = [];
+  markerIndex = {};
 
   facilities.forEach(f => {
     const lat = parseFloat(f.latitude);
     const lng = parseFloat(f.longitude);
     if (isNaN(lat) || isNaN(lng)) return;
-
-    const price = priceFromShared(f);
-    const priceText = price ? `From RM ${price.toLocaleString()}/mo` : 'Enquire for pricing';
-    const rating = parseFloat(f.rating);
-    const ratingText = !isNaN(rating) && rating > 0 ? `★ ${rating.toFixed(1)}` : '';
-
-    const popup = `
-      <div class="map-popup">
-        <strong>${f.title}</strong><br>
-        <span style="color:#6b7280;font-size:.82rem">📍 ${normArea(f.area)}</span><br>
-        <span style="color:#16a34a;font-weight:600;font-size:.85rem">${priceText}</span>
-        ${ratingText ? `<br><span style="color:#f59e0b">${ratingText}</span>` : ''}
-        <br><br>
-        <a href="facility.html?slug=${f.slug}" style="background:#2563eb;color:#fff;padding:5px 12px;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none">View Profile →</a>
-      </div>`;
 
     const group = getGroupInfo(f);
     const markerColor = group ? '#7c3aed' : '#2563eb';
@@ -354,10 +395,21 @@ function updateMapMarkers(facilities) {
     });
 
     const marker = L.marker([lat, lng], { icon })
-      .bindPopup(popup, { maxWidth: 240 })
+      .bindPopup(makeMapPopup(f), { maxWidth: 260 })
       .addTo(leafletMap);
     mapMarkers.push(marker);
+    markerIndex[f.slug] = marker;
   });
+
+  const sidebar = document.getElementById('mapSidebar');
+  if (sidebar) {
+    if (!facilities.length) {
+      sidebar.innerHTML = '<div class="mc-empty">No facilities match the current filters.</div>';
+    } else {
+      const placed = mapMarkers.length;
+      sidebar.innerHTML = `<div style="font-size:.78rem;color:#6b7280;margin-bottom:10px;font-weight:600;padding:0 2px">${facilities.length} facilit${facilities.length === 1 ? 'y' : 'ies'}${placed < facilities.length ? ` · ${placed} pinned on map` : ''}</div>` + facilities.map(makeMapCard).join('');
+    }
+  }
 }
 
 // ─── Init ──────────────────────────────────────────────────
