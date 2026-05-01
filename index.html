@@ -3,141 +3,213 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nursing Home Guide Malaysia — Find & Compare Prices in Johor</title>
-  <meta name="description" content="Find and compare 125 licensed nursing homes in Johor, Malaysia. See monthly fees, care types, and contact details. Free directory for families." />
+  <title>Nursing Home Guide Malaysia — Compare Prices by State</title>
+  <meta name="description" content="Malaysia's first pricing-transparent nursing home directory. Compare monthly fees, care types, and reviews across all Malaysian states. Free for families." />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "NursingHomeGuide.my",
+    "url": "https://nursinghomeguide.my",
+    "description": "Malaysia's first pricing-transparent nursing home directory",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://nursinghomeguide.my/johor.html?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <div class="logo">NursingHome<span>Guide.my</span></div>
+    <a href="index.html" class="logo">NursingHome<span>Guide.my</span></a>
     <div class="nav-links">
-      <a href="facilities.html">All Facilities</a>
+      <a href="johor.html">Johor</a>
       <a href="#">About</a>
     </div>
   </div>
 </nav>
 
-<section class="hero">
-  <h1>Find the Right Nursing Home<br/>in Johor, Malaysia</h1>
-  <p>Malaysia's first pricing-transparent nursing home directory. Compare monthly fees, care types, and services — for free.</p>
-  <div class="hero-search">
-    <input type="text" id="heroSearch" placeholder="Search by name or area..." />
-    <button onclick="doSearch()">Search</button>
-  </div>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="num" id="statTotal">125</div><div class="label">Facilities</div></div>
-    <div class="hero-stat"><div class="num" id="statPricing">12</div><div class="label">With Pricing</div></div>
-    <div class="hero-stat"><div class="num">14</div><div class="label">Areas in Johor</div></div>
+<!-- Hero -->
+<section class="hero hero-home">
+  <div class="hero-home-content">
+    <div class="hero-eyebrow">🇲🇾 Malaysia's Pricing-Transparent Directory</div>
+    <h1>Find the Right Nursing Home<br/>in Malaysia</h1>
+    <p>The only directory that publishes monthly fees. Compare costs, care types, and real reviews — no runaround, no hidden numbers.</p>
+    <div class="hero-search">
+      <input type="text" id="heroSearch" placeholder="Search by name, area, or care type…" />
+      <button onclick="doSearch()">Search</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">126</div><div class="label">Facilities Listed</div></div>
+      <div class="hero-stat"><div class="num">1</div><div class="label">State Live</div></div>
+      <div class="hero-stat"><div class="num">100%</div><div class="label">Pricing Published</div></div>
+    </div>
   </div>
 </section>
 
-<div style="background:#1e3a5f; color:#fff; padding:40px 20px; text-align:center;">
-  <div style="max-width:600px; margin:0 auto;">
-    <div style="font-size:1.3rem; font-weight:700; margin-bottom:10px;">Why We Built This</div>
-    <p style="opacity:.8; line-height:1.7; font-size:.95rem;">Finding a nursing home in Malaysia is stressful — and pricing is almost never published online. We built NursingHomeGuide.my so families can compare options, understand costs, and make confident decisions without the runaround.</p>
-  </div>
-</div>
-
+<!-- State picker -->
 <div class="section">
-  <div class="section-title">Browse by Area</div>
-  <div class="section-sub">Find nursing homes near you in Johor</div>
-  <div class="filters" id="areaFilters">
-    <button class="filter-btn active" onclick="filterByArea('', this)">All Areas</button>
-  </div>
+  <div class="section-title">Browse by State</div>
+  <div class="section-sub">Select your state to see nursing homes, pricing, and reviews</div>
 
-  <div class="section-title" style="margin-top:40px">Featured Facilities</div>
-  <div class="section-sub">Highest rated nursing homes in Johor</div>
-  <div class="grid" id="featuredGrid">
-    <div class="skeleton-card"></div><div class="skeleton-card"></div>
-    <div class="skeleton-card"></div><div class="skeleton-card"></div>
-    <div class="skeleton-card"></div><div class="skeleton-card"></div>
-    <div class="skeleton-card"></div><div class="skeleton-card"></div>
-  </div>
+  <div class="state-grid">
 
-  <div style="text-align:center; margin-top:32px">
-    <a href="facilities.html" style="display:inline-block; background:var(--primary); color:#fff; padding:13px 32px; border-radius:8px; font-weight:700; font-size:1rem;">View All 125 Facilities →</a>
+    <!-- LIVE: Johor -->
+    <a href="johor.html" class="state-card state-live" style="--sc:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%)">
+      <div class="state-card-pattern">
+        <span class="state-flag">🏙️</span>
+      </div>
+      <div class="state-card-body">
+        <div class="state-live-badge">Live ✓</div>
+        <div class="state-card-name">Johor</div>
+        <div class="state-card-count">126 facilities · Pricing available</div>
+        <div class="state-card-cta">Browse Johor →</div>
+      </div>
+    </a>
+
+    <!-- COMING SOON states -->
+    <div class="state-card state-soon" style="--sc:linear-gradient(135deg,#374151 0%,#4b5563 100%)">
+      <div class="state-card-pattern"><span class="state-flag">🌆</span></div>
+      <div class="state-card-body">
+        <div class="state-soon-badge">Coming Soon</div>
+        <div class="state-card-name">Kuala Lumpur</div>
+        <div class="state-card-count">Research in progress</div>
+      </div>
+    </div>
+
+    <div class="state-card state-soon" style="--sc:linear-gradient(135deg,#374151 0%,#4b5563 100%)">
+      <div class="state-card-pattern"><span class="state-flag">🏘️</span></div>
+      <div class="state-card-body">
+        <div class="state-soon-badge">Coming Soon</div>
+        <div class="state-card-name">Selangor</div>
+        <div class="state-card-count">Research in progress</div>
+      </div>
+    </div>
+
+    <div class="state-card state-soon" style="--sc:linear-gradient(135deg,#374151 0%,#4b5563 100%)">
+      <div class="state-card-pattern"><span class="state-flag">🌴</span></div>
+      <div class="state-card-body">
+        <div class="state-soon-badge">Coming Soon</div>
+        <div class="state-card-name">Penang</div>
+        <div class="state-card-count">Research in progress</div>
+      </div>
+    </div>
+
+    <div class="state-card state-soon" style="--sc:linear-gradient(135deg,#374151 0%,#4b5563 100%)">
+      <div class="state-card-pattern"><span class="state-flag">🏞️</span></div>
+      <div class="state-card-body">
+        <div class="state-soon-badge">Coming Soon</div>
+        <div class="state-card-name">Perak</div>
+        <div class="state-card-count">Research in progress</div>
+      </div>
+    </div>
+
+    <div class="state-card state-soon" style="--sc:linear-gradient(135deg,#374151 0%,#4b5563 100%)">
+      <div class="state-card-pattern"><span class="state-flag">🌿</span></div>
+      <div class="state-card-body">
+        <div class="state-soon-badge">Coming Soon</div>
+        <div class="state-card-name">Sabah &amp; Sarawak</div>
+        <div class="state-card-count">Research in progress</div>
+      </div>
+    </div>
+
   </div>
 </div>
 
+<!-- Why section -->
+<div class="why-section">
+  <div class="why-inner">
+    <div class="why-headline">Why NursingHomeGuide.my?</div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">💰</div>
+        <div class="why-title">Transparent Pricing</div>
+        <p>We publish monthly fees so you can budget before you call. No facility on this list hides its prices from us.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">✅</div>
+        <div class="why-title">Verified Information</div>
+        <p>Every listing is cross-checked against JKM records, the facility's own website, and Google reviews.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🔍</div>
+        <div class="why-title">Compare Side by Side</div>
+        <p>Filter by area, care type, or price range. See exactly what each home includes — dementia, palliative, rehab.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🏥</div>
+        <div class="why-title">Care Level Clarity</div>
+        <p>We map JKM licence types to plain English so you know if a home can handle your family member's needs.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- How it works -->
+<div class="section" style="max-width:800px">
+  <div class="section-title" style="text-align:center">How It Works</div>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <div class="how-text">
+        <strong>Choose your state</strong>
+        <p>Start with Johor — the most complete listing in Malaysia.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <div class="how-text">
+        <strong>Filter by area &amp; care type</strong>
+        <p>Narrow down by town, care needs (dementia, palliative, rehab), and monthly budget.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <div class="how-text">
+        <strong>Read the full profile</strong>
+        <p>Pricing, photos, reviews, clinical capabilities, and a checklist of questions to ask before you visit.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">4</div>
+      <div class="how-text">
+        <strong>Call with confidence</strong>
+        <p>You already know the monthly rate. Now you're just confirming availability and touring in person.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer>
-  <p>© 2026 NursingHomeGuide.my — A free resource for Malaysian families</p>
-  <p style="margin-top:8px"><a href="facilities.html">All Facilities</a> · <a href="#">Contact</a></p>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">NursingHomeGuide.my</div>
+      <div class="footer-tagline">A free resource for Malaysian families navigating eldercare</div>
+    </div>
+    <div class="footer-links">
+      <a href="johor.html">Johor</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 NursingHomeGuide.my — Not affiliated with JKM or any facility</div>
+  </div>
 </footer>
 
 <script src="data.js"></script>
 <script>
-let allFacilities = [];
-
 function doSearch() {
   const q = document.getElementById('heroSearch').value.trim();
-  if (q) window.location.href = `facilities.html?q=${encodeURIComponent(q)}`;
+  if (q) window.location.href = `johor.html?q=${encodeURIComponent(q)}`;
 }
-
 document.getElementById('heroSearch').addEventListener('keydown', e => {
   if (e.key === 'Enter') doSearch();
-});
-
-function makeCard(f) {
-  const hasPrice = f.shared_price && f.shared_price !== 'Call for pricing';
-  const priceHtml = hasPrice
-    ? `<div class="card-price">From ${f.shared_price}/mo</div>`
-    : `<div class="card-price unknown">📞 Enquire for pricing</div>`;
-
-  const tags = (f.care_types || '').split('+').map(t => t.trim()).filter(Boolean).slice(0,2)
-    .map(t => `<span class="tag">${t}</span>`).join('');
-
-  const rating = f.rating ? `<div class="card-rating"><span class="stars">★</span> ${parseFloat(f.rating).toFixed(1)}</div>` : '';
-
-  return `
-    <a href="facility.html?slug=${f.slug}" class="card">
-      <div class="card-name">${f.title}</div>
-      ${f.area ? `<div class="card-area">📍 ${f.area}</div>` : ''}
-      ${priceHtml}
-      ${tags ? `<div class="card-tags">${tags}</div>` : ''}
-      ${rating}
-    </a>`;
-}
-
-function filterByArea(area, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const filtered = area ? allFacilities.filter(f => f.area === area) : allFacilities;
-  renderFeatured(filtered);
-}
-
-function renderFeatured(facilities) {
-  const sorted = [...facilities].sort((a,b) => parseFloat(b.rating||0) - parseFloat(a.rating||0));
-  const top = sorted.slice(0, 8);
-  document.getElementById('featuredGrid').innerHTML = top.map(makeCard).join('') ||
-    '<div class="empty">No facilities found in this area.</div>';
-}
-
-loadFacilities().then(data => {
-  allFacilities = data;
-
-  // Update stats
-  const withPrice = data.filter(f => f.shared_price && f.shared_price !== 'Call for pricing').length;
-  document.getElementById('statTotal').textContent = data.length;
-  document.getElementById('statPricing').textContent = withPrice;
-
-  // Build area filters
-  const areas = [...new Set(data.map(f => f.area).filter(Boolean))].sort();
-  const filtersEl = document.getElementById('areaFilters');
-  areas.forEach(area => {
-    const btn = document.createElement('button');
-    btn.className = 'filter-btn';
-    btn.textContent = area;
-    btn.onclick = () => filterByArea(area, btn);
-    filtersEl.appendChild(btn);
-  });
-
-  renderFeatured(data);
 });
 </script>
 </body>
