@@ -4,34 +4,42 @@
 
 | Task | Stage |
 |------|-------|
-| Add a new facility, re-scrape JKM, dedupe | 01-data |
-| Fill missing fields (pricing, beds, halal, care types, photos) | 02-enrich |
-| Write copy: editorial summaries, state hub pages, FAQs (EN/BM) | 03-content |
-| UI changes to facility/index pages, new components | 04-design |
-| Static-site refactor or eventual migration off GitHub Pages | 05-build |
+| Add new facilities, re-scrape, dedupe | 01-data |
+| Fill missing fields (pricing, beds, halal, care types, photos, editorials) | 02-enrich |
+| Write guide pages, area pages, BM translations | 03-content |
+| UI changes to any HTML/CSS/JS page | 04-design |
+| Static-site refactor or migration off GitHub Pages | 05-build |
 
 ## Current focus
 
-**Stage 02-enrich, pricing pass.** ~113 of 124 facilities still have no published pricing. Twilio voice/WhatsApp outreach is the next major task.
+**02-enrich (KL/Selangor) + 03-content (guide pages)**
+
+- 198 KL/Selangor facilities need editorials and Details tab content
+- 254 live facilities have blank pricing — outreach needed
+- Guide pages (cost guide, how-to-choose, JKM licensing) are the #1 SEO priority
 
 ## Stage status
 
-| Stage | Status |
-|-------|--------|
-| 01-data | ✅ Done — 124 facilities |
-| 02-enrich | 🟡 In progress — see notes below |
-| 03-content | ⬜ Not started |
-| 04-design | 🟡 Facility profile + photo gallery shipped; homepage and state pages pending |
-| 05-build | — Skipped while on static HTML |
+| Stage | Status | Summary |
+|-------|--------|---------|
+| 01-data | ✅ Done | 324 rows: Johor 126, KL 56, Selangor 142 |
+| 02-enrich | 🟡 In progress | Photos done, 60 Johor editorials done, pricing + KL/SEL editorials pending |
+| 03-content | ⬜ Not started | Guide pages, area pages, BM translations — highest SEO priority |
+| 04-design | ✅ Done | All page templates shipped and live |
+| 05-build | ⬜ Deferred | Stay on static HTML/GitHub Pages until constraints force migration |
 
-## 02-enrich progress (snapshot)
+## Live facility counts (2026-05-01)
 
-- Apify Google Maps scrape (124/124): area, lat/lng, phone, ratings, hours, wheelchair, hero photo
-- WebFetch website extraction (37/56 sites usable): care types, languages, RN 24/7, halal, summaries
-- Photo gallery scrape (119/124 with photos), privacy-filtered → 547 kept, 139 removed
-- **Still missing for ~113 rows:** monthly pricing, total_beds, availability, halal status, RN ratios, dialysis/oxygen, subsidy
-- 18 facilities are Facebook-only — need a different scraper or manual call
+| State | Live | Hidden (pending verification) |
+|-------|------|-------------------------------|
+| Johor | 71 | 55 |
+| Kuala Lumpur | 56 | 0 |
+| Selangor | 142 | 0 |
+| **Total** | **269** | **55** |
 
-## Rule
+## Hard rules
 
-The Google Sheet is the source of truth. Stage `output/` folders are scratch space — final data always lands in the sheet.
+- The Google Sheet is the single source of truth. Edits go to the sheet, not to code.
+- Never invent facility data. Unknown values surface as "Not published" / blank, not fabricated.
+- All live facilities must have `care_types` populated (enforced via status=unverified filter).
+- Push directly to `main` — no PR flow.
