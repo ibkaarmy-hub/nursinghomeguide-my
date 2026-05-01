@@ -120,7 +120,7 @@ body > nav { background: #fff; border-bottom: 1px solid var(--border); position:
 
 /* ── Facility card grid ───────────────────────────────────── */
 .state-content { max-width: 1160px; margin: 0 auto; padding: 24px 20px 60px; }
-.fac-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+.fac-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; align-items: start; }
 @media (max-width: 680px) { .fac-grid { grid-template-columns: 1fr; gap: 16px; } }
 
 /* ── Facility card ────────────────────────────────────────── */
@@ -128,8 +128,8 @@ body > nav { background: #fff; border-bottom: 1px solid var(--border); position:
 .fac-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
 
 /* Card photo area */
-.fac-card-img { position: relative; aspect-ratio: 16/9; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); overflow: hidden; flex-shrink: 0; }
-.fac-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+.fac-card-img { position: relative; height: 190px; background: linear-gradient(135deg, #cbd5e1, #94a3b8); overflow: hidden; flex-shrink: 0; }
+.fac-card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
 .fac-card:hover .fac-card-img img { transform: scale(1.04); }
 .fac-card-img.no-photo { background: linear-gradient(135deg, #dbeafe, #bfdbfe); display: flex; align-items: center; justify-content: center; }
 .fac-card-img.no-photo::after { content: '🏥'; font-size: 2.5rem; opacity: .4; }
