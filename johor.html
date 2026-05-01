@@ -298,7 +298,11 @@ function setView(v) {
   document.getElementById('btnList').classList.toggle('active', v === 'list');
   document.getElementById('btnMap').classList.toggle('active', v === 'map');
 
-  if (v === 'map') initMap();
+  if (v === 'map') {
+    initMap();
+    // Defer invalidateSize so Leaflet measures the now-visible container
+    setTimeout(() => { if (leafletMap) leafletMap.invalidateSize(); }, 100);
+  }
 }
 
 // ─── Leaflet map ───────────────────────────────────────────
@@ -312,6 +316,9 @@ function initMap() {
 
   const filtered = allFacilities.filter(f => f.latitude && f.longitude);
   updateMapMarkers(filtered);
+  if (mapMarkers.length) {
+    leafletMap.fitBounds(L.featureGroup(mapMarkers).getBounds().pad(0.1));
+  }
 }
 
 function updateMapMarkers(facilities) {
@@ -358,11 +365,11 @@ function updateMapMarkers(facilities) {
 loadFacilities().then(data => {
   // Filter to this state only (fallback: no state column yet = legacy Johor data)
   allFacilities = data.filter(f => !f.state || f.state === 'Johor');
-  document.getElementById('heroCount').textContent = data.length;
+  document.getElementById('heroCount').textContent = allFacilities.length;
 
-  // Build normalised area list
+  // Build normalised area list (this state only)
   const areaCounts = {};
-  data.forEach(f => {
+  allFacilities.forEach(f => {
     const a = normArea(f.area);
     areaCounts[a] = (areaCounts[a] || 0) + 1;
   });
