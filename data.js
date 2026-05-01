@@ -3,7 +3,7 @@
 // DETAILS_CSV_URL    → "Details" tab (long-format key/value extras: rooms, schedule, etc.)
 //                      → publish that tab and replace DETAILS_TAB_GID below with its gid number
 const FACILITIES_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub?gid=292378871&single=true&output=csv";
-const DETAILS_CSV_URL    = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub?gid=1866835625&single=true&output=csv";
+const DETAILS_CSV_URL    = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub?gid=1104748854&single=true&output=csv";
 
 async function loadFacilities() {
   const res = await fetch(FACILITIES_CSV_URL);

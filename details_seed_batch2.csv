@@ -1,0 +1,260 @@
+slug,section,label,value
+eha-parkview-eldercare-perling,policies,Visiting hours,Contact facility to confirm
+eha-parkview-eldercare-perling,policies,Deposit,Contact facility to confirm
+eha-parkview-eldercare-perling,policies,JKM licence,Verify before listing
+eha-parkview-eldercare-perling,policies,Halal dining,Confirm with facility
+eha-parkview-eldercare-perling,policies,Ownership type,Private
+eha-parkview-eldercare-perling,rooms,Long-term care (monthly),RM 3,200/month (all-in)
+eha-parkview-eldercare-perling,rooms,Respite / short-term,RM 120/day
+eha-parkview-eldercare-perling,rooms,Day care,RM 1,500/month
+eha-parkview-eldercare-perling,included,4 meals per day,Yes — included in base rate
+eha-parkview-eldercare-perling,included,Nursing care 24/7,Yes
+eha-parkview-eldercare-perling,included,Physiotherapy,Yes
+eha-parkview-eldercare-perling,included,Occupational therapy,Yes
+eha-parkview-eldercare-perling,included,Speech therapy,Yes
+eha-parkview-eldercare-perling,included,Wound care,Yes
+eha-parkview-eldercare-perling,included,Catheter care,Yes
+eha-parkview-eldercare-perling,included,NGT management,Yes
+eha-parkview-eldercare-perling,included,Stoma care,Yes
+eha-parkview-eldercare-perling,included,Suction,Yes
+eha-parkview-eldercare-perling,included,Wheelchair accessible,Yes
+eha-parkview-eldercare-perling,clinical,Physiotherapy (PT),yes
+eha-parkview-eldercare-perling,clinical,Occupational therapy (OT),yes
+eha-parkview-eldercare-perling,clinical,Speech therapy,yes
+eha-parkview-eldercare-perling,clinical,Nasogastric tube (NGT),yes
+eha-parkview-eldercare-perling,clinical,Catheter care,yes
+eha-parkview-eldercare-perling,clinical,Suction,yes
+eha-parkview-eldercare-perling,clinical,Stoma care,yes
+eha-parkview-eldercare-perling,clinical,Wound care,yes
+eha-parkview-eldercare-perling,clinical,Dementia unit,unknown — not confirmed
+eha-parkview-eldercare-perling,clinical,Dialysis,unknown — not confirmed
+eha-parkview-eldercare-perling,clinical,PEG tube,unknown — not confirmed
+eha-parkview-eldercare-perling,staffing,Nursing care,24/7
+eha-parkview-eldercare-perling,staffing,Physiotherapy,In-house
+eha-parkview-eldercare-perling,staffing,Occupational therapy,In-house
+eha-parkview-eldercare-perling,staffing,Speech therapy,In-house
+eha-parkview-eldercare-perling,staffing,Doctor visits,Confirm frequency with facility
+eha-parkview-eldercare-perling,dining,Meals per day,4 (included in base rate)
+eha-parkview-eldercare-perling,dining,Meal inclusion,Yes — 4 meals/day in RM 3,200/mo rate
+eha-parkview-eldercare-perling,checklist,Confirm current pricing (published rates may have changed),
+eha-parkview-eldercare-perling,checklist,Ask about dementia capability,
+eha-parkview-eldercare-perling,checklist,Confirm doctor visit schedule and frequency,
+eha-parkview-eldercare-perling,checklist,Request JKM registration certificate,
+eha-parkview-eldercare-perling,checklist,Ask about waiting list for base-rate rooms,
+eha-parkview-eldercare-perling,checklist,Confirm halal kitchen certification,
+fcc-family-care-centre,policies,Deposit (local residents),1 month
+fcc-family-care-centre,policies,Deposit (foreign residents),3 months
+fcc-family-care-centre,policies,Visiting hours,Contact facility to confirm
+fcc-family-care-centre,policies,JKM licence,Verify before listing
+fcc-family-care-centre,policies,Ownership type,Private
+fcc-family-care-centre,rooms,Standard / shared,RM 3,500/month (third-party — verify with facility)
+fcc-family-care-centre,rooms,Mid-tier,RM 3,800/month (third-party — verify with facility)
+fcc-family-care-centre,rooms,Premium,RM 4,300/month (third-party — verify with facility)
+fcc-family-care-centre,included,Nursing care,Yes
+fcc-family-care-centre,included,Meals,Yes — included in monthly rate
+fcc-family-care-centre,included,Dementia care (MemoryCare Home),Yes — dedicated unit
+fcc-family-care-centre,included,AI monitoring (SmartPeep),Yes — fall detection and resident monitoring
+fcc-family-care-centre,included,Organic farm activities,Yes — residents participate in planting/harvesting
+fcc-family-care-centre,included,Animal therapy,Yes — animals on campus
+fcc-family-care-centre,included,Wheelchair accessible,Yes
+fcc-family-care-centre,clinical,Nursing care 24/7,yes
+fcc-family-care-centre,clinical,Dementia / memory care,yes — dedicated MemoryCare Home
+fcc-family-care-centre,clinical,AI fall detection (SmartPeep),yes
+fcc-family-care-centre,clinical,Physiotherapy,unknown — confirm with facility
+fcc-family-care-centre,clinical,PEG tube,unknown — confirm with facility
+fcc-family-care-centre,clinical,Dialysis,unknown — confirm with facility
+fcc-family-care-centre,clinical,Palliative care,unknown — confirm with facility
+fcc-family-care-centre,staffing,Nursing care,24/7 confirmed
+fcc-family-care-centre,staffing,Doctor visits,Confirm frequency with facility
+fcc-family-care-centre,staffing,Dementia specialists,In MemoryCare Home (confirm staffing ratio)
+fcc-family-care-suite,dining,Meals,Included in monthly rate
+fcc-family-care-centre,dining,Farm produce,Yes — organic farm on campus
+fcc-family-care-centre,dining,Halal,Confirm with facility
+fcc-family-care-centre,activities,Organic farm,Yes — planting and harvesting with residents
+fcc-family-care-centre,activities,Animal interaction,Yes — animals on campus
+fcc-family-care-centre,activities,Activity programme,Yes — wellness village concept
+fcc-family-care-centre,outdoor,Organic farm,On campus — residents participate
+fcc-family-care-centre,outdoor,Gardens,Integrated wellness village landscaping
+fcc-family-care-centre,services,AI monitoring (SmartPeep),In-room / facility-wide fall detection
+fcc-family-care-centre,services,Wheelchair accessible,Yes
+fcc-family-care-centre,checklist,Confirm current pricing directly with FCC (third-party rates may be outdated),
+fcc-family-care-centre,checklist,Request JKM licence for main facility AND MemoryCare Home,
+fcc-family-care-centre,checklist,Ask about SmartPeep alert protocol — who is notified and how fast?,
+fcc-family-care-centre,checklist,For dementia residents: ask about wandering protocol and secure environment,
+fcc-family-care-centre,checklist,Ask about nursing ratio in MemoryCare Home specifically,
+fcc-family-care-centre,checklist,Clarify foreign resident deposit terms before signing,
+jeta-care,policies,JKM/MOH licence,MOH CKAPS licensed (valid to Feb 2028)
+jeta-care,policies,Visiting hours,Contact facility to confirm
+jeta-care,policies,Deposit,Contact facility to confirm
+jeta-care,policies,Ownership type,Private (Australian-concept model)
+jeta-care,policies,Halal dining,Yes — halal café on premises
+jeta-care,policies,Religion,Muslim-friendly (surau on-site)
+jeta-care,rooms,Monthly rate,RM 3,001–6,000/month (2020 data — confirm current)
+jeta-care,rooms,Bed count,62 beds
+jeta-care,included,Nursing care 24/7,Yes
+jeta-care,included,Meals,Yes — included in monthly rate
+jeta-care,included,Physiotherapy,Yes — in-house
+jeta-care,included,Halal meals,Yes — halal café on premises
+jeta-care,included,Surau (prayer room),Yes
+jeta-care,included,Rooftop garden,Yes
+jeta-care,included,Wheelchair accessible,Yes
+jeta-care,clinical,PEG tube management,yes
+jeta-care,clinical,Colostomy / ileostomy care,yes
+jeta-care,clinical,Tracheostomy management,yes
+jeta-care,clinical,Catheter care,yes
+jeta-care,clinical,Complex wound care,yes
+jeta-care,clinical,Physiotherapy,yes
+jeta-care,clinical,Palliative care,yes
+jeta-care,clinical,Post-hospitalisation rehab,yes
+jeta-care,clinical,Dementia unit,unknown — confirm with facility
+jeta-care,clinical,Dialysis,unknown — confirm with facility
+jeta-care,clinical,Syringe driver,unknown — confirm with facility
+jeta-care,staffing,Medical director,Dr. Goh Yi Xiong (named)
+jeta-care,staffing,Nursing care,24/7 (Australian model)
+jeta-care,staffing,Physiotherapy,In-house
+jeta-care,staffing,MOH CKAPS,Yes — licensed healthcare facility
+jeta-care,dining,Meals,Included in monthly rate
+jeta-care,dining,Halal,Yes — halal café on premises
+jeta-care,activities,Rooftop garden,Yes — outdoor space with views
+jeta-care,outdoor,Rooftop garden,Yes — accessible outdoor garden space
+jeta-care,services,Wheelchair accessible,Yes
+jeta-care,services,Halal café,On premises
+jeta-care,services,Surau,On premises
+jeta-care,nearby,Nearest hospital,Confirm with facility
+jeta-care,checklist,Request MOH CKAPS certificate and verify on ministry website,
+jeta-care,checklist,Ask to meet Dr. Goh Yi Xiong or clinical deputy during tour,
+jeta-care,checklist,Confirm current pricing (2020 rates are outdated),
+jeta-care,checklist,Ask for sample care plan (Australian-model care planning),
+jeta-care,checklist,Confirm overnight RN coverage for high-dependency patients,
+jeta-care,checklist,Ask about waiting list and availability,
+jeta-care,checklist,For PEG/trach patients: ask about after-hours emergency protocol,
+gentle-hill-elder-care,policies,Visiting hours,Appointment only — 3 time slots daily (confirm times)
+gentle-hill-elder-care,policies,Trial admission,2-week refundable trial available
+gentle-hill-elder-care,policies,Deposit,Contact facility to confirm
+gentle-hill-elder-care,policies,JKM licence,Verify before listing
+gentle-hill-elder-care,policies,Ownership type,Private
+gentle-hill-elder-care,policies,Muslim-friendly,Yes — halal meals available
+gentle-hill-elder-care,policies,Vegetarian-friendly,Yes
+gentle-hill-elder-care,rooms,2-bed room,Semi-private (available — confirm pricing)
+gentle-hill-elder-care,rooms,6-bed room,Shared ward (available — confirm pricing)
+gentle-hill-elder-care,rooms,Private / single,Not confirmed
+gentle-hill-elder-care,rooms,Monthly rate,Contact facility (not published)
+gentle-hill-elder-care,included,Nursing care,Yes
+gentle-hill-elder-care,included,Meals,Yes — included in monthly rate
+gentle-hill-elder-care,included,Fall detection technology,Yes — smart sensors / fall detection
+gentle-hill-elder-care,included,VOC-free environment,Yes — low-chemical indoor air quality
+gentle-hill-elder-care,included,Wheelchair accessible,Yes
+gentle-hill-elder-care,clinical,Fall detection technology,yes
+gentle-hill-elder-care,clinical,Standard nursing care,yes
+gentle-hill-elder-care,clinical,Physiotherapy,unknown — confirm with facility
+gentle-hill-elder-care,clinical,Doctor visits,unknown — confirm with facility
+gentle-hill-elder-care,clinical,Dementia care,unknown — confirm with facility
+gentle-hill-elder-care,clinical,Catheter care,unknown — confirm with facility
+gentle-hill-elder-care,clinical,PEG tube,unknown — confirm with facility
+gentle-hill-elder-care,clinical,Palliative care,unknown — confirm with facility
+gentle-hill-elder-care,staffing,Nursing care,Yes — 24/7 (confirm ratio)
+gentle-hill-elder-care,staffing,Doctor visits,Confirm frequency with facility
+gentle-hill-elder-care,dining,Meals,Included in monthly rate
+gentle-hill-elder-care,dining,Halal,Yes — Muslim-friendly meals
+gentle-hill-elder-care,dining,Vegetarian,Yes — vegetarian option available
+gentle-hill-elder-care,services,Fall detection,Smart sensor / fall detection technology in use
+gentle-hill-elder-care,services,Wheelchair accessible,Yes
+gentle-hill-elder-care,services,VOC-free materials,Yes — healthier indoor air quality
+gentle-hill-elder-care,services,2-week trial,Refundable 2-week trial admission available
+gentle-hill-elder-care,nearby,Hospital Kulai,~5 minutes
+gentle-hill-elder-care,checklist,Ask what the fall detection technology is specifically (wearable / camera / sensor),
+gentle-hill-elder-care,checklist,Ask about the 2-week trial — get refund terms in writing,
+gentle-hill-elder-care,checklist,Confirm visiting slot times and whether exceptions can be made,
+gentle-hill-elder-care,checklist,Ask whether 2-bed rooms are available at intake,
+gentle-hill-elder-care,checklist,Confirm nursing capabilities for complex needs (catheter / NGT / dementia),
+gentle-hill-elder-care,checklist,Request JKM licence number,
+gentle-hill-elder-care,checklist,Ask about doctor visit schedule,
+haywood-senior-living-medini-johor-bahru,policies,Admin enquiry hours,Mon–Fri 9am–6pm (walk-in by appointment)
+haywood-senior-living-medini-johor-bahru,policies,Visiting hours,Not published — contact facility
+haywood-senior-living-medini-johor-bahru,policies,Deposit,Not published — contact facility
+haywood-senior-living-medini-johor-bahru,policies,JKM licence,Not confirmed publicly — verify before listing
+haywood-senior-living-medini-johor-bahru,policies,AGECOPE member,Not listed (parent brand Mintygreen is — verify)
+haywood-senior-living-medini-johor-bahru,policies,Halal dining,Not confirmed — Ramada hotel restaurant (verify)
+haywood-senior-living-medini-johor-bahru,policies,Religion,Not stated
+haywood-senior-living-medini-johor-bahru,policies,Subsidy accepted,Not mentioned
+haywood-senior-living-medini-johor-bahru,policies,Ownership type,Private commercial (Mintygreen Healthcare Group / Emerald Care Center Sdn Bhd)
+haywood-senior-living-medini-johor-bahru,rooms,Studio apartment,400 sqft private studio with balcony and modern washroom (inside Ramada hotel)
+haywood-senior-living-medini-johor-bahru,rooms,Room style,Hotel room remodelled for senior care — CCTV + call bell installed
+haywood-senior-living-medini-johor-bahru,rooms,Shared suite,Care Suites with housemates (available — details not published)
+haywood-senior-living-medini-johor-bahru,rooms,Bathroom,Wall-mounted bath chair + grab bars + wheelchair accessible
+haywood-senior-living-medini-johor-bahru,included,Daily housekeeping,Yes
+haywood-senior-living-medini-johor-bahru,included,Laundry,Yes
+haywood-senior-living-medini-johor-bahru,included,4 meals per day,Yes (breakfast + lunch + afternoon tea + dinner)
+haywood-senior-living-medini-johor-bahru,included,Weekly hotel breakfast buffet,Yes — free once per week (resident's choice of day)
+haywood-senior-living-medini-johor-bahru,included,24/7 caregiver,Yes
+haywood-senior-living-medini-johor-bahru,included,Vital sign monitoring,Yes (temperature / pulse / respiration / BP / glucose)
+haywood-senior-living-medini-johor-bahru,included,Medicine dispensary,Yes
+haywood-senior-living-medini-johor-bahru,included,Swimming pool access,Yes (senior-friendly / aqua aerobics)
+haywood-senior-living-medini-johor-bahru,included,Gym access,Yes (fully equipped)
+haywood-senior-living-medini-johor-bahru,included,Outdoor exercise area,Yes
+haywood-senior-living-medini-johor-bahru,included,Reflexology pathway,Yes
+haywood-senior-living-medini-johor-bahru,included,AI security system,Yes
+haywood-senior-living-medini-johor-bahru,included,Monthly resident outings,Yes (Emerald Lake JB + Singapore Botanic Gardens)
+haywood-senior-living-medini-johor-bahru,extras,Physiotherapy sessions,Add-on (in-house physio — rate not published)
+haywood-senior-living-medini-johor-bahru,extras,Complex wound dressing,Add-on
+haywood-senior-living-medini-johor-bahru,extras,MRSA screening,Add-on
+haywood-senior-living-medini-johor-bahru,extras,Acupuncture,Add-on
+haywood-senior-living-medini-johor-bahru,extras,Tui Na massage,Add-on
+haywood-senior-living-medini-johor-bahru,extras,Psychological counselling,Available (rate not published)
+haywood-senior-living-medini-johor-bahru,extras,Online consultations / virtual visits,Available
+haywood-senior-living-medini-johor-bahru,clinical,24/7 caregivers on-site,yes
+haywood-senior-living-medini-johor-bahru,clinical,Nurses on-site,yes
+haywood-senior-living-medini-johor-bahru,clinical,Doctor standby,yes (stated as standby — on-site vs on-call unconfirmed)
+haywood-senior-living-medini-johor-bahru,clinical,Physiotherapy,yes
+haywood-senior-living-medini-johor-bahru,clinical,Palliative care,yes
+haywood-senior-living-medini-johor-bahru,clinical,Post-hospitalisation rehab,yes
+haywood-senior-living-medini-johor-bahru,clinical,Day care,yes
+haywood-senior-living-medini-johor-bahru,clinical,Wound care,yes (complex — add-on)
+haywood-senior-living-medini-johor-bahru,clinical,TCM (acupuncture / Tui Na),yes (add-on)
+haywood-senior-living-medini-johor-bahru,clinical,Dementia unit,unknown — not mentioned
+haywood-senior-living-medini-johor-bahru,clinical,Dialysis,unknown — not mentioned
+haywood-senior-living-medini-johor-bahru,clinical,Ventilator / PEG,unknown — not mentioned
+haywood-senior-living-medini-johor-bahru,clinical,Psychological counselling,yes
+haywood-senior-living-medini-johor-bahru,staffing,24/7 caregivers,Yes
+haywood-senior-living-medini-johor-bahru,staffing,Doctors,Standby (frequency/type not stated)
+haywood-senior-living-medini-johor-bahru,staffing,Physiotherapists,In-house
+haywood-senior-living-medini-johor-bahru,staffing,Counsellors,In-house
+haywood-senior-living-medini-johor-bahru,staffing,TCM practitioners,Listed as in-house (parent brand)
+haywood-senior-living-medini-johor-bahru,staffing,Staff training,Hotel service + senior care trained
+haywood-senior-living-medini-johor-bahru,staffing,Languages,Not stated — contact to confirm
+haywood-senior-living-medini-johor-bahru,dining,Meals per day,4 (breakfast / lunch / afternoon tea / dinner)
+haywood-senior-living-medini-johor-bahru,dining,Special diets,Yes — diabetic menus confirmed; others available
+haywood-senior-living-medini-johor-bahru,dining,Weekly hotel buffet,Free hotel breakfast buffet once per week
+haywood-senior-living-medini-johor-bahru,dining,Halal certified,Not confirmed — verify Ramada Medini restaurant
+haywood-senior-living-medini-johor-bahru,dining,Restaurant on-site,Yes — Delish Restaurant (Ramada hotel)
+haywood-senior-living-medini-johor-bahru,activities,Swimming (aqua aerobics),Yes
+haywood-senior-living-medini-johor-bahru,activities,Gym / fitness,Yes
+haywood-senior-living-medini-johor-bahru,activities,Outdoor exercise,Yes
+haywood-senior-living-medini-johor-bahru,activities,Reflexology walks,Yes
+haywood-senior-living-medini-johor-bahru,activities,Recreational programs,Yes — mahjong / card games / TV / art & crafts / music
+haywood-senior-living-medini-johor-bahru,activities,Monthly outings,Yes — JB + Singapore destinations
+haywood-senior-living-medini-johor-bahru,activities,Light physiotherapy exercises,Yes
+haywood-senior-living-medini-johor-bahru,outdoor,Swimming pool,Senior-friendly pool + aqua aerobics (Ramada hotel)
+haywood-senior-living-medini-johor-bahru,outdoor,Outdoor gym,Yes
+haywood-senior-living-medini-johor-bahru,outdoor,Reflexology path,Yes
+haywood-senior-living-medini-johor-bahru,outdoor,Balcony (per room),Yes — private balcony in studio units
+haywood-senior-living-medini-johor-bahru,services,Daily housekeeping,Included
+haywood-senior-living-medini-johor-bahru,services,Laundry,Included
+haywood-senior-living-medini-johor-bahru,services,CCTV monitoring,In-room (emergency use)
+haywood-senior-living-medini-johor-bahru,services,In-room call bell,Yes — 24/7 caregiver response
+haywood-senior-living-medini-johor-bahru,services,Online visitation,Yes — virtual family visits available
+haywood-senior-living-medini-johor-bahru,services,Wheelchair accessible,Yes
+haywood-senior-living-medini-johor-bahru,services,Parking,At Ramada hotel (assumed — verify)
+haywood-senior-living-medini-johor-bahru,nearby,Gleneagles Hospital Medini Johor,~3 minutes (explicitly stated)
+haywood-senior-living-medini-johor-bahru,nearby,Bukit Indah (commercial),~12 minutes (explicitly stated)
+haywood-senior-living-medini-johor-bahru,nearby,JB city centre,~15 minutes (explicitly stated)
+haywood-senior-living-medini-johor-bahru,nearby,Tuas Checkpoint (Singapore border),~20 km (explicitly stated)
+haywood-senior-living-medini-johor-bahru,checklist,Confirm JKM licence number before committing,
+haywood-senior-living-medini-johor-bahru,checklist,Verify halal status of Ramada restaurant,
+haywood-senior-living-medini-johor-bahru,checklist,Ask for all-in monthly rate (studio / shared),
+haywood-senior-living-medini-johor-bahru,checklist,Confirm deposit amount and exit notice period,
+haywood-senior-living-medini-johor-bahru,checklist,Ask whether doctor is on-site 24/7 or on-call,
+haywood-senior-living-medini-johor-bahru,checklist,Ask about dementia capability,
+haywood-senior-living-medini-johor-bahru,checklist,Confirm staff languages (Mandarin / BM / English),
+haywood-senior-living-medini-johor-bahru,checklist,Ask about Singapore-resident admission process,
+haywood-senior-living-medini-johor-bahru,checklist,Request AGECOPE or JKM documentation,
