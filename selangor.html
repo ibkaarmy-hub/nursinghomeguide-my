@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nursing Homes in Johor, Malaysia | Compare Prices & Reviews</title>
+  <title>Nursing Homes in Selangor | Compare Prices & Reviews</title>
   <meta name="description" content="Browse 126 licensed nursing homes in Johor, Malaysia. Compare monthly fees, care types, areas, and reviews. Free, transparent directory for families." />
-  <link rel="canonical" href="https://nursinghomeguide.my/johor.html" />
+  <link rel="canonical" href="https://nursinghomeguide.my/selangor.html" />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -16,9 +16,9 @@
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Nursing Homes in Johor, Malaysia",
-    "description": "Directory of licensed nursing homes in Johor with pricing and reviews",
-    "url": "https://nursinghomeguide.my/johor.html"
+    "name": "Nursing Homes in Selangor, Malaysia",
+    "description": "Browse licensed nursing homes in Selangor, Malaysia. Compare monthly fees, care types, and reviews across PJ, Shah Alam, Klang, Kajang, Subang and more.",
+    "url": "https://nursinghomeguide.my/selangor.html"
   }
   </script>
 </head>
@@ -28,7 +28,7 @@
   <div class="nav-inner">
     <a href="index.html" class="logo">NursingHome<span>Guide.my</span></a>
     <div class="nav-links">
-      <a href="johor.html" style="color:var(--primary);font-weight:600">Johor</a>
+      <a href="johor.html">Johor</a>
       <a href="#">About</a>
     </div>
   </div>
@@ -40,10 +40,10 @@
     <nav class="breadcrumb" aria-label="breadcrumb">
       <a href="index.html">Malaysia</a>
       <span>›</span>
-      <span>Johor</span>
+      <span>Selangor</span>
     </nav>
-    <h1>Nursing Homes in Johor</h1>
-    <p>Browse <strong id="heroCount">126</strong> licensed facilities across Johor. Monthly fees, care types, and real reviews — all in one place.</p>
+    <h1>Nursing Homes in Selangor</h1>
+    <p>Browse <strong id="heroCount">—</strong> licensed facilities in Selangor. Monthly fees, care types, and real reviews — all in one place.</p>
     <div class="state-hero-search">
       <input type="text" id="searchInput" placeholder="Search by name, area, or care type…" oninput="applyFilters()" />
     </div>
@@ -272,7 +272,7 @@ function applyFilters() {
   document.getElementById('resultsCount').textContent =
     `${result.length} ${result.length === 1 ? 'facility' : 'facilities'}`;
   document.getElementById('activeAreaLabel').textContent =
-    currentArea ? `in ${currentArea}` : 'in Johor';
+    currentArea ? `in ${currentArea}` : 'in Selangor';
 
   document.getElementById('facGrid').innerHTML =
     result.length ? result.map(makeCard).join('') :
@@ -361,7 +361,7 @@ function updateMapMarkers(facilities) {
 // ─── Init ──────────────────────────────────────────────────
 loadFacilities().then(data => {
   // Filter to this state only (fallback: no state column yet = legacy Johor data)
-  allFacilities = data.filter(f => !f.state || f.state === 'Johor');
+  allFacilities = data.filter(f => f.state === 'Selangor');
   document.getElementById('heroCount').textContent = data.length;
 
   // Build normalised area list
