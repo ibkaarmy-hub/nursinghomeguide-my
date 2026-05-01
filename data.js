@@ -421,7 +421,7 @@ Object.values(GROUPS).forEach(g => {
 // ─── Data fetchers ─────────────────────────────────────────────────────────────
 async function loadFacilities() {
   const res = await fetch(FACILITIES_CSV_URL);
-  return parseCSV(await res.text()).filter(r => r.title);
+  return parseCSV(await res.text()).filter(r => r.title && r.status !== 'unverified' && r.status !== 'removed');
 }
 
 // Returns { [slug]: { [section]: [ {label, value}, ... ] } }
