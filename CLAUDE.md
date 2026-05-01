@@ -1,6 +1,6 @@
 # CLAUDE.md — Nursing Home Guide Malaysia
 
-A pricing-transparency directory for Malaysian nursing homes. No competitor publishes pricing; that is the entire moat. English first, Bahasa Malaysia second.
+Malaysia's most comprehensive elder care and nursing home guide. Covers nursing homes, assisted living, day care, and home care. Built by a doctor to help families make the most important decision of their lives.
 
 **Live:** https://ibkaarmy-hub.github.io/nursinghomeguide-my/
 **Repo:** https://github.com/ibkaarmy-hub/nursinghomeguide-my
@@ -11,67 +11,74 @@ A pricing-transparency directory for Malaysian nursing homes. No competitor publ
 ## Stack (current)
 
 - Static HTML/CSS/JS, hosted on **GitHub Pages**
-- Data lives in a single Google Sheet, published as CSV; site fetches at page load
-- Sheet ID: `1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk` (`google-sheets-facilities`)
-- Photos: Google CDN URLs (lh3.googleusercontent.com). **Not stable long-term** — plan a Supabase Storage mirror before launch
-- Vercel/Supabase/Next.js are not in use yet — possible future migration, not blocking
+- Data: single Google Sheet, published as CSV; site fetches at page load
+- Sheet ID: `1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk`
+- Facilities tab gid: `292378871` | Details tab gid: `1866835625`
+- Photos: Google CDN URLs (lh3.googleusercontent.com). Not stable long-term — mirror to Supabase Storage before scaling
+- Vercel/Supabase/Next.js are not in use — possible future migration, not blocking
 
 ## Folder map
 
 ```
 .
 ├── CLAUDE.md, CONTEXT.md, PROJECT.md     ← docs layer
-├── facility.html, index.html, style.css  ← the live site
-├── photo-manager.html                    ← admin tool: trim photos per facility
-├── data.js                               ← CSV fetcher + parser
-├── _config/                              ← brand, voice, domain notes
+├── facility.html                          ← facility profile (4-tab)
+├── index.html                             ← Malaysia state picker landing page
+├── johor.html                             ← Johor state listing page
+├── kuala-lumpur.html                      ← KL state listing page
+├── selangor.html                          ← Selangor state listing page
+├── org.html                               ← Organisation/chain profile page
+├── style.css                              ← all shared styles
+├── photo-manager.html                     ← admin tool: trim photos per facility
+├── data.js                                ← CSV fetcher, parser, GROUPS registry
+├── _config/                               ← brand, voice, domain notes
 └── stages/
-    ├── 01-data/      — DONE (124 facilities scraped from JKM)
-    ├── 02-enrich/    — IN PROGRESS (Apify + WebFetch done; pricing outreach pending)
-    ├── 03-content/   — not started
-    ├── 04-design/    — facility profile shipped; index/state pages pending
-    └── 05-build/     — N/A while we stay on static HTML
+    ├── 01-data/      — DONE (324 facilities: Johor + KL + Selangor)
+    ├── 02-enrich/    — IN PROGRESS (60 editorials done Johor; KL/SEL + pricing pending)
+    ├── 03-content/   — NOT STARTED (guide pages, area pages, BM translations)
+    ├── 04-design/    — DONE (all page templates shipped)
+    └── 05-build/     — DEFERRED (stay on static HTML)
 ```
 
-## Sheet schema (50 columns)
+## Sheet schema (56 columns)
 
 Identity: `title, slug, url, area, latitude, longitude, google_maps_url`
 Contact: `phone, whatsapp, website, facebook`
 Pricing: `pricing_display, shared_price, private_price, four_bed_price, dorm_price`
 Care: `care_types, care_nursing, care_dementia, care_palliative, care_rehab, care_respite, care_assisted`
-Medical: `rn_24_7, doctor_visits, nurse_ratio_day/night, medical_physio, medical_ot, medical_wound, medical_peg, medical_dementia_unit, medical_dialysis, medical_oxygen, medical_meds`
+Medical: `doctor_visits, nurse_ratio_day/night, medical_physio, medical_ot, medical_wound, medical_peg, medical_dementia_unit, medical_dialysis, medical_oxygen, medical_meds`
 Beds/access: `total_beds, availability, wheelchair, parking, visiting_hours`
 Other: `religion, languages, halal, subsidy, ownership_type, licence_number, rating, review_count, last_updated, editorial_summary`
 Photos: `hero_image, photos (pipe-separated), photo_count`
+Admin: `state` (Johor / Kuala Lumpur / Selangor), `status` (blank=live, unverified=hidden, removed=permanent)
 
 ## Hard rules
 
 - **Never invent facility data.** Only publish what is verified from a source.
-- **Always publish pricing when known** — that is the differentiator.
+- **Don't fabricate pricing.** Show "Call for pricing" when unknown — that's honest and acceptable.
 - The Google Sheet is the single source of truth. Edits go there, not in code.
 - All user-facing content must eventually exist in EN + BM.
 - Don't mock the site against fake data — fetch the live CSV.
+- Push directly to `main` — no PR flow. GitHub Pages auto-deploys.
 
 ## How updates flow
 
-1. Data changes → edit the Google Sheet (or import a merged CSV via File → Import → Replace)
+1. Data changes → edit the Google Sheet (or run a Python script via the Sheets API)
 2. Site changes → edit HTML/CSS/JS → push to `main` → GitHub Pages auto-deploys
-3. Photo curation → use `photo-manager.html` to drop bad photos per facility, copy the cleaned cell back to the sheet
+3. Photo curation → use `photo-manager.html` to drop bad photos, copy cleaned cell to sheet
 
 ## Two-sheet data model
 
-The Google Sheet has **two tabs**, both consumed by `data.js`:
+**Tab 1 — `Facilities`** (gid=292378871)
+One row per facility, ~56 columns. Main listing data.
 
-**Tab 1 — `Facilities`** (the main one we already had)
-One row per facility, ~50 columns. Used for tabular fields shared by every listing.
+**Tab 2 — `Details`** (gid=1866835625)
+Schema: `slug, section, label, value`. Per-facility custom facts. Lets us add extras without growing column count.
 
-**Tab 2 — `Details`** (new, long-format)
-Schema: `slug, section, label, value`. One row per per-facility custom fact. Lets us add per-facility extras (room types, daily schedule, included/extras, nearby landmarks, JKM details) without ever growing the main sheet's column count.
+Recognised `section` values:
 
-Recognized `section` values (page renders these into the right UI components):
-
-| section | renders as | example label / value |
-|---------|-----------|-----------------------|
+| section | renders as | example |
+|---------|-----------|---------|
 | `policies` | info-row pairs (Overview tab) | `Visiting hours` / `2pm–6pm daily` |
 | `rooms` | info-row pairs (Pricing tab) | `2-bed (RM/mo)` / `2,800` |
 | `included` | green checklist (Pricing tab) | `Diapers` / `yes` |
@@ -86,11 +93,27 @@ Recognized `section` values (page renders these into the right UI components):
 | `nearby` | landmark list (Map tab) | `Hospital Sultanah Aminah` / `~12 km` |
 | `checklist` | sidebar bullet list | `Ask for JKM cert` / *(value blank)* |
 
-To add a new section type, add a renderer in `facility.html` and document the convention here. The main sheet column count never grows.
+## Status column (visibility control)
 
-To wire up the Details tab in production:
-1. In Google Sheets: Data → Add new sheet, name it `Details`, columns: `slug, section, label, value`
-2. File → Share → Publish to web → choose the Details sheet → CSV → publish; copy the `gid` from the resulting URL
-3. Replace `DETAILS_TAB_GID` in `data.js` with that gid
+| value | meaning |
+|-------|---------|
+| *(blank)* | Live — shows on site |
+| `unverified` | Hidden — care_types unknown, pending outreach |
+| `removed` | Permanently hidden — confirmed non-NH (resort, nursery, etc.) |
 
-Until the gid is set, `loadDetails()` returns `{}` and pages render fine using only the main sheet.
+`loadFacilities()` in data.js filters out `unverified` and `removed` automatically.
+
+## GROUPS registry (data.js)
+
+28 organisation groups defined in `GROUPS` object. `GROUPS_BY_SLUG` is the reverse index (slug → group). Used to show group tags on facility cards and profiles, and to populate `org.html`.
+
+To add a new group: add entry to `GROUPS` in data.js, list all branch slugs. The org page and branch tags populate automatically.
+
+## Live facility counts (2026-05-01)
+
+| State | Live | Hidden |
+|-------|------|--------|
+| Johor | 71 | 55 |
+| Kuala Lumpur | 56 | 0 |
+| Selangor | 142 | 0 |
+| **Total** | **269** | **55** |
