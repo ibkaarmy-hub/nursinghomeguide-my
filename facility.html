@@ -76,8 +76,10 @@
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
-.editor-note { background: #f0f9ff; border-left: 4px solid #2563eb; border-radius: 6px; padding: 14px 16px; font-size: .88rem; line-height: 1.6; margin-bottom: 16px; }
-.editor-note strong { color: #1d4ed8; }
+.editor-note { background: #f0f9ff; border-left: 4px solid #2563eb; border-radius: 8px; padding: 20px 22px; font-size: .9rem; line-height: 1.75; margin-bottom: 20px; color: #1e3a5f; }
+.editor-note .editorial-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #2563eb; margin-bottom: 12px; }
+.editor-note p { margin: 0 0 14px; }
+.editor-note p:last-child { margin-bottom: 0; }
 
 /* Care level indicator */
 .care-level-bar { display: flex; gap: 4px; margin: 14px 0; flex-wrap: wrap; }
@@ -411,7 +413,9 @@ function render(f) {
     <div class="profile-card"><h2>Policies &amp; Registration</h2>${renderInfoSection(D.policies)}</div>` : '';
 
   const editorialHtml = f.editorial_summary
-    ? `<div class="editor-note"><strong>📋 About</strong> ${escapeHtml(f.editorial_summary)}</div>` : '';
+    ? `<div class="editor-note"><div class="editorial-label">📋 About</div>${
+        f.editorial_summary.split(/\n\n+/).map(p => `<p>${escapeHtml(p.trim())}</p>`).join('')
+      }</div>` : '';
 
   /* PRICING tab */
   const pricingRows = [
