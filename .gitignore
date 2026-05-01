@@ -25,6 +25,7 @@ kl_selangor_slugs.json
 photo_*.json
 photo_files_list.txt
 audit_data.json
+mdac_*.csv
 
 # ── Downloaded photos ─────────────────────────────────────────
 photos/
