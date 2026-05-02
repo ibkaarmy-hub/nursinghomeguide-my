@@ -24,9 +24,9 @@ const GROUPS = {
       'eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru',
       'eha-elder-care-home-kluang-licensed-and-certified-by-govern',
       'eha-parkview-eldercare-perling',
-      'eha-grandview-titiwangsa-kl-elderly-care',
-      'eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursi',
-      'eha-bayview-eldercare-cheras-sungai-long',
+      'eha-grandview-titiwangsa-kl-elderly-care-post-surgery-recovery-stroke-rehabilita',
+      'eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip',
+      'eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl',
     ],
   },
 
@@ -73,20 +73,6 @@ const GROUPS = {
       'rebina-home-care-centre-sdn-bhd',
     ],
   },
-
-  'green-acres': {
-    slug: 'green-acres',
-    name: 'Green Acres Residential',
-    tagline: 'Elderly and disabled care — two JB locations',
-    website: 'https://www.greenacreshome.com',
-    state: 'Johor',
-    description: 'Green Acres Residential operates two facilities in Johor Bahru providing care for elderly and physically disabled residents. The group offers 24-hour nursing care, doctor visits, physiotherapy, and occupational therapy. Both locations are managed under Green Acres Residential Sdn Bhd.',
-    branches: [
-      'green-acres-elderly-care-centre-managed-by-green-acres-resid',
-      'green-acres-home-care-centre-managed-by-green-acres-residenc',
-    ],
-  },
-
   'cozzi-confinement': {
     slug: 'cozzi-confinement',
     name: 'Cozzi Confinement Centers',
@@ -223,51 +209,18 @@ const GROUPS = {
     description: 'Noble Care is one of Malaysia\'s largest private nursing home operators, with facilities across Johor, KL, and Selangor. The group operates under a standardised care model offering 24-hour nursing care, dementia programmes, and rehabilitation. Quality varies by location — individual branch ratings range from 2.8★ to 5.0★. Families should review each branch independently.',
     branches: [
       'noble-care',
-      'noble-care-nursing-home-old-folks-home-r',
+      'noble-care-nursing-home-old-folks-home-rawang',
       'noble-care-retirement-resort',
       'noble-care-retirement-home',
       'noble-care-malaysia-ampang',
       'noble-care-nursing-home-klang-selangor',
-      'noble-care-nursing-home-in-jalan-ipoh-ku',
+      'noble-care-nursing-home-in-jalan-ipoh-kuala-lampur',
       'noble-care-retirement-home-jalan-usj-18',
       'noble-care-nursing-home',
       'noble-care-malaysia',
-      'noble-care-nursing-home-nursing-home-sub',
+      'noble-care-nursing-home-nursing-home-subang-jaya-selangor',
     ],
   },
-
-  'mintygreen': {
-    slug: 'mintygreen',
-    name: 'Mintygreen Care Centres',
-    tagline: 'Multi-branch eldercare across Klang Valley — 5 locations',
-    website: 'https://mintygreen.com.my',
-    state: 'Kuala Lumpur, Selangor',
-    description: 'Mintygreen operates five eldercare branches across the Klang Valley: Cheras (home care suites), Sungai Long/Kajang, Kepong/PJ Batu, USJ21 Subang Jaya, and a care suites model in Cheras KL. The group offers residential nursing, memory care, and rehabilitation services. Well-reviewed across branches (4.1–4.8★).',
-    branches: [
-      'mintygreen-senior-care-center-cherassung',
-      'mintygreen-nursing-homesungai-long-kajan',
-      'mintygreen-nursing-retirement-home-kepon',
-      'mintygreen-care-suites-home-care-nursing',
-      'mintygreen-care-centre-usj21-subang-jaya',
-    ],
-  },
-
-  'genesis-life-care': {
-    slug: 'genesis-life-care',
-    name: 'Genesis Life Care Centre',
-    tagline: 'Private nursing home group — Johor, Puchong, Kajang, PJ, Klang',
-    website: 'https://genesiscare.com.my',
-    state: 'Johor, Selangor',
-    description: 'Genesis Life Care Centre is a growing private nursing home group with five branches: one in Johor Bahru and four across Selangor (Puchong, Kajang, Petaling Jaya, Klang). The group is consistently well-rated (4.3–5.0★) across locations and offers 24/7 nursing care, dementia programmes, stroke rehabilitation, and palliative support.',
-    branches: [
-      'genesis-life-care-centre-jb',
-      'genesis-life-care-centre-puchong',
-      'genesis-life-care-centre-kajang',
-      'genesis-life-care-centre-klang',
-      'genesis-life-care-centre-pj',
-    ],
-  },
-
   'oasis-nursing-home': {
     slug: 'oasis-nursing-home',
     name: 'Oasis Nursing Home (安康之家)',
@@ -280,20 +233,6 @@ const GROUPS = {
       'oasis-nursing-home-klang-安康之家巴生疗养院',
     ],
   },
-
-  'my-aged-care': {
-    slug: 'my-aged-care',
-    name: 'My Aged Care Nursing Home',
-    tagline: 'Three locations in Petaling Jaya — PJ Old Town, My Manor, Jalan Assam',
-    state: 'Selangor',
-    description: 'My Aged Care operates three nursing home facilities in Petaling Jaya, Selangor. The PJ Old Town branch (4.8★/92 reviews) and My Manor (4.5★/142 reviews) are the most established, with strong review bases. A third branch on Jalan Assam PJ adds further capacity. The group focuses on eldercare with nursing, dementia, and rehabilitation services.',
-    branches: [
-      'my-aged-care-nursing-home-in-pj-my-manor',
-      'my-aged-care-nursing-home-in-pj-old-town',
-      'my-aged-care-nursing-home-in-petaling-ja',
-    ],
-  },
-
   'mona-elder-care': {
     slug: 'mona-elder-care',
     name: 'Mona Elder Care',
@@ -301,10 +240,10 @@ const GROUPS = {
     state: 'Kuala Lumpur',
     description: 'Mona Elder Care operates four nursing home branches in Kuala Lumpur: Taman Bunga Raya, Taman P. Ramlee (Setapak), Jalan Sri Kemuning (Lembah Jaya), and Pandan Perdana. All branches serve the Chinese-speaking community and are rated 4.5–5.0★.',
     branches: [
-      'mona-elder-care-nursing-home-in-taman-bu',
-      'mona-elder-care-nursing-home-in-taman-p-',
-      'mona-elder-care-nursing-home-in-jalan-sr',
-      'mona-elder-care-nursing-home-in-pandan-p',
+      'mona-elder-care-nursing-home-in-taman-bunga-raya-kuala-lumpur',
+      'mona-elder-care-nursing-home-in-taman-p-ramlee-setapak',
+      'mona-elder-care-nursing-home-in-jalan-sri-kemuning-lembah-jaya-selatan-ampang',
+      'mona-elder-care-nursing-home-in-pandan-perdana',
     ],
   },
 
@@ -315,8 +254,8 @@ const GROUPS = {
     state: 'Selangor',
     description: 'Golden Years Senior Residence operates two premium senior living facilities in Selangor: Kinrara Puchong (4.7★/14 reviews) and Kota Kemuning Shah Alam (4.7★/24 reviews). Both offer residential eldercare with nursing, rehabilitation, and activity programmes.',
     branches: [
-      'golden-years-senior-residence-kinrara-pu',
-      'golden-years-senior-residence-kota-kemun',
+      'golden-years-senior-residence-kinrara-puchong',
+      'golden-years-senior-residence-kota-kemuning-shah-alam',
     ],
   },
 
@@ -328,27 +267,12 @@ const GROUPS = {
     description: 'Happy Family Nursing Home (快乐家庭护理中心) operates five branches in Kuala Lumpur: Taman Kepong, Kepong, Jalan Ipoh, Cheras, and Taman Desa Jaya. The group is Chinese-community operated and provides 24-hour nursing care. Rating quality varies by branch (2.8★–5.0★); families should review each branch individually.',
     branches: [
       'happy-family-nursing-home-kepong',
-      'happy-family-nursing-home-taman-kepong-p',
-      'happy-family-nursing-home-cheras-pusat-j',
-      'happy-family-nursing-home-taman-desa-jay',
-      'happy-family-nursing-home-jalan-ipoh-pus',
+      'happy-family-nursing-home-taman-kepong-pusat-jagaan-warga-emas-happy-family',
+      'happy-family-nursing-home-cheras-pusat-jagaan-warga-emas-taman-sri-bahtera',
+      'happy-family-nursing-home-taman-desa-jaya-pusat-jagaan-warga-emas-desa-jaya',
+      'happy-family-nursing-home-jalan-ipoh-pusat-jagaan-warga-emas-jalan-batu-batan',
     ],
   },
-
-  'woodrose-senior-residences': {
-    slug: 'woodrose-senior-residences',
-    name: 'Woodrose Senior Residences',
-    tagline: 'Syariah-compliant senior residences — 4 locations in Shah Alam',
-    state: 'Selangor',
-    description: 'Woodrose Senior Residences operates four Syariah-compliant senior living facilities in Shah Alam, Selangor, across Seksyen 11 (female), Seksyen 11 (male), Seksyen 13 (female, Syariah), and an additional site. The group caters to Muslim elderly with gender-segregated and Syariah-compliant care environments.',
-    branches: [
-      'woodrose-senior-residences',
-      'woodrose-senior-residences-1-seksyen-11-',
-      'woodrose-senior-residences-2-seksyen-11-',
-      'woodrose-senior-residences-3-seksyen-13-',
-    ],
-  },
-
   'attia-global-care': {
     slug: 'attia-global-care',
     name: 'Attia Global Care',
@@ -356,6 +280,7 @@ const GROUPS = {
     state: 'Selangor',
     description: 'Attia Global Care operates two facilities in Selangor: Klang (4.7★/77 reviews) and Subang Jaya (4.5★/24 reviews). Both cater to Muslim elderly with Halal meals and Islamic activities. The Klang branch is the larger and more established of the two.',
     branches: [
+      'attia-nursing-care-centre',
       'attia-global-care-klang',
       'attia-global-care-centre-subang-jaya',
     ],
@@ -468,20 +393,6 @@ const GROUPS = {
       'mintygreen-nursing-home-eldercare-center',
     ],
   },
-
-  'attia-care': {
-    slug: 'attia-care',
-    name: 'Attia Nursing Care',
-    tagline: 'Multi-branch rehabilitation-oriented nursing care chain',
-    state: 'Selangor',
-    description: 'Attia Nursing Care (established 2011) operates multiple branches across Selangor with a rehabilitation focus — stroke recovery, coma care, post-amputation, and orthopaedic recovery. Branches include Klang (Jalan Raja Bot), Subang Jaya (SS19), and the original Attia Nursing Care Centre. Each branch has on-site physiotherapy, occupational therapy, and speech therapy capabilities, plus weekly doctor visits. The group also offers tracheostomy care, NGT/PEG feeding, and acupuncture.',
-    branches: [
-      'attia-nursing-care-centre',
-      'attia-global-care-klang',
-      'attia-global-care-centre-subang-jaya',
-    ],
-  },
-
   'woodrose-senior-residences': {
     slug: 'woodrose-senior-residences',
     name: 'Woodrose Senior Residences',
