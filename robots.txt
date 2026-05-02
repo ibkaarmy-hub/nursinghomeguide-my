@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /photo-manager.html
+Disallow: /pending_editorials/
+Disallow: /stages/
+Disallow: /_config/
+
+Sitemap: https://nursinghomeguide.my/sitemap.xml
