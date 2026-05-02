@@ -13,7 +13,8 @@ Malaysia's most comprehensive elder care and nursing home guide. Covers nursing 
 - Static HTML/CSS/JS, hosted on **GitHub Pages**
 - Data: single Google Sheet, published as CSV; site fetches at page load
 - Sheet ID: `1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk`
-- Facilities tab gid: `292378871` | Details tab gid: `1866835625`
+- Facilities tab gid: `292378871` | Details tab gid: `1104748854`
+- Note: sheet also has a legacy `details_seed` tab (gid=1866835625, 84 rows of placeholder data) — **not used by the site**, safe to delete
 - Photos: Google CDN URLs (lh3.googleusercontent.com). Not stable long-term — mirror to Supabase Storage before scaling
 - Vercel/Supabase/Next.js are not in use — possible future migration, not blocking
 
