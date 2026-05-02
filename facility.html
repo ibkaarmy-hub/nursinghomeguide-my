@@ -7,42 +7,59 @@
 <meta name="description" id="pageDesc" content="Nursing home details, pricing, and contact information." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css?v=7" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
 <style>
 /* Profile-page–specific styles (kept inline to avoid bloating the global stylesheet) */
-.hero { position: relative; height: 460px; background: #1e293b; overflow: hidden; }
-.carousel { position: absolute; inset: 0; }
-.carousel-track { display: flex; height: 100%; transition: transform .4s ease; }
-.carousel-slide { min-width: 100%; height: 100%; background-size: cover; background-position: center; }
-.carousel-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,.2) 0%, rgba(15,23,42,.85) 100%); }
-.carousel-controls { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 3; }
-.carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.4); border: none; cursor: pointer; padding: 0; }
-.carousel-dot.active { background: white; width: 24px; border-radius: 4px; }
-.carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.9); border: none; font-size: 22px; cursor: pointer; z-index: 3; display: none; align-items: center; justify-content: center; }
-.hero:hover .carousel-arrow { display: flex; }
-.carousel-arrow.prev { left: 20px; }
-.carousel-arrow.next { right: 20px; }
-.hero-content { position: absolute; inset: 0; display: flex; align-items: flex-end; z-index: 2; padding: 0 20px 60px; pointer-events: none; }
-.hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; color: white; pointer-events: auto; }
-.back-link-white { color: rgba(255,255,255,.85); font-size: .85rem; }
-.back-link-white:hover { color: white; text-decoration: none; }
-.hero-breadcrumb { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; font-size: .8rem; color: rgba(255,255,255,.7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hero-breadcrumb span:last-child { color: rgba(255,255,255,.5); overflow: hidden; text-overflow: ellipsis; max-width: 200px; white-space: nowrap; }
-.bc-sep { color: rgba(255,255,255,.4); }
-.hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; line-height: 1.15; color: white; }
-.hero-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: .9rem; color: rgba(255,255,255,.9); margin-bottom: 16px; }
+
+/* ── Compact profile header (Booking.com-style: title + breadcrumb only, no hero image) ── */
+.profile-header { background: white; border-bottom: 1px solid var(--border, #e2e8f0); padding: 22px 20px 18px; }
+.profile-header-inner { max-width: 1200px; margin: 0 auto; }
+.hero-breadcrumb { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; font-size: .8rem; color: var(--text-muted, #64748b); }
+.hero-breadcrumb a { color: var(--text-muted, #64748b); }
+.hero-breadcrumb a:hover { color: var(--primary, #2563eb); text-decoration: none; }
+.bc-sep { color: #cbd5e1; }
+.profile-header h1 { font-size: 1.85rem; font-weight: 800; margin: 6px 0 8px; line-height: 1.2; color: var(--text, #0f172a); }
+.hero-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: .9rem; color: var(--text-muted, #64748b); margin-bottom: 12px; }
 .hero-badges { display: flex; gap: 8px; flex-wrap: wrap; }
-.hero-badge { background: rgba(255,255,255,.15); color: white; padding: 4px 10px; border-radius: 999px; font-size: .75rem; font-weight: 500; backdrop-filter: blur(8px); }
+.hero-badge { background: #eff6ff; color: #1d4ed8; padding: 4px 10px; border-radius: 999px; font-size: .75rem; font-weight: 500; }
 @media (max-width: 600px) {
-  .hero { height: 340px; }
-  .hero h1 { font-size: 1.35rem; }
-  .hero-content { padding: 0 16px 52px; }
-  .back-link-white { margin-bottom: 10px; }
+  .profile-header { padding: 16px 16px 14px; }
+  .profile-header h1 { font-size: 1.3rem; }
   .hero-meta { gap: 10px; font-size: .82rem; margin-bottom: 10px; }
 }
 
-.summary-box { max-width: 1200px; margin: -40px auto 24px; padding: 0 20px; position: relative; z-index: 5; }
+/* ── Booking.com-style photo gallery on Overview ── */
+.photo-gallery-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  height: 380px;
+  margin-bottom: 22px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.photo-gallery-grid a { display: block; overflow: hidden; background: #f1f5f9; position: relative; }
+.photo-gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s; }
+.photo-gallery-grid a:hover img { transform: scale(1.04); }
+.photo-gallery-grid .hero-photo { grid-column: 1; grid-row: 1 / 3; }
+.photo-gallery-grid .show-all-overlay {
+  position: absolute; inset: 0; background: rgba(15,23,42,.55);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 600; font-size: .9rem; letter-spacing: .01em;
+}
+.photo-gallery-empty { aspect-ratio: 16/7; background: #f1f5f9; border-radius: 10px; margin-bottom: 22px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: .9rem; }
+@media (max-width: 720px) {
+  .photo-gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 100px; height: auto; }
+  .photo-gallery-grid .hero-photo { grid-column: 1 / 3; grid-row: 1; }
+  .photo-gallery-grid .thumb-3, .photo-gallery-grid .thumb-4 { display: none; }
+}
+
+/* Pricing source caption */
+.pricing-source-note { font-size: .8rem; color: var(--text-muted, #64748b); margin-top: 12px; padding-top: 10px; border-top: 1px solid #f1f5f9; font-style: italic; }
+
+.summary-box { max-width: 1200px; margin: 24px auto; padding: 0 20px; position: relative; z-index: 5; }
 .summary-card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.08); padding: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .summary-item .label { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted, #64748b); font-weight: 600; margin-bottom: 6px; }
 .summary-item .value { font-size: 1.05rem; font-weight: 700; color: var(--text, #0f172a); }
@@ -416,8 +433,27 @@ function render(f) {
     f.private_price   ? `<tr><td>Private Room</td><td class="price-cell">${escapeHtml(f.private_price)}<span class="per-month">/mo</span></td></tr>` : '',
   ].filter(Boolean).join('');
   const hasPricing = !!pricingRows;
-  const roomsRows = (D.rooms || []).filter(r => /room|bed|dorm|single/i.test(r.label));
-  const roomsHtml = roomsRows.length ? `<div class="profile-card"><h2>Room Types &amp; Rates</h2>${renderInfoSection(roomsRows)}</div>` : '';
+
+  // Classify rows in the `rooms` Details section:
+  //   - room-type rows  → "Room Types & Rates" (e.g. "Single Room", "4-Bed Room")
+  //   - service-tier rows → "Service Tiers (starting from)" (e.g. "Assisted Living (from RM/mo)")
+  //   - "Pricing source" → small caption beneath the pricing card
+  const isRoomTypeRow      = r => /room|bed|dorm|single/i.test(r.label);
+  const isServiceTierRow   = r => /\(from RM\/|\(RM\//i.test(r.label);
+  const isPricingSourceRow = r => /^pricing source$/i.test(r.label);
+
+  const allRoomsData    = D.rooms || [];
+  const roomTypeRows    = allRoomsData.filter(r => isRoomTypeRow(r) && !isServiceTierRow(r));
+  const serviceTierRows = allRoomsData.filter(r => isServiceTierRow(r));
+  const pricingSource   = allRoomsData.find(isPricingSourceRow);
+
+  const roomsHtml = (roomTypeRows.length || serviceTierRows.length || pricingSource) ? `
+    <div class="profile-card">
+      ${roomTypeRows.length ? `<h2>Room Types &amp; Rates</h2>${renderInfoSection(roomTypeRows)}` : ''}
+      ${serviceTierRows.length ? `<h2 style="margin-top:${roomTypeRows.length ? '18px' : '0'}">Service Tiers <span style="font-weight:400;font-size:.85rem;color:var(--text-muted,#64748b)">(starting from)</span></h2>${renderInfoSection(serviceTierRows)}` : ''}
+      ${pricingSource ? `<div class="pricing-source-note">Source: ${escapeHtml(pricingSource.value)}</div>` : ''}
+    </div>` : '';
+
   const includedExtras = renderIncludedExtras(D.included || [], D.extras || []);
 
   /* CARE tab */
@@ -454,7 +490,11 @@ function render(f) {
     ['outdoor',    '🌳 Outdoor & safety'],
   ];
   const amenitiesHtml = amenityCats.map(([key, title]) => {
-    const rows = (D[key] || []).filter(r => key !== 'rooms' || !/room|bed|dorm|single/i.test(r.label));
+    // For rooms section: exclude room-type rows (in Pricing tab), service-tier
+    // pricing rows (in Pricing tab), and the "Pricing source" caption row.
+    const rows = (D[key] || []).filter(r => key !== 'rooms' || !(
+      isRoomTypeRow(r) || isServiceTierRow(r) || isPricingSourceRow(r)
+    ));
     if (!rows.length) return '';
     return `<div class="amenity-section"><h3>${title}</h3>${renderAmenityTags(rows)}</div>`;
   }).join('');
@@ -518,29 +558,46 @@ function render(f) {
       <div style="margin-top:14px; font-size:.85rem;">${infoRow('Address', f.area, { showUnknown: true })}</div>
     </div>`;
 
+  /* Photo gallery — Booking.com-style: 1 large left + 4 thumbs in 2x2 right.
+     Falls back to a single-photo display, or an empty placeholder, gracefully. */
+  const galleryHtml = (() => {
+    if (!photos.length) return '<div class="photo-gallery-empty">No photos available yet</div>';
+    const escAttr = u => escapeHtml(u);
+    const heroPhoto = photos[0];
+    const thumbs   = photos.slice(1, 5);
+    const extra    = Math.max(0, photos.length - 5);
+    return `<div class="photo-gallery-grid">
+      <a href="${escAttr(heroPhoto)}" target="_blank" class="hero-photo">
+        <img src="${escAttr(heroPhoto)}" alt="${escapeHtml(f.title)} photo 1" />
+      </a>
+      ${thumbs.map((u, i) => `
+        <a href="${escAttr(u)}" target="_blank" class="thumb thumb-${i+1}">
+          <img src="${escAttr(u)}" alt="${escapeHtml(f.title)} photo ${i+2}" loading="lazy" />
+          ${(i === thumbs.length - 1 && extra > 0) ? `<div class="show-all-overlay" onclick="event.preventDefault(); showTab('photos'); window.scrollTo({top:0,behavior:'smooth'}); return false;">+${extra} more photos</div>` : ''}
+        </a>`).join('')}
+    </div>`;
+  })();
+
   /* Assemble */
   document.getElementById('profileContent').innerHTML = `
-    <div class="hero">
-      ${buildCarousel(photos)}
-      <div class="hero-content">
-        <div class="hero-inner">
-          <div class="hero-breadcrumb">
-            <a href="index.html" class="back-link-white">Malaysia</a>
-            <span class="bc-sep">/</span>
-            <a href="johor.html" class="back-link-white">Johor</a>
-            <span class="bc-sep">/</span>
-            <span>${escapeHtml(f.area || 'Johor')}</span>
-            <span class="bc-sep">/</span>
-            <span>${escapeHtml(f.title)}</span>
-          </div>
-          <h1>${escapeHtml(f.title)}</h1>
-          <div class="hero-meta">
-            <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
-            ${ratingMeta}
-          </div>
-          <div class="hero-badges">${careBadges}</div>
-          ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
+    <div class="profile-header">
+      <div class="profile-header-inner">
+        <div class="hero-breadcrumb">
+          <a href="index.html">Malaysia</a>
+          <span class="bc-sep">/</span>
+          <a href="johor.html">${escapeHtml(f.state || 'Johor')}</a>
+          <span class="bc-sep">/</span>
+          <span>${escapeHtml(f.area || 'Johor')}</span>
+          <span class="bc-sep">/</span>
+          <span>${escapeHtml(f.title)}</span>
         </div>
+        <h1>${escapeHtml(f.title)}</h1>
+        <div class="hero-meta">
+          <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
+          ${ratingMeta}
+        </div>
+        <div class="hero-badges">${careBadges}</div>
+        ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
     </div>
 
@@ -562,6 +619,7 @@ function render(f) {
       <div class="profile-main">
 
         <div class="tab-panel active" id="tab-overview">
+          ${galleryHtml}
           ${editorialHtml}
           <div class="profile-card">
             <h2>Quick Facts</h2>
@@ -630,20 +688,7 @@ function render(f) {
       </aside>
     </div>`;
 
-  /* Carousel wiring */
-  if (photos.length > 1) {
-    let cur = 0;
-    const track = document.getElementById('carouselTrack');
-    const goTo = i => {
-      cur = (i + photos.length) % photos.length;
-      track.style.transform = `translateX(-${cur * 100}%)`;
-      document.querySelectorAll('.carousel-dot').forEach((d,j) => d.classList.toggle('active', j === cur));
-    };
-    document.getElementById('prevBtn').onclick = () => goTo(cur - 1);
-    document.getElementById('nextBtn').onclick = () => goTo(cur + 1);
-    document.querySelectorAll('.carousel-dot').forEach(d => d.onclick = () => goTo(+d.dataset.i));
-    setInterval(() => goTo(cur + 1), 6000);
-  }
+  /* (Hero carousel removed in favour of Booking.com-style gallery in Overview tab.) */
 }
 
 /* ── Boot ───────────────────────────────────────────── */
