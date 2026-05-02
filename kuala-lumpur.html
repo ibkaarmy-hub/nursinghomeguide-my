@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nursing Homes in Kuala Lumpur | Compare Prices & Reviews</title>
-  <meta name="description" content="Browse nursing homes, assisted living, day care, and home care in Kuala Lumpur. Detailed profiles across Cheras, Kepong, Bangsar, Setapak and more." />
+  <meta name="description" content="Browse nursing homes, assisted living, day care, and home care in Johor. Detailed profiles covering care types, facilities, and reviews to help your family choose with confidence." />
   <link rel="canonical" href="https://nursinghomeguide.my/kuala-lumpur.html" />
   <link rel="stylesheet" href="style.css?v=6" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,7 +17,7 @@
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Nursing Homes in Kuala Lumpur, Malaysia",
-    "description": "Malaysia's most comprehensive guide to elder care in Kuala Lumpur — nursing homes, assisted living, day care, and home care across Cheras, Kepong, Bangsar, Setapak and more.",
+    "description": "Malaysia's most comprehensive guide to elder care and nursing homes in Johor — nursing homes, assisted living, day care, and home care.",
     "url": "https://nursinghomeguide.my/kuala-lumpur.html"
   }
   </script>
@@ -39,7 +39,7 @@
       <span>Kuala Lumpur</span>
     </nav>
     <h1>Nursing Homes in Kuala Lumpur</h1>
-    <p>Browse <strong id="heroCount">—</strong> nursing homes, day care, and senior care facilities in Kuala Lumpur. Detailed profiles to help your family choose with confidence.</p>
+    <p>Browse <strong id="heroCount">—</strong> nursing homes, day care, and senior care facilities across Johor. Detailed profiles to help your family choose with confidence.</p>
     <div class="state-hero-search">
       <input type="text" id="searchInput" placeholder="Search by name, area, or care type…" oninput="applyFilters()" />
     </div>
@@ -224,7 +224,7 @@ function makeCard(f) {
     : '';
 
   return `
-    <a href="facility.html?slug=${f.slug}" class="fac-card">
+    <a href="/facility/${f.slug}/" class="fac-card">
       <div class="fac-card-img${photoUrl ? '' : ' no-photo'}">
         ${photoHtml}
         ${priceHtml}
@@ -307,6 +307,7 @@ function setView(v) {
 
   if (v === 'map') {
     initMap();
+    // Defer invalidateSize so Leaflet measures the now-visible container
     setTimeout(() => { if (leafletMap) leafletMap.invalidateSize(); }, 100);
   }
 }
@@ -314,7 +315,7 @@ function setView(v) {
 // ─── Leaflet map ───────────────────────────────────────────
 function initMap() {
   if (leafletMap) { leafletMap.invalidateSize(); return; }
-  leafletMap = L.map('leafletMap').setView([3.139, 101.6869], 11);
+  leafletMap = L.map('leafletMap').setView([1.8, 103.5], 9);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -335,6 +336,7 @@ function locateUser() {
     pos => {
       const lat = pos.coords.latitude;
       const lng = pos.coords.longitude;
+      // Blue pulsing "you are here" dot
       L.circleMarker([lat, lng], {
         radius: 9, fillColor: '#2563eb', color: '#fff',
         weight: 3, opacity: 1, fillOpacity: 0.92
@@ -365,7 +367,7 @@ function makeMapPopup(f) {
       ${ratingHtml}
       ${careHtml}
       <div style="color:#16a34a;font-weight:600;font-size:.85rem;margin-top:6px">${priceText}</div>
-      <a href="facility.html?slug=${f.slug}" style="display:inline-block;margin-top:10px;background:#2563eb;color:#fff;padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none">View Profile →</a>
+      <a href="/facility/${f.slug}/" style="display:inline-block;margin-top:10px;background:#2563eb;color:#fff;padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none">View Profile →</a>
     </div>`;
 }
 
@@ -382,7 +384,7 @@ function makeMapCard(f) {
     .map(t => `<span class="tag">${t}</span>`).join('');
   const hasCoords = f.latitude && f.longitude;
   return `
-    <a href="facility.html?slug=${f.slug}" class="mc-card" data-slug="${f.slug}"${hasCoords ? ` onclick="event.preventDefault();focusMarker('${f.slug}');"` : ''}>
+    <a href="/facility/${f.slug}/" class="mc-card" data-slug="${f.slug}"${hasCoords ? ` onclick="event.preventDefault();focusMarker('${f.slug}');"` : ''}>
       <div class="mc-name">${f.title}</div>
       <div class="mc-meta">📍 ${area} · <span class="mc-price">${priceText}</span></div>
       <div class="mc-meta">${ratingHtml}</div>

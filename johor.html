@@ -224,7 +224,7 @@ function makeCard(f) {
     : '';
 
   return `
-    <a href="facility.html?slug=${f.slug}" class="fac-card">
+    <a href="/facility/${f.slug}/" class="fac-card">
       <div class="fac-card-img${photoUrl ? '' : ' no-photo'}">
         ${photoHtml}
         ${priceHtml}
@@ -367,7 +367,7 @@ function makeMapPopup(f) {
       ${ratingHtml}
       ${careHtml}
       <div style="color:#16a34a;font-weight:600;font-size:.85rem;margin-top:6px">${priceText}</div>
-      <a href="facility.html?slug=${f.slug}" style="display:inline-block;margin-top:10px;background:#2563eb;color:#fff;padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none">View Profile →</a>
+      <a href="/facility/${f.slug}/" style="display:inline-block;margin-top:10px;background:#2563eb;color:#fff;padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none">View Profile →</a>
     </div>`;
 }
 
@@ -384,7 +384,7 @@ function makeMapCard(f) {
     .map(t => `<span class="tag">${t}</span>`).join('');
   const hasCoords = f.latitude && f.longitude;
   return `
-    <a href="facility.html?slug=${f.slug}" class="mc-card" data-slug="${f.slug}"${hasCoords ? ` onclick="event.preventDefault();focusMarker('${f.slug}');"` : ''}>
+    <a href="/facility/${f.slug}/" class="mc-card" data-slug="${f.slug}"${hasCoords ? ` onclick="event.preventDefault();focusMarker('${f.slug}');"` : ''}>
       <div class="mc-name">${f.title}</div>
       <div class="mc-meta">📍 ${area} · <span class="mc-price">${priceText}</span></div>
       <div class="mc-meta">${ratingHtml}</div>

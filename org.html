@@ -160,7 +160,7 @@ function makeBranchCard(f, groupSlug) {
     : '';
 
   return `
-    <a href="facility.html?slug=${f.slug}" class="fac-card">
+    <a href="/facility/${f.slug}/" class="fac-card">
       <div class="fac-card-img${photoUrl ? '' : ' no-photo'}">
         ${photoHtml}
         ${priceHtml}

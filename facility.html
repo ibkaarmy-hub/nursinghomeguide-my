@@ -431,12 +431,13 @@ function injectStructuredData(f, canonicalUrl) {
 function render(f) {
   const D = f._details || {};
   document.title = `${f.title} — NursingHomeGuide.my`;
-  const metaDesc = `${f.title} in ${f.area || 'Malaysia'}. ${f.shared_price ? 'From RM ' + f.shared_price + '/mo. ' : ''}${(f.editorial_summary || '').slice(0, 160)}`.trim();
+  const rawDesc = `${f.title} in ${f.area || 'Malaysia'}. ${f.shared_price ? 'From RM ' + f.shared_price + '/mo. ' : ''}${f.editorial_summary || ''}`.replace(/\s+/g, ' ').trim();
+  const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const canonicalUrl = `${CANONICAL_BASE}/facility.html?slug=${encodeURIComponent(f.slug || '')}`;
+  const canonicalUrl = `${CANONICAL_BASE}/facility/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
-  injectSocialMeta(f, canonicalUrl, metaDesc.slice(0, 200));
+  injectSocialMeta(f, canonicalUrl, metaDesc.slice(0, 155));
   injectStructuredData(f, canonicalUrl);
 
   const photos = (f.photos || '').split('|').map(s => s.trim()).filter(Boolean);
@@ -781,9 +782,15 @@ function render(f) {
 
 /* ── Boot ───────────────────────────────────────────── */
 (async () => {
-  const slug = new URLSearchParams(location.search).get('slug');
+  const querySlug = new URLSearchParams(location.search).get('slug');
+  /* Static per-facility pages set window.__FACILITY_SLUG. Legacy ?slug=X URLs redirect to the clean URL. */
+  if (querySlug && !window.__FACILITY_SLUG) {
+    location.replace(`/facility/${encodeURIComponent(querySlug)}/`);
+    return;
+  }
+  const slug = window.__FACILITY_SLUG || querySlug;
   if (!slug) {
-    document.getElementById('profileContent').innerHTML = '<div style="padding:60px 20px;text-align:center;"><p>No facility selected. <a href="facilities.html">Browse all facilities</a>.</p></div>';
+    document.getElementById('profileContent').innerHTML = '<div style="padding:60px 20px;text-align:center;"><p>No facility selected. <a href="/facilities.html">Browse all facilities</a>.</p></div>';
     return;
   }
   try {
