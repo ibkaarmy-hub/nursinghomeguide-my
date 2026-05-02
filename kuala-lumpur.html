@@ -350,7 +350,7 @@ function makeMapPopup(f) {
   const ratingHtml = !isNaN(rating) && rating > 0
     ? `<div class="mp-rating">★ ${rating.toFixed(1)} <span style="color:#6b7280;font-weight:400">(${reviewCount} Google review${reviewCount !== 1 ? 's' : ''})</span></div>`
     : `<div class="mp-no-reviews">No Google reviews yet</div>`;
-  const careTypes = (f.care_types || '').split('+').map(t => t.trim()).filter(Boolean).slice(0, 4);
+  const careTypes = (f.care_types || '').split(/[+,]/).map(t => t.trim()).filter(Boolean).slice(0, 4);
   const careHtml = careTypes.length ? `<div class="mp-care">🏥 ${careTypes.join(' · ')}</div>` : '';
   return `
     <div class="map-popup">

@@ -408,6 +408,21 @@ const GROUPS = {
       'elderlove-living-care-centre-sglong',
     ],
   },
+
+  'green-acres': {
+    slug: 'green-acres',
+    name: 'Green Acres Residence Care',
+    tagline: 'Multi-branch eldercare in Johor Bahru — residential and home care arms',
+    website: 'https://www.greenacreshome.com',
+    ownership: 'Private (Green Acres Residence Care (Group) Sdn. Bhd.)',
+    state: 'Johor',
+    description: 'Green Acres Residence Care (Group) Sdn. Bhd. operates multiple eldercare entities in Johor Bahru under the Green Acres brand: a flagship Elderly Care Centre (4.8★/4 reviews) offering residential nursing care, a Home Care Centre arm, and a separate Home Care service in Kim Teng Park. The group runs from greenacreshome.com and serves the southern Johor market with both residential and home-based care options.',
+    branches: [
+      'green-acres-elderly-care-centre-managed-by-green-acres-resid',
+      'green-acres-home-care-centre-managed-by-green-acres-residenc',
+      'green-acres-home-care',
+    ],
+  },
 };
 
 // ─── Reverse index: slug → group info ─────────────────────────────────────────
