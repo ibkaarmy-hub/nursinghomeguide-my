@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Government Financial Assistance for the Elderly in Malaysia 2026 | NursingHomeGuide.my</title>
-  <meta name="description" content="Complete guide to JKM government programs for elderly Malaysians: BWE (RM600/month cash), BPT (RM500/month for carers of bedridden family), free PAWE day centres, and KBDR home help volunteers. Plain-language eligibility and how to apply." />
+  <meta name="description" content="Complete guide to JKM government programs for elderly Malaysians: BWE monthly cash for low-income elderly, BPT carer allowance (RM500/month) for families caring for bedridden relatives, free PAWE day centres, and KBDR home help volunteers." />
   <link rel="stylesheet" href="../style.css?v=5" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -20,7 +20,7 @@
         "name": "What is Bantuan Warga Emas (BWE)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bantuan Warga Emas (BWE) is a monthly cash assistance of RM600 paid by JKM to low-income Malaysian citizens aged 60 and above who are living in the community (not in a government institution). Applications are made through ebantuanjkm.jkm.gov.my or at the nearest JKM district office."
+          "text": "Bantuan Warga Emas (BWE) is a monthly cash payment by JKM to low-income Malaysian citizens aged 60 and above who are living in the community (not in a government institution). The amount is subject to annual budget revisions — verify the current rate with JKM. Applications are made through ebantuanjkm.jkm.gov.my or at the nearest JKM district office."
         }
       },
       {
@@ -281,22 +281,41 @@
     .program-block ul li {
       font-size: .88rem;
       line-height: 1.6;
-      padding: 4px 0;
+      padding: 6px 0 6px 26px;
       border-bottom: 1px solid #f3f4f6;
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
+      position: relative;
     }
     .program-block ul li:last-child { border-bottom: none; }
     .program-block ul li::before {
       content: '✓';
       color: #16a34a;
       font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 1px;
+      position: absolute;
+      left: 0;
+      top: 7px;
+      line-height: 1;
     }
-    .program-block.block-steps ul li::before { content: counter(step-counter); counter-increment: step-counter; background: var(--primary); color: #fff; width: 20px; height: 20px; min-width: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 700; margin-top: 1px; }
+
+    /* Numbered steps variant */
     .program-block.block-steps ul { counter-reset: step-counter; }
+    .program-block.block-steps ul li { padding-left: 32px; }
+    .program-block.block-steps ul li::before {
+      content: counter(step-counter);
+      counter-increment: step-counter;
+      background: var(--primary);
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .72rem;
+      font-weight: 700;
+      position: absolute;
+      left: 0;
+      top: 5px;
+    }
 
     .program-block.block-warn {
       background: #fff7ed;
@@ -484,10 +503,10 @@
       <span>Government Assistance</span>
     </div>
     <h1>Government Assistance<br/>for the Elderly in Malaysia</h1>
-    <p>Four JKM programs that most families don't know about — including RM600/month cash for low-income elderly and RM500/month paid directly to carers of bedridden family members.</p>
+    <p>Four JKM programs that most families don't know about — including monthly cash for low-income elderly and a monthly carer allowance paid directly to families looking after bedridden relatives at home.</p>
     <div class="guide-hero-chips">
-      <div class="guide-chip chip-green">✓ Up to RM600/month cash (BWE)</div>
-      <div class="guide-chip">RM500/month for carers (BPT)</div>
+      <div class="guide-chip chip-green">✓ Monthly cash — BWE (verify rate with JKM)</div>
+      <div class="guide-chip">Carer allowance — BPT (RM500/month)</div>
       <div class="guide-chip">Free day centres (PAWE)</div>
       <div class="guide-chip">Free home help (KBDR)</div>
     </div>
@@ -500,289 +519,15 @@
   <!-- Intro alert -->
   <div class="intro-box">
     <strong>⚠️ Most families are missing out on assistance they qualify for</strong>
-    <p>The four government programs below are run by JKM (Jabatan Kebajikan Masyarakat) and cost nothing to apply for. Many families caring for an elderly parent at home — including those with a bedridden parent — qualify for monthly cash payments and free services but have never been told they exist. This guide explains each program in plain language and tells you exactly how to apply.</p>
+    <p>The four JKM (Jabatan Kebajikan Masyarakat) programs below cost nothing to apply for. Many families caring for a parent at home — including those with a bedridden parent — qualify for monthly cash and free services but have never been told these exist.</p>
+    <p style="margin-top:8px;font-size:.9rem;color:#713f12;">Use the eligibility checker below to find what applies to your situation, or scroll down to read the full breakdown of each program.</p>
+    <p style="margin-top:10px;font-size:.82rem;color:#713f12;"><strong>Sources:</strong> Official JKM program pages at <a href="https://www.jkm.gov.my" target="_blank" rel="noopener" style="color:#92400e;text-decoration:underline;">www.jkm.gov.my</a>. Last reviewed May 2026 — verify current payment rates with JKM directly, as amounts are subject to annual budget revisions.</p>
   </div>
 
-  <!-- Doctor's perspective box -->
-  <div class="doctor-box">
-    <div class="doctor-box-label">👨‍⚕️ A Doctor's Perspective</div>
-    <div class="doctor-box-header">
-      <div class="doctor-avatar">👨‍⚕️</div>
-      <div class="doctor-cred">
-        <strong>Written by a practising Malaysian doctor</strong>
-        <span>Founder, NursingHomeGuide.my</span>
-      </div>
-    </div>
-    <p>In my clinical work, I regularly see families who are exhausted and financially stretched caring for an elderly parent — and who have no idea that the government provides financial support for exactly this situation. The BPT program in particular pays RM500 per month directly to the carer of a bedridden family member. I have met many families who have been providing this care for years without ever claiming it.</p>
-    <p>This is not a handout — it is a recognition that family caregivers provide a vital service that would otherwise fall on the healthcare system. If you are looking after a parent who cannot move without help, check whether you qualify for BPT before you do anything else on this page.</p>
-    <p>The other programs listed here — especially the free PAWE day centres — are also significantly underused. A parent who is still mobile but lonely and isolated at home can attend a PAWE centre five days a week at no cost. That social engagement is genuinely protective against cognitive decline and depression in the elderly.</p>
-  </div>
-
-  <!-- Quick Reference Table -->
-  <div class="quick-ref">
-    <div class="quick-ref-title">At a glance — the four main JKM programs</div>
-    <table>
-      <thead>
-        <tr>
-          <th>Program</th>
-          <th>Amount</th>
-          <th>Who it's for</th>
-          <th>Who receives it</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>BWE</strong><br/><span style="font-size:.8rem;color:var(--text-muted)">Bantuan Warga Emas</span></td>
-          <td><span class="amount-badge">RM600/month</span></td>
-          <td>Low-income elderly aged 60+ living in the community</td>
-          <td>The elderly person directly</td>
-        </tr>
-        <tr>
-          <td><strong>BPT</strong><br/><span style="font-size:.8rem;color:var(--text-muted)">Bantuan Penjagaan Terlantar</span></td>
-          <td><span class="amount-badge">RM500/month</span></td>
-          <td>Family caring for a bedridden or severely disabled person at home</td>
-          <td>The carer (family member)</td>
-        </tr>
-        <tr>
-          <td><strong>PAWE</strong><br/><span style="font-size:.8rem;color:var(--text-muted)">Pusat Aktiviti Warga Emas</span></td>
-          <td><span class="amount-badge free">Free</span></td>
-          <td>Mobile, medically stable elderly aged 60+</td>
-          <td>The elderly person (attends centre)</td>
-        </tr>
-        <tr>
-          <td><strong>KBDR</strong><br/><span style="font-size:.8rem;color:var(--text-muted)">Khidmat Bantu Di Rumah</span></td>
-          <td><span class="amount-badge free">Free</span></td>
-          <td>Elderly or disabled persons living at home with limited support</td>
-          <td>The elderly person (home visits)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- ── PROGRAM 1: BWE ──────────────────────────────────────── -->
-  <div class="program-section" id="bwe">
-    <div class="program-header">
-      <div class="program-icon prog-green">💰</div>
-      <div class="program-header-text">
-        <div class="program-bm">Bantuan Warga Emas (BWE) — Elderly Financial Assistance</div>
-        <h2>RM600/month Cash for Low-Income Elderly</h2>
-        <div class="program-amount-big">RM600 <span class="program-amount-sub">per month, paid directly to your parent</span></div>
-      </div>
-    </div>
-
-    <div class="program-body">
-      <div class="program-block">
-        <h3>Who qualifies</h3>
-        <ul>
-          <li>Malaysian citizen aged <strong>60 years or above</strong></li>
-          <li>Household income falls within the <strong>Garis Kemiskinan Tegar</strong> (Hardcore Poor Poverty Line) — typically below RM1,169/month for Peninsula Malaysia</li>
-          <li>Currently living in the community (not in a government-funded residential institution or hospital)</li>
-          <li>Does not already receive another JKM residential placement</li>
-        </ul>
-      </div>
-
-      <div class="program-block block-steps">
-        <h3>How to apply</h3>
-        <ul>
-          <li>Visit the nearest <strong>JKM district office</strong> (Pejabat Kebajikan Masyarakat Daerah) — or apply online at <strong>ebantuanjkm.jkm.gov.my</strong></li>
-          <li>Complete <strong>Form JKM18</strong> (Borang Permohonan Bantuan Am)</li>
-          <li>Bring: MyKad (original + photocopy), proof of income, bank account details</li>
-          <li>A JKM officer will conduct a home visit to verify living conditions</li>
-          <li>Processing takes approximately <strong>4–8 weeks</strong> once documentation is complete</li>
-        </ul>
-        <a href="https://ebantuanjkm.jkm.gov.my" target="_blank" rel="noopener" class="apply-btn btn-green">Apply online at JKM →</a>
-      </div>
-    </div>
-
-    <div class="program-full-block">
-      <h3>Important notes</h3>
-      <p style="font-size:.88rem;line-height:1.7;color:#374151;">BWE is income-tested — your parent must fall within the government's poverty classification to qualify. Middle-income families are unlikely to qualify, but lower-income or single-parent households where an elderly person lives on savings or a small pension may meet the threshold. The RM600 is paid monthly into your parent's bank account. If your parent does not have a bank account, this can be arranged through BSN (Bank Simpanan Nasional) when applying.</p>
-    </div>
-  </div>
-
-  <!-- ── PROGRAM 2: BPT ──────────────────────────────────────── -->
-  <div class="program-section" id="bpt">
-    <div class="program-header">
-      <div class="program-icon prog-blue">🤝</div>
-      <div class="program-header-text">
-        <div class="program-bm">Bantuan Penjagaan Terlantar (BPT) — Bedridden Carer Allowance</div>
-        <h2>RM500/month Paid to the Family Carer</h2>
-        <div class="program-amount-big amount-blue">RM500 <span class="program-amount-sub">per month, paid to the person caring for them — not the patient</span></div>
-      </div>
-    </div>
-
-    <div class="intro-box" style="margin-bottom:20px;background:#eff6ff;border-color:#bfdbfe;">
-      <strong style="color:#1e40af;">This program is the one most families don't know about</strong>
-      <p style="color:#1e3a5f;">If you are at home caring for a parent who is bedridden or severely disabled, the government recognises this as a real caring role and pays you RM500/month for it. This money is paid to <em>you</em> as the carer — not to your parent. It does not affect your parent's eligibility for other assistance.</p>
-    </div>
-
-    <div class="program-body">
-      <div class="program-block">
-        <h3>Who qualifies — the carer</h3>
-        <ul>
-          <li>A Malaysian citizen <strong>caring for a bedridden or severely disabled person at home</strong></li>
-          <li>The disabled/ill person must be a family member (spouse, parent, child, sibling)</li>
-          <li>The carer must be providing care <strong>full-time at home</strong> — not in a nursing home or care centre</li>
-          <li>Household income generally below <strong>RM3,000–RM5,000/month</strong> (varies by district office assessment)</li>
-          <li>The person being cared for must have a medical letter confirming the condition</li>
-        </ul>
-      </div>
-
-      <div class="program-block block-steps">
-        <h3>How to apply</h3>
-        <ul>
-          <li>Go to the nearest <strong>JKM district office</strong> — this cannot be done fully online; a home visit is required</li>
-          <li>Bring: MyKad for both the carer and the person being cared for</li>
-          <li>Bring a <strong>medical letter from a doctor</strong> confirming the diagnosis and bedbound status (ask your parent's GP or specialist for this)</li>
-          <li>Bring proof of household income (payslips, bank statements)</li>
-          <li>A JKM officer will visit your home to verify the situation</li>
-          <li>If approved, RM500/month is paid into the carer's bank account</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="program-body" style="margin-top:16px;">
-      <div class="program-block block-warn">
-        <h3>Common mistakes to avoid</h3>
-        <ul>
-          <li>Applying without a doctor's letter first — this slows processing significantly</li>
-          <li>Not realising the carer receives the money (not the patient) — many families apply with the wrong person's bank account</li>
-          <li>Assuming income is too high — JKM assesses total household expenses against income, and families with heavy care costs often qualify even at moderate income levels</li>
-          <li>Giving up after a single visit — if your case is borderline, request a reassessment or speak to a JKM social worker</li>
-        </ul>
-      </div>
-
-      <div class="program-block">
-        <h3>Who qualifies — the person being cared for</h3>
-        <ul>
-          <li>Bedridden due to stroke, dementia, cancer, neurological disease, or severe physical disability</li>
-          <li>Cannot perform basic activities of daily living independently (bathing, dressing, eating, toileting)</li>
-          <li>Requires daily assistance or medical care</li>
-          <li>Is a Malaysian citizen</li>
-          <li>Is currently living at home — not in a nursing home or hospital</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── PROGRAM 3: PAWE ─────────────────────────────────────── -->
-  <div class="program-section" id="pawe">
-    <div class="program-header">
-      <div class="program-icon prog-purple">🏛️</div>
-      <div class="program-header-text">
-        <div class="program-bm">Pusat Aktiviti Warga Emas (PAWE) — Government Senior Activity Centres</div>
-        <h2>Free Day Centres for Mobile Seniors — 190+ Locations Nationwide</h2>
-        <div class="program-amount-big amount-blue" style="color:#7c3aed;">Free <span class="program-amount-sub">no charge to attend; over 190 centres nationwide</span></div>
-      </div>
-    </div>
-
-    <div class="program-body">
-      <div class="program-block">
-        <h3>What PAWE offers</h3>
-        <ul>
-          <li><strong>Physical activities</strong> — morning exercises, light aerobics, stretching</li>
-          <li><strong>Social interaction</strong> — group activities, peer connection, events</li>
-          <li><strong>Arts, crafts &amp; skills</strong> — painting, weaving, gardening, cooking</li>
-          <li><strong>Health screening</strong> — some centres offer basic blood pressure and health checks</li>
-          <li><strong>Nutritious meals</strong> — some centres provide subsidised meals</li>
-          <li>Typically open <strong>Monday to Friday, 8am–5pm</strong></li>
-        </ul>
-      </div>
-
-      <div class="program-block">
-        <h3>Who qualifies &amp; how to find a centre</h3>
-        <ul>
-          <li>Malaysian aged <strong>60 years or above</strong></li>
-          <li>Medically <strong>stable and mobile</strong> — can travel to the centre independently or with family</li>
-          <li>No income requirement — open to all elderly Malaysians regardless of income</li>
-          <li>Search for your nearest PAWE at <strong>online.jkm.gov.my/pawe</strong> or call the JKM hotline <strong>03-8000 8000</strong></li>
-          <li>Register through the centre directly — bring MyKad and a recent passport photo</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="program-full-block">
-      <h3>PAWE centres in the Klang Valley</h3>
-      <p style="font-size:.88rem;line-height:1.7;color:#374151;margin-bottom:12px;">The following PAWE centres operate in and around Kuala Lumpur and Selangor. This is not a complete list — search the JKM PAWE portal for the centre nearest to you.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;font-size:.85rem;">
-        <div style="background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px 12px;"><strong>PAWE Batu</strong><br/><span style="color:var(--text-muted)">Kuala Lumpur</span></div>
-        <div style="background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px 12px;"><strong>PAWE Seputih</strong><br/><span style="color:var(--text-muted)">Kuala Lumpur</span></div>
-        <div style="background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px 12px;"><strong>PAWE Cheras Baru</strong><br/><span style="color:var(--text-muted)">Kuala Lumpur</span></div>
-        <div style="background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px 12px;"><strong>PAWE Putrajaya</strong><br/><span style="color:var(--text-muted)">Putrajaya / Selangor</span></div>
-      </div>
-      <p style="font-size:.82rem;color:var(--text-muted);margin-top:12px;">⚠️ PAWE centres are <strong>activity and socialisation centres</strong>, not medical day care. They are not equipped to handle dementia with behavioural symptoms, medical care needs, or incontinence. For families who need medical supervision during the day, see the private day care section of our directory.</p>
-      <a href="https://online.jkm.gov.my/pawe" target="_blank" rel="noopener" class="apply-btn" style="margin-top:14px;">Find your nearest PAWE →</a>
-    </div>
-  </div>
-
-  <!-- ── PROGRAM 4: KBDR ─────────────────────────────────────── -->
-  <div class="program-section" id="kbdr">
-    <div class="program-header">
-      <div class="program-icon prog-orange">🏠</div>
-      <div class="program-header-text">
-        <div class="program-bm">Program Khidmat Bantu Di Rumah (KBDR) — Home Help Volunteer Service</div>
-        <h2>Free Trained Volunteers Who Visit Your Parent at Home</h2>
-        <div class="program-amount-big" style="color:#d97706;">Free <span class="program-amount-sub">trained volunteers visit the home; launched July 2012</span></div>
-      </div>
-    </div>
-
-    <div class="program-body">
-      <div class="program-block">
-        <h3>What KBDR volunteers help with</h3>
-        <ul>
-          <li>Personal hygiene (bathing, grooming, oral care)</li>
-          <li>Meal preparation and feeding</li>
-          <li>Medication reminders and instructions</li>
-          <li>Light housekeeping</li>
-          <li>Companionship and social engagement</li>
-          <li>Escorting to the bank, market, or clinic</li>
-          <li>Medical appointment transport and escort</li>
-          <li>Basic physiotherapy exercises (if volunteer is qualified)</li>
-        </ul>
-      </div>
-
-      <div class="program-block">
-        <h3>Who qualifies &amp; how to apply</h3>
-        <ul>
-          <li>Elderly aged 60+ or a person with a disability (OKU) living at home</li>
-          <li>Limited family support available (family is working, living far away, or also elderly)</li>
-          <li>Living in an area where KBDR is operating — coverage varies by district</li>
-          <li>Apply by contacting the nearest <strong>JKM district office</strong> directly</li>
-          <li>Or email: <strong>pro_jkm@jkm.gov.my</strong></li>
-          <li>A JKM social worker will assess the situation and match a volunteer</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="program-full-block">
-      <h3>Realistic expectations</h3>
-      <p style="font-size:.88rem;line-height:1.7;color:#374151;">KBDR is a <strong>supplementary</strong> support service — it is not a substitute for a paid carer, nurse, or day care centre. Visits are typically a few times per week, not daily. The service is best used alongside other support: a family member who provides care in the evenings and weekends, with KBDR filling gaps during the week. If your parent requires daily medical care, professional home nursing (from a private agency) or a day care centre will be necessary.</p>
-    </div>
-  </div>
-
-  <!-- ── BONUS: Other Programs ──────────────────────────────── -->
-  <div style="background:#f8fafc;border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:48px;">
-    <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:16px;">Other programs worth knowing</h2>
-    <div style="display:flex;flex-direction:column;gap:14px;">
-      <div>
-        <strong style="font-size:.92rem;">Rumah Seri Kenangan (RSK) — Government residential care homes</strong>
-        <p style="font-size:.85rem;color:#374151;margin-top:4px;line-height:1.65;">Government-operated residential homes for elderly Malaysians with no family support or income. Subsidised or free for those who qualify. Very limited capacity and long waiting lists. Apply through the JKM district office. Not suitable as a short-term solution due to wait times.</p>
-      </div>
-      <div style="border-top:1px solid var(--border);padding-top:14px;">
-        <strong style="font-size:.92rem;">Tabung Bantuan Perubatan (TBP) — Medical relief fund</strong>
-        <p style="font-size:.85rem;color:#374151;margin-top:4px;line-height:1.65;">Covers up to RM50,000 or more for serious medical conditions including cardiac, renal, and neurological diseases. Requires a referral from a government hospital doctor. Applied through the hospital's medical social worker (pegawai kebajikan perubatan).</p>
-      </div>
-      <div style="border-top:1px solid var(--border);padding-top:14px;">
-        <strong style="font-size:.92rem;">Skim Mesra Usia Emas (SMUE) — Selangor state scheme</strong>
-        <p style="font-size:.85rem;color:#374151;margin-top:4px;line-height:1.65;">For Selangor residents aged 60+ (MyKad address must be in Selangor). Provides RM100 annually in grocery aid and RM500 one-off for funeral costs. Apply at <strong>e-mesra.yawas.my</strong> or at your DUN service centre. Call YAWAS Careline: <strong>03-5481 8800</strong>.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Eligibility Checker ─────────────────────────────────── -->
+  <!-- ── Eligibility Checker (moved to top) ────────────────────── -->
   <div class="checker-wrap" id="checker">
-    <div class="checker-title">Quick Eligibility Check</div>
-    <div class="checker-sub">Answer four questions to see which programs your family may qualify for.</div>
+    <div class="checker-title">Check your eligibility — 4 questions</div>
+    <div class="checker-sub">Answer these to see which programs your family may qualify for. Results appear immediately — no signup needed.</div>
 
     <div class="checker-question" id="cq1">
       <label>1. Is your parent / family member aged 60 or above?</label>
@@ -822,6 +567,276 @@
       <p style="font-size:.8rem;color:var(--text-muted);margin-top:14px;line-height:1.6;">This is an indicative guide only. Final eligibility is determined by a JKM officer after a home visit and assessment. Income thresholds and criteria can vary by district. When in doubt, go to your nearest JKM office and ask — there is no penalty for applying.</p>
       <button class="checker-reset" onclick="resetChecker()">Start again</button>
     </div>
+
+    <div style="text-align:center;margin-top:20px;padding-top:16px;border-top:1px solid #e0e7ef;">
+      <a href="#program-guide" style="font-size:.85rem;color:var(--text-muted);text-decoration:none;">↓ Read the full breakdown of each program</a>
+    </div>
+  </div>
+
+  <!-- ── About this guide ──────────────────────────────────────── -->
+  <div class="doctor-box">
+    <div class="doctor-box-label">🔍 About This Guide</div>
+    <div class="doctor-box-header">
+      <div class="doctor-avatar">👥</div>
+      <div class="doctor-cred">
+        <strong>Compiled by the NursingHomeGuide.my Research Team</strong>
+        <span>Researchers, eldercare specialists, and medical advisors</span>
+      </div>
+    </div>
+    <p>The BPT program — which pays RM500/month directly to the family carer of a bedridden person — is the most consistently overlooked welfare entitlement we found in our research. It is not charity; it is a formal government recognition that family caregivers perform a critical function. The money goes to the carer, not the patient, and does not affect the patient's eligibility for other assistance. If you are caring for a parent who cannot move without help, check BPT first.</p>
+    <p>The free PAWE activity centres are similarly underused. A parent who is mobile but socially isolated can attend five days a week at zero cost. Structured social engagement at this stage is one of the best-evidenced interventions for slowing cognitive decline and reducing depression in older adults — two of the primary drivers of premature nursing home admission.</p>
+  </div>
+
+  <!-- Quick Reference Table -->
+  <div class="quick-ref" id="program-guide">
+    <div class="quick-ref-title">At a glance — the four main JKM programs &nbsp;<span style="font-size:.75rem;font-weight:400;color:var(--text-muted);">* amounts subject to annual budget revision — verify with JKM before applying</span></div>
+    <table>
+      <thead>
+        <tr>
+          <th>Program</th>
+          <th>Amount</th>
+          <th>Who it's for</th>
+          <th>Who receives it</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>BWE</strong><br/><span style="font-size:.8rem;color:var(--text-muted)">Bantuan Warga Emas</span></td>
+          <td><span class="amount-badge">RM500–600/mo*</span></td>
+          <td>Low-income elderly aged 60+ living in the community</td>
+          <td>The elderly person directly</td>
+        </tr>
+        <tr>
+          <td><strong>BPT</strong><br/><span style="font-size:.8rem;color:var(--text-muted)">Bantuan Penjagaan Terlantar</span></td>
+          <td><span class="amount-badge">RM500/month</span></td>
+          <td>Family caring for a bedridden or severely disabled person at home</td>
+          <td>The carer (family member)</td>
+        </tr>
+        <tr>
+          <td><strong>PAWE</strong><br/><span style="font-size:.8rem;color:var(--text-muted)">Pusat Aktiviti Warga Emas</span></td>
+          <td><span class="amount-badge free">Free</span></td>
+          <td>Mobile, medically stable elderly aged 60+</td>
+          <td>The elderly person (attends centre)</td>
+        </tr>
+        <tr>
+          <td><strong>KBDR</strong><br/><span style="font-size:.8rem;color:var(--text-muted)">Khidmat Bantu Di Rumah</span></td>
+          <td><span class="amount-badge free">Free</span></td>
+          <td>Elderly or disabled persons living at home with limited support</td>
+          <td>The elderly person (home visits)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── PROGRAM 1: BWE ──────────────────────────────────────── -->
+  <div class="program-section" id="bwe">
+    <div class="program-header">
+      <div class="program-icon prog-green">💰</div>
+      <div class="program-header-text">
+        <div class="program-bm">Bantuan Warga Emas (BWE) — Elderly Financial Assistance</div>
+        <h2>Monthly Cash Assistance for Low-Income Elderly (BWE)</h2>
+        <div class="program-amount-big">RM500–600 <span class="program-amount-sub">per month, paid directly to your parent — amount revised in annual budget; <a href="https://www.jkm.gov.my" target="_blank" rel="noopener" style="color:#15803d;font-size:.75rem;font-weight:600;">verify current rate at jkm.gov.my →</a></span></div>
+      </div>
+    </div>
+
+    <div class="program-body">
+      <div class="program-block">
+        <h3>Who qualifies</h3>
+        <ul>
+          <li>Malaysian citizen aged <strong>60 years or above</strong></li>
+          <li>Household income falls within the <strong>Garis Kemiskinan Tegar</strong> (Hardcore Poor Poverty Line) — RM1,169/month for Peninsula Malaysia, RM2,018 for Sabah/Labuan, RM1,785 for Sarawak (based on a 3-person household; <a href="https://www.epu.gov.my/en/socioeconomic/poverty" target="_blank" rel="noopener" style="color:var(--primary);">EPU 2022 Poverty Line Income</a>)</li>
+          <li>Currently living in the community (not in a government-funded residential institution or hospital)</li>
+          <li>Does not already receive another JKM residential placement</li>
+        </ul>
+      </div>
+
+      <div class="program-block block-steps">
+        <h3>How to apply</h3>
+        <ul>
+          <li>Visit the nearest <strong>JKM district office</strong> — find yours at <a href="https://www.jkm.gov.my/jkm/index.php?r=portal/left&id=cGVqYWJhdA==" target="_blank" rel="noopener" style="color:var(--primary);">JKM office locator</a> — or apply online at <a href="https://ebantuanjkm.jkm.gov.my" target="_blank" rel="noopener" style="color:var(--primary);">ebantuanjkm.jkm.gov.my</a></li>
+          <li>Complete <strong>Borang Permohonan Bantuan Am</strong> (available at the JKM office or via the e-Bantuan portal)</li>
+          <li>Bring: MyKad (original + photocopy), proof of income, bank account details — if your parent has no bank account, a BSN account can be opened at the time of application</li>
+          <li>A JKM officer will conduct a home visit to verify living conditions</li>
+          <li>Processing takes approximately <strong>4–8 weeks</strong>; payments go monthly into your parent's bank account</li>
+        </ul>
+        <a href="https://ebantuanjkm.jkm.gov.my" target="_blank" rel="noopener" class="apply-btn btn-green">Apply online — ebantuanjkm.jkm.gov.my →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── PROGRAM 2: BPT ──────────────────────────────────────── -->
+  <div class="program-section" id="bpt">
+    <div class="program-header">
+      <div class="program-icon prog-blue">🤝</div>
+      <div class="program-header-text">
+        <div class="program-bm">Bantuan Penjagaan Terlantar (BPT) — Bedridden Carer Allowance</div>
+        <h2>RM500/month Paid to the Family Carer</h2>
+        <div class="program-amount-big amount-blue">RM500 <span class="program-amount-sub">per month, paid to the carer — not the patient — <a href="https://www.jkm.gov.my" target="_blank" rel="noopener" style="color:#1d4ed8;font-size:.75rem;font-weight:600;">verify current rate at jkm.gov.my →</a></span></div>
+      </div>
+    </div>
+
+    <div class="program-body">
+      <div class="program-block">
+        <h3>Who qualifies</h3>
+        <ul>
+          <li>You are a Malaysian citizen <strong>caring full-time at home</strong> for a family member (spouse, parent, child, sibling) who is bedridden or severely disabled</li>
+          <li>The person being cared for is bedridden due to stroke, dementia, cancer, or severe disability — cannot bathe, dress, eat, or toilet independently — and has a <strong>medical letter confirming this</strong></li>
+          <li>The person being cared for is living at home — not in a nursing home or hospital</li>
+          <li>Household income generally below <strong>RM3,000–RM5,000/month</strong> — JKM weighs total expenses; heavy care costs can allow qualification at higher incomes</li>
+        </ul>
+      </div>
+
+      <div class="program-block block-steps">
+        <h3>How to apply</h3>
+        <ul>
+          <li>Get a <strong>medical letter from your parent's doctor</strong> confirming their diagnosis and bedbound status — do this first, as it is the most common missing document</li>
+          <li>Visit the nearest <strong>JKM district office</strong> (<a href="https://www.jkm.gov.my/jkm/index.php?r=portal/left&id=cGVqYWJhdA==" target="_blank" rel="noopener" style="color:var(--primary);">find your office</a>) — BPT cannot be done online; a home visit is required</li>
+          <li>Bring: MyKad for both carer and patient, medical letter, proof of household income</li>
+          <li>A JKM officer visits your home to verify — if approved, RM500/month goes into <strong>the carer's bank account</strong> (not the patient's)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROGRAM 3: PAWE ─────────────────────────────────────── -->
+  <div class="program-section" id="pawe">
+    <div class="program-header">
+      <div class="program-icon prog-purple">🏛️</div>
+      <div class="program-header-text">
+        <div class="program-bm">Pusat Aktiviti Warga Emas (PAWE) — Government Senior Activity Centres</div>
+        <h2>Free Government Day Centres for Mobile Seniors — Nationwide</h2>
+        <div class="program-amount-big amount-blue" style="color:#7c3aed;">Free <span class="program-amount-sub">no charge to attend; centres in every state — <a href="https://www.jkm.gov.my" target="_blank" rel="noopener" style="color:#7c3aed;font-size:.75rem;font-weight:600;">find your nearest at jkm.gov.my →</a></span></div>
+      </div>
+    </div>
+
+    <div class="program-body">
+      <div class="program-block">
+        <h3>What PAWE offers</h3>
+        <ul>
+          <li><strong>Physical activities</strong> — morning exercises, light aerobics, stretching</li>
+          <li><strong>Social interaction</strong> — group activities, peer connection, events</li>
+          <li><strong>Arts, crafts &amp; skills</strong> — painting, weaving, gardening, cooking</li>
+          <li><strong>Health screening</strong> — some centres offer basic blood pressure and health checks</li>
+          <li><strong>Nutritious meals</strong> — some centres provide subsidised meals</li>
+          <li>Typically open <strong>Monday to Friday, 8am–5pm</strong></li>
+        </ul>
+      </div>
+
+      <div class="program-block">
+        <h3>Who qualifies &amp; how to find a centre</h3>
+        <ul>
+          <li>Malaysian aged <strong>60 years or above</strong></li>
+          <li>Medically <strong>stable and mobile</strong> — can travel to the centre independently or with family</li>
+          <li>No income requirement — open to all elderly Malaysians regardless of income</li>
+          <li>Search for your nearest PAWE on the JKM website at <a href="https://www.jkm.gov.my" target="_blank" rel="noopener" style="color:var(--primary);">www.jkm.gov.my</a> (search "PAWE") or call the JKM hotline <a href="tel:0380008000" style="color:var(--primary);font-weight:600;">03-8000 8000</a> (Mon–Fri, 8am–5pm)</li>
+          <li>Register through the centre directly — bring MyKad and a recent passport photo</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="program-full-block">
+      <h3>Important limitation</h3>
+      <p style="font-size:.88rem;line-height:1.7;color:#374151;">PAWE centres are <strong>activity and socialisation centres, not medical day care</strong>. They cannot accommodate dementia with behavioural symptoms, incontinence, or regular medical procedures. If your parent needs supervision plus medical care during the day, a licensed private day care centre is the appropriate option — see our <a href="../johor.html" style="color:var(--primary);">facility directory</a>.</p>
+      <a href="https://www.jkm.gov.my" target="_blank" rel="noopener" class="apply-btn" style="margin-top:14px;">Find your nearest PAWE — www.jkm.gov.my →</a>
+    </div>
+  </div>
+
+  <!-- ── PROGRAM 4: KBDR ─────────────────────────────────────── -->
+  <div class="program-section" id="kbdr">
+    <div class="program-header">
+      <div class="program-icon prog-orange">🏠</div>
+      <div class="program-header-text">
+        <div class="program-bm">Program Khidmat Bantu Di Rumah (KBDR) — Home Help Volunteer Service</div>
+        <h2>Free Trained Volunteers Who Visit Your Parent at Home</h2>
+        <div class="program-amount-big" style="color:#d97706;">Free <span class="program-amount-sub">trained JKM volunteers visit the home; coverage varies by district</span></div>
+      </div>
+    </div>
+
+    <div class="program-body">
+      <div class="program-block">
+        <h3>What KBDR volunteers help with</h3>
+        <ul>
+          <li>Personal hygiene (bathing, grooming, oral care)</li>
+          <li>Meal preparation and feeding</li>
+          <li>Medication reminders and instructions</li>
+          <li>Light housekeeping</li>
+          <li>Companionship and social engagement</li>
+          <li>Escorting to the bank, market, or clinic</li>
+          <li>Medical appointment transport and escort</li>
+          <li>Basic physiotherapy exercises (if volunteer is qualified)</li>
+        </ul>
+      </div>
+
+      <div class="program-block">
+        <h3>Who qualifies &amp; how to apply</h3>
+        <ul>
+          <li>Elderly aged 60+ or a person with a disability (OKU) living at home</li>
+          <li>Limited family support available (family is working, living far away, or also elderly)</li>
+          <li>Living in an area where KBDR is operating — coverage varies by district</li>
+          <li>Apply by contacting the nearest <strong>JKM district office</strong> directly (<a href="https://www.jkm.gov.my/jkm/index.php?r=portal/left&id=cGVqYWJhdA==" target="_blank" rel="noopener" style="color:var(--primary);">find your office</a>)</li>
+          <li>Or email JKM: <a href="mailto:pro_jkm@jkm.gov.my" style="color:var(--primary);font-weight:600;">pro_jkm@jkm.gov.my</a></li>
+          <li>A JKM social worker will assess the situation and match a volunteer</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="program-full-block">
+      <h3>Realistic expectations</h3>
+      <p style="font-size:.88rem;line-height:1.7;color:#374151;">KBDR is a <strong>supplementary</strong> support service — it is not a substitute for a paid carer, nurse, or day care centre. Visits are typically a few times per week, not daily. The service is best used alongside other support: a family member who provides care in the evenings and weekends, with KBDR filling gaps during the week. If your parent requires daily medical care, professional home nursing (from a private agency) or a day care centre will be necessary.</p>
+    </div>
+  </div>
+
+  <!-- ── BONUS: Other Programs ──────────────────────────────── -->
+  <div style="background:#f8fafc;border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:48px;">
+    <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:16px;">Other programs worth knowing</h2>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div>
+        <strong style="font-size:.92rem;">Rumah Seri Kenangan (RSK) — Government residential care homes</strong>
+        <p style="font-size:.85rem;color:#374151;margin-top:4px;line-height:1.65;">Government-operated residential homes for elderly Malaysians with no family support or income. Subsidised or free for those who qualify. Very limited capacity and long waiting lists. Apply through your nearest JKM district office. Not suitable as a short-term solution due to wait times. <a href="https://www.jkm.gov.my/jkm/index.php?r=portal/left&id=aWpRTjU1dTFSWXpJOFdRYW5ySVBYUT09" target="_blank" rel="noopener" style="color:var(--primary);">RSK programme page →</a></p>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:14px;">
+        <strong style="font-size:.92rem;">Tabung Bantuan Perubatan (TBP) — Medical relief fund</strong>
+        <p style="font-size:.85rem;color:#374151;margin-top:4px;line-height:1.65;">Covers serious medical conditions including cardiac, renal, and neurological diseases. Requires a referral from a government hospital doctor — applied through the hospital's medical social worker (<em>pegawai kebajikan perubatan</em>). <a href="https://www.jkm.gov.my" target="_blank" rel="noopener" style="color:var(--primary);">More at jkm.gov.my →</a></p>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:14px;">
+        <strong style="font-size:.92rem;">Skim Mesra Usia Emas (SMUE) — Selangor state scheme</strong>
+        <p style="font-size:.85rem;color:#374151;margin-top:4px;line-height:1.65;">For Selangor residents aged 60+ (MyKad address must be in Selangor). Provides grocery aid and assistance — check the current benefit amounts directly with YAWAS as these are subject to change. Apply online at <a href="https://e-mesra.yawas.my" target="_blank" rel="noopener" style="color:var(--primary);">e-mesra.yawas.my</a> or at your DUN service centre. YAWAS main site: <a href="https://www.yawas.my" target="_blank" rel="noopener" style="color:var(--primary);">www.yawas.my</a>. YAWAS Careline: <a href="tel:0354818800" style="color:var(--primary);font-weight:600;">03-5481 8800</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Sources & References ──────────────────────────────────── -->
+  <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:var(--radius);padding:24px 28px;margin-bottom:48px;">
+    <h2 style="font-size:1rem;font-weight:700;margin-bottom:6px;color:#14532d;">📋 Sources &amp; Official References</h2>
+    <p style="font-size:.83rem;color:#166534;margin-bottom:18px;line-height:1.65;">All payment amounts and eligibility criteria on this page are drawn from official Malaysian government sources. These are reviewed annually — always verify the current rates directly with JKM before applying. This page is not a government publication.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:.86rem;line-height:1.6;">
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:flex-start;">
+        <span style="background:#dcfce7;color:#15803d;font-weight:700;font-size:.75rem;padding:3px 8px;border-radius:5px;text-align:center;white-space:nowrap;">JKM</span>
+        <span><strong>Jabatan Kebajikan Masyarakat</strong> (Dept. of Social Welfare) — BWE, BPT, PAWE, KBDR, RSK: <a href="https://www.jkm.gov.my" target="_blank" rel="noopener">www.jkm.gov.my</a></span>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:flex-start;">
+        <span style="background:#dcfce7;color:#15803d;font-weight:700;font-size:.75rem;padding:3px 8px;border-radius:5px;text-align:center;white-space:nowrap;">JKM</span>
+        <span><strong>JKM e-Bantuan portal</strong> — online BWE and BPT applications: <a href="https://ebantuanjkm.jkm.gov.my" target="_blank" rel="noopener">ebantuanjkm.jkm.gov.my</a></span>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:flex-start;">
+        <span style="background:#dbeafe;color:#1d4ed8;font-weight:700;font-size:.75rem;padding:3px 8px;border-radius:5px;text-align:center;white-space:nowrap;">EPU</span>
+        <span><strong>Poverty Line Income (Garis Kemiskinan)</strong> — Economic Planning Unit, Prime Minister's Dept: <a href="https://www.epu.gov.my/en/socioeconomic/poverty" target="_blank" rel="noopener">www.epu.gov.my</a></span>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:flex-start;">
+        <span style="background:#fef3c7;color:#92400e;font-weight:700;font-size:.75rem;padding:3px 8px;border-radius:5px;text-align:center;white-space:nowrap;">MOH</span>
+        <span><strong>Private healthcare licensing</strong> (Act 506 / Act 586 nursing homes) — Ministry of Health: <a href="https://www.moh.gov.my" target="_blank" rel="noopener">www.moh.gov.my</a></span>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:flex-start;">
+        <span style="background:#ede9fe;color:#6d28d9;font-weight:700;font-size:.75rem;padding:3px 8px;border-radius:5px;text-align:center;white-space:nowrap;">YAWAS</span>
+        <span><strong>Skim Mesra Usia Emas (SMUE)</strong> — Selangor state scheme: <a href="https://www.yawas.my" target="_blank" rel="noopener">www.yawas.my</a> | Apply: <a href="https://e-mesra.yawas.my" target="_blank" rel="noopener">e-mesra.yawas.my</a> | Careline: <a href="tel:0354818800">03-5481 8800</a></span>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:flex-start;">
+        <span style="background:#dcfce7;color:#15803d;font-weight:700;font-size:.75rem;padding:3px 8px;border-radius:5px;text-align:center;white-space:nowrap;">JKM</span>
+        <span><strong>JKM national hotline:</strong> <a href="tel:0380008000">03-8000 8000</a> (Mon–Fri 8am–5pm) | General enquiries: <a href="mailto:pro_jkm@jkm.gov.my">pro_jkm@jkm.gov.my</a></span>
+      </div>
+    </div>
+    <p style="font-size:.78rem;color:#166534;margin-top:16px;padding-top:12px;border-top:1px solid #86efac;">Last reviewed: May 2026. NursingHomeGuide.my is not affiliated with JKM, EPU, MOH, or YAWAS. All specific program details should be confirmed with the relevant government department before relying on them.</p>
   </div>
 
   <!-- ── FAQ ───────────────────────────────────────────────────── -->
@@ -840,7 +855,7 @@
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">My parent lives with me but I'm not low-income. Are there any programs we can still access? <span class="faq-arrow">▼</span></button>
-      <div class="faq-a">Yes. PAWE (free government senior activity centres) has no income requirement — any elderly Malaysian aged 60+ who is mobile can attend. If your parent is in Selangor, the SMUE scheme (RM100 grocery aid) is available to all Selangor residents aged 60+ regardless of income. The Tabung Bantuan Perubatan also applies for significant medical expenses even at moderate income levels, depending on the condition.</div>
+      <div class="faq-a">Yes. PAWE (free government senior activity centres) has no income requirement — any elderly Malaysian aged 60+ who is mobile can attend. If your parent is in Selangor, the SMUE scheme from YAWAS is open to all Selangor residents aged 60+ regardless of income — check current benefits at <a href="https://www.yawas.my" target="_blank" rel="noopener" style="color:var(--primary);">www.yawas.my</a>. The Tabung Bantuan Perubatan also applies for significant medical expenses even at moderate income levels, depending on the condition.</div>
     </div>
 
     <div class="faq-item">
@@ -849,18 +864,8 @@
     </div>
 
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Can my parent attend PAWE and also receive BWE at the same time? <span class="faq-arrow">▼</span></button>
-      <div class="faq-a">Yes. PAWE attendance and BWE cash assistance are completely independent programs. A low-income elderly person can receive BWE while also attending PAWE free of charge. There is no restriction on combining these.</div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What's the difference between a JKM-registered care centre and a government nursing home? <span class="faq-arrow">▼</span></button>
-      <div class="faq-a">Government nursing homes (Rumah Seri Kenangan) are run by JKM directly for elderly with no family or income. They are free or heavily subsidised but have very limited capacity and long waiting lists. JKM-registered care centres (under Act 506) are privately run facilities that are licensed by JKM — they are not government facilities and charge market rates. Only 18 facilities in Malaysia are licensed as nursing homes under MOH Act 586 and can legally provide clinical medical care. Most facilities families find online are Act 506 care centres, not Act 586 nursing homes.</div>
-    </div>
-
-    <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Where is my nearest JKM office? <span class="faq-arrow">▼</span></button>
-      <div class="faq-a">Search for "Pejabat Kebajikan Masyarakat" followed by your district name (e.g. "Pejabat Kebajikan Masyarakat Petaling Jaya"). You can also call the JKM national hotline at <strong>03-8000 8000</strong> or visit the JKM website at <strong>www.jkm.gov.my</strong>. Walk-in visits are accepted during office hours (8am–5pm Monday to Friday).</div>
+      <div class="faq-a">Search for "Pejabat Kebajikan Masyarakat" followed by your district name (e.g. "Pejabat Kebajikan Masyarakat Petaling Jaya"). You can also call the JKM national hotline at <a href="tel:0380008000" style="color:var(--primary);font-weight:600;">03-8000 8000</a> or visit <a href="https://www.jkm.gov.my" target="_blank" rel="noopener" style="color:var(--primary);">www.jkm.gov.my</a> for the district office directory. Walk-in visits are accepted during office hours (8am–5pm, Monday to Friday).</div>
     </div>
   </div>
 
@@ -948,7 +953,7 @@
       name: 'PAWE — Free government senior activity centres',
       yes: paweYes,
       maybe: false,
-      yesText: 'Your parent likely qualifies — PAWE has no income requirement. Find your nearest centre at online.jkm.gov.my/pawe or call 03-8000 8000.',
+      yesText: 'Your parent likely qualifies — PAWE has no income requirement. Find your nearest centre at <a href="https://www.jkm.gov.my" target="_blank" rel="noopener">www.jkm.gov.my</a> (search "PAWE") or call <a href="tel:0380008000">03-8000 8000</a>.',
       noText: a[1]==='no' ? 'PAWE is for Malaysians aged 60 and above.' : a[2]==='yes' ? 'PAWE is for mobile, active seniors. Your parent\'s bedridden status means they would need home-based or facility care instead.' : a[4]==='no' ? 'PAWE is for elderly living in the community, not in a care facility.' : '',
     });
 
@@ -959,24 +964,34 @@
       name: 'KBDR — Free home help volunteer visits',
       yes: kbdrYes,
       maybe: false,
-      yesText: 'Your parent may qualify for KBDR home visits. Contact your nearest JKM district office or email pro_jkm@jkm.gov.my to request an assessment.',
+      yesText: 'Your parent may qualify for KBDR home visits. Contact your nearest JKM district office (<a href="https://www.jkm.gov.my" target="_blank" rel="noopener">www.jkm.gov.my</a>) or email <a href="mailto:pro_jkm@jkm.gov.my">pro_jkm@jkm.gov.my</a> to request an assessment.',
       noText: a[4]==='no' ? 'KBDR is for elderly living at home, not in a care facility.' : a[1]==='no' ? 'KBDR is primarily for elderly 60+ or persons with disabilities.' : '',
     });
 
     const list = document.getElementById('results-list');
-    list.innerHTML = results.map(r => {
-      let cls, icon, desc;
-      if (r.yes) { cls='result-yes'; icon='✅'; desc=r.yesText; }
-      else if (r.maybe) { cls='result-maybe'; icon='❓'; desc=r.maybeText; }
-      else { cls='result-no'; icon='✗'; desc=r.noText || 'Does not appear to apply based on your answers.'; }
-      return `<div class="result-card ${cls}">
-        <div class="result-icon">${icon}</div>
+    const relevant = results.filter(r => r.yes || r.maybe);
+    if (relevant.length === 0) {
+      list.innerHTML = `<div class="result-card" style="background:#f9fafb;border:1px solid var(--border);">
+        <div class="result-icon">ℹ️</div>
         <div>
-          <div class="result-name">${r.name}</div>
-          <div class="result-desc">${desc}</div>
+          <div class="result-name" style="color:var(--text-muted);">No programs match these answers</div>
+          <div class="result-desc">Based on your answers, none of the four main community-based programs apply — for example, if your parent is already in a care facility, or under 60. <a href="https://www.jkm.gov.my" target="_blank" rel="noopener" style="color:var(--primary);">Contact JKM directly</a> to explore other options.</div>
         </div>
       </div>`;
-    }).join('');
+    } else {
+      list.innerHTML = relevant.map(r => {
+        const cls = r.yes ? 'result-yes' : 'result-maybe';
+        const icon = r.yes ? '✅' : '❓';
+        const desc = r.yes ? r.yesText : r.maybeText;
+        return `<div class="result-card ${cls}">
+          <div class="result-icon">${icon}</div>
+          <div>
+            <div class="result-name">${r.name}</div>
+            <div class="result-desc">${desc}</div>
+          </div>
+        </div>`;
+      }).join('');
+    }
 
     document.getElementById('checker-results').style.display = 'block';
     document.getElementById('checker-results').scrollIntoView({behavior:'smooth', block:'nearest'});
