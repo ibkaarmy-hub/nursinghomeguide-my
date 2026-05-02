@@ -73,7 +73,7 @@ Admin: `state` (Johor / Kuala Lumpur / Selangor), `status` (blank=live, unverifi
 **Tab 1 — `Facilities`** (gid=292378871)
 One row per facility, ~56 columns. Main listing data.
 
-**Tab 2 — `Details`** (gid=1866835625)
+**Tab 2 — `Details`** (gid=1104748854)
 Schema: `slug, section, label, value`. Per-facility custom facts. Lets us add extras without growing column count.
 
 Recognised `section` values:

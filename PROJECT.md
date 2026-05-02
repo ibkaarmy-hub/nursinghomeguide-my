@@ -49,7 +49,7 @@ Migration to Next.js + Supabase + Vercel is deferred until the data side justifi
 ### Data infrastructure
 - **`data.js`** — CSV fetcher + parseCSV + loadFacilities() + loadDetails() + GROUPS registry + GROUPS_BY_SLUG index
 - **`style.css`** — All shared styles; design tokens, card components, map, org, filter bar, skeleton loaders
-- Two-tab Google Sheet model: Facilities (gid=292378871) + Details (gid=1866835625)
+- Two-tab Google Sheet model: Facilities (gid=292378871) + Details (gid=1104748854)
 - `status` column: `unverified` / `removed` hides facilities from all pages without deleting data
 
 ### Data
