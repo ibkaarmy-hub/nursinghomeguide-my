@@ -114,3 +114,49 @@ After writing all 10:
 - If a Google Maps URL is present, always check it for reviews.
 - The editorial goes in `editorial_summary` column in the sheet — this is the live public-facing text.
 - Flag any JKM licence numbers found — these are critical gaps to fill.
+
+---
+
+## Hand-fix mode (single-profile, user-flagged)
+
+When the user pastes a specific facility URL with feedback, switch from the bulk batch workflow above to a focused per-profile fix. Lessons from past sessions:
+
+### Resolving location conflicts
+- The sheet has `state`, `area`, `slug`, `latitude/longitude`, and `google_maps_url` — when they disagree, **decode the coordinates first** before assuming any one of them is wrong.
+  - Lat 1.4–1.6, lng 103.5–104.0 = Johor Bahru metro (Skudai/Iskandar Puteri/Tampoi/Permas)
+  - Lat 3.0–3.3, lng 101.4–101.8 = Klang Valley (KL/PJ/Selangor)
+- A misleading slug is **not** automatic evidence of mis-classification. A multi-branch chain headquartered in PJ may have opened a real Johor branch — search Facebook + Google for "[chain] expanding to [city]" before flipping the data the wrong way.
+- A previous editorial that confidently states the wrong location (e.g. "actually in PJ, not Johor") is a red flag that someone else made the same mistake. Verify independently.
+
+### Editorial style — what NOT to write
+- **No meta-commentary opening lines.** Anything like "Note the slug first…" or "Despite the listing title…" reads as AI talking about its own data. The reader doesn't care about our slug; lead with what the home is.
+- **No "this is a stub" / "limited information available" disclaimers.** Either write a confident shorter editorial from verified facts, or don't publish.
+- Drop the standard EHA-style "ask for the JKM licence" line for established multi-branch chains with real websites; keep it for low-presence facilities.
+
+### Operator photos
+- Always check the operator website's `/gallery` page and homepage for usable images.
+- Common URL patterns to probe with curl HEAD: `img/image1.jpg`–`image10.jpg`, `img/pf1.png`–`pf4.png`, `assets/img/...`, `images/...`. Stop at first 404 in a numeric sequence.
+- Prepend operator photos to the existing `photos` field (pipe-separated), keep Google CDN photos after, and bump `photo_count`. Don't replace the hero unless the existing one is broken.
+- **Attribution**: add a Details row with `section=policies`, `label=Photo credits`, `value=Facility photos courtesy of <domain>`. There's no per-photo attribution column; this single row is the canonical place.
+
+### Pricing on operator websites
+- If the operator publishes a tier list (rare and valuable), encode all tiers as Details `rooms` rows with labels like `2-bed shared (RM/mo)` → value `2,800`. Don't bury the range in the editorial only.
+- Default assumption: published rates apply chain-wide. Don't caveat as "flagship only" unless the operator explicitly says branch pricing differs.
+- Always add a Details row `rooms / Pricing source / <full-url> — chain rates; final fee depends on care needs`.
+- Update `pricing_display` to show the full range, not just shared/private (e.g. `From RM 1,800 (6-bed shared) to RM 3,500 (VIP single) — published on operator website`).
+- `four_bed_price` exists as a column — populate it when the tier list has a 4-bed rate.
+
+### Workflow checklist
+1. Pull row by slug from facilities CSV + Details rows by slug.
+2. Check `pending_editorials/_blockers.json` and `_progress.json` to avoid colliding with the bulk agent. If the slug is in flight, ask user before overriding.
+3. Decode coords; reconcile state/area/slug; flag any inconsistency to user.
+4. Visit operator website (homepage, /packages, /gallery, /contact, /weare, /about). Search FB for branch announcements if multi-branch.
+5. Present plan to user with: old vs new editorial (full new text), exact column diffs (old → new), Details rows to add. **Wait for confirmation.**
+6. Push via a dedicated `update_<slug>.py` script modeled on `update_eha_chain.py`. Always update `last_updated` to today.
+7. Append slug to `pending_editorials/_blockers.json` (it's an object: `{"slug": "reason"}`, NOT an array).
+8. Commit with author `ibkaarmy-hub@users.noreply.github.com`, push to main.
+9. Re-fetch the published CSV and verify the change is live before reporting done.
+
+### Token + script location
+- `token_sheets.json` lives only in the **main repo root** (gitignored). When working from a worktree, reference it via absolute path or `cd` to main repo to run the update script.
+- Headers index changes occasionally — never hardcode column letters; always look up via `headers.index(name)`.
