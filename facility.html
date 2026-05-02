@@ -344,12 +344,100 @@ function showTab(id) {
   document.querySelector(`[data-tab="${id}"]`)?.classList.add('active');
 }
 
+/* ── SEO: canonical URL, OG/Twitter meta, LocalBusiness JSON-LD ── */
+const CANONICAL_BASE = 'https://nursinghomeguide.my';
+
+function setOrCreateMeta(attr, key, value) {
+  if (!value) return;
+  let el = document.head.querySelector(`meta[${attr}="${key}"]`);
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(attr, key);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', value);
+}
+function setCanonical(href) {
+  let el = document.head.querySelector('link[rel="canonical"]');
+  if (!el) {
+    el = document.createElement('link');
+    el.setAttribute('rel', 'canonical');
+    document.head.appendChild(el);
+  }
+  el.setAttribute('href', href);
+}
+function injectSocialMeta(f, canonicalUrl, description) {
+  const title = `${f.title} — NursingHomeGuide.my`;
+  const img = f.hero_image || '';
+  setOrCreateMeta('property', 'og:type', 'website');
+  setOrCreateMeta('property', 'og:site_name', 'NursingHomeGuide.my');
+  setOrCreateMeta('property', 'og:title', title);
+  setOrCreateMeta('property', 'og:description', description);
+  setOrCreateMeta('property', 'og:url', canonicalUrl);
+  if (img) setOrCreateMeta('property', 'og:image', img);
+  setOrCreateMeta('name', 'twitter:card', img ? 'summary_large_image' : 'summary');
+  setOrCreateMeta('name', 'twitter:title', title);
+  setOrCreateMeta('name', 'twitter:description', description);
+  if (img) setOrCreateMeta('name', 'twitter:image', img);
+}
+function injectStructuredData(f, canonicalUrl) {
+  const addr = [f.area, f.state, 'Malaysia'].filter(Boolean).join(', ');
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': canonicalUrl,
+    name: f.title,
+    url: canonicalUrl,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: f.area || undefined,
+      addressRegion: f.state || undefined,
+      addressCountry: 'MY',
+    },
+  };
+  if (f.hero_image) ld.image = f.hero_image;
+  if (f.phone) ld.telephone = f.phone;
+  if (f.editorial_summary) ld.description = f.editorial_summary.slice(0, 500);
+  const lat = parseFloat(f.latitude), lng = parseFloat(f.longitude);
+  if (!isNaN(lat) && !isNaN(lng)) {
+    ld.geo = { '@type': 'GeoCoordinates', latitude: lat, longitude: lng };
+  }
+  const rating = parseFloat(f.rating), reviews = parseInt(f.review_count, 10);
+  if (!isNaN(rating) && !isNaN(reviews) && reviews > 0) {
+    ld.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: rating.toFixed(1),
+      reviewCount: reviews,
+      bestRating: '5',
+      worstRating: '1',
+    };
+  }
+  const priceRange = f.pricing_display || (f.shared_price ? `From RM ${f.shared_price}/mo` : null);
+  if (priceRange && !isUnknownText(priceRange)) ld.priceRange = priceRange;
+
+  // Strip undefined keys from address
+  Object.keys(ld.address).forEach(k => ld.address[k] === undefined && delete ld.address[k]);
+
+  const existing = document.getElementById('ld-localbusiness');
+  if (existing) existing.remove();
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.id = 'ld-localbusiness';
+  script.textContent = JSON.stringify(ld);
+  document.head.appendChild(script);
+}
+
 /* ── Main render ───────────────────────────────────── */
 function render(f) {
   const D = f._details || {};
   document.title = `${f.title} — NursingHomeGuide.my`;
-  document.getElementById('pageDesc').content =
-    `${f.title} in ${f.area || 'Malaysia'}. ${f.shared_price ? 'From RM ' + f.shared_price + '/mo. ' : ''}${f.editorial_summary || ''}`;
+  const metaDesc = `${f.title} in ${f.area || 'Malaysia'}. ${f.shared_price ? 'From RM ' + f.shared_price + '/mo. ' : ''}${(f.editorial_summary || '').slice(0, 160)}`.trim();
+  document.getElementById('pageDesc').content = metaDesc;
+
+  const canonicalUrl = `${CANONICAL_BASE}/facility.html?slug=${encodeURIComponent(f.slug || '')}`;
+  setCanonical(canonicalUrl);
+  injectSocialMeta(f, canonicalUrl, metaDesc.slice(0, 200));
+  injectStructuredData(f, canonicalUrl);
 
   const photos = (f.photos || '').split('|').map(s => s.trim()).filter(Boolean);
   if (!photos.length && f.hero_image) photos.push(f.hero_image);
