@@ -33,8 +33,8 @@ Malaysia's most comprehensive elder care and nursing home guide. Covers nursing 
 ├── data.js                                ← CSV fetcher, parser, GROUPS registry
 ├── _config/                               ← brand, voice, domain notes
 └── stages/
-    ├── 01-data/      — DONE (324 facilities: Johor + KL + Selangor)
-    ├── 02-enrich/    — IN PROGRESS (60 editorials done Johor; KL/SEL + pricing pending)
+    ├── 01-data/      — DONE (406 rows in sheet; ~350 live after status filtering)
+    ├── 02-enrich/    — EDITORIALS DONE 100% (350/350 live facilities; pricing + Details tab still pending)
     ├── 03-content/   — NOT STARTED (guide pages, area pages, BM translations)
     ├── 04-design/    — DONE (all page templates shipped)
     └── 05-build/     — DEFERRED (stay on static HTML)
@@ -105,15 +105,37 @@ Recognised `section` values:
 
 ## GROUPS registry (data.js)
 
-28 organisation groups defined in `GROUPS` object. `GROUPS_BY_SLUG` is the reverse index (slug → group). Used to show group tags on facility cards and profiles, and to populate `org.html`.
+~36 organisation groups defined in `GROUPS` object. `GROUPS_BY_SLUG` is the reverse index (slug → group). Used to show group tags on facility cards and profiles, and to populate `org.html`.
 
 To add a new group: add entry to `GROUPS` in data.js, list all branch slugs. The org page and branch tags populate automatically.
 
-## Live facility counts (2026-05-01)
+**Groups added in session 2026-05-02:** Genesis Life Care (5 branches), My Aged Care (5 PJ branches), Mintygreen (7 branches), Attia Nursing Care (3 branches), Woodrose Senior Residences (2 Shariah-compliant branches), Noble Care (3 branches), Mona Elder Care (4 branches), Harvestars (2 branches), Green Acres (3 branches). Cozzi-confinement removed. Duplicate/truncated slug entries cleaned up.
 
-| State | Live | Hidden |
-|-------|------|--------|
-| Johor | 71 | 55 |
-| Kuala Lumpur | 56 | 0 |
-| Selangor | 142 | 0 |
-| **Total** | **269** | **55** |
+## Live facility counts (2026-05-02, post session 2)
+
+| State | Live | Hidden (unverified) |
+|-------|------|---------------------|
+| Johor | ~74 | 55 |
+| Kuala Lumpur | 66 | 0 |
+| Selangor | 206 | 1 |
+| **Total** | **~346** | **56** |
+
+Notes:
+- 82 MDAC facilities added (sheet now 406 rows); many Johor stubs
+- 4 Cozzi confinement entries marked `removed` (Yong Peng, Muar, Sri Jaya, Tanah Merah)
+- **100% editorial coverage** — every live facility has a 250+ word editorial in column AY
+- Editorial coverage confirmed: Johor 78/78, KL 66/66, Selangor 206/206 = 350/350
+
+## Editorial rules (locked 2026-05-02)
+
+Tone: knowledgeable friend, 3 paragraphs, 250–400 words, verified facts only.
+
+**Never use:**
+- "statistically unreliable", "warrants caution", "warrants scrutiny", "concerning rating"
+- "only/just/merely N reviews"
+- "not in directory X", "absence of any digital presence" (absence ≠ evidence)
+- Critical/undermining framing in the editorial body
+
+Frame unverified items as call-time questions. Red flags belong in `facts.red_flags` only (not in the published editorial). Always write a complete editorial — never leave it empty.
+
+Skill: `.claude/commands/nh-profiles.md`
