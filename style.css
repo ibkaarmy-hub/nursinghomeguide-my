@@ -246,9 +246,10 @@ body > nav { background: #fff; border-bottom: 1px solid var(--border); position:
 .hero-cta-secondary { background: rgba(255,255,255,.15); color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
 .hero-cta-secondary:hover { background: rgba(255,255,255,.25); }
 
-/* Group tag on facility profile hero */
-.profile-group-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(124,58,237,.2); border: 1px solid rgba(124,58,237,.4); color: #e9d5ff; padding: 5px 12px; border-radius: 6px; font-size: .82rem; font-weight: 500; margin-top: 10px; }
-.profile-group-tag a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+/* Group tag on facility profile header (light theme — readable on white bg) */
+.profile-group-tag { display: inline-flex; align-items: center; gap: 6px; background: #f5f3ff; border: 1px solid #ddd6fe; color: #5b21b6; padding: 5px 12px; border-radius: 6px; font-size: .82rem; font-weight: 500; }
+.profile-group-tag a { color: #5b21b6; text-decoration: underline; text-underline-offset: 2px; }
+.profile-group-tag a:hover { color: #4c1d95; }
 
 /* ── Tab Navigation (facility.html) ──────────────────────── */
 .tabs-nav { background: #fff; border-bottom: 1px solid var(--border); z-index: 90; }
