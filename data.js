@@ -23,7 +23,6 @@ const GROUPS = {
       'eha-parkview-eldercare-perling-1-nursing-home-johor-bahru',
       'eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru',
       'eha-elder-care-home-kluang-licensed-and-certified-by-govern',
-      'eha-parkview-eldercare-perling',
       'eha-grandview-titiwangsa-kl-elderly-care-post-surgery-recovery-stroke-rehabilita',
       'eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip',
       'eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl',
