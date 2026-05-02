@@ -319,6 +319,25 @@ function initMap() {
   if (mapMarkers.length) {
     leafletMap.fitBounds(L.featureGroup(mapMarkers).getBounds().pad(0.1));
   }
+
+  locateUser();
+}
+
+function locateUser() {
+  if (!navigator.geolocation) return;
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      L.circleMarker([lat, lng], {
+        radius: 9, fillColor: '#2563eb', color: '#fff',
+        weight: 3, opacity: 1, fillOpacity: 0.92
+      }).addTo(leafletMap).bindPopup('<strong>📍 You are here</strong>');
+      leafletMap.setView([lat, lng], 13);
+    },
+    () => { /* denied or unavailable — keep state-level fitBounds view */ },
+    { timeout: 8000, maximumAge: 60000 }
+  );
 }
 
 let markerIndex = {};
