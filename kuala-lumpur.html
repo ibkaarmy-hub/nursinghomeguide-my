@@ -6,7 +6,7 @@
   <title>Nursing Homes in Kuala Lumpur | Compare Prices & Reviews</title>
   <meta name="description" content="Browse nursing homes, assisted living, day care, and home care in Kuala Lumpur. Detailed profiles across Cheras, Kepong, Bangsar, Setapak and more." />
   <link rel="canonical" href="https://nursinghomeguide.my/kuala-lumpur.html" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <!-- Leaflet for map view -->
@@ -101,6 +101,8 @@
   <aside id="mapSidebar"></aside>
   <div id="leafletMap"></div>
 </div>
+
+<div class="ad-slot banner" data-ad-slot="state-list-prefooter"></div>
 
 <footer>
   <div class="footer-inner">
@@ -271,8 +273,12 @@ function applyFilters() {
   document.getElementById('activeAreaLabel').textContent =
     currentArea ? `in ${currentArea}` : 'in Kuala Lumpur';
 
+  const cards = result.map(makeCard);
+  if (cards.length > 8) {
+    cards.splice(8, 0, '<div class="ad-slot in-feed" data-ad-slot="state-list-infeed"></div>');
+  }
   document.getElementById('facGrid').innerHTML =
-    result.length ? result.map(makeCard).join('') :
+    result.length ? cards.join('') :
     `<div class="empty-state">No facilities found. <button onclick="clearFilters()">Clear filters</button></div>`;
 
   if (currentView === 'map') updateMapMarkers(result);
