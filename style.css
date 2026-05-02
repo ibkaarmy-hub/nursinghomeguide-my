@@ -317,3 +317,27 @@ footer { background: #1e3a5f; color: #cbd5e1; margin-top: 64px; padding: 48px 20
 .footer-copy { font-size: .8rem; color: #64748b; border-top: 1px solid #2d4d6e; padding-top: 20px; width: 100%; text-align: center; }
 
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+
+/* ── Ad slots — non-intrusive placeholders, ready for AdSense / Ezoic / direct fills ── */
+.ad-slot {
+  background: #fafafa;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: .72rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.ad-slot::before { content: 'Advertisement'; }
+.ad-slot.sidebar { margin-top: 16px; min-height: 250px; }
+.ad-slot.in-feed { grid-column: 1 / -1; min-height: 120px; margin: 8px 0; }
+.ad-slot.banner  { max-width: 1160px; margin: 40px auto 0; min-height: 100px; }
+@media (max-width: 720px) {
+  .ad-slot.sidebar,
+  .ad-slot.in-feed { min-height: 100px; }
+  .ad-slot.banner  { min-height: 90px; margin: 24px 16px 0; }
+}

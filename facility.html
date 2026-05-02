@@ -166,9 +166,7 @@
 .cta-web { background: white; color: var(--text, #0f172a); border: 1px solid var(--border, #e2e8f0); }
 .contact-meta { font-size: .82rem; color: var(--text-muted, #64748b); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border, #e2e8f0); line-height: 1.7; }
 .compare-row { background: #fef9c3; border: 1px solid #fde047; border-radius: 8px; padding: 10px 12px; margin-top: 12px; font-size: .82rem; color: #78350f; cursor: pointer; }
-.checklist-card { background: #f0fdf4; border-color: #bbf7d0; }
-.checklist-card h3 { color: #166534; }
-.checklist-card ul { font-size: .85rem; color: #166534; line-height: 1.7; padding-left: 18px; margin-top: 6px; }
+/* .ad-slot styles live in style.css (shared across all pages) */
 
 /* Sample-schedule disclaimer + table */
 .schedule-disclaimer { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 12px; border-radius: 4px; font-size: .88rem; color: #78350f; margin-bottom: 14px; }
@@ -385,14 +383,9 @@ function render(f) {
   const mapsLink    = f.google_maps_url ? `<a href="${escapeHtml(f.google_maps_url)}" target="_blank" class="cta-btn cta-maps">📍 Google Maps</a>` : '';
   const webLink     = f.website && !f.website.includes('facebook') ? `<a href="${escapeHtml(f.website)}" target="_blank" class="cta-btn cta-web">🌐 Website</a>` : '';
 
-  /* Family checklist (sidebar) — from Details `checklist` section */
-  const checklistRows = D.checklist || [];
-  const checklistHtml = checklistRows.length ? `
-    <div class="contact-card checklist-card">
-      <h3>📋 Family checklist</h3>
-      <p style="font-size:.85rem; color:#166534; line-height:1.6;">Before your visit, ask for:</p>
-      <ul>${checklistRows.map(r => `<li>${escapeHtml(r.label)}</li>`).join('')}</ul>
-    </div>` : '';
+  /* Sidebar ad slot — checklist hidden until we have an actionable version.
+     Details `checklist` rows in the sheet are preserved for later reuse. */
+  const checklistHtml = `<div class="ad-slot sidebar" data-ad-slot="facility-sidebar"></div>`;
 
   /* OVERVIEW tab content */
   const overviewQuickFacts = [
