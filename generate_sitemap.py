@@ -88,7 +88,7 @@ def main():
             continue
         lastmod = parse_lastmod(r.get("last_updated", "")) or today
         entries.append(url_entry(
-            f"{BASE}/facility.html?slug={slug}",
+            f"{BASE}/facility/{slug}/",
             lastmod=lastmod, changefreq="weekly", priority="0.7"
         ))
         facility_count += 1
