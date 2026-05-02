@@ -380,7 +380,8 @@ function render(f) {
 
   /* Sidebar contact buttons */
   const phoneLink   = f.phone        ? `<a href="tel:${escapeHtml(f.phone)}" class="cta-btn cta-call">📞 Call ${escapeHtml(f.phone)}</a>` : '';
-  const waLink      = f.whatsapp     ? `<a href="https://wa.me/${(f.whatsapp || '').replace(/\D/g,'')}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp</a>` : '';
+  const waMsg       = encodeURIComponent(`Hi, I found ${f.title} on NursingHomeGuide.my and would like to enquire about availability and pricing. Could you please share more details?`);
+  const waLink      = f.whatsapp     ? `<a href="https://wa.me/${(f.whatsapp || '').replace(/\D/g,'')}?text=${waMsg}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp Now</a>` : '';
   const mapsLink    = f.google_maps_url ? `<a href="${escapeHtml(f.google_maps_url)}" target="_blank" class="cta-btn cta-maps">📍 Google Maps</a>` : '';
   const webLink     = f.website && !f.website.includes('facebook') ? `<a href="${escapeHtml(f.website)}" target="_blank" class="cta-btn cta-web">🌐 Website</a>` : '';
 
@@ -618,7 +619,7 @@ function render(f) {
       <!-- Mobile sticky CTA bar (hidden on desktop via CSS) -->
       <div class="mobile-cta-bar">
         ${f.phone ? `<a href="tel:${escapeHtml(f.phone)}" class="m-call">📞 Call</a>` : ''}
-        ${f.whatsapp ? `<a href="https://wa.me/${(f.whatsapp||'').replace(/\D/g,'')}" class="m-wa">💬 WhatsApp</a>` : ''}
+        ${f.whatsapp ? `<a href="https://wa.me/${(f.whatsapp||'').replace(/\D/g,'')}?text=${waMsg}" class="m-wa">💬 WhatsApp</a>` : ''}
       </div>
 
       <aside class="profile-sidebar">
