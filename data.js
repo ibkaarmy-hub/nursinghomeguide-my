@@ -423,6 +423,78 @@ const GROUPS = {
       'green-acres-home-care',
     ],
   },
+
+  'genesis-life-care': {
+    slug: 'genesis-life-care',
+    name: 'Genesis Life Care',
+    tagline: 'Multi-branch nursing home group across Klang Valley and Johor',
+    state: 'Selangor, Kuala Lumpur, Johor',
+    description: 'Genesis Life Care operates five branches under one group — flagship in Petaling Jaya (Taman Petaling Utama, est. 2020, 50+ beds), plus Kajang (founding branch est. 2018, Amverton Business Centre, 120+ beds), Klang (near TAR Hospital), Puchong (Taman Perindustrian Puchong, 120+ beds), and Johor Bahru. The group is JKM-licensed and AgeCope-certified. Pricing starts from RM 2,500/month. Notable for psychologist-led memory care programmes, weekly doctor visits, and on-site rehabilitation suites.',
+    branches: [
+      'genesis-life-care-centre-pj',
+      'genesis-life-care-centre-kajang',
+      'genesis-life-care-centre-klang',
+      'genesis-life-care-centre-puchong',
+      'genesis-life-care-centre-jb',
+    ],
+  },
+
+  'my-aged-care': {
+    slug: 'my-aged-care',
+    name: 'My Aged Care',
+    tagline: 'Multi-branch nursing home network across Petaling Jaya',
+    state: 'Selangor',
+    description: 'My Aged Care Sdn. Bhd. (founded 2008) operates a network of nursing homes concentrated in Petaling Jaya, with the flagship My Manor branch in PJS 7 occupying a 10,000 sq ft low-density property. Other branches include PJ Old Town (Jalan Othman) and Jalan Assunta (adjacent to Assunta Hospital — clinically the strongest location for high-acuity transfers). The group cares for bedridden, palliative, post-stroke, and dementia residents with 24-hour hourly rounds. Pricing is in the RM 3,001–5,000/month range.',
+    branches: [
+      'my-aged-care-sdn-bhd',
+      'my-aged-care-nursing-home-in-pj-my-manor',
+      'my-aged-care-nursing-home-in-pj-old-town',
+      'my-aged-care-nursing-home-in-petaling-jaya-jalan-assunta',
+    ],
+  },
+
+  'mintygreen': {
+    slug: 'mintygreen',
+    name: 'Mintygreen Nursing Homes',
+    tagline: '7-branch chain across Klang Valley with TCM integration',
+    state: 'Selangor, Kuala Lumpur',
+    description: 'Mintygreen (碧绿疗养院) is a private nursing home chain founded in 2017, operating multiple branches across the Klang Valley — Sungai Long & Kajang HQ, Cheras (Sungai Long), Subang Jaya USJ 21, Kepong/PJ Bandar Sri Damansara (Sphere Damansara), plus a home care/care suites arm in Cheras KL. The group is AgeCope-certified and integrates Traditional Chinese Medicine (acupuncture, Tui Na) alongside conventional nursing care, with bi-weekly GP visits and full nursing capabilities including NG, catheter, and PEG. Long-term care from RM 4,000/month, day care RM 220/day.',
+    branches: [
+      'mintygreen-nursing-homesungai-long-kajang-eldercare-center-加影碧绿疗养院',
+      'mintygreen-senior-care-center-cherassungai-long-蕉赖碧绿疗养院',
+      'mintygreen-nursing-retirement-home-kepong-and-pj-bandar-sri-damansara',
+      'mintygreen-care-suites-home-care-nursing-cheras-kl',
+      'mintygreen-care-centre-usj21-subang-jaya',
+      'mintygreen-nursing-home-eldercare-center',
+    ],
+  },
+
+  'attia-care': {
+    slug: 'attia-care',
+    name: 'Attia Nursing Care',
+    tagline: 'Multi-branch rehabilitation-oriented nursing care chain',
+    state: 'Selangor',
+    description: 'Attia Nursing Care (established 2011) operates multiple branches across Selangor with a rehabilitation focus — stroke recovery, coma care, post-amputation, and orthopaedic recovery. Branches include Klang (Jalan Raja Bot), Subang Jaya (SS19), and the original Attia Nursing Care Centre. Each branch has on-site physiotherapy, occupational therapy, and speech therapy capabilities, plus weekly doctor visits. The group also offers tracheostomy care, NGT/PEG feeding, and acupuncture.',
+    branches: [
+      'attia-nursing-care-centre',
+      'attia-global-care-klang',
+      'attia-global-care-centre-subang-jaya',
+    ],
+  },
+
+  'woodrose-senior-residences': {
+    slug: 'woodrose-senior-residences',
+    name: 'Woodrose Senior Residences',
+    tagline: 'Shariah-compliant eldercare in Shah Alam — multi-residence campus',
+    state: 'Selangor',
+    description: 'Woodrose Senior Residences operates a multi-building Shariah-compliant eldercare campus in Shah Alam Seksyen 11 and Seksyen 13. Residence 1 (Jalan Silat, female) and Residence 3 (Seksyen 13, female) are female-only wings; Residence 2 (Seksyen 11, male) is the male wing. All residences operate under in-house Ustaz-governed SOPs and offer dementia care, palliative care, rehabilitation, respite, and day care. Residence 1 includes a swimming pool. The campus is among the most established Shariah-compliant eldercare offerings in the Klang Valley.',
+    branches: [
+      'woodrose-senior-residences',
+      'woodrose-senior-residences-1-seksyen-11-female-syariah-complaint',
+      'woodrose-senior-residences-2-seksyen-11-male-syariah-compliant',
+      'woodrose-senior-residences-3-seksyen-13-female-syariah-compliant',
+    ],
+  },
 };
 
 // ─── Reverse index: slug → group info ─────────────────────────────────────────
