@@ -73,21 +73,6 @@ const GROUPS = {
       'rebina-home-care-centre-sdn-bhd',
     ],
   },
-  'cozzi-confinement': {
-    slug: 'cozzi-confinement',
-    name: 'Cozzi Confinement Centers',
-    tagline: 'Postpartum confinement care — 4 locations across Johor',
-    website: 'https://cozziconfinement.com.my',
-    state: 'Johor',
-    description: 'Cozzi operates four postpartum confinement centres across Johor (Yong Peng, Muar, Sri Jaya – Batu Pahat, and Tanah Merah – Batu Pahat). Note: Cozzi centres are confinement facilities for new mothers, not eldercare nursing homes. They appear in this directory because they are JKM-registered residential care facilities in Johor.',
-    branches: [
-      'cozzi-confinement-center-yong-peng',
-      'cozzi-confinement-center-muar',
-      'cozzi-confinement-center-sri-jaya',
-      'cozzi-confinement-center-tanah-merah',
-    ],
-  },
-
   'graceville': {
     slug: 'graceville',
     name: 'Graceville Care Centres',
