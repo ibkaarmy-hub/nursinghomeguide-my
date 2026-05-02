@@ -75,7 +75,7 @@ function makeCard(f) {
     .map(t => `<span class="tag">${t}</span>`).join('');
   const rating = f.rating ? `<div class="card-rating"><span class="stars">★</span> ${parseFloat(f.rating).toFixed(1)}</div>` : '';
   return `
-    <a href="facility.html?slug=${f.slug}" class="card">
+    <a href="/facility/${f.slug}/" class="card">
       <div class="card-name">${f.title}</div>
       ${f.area ? `<div class="card-area">📍 ${f.area}</div>` : ''}
       ${priceHtml}
