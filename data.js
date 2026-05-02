@@ -390,6 +390,34 @@ const GROUPS = {
       'woodrose-senior-residences-3-seksyen-13-female-syariah-compliant',
     ],
   },
+
+  'jasper-lodge': {
+    slug: 'jasper-lodge',
+    name: 'Jasper Lodge Nursing Home',
+    tagline: 'Multi-branch nursing home operator with PJ branches plus locations in Penang and Kuantan',
+    website: 'https://jasperlodge.com.my',
+    state: 'Selangor, Penang, Pahang',
+    description: 'Jasper Lodge Nursing Home runs a multi-branch operation in the Klang Valley with four Petaling Jaya branches in our directory (PJ1, PJ2, PJ3, PJ5), plus additional homes in Penang and Kuantan listed on the operator website. The chain offers nursing care, rehabilitation, and dementia support across its branches. Service details and pricing should be confirmed branch-by-branch on the operator website.',
+    branches: [
+      'jasper-lodge-nursing-home-pj1',
+      'jasper-lodge-nursing-home-pj2',
+      'jasper-lodge-nursing-home-pj3',
+      'jasper-lodge-nursing-home-pj5',
+    ],
+  },
+
+  'merry-care-centre': {
+    slug: 'merry-care-centre',
+    name: 'Merry Care Centre',
+    tagline: 'Klang Valley multi-branch nursing home group',
+    website: 'https://www.elderlycare.my/',
+    state: 'Selangor, Kuala Lumpur',
+    description: 'Merry Care Centre operates multiple nursing home branches across the Klang Valley, with the Jalan Antoi branch in Kepong Baru (Kuala Lumpur) and the Jalan Belinggai branch in Selangor identified in our directory. The operator markets at elderlycare.my and offers nursing care across branches.',
+    branches: [
+      'merry-care-centre-jln-belinggai',
+      'merry-care-centre-jln-antoi',
+    ],
+  },
 };
 
 // ─── Reverse index: slug → group info ─────────────────────────────────────────
