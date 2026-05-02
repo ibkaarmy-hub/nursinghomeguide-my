@@ -139,6 +139,20 @@ When the user pastes a specific facility URL with feedback, switch from the bulk
 - Prepend operator photos to the existing `photos` field (pipe-separated), keep Google CDN photos after, and bump `photo_count`. Don't replace the hero unless the existing one is broken.
 - **Attribution**: add a Details row with `section=policies`, `label=Photo credits`, `value=Facility photos courtesy of <domain>`. There's no per-photo attribution column; this single row is the canonical place.
 
+### Operator self-promotion — guard rule (locked 2026-05-03)
+- **Never cite, quote, paraphrase, or use as evidence ANY content where an operator rates themselves favourably against competitors.** This applies to operator blog listicles, "Top N" or "Best of" posts, internal awards, or any marketing piece that ranks the operator's own facility against others. Operator self-ratings are marketing, not evidence — citing them would compromise the site's editorial credibility.
+- Stick to the operator's own factual claims about THEIR OWN facility: services, pricing, locations, capacity, branch dates, awards from independent bodies, JKM licence numbers.
+- Skip blog/news pages entirely if their content is self-comparative. If the only material on the operator site is self-promotional, treat the facility as low-information and write a conservative stub instead — do not pad the editorial with marketing language.
+- This applies across the entire site, not just one operator. First seen on Genesis Life Care's `/blog/best-nursing-homes-kl-selangor-2026` (operator ranking themselves as best).
+
+### Operator-published services without pricing
+- Common pattern: operator publishes a clean services list (e.g. "Nursing Home Care, Dementia & Memory Care, Stroke Rehabilitation, Palliative Care, Post-Operative Recovery, Senior Day Care") but no monthly fees anywhere on the site.
+- Editorial should quote the operator's verbatim service categories — do not invent or rename them — and explicitly say pricing is not posted (e.g. "Pricing is not posted on the [chain] website for any branch — final monthly fees depend on care level and room type, so request a written quote during your visit").
+- Encode the services list as Details `services` rows: `label = service name (verbatim)`, `value = short qualifier or "yes"` (e.g. `Dementia & Memory Care` / `Psychologist-led, cognitive stimulation activities`).
+- Add a Details `rooms` row `Pricing source` / `Not published on operator site (<domain>) — request a written quote during your visit`.
+- Add a Details `rooms` row `Operator-stated capacity` / `<N> beds` if the operator publishes a bed count.
+- Do NOT invent "from RM X" pricing in the editorial just because past editorials had a number. Past editorials are not a source — verify against the live operator site every time. Genesis Puchong had an unsourced "from RM 2,500" claim that had to be removed.
+
 ### Pricing on operator websites
 - If the operator publishes a tier list (rare and valuable), encode all tiers as Details `rooms` rows with labels like `2-bed shared (RM/mo)` → value `2,800`. Don't bury the range in the editorial only.
 - Default assumption: published rates apply chain-wide. Don't caveat as "flagship only" unless the operator explicitly says branch pricing differs.
