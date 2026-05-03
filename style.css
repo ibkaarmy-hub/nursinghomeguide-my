@@ -40,6 +40,19 @@ body > nav { background: #fff; border-bottom: 1px solid var(--border); position:
 .hero-search input { flex: 1; border: none; outline: none; padding: 14px 20px; font-size: 1rem; color: var(--text); min-width: 0; }
 .hero-search button { background: var(--accent); color: #fff; border: none; padding: 14px 24px; font-weight: 600; cursor: pointer; font-size: .95rem; white-space: nowrap; }
 .hero-search button:hover { background: #15803d; }
+/* Hero finder: care-type tabs sit on top of the search field */
+.hero-finder { max-width: 580px; margin: 0 auto; }
+.hero-tabs { display: flex; gap: 4px; max-width: 540px; margin: 0 auto 0; padding: 6px; background: rgba(255,255,255,.12); border-radius: 14px 14px 0 0; backdrop-filter: blur(4px); }
+.hero-tab { flex: 1; background: transparent; color: rgba(255,255,255,.78); border: none; padding: 10px 8px; font-size: .85rem; font-weight: 600; cursor: pointer; border-radius: 10px; transition: background .15s, color .15s; white-space: nowrap; }
+.hero-tab:hover { color: #fff; background: rgba(255,255,255,.08); }
+.hero-tab.active { background: #fff; color: var(--text, #1f2937); box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.hero-finder .hero-search { border-radius: 0 0 14px 14px; max-width: 540px; }
+.hero-finder-help { margin-top: 14px; font-size: .85rem; color: rgba(255,255,255,.78); text-align: center; }
+.hero-finder-help a { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.hero-finder-help a:hover { opacity: .85; }
+@media (max-width: 480px) {
+  .hero-tab { font-size: .78rem; padding: 9px 4px; }
+}
 .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
 .hero-stat { text-align: center; }
 .hero-stat .num { font-size: 1.8rem; font-weight: 800; }

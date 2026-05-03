@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nursing Home Guide Malaysia — Eldercare, Senior Care &amp; Nursing Home Directory</title>
   <meta name="description" content="Malaysia's most comprehensive guide to elder care, senior care, nursing homes, day care, and home care. Detailed profiles to help families make the most important decision of their lives." />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
@@ -37,14 +37,29 @@
 <section class="hero hero-home">
   <div class="hero-home-content">
     <div class="hero-eyebrow">🇲🇾 Malaysia's Most Comprehensive Eldercare Guide</div>
-    <h1>Find the Right Care Home<br/>for Your Family</h1>
+    <h1>Find the Right Care<br/>for Your Family</h1>
     <p>Nursing homes, assisted living, day care, and home care — all in one place. Detailed profiles to help families make the most important decision of their lives.</p>
-    <div class="hero-search">
-      <input type="text" id="heroSearch" placeholder="Search by name, area, or care type…" />
-      <button onclick="doSearch()">Search</button>
+
+    <!-- Care-type tabs + location autocomplete -->
+    <div class="hero-finder">
+      <div class="hero-tabs" role="tablist" aria-label="Care type">
+        <button class="hero-tab active" data-cat="nursing-homes" role="tab" aria-selected="true">Nursing Home</button>
+        <button class="hero-tab" data-cat="assisted-living" role="tab" aria-selected="false">Assisted Living</button>
+        <button class="hero-tab" data-cat="home-care" role="tab" aria-selected="false">Home Care</button>
+        <button class="hero-tab" data-cat="day-care" role="tab" aria-selected="false">Day Care</button>
+      </div>
+      <form class="hero-search" onsubmit="event.preventDefault(); doFinderSearch();">
+        <input type="text" id="heroSearch" list="hero-locations" placeholder="Where? Johor, KL, Selangor, or area name…" autocomplete="off" />
+        <datalist id="hero-locations"></datalist>
+        <button type="submit">Find homes →</button>
+      </form>
+      <div class="hero-finder-help">
+        Not sure which type of care you need? <a href="/guides/which-care.html">Take the 2-minute care guide →</a>
+      </div>
     </div>
+
     <div class="hero-stats">
-      <div class="hero-stat"><div class="num">265</div><div class="label">Verified Facilities</div></div>
+      <div class="hero-stat"><div class="num">355+</div><div class="label">Verified Facilities</div></div>
       <div class="hero-stat"><div class="num">3</div><div class="label">States Covered</div></div>
       <div class="hero-stat"><div class="num">Free</div><div class="label">No Sign-Up Required</div></div>
     </div>
@@ -291,12 +306,83 @@
 
 <script src="data.js?v=3"></script>
 <script>
-function doSearch() {
-  const q = document.getElementById('heroSearch').value.trim();
-  if (q) window.location.href = `/nursing-homes/johor/?q=${encodeURIComponent(q)}`;
+// ── Hero finder: care-type tabs + location autocomplete ─────────
+let heroCat = 'nursing-homes';
+
+document.querySelectorAll('.hero-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.hero-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    heroCat = tab.dataset.cat;
+  });
+});
+
+// State name → URL slug. Keeps "selangor" / "kuala-lumpur" / "johor" canonical.
+const STATE_TO_SLUG = {
+  'selangor': 'selangor',
+  'kuala lumpur': 'kuala-lumpur',
+  'kl': 'kuala-lumpur',
+  'johor': 'johor',
+  'johor bahru': 'johor',
+  'jb': 'johor',
+};
+
+function detectStateFromQuery(q) {
+  const lc = q.toLowerCase().trim();
+  if (STATE_TO_SLUG[lc]) return {state: STATE_TO_SLUG[lc], remainder: ''};
+  // Match a state token inside the query and treat the rest as area-search
+  for (const [k, v] of Object.entries(STATE_TO_SLUG)) {
+    if (lc.includes(k)) return {state: v, remainder: q};
+  }
+  return null;
 }
-document.getElementById('heroSearch').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doSearch();
+
+function doFinderSearch() {
+  const q = document.getElementById('heroSearch').value.trim();
+  const isNational = (heroCat === 'home-care' || heroCat === 'day-care');
+
+  if (isNational) {
+    // /home-care/ and /day-care/ are single national directories
+    window.location.href = q ? `/${heroCat}/?q=${encodeURIComponent(q)}` : `/${heroCat}/`;
+    return;
+  }
+
+  // /nursing-homes/ and /assisted-living/ need a state segment
+  if (!q) {
+    // No location — drop them on the category landing (NH = home /, AL = /assisted-living/)
+    window.location.href = heroCat === 'assisted-living' ? '/assisted-living/' : '/#by-state';
+    return;
+  }
+
+  const detected = detectStateFromQuery(q);
+  if (detected) {
+    const url = `/${heroCat}/${detected.state}/`;
+    window.location.href = detected.remainder ? `${url}?q=${encodeURIComponent(detected.remainder)}` : url;
+    return;
+  }
+
+  // No state match — search inside Selangor by default (largest catalogue) and
+  // pass the query so the area pill / search box surfaces relevant matches.
+  window.location.href = `/${heroCat}/selangor/?q=${encodeURIComponent(q)}`;
+}
+
+// Populate location autocomplete from live data — states + unique areas.
+// Filter out junk address fragments (digits, slashes, very short).
+loadFacilities().then(data => {
+  const dl = document.getElementById('hero-locations');
+  const set = new Set(['Johor', 'Kuala Lumpur', 'Selangor']);
+  data.forEach(f => {
+    const a = (f.area || '').trim();
+    if (!a || a.length < 4) return;
+    if (/^[0-9]/.test(a) || /[\/\\]/.test(a) || /\d{2,}/.test(a)) return;
+    set.add(a);
+  });
+  const opts = [...set].sort().map(v => `<option value="${v}">`).join('');
+  dl.innerHTML = opts;
 });</script>
 </body>
 </html>
