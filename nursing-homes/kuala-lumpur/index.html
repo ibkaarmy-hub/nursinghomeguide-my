@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nursing Homes in Kuala Lumpur | Compare Prices & Reviews</title>
+  <meta name="description" content="Browse licensed nursing homes in Kuala Lumpur, Malaysia. Compare monthly fees, care types, RN coverage, and reviews. Detailed profiles to help your family choose with confidence." />
+  <link rel="canonical" href="https://nursinghomeguide.my/nursing-homes/kuala-lumpur/" />
+  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Leaflet for map view -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Nursing Homes in Kuala Lumpur, Malaysia",
+    "description": "Directory of licensed nursing homes in Kuala Lumpur with pricing and reviews.",
+    "url": "https://nursinghomeguide.my/nursing-homes/kuala-lumpur/"
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">NursingHome<span>Guide.my</span></a>
+  </div>
+</nav>
+
+<!-- State hero -->
+<section class="state-hero">
+  <div class="state-hero-inner">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="/">Malaysia</a>
+      <span>›</span>
+      <a href="/nursing-homes/">Nursing Homes</a>
+      <span>›</span>
+      <span>Kuala Lumpur</span>
+    </nav>
+    <h1>Nursing Homes in Kuala Lumpur</h1>
+    <p>Browse <strong id="heroCount">—</strong> licensed nursing homes in Kuala Lumpur. Monthly fees, care types, and real reviews — all in one place.</p>
+    <div class="state-hero-search">
+      <input type="text" id="searchInput" placeholder="Search by name, area, or care type…" oninput="applyFilters()" />
+    </div>
+  </div>
+</section>
+
+<!-- Filter + view bar -->
+<div class="filter-bar-wrap" id="filterBarWrap">
+  <div class="filter-bar-inner">
+
+    <!-- Area pills -->
+    <div class="filter-scroll" id="areaFilters">
+      <button class="filter-pill active" data-area="">All Areas</button>
+    </div>
+
+    <!-- Right: sort + view toggle -->
+    <div class="filter-right">
+      <select id="sortSelect" onchange="applyFilters()" class="sort-select">
+        <option value="rating">Highest Rated</option>
+        <option value="reviews">Most Reviews</option>
+        <option value="price_asc">Price: Low→High</option>
+        <option value="name">A–Z</option>
+      </select>
+      <div class="view-toggle">
+        <button id="btnList" class="view-btn active" onclick="setView('list')" title="List view">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+        </button>
+        <button id="btnMap" class="view-btn" onclick="setView('map')" title="Map view">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Result count -->
+<div class="results-bar">
+  <div class="results-inner">
+    <span id="resultsCount">Loading…</span>
+    <span id="activeAreaLabel"></span>
+  </div>
+</div>
+
+<!-- List view -->
+<div class="state-content" id="listView">
+  <div class="fac-grid" id="facGrid">
+    <!-- skeleton cards -->
+    <div class="fac-card-skeleton"></div>
+    <div class="fac-card-skeleton"></div>
+    <div class="fac-card-skeleton"></div>
+    <div class="fac-card-skeleton"></div>
+    <div class="fac-card-skeleton"></div>
+    <div class="fac-card-skeleton"></div>
+  </div>
+</div>
+
+<!-- Map view (hidden by default) -->
+<div id="mapView" style="display:none">
+  <aside id="mapSidebar"></aside>
+  <div id="leafletMap"></div>
+</div>
+
+<div class="ad-slot banner" data-ad-slot="state-list-prefooter"></div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">NursingHomeGuide.my</div>
+      <div class="footer-tagline">A free resource for Malaysian families navigating eldercare</div>
+    </div>
+    <div class="footer-links">
+      <a href="/">All States</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 NursingHomeGuide.my — Not affiliated with JKM or any facility</div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="data.js?v=3"></script>
+<script>
+// Category → URL path (must match generate_facility_pages.py CATEGORY_DIRS)
+function facUrl(f) {
+  const c = (f.care_category || '').trim();
+  if (c === 'Assisted Living') return '/assisted-living/' + f.slug + '/';
+  if (c === 'Home Care')       return '/home-care/'       + f.slug + '/';
+  if (c === 'Day Care')        return '/day-care/'        + f.slug + '/';
+  return '/nursing-homes/' + f.slug + '/';   // Nursing Home, Mixed, blank
+}
+
+// ─── Area normalisation ────────────────────────────────────
+const AREA_NORMALIZE = {
+  'JOHOR BAHRU': 'Johor Bahru',
+  'Taman Kebun Teh, Johor Bahru': 'Johor Bahru',
+  'Taman Perling, Johor Bahru': 'Johor Bahru',
+  'Kempas, Johor Bahru': 'Johor Bahru',
+  'Kempas Baru, Johor Bahru': 'Johor Bahru',
+  'Tampoi, Johor Bahru': 'Johor Bahru',
+  'Skudai, Johor Bahru': 'Johor Bahru',
+  'Skudai': 'Johor Bahru',
+  'Ulu Tiram': 'Johor Bahru',
+  'Gelang Patah, Johor Bahru': 'Johor Bahru',
+  'Johor Bahru (Medini / Iskandar Puteri)': 'Johor Bahru',
+  'Johor Bahru (Perling)': 'Johor Bahru',
+  'Batu Pahat, Johor': 'Batu Pahat',
+  'Kluang, Johor': 'Kluang',
+  'Kulai, Johor': 'Kulai',
+  'Senai': 'Kulai',
+  'Senai, Kulai, Johor': 'Kulai',
+  'Pontian District': 'Pontian',
+  'Segamat District': 'Segamat',
+  'Muar, Johor': 'Muar',
+  'Bukit Siput': 'Pontian',
+  'Bukit Gambir': 'Muar',
+  'Bukit Pasir': 'Batu Pahat',
+  'Sungai Mati': 'Muar',
+  'Kayu Ara Pasong': 'Pontian',
+  'Yong Peng': 'Batu Pahat',
+};
+
+function normArea(raw) {
+  return AREA_NORMALIZE[raw] || raw || 'Other';
+}
+
+// ─── State filters ─────────────────────────────────────────
+let allFacilities = [];
+let currentArea = '';
+let currentView = 'list';
+let leafletMap = null;
+let mapMarkers = [];
+
+// ─── URL param: pre-fill search ────────────────────────────
+const urlParams = new URLSearchParams(window.location.search);
+const initQ = urlParams.get('q') || '';
+if (initQ) document.getElementById('searchInput').value = initQ;
+
+// ─── Card builder ──────────────────────────────────────────
+function priceFromShared(f) {
+  const raw = (f.shared_price || '').trim();
+  if (!raw || raw.toLowerCase().includes('call') || raw.toLowerCase().includes('enquire')) return null;
+  // Strip non-numeric except commas/dots
+  const digits = raw.replace(/[^\d,\.]/g,'').replace(/,/g,'');
+  const n = parseInt(digits, 10);
+  return isNaN(n) ? null : n;
+}
+
+function getGroupInfo(f) {
+  const g = GROUPS_BY_SLUG[f.slug];
+  if (g) return g;
+  return null;
+}
+
+function makePhotoUrl(url) {
+  if (!url) return '';
+  // Append size param to Google CDN URLs
+  if (url.includes('googleusercontent.com') && !url.includes('=')) {
+    return url + '=w480-h320-k-no';
+  }
+  return url;
+}
+
+function makeCard(f) {
+  const area = normArea(f.area);
+  const price = priceFromShared(f);
+  const priceHtml = price
+    ? `<div class="fac-price-badge">From RM ${price.toLocaleString()}/mo</div>`
+    : `<div class="fac-price-badge unknown">📞 Enquire for pricing</div>`;
+
+  const ratingNum = parseFloat(f.rating);
+  const reviewCount = parseInt(f.review_count) || 0;
+  const ratingHtml = !isNaN(ratingNum) && ratingNum > 0
+    ? `<span class="fac-rating">★ ${ratingNum.toFixed(1)}<span class="fac-reviews">${reviewCount > 0 ? ` (${reviewCount})` : ''}</span></span>`
+    : '';
+
+  const tags = (f.care_types || '').split(/[+,]/).map(t => t.trim()).filter(Boolean).slice(0, 3)
+    .map(t => `<span class="tag">${t}</span>`).join('');
+
+  const excerpt = f.editorial_summary
+    ? `<p class="fac-excerpt">${f.editorial_summary.slice(0, 130)}${f.editorial_summary.length > 130 ? '…' : ''}</p>`
+    : '';
+
+  const photoUrl = makePhotoUrl(f.hero_image);
+  const photoHtml = photoUrl
+    ? `<img src="${photoUrl}" alt="${f.title}" loading="lazy" onerror="this.parentElement.classList.add('no-photo');this.remove()">`
+    : '';
+
+  const group = getGroupInfo(f);
+  const groupHtml = group
+    ? `<span class="fac-group-tag" onclick="event.stopPropagation();window.location='org.html?slug=${group.slug}'">${group.name} ›</span>`
+    : '';
+
+  return `
+    <a href="${facUrl(f)}" class="fac-card">
+      <div class="fac-card-img${photoUrl ? '' : ' no-photo'}">
+        ${photoHtml}
+        ${priceHtml}
+        ${groupHtml}
+      </div>
+      <div class="fac-card-body">
+        <h3 class="fac-card-name">${f.title}</h3>
+        <div class="fac-card-meta">
+          <span class="fac-area">📍 ${area}</span>
+          ${ratingHtml}
+        </div>
+        ${excerpt}
+        <div class="fac-card-tags">${tags}</div>
+      </div>
+    </a>`;
+}
+
+// ─── Filter + render ───────────────────────────────────────
+function applyFilters() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const sort = document.getElementById('sortSelect').value;
+
+  let result = allFacilities.filter(f => {
+    const area = normArea(f.area);
+    const matchArea = !currentArea || area === currentArea;
+    const matchQ = !q || [f.title, f.area, f.care_types, f.editorial_summary]
+      .some(s => (s || '').toLowerCase().includes(q));
+    return matchArea && matchQ;
+  });
+
+  // Sort
+  result.sort((a, b) => {
+    if (sort === 'rating') return (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0);
+    if (sort === 'reviews') return (parseInt(b.review_count) || 0) - (parseInt(a.review_count) || 0);
+    if (sort === 'price_asc') {
+      const pa = priceFromShared(a) || 999999;
+      const pb = priceFromShared(b) || 999999;
+      return pa - pb;
+    }
+    if (sort === 'name') return (a.title || '').localeCompare(b.title || '');
+    return 0;
+  });
+
+  document.getElementById('resultsCount').textContent =
+    `${result.length} ${result.length === 1 ? 'facility' : 'facilities'}`;
+  document.getElementById('activeAreaLabel').textContent =
+    currentArea ? `in ${currentArea}` : 'in Kuala Lumpur';
+
+  const cards = result.map(makeCard);
+  if (cards.length > 8) {
+    cards.splice(8, 0, '<div class="ad-slot in-feed" data-ad-slot="state-list-infeed"></div>');
+  }
+  document.getElementById('facGrid').innerHTML =
+    result.length ? cards.join('') :
+    `<div class="empty-state">No facilities found. <button onclick="clearFilters()">Clear filters</button></div>`;
+
+  if (currentView === 'map') updateMapMarkers(result);
+}
+
+function clearFilters() {
+  document.getElementById('searchInput').value = '';
+  setArea('', document.querySelector('[data-area=""]'));
+}
+
+// ─── Area filter ───────────────────────────────────────────
+function setArea(area, btn) {
+  currentArea = area;
+  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  applyFilters();
+}
+
+// ─── View toggle ───────────────────────────────────────────
+function setView(v) {
+  currentView = v;
+  document.getElementById('listView').style.display = v === 'list' ? '' : 'none';
+  document.getElementById('mapView').style.display = v === 'map' ? '' : 'none';
+  document.getElementById('btnList').classList.toggle('active', v === 'list');
+  document.getElementById('btnMap').classList.toggle('active', v === 'map');
+
+  if (v === 'map') {
+    initMap();
+    // Defer invalidateSize so Leaflet measures the now-visible container
+    setTimeout(() => { if (leafletMap) leafletMap.invalidateSize(); }, 100);
+  }
+}
+
+// ─── Leaflet map ───────────────────────────────────────────
+function initMap() {
+  if (leafletMap) { leafletMap.invalidateSize(); return; }
+  leafletMap = L.map('leafletMap').setView([3.139, 101.6869], 11);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(leafletMap);
+
+  // Render via applyFilters so current area/search filters reflect in sidebar
+  applyFilters();
+  if (mapMarkers.length) {
+    leafletMap.fitBounds(L.featureGroup(mapMarkers).getBounds().pad(0.1));
+  }
+
+  locateUser();
+}
+
+function locateUser() {
+  if (!navigator.geolocation) return;
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      // Blue pulsing "you are here" dot
+      L.circleMarker([lat, lng], {
+        radius: 9, fillColor: '#2563eb', color: '#fff',
+        weight: 3, opacity: 1, fillOpacity: 0.92
+      }).addTo(leafletMap).bindPopup('<strong>📍 You are here</strong>');
+      leafletMap.setView([lat, lng], 13);
+    },
+    () => { /* denied or unavailable — keep state-level fitBounds view */ },
+    { timeout: 8000, maximumAge: 60000 }
+  );
+}
+
+let markerIndex = {};
+
+function makeMapPopup(f) {
+  const price = priceFromShared(f);
+  const priceText = price ? `From RM ${price.toLocaleString()}/mo` : 'Enquire for pricing';
+  const rating = parseFloat(f.rating);
+  const reviewCount = parseInt(f.review_count) || 0;
+  const ratingHtml = !isNaN(rating) && rating > 0
+    ? `<div class="mp-rating">★ ${rating.toFixed(1)} <span style="color:#6b7280;font-weight:400">(${reviewCount} Google review${reviewCount !== 1 ? 's' : ''})</span></div>`
+    : `<div class="mp-no-reviews">No Google reviews yet</div>`;
+  const careTypes = (f.care_types || '').split(/[+,]/).map(t => t.trim()).filter(Boolean).slice(0, 4);
+  const careHtml = careTypes.length ? `<div class="mp-care">🏥 ${careTypes.join(' · ')}</div>` : '';
+  return `
+    <div class="map-popup">
+      <strong>${f.title}</strong><br>
+      <span style="color:#6b7280;font-size:.82rem">📍 ${normArea(f.area)}</span>
+      ${ratingHtml}
+      ${careHtml}
+      <div style="color:#16a34a;font-weight:600;font-size:.85rem;margin-top:6px">${priceText}</div>
+      <a href="${facUrl(f)}" style="display:inline-block;margin-top:10px;background:#2563eb;color:#fff;padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none">View Profile →</a>
+    </div>`;
+}
+
+function makeMapCard(f) {
+  const area = normArea(f.area);
+  const price = priceFromShared(f);
+  const priceText = price ? `RM ${price.toLocaleString()}/mo` : 'Enquire';
+  const rating = parseFloat(f.rating);
+  const reviewCount = parseInt(f.review_count) || 0;
+  const ratingHtml = !isNaN(rating) && rating > 0
+    ? `<span class="mc-rating">★ ${rating.toFixed(1)} (${reviewCount})</span>`
+    : `<span class="mc-no-rating">No Google reviews</span>`;
+  const tags = (f.care_types || '').split(/[+,]/).map(t => t.trim()).filter(Boolean).slice(0, 3)
+    .map(t => `<span class="tag">${t}</span>`).join('');
+  const hasCoords = f.latitude && f.longitude;
+  return `
+    <a href="${facUrl(f)}" class="mc-card" data-slug="${f.slug}"${hasCoords ? ` onclick="event.preventDefault();focusMarker('${f.slug}');"` : ''}>
+      <div class="mc-name">${f.title}</div>
+      <div class="mc-meta">📍 ${area} · <span class="mc-price">${priceText}</span></div>
+      <div class="mc-meta">${ratingHtml}</div>
+      ${tags ? `<div class="mc-tags">${tags}</div>` : ''}
+    </a>`;
+}
+
+function focusMarker(slug) {
+  const m = markerIndex[slug];
+  if (!m) return;
+  leafletMap.setView(m.getLatLng(), Math.max(leafletMap.getZoom(), 14));
+  m.openPopup();
+  document.querySelectorAll('.mc-card').forEach(c => c.classList.remove('mc-active'));
+  const card = document.querySelector(`.mc-card[data-slug="${slug}"]`);
+  if (card) card.classList.add('mc-active');
+}
+
+function updateMapMarkers(facilities) {
+  if (!leafletMap) return;
+  mapMarkers.forEach(m => leafletMap.removeLayer(m));
+  mapMarkers = [];
+  markerIndex = {};
+
+  facilities.forEach(f => {
+    const lat = parseFloat(f.latitude);
+    const lng = parseFloat(f.longitude);
+    if (isNaN(lat) || isNaN(lng)) return;
+
+    const group = getGroupInfo(f);
+    const markerColor = group ? '#7c3aed' : '#2563eb';
+    const icon = L.divIcon({
+      className: '',
+      html: `<div style="width:12px;height:12px;background:${markerColor};border:2px solid #fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.3)"></div>`,
+      iconSize: [12, 12], iconAnchor: [6, 6]
+    });
+
+    const marker = L.marker([lat, lng], { icon })
+      .bindPopup(makeMapPopup(f), { maxWidth: 260 })
+      .addTo(leafletMap);
+    mapMarkers.push(marker);
+    markerIndex[f.slug] = marker;
+  });
+
+  const sidebar = document.getElementById('mapSidebar');
+  if (sidebar) {
+    if (!facilities.length) {
+      sidebar.innerHTML = '<div class="mc-empty">No facilities match the current filters.</div>';
+    } else {
+      const placed = mapMarkers.length;
+      sidebar.innerHTML = `<div style="font-size:.78rem;color:#6b7280;margin-bottom:10px;font-weight:600;padding:0 2px">${facilities.length} facilit${facilities.length === 1 ? 'y' : 'ies'}${placed < facilities.length ? ` · ${placed} pinned on map` : ''}</div>` + facilities.map(makeMapCard).join('');
+    }
+  }
+}
+
+// ─── Init ──────────────────────────────────────────────────
+loadFacilities().then(data => {
+  // Filter to this state only (fallback: no state column yet = legacy Johor data)
+  allFacilities = data.filter(f => f.state === 'Kuala Lumpur' && (f.care_category === 'Nursing Home' || f.care_category === 'Mixed' || !f.care_category));
+  document.getElementById('heroCount').textContent = allFacilities.length;
+
+  // Build normalised area list (this state only)
+  const areaCounts = {};
+  allFacilities.forEach(f => {
+    const a = normArea(f.area);
+    areaCounts[a] = (areaCounts[a] || 0) + 1;
+  });
+
+  // Area order: sort by count desc, keep JB first
+  const areaOrder = Object.entries(areaCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([a]) => a);
+
+  const filtersEl = document.getElementById('areaFilters');
+  areaOrder.forEach(area => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-pill';
+    btn.dataset.area = area;
+    btn.textContent = `${area} (${areaCounts[area]})`;
+    btn.onclick = () => setArea(area, btn);
+    filtersEl.appendChild(btn);
+  });
+
+  applyFilters();
+
+  // Sticky filter bar
+  const filterWrap = document.getElementById('filterBarWrap');
+  const observer = new IntersectionObserver(
+    ([e]) => e.target.classList.toggle('stuck', e.intersectionRatio < 1),
+    { threshold: [1] }
+  );
+  observer.observe(filterWrap);
+});</script>
+</body>
+</html>

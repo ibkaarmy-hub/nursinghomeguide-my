@@ -27,13 +27,35 @@ import re
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 # ── 1. Read master template ──────────────────────────────────────────────
-with open('johor.html', encoding='utf-8') as f:
-    TEMPLATE = f.read()
+# _template_state.html is the canonical state-listing template (preserved
+# committed to repo). It is NEVER overwritten by this script — johor.html /
+# kuala-lumpur.html / selangor.html are written as redirect stubs, but the
+# template itself lives at _template_state.html.
+TEMPLATE_PATH = '_template_state.html'
+if not os.path.exists(TEMPLATE_PATH):
+    # Bootstrap fallback: if template doesn't exist yet but johor.html still
+    # holds the listing page (pre-restructure state), use it.
+    if os.path.exists('johor.html'):
+        with open('johor.html', encoding='utf-8') as f:
+            candidate = f.read()
+        if 'allFacilities' in candidate and 'data.filter' in candidate:
+            TEMPLATE = candidate
+            with open(TEMPLATE_PATH, 'w', encoding='utf-8', newline='\n') as f:
+                f.write(candidate)
+            print(f"Bootstrapped {TEMPLATE_PATH} from johor.html.", file=sys.stderr)
+        else:
+            print(f"ERROR: {TEMPLATE_PATH} missing and johor.html is not a listing template.", file=sys.stderr)
+            sys.exit(1)
+    else:
+        print(f"ERROR: {TEMPLATE_PATH} not found.", file=sys.stderr)
+        sys.exit(1)
+else:
+    with open(TEMPLATE_PATH, encoding='utf-8') as f:
+        TEMPLATE = f.read()
 
-# Sanity check the template hasn't already been turned into a redirect stub
+# Sanity check
 if 'allFacilities' not in TEMPLATE or 'data.filter' not in TEMPLATE:
-    print("ERROR: johor.html does not look like a state listing template (missing JS).", file=sys.stderr)
-    print("If it has been turned into a redirect stub, restore from git history before running.", file=sys.stderr)
+    print(f"ERROR: {TEMPLATE_PATH} does not look like a state listing template.", file=sys.stderr)
     sys.exit(1)
 
 
