@@ -65,30 +65,47 @@ def url_entry(loc, lastmod=None, changefreq="weekly", priority="0.5"):
     return "\n".join(out)
 
 
+CATEGORY_DIRS = {
+    "Nursing Home":     "nursing-homes",
+    "Assisted Living":  "assisted-living",
+    "Mixed":            "nursing-homes",   # canonical for cross-listed
+    "Home Care":        "home-care",
+    "Day Care":         "day-care",
+}
+DEFAULT_CATEGORY = "Nursing Home"
+
+
 def main():
     today = date.today().isoformat()
     rows = fetch_csv(FACILITIES_CSV)
     live = [r for r in rows if r.get("title") and r.get("status", "").strip() not in ("unverified", "removed")]
 
     entries = []
-    # Homepage
+    # Homepage (NH landing — state picker)
     entries.append(url_entry(f"{BASE}/", lastmod=today, changefreq="daily", priority="1.0"))
-    # State pages
+    # AL landing
+    entries.append(url_entry(f"{BASE}/assisted-living/", lastmod=today, changefreq="daily", priority="0.9"))
+    # NH state pages
     for state in ("johor", "kuala-lumpur", "selangor"):
-        entries.append(url_entry(f"{BASE}/{state}.html", lastmod=today, changefreq="daily", priority="0.9"))
+        entries.append(url_entry(f"{BASE}/nursing-homes/{state}/", lastmod=today, changefreq="daily", priority="0.9"))
+    # AL state pages
+    for state in ("johor", "kuala-lumpur", "selangor"):
+        entries.append(url_entry(f"{BASE}/assisted-living/{state}/", lastmod=today, changefreq="daily", priority="0.85"))
     # Guide pages
     for g in ("which-care", "government-assistance"):
         entries.append(url_entry(f"{BASE}/guides/{g}.html", lastmod=today, changefreq="monthly", priority="0.8"))
 
-    # Facility pages
+    # Facility pages — category-prefixed canonical URLs only
     facility_count = 0
     for r in live:
         slug = (r.get("slug") or "").strip()
         if not slug:
             continue
+        cat = (r.get("care_category") or "").strip() or DEFAULT_CATEGORY
+        cat_dir = CATEGORY_DIRS.get(cat, CATEGORY_DIRS[DEFAULT_CATEGORY])
         lastmod = parse_lastmod(r.get("last_updated", "")) or today
         entries.append(url_entry(
-            f"{BASE}/facility/{slug}/",
+            f"{BASE}/{cat_dir}/{slug}/",
             lastmod=lastmod, changefreq="weekly", priority="0.7"
         ))
         facility_count += 1
@@ -112,7 +129,7 @@ def main():
         f.write(xml)
 
     print(f"Wrote sitemap.xml: {len(entries)} URLs total "
-          f"(1 home + 3 states + 2 guides + {facility_count} facilities + {org_count} orgs)",
+          f"(2 landings + 6 state pages + 2 guides + {facility_count} facilities + {org_count} orgs)",
           file=sys.stderr)
 
 

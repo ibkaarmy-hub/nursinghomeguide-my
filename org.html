@@ -25,7 +25,7 @@
     <nav class="breadcrumb" aria-label="breadcrumb" id="orgBreadcrumb">
       <a href="index.html">Malaysia</a>
       <span>›</span>
-      <a href="johor.html">Johor</a>
+      <a href="/nursing-homes/johor/">Johor</a>
       <span>›</span>
       <span id="orgBreadcrumbName">Organisation</span>
     </nav>
@@ -86,7 +86,7 @@
     </div>
     <div class="footer-links">
       <a href="index.html">All States</a>
-      <a href="johor.html">Johor</a>
+      <a href="/nursing-homes/johor/">Johor</a>
       <a href="#">About</a>
     </div>
     <div class="footer-copy">© 2026 NursingHomeGuide.my — Not affiliated with JKM or any facility</div>
@@ -160,7 +160,7 @@ function makeBranchCard(f, groupSlug) {
     : '';
 
   return `
-    <a href="/facility/${f.slug}/" class="fac-card">
+    <a href="${(f.care_category||'') === 'Assisted Living' ? '/assisted-living/' : (f.care_category||'') === 'Home Care' ? '/home-care/' : (f.care_category||'') === 'Day Care' ? '/day-care/' : '/nursing-homes/'}${f.slug}/" class="fac-card">
       <div class="fac-card-img${photoUrl ? '' : ' no-photo'}">
         ${photoHtml}
         ${priceHtml}
