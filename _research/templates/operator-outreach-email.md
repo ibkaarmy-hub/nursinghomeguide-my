@@ -47,7 +47,7 @@ Warm regards,
 
 **`<helper-name>`**
 Verification team, NursingHomeGuide.my
-hello@nursinghomeguide.my
+admin@nursinghomeguide.my
 
 ---
 
