@@ -9,6 +9,10 @@ External research that informs content strategy. Update these when you do new re
 | [competitors.md](competitors.md) | Other Malaysian eldercare sites + their content angle and gaps |
 | [pricing-benchmarks.md](pricing-benchmarks.md) | Verified monthly fee ranges by tier, with sources |
 | [social-worker-outreach-audit.md](social-worker-outreach-audit.md) | Backlink/outreach research targeting Malaysian social workers (2026-05-01) |
+| [regulatory-framework.md](regulatory-framework.md) | Next-phase strategy: Act 586/506/802 trust framework, schema upgrade, Clinical Acuity Score (2026-05-03) |
+| [market-landscape.md](market-landscape.md) | Brand segments (premium/medical-led/boutique), MOH vs JKM counts, state distribution (2026-05-03) |
+| [assisted-living-segment.md](assisted-living-segment.md) | Separate `/assisted-living/` category architecture, AL voice, re-tagging audit, seed brands (2026-05-03) |
+| [verification-sop.md](verification-sop.md) | Operational SOP for IK + outreach helper: Drive structure, intake form, evidence rulebook, tier workflow (2026-05-03) |
 
 ## Conventions
 
