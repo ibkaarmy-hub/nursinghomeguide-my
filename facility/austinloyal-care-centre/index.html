@@ -7,18 +7,18 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NursingHomeGuide.my">
 <meta property="og:title" content="AustinLoyal Care Centre — NursingHomeGuide.my">
-<meta property="og:description" content="AustinLoyal Care Centre in Johor Bahru. AustinLoyal positions itself as an urban care retreat in the Austin area of Johor Bahru. The website is sparse on…">
+<meta property="og:description" content="AustinLoyal Care Centre in Johor Bahru. AustinLoyal Care Centre operates from a corner lot at 1, Jalan Mutiara Emas 3/4 in Taman Mount Austin, a busy…">
 <meta property="og:url" content="https://nursinghomeguide.my/facility/austinloyal-care-centre/">
 <meta property="og:image" content="https://lh3.googleusercontent.com/p/AF1QipMnHQQ5kQAksml5Qj0ep0188gV6BPNuWecGUxXY=w1920-h1080-k-no">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AustinLoyal Care Centre — NursingHomeGuide.my">
-<meta name="twitter:description" content="AustinLoyal Care Centre in Johor Bahru. AustinLoyal positions itself as an urban care retreat in the Austin area of Johor Bahru. The website is sparse on…">
+<meta name="twitter:description" content="AustinLoyal Care Centre in Johor Bahru. AustinLoyal Care Centre operates from a corner lot at 1, Jalan Mutiara Emas 3/4 in Taman Mount Austin, a busy…">
 <meta name="twitter:image" content="https://lh3.googleusercontent.com/p/AF1QipMnHQQ5kQAksml5Qj0ep0188gV6BPNuWecGUxXY=w1920-h1080-k-no">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/facility/austinloyal-care-centre/","name":"AustinLoyal Care Centre","url":"https://nursinghomeguide.my/facility/austinloyal-care-centre/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor Bahru","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/p/AF1QipMnHQQ5kQAksml5Qj0ep0188gV6BPNuWecGUxXY=w1920-h1080-k-no","telephone":"+60 19-219 9828","description":"AustinLoyal positions itself as an urban care retreat in the Austin area of Johor Bahru. The website is sparse on operational specifics, with only a homepage tagline (\"home away from home\") and a basic About / Services / Contact menu — no published care types, capacity, staffing, or pricing. Beyond the corporate Facebook page, there is little independent content about the centre online.\n\nWhat is verifiable: the facility is private, operates from JB, and lists itself as a residential care option ","geo":{"@type":"GeoCoordinates","latitude":1.5608227,"longitude":103.7809224},"aggregateRating":{"@type":"AggregateRating","ratingValue":"1.9","reviewCount":260,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/facility/austinloyal-care-centre/","name":"AustinLoyal Care Centre","url":"https://nursinghomeguide.my/facility/austinloyal-care-centre/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor Bahru","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/p/AF1QipMnHQQ5kQAksml5Qj0ep0188gV6BPNuWecGUxXY=w1920-h1080-k-no","telephone":"+60 19-219 9828","description":"AustinLoyal Care Centre operates from a corner lot at 1, Jalan Mutiara Emas 3/4 in Taman Mount Austin, a busy urban pocket of JB with hospitals, clinics, schools, and shops within a few minutes' drive. The home is run by AUSTINLOYAL SDN BHD (1142053-H) and soft-launched in March 2018, positioning itself as an \"urban care retreat\" — a modern, non-institutional alternative to traditional nursing homes, with a stated emphasis on rehabilitation and dignity rather than custodial care. The published s","geo":{"@type":"GeoCoordinates","latitude":1.5608227,"longitude":103.7809224},"aggregateRating":{"@type":"AggregateRating","ratingValue":"1.9","reviewCount":260,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="austinloyal-care-centre";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">AustinLoyal Care Centre — NursingHomeGuide.my</title>
-<meta name="description" id="pageDesc" content="AustinLoyal Care Centre in Johor Bahru. AustinLoyal positions itself as an urban care retreat in the Austin area of Johor Bahru. The website is sparse on…" />
+<meta name="description" id="pageDesc" content="AustinLoyal Care Centre in Johor Bahru. AustinLoyal Care Centre operates from a corner lot at 1, Jalan Mutiara Emas 3/4 in Taman Mount Austin, a busy…" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css?v=8" />
@@ -472,9 +472,19 @@ function render(f) {
     </div>`;
 
   /* Sidebar contact buttons */
+  // WhatsApp number resolution: prefer explicit whatsapp column, else fall back
+  // to phone if it's a Malaysian mobile (starts with 1 after stripping country code).
+  // Landlines (03-, 07-, etc.) aren't on WhatsApp, so return null.
+  const waNumber = (() => {
+    if (f.whatsapp) return f.whatsapp.replace(/\D/g, '');
+    if (!f.phone) return null;
+    const digits = f.phone.replace(/\D/g, '');
+    const local = digits.startsWith('60') ? digits.slice(2) : digits.replace(/^0/, '');
+    return local.startsWith('1') ? (digits.startsWith('60') ? digits : '60' + local) : null;
+  })();
   const phoneLink   = f.phone        ? `<a href="tel:${escapeHtml(f.phone)}" class="cta-btn cta-call">📞 Call ${escapeHtml(f.phone)}</a>` : '';
   const waMsg       = encodeURIComponent(`Hi, I found ${f.title} on NursingHomeGuide.my and would like to enquire about availability and pricing. Could you please share more details?`);
-  const waLink      = f.whatsapp     ? `<a href="https://wa.me/${(f.whatsapp || '').replace(/\D/g,'')}?text=${waMsg}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp Now</a>` : '';
+  const waLink      = waNumber       ? `<a href="https://wa.me/${waNumber}?text=${waMsg}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp Now</a>` : '';
   const mapsLink    = f.google_maps_url ? `<a href="${escapeHtml(f.google_maps_url)}" target="_blank" class="cta-btn cta-maps">📍 Google Maps</a>` : '';
   const webLink     = f.website && !f.website.includes('facebook') ? `<a href="${escapeHtml(f.website)}" target="_blank" class="cta-btn cta-web">🌐 Website</a>` : '';
 
@@ -744,7 +754,7 @@ function render(f) {
       <!-- Mobile sticky CTA bar (hidden on desktop via CSS) -->
       <div class="mobile-cta-bar">
         ${f.phone ? `<a href="tel:${escapeHtml(f.phone)}" class="m-call">📞 Call</a>` : ''}
-        ${f.whatsapp ? `<a href="https://wa.me/${(f.whatsapp||'').replace(/\D/g,'')}?text=${waMsg}" class="m-wa">💬 WhatsApp</a>` : ''}
+        ${waNumber ? `<a href="https://wa.me/${waNumber}?text=${waMsg}" class="m-wa">💬 WhatsApp</a>` : ''}
       </div>
 
       <aside class="profile-sidebar">
