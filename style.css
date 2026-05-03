@@ -325,7 +325,7 @@ footer { background: #1e3a5f; color: #cbd5e1; margin-top: 64px; padding: 48px 20
 .footer-inner { max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
 .footer-logo { font-size: 1.1rem; font-weight: 700; color: #fff; letter-spacing: -.01em; }
 .footer-tagline { font-size: .875rem; color: #94a3b8; margin-top: 6px; max-width: 340px; line-height: 1.5; }
-.footer-links { display: flex; gap: 28px; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 28px; }
 .footer-links a { font-size: .875rem; color: #94a3b8; transition: color .15s; }
 .footer-links a:hover { color: #fff; }
 .footer-copy { font-size: .8rem; color: #64748b; border-top: 1px solid #2d4d6e; padding-top: 20px; width: 100%; text-align: center; }
