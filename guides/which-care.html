@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Which Care Does My Parent Need? — Nursing Home vs Home Care vs Day Care | NursingHomeGuide.my</title>
-  <meta name="description" content="Answer 5 questions to find out whether your parent needs home care, a day care centre, assisted living, or a nursing home. Built by a Malaysian doctor to help families make the right decision." />
-  <link rel="stylesheet" href="../style.css?v=5" />
+  <meta name="description" content="Answer 3 short questions and we'll point you straight to the right care category — home care, day care, assisted living, or a nursing home — with the relevant directory of facilities." />
+  <link rel="stylesheet" href="../style.css?v=7" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
@@ -173,6 +173,12 @@
     }
     .restart-btn:hover { border-color: var(--primary); color: var(--primary); }
 
+    /* ── State pills (router result) ─────────────────────── */
+    .result-state-pills { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+    .result-state-label { font-size: .82rem; color: var(--text-muted); margin-right: 4px; }
+    .state-pill { display: inline-block; padding: 7px 14px; background: #fff; border: 1.5px solid var(--border); border-radius: 999px; font-size: .85rem; font-weight: 600; color: var(--text); transition: border-color .15s, color .15s, background .15s; text-decoration: none; }
+    .state-pill:hover { border-color: var(--primary); color: var(--primary); background: #eff6ff; }
+
     /* ── Care spectrum comparison ────────────────────────── */
     .spectrum-section { margin-bottom: 48px; }
     .spectrum-section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
@@ -229,37 +235,37 @@
       <span>Which Care is Right?</span>
     </div>
     <h1>Which Care Does My Parent Actually Need?</h1>
-    <p>Answer 5 short questions and we'll tell you whether home care, a day care centre, assisted living, or a nursing home fits best — with clear reasoning and next steps.</p>
+    <p>Three quick questions. We'll point you to the right category and the directory of facilities to start with.</p>
   </div>
 </section>
 
 <div class="guide-body">
 
-  <!-- Doctor box -->
+  <!-- Note -->
   <div class="doctor-box">
-    <div class="doctor-box-label">👨‍⚕️ A Doctor's Note Before You Start</div>
-    <p>Most families come to me after a crisis — a stroke, a fall, a hospital discharge. By that point, the decision is urgent and options feel limited. This tool is for families who want to think ahead, or who are in that difficult moment of realising something has to change but don't yet know what.</p>
-    <p>The most important thing I can tell you: <strong>a nursing home is not the only option, and it should rarely be the first option</strong>. For many families, professional home care or a day care centre is a better fit — and costs less. Work through these questions honestly and trust the result.</p>
+    <div class="doctor-box-label">📋 Before You Start</div>
+    <p>Most Malaysian families only consider nursing homes — but they're often the wrong starting point. Professional home care, a day care centre, or assisted living can be a better fit, and costs less. This tool routes you to the category that matches the actual situation.</p>
+    <p>Answer honestly. The questions are short and the result deep-links to a real directory of facilities you can call today.</p>
   </div>
 
   <!-- ── Interactive Question Tree ───────────────────────── -->
   <div class="tree-wrap" id="tree">
-    <div class="tree-title">Find the right care — 5 questions</div>
+    <div class="tree-title">Find the right care — 3 questions</div>
     <div class="tree-sub">Choose the answer that best describes your parent's situation today.</div>
 
     <div class="progress-wrap">
       <div class="progress-label">
-        <span id="prog-text">Question 1 of 5</span>
-        <span id="prog-pct">20%</span>
+        <span id="prog-text">Question 1 of 3</span>
+        <span id="prog-pct">33%</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:20%"></div></div>
     </div>
 
     <!-- Q1: Daily tasks -->
     <div class="q-step active" id="q1">
-      <div class="q-number">Question 1 of 5</div>
-      <div class="q-text">Can your parent manage daily tasks on their own?</div>
-      <div class="q-hint">Think about bathing, dressing, eating, going to the toilet, and moving around the house.</div>
+      <div class="q-number">Question 1 of 3</div>
+      <div class="q-text">How independent is your parent day-to-day?</div>
+      <div class="q-hint">Think about bathing, dressing, eating, getting to the toilet, and moving around the house.</div>
       <div class="q-options">
         <button class="q-option" onclick="answer(1,'A')">
           <span class="q-option-icon">💪</span>
@@ -271,142 +277,76 @@
         </button>
         <button class="q-option" onclick="answer(1,'C')">
           <span class="q-option-icon">🏥</span>
-          <span class="q-option-text"><strong>Needs full assistance</strong><span>They cannot bathe, dress, or move without someone there — or they are bedbound</span></span>
+          <span class="q-option-text"><strong>Needs full assistance</strong><span>They cannot bathe, dress, or move unaided — or they are bedbound</span></span>
         </button>
       </div>
     </div>
 
     <!-- Q2: Memory / dementia -->
     <div class="q-step" id="q2">
-      <div class="q-number">Question 2 of 5</div>
-      <div class="q-text">Does your parent have memory problems or dementia?</div>
-      <div class="q-hint">Be honest — wandering, not recognising family, repeating questions, or needing constant supervision for safety.</div>
+      <div class="q-number">Question 2 of 3</div>
+      <div class="q-text">What level of medical or memory care does your parent need?</div>
+      <div class="q-hint">Be honest — this is the question that most often decides between assisted living and a nursing home.</div>
       <div class="q-options">
         <button class="q-option" onclick="answer(2,'A')">
           <span class="q-option-icon">🟢</span>
-          <span class="q-option-text"><strong>No, memory is fine</strong><span>They are mentally sharp — or have only very mild forgetfulness</span></span>
+          <span class="q-option-text"><strong>Light</strong><span>Routine medication, GP visits sometimes. Memory is sharp or only mildly forgetful. No nursing procedures.</span></span>
         </button>
         <button class="q-option" onclick="answer(2,'B')">
           <span class="q-option-icon">🟡</span>
-          <span class="q-option-text"><strong>Mild memory issues</strong><span>Some forgetfulness, confusion at times — but they are safe at home during the day</span></span>
+          <span class="q-option-text"><strong>Moderate</strong><span>Wound care, injections, post-stroke rehab, or moderate dementia (some confusion, occasional safety concerns).</span></span>
         </button>
         <button class="q-option" onclick="answer(2,'C')">
           <span class="q-option-icon">🔴</span>
-          <span class="q-option-text"><strong>Significant dementia</strong><span>They wander, don't recognise people, need watching 24 hours, or have become aggressive or unsafe</span></span>
+          <span class="q-option-text"><strong>Complex / high-dependency</strong><span>Tube feeding, catheter, ventilator, dialysis, advanced palliative, or severe dementia (wandering, 24-hour supervision).</span></span>
         </button>
       </div>
       <button class="q-back" onclick="goBack(1)">← Back</button>
     </div>
 
-    <!-- Q3: Medical needs -->
+    <!-- Q3: Care setting preference -->
     <div class="q-step" id="q3">
-      <div class="q-number">Question 3 of 5</div>
-      <div class="q-text">What level of medical care does your parent need?</div>
-      <div class="q-hint">Think about whether they need regular nursing care, not just medication reminders or occasional GP visits.</div>
+      <div class="q-number">Question 3 of 3</div>
+      <div class="q-text">What care setting would suit your family best?</div>
+      <div class="q-hint">Think about who's available at home, the home's layout, and whether your parent would prefer to stay or move.</div>
       <div class="q-options">
         <button class="q-option" onclick="answer(3,'A')">
-          <span class="q-option-icon">💊</span>
-          <span class="q-option-text"><strong>Routine medication only</strong><span>Takes daily medications, sees a GP sometimes — no ongoing nursing procedures needed</span></span>
+          <span class="q-option-icon">🏡</span>
+          <span class="q-option-text"><strong>Stay at home — care comes to us</strong><span>A trained caregiver or nurse visits or lives in. Parent keeps their home, family stays nearby.</span></span>
         </button>
         <button class="q-option" onclick="answer(3,'B')">
-          <span class="q-option-icon">🩺</span>
-          <span class="q-option-text"><strong>Regular nursing care</strong><span>Needs wound care, injections, tube feeding, catheter management, or post-stroke rehabilitation</span></span>
+          <span class="q-option-icon">☀️</span>
+          <span class="q-option-text"><strong>Daytime out, evenings at home</strong><span>Parent is alone or unsafe during working hours — we need a centre that takes them during the day.</span></span>
         </button>
         <button class="q-option" onclick="answer(3,'C')">
-          <span class="q-option-icon">🏨</span>
-          <span class="q-option-text"><strong>Complex medical needs</strong><span>Ventilator, dialysis, advanced palliative care, or other specialised medical care that a hospital or skilled nursing facility handles</span></span>
+          <span class="q-option-icon">🛏️</span>
+          <span class="q-option-text"><strong>Move into a community or facility</strong><span>Home isn't workable any more, or parent prefers full-time residential care with peers and on-site staff.</span></span>
         </button>
       </div>
       <button class="q-back" onclick="goBack(2)">← Back</button>
     </div>
 
-    <!-- Q4: Family caregiver -->
-    <div class="q-step" id="q4">
-      <div class="q-number">Question 4 of 5</div>
-      <div class="q-text">What is the family's ability to provide care at home?</div>
-      <div class="q-hint">Consider who is available, for how many hours, and whether the home setup is safe (space, bathroom access, stairs).</div>
-      <div class="q-options">
-        <button class="q-option" onclick="answer(4,'A')">
-          <span class="q-option-icon">🏠</span>
-          <span class="q-option-text"><strong>Family can manage with support</strong><span>Someone is home during the day, or we can arrange a helper — the current setup is manageable with extra help</span></span>
-        </button>
-        <button class="q-option" onclick="answer(4,'B')">
-          <span class="q-option-icon">⚠️</span>
-          <span class="q-option-text"><strong>Struggling — carer is burning out</strong><span>The person providing care is exhausted, unwell, working full-time, or the situation is becoming unsafe</span></span>
-        </button>
-        <button class="q-option" onclick="answer(4,'C')">
-          <span class="q-option-icon">🚫</span>
-          <span class="q-option-text"><strong>Home care is not possible</strong><span>No family carer available, or the home is physically not suitable, or care needs exceed what home allows</span></span>
-        </button>
-      </div>
-      <button class="q-back" onclick="goBack(3)">← Back</button>
-    </div>
-
-    <!-- Q5: Duration -->
-    <div class="q-step" id="q5">
-      <div class="q-number">Question 5 of 5</div>
-      <div class="q-text">What kind of care arrangement are you looking for?</div>
-      <div class="q-hint">This helps us suggest the right level of commitment and cost.</div>
-      <div class="q-options">
-        <button class="q-option" onclick="answer(5,'A')">
-          <span class="q-option-icon">📆</span>
-          <span class="q-option-text"><strong>Daytime support during working hours</strong><span>Parent is alone during the day while family works — we need supervision and activities Monday to Friday</span></span>
-        </button>
-        <button class="q-option" onclick="answer(5,'B')">
-          <span class="q-option-icon">🏡</span>
-          <span class="q-option-text"><strong>Regular help at home (a few hours/day or live-in)</strong><span>Parent stays home but needs a trained carer or nurse visiting or living in</span></span>
-        </button>
-        <button class="q-option" onclick="answer(5,'C')">
-          <span class="q-option-icon">🛏️</span>
-          <span class="q-option-text"><strong>Full-time residential care</strong><span>Parent needs to move into a care facility — 24-hour supervision and care</span></span>
-        </button>
-      </div>
-      <button class="q-back" onclick="goBack(4)">← Back</button>
-    </div>
-
-    <!-- Results -->
+    <!-- Results — router style: one verdict + deep-link CTA + state pills -->
     <div id="results-area" style="display:none;">
 
       <!-- Home Care result -->
       <div class="result-panel" id="res-homecare">
         <div class="result-hero res-homecare">
-          <div class="result-label">Our Recommendation</div>
+          <div class="result-label">Best fit for your situation</div>
           <h2>🏡 Professional Home Care</h2>
-          <p>Based on your answers, your parent can continue living at home with the right professional support. A trained caregiver or visiting nurse coming daily or a few times per week is likely the best starting point.</p>
+          <p>Care comes to your parent. A trained caregiver or visiting nurse handles personal care, medication, and light nursing at home — keeping your parent in their familiar surroundings.</p>
         </div>
-        <div class="result-cost">💰 <div><strong>RM29–RM40/hour</strong> or from <strong>RM2,500/month</strong> for regular packages<br/><span style="font-size:.8rem;opacity:.7;">Professional home care agencies operating in KL, Selangor, and Johor</span></div></div>
+        <div class="result-cost">💰 <div>From <strong>RM29–RM40/hour</strong> or <strong>RM2,500/month</strong> for regular packages.<br/><span style="font-size:.8rem;opacity:.7;">Most providers cover all of Klang Valley + Johor; some go nationwide.</span></div></div>
         <div class="result-details">
-          <h3>Why home care fits your situation</h3>
+          <h3>Why this fits</h3>
           <ul>
-            <li>Your parent has meaningful independence remaining — residential care would remove this unnecessarily</li>
-            <li>Being at home is almost always better for emotional wellbeing and cognitive health</li>
-            <li>A trained caregiver can handle personal care, medication, wound care, and light nursing at home</li>
-            <li>You can start with a few hours per day and increase as needs grow</li>
-            <li>If needs escalate, you can step up to assisted living or nursing home care later</li>
+            <li>Your parent has independence to preserve — residential care would remove that unnecessarily.</li>
+            <li>You can start with a few hours per day and step up as needs grow. If they grow significantly, you can move to assisted living or a nursing home later.</li>
           </ul>
-        </div>
-        <div class="result-details">
-          <h3>Providers to contact in Malaysia</h3>
-          <ul>
-            <li><strong>Homage Malaysia</strong> — homage.com.my — covers KL, Selangor, Johor</li>
-            <li><strong>Care Concierge</strong> — mycareconcierge.com — premium; live-in and palliative</li>
-            <li><strong>Noble Care Malaysia</strong> — KL, Selangor, Johor; est. 2005</li>
-            <li><strong>Pillar Care</strong> — doctor-managed; Klang Valley + Johor</li>
-            <li><strong>WhereWeCare</strong> — KL, Johor, Penang; certified caregivers + RNs</li>
-          </ul>
-        </div>
-        <div class="result-next-steps">
-          <h3>Your next steps</h3>
-          <ol>
-            <li>Call 2–3 home care agencies for a needs assessment (usually free)</li>
-            <li>Ask specifically about the level of medical care your parent requires — some agencies only provide personal care, not nursing</li>
-            <li>Check whether you qualify for the JKM BPT program (RM500/month to carers of bedridden family members)</li>
-            <li>Consider also a government PAWE day centre for social engagement (free)</li>
-          </ol>
         </div>
         <div class="result-cta-btns">
-          <a href="government-assistance.html" class="btn-primary btn-green">Check government assistance →</a>
-          <a href="/nursing-homes/selangor/" class="btn-secondary">Browse care centres in Selangor</a>
+          <a href="/home-care/" class="btn-primary btn-green">Browse home care providers →</a>
+          <a href="government-assistance.html" class="btn-secondary">Check government carer assistance (BPT)</a>
         </div>
         <button class="restart-btn" onclick="restart()">Start again</button>
       </div>
@@ -414,43 +354,21 @@
       <!-- Day Care result -->
       <div class="result-panel" id="res-daycare">
         <div class="result-hero res-daycare">
-          <div class="result-label">Our Recommendation</div>
-          <h2>☀️ Elderly Day Care Centre</h2>
-          <p>Your parent would benefit most from a day care centre — attending during working hours while you or a carer is at work, then returning home each evening.</p>
+          <div class="result-label">Best fit for your situation</div>
+          <h2>☀️ Day Care Centre</h2>
+          <p>Your parent attends during working hours and returns home each evening — staying socially engaged and supervised while family is at work.</p>
         </div>
-        <div class="result-cost">💰 <div><strong>Free</strong> (government PAWE centres) or <strong>RM80–RM125/day</strong> (private day care)<br/><span style="font-size:.8rem;opacity:.7;">A significantly more affordable option than residential care</span></div></div>
+        <div class="result-cost">💰 <div><strong>Free</strong> at government PAWE centres, or <strong>RM80–RM125/day</strong> at private day care.<br/><span style="font-size:.8rem;opacity:.7;">Significantly cheaper than residential care; preserves home life.</span></div></div>
         <div class="result-details">
-          <h3>Why day care fits your situation</h3>
+          <h3>Why this fits</h3>
           <ul>
-            <li>Your parent is mobile enough to attend a centre but needs supervision during the day</li>
-            <li>Day care provides structured activities, meals, peer interaction, and health monitoring</li>
-            <li>Your parent returns home each evening — maintaining family connection and familiar surroundings</li>
-            <li>Government PAWE centres (190+ nationwide) are completely free for mobile seniors aged 60+</li>
-            <li>Private day care centres offer more medical support and are suitable for mild dementia</li>
+            <li>Your parent is mobile enough to attend a centre and benefits from structured activity and peer interaction.</li>
+            <li>Family stays close — no relocation. Government PAWE centres are free for mobile seniors aged 60+.</li>
           </ul>
-        </div>
-        <div class="result-details">
-          <h3>Centres to explore</h3>
-          <ul>
-            <li><strong>PAWE (government)</strong> — free; search jkm.gov.my/pawe for nearest centre — for active, mobile seniors</li>
-            <li><strong>Komune Care</strong> (Cheras, KL) — komunecare.com — RM125/day; premium facilities</li>
-            <li><strong>Seniora</strong> (Johor Bahru + others) — seniora.com.my — RM80 trial day</li>
-            <li><strong>Pusat Jagaan Harian Warga Tua Cheras Baru</strong> — KL — non-profit, affordable</li>
-            <li><strong>Amitabha Foundation</strong> — Johor Bahru — charitable; day care only</li>
-          </ul>
-        </div>
-        <div class="result-next-steps">
-          <h3>Your next steps</h3>
-          <ol>
-            <li>Call 03-8000 8000 (JKM) or visit online.jkm.gov.my/pawe to find your nearest free PAWE centre</li>
-            <li>If your parent has dementia or needs medical monitoring, call a private day care centre first</li>
-            <li>Ask about transport — some centres offer pickup and drop-off</li>
-            <li>Do a trial day before committing to a monthly plan</li>
-          </ol>
         </div>
         <div class="result-cta-btns">
-          <a href="government-assistance.html#pawe" class="btn-primary btn-green">Free government day centres →</a>
-          <a href="/nursing-homes/kuala-lumpur/" class="btn-secondary">Browse KL facilities</a>
+          <a href="/day-care/" class="btn-primary btn-green">Browse day care centres →</a>
+          <a href="government-assistance.html#pawe" class="btn-secondary">Free PAWE centres (government)</a>
         </div>
         <button class="restart-btn" onclick="restart()">Start again</button>
       </div>
@@ -458,42 +376,26 @@
       <!-- Assisted Living result -->
       <div class="result-panel" id="res-assisted">
         <div class="result-hero res-assisted">
-          <div class="result-label">Our Recommendation</div>
+          <div class="result-label">Best fit for your situation</div>
           <h2>🏘️ Assisted Living</h2>
-          <p>Your parent needs residential care, but not intensive nursing. Assisted living provides 24-hour support and social engagement while preserving as much independence as possible.</p>
+          <p>Residential care without intensive nursing. Your parent lives in a community with peers, with 24-hour staff for daily tasks — but keeps meaningful independence.</p>
         </div>
-        <div class="result-cost">💰 <div><strong>RM2,500–RM8,500/month</strong> (assisted living)<br/><span style="font-size:.8rem;opacity:.7;">More affordable than skilled nursing homes; more suitable for independent but supported living</span></div></div>
+        <div class="result-cost">💰 <div><strong>RM2,500–RM8,500/month</strong> standard tier; premium communities go higher.<br/><span style="font-size:.8rem;opacity:.7;">More affordable and life-affirming than a nursing home if clinical needs are still light.</span></div></div>
         <div class="result-details">
-          <h3>Why assisted living fits your situation</h3>
+          <h3>Why this fits</h3>
           <ul>
-            <li>Your parent needs more support than home care can provide, but doesn't have complex medical needs that require 24-hour nursing</li>
-            <li>Assisted living is residential — your parent lives there full-time, in a community with peers</li>
-            <li>Support is available for bathing, dressing, meals, and medication — but residents maintain significant independence</li>
-            <li>A better fit than a traditional nursing home if your parent is still reasonably active or socially engaged</li>
+            <li>Your parent needs more support than home care can give, but doesn't have complex medical needs that require 24-hour nursing.</li>
+            <li>The community shape matters — dining, social calendar, amenities — not just clinical capability.</li>
           </ul>
         </div>
-        <div class="result-details">
-          <h3>Providers to explore</h3>
-          <ul>
-            <li><strong>Komune Care</strong> — Cheras, KL — assisted living studios from RM6,800/month</li>
-            <li><strong>Woodrose Senior Residences</strong> — multiple locations — from RM3,800/month</li>
-            <li><strong>Haywood Senior Living</strong> — Bangsar, KL — premium; pool, gym</li>
-            <li><strong>My Aged Care Malaysia</strong> — Selangor — from RM2,700/month</li>
-            <li><strong>ReU Living</strong> — KL — hotel-grade from RM6,800/month</li>
-          </ul>
+        <div class="result-cta-btns" id="cta-assisted">
+          <a href="/assisted-living/" class="btn-primary">Browse all assisted living →</a>
         </div>
-        <div class="result-next-steps">
-          <h3>Your next steps</h3>
-          <ol>
-            <li>Visit 2–3 assisted living facilities in person — the quality varies enormously</li>
-            <li>Ask specifically what care they cannot provide — understand when you would need to escalate to a nursing home</li>
-            <li>Clarify what's included in the monthly fee vs. what's billed separately</li>
-            <li>Ask about dementia care capacity if relevant to your situation</li>
-          </ol>
-        </div>
-        <div class="result-cta-btns">
-          <a href="/nursing-homes/selangor/" class="btn-primary">Browse Selangor facilities →</a>
-          <a href="/nursing-homes/kuala-lumpur/" class="btn-secondary">Browse KL facilities</a>
+        <div class="result-state-pills">
+          <span class="result-state-label">Filter by state:</span>
+          <a href="/assisted-living/selangor/" class="state-pill">Selangor</a>
+          <a href="/assisted-living/kuala-lumpur/" class="state-pill">Kuala Lumpur</a>
+          <a href="/assisted-living/johor/" class="state-pill">Johor</a>
         </div>
         <button class="restart-btn" onclick="restart()">Start again</button>
       </div>
@@ -501,38 +403,30 @@
       <!-- Nursing Home result -->
       <div class="result-panel" id="res-nursing">
         <div class="result-hero res-nursing">
-          <div class="result-label">Our Recommendation</div>
-          <h2>🏥 Skilled Nursing Home</h2>
-          <p>Your parent's care needs have reached a level where round-the-clock nursing care is genuinely necessary. A nursing home is the appropriate — and responsible — next step.</p>
+          <div class="result-label">Best fit for your situation</div>
+          <h2>🏥 Nursing Home</h2>
+          <p>Your parent's medical or cognitive needs have reached a level where round-the-clock nursing care is the right answer. A licensed nursing home — not assisted living — is the appropriate next step.</p>
         </div>
         <div class="result-warning">
-          <strong>⚠️ Important: JKM-registered vs MOH-licensed</strong>
-          Most facilities in Malaysia are JKM-registered care centres (licensed under Act 506). Only 18 facilities hold a MOH nursing home licence (Act 586) and are legally authorised to provide clinical medical care. If your parent requires tube feeding, wound care, catheter management, or other nursing procedures, verify the facility's MOH licence before committing.
+          <strong>⚠️ Verify the licence before committing.</strong>
+          Most Malaysian facilities are JKM-registered (Act 506). Only ~18 facilities hold a full MOH nursing home licence (Act 586) authorising clinical medical care. If your parent needs tube feeding, wound care, catheter management or other nursing procedures, ask for the specific licence on the tour.
         </div>
-        <div class="result-cost">💰 <div><strong>RM2,000–RM8,000/month</strong> (standard to skilled nursing)<br/><span style="font-size:.8rem;opacity:.7;">Room type (shared/private), care level, and location affect the price significantly</span></div></div>
+        <div class="result-cost">💰 <div><strong>RM2,000–RM8,000/month</strong> standard to skilled nursing.<br/><span style="font-size:.8rem;opacity:.7;">Room type, care level, and location move the price significantly.</span></div></div>
         <div class="result-details">
-          <h3>Why a nursing home is appropriate</h3>
+          <h3>Why this fits</h3>
           <ul>
-            <li>Your parent's medical or physical care needs exceed what home care or assisted living can safely provide</li>
-            <li>Nursing homes provide 24-hour registered nursing care, physician oversight, and specialised medical support</li>
-            <li>For post-stroke, advanced dementia, PEG tube feeding, complex wounds, and palliative care — a qualified nursing home is the medically correct choice</li>
-            <li>This is a responsible decision, not a failure — professional care can be safer and better than home care for complex needs</li>
+            <li>Your parent's clinical or supervisory needs exceed what home care or assisted living can safely deliver.</li>
+            <li>This is a responsible call, not a failure — professional 24-hour care is safer than struggling at home for complex needs.</li>
           </ul>
         </div>
-        <div class="result-next-steps">
-          <h3>Your next steps</h3>
-          <ol>
-            <li>Filter our directory by your parent's care needs (dementia, palliative, rehabilitation)</li>
-            <li>Visit at least 3 facilities in person — ask to see the actual ward your parent would be in</li>
-            <li>Ask for the JKM registration number and check whether they also hold a MOH nursing home licence</li>
-            <li>Read the contract carefully — ask specifically about what is included in the monthly fee</li>
-            <li>Ask about waiting lists — good facilities often have them</li>
-          </ol>
+        <div class="result-cta-btns" id="cta-nursing">
+          <a href="/" class="btn-primary">Browse nursing homes →</a>
         </div>
-        <div class="result-cta-btns">
-          <a href="/nursing-homes/selangor/" class="btn-primary">Browse Selangor nursing homes →</a>
-          <a href="/nursing-homes/kuala-lumpur/" class="btn-secondary">Browse KL</a>
-          <a href="/nursing-homes/johor/" class="btn-secondary">Browse Johor</a>
+        <div class="result-state-pills">
+          <span class="result-state-label">Filter by state:</span>
+          <a href="/nursing-homes/selangor/" class="state-pill">Selangor</a>
+          <a href="/nursing-homes/kuala-lumpur/" class="state-pill">Kuala Lumpur</a>
+          <a href="/nursing-homes/johor/" class="state-pill">Johor</a>
         </div>
         <button class="restart-btn" onclick="restart()">Start again</button>
       </div>
@@ -621,7 +515,7 @@
 
 <script>
   const answers = {};
-  const Q_COUNT = 5;
+  const Q_COUNT = 3;
 
   function answer(q, val) {
     answers[q] = val;
@@ -664,65 +558,50 @@
     document.getElementById('prog-text').textContent = 'Complete';
     document.getElementById('prog-pct').textContent = '100%';
 
-    // Decision logic
+    // ── Decision logic (3-question router) ──
+    // Q1 = independence  : A independent / B needs help / C full assistance
+    // Q2 = clinical level: A light       / B moderate   / C complex
+    // Q3 = setting        : A stay home   / B daytime    / C move in
     const a = answers;
-    let result = 'nursing'; // default
+    const independent  = a[1] === 'A';
+    const needsHelp    = a[1] === 'B';
+    const fullyDep     = a[1] === 'C';
+    const lightClin    = a[2] === 'A';
+    const modClin      = a[2] === 'B';
+    const complexClin  = a[2] === 'C';
+    const stayHome     = a[3] === 'A';
+    const daytime      = a[3] === 'B';
+    const moveIn       = a[3] === 'C';
 
-    const fullyDependent = a[1] === 'C';
-    const needsHelp      = a[1] === 'B';
-    const independent    = a[1] === 'A';
-
-    const noMemory    = a[2] === 'A';
-    const mildMemory  = a[2] === 'B';
-    const severeMemory = a[2] === 'C';
-
-    const noMedical      = a[3] === 'A';
-    const regularMedical = a[3] === 'B';
-    const complexMedical = a[3] === 'C';
-
-    const canManage   = a[4] === 'A';
-    const burningOut  = a[4] === 'B';
-    const cantManage  = a[4] === 'C';
-
-    const wantsDaytime     = a[5] === 'A';
-    const wantsHomeSupport = a[5] === 'B';
-    const wantsResidential = a[5] === 'C';
-
-    // Complex medical → nursing home always
-    if (complexMedical) {
+    let result;
+    // Complex clinical needs → always nursing home (no other setting can safely cover it)
+    if (complexClin) {
       result = 'nursing';
     }
-    // Fully dependent + regular medical or can't manage at home → nursing
-    else if (fullyDependent && (regularMedical || cantManage)) {
-      result = 'nursing';
+    // User chose stay-at-home → home care, even for fully dependent + moderate clinical
+    // (live-in nurses cover post-stroke, wound care, etc. — that's exactly the HC market)
+    else if (stayHome) {
+      result = 'homecare';
     }
-    // Fully dependent + severe memory → nursing
-    else if (fullyDependent && severeMemory) {
-      result = 'nursing';
-    }
-    // Wants daytime only + mobile enough → day care
-    else if (wantsDaytime && !fullyDependent && !regularMedical && !severeMemory) {
+    // Daytime preference: works only if parent is mobile enough to leave the house
+    else if (daytime && !fullyDep) {
       result = 'daycare';
     }
-    // Independent/needs help + no serious medical + can manage at home or wants home support → home care
-    else if ((independent || needsHelp) && noMedical && (canManage || wantsHomeSupport) && !severeMemory) {
-      result = 'homecare';
-    }
-    // Needs residential but not high medical complexity → assisted living
-    else if (wantsResidential && !fullyDependent && noMedical && !severeMemory) {
-      result = 'assisted';
-    }
-    // Severe memory + can manage at home → home care (with memory support)
-    else if (severeMemory && (canManage || burningOut) && noMedical) {
-      result = 'homecare';
-    }
-    // Burning out + needs help + some medical → nursing
-    else if (burningOut && (needsHelp || fullyDependent) && regularMedical) {
+    // Daytime but fully dependent → unsafe fallback to nursing
+    else if (daytime && fullyDep) {
       result = 'nursing';
     }
-    // Burning out + relatively mobile and no major medical → assisted living
-    else if ((burningOut || cantManage) && !regularMedical && !severeMemory) {
+    // Move-in + clinical/dependency → nursing home
+    else if (moveIn && (fullyDep || modClin)) {
+      result = 'nursing';
+    }
+    // Move-in + light + independent/needs-help → assisted living
+    else if (moveIn) {
       result = 'assisted';
+    }
+    // Fallback
+    else {
+      result = 'nursing';
     }
 
     // Show result panels
