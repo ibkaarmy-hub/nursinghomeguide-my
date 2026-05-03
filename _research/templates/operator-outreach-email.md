@@ -14,7 +14,7 @@ Placeholders:
 
 Dear `<facility-name>` team,
 
-I hope this email finds you well. My name is `<helper-name>` and I'm writing on behalf of NursingHomeGuide.my, Malaysia's independent nursing home and assisted living guide. The site is run by a Malaysian doctor and is built to help families navigate the elder-care landscape based on verified facts, not advertising.
+I hope this email finds you well. My name is `<helper-name>` and I'm writing on behalf of NursingHomeGuide.my, Malaysia's independent nursing home and assisted living guide. The site is built and maintained by a team of researchers and clinicians to help families navigate the elder-care landscape based on verified facts, not advertising.
 
 We have published a profile for your facility at:
 `<facility-url>`
