@@ -472,9 +472,19 @@ function render(f) {
     </div>`;
 
   /* Sidebar contact buttons */
+  // WhatsApp number resolution: prefer explicit whatsapp column, else fall back
+  // to phone if it's a Malaysian mobile (starts with 1 after stripping country code).
+  // Landlines (03-, 07-, etc.) aren't on WhatsApp, so return null.
+  const waNumber = (() => {
+    if (f.whatsapp) return f.whatsapp.replace(/\D/g, '');
+    if (!f.phone) return null;
+    const digits = f.phone.replace(/\D/g, '');
+    const local = digits.startsWith('60') ? digits.slice(2) : digits.replace(/^0/, '');
+    return local.startsWith('1') ? (digits.startsWith('60') ? digits : '60' + local) : null;
+  })();
   const phoneLink   = f.phone        ? `<a href="tel:${escapeHtml(f.phone)}" class="cta-btn cta-call">📞 Call ${escapeHtml(f.phone)}</a>` : '';
   const waMsg       = encodeURIComponent(`Hi, I found ${f.title} on NursingHomeGuide.my and would like to enquire about availability and pricing. Could you please share more details?`);
-  const waLink      = f.whatsapp     ? `<a href="https://wa.me/${(f.whatsapp || '').replace(/\D/g,'')}?text=${waMsg}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp Now</a>` : '';
+  const waLink      = waNumber       ? `<a href="https://wa.me/${waNumber}?text=${waMsg}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp Now</a>` : '';
   const mapsLink    = f.google_maps_url ? `<a href="${escapeHtml(f.google_maps_url)}" target="_blank" class="cta-btn cta-maps">📍 Google Maps</a>` : '';
   const webLink     = f.website && !f.website.includes('facebook') ? `<a href="${escapeHtml(f.website)}" target="_blank" class="cta-btn cta-web">🌐 Website</a>` : '';
 
@@ -744,7 +754,7 @@ function render(f) {
       <!-- Mobile sticky CTA bar (hidden on desktop via CSS) -->
       <div class="mobile-cta-bar">
         ${f.phone ? `<a href="tel:${escapeHtml(f.phone)}" class="m-call">📞 Call</a>` : ''}
-        ${f.whatsapp ? `<a href="https://wa.me/${(f.whatsapp||'').replace(/\D/g,'')}?text=${waMsg}" class="m-wa">💬 WhatsApp</a>` : ''}
+        ${waNumber ? `<a href="https://wa.me/${waNumber}?text=${waMsg}" class="m-wa">💬 WhatsApp</a>` : ''}
       </div>
 
       <aside class="profile-sidebar">
