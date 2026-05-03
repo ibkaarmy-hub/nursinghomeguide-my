@@ -13,11 +13,13 @@
 | Hospital-based care | Attached to private hospitals |
 | Government homes | JKM-run, subsidised, long waitlists |
 
-## Pricing Context (Malaysia)
+## Pricing Context (Malaysia, nationwide)
 - Budget (shared room): RM 800 – RM 1,500/month
 - Mid-range (semi-private): RM 1,500 – RM 4,000/month
 - Premium (private room): RM 4,000 – RM 12,000/month
 - Government/charity homes: Free or RM 50–200/month (very limited spots)
+
+These are nationwide ranges. The Klang Valley runs higher — see `_research/pricing-benchmarks.md` for KV-specific verified figures (reasonable KV minimum is RM 3,500+, average RM 4,000–5,000, premium from RM 7,500–8,800). Use sheet `shared_price` / `pricing_display` for facility-specific quotes; never quote a benchmark as a facility's actual price.
 
 ## Key States by Nursing Home Concentration
 1. Selangor (highest — includes Klang Valley)

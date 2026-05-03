@@ -8,6 +8,7 @@ External research that informs content strategy. Update these when you do new re
 | [user-questions.md](user-questions.md) | What real Malaysian families ask before choosing — from forums |
 | [competitors.md](competitors.md) | Other Malaysian eldercare sites + their content angle and gaps |
 | [pricing-benchmarks.md](pricing-benchmarks.md) | Verified monthly fee ranges by tier, with sources |
+| [social-worker-outreach-audit.md](social-worker-outreach-audit.md) | Backlink/outreach research targeting Malaysian social workers (2026-05-01) |
 
 ## Conventions
 

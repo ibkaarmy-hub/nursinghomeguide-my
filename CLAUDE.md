@@ -41,8 +41,8 @@ Malaysia's most comprehensive elder care and nursing home guide. Covers nursing 
 └── stages/
     ├── 01-data/      — DONE (406 rows in sheet; ~350 live after status filtering)
     ├── 02-enrich/    — EDITORIALS DONE 100% (350/350 live facilities; pricing + Details tab still pending)
-    ├── 03-content/   — NOT STARTED (guide pages, area pages, BM translations)
-    ├── 04-design/    — DONE (all page templates shipped)
+    ├── 03-content/   — IN PROGRESS (which-care + government-assistance guides shipped; area pages next; see stages/03-content/CONTEXT.md)
+    ├── 04-design/    — DONE (all page templates shipped + per-facility static pages)
     └── 05-build/     — DEFERRED (stay on static HTML)
 ```
 
