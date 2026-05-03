@@ -260,6 +260,109 @@ function buildIntakeForm() {
     .showOtherOption(true)
     .setRequired(true);
 
+  // ─── Section I — Facility details (enrichment) ────────────────────
+  form.addPageBreakItem()
+    .setTitle('I. Facility details')
+    .setHelpText('These questions help families understand what to expect before they visit. All optional — answer what you can.');
+
+  form.addMultipleChoiceItem()
+    .setTitle('Current availability')
+    .setChoiceValues([
+      'Beds available now',
+      'Waitlist — under 1 month',
+      'Waitlist — 1 to 3 months',
+      'Waitlist — over 3 months',
+      'Full — not accepting new residents'
+    ])
+    .setRequired(false);
+
+  form.addMultipleChoiceItem()
+    .setTitle('Minimum length of stay')
+    .setChoiceValues([
+      'No minimum',
+      '1 month',
+      '3 months',
+      '6 months',
+      '1 year or more'
+    ])
+    .showOtherOption(true)
+    .setRequired(false);
+
+  form.addCheckboxItem()
+    .setTitle('Which resident profiles do you accept?')
+    .setHelpText('Select all that apply.')
+    .setChoiceValues([
+      'Ambulant (can walk independently)',
+      'Semi-ambulant (needs walking aid or supervision)',
+      'Wheelchair-bound',
+      'Bedridden',
+      'Post-ICU / post-surgery step-down',
+      'Early to moderate dementia',
+      'Advanced dementia (including wandering behaviour)',
+      'End-of-life / palliative stage'
+    ])
+    .setRequired(false);
+
+  form.addTextItem()
+    .setTitle('Visiting hours')
+    .setHelpText('e.g. "Daily 10am – 8pm" or "Weekends only 2pm – 6pm"')
+    .setRequired(false);
+
+  form.addTextItem()
+    .setTitle('Caregiver-to-resident ratio during the day')
+    .setHelpText('e.g. "1 caregiver to 5 residents". Registered nurses counted separately.')
+    .setRequired(false);
+
+  form.addTextItem()
+    .setTitle('Caregiver-to-resident ratio at night')
+    .setHelpText('e.g. "1 caregiver to 10 residents"')
+    .setRequired(false);
+
+  form.addMultipleChoiceItem()
+    .setTitle('Air-conditioning')
+    .setChoiceValues([
+      'Fully air-conditioned (all rooms and common areas)',
+      'Partially air-conditioned (bedrooms only)',
+      'Partially air-conditioned (common areas only)',
+      'Fan-cooled throughout',
+      'Mixed — varies by room type'
+    ])
+    .setRequired(false);
+
+  form.addMultipleChoiceItem()
+    .setTitle('What is the nearest hospital for emergencies?')
+    .setHelpText('Name and approximate distance. Families want to know before an emergency happens.')
+    .setChoiceValues([
+      'Government hospital within 5 km',
+      'Government hospital 5 – 15 km',
+      'Private hospital within 5 km',
+      'Private hospital 5 – 15 km'
+    ])
+    .showOtherOption(true)
+    .setRequired(false);
+
+  form.addMultipleChoiceItem()
+    .setTitle('Deposit required on admission')
+    .setChoiceValues([
+      'No deposit',
+      '1 month deposit',
+      '2 months deposit',
+      '3 months deposit'
+    ])
+    .showOtherOption(true)
+    .setRequired(false);
+
+  form.addMultipleChoiceItem()
+    .setTitle('Year your facility was established')
+    .setChoiceValues([
+      'Before 2000',
+      '2000 – 2009',
+      '2010 – 2014',
+      '2015 – 2019',
+      '2020 or later'
+    ])
+    .setRequired(false);
+
   // ─── Section H — Consent ──────────────────────────────────────────
   form.addPageBreakItem().setTitle('H. Permission and consent');
 
