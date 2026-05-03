@@ -1,26 +1,8 @@
 {
   "generated_at": "2026-05-03T00:00:00+08:00",
   "agent": "claude-sonnet-4-6 editorial batch agent",
-  "notes": "Data sources: nursing-homes/ static pages (JSON-LD fragments up to 500 chars), data.js GROUPS registry. External website fetch blocked in this environment — Noble Care website referenced by domain only. Old editorial lengths are lower-bound estimates (JSON-LD truncates at 500 chars; full sheet editorials estimated ~1800–2500 chars based on Johor EHA sample).",
+  "notes": "Data sources: nursing-homes/ static pages (JSON-LD fragments up to 500 chars), data.js GROUPS registry. External website fetch blocked in this environment — Noble Care website referenced by domain only. Old editorial lengths are lower-bound estimates (JSON-LD truncates at 500 chars; full sheet editorials estimated ~1800–2500 chars based on Johor EHA sample). Amazing Grace entries removed from this batch — already covered in 2026-05-03-batch_2.json.",
   "facilities": [
-    {
-      "slug": "amazing-grace-senior-home",
-      "title": "Amazing Grace Senior Home",
-      "chain_slug": "amazing-grace-senior-home",
-      "data_quality": "full",
-      "old_editorial_length": 500,
-      "new_editorial_length": 1764,
-      "editorial_summary": "Amazing Grace Senior Home occupies a residential property at Jalan SS19/4 in the established SS19 neighbourhood of Subang Jaya, Selangor. The home is one of two properties operated under the Amazing Grace Care Centre brand, with its sister branch in Section 14, Petaling Jaya a short drive away. It is listed as a retirement home on Google Maps, and available information indicates it is positioned as an assisted living and retirement facility rather than a high-dependency nursing home — it is best suited to residents who retain moderate mobility and do not require intensive clinical nursing on a daily basis.\n\nWith 156 Google reviews and a 5.0-star rating, Amazing Grace Senior Home consistently ranks among the most praised care homes in the Subang Jaya corridor, and the volume of reviewers across several years reflects genuine long-term family engagement. Reviewers most frequently mention attentive staff and a warm, home-like atmosphere. Pricing is not published on a public operator website; fees depend on room type and level of care support required, so request a written fee schedule when you visit or call ahead.\n\nSS19 is a mature residential neighbourhood with good road access for families visiting from Subang Jaya, Petaling Jaya, and the surrounding Klang Valley, and the Jalan SS19/4 address is within reasonable distance of Subang Jaya Medical Centre. Ask to confirm the JKM licence number and registration category during your viewing — this establishes the permitted scope of care and minimum staffing ratios under the licence. For families seeking a well-regarded residential care home in the Subang Jaya area that prioritises a homely environment over clinical intensity, this branch's review record is among the stronger in the corridor."
-    },
-    {
-      "slug": "amazing-grace-retirement-home",
-      "title": "Amazing Grace Retirement Home",
-      "chain_slug": "amazing-grace-senior-home",
-      "data_quality": "full",
-      "old_editorial_length": 500,
-      "new_editorial_length": 1747,
-      "editorial_summary": "Amazing Grace Retirement Home is located at 11, Jalan 14/55 in Section 14, Petaling Jaya — one of PJ's established central residential sections, with road links to the Federal Highway, Jalan Utama, and the broader PJ grid. This is the second property in the Amazing Grace Care Centre brand, operating alongside the SS19, Subang Jaya branch. Like its sister home, the Section 14 property is positioned as a retirement and assisted living facility rather than a high-dependency nursing home, making it most appropriate for residents who still manage basic daily activities with supervision and support.\n\nThe Section 14 branch carries 140 Google reviews at 4.9 stars — one of the highest review volumes among PJ nursing homes, reflecting consistent family engagement over a sustained period. Reviews highlight a settled, home-like environment and attentive personal care. The Section 14 address is within reasonable distance of Assunta Hospital and University Malaya Medical Centre, which is a practical advantage for residents with regular outpatient commitments. Pricing is not published on a public operator website; contact the home for a written fee schedule based on room type and care level.\n\nSection 14 has well-established road connections to PJ and the Federal Highway interchange, making it accessible for families visiting from across the Klang Valley. Ask to confirm the JKM licence number and the licence category on your viewing visit, as this clarifies the permitted clinical scope and the required staffing ratios. For families seeking an established residential care home in central Petaling Jaya with a consistently strong reputation among families and residents, this branch's review trail is one of the more credible in the area."
-    },
     {
       "slug": "attia-nursing-care-centre",
       "title": "Attia Nursing Care Centre",
