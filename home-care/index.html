@@ -56,8 +56,16 @@
       <button class="filter-pill active" data-area="">All Areas</button>
     </div>
 
-    <!-- Right: sort + view toggle -->
+    <!-- Right: care-needs filter + sort + view toggle -->
     <div class="filter-right">
+      <select id="needSelect" onchange="applyFilters()" class="sort-select" aria-label="Filter by care need">
+        <option value="">Any care need</option>
+        <option value="dementia">Dementia care</option>
+        <option value="palliative">Palliative / end-of-life</option>
+        <option value="rehab">Post-stroke / rehab</option>
+        <option value="respite">Respite (short stay)</option>
+        <option value="high-dep">High-dependency nursing</option>
+      </select>
       <select id="sortSelect" onchange="applyFilters()" class="sort-select">
         <option value="rating">Highest Rated</option>
         <option value="reviews">Most Reviews</option>
@@ -173,10 +181,39 @@ let currentView = 'list';
 let leafletMap = null;
 let mapMarkers = [];
 
-// ─── URL param: pre-fill search ────────────────────────────
+// ─── URL params: pre-fill search and care-needs filter ─────
 const urlParams = new URLSearchParams(window.location.search);
 const initQ = urlParams.get('q') || '';
 if (initQ) document.getElementById('searchInput').value = initQ;
+const initNeed = (urlParams.get('need') || '').toLowerCase();
+if (initNeed) {
+  const sel = document.getElementById('needSelect');
+  if (sel && [...sel.options].some(o => o.value === initNeed)) sel.value = initNeed;
+}
+
+// ─── Care-needs keyword matching ───────────────────────────
+// Each need maps to regex patterns we look for in care_types + editorial_summary.
+// The structured care_* yes/no columns are too sparsely populated (40-180 of
+// 355) to filter on directly, so we keyword-match the free-text fields.
+const NEED_PATTERNS = {
+  'dementia':   [/\bdementia\b/i, /\bmemory\s*care\b/i, /\balzheimer/i, /\bcognitive/i],
+  'palliative': [/\bpalliative\b/i, /\bend.of.life\b/i, /\bhospice\b/i, /\bterminal\b/i],
+  'rehab':      [/\bpost.stroke\b/i, /\bstroke\b/i, /\brehab/i, /\bphysio/i, /\boccupational\s*therap/i],
+  'respite':    [/\brespite\b/i, /\bshort.term\s*stay\b/i, /\bshort\s*stay\b/i],
+  'high-dep':   [/\bhigh.depend/i, /\b24.hour\b/i, /\btube\s*feed/i, /\bpeg\b/i, /\bcatheter\b/i, /\bdialysis\b/i, /\bventilat/i, /\btracheo/i],
+};
+
+function matchesNeed(f, need) {
+  if (!need) return true;
+  const patterns = NEED_PATTERNS[need];
+  if (!patterns) return true;
+  // Also honour the structured care_* columns when explicitly set to 'yes'
+  // (gives a high-confidence hit even if free-text doesn't mention the word)
+  const colMap = {dementia: 'care_dementia', palliative: 'care_palliative', rehab: 'care_rehab', respite: 'care_respite'};
+  if (colMap[need] && (f[colMap[need]] || '').toLowerCase().trim() === 'yes') return true;
+  const hay = ((f.care_types || '') + ' ' + (f.editorial_summary || '')).toLowerCase();
+  return patterns.some(p => p.test(hay));
+}
 
 // ─── Card builder ──────────────────────────────────────────
 function priceFromShared(f) {
@@ -256,13 +293,15 @@ function makeCard(f) {
 function applyFilters() {
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
   const sort = document.getElementById('sortSelect').value;
+  const need = (document.getElementById('needSelect')?.value || '').toLowerCase();
 
   let result = allFacilities.filter(f => {
     const area = normArea(f.area);
     const matchArea = !currentArea || area === currentArea;
     const matchQ = !q || [f.title, f.area, f.care_types, f.editorial_summary]
       .some(s => (s || '').toLowerCase().includes(q));
-    return matchArea && matchQ;
+    const matchNeed = matchesNeed(f, need);
+    return matchArea && matchQ && matchNeed;
   });
 
   // Sort
