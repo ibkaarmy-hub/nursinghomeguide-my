@@ -91,17 +91,18 @@ FACILITIES_CSV = (
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub"
     "?gid=292378871&single=true&output=csv"
 )
-APIFY_ACTOR = "compass~crawler-google-places"  # Apify slug uses ~ in API path
+APIFY_PLACES_ACTOR = "compass~crawler-google-places"  # Primary
+APIFY_RAG_ACTOR = "apify~rag-web-browser"  # Fallback when Places times out
 APIFY_RUN_SYNC = (
     "https://api.apify.com/v2/acts/{actor}/run-sync-get-dataset-items"
-    "?token={token}&memory=2048&timeout=300"
+    "?token={token}&memory=2048&timeout=180"
 )
 
 CACHE_DIR = Path(".rescrape_cache")
 QUERIES_PATH = Path("rescrape_queries.txt")
 OUTPUT_CSV = Path("rescrape_results.csv")
-MAX_PHOTOS_PER_FACILITY = 10
-SLEEP_BETWEEN_CALLS = 2  # seconds — be polite to Apify
+MAX_PHOTOS_PER_FACILITY = 5
+SLEEP_BETWEEN_CALLS = 1  # seconds — be polite to Apify
 
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -168,31 +169,112 @@ def title_similarity(a, b):
 # ─── Apify direct API mode ────────────────────────────────────────────────────
 
 
-def call_apify(token, query, max_results=3):
+def call_apify_places(token, query, max_results=3):
     """Call compass/crawler-google-places synchronously. Returns dataset items list."""
     payload = {
         "searchStringsArray": [query],
         "maxCrawledPlacesPerSearch": max_results,
         "language": "en",
         "countryCode": "my",
-        "scrapePlaceDetailPage": True,
+        "scrapePlaceDetailPage": False,
         "scrapeImageAuthors": False,
         "includeWebResults": False,
         "maxImages": MAX_PHOTOS_PER_FACILITY,
     }
-    url = APIFY_RUN_SYNC.format(actor=APIFY_ACTOR, token=token)
+    url = APIFY_RUN_SYNC.format(actor=APIFY_PLACES_ACTOR, token=token)
     req = urllib.request.Request(
         url,
         data=json.dumps(payload).encode("utf-8"),
         headers={"Content-Type": "application/json"},
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=400) as r:
+    with urllib.request.urlopen(req, timeout=240) as r:
         return json.loads(r.read().decode("utf-8"))
 
 
+def call_apify_rag(token, query):
+    """Fallback: apify/rag-web-browser does generic web search + scrape.
+
+    Returns list of search results, each typically containing:
+      { searchResult: {url, title, description},
+        metadata: {url, title, description, ogImage, ...},
+        markdown: "...page text..." }
+
+    We extract: og:image, image URLs from markdown, and the operator website URL.
+    """
+    payload = {
+        "query": query + " nursing home",
+        "maxResults": 3,
+        "scrapingTool": "raw-http",
+        "outputFormats": ["markdown"],
+        "requestTimeoutSecs": 60,
+    }
+    url = APIFY_RUN_SYNC.format(actor=APIFY_RAG_ACTOR, token=token)
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=180) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def rag_to_places_shape(rag_items, query):
+    """Convert RAG Web Browser output to the same shape pick_best_match() expects.
+
+    Each RAG result has a website URL + scraped markdown that may contain image refs.
+    We extract image URLs from <img> tags or markdown image syntax in the page content.
+    """
+    if not rag_items:
+        return []
+    shaped = []
+    for item in rag_items:
+        meta = item.get("metadata") or {}
+        sr = item.get("searchResult") or {}
+        title = meta.get("title") or sr.get("title") or ""
+        desc = meta.get("description") or sr.get("description") or ""
+        page_url = meta.get("url") or sr.get("url") or ""
+        markdown = item.get("markdown") or item.get("text") or ""
+
+        photos = []
+        og = meta.get("ogImage") or meta.get("og:image")
+        if og:
+            photos.append(og)
+        # Extract <img src="..."> and ![](url) from the markdown
+        photos += re.findall(r'<img[^>]+src=["\']([^"\']+)["\']', markdown)
+        photos += re.findall(r'!\[[^\]]*\]\(([^)\s]+)', markdown)
+        # Filter to plausible photo URLs (drop tracking pixels / icons)
+        photos = [p for p in photos if re.search(r'\.(jpe?g|png|webp)(\?|$)', p, re.I)]
+        # Absolute-URL only (skip data: and relative)
+        photos = [p for p in photos if p.startswith("http")]
+        # Dedupe, preserve order
+        seen = set()
+        photos = [p for p in photos if not (p in seen or seen.add(p))]
+        photos = photos[:MAX_PHOTOS_PER_FACILITY]
+
+        shaped.append({
+            "title": title,
+            "address": "",  # RAG doesn't reliably give addresses
+            "imageUrls": photos,
+            "website": page_url,
+            "url": page_url,
+            "_source": "rag",
+            "_description": desc[:200],
+        })
+    return shaped
+
+
 def collect_via_api(token, missing):
-    """Fetch each facility via direct Apify API call. Caches per slug."""
+    """Fetch each facility via direct Apify API call.
+
+    Strategy per slug:
+      1. Try compass/crawler-google-places (rich Places data: photos, rating, etc.)
+      2. If Places times out OR returns 0 results, fall back to apify/rag-web-browser
+         (generic web search + scrape — gets photos from the operator's own site or
+         any page that mentions the facility).
+      3. Cache successful result. Failures are not cached (so reruns retry them).
+    """
     CACHE_DIR.mkdir(exist_ok=True)
     results = {}
     for i, f in enumerate(missing, 1):
@@ -203,15 +285,31 @@ def collect_via_api(token, missing):
             print(f"  [{i}/{len(missing)}] cached: {slug}", file=sys.stderr)
             continue
         query = build_search_query(f)
-        print(f"  [{i}/{len(missing)}] fetching: {slug}  ←  {query}", file=sys.stderr)
+        print(f"  [{i}/{len(missing)}] places: {slug}  ←  {query}", file=sys.stderr)
+        items = None
         try:
-            items = call_apify(token, query)
-            cache_path.write_text(json.dumps(items, ensure_ascii=False), encoding="utf-8")
-            results[slug] = items
-            time.sleep(SLEEP_BETWEEN_CALLS)
+            items = call_apify_places(token, query)
+            if items:
+                print(f"    places-hit: {len(items)} result(s)", file=sys.stderr)
         except Exception as e:
-            print(f"    ERROR: {e}", file=sys.stderr)
-            results[slug] = []
+            print(f"    places-fail: {e}", file=sys.stderr)
+            items = None
+
+        if not items:
+            print(f"    rag-fallback: trying apify/rag-web-browser", file=sys.stderr)
+            try:
+                rag_items = call_apify_rag(token, query)
+                items = rag_to_places_shape(rag_items, query)
+                if items:
+                    print(f"    rag-hit: {len(items)} page(s)", file=sys.stderr)
+            except Exception as e:
+                print(f"    rag-fail: {e}", file=sys.stderr)
+                items = []
+
+        if items:
+            cache_path.write_text(json.dumps(items, ensure_ascii=False), encoding="utf-8")
+        results[slug] = items or []
+        time.sleep(SLEEP_BETWEEN_CALLS)
     return results
 
 
@@ -333,7 +431,7 @@ def main():
     print(f"\nWriting {OUTPUT_CSV}...", file=sys.stderr)
     fieldnames = [
         "slug", "current_title", "current_area", "current_state",
-        "matched_title", "matched_address", "match_confidence",
+        "source", "matched_title", "matched_address", "match_confidence",
         "photos", "hero_image", "photo_count",
         "rating_new", "review_count_new", "phone_new", "website_new", "google_maps_url_new",
         "notes",
@@ -346,11 +444,13 @@ def main():
             slug = f["slug"]
             candidates = results_by_slug.get(slug, [])
             best, conf, note = pick_best_match(f, candidates)
+            source = (best or {}).get("_source") or ("places" if best else "none")
             row = {
                 "slug": slug,
                 "current_title": f.get("title", ""),
                 "current_area": f.get("area", ""),
                 "current_state": f.get("state", ""),
+                "source": source,
                 "match_confidence": conf,
                 "notes": note,
             }
