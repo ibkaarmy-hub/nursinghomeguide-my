@@ -9,17 +9,19 @@
 <meta property="og:title" content="Amazing Grace Caring Home — NursingHomeGuide.my">
 <meta property="og:description" content="Amazing Grace Caring Home in Taman Tan Yew Lai. Amazing Grace Caring Home operates multiple branches across Kuala Lumpur and Subang Jaya, providing…">
 <meta property="og:url" content="https://nursinghomeguide.my/nursing-homes/amazing-grace-caring-home/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lh3.googleusercontent.com/p/AF1QipMEsD1CXFWaaFQbef77Wm8z06k3fuLPpbkxtOFa=w1920-h1080-k-no">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Amazing Grace Caring Home — NursingHomeGuide.my">
 <meta name="twitter:description" content="Amazing Grace Caring Home in Taman Tan Yew Lai. Amazing Grace Caring Home operates multiple branches across Kuala Lumpur and Subang Jaya, providing…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/amazing-grace-caring-home/","name":"Amazing Grace Caring Home","url":"https://nursinghomeguide.my/nursing-homes/amazing-grace-caring-home/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Taman Tan Yew Lai","addressRegion":"Selangor"},"telephone":"03-77721161","description":"Amazing Grace Caring Home operates multiple branches across Kuala Lumpur and Subang Jaya, providing residential nursing care to elderly residents since 2007. The network is guided by Christian values and accepts residents of all backgrounds. Branches include sites at Taman Tan Yew Lai, Taman Yarl (KL), Section 14 Petaling Jaya, and SS19 Subang Jaya. The operator publishes an indicative price band of RM 2,001 to RM 4,000 per month depending on room type — shared twin, triple, or single with attac","geo":{"@type":"GeoCoordinates","latitude":3.0743425,"longitude":101.6640041},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":92,"bestRating":"5","worstRating":"1"}}</script>
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/p/AF1QipMEsD1CXFWaaFQbef77Wm8z06k3fuLPpbkxtOFa=w1920-h1080-k-no">
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/amazing-grace-caring-home/","name":"Amazing Grace Caring Home","url":"https://nursinghomeguide.my/nursing-homes/amazing-grace-caring-home/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Taman Tan Yew Lai","addressRegion":"Selangor"},"image":"https://lh3.googleusercontent.com/p/AF1QipMEsD1CXFWaaFQbef77Wm8z06k3fuLPpbkxtOFa=w1920-h1080-k-no","telephone":"03-77721161","description":"Amazing Grace Caring Home operates multiple branches across Kuala Lumpur and Subang Jaya, providing residential nursing care to elderly residents since 2007. The network is guided by Christian values and accepts residents of all backgrounds. Branches include sites at Taman Tan Yew Lai, Taman Yarl (KL), Section 14 Petaling Jaya, and SS19 Subang Jaya. The operator publishes an indicative price band of RM 2,001 to RM 4,000 per month depending on room type — shared twin, triple, or single with attac","geo":{"@type":"GeoCoordinates","latitude":3.0743425,"longitude":101.6640041},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":92,"bestRating":"5","worstRating":"1"}}</script>
 <script>window.__FACILITY_SLUG="amazing-grace-caring-home";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Amazing Grace Caring Home — NursingHomeGuide.my</title>
 <meta name="description" id="pageDesc" content="Amazing Grace Caring Home in Taman Tan Yew Lai. Amazing Grace Caring Home operates multiple branches across Kuala Lumpur and Subang Jaya, providing…" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=8" />
+<link rel="stylesheet" href="style.css?v=9" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
 <style>
 /* Profile-page–specific styles (kept inline to avoid bloating the global stylesheet) */
@@ -233,6 +235,7 @@
 </footer>
 
 <script src="data.js?v=3"></script>
+<script src="badges.js?v=1"></script>
 <script>
 /* ── Helpers ────────────────────────────────────────────── */
 function yn(val) {
@@ -685,6 +688,7 @@ function render(f) {
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
+          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: true }) : ''}
         </div>
         ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
@@ -710,6 +714,14 @@ function render(f) {
         <div class="tab-panel active" id="tab-overview">
           ${galleryHtml}
           ${editorialHtml}
+          ${window.NHGBadges ? `
+          <div class="badge-section">
+            <div class="badge-section-head">
+              <span class="badge-section-title">Capability badges</span>
+            </div>
+            ${NHGBadges.profileBadgeGrid(f)}
+            ${NHGBadges.tierMarker(f)}
+          </div>` : ''}
           <div class="profile-card">
             <h2>Quick Facts</h2>
             ${overviewQuickFacts || '<p class="text-muted">Details not yet collected.</p>'}

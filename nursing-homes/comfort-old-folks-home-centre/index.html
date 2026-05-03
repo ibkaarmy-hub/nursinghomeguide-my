@@ -9,17 +9,19 @@
 <meta property="og:title" content="Comfort Old Folks Home Centre — NursingHomeGuide.my">
 <meta property="og:description" content="Comfort Old Folks Home Centre in Johor. Comfort Old Folks Home Centre is a small residential care home in Johor operating at a capacity of 22 beds…">
 <meta property="og:url" content="https://nursinghomeguide.my/nursing-homes/comfort-old-folks-home-centre/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=jc7ZfeyO9HwFxlnFr5yGlw&amp;cb_client=lu.gallery.gps&amp;w=160&amp;h=106&amp;yaw=283.48712&amp;pitch=0&amp;thumbfov=100">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Comfort Old Folks Home Centre — NursingHomeGuide.my">
 <meta name="twitter:description" content="Comfort Old Folks Home Centre in Johor. Comfort Old Folks Home Centre is a small residential care home in Johor operating at a capacity of 22 beds…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/comfort-old-folks-home-centre/","name":"Comfort Old Folks Home Centre","url":"https://nursinghomeguide.my/nursing-homes/comfort-old-folks-home-centre/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor","addressRegion":"Johor"},"telephone":"07-4322590","description":"Comfort Old Folks Home Centre is a small residential care home in Johor operating at a capacity of 22 beds, placing it among the more intimate facilities in the state. Its phone number carries a 07 area code consistent with the Johor Bahru district, and the home appears to serve the local community as a neighbourhood-scale care option rather than a branded regional provider. With a tightly managed resident count, the environment can offer a domestic, family-like atmosphere where individual resid"}</script>
+<meta name="twitter:image" content="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=jc7ZfeyO9HwFxlnFr5yGlw&amp;cb_client=lu.gallery.gps&amp;w=160&amp;h=106&amp;yaw=283.48712&amp;pitch=0&amp;thumbfov=100">
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/comfort-old-folks-home-centre/","name":"Comfort Old Folks Home Centre","url":"https://nursinghomeguide.my/nursing-homes/comfort-old-folks-home-centre/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor","addressRegion":"Johor"},"image":"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=jc7ZfeyO9HwFxlnFr5yGlw&cb_client=lu.gallery.gps&w=160&h=106&yaw=283.48712&pitch=0&thumbfov=100","telephone":"07-4322590","description":"Comfort Old Folks Home Centre is a small residential care home in Johor operating at a capacity of 22 beds, placing it among the more intimate facilities in the state. Its phone number carries a 07 area code consistent with the Johor Bahru district, and the home appears to serve the local community as a neighbourhood-scale care option rather than a branded regional provider. With a tightly managed resident count, the environment can offer a domestic, family-like atmosphere where individual resid"}</script>
 <script>window.__FACILITY_SLUG="comfort-old-folks-home-centre";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Comfort Old Folks Home Centre — NursingHomeGuide.my</title>
 <meta name="description" id="pageDesc" content="Comfort Old Folks Home Centre in Johor. Comfort Old Folks Home Centre is a small residential care home in Johor operating at a capacity of 22 beds…" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=8" />
+<link rel="stylesheet" href="style.css?v=9" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
 <style>
 /* Profile-page–specific styles (kept inline to avoid bloating the global stylesheet) */
@@ -233,6 +235,7 @@
 </footer>
 
 <script src="data.js?v=3"></script>
+<script src="badges.js?v=1"></script>
 <script>
 /* ── Helpers ────────────────────────────────────────────── */
 function yn(val) {
@@ -685,6 +688,7 @@ function render(f) {
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
+          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: true }) : ''}
         </div>
         ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
@@ -710,6 +714,14 @@ function render(f) {
         <div class="tab-panel active" id="tab-overview">
           ${galleryHtml}
           ${editorialHtml}
+          ${window.NHGBadges ? `
+          <div class="badge-section">
+            <div class="badge-section-head">
+              <span class="badge-section-title">Capability badges</span>
+            </div>
+            ${NHGBadges.profileBadgeGrid(f)}
+            ${NHGBadges.tierMarker(f)}
+          </div>` : ''}
           <div class="profile-card">
             <h2>Quick Facts</h2>
             ${overviewQuickFacts || '<p class="text-muted">Details not yet collected.</p>'}

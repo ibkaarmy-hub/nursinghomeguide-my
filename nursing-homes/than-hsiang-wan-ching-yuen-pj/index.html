@@ -9,17 +9,19 @@
 <meta property="og:title" content="Than Hsiang Wan Ching Yuen (PJ) — NursingHomeGuide.my">
 <meta property="og:description" content="Than Hsiang Wan Ching Yuen (PJ) in Seksyen 1. Wan Ching Yuen is a Buddhist elder-care home in Section 1, Petaling Jaya, run by the Than Hsiang Buddhist…">
 <meta property="og:url" content="https://nursinghomeguide.my/nursing-homes/than-hsiang-wan-ching-yuen-pj/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="http://kl.thanhsiang.org/site/assets/files/1150/elderly_care_2-min.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Than Hsiang Wan Ching Yuen (PJ) — NursingHomeGuide.my">
 <meta name="twitter:description" content="Than Hsiang Wan Ching Yuen (PJ) in Seksyen 1. Wan Ching Yuen is a Buddhist elder-care home in Section 1, Petaling Jaya, run by the Than Hsiang Buddhist…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/than-hsiang-wan-ching-yuen-pj/","name":"Than Hsiang Wan Ching Yuen (PJ)","url":"https://nursinghomeguide.my/nursing-homes/than-hsiang-wan-ching-yuen-pj/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Seksyen 1","addressRegion":"Selangor"},"telephone":"03-77854143","description":"Wan Ching Yuen is a Buddhist elder-care home in Section 1, Petaling Jaya, run by the Than Hsiang Buddhist Welfare Association as part of its Mitra Welfare Centre network. The home was opened in November 2002 by Venerable Wei Wu and operates on a charitable rather than commercial basis, framed around the Buddhist principles of loving-kindness, compassion, joy and equanimity. The address at 14 Jalan 1/3, Seksyen 1, sits in PJ's older residential grid close to clinics and Assunta Hospital.\n\nThe hom","geo":{"@type":"GeoCoordinates","latitude":3.0841486,"longitude":101.6538947},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.4","reviewCount":11,"bestRating":"5","worstRating":"1"}}</script>
+<meta name="twitter:image" content="http://kl.thanhsiang.org/site/assets/files/1150/elderly_care_2-min.jpg">
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/than-hsiang-wan-ching-yuen-pj/","name":"Than Hsiang Wan Ching Yuen (PJ)","url":"https://nursinghomeguide.my/nursing-homes/than-hsiang-wan-ching-yuen-pj/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Seksyen 1","addressRegion":"Selangor"},"image":"http://kl.thanhsiang.org/site/assets/files/1150/elderly_care_2-min.jpg","telephone":"03-77854143","description":"Wan Ching Yuen is a Buddhist elder-care home in Section 1, Petaling Jaya, run by the Than Hsiang Buddhist Welfare Association as part of its Mitra Welfare Centre network. The home was opened in November 2002 by Venerable Wei Wu and operates on a charitable rather than commercial basis, framed around the Buddhist principles of loving-kindness, compassion, joy and equanimity. The address at 14 Jalan 1/3, Seksyen 1, sits in PJ's older residential grid close to clinics and Assunta Hospital.\n\nThe hom","geo":{"@type":"GeoCoordinates","latitude":3.0841486,"longitude":101.6538947},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.4","reviewCount":11,"bestRating":"5","worstRating":"1"}}</script>
 <script>window.__FACILITY_SLUG="than-hsiang-wan-ching-yuen-pj";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Than Hsiang Wan Ching Yuen (PJ) — NursingHomeGuide.my</title>
 <meta name="description" id="pageDesc" content="Than Hsiang Wan Ching Yuen (PJ) in Seksyen 1. Wan Ching Yuen is a Buddhist elder-care home in Section 1, Petaling Jaya, run by the Than Hsiang Buddhist…" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=8" />
+<link rel="stylesheet" href="style.css?v=9" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
 <style>
 /* Profile-page–specific styles (kept inline to avoid bloating the global stylesheet) */
@@ -233,6 +235,7 @@
 </footer>
 
 <script src="data.js?v=3"></script>
+<script src="badges.js?v=1"></script>
 <script>
 /* ── Helpers ────────────────────────────────────────────── */
 function yn(val) {
@@ -685,6 +688,7 @@ function render(f) {
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
+          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: true }) : ''}
         </div>
         ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
@@ -710,6 +714,14 @@ function render(f) {
         <div class="tab-panel active" id="tab-overview">
           ${galleryHtml}
           ${editorialHtml}
+          ${window.NHGBadges ? `
+          <div class="badge-section">
+            <div class="badge-section-head">
+              <span class="badge-section-title">Capability badges</span>
+            </div>
+            ${NHGBadges.profileBadgeGrid(f)}
+            ${NHGBadges.tierMarker(f)}
+          </div>` : ''}
           <div class="profile-card">
             <h2>Quick Facts</h2>
             ${overviewQuickFacts || '<p class="text-muted">Details not yet collected.</p>'}

@@ -9,17 +9,19 @@
 <meta property="og:title" content="Cherish Retirement And Nursing Home — NursingHomeGuide.my">
 <meta property="og:description" content="Cherish Retirement And Nursing Home in Pjs 3. Cherish Retirement and Nursing Home is located in PJS 3, the Jalan Klang Lama-adjacent stretch of Petaling…">
 <meta property="og:url" content="https://nursinghomeguide.my/nursing-homes/cherish-retirement-and-nursing-home/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://mdac.my/wp-content/uploads/2021/03/WhatsApp-Image-2021-03-22-at-2.01.21-PM.jpeg">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cherish Retirement And Nursing Home — NursingHomeGuide.my">
 <meta name="twitter:description" content="Cherish Retirement And Nursing Home in Pjs 3. Cherish Retirement and Nursing Home is located in PJS 3, the Jalan Klang Lama-adjacent stretch of Petaling…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/cherish-retirement-and-nursing-home/","name":"Cherish Retirement And Nursing Home","url":"https://nursinghomeguide.my/nursing-homes/cherish-retirement-and-nursing-home/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Pjs 3","addressRegion":"Selangor"},"telephone":"03-7773 2333","description":"Cherish Retirement and Nursing Home is located in PJS 3, the Jalan Klang Lama-adjacent stretch of Petaling Jaya that falls under the broader Taman Desasiswa corridor. The facility has a Google Maps rating of 4.3 from seven reviews and a listed capacity of 10 beds, indicating a very small, intimate home rather than a conventional multi-ward nursing facility. The phone number 03-7773 2333 is active in directory listings, and a Facebook page exists for the facility. The small bed count and PJS 3 ad","geo":{"@type":"GeoCoordinates","latitude":3.089189,"longitude":101.648598},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.3","reviewCount":7,"bestRating":"5","worstRating":"1"}}</script>
+<meta name="twitter:image" content="https://mdac.my/wp-content/uploads/2021/03/WhatsApp-Image-2021-03-22-at-2.01.21-PM.jpeg">
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/cherish-retirement-and-nursing-home/","name":"Cherish Retirement And Nursing Home","url":"https://nursinghomeguide.my/nursing-homes/cherish-retirement-and-nursing-home/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Pjs 3","addressRegion":"Selangor"},"image":"https://mdac.my/wp-content/uploads/2021/03/WhatsApp-Image-2021-03-22-at-2.01.21-PM.jpeg","telephone":"03-7773 2333","description":"Cherish Retirement and Nursing Home is located in PJS 3, the Jalan Klang Lama-adjacent stretch of Petaling Jaya that falls under the broader Taman Desasiswa corridor. The facility has a Google Maps rating of 4.3 from seven reviews and a listed capacity of 10 beds, indicating a very small, intimate home rather than a conventional multi-ward nursing facility. The phone number 03-7773 2333 is active in directory listings, and a Facebook page exists for the facility. The small bed count and PJS 3 ad","geo":{"@type":"GeoCoordinates","latitude":3.089189,"longitude":101.648598},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.3","reviewCount":7,"bestRating":"5","worstRating":"1"}}</script>
 <script>window.__FACILITY_SLUG="cherish-retirement-and-nursing-home";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Cherish Retirement And Nursing Home — NursingHomeGuide.my</title>
 <meta name="description" id="pageDesc" content="Cherish Retirement And Nursing Home in Pjs 3. Cherish Retirement and Nursing Home is located in PJS 3, the Jalan Klang Lama-adjacent stretch of Petaling…" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=8" />
+<link rel="stylesheet" href="style.css?v=9" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
 <style>
 /* Profile-page–specific styles (kept inline to avoid bloating the global stylesheet) */
@@ -233,6 +235,7 @@
 </footer>
 
 <script src="data.js?v=3"></script>
+<script src="badges.js?v=1"></script>
 <script>
 /* ── Helpers ────────────────────────────────────────────── */
 function yn(val) {
@@ -685,6 +688,7 @@ function render(f) {
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
+          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: true }) : ''}
         </div>
         ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
@@ -710,6 +714,14 @@ function render(f) {
         <div class="tab-panel active" id="tab-overview">
           ${galleryHtml}
           ${editorialHtml}
+          ${window.NHGBadges ? `
+          <div class="badge-section">
+            <div class="badge-section-head">
+              <span class="badge-section-title">Capability badges</span>
+            </div>
+            ${NHGBadges.profileBadgeGrid(f)}
+            ${NHGBadges.tierMarker(f)}
+          </div>` : ''}
           <div class="profile-card">
             <h2>Quick Facts</h2>
             ${overviewQuickFacts || '<p class="text-muted">Details not yet collected.</p>'}
