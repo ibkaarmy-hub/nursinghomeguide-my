@@ -1,36 +1,37 @@
 # PROJECT.md — Nursing Home Guide Malaysia
 
-Malaysia's most comprehensive elder care and nursing home guide. Covers nursing homes, assisted living, day care, and home care. Built by a doctor to help families make the most important decision of their lives.
+Malaysia's most comprehensive elder care directory. Covers nursing homes, assisted living, day care, and home care. Built to help Malaysian families make a high-stakes decision with verified information.
 
-**Live:** https://ibkaarmy-hub.github.io/nursinghomeguide-my/
+**Live:** https://nursinghomeguide.my
 **Repo:** https://github.com/ibkaarmy-hub/nursinghomeguide-my
-**Domain target:** nursinghomeguide.my
 **Phase:** 3 states live (Johor, KL, Selangor) → Penang, Perak next
 
 ---
 
 ## Why this exists
 
-Families searching for elderly care in Malaysia have nowhere to compare facilities. JKM publishes a licence list with no detail. Google Maps has reviews but no care info or pricing. This directory pulls everything together: care types, photos, location, contact, and pricing where available.
+Families searching for elderly care in Malaysia have nowhere to compare facilities neutrally. JKM publishes a licence list with no detail. Google Maps has reviews but no care info or pricing. Operator-run directories list themselves at #1. This directory pulls verified information together: care types, photos, location, contact, pricing where available — from a family's perspective, not an operator's.
+
+See [`_research/competitors.md`](_research/competitors.md) for the competitive gap analysis.
 
 ---
 
-## Stack (current)
+## Stack
 
-Static HTML/CSS/JS on GitHub Pages, fetching published Google Sheets CSV at page load. No backend. Google Sheets is the CMS — editors update the sheet, site reflects changes on next load.
+Static HTML/CSS/JS on GitHub Pages, fetching published Google Sheets CSV at page load. No backend. Google Sheets is the CMS — editors update the sheet, site reflects changes on next load. Per-facility static pages are pre-generated for SEO/social previews.
 
-Migration to Next.js + Supabase + Vercel is deferred until the data side justifies it (see Stage 05).
+Migration to Next.js + Supabase + Vercel is deferred until data scale justifies it (see `stages/05-build/CONTEXT.md`).
 
 ---
 
-## Stage progress
+## Stage progress (as of 2026-05-03)
 
 | Stage | Goal | Status |
 |-------|------|--------|
-| 01-data | Clean MY facility list | ✅ 324 total rows (Johor 126, KL 56, Selangor 142) |
-| 02-enrich | Pricing, care types, photos, editorials | 🟡 Photos done, 60 Johor editorials done, pricing & KL/Selangor editorials pending |
-| 03-content | Guide pages, area pages, BM translations | ⬜ Not started — highest SEO priority |
-| 04-design | All page templates | ✅ All pages shipped |
+| 01-data | Clean MY facility list | ✅ 406 rows in sheet (~346 live after `status` filtering) |
+| 02-enrich | Pricing, care types, photos, editorials | ✅ Editorials 100% (350/350); pricing + Details tab partial |
+| 03-content | Guide pages, area pages, BM translations | 🟡 In progress: `guides/which-care.html` + `guides/government-assistance.html` shipped; area pages next |
+| 04-design | All page templates | ✅ Shipped |
 | 05-build | Production stack migration | ⬜ Deferred |
 
 ---
@@ -38,84 +39,68 @@ Migration to Next.js + Supabase + Vercel is deferred until the data side justifi
 ## What's been built
 
 ### Pages
-- **`index.html`** — Malaysia state picker landing page; hero, why section, how it works
-- **`johor.html`** — Johor state page: filter bar, area pills, sort, list/map toggle, Leaflet map
-- **`kuala-lumpur.html`** — KL state page (same template)
-- **`selangor.html`** — Selangor state page (same template)
-- **`facility.html`** — 4-tab profile (Overview / Pricing / Care & Medical / Amenities + Map); carousel, sticky sidebar CTA, mobile fixed bar
-- **`org.html`** — Organisation/chain profile page with all branch cards
-- **`photo-manager.html`** — Admin tool for photo curation
+- `index.html` — Malaysia state picker landing
+- `johor.html`, `kuala-lumpur.html`, `selangor.html` — state pages with filter, sort, list/map toggle
+- `facility.html` (template) + per-facility static pages at `/facility/<slug>/index.html`
+- `org.html` — chain/group profile with all branch cards
+- `guides/which-care.html`, `guides/government-assistance.html` — first guide pages
+- `photo-manager.html` — admin tool
 
 ### Data infrastructure
-- **`data.js`** — CSV fetcher + parseCSV + loadFacilities() + loadDetails() + GROUPS registry + GROUPS_BY_SLUG index
-- **`style.css`** — All shared styles; design tokens, card components, map, org, filter bar, skeleton loaders
-- Two-tab Google Sheet model: Facilities (gid=292378871) + Details (gid=1104748854)
-- `status` column: `unverified` / `removed` hides facilities from all pages without deleting data
+- Two-tab Google Sheet: Facilities (gid=292378871) + Details (gid=1104748854)
+- `status` column for visibility control (`unverified` / `removed` hidden automatically)
+- `data.js` — CSV fetcher + GROUPS registry (28 chain groups indexed)
 
-### Data
-- 324 total rows — 269 live, 55 hidden (status=unverified/removed pending verification)
-- 28 organisation groups registered in data.js (13 Johor, 15 KL/Selangor)
-- 60 editorial summaries written (all Johor)
-- Details tab populated for ~26 Johor facilities (rooms, clinical, policies, checklists, nearby)
-- Area normalisation map: 40+ raw Johor strings → 10 clean canonical areas (client-side, no sheet changes needed)
+### SEO infrastructure (2026-05-03)
+- Custom domain live (Namecheap → GitHub Pages, CNAME committed)
+- `sitemap.xml` (~383 URLs) submitted to Google Search Console
+- `robots.txt`
+- 349 per-facility static pages with baked-in OG / Twitter / canonical / LocalBusiness JSON-LD
+- Weekly remote agent regenerates static pages + sitemap (Mondays 09:00 KL)
+- Manage agent: https://claude.ai/code/routines
 
 ---
 
 ## Competitive positioning
 
-1. **Most comprehensive** — nursing homes, assisted living, day care, home care all covered
-2. **Detailed profiles** — editorial summaries, care type breakdown, clinical capabilities, photos
-3. **Organisation pages** — chain/group pages no other directory has
-4. **Map view** — Leaflet + OpenStreetMap, free, no API key
-5. **Doctor-founded** — credibility signal for families and professionals
-6. **Pricing where available** — honest "Call for pricing" when unknown, never fabricated
+1. **Most comprehensive coverage** — nursing homes, assisted living, day care, home care
+2. **Neutral angle** — only directory not run by an operator
+3. **Detailed profiles** — editorials, care breakdown, clinical capabilities, photos
+4. **Organisation pages** — chain/group view no other directory has
+5. **Map view** — Leaflet + OpenStreetMap, no API key required
+6. **Honest pricing** — published when verified, "Call for pricing" when not — never fabricated
 
 ---
 
-## Data quality gaps (as of 2026-05-01)
+## Data quality gaps
 
-| Field | Live facilities with data | Gap |
-|-------|--------------------------|-----|
-| Pricing (shared_price) | 15 / 269 | 254 show "Call for pricing" |
-| Editorial summary | 60 / 269 | 0 for KL/Selangor |
-| JKM licence number | 1 / 269 | Critical pre-launch gap |
-| Details tab content | ~26 / 269 | 0 for KL/Selangor |
-| Johor hidden facilities | 55 | Need outreach to verify/restore |
-
----
-
-## Known technical debt
-
-- **Photo URLs are Google CDN** (`lh3.googleusercontent.com`) — not stable long-term; mirror to Supabase Storage or Vercel Blob before scaling
-- **facility.html uses `?slug=` query params** — not ideal for SEO; clean URL paths (`/facilities/slug/`) are better but require a build step
-- **No sitemap.xml or robots.txt** — blocks proper Google indexing
-- **No structured data (schema.org)** — LocalBusiness, ItemList, BreadcrumbList all missing
-- **No Google Search Console** — zero indexing visibility
-- **BM translations** — not started; needed for Malay-speaking majority
+| Field | Coverage | Gap |
+|-------|----------|-----|
+| Editorial summary | 350 / 350 live | ✅ done |
+| Pricing (`shared_price`) | ~15 / 346 | Outreach needed |
+| JKM licence number | low | Bulk-lookup pending |
+| Details tab content | partial | KL/Selangor pending |
+| Hidden facilities (`status=unverified`) | 56 | Verify or remove |
 
 ---
 
-## Next actions (prioritised)
+## Next actions
 
-### Immediate
-1. Set up Google Search Console + submit sitemap.xml
-2. Create robots.txt
-3. Add LocalBusiness schema to facility profiles
-4. Pricing outreach — call/email all 254 facilities with blank pricing
-5. KL/Selangor editorials — 198 facilities with zero written content
-6. JKM licence lookup — bulk lookup from JKM public register
-
-### Content (SEO / backlinks)
-7. Write "How Much Does a Nursing Home Cost in Malaysia?" — #1 link magnet
-8. Write "How to Choose a Nursing Home in Malaysia" — referral from social workers
-9. Write "How to Check JKM Licensing" — public service, linkable
-10. District-level area pages (nursing home Petaling Jaya, nursing home JB, etc.)
+### Content (highest leverage)
+1. Area guide: Petaling Jaya — beat operator listicles with neutrality. Grounded in `_research/`.
+2. Area guides: Johor Bahru, Cheras, Subang Jaya, Kajang/Sungai Long.
+3. Care-type guides: dementia, assisted living, day care, palliative, home care.
+4. Pricing & subsidy guides — link magnets for journalists / NGOs / social workers.
+5. BM translations of Tier 1 content (`panduan-pilih-pusat-jagaan.html` etc.)
 
 ### Data
-11. Verify and restore 55 hidden Johor facilities via email/phone outreach
-12. Confirm Jeta Care pricing (2020 data stale)
-13. Resolve Haywood Senior Living Medini JKM licence
-14. Confirm halal status: Haywood Medini, EHA Parkview
+6. Pricing outreach — call/email facilities with blank pricing.
+7. JKM licence bulk lookup from public register.
+8. Verify or remove the 56 hidden facilities.
+9. Photo CDN migration — Google `lh3.googleusercontent.com` URLs are not stable long-term; mirror to Supabase Storage or Vercel Blob before scaling.
+
+### Reach
+10. Penang, Perak state expansion (data + pages).
 
 ---
 
@@ -123,5 +108,4 @@ Migration to Next.js + Supabase + Vercel is deferred until the data side justifi
 
 - Google Sheet: https://docs.google.com/spreadsheets/d/1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk/edit
 - JKM directory: https://www.jkm.gov.my
-- Apify account: compass/crawler-google-places actor
-- SEO backlink plan: see `social_work_audit_report.md` and the SEO agent report (completed 2026-05-01)
+- Backlink/outreach research: `_research/social-worker-outreach-audit.md`
