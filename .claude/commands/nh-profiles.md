@@ -208,3 +208,23 @@ When the user pastes a specific facility URL with feedback, switch from the bulk
   git push origin HEAD:main
   ```
 - If `_blockers.json` conflicts during rebase: merge both sets of keys manually (keep all existing entries + add new ones), then `git add` and `GIT_EDITOR=true git rebase --continue`.
+
+### Column-shift / corruption detection (locked 2026-05-03 from Jasper Lodge fix)
+When pulling a row, **dump every column raw** — not just the ones you expect — and look for misplaced data. Past corruption patterns to scan for:
+- `google_maps_url` that starts with `https://lh3.googleusercontent.com/` or `https://streetviewpixels-pa.googleapis.com/` → it's a Google CDN photo URL, not a place URL. Replace with a Maps search URL: `https://www.google.com/maps/search/?api=1&query=<urlencoded name + address>`.
+- `last_updated` containing pipe-separated URLs → photos got dumped into the wrong column. Move to `photos`, set `last_updated` to today.
+- `halal` containing a number like `10` → that's a misplaced `photo_count`. Clear it.
+- `latitude` or `longitude` containing prose ("X is a care home located in Selangor...") → an editorial blurb landed in the coords column. Clear both lat/lng unless you can verify real numbers.
+- `editorial_summary` containing literal `",\n\n      "` or other JSON fragments → broken upload from a previous batch. Rewrite from scratch.
+
+**Pre-flight check in the update script:** before pushing, assert `'"' not in editorial_body` for every branch — any straight double-quote in a published editorial is suspicious (curly quotes are fine). The script should abort on failure, not push corrupted text.
+
+### Chain-aware editorials with shared paragraph 2 (locked 2026-05-03)
+When fixing multiple branches of one chain in one pass:
+- Paragraph 1 = branch-specific (address, what's distinctive). Paragraph 3 = branch-specific (review trail, practical viewing notes). **Paragraph 2 is identical across all branches** — services list verbatim from operator + capacity + pricing line. Saves work and keeps the chain story consistent.
+- If the operator only has individual pages for SOME branches (Jasper had pages for PJ2/PJ5 only, none for PJ1/PJ3), say so explicitly in paragraph 3 of the un-paged branches and flag any third-party-sourced address as third-party (don't pretend it's operator-confirmed).
+- Phone normalisation: if the per-branch number on the sheet doesn't appear anywhere on the operator site, switch to the national careline (when the operator publishes one shared across branches) rather than keeping a number you can't verify.
+
+### When the user supplies a pricing number
+- Treat user-supplied pricing the same as any unverified claim: confirm against the operator site before locking it into `editorial_summary`, `pricing_display`, `private_price`, `shared_price`. Don't shortcut just because the user said it.
+- If you can't find it on the operator site, ask the user once: "Operator site doesn't list a price — should I publish your number, or 'Call for pricing'?" The Jasper session burned a draft because the user gave a price ("from RM 2,500+") then retracted it as confused with another profile after the script was already written.
