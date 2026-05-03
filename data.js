@@ -432,10 +432,77 @@ Object.values(GROUPS).forEach(g => {
   });
 });
 
+// ─── Verification staleness + licence expiry (Phase A) ───────────────────────
+// Per _research/verification-sop.md §6 and regulatory-framework.md §4.
+// Tier 1 entries older than 12 months auto-downgrade to Tier 0 (Unverified).
+// Tier 2 entries older than 24 months auto-downgrade to Tier 1.
+// If licence_expiry has passed, license_category drops to 'Unverified'
+// regardless of stored tier.
+// Exposed as `_effective_*` fields so the raw Sheet value is preserved.
+const MS_PER_DAY = 86400000;
+const TIER_1_MAX_AGE_DAYS = 365;
+const TIER_2_MAX_AGE_DAYS = 730;
+const LICENCE_WARNING_WINDOW_DAYS = 30;
+
+function parseSheetDate(s) {
+  if (!s) return null;
+  const t = String(s).trim();
+  if (!t) return null;
+  // Accept YYYY-MM-DD (preferred) and a few common Sheet formats.
+  let d = new Date(t);
+  if (!isNaN(d)) return d;
+  // DD/MM/YYYY fallback
+  const m = t.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (m) {
+    d = new Date(`${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`);
+    if (!isNaN(d)) return d;
+  }
+  return null;
+}
+
+function applyVerificationStaleness(row, now = new Date()) {
+  const tier = parseInt(row.verification_tier || '0', 10) || 0;
+  const verifiedOn = parseSheetDate(row.last_verified_on);
+  const licenceExpiry = parseSheetDate(row.license_expiry);
+
+  // Tier staleness
+  let effectiveTier = tier;
+  if (verifiedOn) {
+    const ageDays = (now - verifiedOn) / MS_PER_DAY;
+    if (effectiveTier === 2 && ageDays > TIER_2_MAX_AGE_DAYS) effectiveTier = 1;
+    if (effectiveTier === 1 && ageDays > TIER_1_MAX_AGE_DAYS) effectiveTier = 0;
+  } else if (effectiveTier > 0) {
+    // Tier set but no date — treat as Tier 0 for safety.
+    effectiveTier = 0;
+  }
+
+  // Licence expiry → forces Unverified license_category.
+  let effectiveLicenceCategory = row.license_category || 'Unverified';
+  let licenceExpired = false;
+  let licenceExpiryWarning = false;
+  if (licenceExpiry) {
+    if (licenceExpiry < now) {
+      licenceExpired = true;
+      effectiveLicenceCategory = 'Unverified';
+    } else if ((licenceExpiry - now) / MS_PER_DAY <= LICENCE_WARNING_WINDOW_DAYS) {
+      licenceExpiryWarning = true;
+    }
+  }
+
+  row._effective_verification_tier = effectiveTier;
+  row._effective_license_category = effectiveLicenceCategory;
+  row._licence_expired = licenceExpired;
+  row._licence_expiry_warning = licenceExpiryWarning;
+  return row;
+}
+
 // ─── Data fetchers ─────────────────────────────────────────────────────────────
 async function loadFacilities() {
   const res = await fetch(FACILITIES_CSV_URL);
-  return parseCSV(await res.text()).filter(r => r.title && r.status !== 'unverified' && r.status !== 'removed');
+  const now = new Date();
+  return parseCSV(await res.text())
+    .filter(r => r.title && r.status !== 'unverified' && r.status !== 'removed')
+    .map(r => applyVerificationStaleness(r, now));
 }
 
 // Returns { [slug]: { [section]: [ {label, value}, ... ] } }
