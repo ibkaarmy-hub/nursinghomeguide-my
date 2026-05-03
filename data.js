@@ -408,14 +408,18 @@ const GROUPS = {
 
   'merry-care-centre': {
     slug: 'merry-care-centre',
-    name: 'Merry Care Centre',
-    tagline: 'Klang Valley multi-branch nursing home group',
+    name: 'Merry Care',
+    tagline: 'Six-branch affordable nursing home chain across Kepong, Selayang & Desa Jaya',
     website: 'https://www.elderlycare.my/',
-    state: 'Selangor, Kuala Lumpur',
-    description: 'Merry Care Centre operates multiple nursing home branches across the Klang Valley, with the Jalan Antoi branch in Kepong Baru (Kuala Lumpur) and the Jalan Belinggai branch in Selangor identified in our directory. The operator markets at elderlycare.my and offers nursing care across branches.',
+    state: 'Kuala Lumpur, Selangor',
+    description: 'Merry Care operates six nursing home branches across the Klang Valley — four clustered in Kepong Baru (Kuala Lumpur), one in Taman Desa Jaya, and one in Selayang Baru (Selangor). The chain markets at elderlycare.my and positions on the affordable end of the residential care market, with a published starting rate of RM 2,500/month for shared rooms including five meals a day.',
     branches: [
-      'merry-care-centre-jln-belinggai',
       'merry-care-centre-jln-antoi',
+      'merry-care-centre-jln-belinggai',
+      'merry-care-kepong-baru-3',
+      'merry-care-kepong-baru-4',
+      'merry-care-desa-jaya-kepong',
+      'merry-care-selayang-baru',
     ],
   },
 };

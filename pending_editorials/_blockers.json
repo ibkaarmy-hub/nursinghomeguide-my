@@ -4,5 +4,11 @@
   "jasper-lodge-nursing-home-pj1": "manually fixed in session 2026-05-03 (chain rewrite: photos, maps URL, phone, editorial)",
   "jasper-lodge-nursing-home-pj2": "manually fixed in session 2026-05-03 (chain rewrite: photos, maps URL, phone, editorial; cleared bad latitude blurb)",
   "jasper-lodge-nursing-home-pj3": "manually fixed in session 2026-05-03 (chain rewrite: photos, maps URL, phone, editorial; cleared bad latitude blurb)",
-  "jasper-lodge-nursing-home-pj5": "manually fixed in session 2026-05-03 (chain rewrite: photos, maps URL, phone, editorial; cleared bad latitude blurb)"
+  "jasper-lodge-nursing-home-pj5": "manually fixed in session 2026-05-03 (chain rewrite: photos, maps URL, phone, editorial; cleared bad latitude blurb)",
+  "merry-care-centre-jln-antoi": "manually fixed 2026-05-03 (Merry Care Kepong Baru 1; chain reconciliation)",
+  "merry-care-centre-jln-belinggai": "manually fixed 2026-05-03 (Merry Care Kepong Baru 2; chain reconciliation, state corrected Selangor->KL)",
+  "merry-care-kepong-baru-3": "manually fixed 2026-05-03 (new row, Merry chain expansion)",
+  "merry-care-kepong-baru-4": "manually fixed 2026-05-03 (new row, Merry chain expansion)",
+  "merry-care-selayang-baru": "manually fixed 2026-05-03 (new row, Merry chain expansion)",
+  "merry-care-desa-jaya-kepong": "manually fixed 2026-05-03 (new row, Merry chain expansion)"
 }
