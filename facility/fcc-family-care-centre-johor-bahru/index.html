@@ -35,8 +35,6 @@
 .bc-sep { color: #cbd5e1; }
 .profile-header h1 { font-size: 1.85rem; font-weight: 800; margin: 6px 0 8px; line-height: 1.2; color: var(--text, #0f172a); }
 .hero-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: .9rem; color: var(--text-muted, #64748b); margin-bottom: 12px; }
-.hero-badges { display: flex; gap: 8px; flex-wrap: wrap; }
-.hero-badge { background: #eff6ff; color: #1d4ed8; padding: 4px 10px; border-radius: 999px; font-size: .75rem; font-weight: 500; }
 @media (max-width: 600px) {
   .profile-header { padding: 16px 16px 14px; }
   .profile-header h1 { font-size: 1.3rem; }
@@ -440,10 +438,6 @@ function render(f) {
   const ratingMeta = f.rating
     ? `<span>⭐ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} Google reviews)</span>` : '';
 
-  /* Hero badges from care_types */
-  const careBadges = (f.care_types || '').split(/[+,]/).map(s => s.trim()).filter(Boolean)
-    .slice(0, 5).map(t => `<span class="hero-badge">${escapeHtml(t)}</span>`).join('');
-
   /* Summary tiles */
   const priceVal = f.shared_price || f.private_price || f.pricing_display || 'Not published';
   const priceUnknown = !f.shared_price && !f.private_price && (!f.pricing_display || isUnknownText(f.pricing_display));
@@ -484,7 +478,7 @@ function render(f) {
   })();
   const phoneLink   = f.phone        ? `<a href="tel:${escapeHtml(f.phone)}" class="cta-btn cta-call">📞 Call ${escapeHtml(f.phone)}</a>` : '';
   const waMsg       = encodeURIComponent(`Hi, I found ${f.title} on NursingHomeGuide.my and would like to enquire about availability and pricing. Could you please share more details?`);
-  const waLink      = waNumber       ? `<a href="https://wa.me/${waNumber}?text=${waMsg}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp Now</a>` : '';
+  const waLink      = waNumber       ? `<a href="https://wa.me/${waNumber}?text=${waMsg}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp</a>` : '';
   const mapsLink    = f.google_maps_url ? `<a href="${escapeHtml(f.google_maps_url)}" target="_blank" class="cta-btn cta-maps">📍 Google Maps</a>` : '';
   const webLink     = f.website && !f.website.includes('facebook') ? `<a href="${escapeHtml(f.website)}" target="_blank" class="cta-btn cta-web">🌐 Website</a>` : '';
 
@@ -684,7 +678,6 @@ function render(f) {
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
         </div>
-        <div class="hero-badges">${careBadges}</div>
         ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
     </div>
