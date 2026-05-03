@@ -2,8 +2,8 @@
  * NursingHomeGuide.my — Operator intake form generator
  *
  * ONE-SHOT SCRIPT. Builds the operator verification form (per
- * _research/verification-sop.md §5) with all 33 questions across 8
- * sections, and links responses to a new tab in the master Sheet.
+ * _research/verification-sop.md §5) with questions across 9 sections
+ * (A–I), and links responses to a new tab in the master Sheet.
  *
  * HOW TO USE:
  *   1. Open script.google.com → New project
@@ -177,7 +177,7 @@ function buildIntakeForm() {
       .setChoiceValues([
         'Yes — we offer this',
         'No — we do not',
-        'Limited — please describe in section H'
+        'Limited — please describe in section I'
       ])
       .setRequired(true);
   });
@@ -292,9 +292,9 @@ function buildIntakeForm() {
     .setHelpText('e.g. https://www.facebook.com/yourfacility — helps families find your social presence.')
     .setRequired(false);
 
-  // ─── Section I — Facility details (enrichment) ────────────────────
+  // ─── Section H — Facility details (enrichment) ────────────────────
   form.addPageBreakItem()
-    .setTitle('I. Facility details')
+    .setTitle('H. Facility details')
     .setHelpText('These questions help families understand what to expect before they visit. All optional — answer what you can.');
 
   form.addMultipleChoiceItem()
@@ -405,8 +405,8 @@ function buildIntakeForm() {
     ])
     .setRequired(false);
 
-  // ─── Section H — Consent ──────────────────────────────────────────
-  form.addPageBreakItem().setTitle('H. Permission and consent');
+  // ─── Section I — Consent ──────────────────────────────────────────
+  form.addPageBreakItem().setTitle('I. Permission and consent');
 
   form.addCheckboxItem()
     .setTitle('Authorisation')
