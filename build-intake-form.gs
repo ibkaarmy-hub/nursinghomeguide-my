@@ -166,7 +166,10 @@ function buildIntakeForm() {
     'Tracheostomy care',
     'Advanced wound care (beyond basic dressings)',
     'On-site physiotherapy',
-    'On-site oxygen therapy'
+    'On-site occupational therapy',
+    'On-site oxygen therapy',
+    'Dialysis support (in-facility or transport arranged)',
+    'Medication management (dispensing, monitoring, administration)'
   ];
   capabilities.forEach(cap => {
     form.addMultipleChoiceItem()
@@ -260,6 +263,35 @@ function buildIntakeForm() {
     .showOtherOption(true)
     .setRequired(true);
 
+  form.addMultipleChoiceItem()
+    .setTitle('Do you have parking available for visitors?')
+    .setChoiceValues(['Yes — ample parking', 'Yes — limited', 'Street parking only', 'No parking'])
+    .setRequired(false);
+
+  form.addMultipleChoiceItem()
+    .setTitle('Do you accept residents under government subsidy or JKM welfare assistance?')
+    .setChoiceValues(['Yes', 'No', 'On a case-by-case basis'])
+    .setRequired(false);
+
+  form.addMultipleChoiceItem()
+    .setTitle('Religious or cultural character of the facility')
+    .setHelpText('Families looking for a faith-aligned environment often ask this.')
+    .setChoiceValues([
+      'Non-denominational / open to all',
+      'Islamic / Muslim-operated',
+      'Christian-operated',
+      'Buddhist-operated',
+      'Hindu-operated',
+      'Mixed / multi-faith'
+    ])
+    .showOtherOption(true)
+    .setRequired(false);
+
+  form.addTextItem()
+    .setTitle('Facebook page URL (if any)')
+    .setHelpText('e.g. https://www.facebook.com/yourfacility — helps families find your social presence.')
+    .setRequired(false);
+
   // ─── Section I — Facility details (enrichment) ────────────────────
   form.addPageBreakItem()
     .setTitle('I. Facility details')
@@ -309,12 +341,22 @@ function buildIntakeForm() {
     .setRequired(false);
 
   form.addTextItem()
-    .setTitle('Caregiver-to-resident ratio during the day')
-    .setHelpText('e.g. "1 caregiver to 5 residents". Registered nurses counted separately.')
+    .setTitle('Registered nurse (RN) to resident ratio — daytime')
+    .setHelpText('e.g. "1 RN to 20 residents". Caregivers / nursing assistants are counted separately below.')
     .setRequired(false);
 
   form.addTextItem()
-    .setTitle('Caregiver-to-resident ratio at night')
+    .setTitle('Registered nurse (RN) to resident ratio — overnight')
+    .setHelpText('e.g. "1 RN to 40 residents on-call". Enter "RN on-call only" if applicable.')
+    .setRequired(false);
+
+  form.addTextItem()
+    .setTitle('Caregiver / nursing assistant to resident ratio — daytime')
+    .setHelpText('e.g. "1 caregiver to 5 residents"')
+    .setRequired(false);
+
+  form.addTextItem()
+    .setTitle('Caregiver / nursing assistant to resident ratio — overnight')
     .setHelpText('e.g. "1 caregiver to 10 residents"')
     .setRequired(false);
 
