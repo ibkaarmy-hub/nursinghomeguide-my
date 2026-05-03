@@ -17,6 +17,10 @@ firecrawl_results.json
 run_*.json
 run_response.json
 kl_selangor_run_id.txt
+rescrape_input.json
+rescrape_results.csv
+rescrape_queries.txt
+.rescrape_cache/
 
 # ── Working CSVs (intermediate merge stages) ─────────────────
 sheet.csv
