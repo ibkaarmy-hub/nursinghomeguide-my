@@ -22,9 +22,9 @@ img { max-width: 100%; display: block; }
 /* ── Nav ──────────────────────────────────────────────────── */
 body > nav { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 200; }
 .nav-inner { max-width: 1160px; margin: 0 auto; padding: 0 20px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-.logo { font-size: 1.05rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+.logo { font-size: 1.05rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; }
 .logo span { color: var(--text); }
-.logo .logo-icon { background: var(--primary); padding: 5px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.logo .logo-icon { background: var(--primary); padding: 5px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 8px; }
 @media (max-width: 640px) {
   .nav-inner { padding: 0 16px; height: 52px; }
   .logo { font-size: .95rem; }
