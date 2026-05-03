@@ -9,17 +9,19 @@
 <meta property="og:title" content="Seavoy Nursing Home (Desa Melawati) — NursingHomeGuide.my">
 <meta property="og:description" content="Seavoy Nursing Home (Desa Melawati) in Selangor. The Desa Melawati branch of Seavoy Nursing Home occupies two linked shophouse units at No. 18 &amp; 20…">
 <meta property="og:url" content="https://nursinghomeguide.my/nursing-homes/seavoy-nursing-home-desa-melawati/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://www.seavoynursinghome.com/wp-content/uploads/2024/05/cropped-apple-touch-icon-90x90.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Seavoy Nursing Home (Desa Melawati) — NursingHomeGuide.my">
 <meta name="twitter:description" content="Seavoy Nursing Home (Desa Melawati) in Selangor. The Desa Melawati branch of Seavoy Nursing Home occupies two linked shophouse units at No. 18 &amp; 20…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/seavoy-nursing-home-desa-melawati/","name":"Seavoy Nursing Home (Desa Melawati)","url":"https://nursinghomeguide.my/nursing-homes/seavoy-nursing-home-desa-melawati/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Selangor","addressRegion":"Selangor"},"telephone":"03-4108 4740","description":"The Desa Melawati branch of Seavoy Nursing Home occupies two linked shophouse units at No. 18 & 20, Jalan 5/4C, in the older residential part of Melawati at the foot of the Klang Gates quartz ridge. It is the larger of the two Seavoy homes and the one most visitors find first online. The chain was founded in 1989 by Datin Dr Mangalaveni Karthigasu, who runs it as both founder and consultant physician, and operates under Ministry of Health and JKM registration.\n\nThe team here includes physicians,"}</script>
+<meta name="twitter:image" content="https://www.seavoynursinghome.com/wp-content/uploads/2024/05/cropped-apple-touch-icon-90x90.png">
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/seavoy-nursing-home-desa-melawati/","name":"Seavoy Nursing Home (Desa Melawati)","url":"https://nursinghomeguide.my/nursing-homes/seavoy-nursing-home-desa-melawati/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Selangor","addressRegion":"Selangor"},"image":"https://www.seavoynursinghome.com/wp-content/uploads/2024/05/cropped-apple-touch-icon-90x90.png","telephone":"03-4108 4740","description":"The Desa Melawati branch of Seavoy Nursing Home occupies two linked shophouse units at No. 18 & 20, Jalan 5/4C, in the older residential part of Melawati at the foot of the Klang Gates quartz ridge. It is the larger of the two Seavoy homes and the one most visitors find first online. The chain was founded in 1989 by Datin Dr Mangalaveni Karthigasu, who runs it as both founder and consultant physician, and operates under Ministry of Health and JKM registration.\n\nThe team here includes physicians,"}</script>
 <script>window.__FACILITY_SLUG="seavoy-nursing-home-desa-melawati";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Seavoy Nursing Home (Desa Melawati) — NursingHomeGuide.my</title>
 <meta name="description" id="pageDesc" content="Seavoy Nursing Home (Desa Melawati) in Selangor. The Desa Melawati branch of Seavoy Nursing Home occupies two linked shophouse units at No. 18 &amp; 20…" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=8" />
+<link rel="stylesheet" href="style.css?v=9" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
 <style>
 /* Profile-page–specific styles (kept inline to avoid bloating the global stylesheet) */
@@ -233,6 +235,7 @@
 </footer>
 
 <script src="data.js?v=3"></script>
+<script src="badges.js?v=1"></script>
 <script>
 /* ── Helpers ────────────────────────────────────────────── */
 function yn(val) {
@@ -685,6 +688,7 @@ function render(f) {
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
+          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: true }) : ''}
         </div>
         ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
@@ -710,6 +714,14 @@ function render(f) {
         <div class="tab-panel active" id="tab-overview">
           ${galleryHtml}
           ${editorialHtml}
+          ${window.NHGBadges ? `
+          <div class="badge-section">
+            <div class="badge-section-head">
+              <span class="badge-section-title">Capability badges</span>
+            </div>
+            ${NHGBadges.profileBadgeGrid(f)}
+            ${NHGBadges.tierMarker(f)}
+          </div>` : ''}
           <div class="profile-card">
             <h2>Quick Facts</h2>
             ${overviewQuickFacts || '<p class="text-muted">Details not yet collected.</p>'}

@@ -7,7 +7,7 @@
   <title>Home Care Malaysia | Caregivers & Home Nursing Agencies</title>
   <meta name="description" content="Home care services in Malaysia. Caregivers, home nursing agencies, and live-in care providers covering Klang Valley, Johor, Penang and beyond. Hourly, daily, and monthly packages compared." />
   <link rel="canonical" href="https://nursinghomeguide.my/home-care/" />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=9" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <!-- Leaflet for map view -->
@@ -60,11 +60,19 @@
     <div class="filter-right">
       <select id="needSelect" onchange="applyFilters()" class="sort-select" aria-label="Filter by care need">
         <option value="">Any care need</option>
-        <option value="dementia">Dementia care</option>
-        <option value="palliative">Palliative / end-of-life</option>
-        <option value="rehab">Post-stroke / rehab</option>
-        <option value="respite">Respite (short stay)</option>
-        <option value="high-dep">High-dependency nursing</option>
+        <optgroup label="Specific clinical need (verified split)">
+          <option value="post-stroke">Post-stroke / rehab</option>
+          <option value="advanced-dementia">Advanced dementia</option>
+          <option value="peg">PEG / tube feeding</option>
+          <option value="palliative">Palliative / end-of-life</option>
+          <option value="tracheostomy">Tracheostomy care</option>
+        </optgroup>
+        <optgroup label="General">
+          <option value="dementia">Dementia care (general)</option>
+          <option value="rehab">Rehab / physio (general)</option>
+          <option value="respite">Respite (short stay)</option>
+          <option value="high-dep">High-dependency nursing</option>
+        </optgroup>
       </select>
       <select id="sortSelect" onchange="applyFilters()" class="sort-select">
         <option value="rating">Highest Rated</option>
@@ -130,6 +138,7 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="data.js?v=3"></script>
+<script src="badges.js?v=1"></script>
 <script>
 // Category → URL path (must match generate_facility_pages.py CATEGORY_DIRS)
 function facUrl(f) {
@@ -270,6 +279,11 @@ function makeCard(f) {
     ? `<span class="fac-group-tag" onclick="event.stopPropagation();window.location='org.html?slug=${group.slug}'">${group.name} ›</span>`
     : '';
 
+  // Trust label (MOH Licensed / Unverified listing) + compact capability summary
+  const trustHtml = (window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: false }) : '');
+  const capsHtml  = (window.NHGBadges ? NHGBadges.cardCapabilitySummary(f, 3) : '');
+  const trustRow  = trustHtml ? `<div class="card-trust-row">${trustHtml}</div>` : '';
+
   return `
     <a href="${facUrl(f)}" class="fac-card">
       <div class="fac-card-img${photoUrl ? '' : ' no-photo'}">
@@ -277,6 +291,8 @@ function makeCard(f) {
         ${priceHtml}
         ${groupHtml}
       </div>
+      ${trustRow}
+      ${capsHtml}
       <div class="fac-card-body">
         <h3 class="fac-card-name">${f.title}</h3>
         <div class="fac-card-meta">
@@ -290,22 +306,18 @@ function makeCard(f) {
 }
 
 // ─── Filter + render ───────────────────────────────────────
-function applyFilters() {
-  const q = document.getElementById('searchInput').value.trim().toLowerCase();
-  const sort = document.getElementById('sortSelect').value;
-  const need = (document.getElementById('needSelect')?.value || '').toLowerCase();
+// Hybrid keys map to NHGBadges.NEED_BADGE_SETS (regulatory-framework.md §5).
+// When one of these is selected we render two sections: Confirmed match + Possibly suitable.
+const HYBRID_NEEDS = {
+  'post-stroke':       'post-stroke',
+  'advanced-dementia': 'advanced-dementia',
+  'peg':               'peg',
+  'palliative':        'palliative',
+  'tracheostomy':      'tracheostomy',
+};
 
-  let result = allFacilities.filter(f => {
-    const area = normArea(f.area);
-    const matchArea = !currentArea || area === currentArea;
-    const matchQ = !q || [f.title, f.area, f.care_types, f.editorial_summary]
-      .some(s => (s || '').toLowerCase().includes(q));
-    const matchNeed = matchesNeed(f, need);
-    return matchArea && matchQ && matchNeed;
-  });
-
-  // Sort
-  result.sort((a, b) => {
+function sortResults(arr, sort) {
+  arr.sort((a, b) => {
     if (sort === 'rating') return (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0);
     if (sort === 'reviews') return (parseInt(b.review_count) || 0) - (parseInt(a.review_count) || 0);
     if (sort === 'price_asc') {
@@ -316,22 +328,79 @@ function applyFilters() {
     if (sort === 'name') return (a.title || '').localeCompare(b.title || '');
     return 0;
   });
+  return arr;
+}
 
+function applyFilters() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const sort = document.getElementById('sortSelect').value;
+  const needRaw = (document.getElementById('needSelect')?.value || '').toLowerCase();
+  const hybridKey = HYBRID_NEEDS[needRaw];
+
+  // Stage 1: area + text search filter (apply regardless of need mode)
+  let pool = allFacilities.filter(f => {
+    const area = normArea(f.area);
+    const matchArea = !currentArea || area === currentArea;
+    const matchQ = !q || [f.title, f.area, f.care_types, f.editorial_summary]
+      .some(s => (s || '').toLowerCase().includes(q));
+    return matchArea && matchQ;
+  });
+
+  // Stage 2: need filter
+  let confirmed = [], possible = [];
+  let hybrid = false;
+
+  if (hybridKey && window.NHGBadges) {
+    hybrid = true;
+    pool.forEach(f => {
+      const tier = NHGBadges.needMatchTier(f, hybridKey);
+      if (tier === 'confirmed') confirmed.push(f);
+      else possible.push(f);
+    });
+  } else {
+    // Legacy keyword-based needs
+    confirmed = pool.filter(f => matchesNeed(f, needRaw));
+  }
+
+  sortResults(confirmed, sort);
+  sortResults(possible, sort);
+
+  const total = hybrid ? confirmed.length + possible.length : confirmed.length;
   document.getElementById('resultsCount').textContent =
-    `${result.length} ${result.length === 1 ? 'facility' : 'facilities'}`;
+    `${total} ${total === 1 ? 'facility' : 'facilities'}`;
   document.getElementById('activeAreaLabel').textContent =
     currentArea ? `in ${currentArea}` : 'in Malaysia';
 
-  const cards = result.map(makeCard);
-  if (cards.length > 8) {
-    cards.splice(8, 0, '<div class="ad-slot in-feed" data-ad-slot="state-list-infeed"></div>');
+  const grid = document.getElementById('facGrid');
+  if (!total) {
+    grid.innerHTML = `<div class="empty-state">No facilities found. <button onclick="clearFilters()">Clear filters</button></div>`;
+  } else if (hybrid) {
+    const conLabel = NEED_LABELS[hybridKey] || hybridKey;
+    const confHead = `<div class="hybrid-section-head"><div class="h-title">✓ Confirmed match — ${conLabel} (${confirmed.length})</div><div class="h-sub">Every required capability is on file as Confirmed.</div></div>`;
+    const possHead = `<div class="hybrid-section-head"><div class="h-title">Possibly suitable, unverified (${possible.length})</div><div class="h-sub">We haven't verified the required capabilities yet — call to confirm.</div></div>`;
+    const banner = `<div class="hybrid-possible-banner">Verification is in progress. "Confirmed" means we have evidence on file; "Unverified" means absence of data, not a denial. Always confirm in writing before depositing.</div>`;
+    let html = '';
+    if (confirmed.length) html += confHead + `<div class="fac-grid">${confirmed.map(makeCard).join('')}</div>`;
+    if (possible.length)  html += possHead + banner + `<div class="fac-grid">${possible.map(makeCard).join('')}</div>`;
+    grid.classList.remove('fac-grid');
+    grid.innerHTML = html;
+  } else {
+    grid.classList.add('fac-grid');
+    const cards = confirmed.map(makeCard);
+    if (cards.length > 8) cards.splice(8, 0, '<div class="ad-slot in-feed" data-ad-slot="state-list-infeed"></div>');
+    grid.innerHTML = cards.join('');
   }
-  document.getElementById('facGrid').innerHTML =
-    result.length ? cards.join('') :
-    `<div class="empty-state">No facilities found. <button onclick="clearFilters()">Clear filters</button></div>`;
 
-  if (currentView === 'map') updateMapMarkers(result);
+  if (currentView === 'map') updateMapMarkers(hybrid ? confirmed.concat(possible) : confirmed);
 }
+
+const NEED_LABELS = {
+  'post-stroke':       'Post-stroke / rehab',
+  'advanced-dementia': 'Advanced dementia',
+  'peg':               'PEG / tube feeding',
+  'palliative':        'Palliative / end-of-life',
+  'tracheostomy':      'Tracheostomy care',
+};
 
 function clearFilters() {
   document.getElementById('searchInput').value = '';

@@ -355,3 +355,49 @@ footer { background: #1e3a5f; color: #cbd5e1; margin-top: 64px; padding: 48px 20
   .ad-slot.in-feed { min-height: 100px; }
   .ad-slot.banner  { min-height: 90px; margin: 24px 16px 0; }
 }
+
+/* ─── Capability badges (Phase C) ──────────────────────────── */
+/* Cards: trust label pill + compact capability summary */
+.trust-pill { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 4px; font-size: .72rem; font-weight: 600; letter-spacing: .01em; line-height: 1.2; }
+.trust-moh { background: #ecfdf5; color: #065f46; border: 1px solid #6ee7b7; }
+.trust-jkm { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+.trust-unverified { background: #fffbeb; color: #92400e; border: 1px dashed #fbbf24; }
+
+.card-trust-row { padding: 8px 14px 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.card-caps { display: flex; flex-wrap: wrap; gap: 4px; padding: 0 14px 10px; margin-top: 6px; }
+.cap-pill { display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 4px; font-size: .68rem; font-weight: 500; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.cap-pill.cap-more { background: #f1f5f9; color: #475569; border-color: #e2e8f0; font-weight: 400; }
+
+/* Profile: full badge grid */
+.badge-section { background: white; border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; }
+.badge-section-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.badge-section-title { font-size: 1rem; font-weight: 700; color: var(--text, #0f172a); }
+.badge-block { margin-bottom: 14px; }
+.badge-block:last-child { margin-bottom: 0; }
+.badge-block-head { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #64748b; margin-bottom: 8px; }
+.badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 6px; }
+.cap-badge { display: flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 6px; font-size: .8rem; font-weight: 500; line-height: 1.2; }
+.cap-badge.ok { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.cap-badge.muted { background: #f8fafc; color: #94a3b8; border: 1px dashed #cbd5e1; font-weight: 400; }
+.cap-icon { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; font-size: .65rem; font-weight: 700; color: white; flex-shrink: 0; }
+.cap-badge.ok .cap-icon { background: #10b981; }
+.cap-badge.muted .cap-icon { background: #cbd5e1; color: white; }
+
+.badge-tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+.doc-pill { padding: 4px 10px; border-radius: 999px; font-size: .78rem; font-weight: 500; }
+.doc-pill.ok { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+.doc-pill.muted { background: #f8fafc; color: #94a3b8; border: 1px dashed #cbd5e1; font-weight: 400; }
+
+.badge-legend { margin-top: 12px; padding-top: 12px; border-top: 1px solid #f1f5f9; display: flex; flex-wrap: wrap; gap: 14px; font-size: .72rem; color: #64748b; }
+.badge-legend .cap-icon { width: 14px; height: 14px; font-size: .58rem; vertical-align: -2px; margin-right: 3px; }
+.cap-icon.ok-mini { background: #10b981; }
+.cap-icon.muted-mini { background: #cbd5e1; }
+
+.tier-marker { margin-top: 10px; font-size: .78rem; color: #64748b; }
+.tier-warn { color: #b91c1c; font-weight: 600; }
+
+/* Hybrid need-based search — section split */
+.hybrid-section-head { margin: 22px 0 10px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; }
+.hybrid-section-head .h-title { font-size: 1rem; font-weight: 700; color: var(--text, #0f172a); }
+.hybrid-section-head .h-sub { font-size: .82rem; color: #64748b; margin-top: 3px; }
+.hybrid-possible-banner { background: #fffbeb; border: 1px dashed #fbbf24; border-radius: 8px; padding: 10px 14px; font-size: .82rem; color: #78350f; margin-bottom: 12px; line-height: 1.5; }

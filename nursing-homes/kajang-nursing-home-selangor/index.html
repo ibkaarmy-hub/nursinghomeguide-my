@@ -9,17 +9,19 @@
 <meta property="og:title" content="Kajang Nursing Home — NursingHomeGuide.my">
 <meta property="og:description" content="Kajang Nursing Home in Selangor. Kajang Nursing Home is a small residential care facility in the Kajang district of Selangor, listed with a capacity of…">
 <meta property="og:url" content="https://nursinghomeguide.my/nursing-homes/kajang-nursing-home-selangor/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGTrkqKapap3jDKyQSi7cqNNHlj6NcXY0mJMdeArmGU56X4sISGsP52aAAoX4R0Y0PHg7Q-LURRRiv5VObU5Wwjfmkh9JQrP_DvArLOwa-WjOZzh9QqSvoF8FTjBUqvx9jaumYTaU93OWA=w1920-h1080-k-no">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kajang Nursing Home — NursingHomeGuide.my">
 <meta name="twitter:description" content="Kajang Nursing Home in Selangor. Kajang Nursing Home is a small residential care facility in the Kajang district of Selangor, listed with a capacity of…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/kajang-nursing-home-selangor/","name":"Kajang Nursing Home","url":"https://nursinghomeguide.my/nursing-homes/kajang-nursing-home-selangor/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Selangor","addressRegion":"Selangor"},"telephone":"03-8734 1596","description":"Kajang Nursing Home is a small residential care facility in the Kajang district of Selangor, listed with a capacity of 10 beds. Its compact size places it among the more intimate homes in the area, where the Kajang corridor has a reasonable spread of registered care options. The facility keeps a low online profile — no website or social-media presence has been identified — so the best way to understand its day-to-day character is through a direct call or a site visit.\n\nWith 10 beds the home oper"}</script>
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGTrkqKapap3jDKyQSi7cqNNHlj6NcXY0mJMdeArmGU56X4sISGsP52aAAoX4R0Y0PHg7Q-LURRRiv5VObU5Wwjfmkh9JQrP_DvArLOwa-WjOZzh9QqSvoF8FTjBUqvx9jaumYTaU93OWA=w1920-h1080-k-no">
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/kajang-nursing-home-selangor/","name":"Kajang Nursing Home","url":"https://nursinghomeguide.my/nursing-homes/kajang-nursing-home-selangor/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Selangor","addressRegion":"Selangor"},"image":"https://lh3.googleusercontent.com/gps-cs-s/APNQkAGTrkqKapap3jDKyQSi7cqNNHlj6NcXY0mJMdeArmGU56X4sISGsP52aAAoX4R0Y0PHg7Q-LURRRiv5VObU5Wwjfmkh9JQrP_DvArLOwa-WjOZzh9QqSvoF8FTjBUqvx9jaumYTaU93OWA=w1920-h1080-k-no","telephone":"03-8734 1596","description":"Kajang Nursing Home is a small residential care facility in the Kajang district of Selangor, listed with a capacity of 10 beds. Its compact size places it among the more intimate homes in the area, where the Kajang corridor has a reasonable spread of registered care options. The facility keeps a low online profile — no website or social-media presence has been identified — so the best way to understand its day-to-day character is through a direct call or a site visit.\n\nWith 10 beds the home oper"}</script>
 <script>window.__FACILITY_SLUG="kajang-nursing-home-selangor";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Kajang Nursing Home — NursingHomeGuide.my</title>
 <meta name="description" id="pageDesc" content="Kajang Nursing Home in Selangor. Kajang Nursing Home is a small residential care facility in the Kajang district of Selangor, listed with a capacity of…" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=8" />
+<link rel="stylesheet" href="style.css?v=9" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
 <style>
 /* Profile-page–specific styles (kept inline to avoid bloating the global stylesheet) */
@@ -233,6 +235,7 @@
 </footer>
 
 <script src="data.js?v=3"></script>
+<script src="badges.js?v=1"></script>
 <script>
 /* ── Helpers ────────────────────────────────────────────── */
 function yn(val) {
@@ -685,6 +688,7 @@ function render(f) {
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
+          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: true }) : ''}
         </div>
         ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
@@ -710,6 +714,14 @@ function render(f) {
         <div class="tab-panel active" id="tab-overview">
           ${galleryHtml}
           ${editorialHtml}
+          ${window.NHGBadges ? `
+          <div class="badge-section">
+            <div class="badge-section-head">
+              <span class="badge-section-title">Capability badges</span>
+            </div>
+            ${NHGBadges.profileBadgeGrid(f)}
+            ${NHGBadges.tierMarker(f)}
+          </div>` : ''}
           <div class="profile-card">
             <h2>Quick Facts</h2>
             ${overviewQuickFacts || '<p class="text-muted">Details not yet collected.</p>'}

@@ -9,17 +9,19 @@
 <meta property="og:title" content="IHM Nursing Care Sdn Bhd (Sunshine Home) — NursingHomeGuide.my">
 <meta property="og:description" content="IHM Nursing Care Sdn Bhd (Sunshine Home) in Petaling Jaya. IHM Nursing Care Sdn Bhd operates the Sunshine Home brand across multiple Klang Valley…">
 <meta property="og:url" content="https://nursinghomeguide.my/nursing-homes/ihm-nursing-care-sdn-bhd-sunshine-home/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Z0aCkezQOKNlWAWtbNfPlA&amp;cb_client=search.gws-prod.gps&amp;w=408&amp;h=240&amp;yaw=56.122055&amp;pitch=0&amp;thumbfov=100">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="IHM Nursing Care Sdn Bhd (Sunshine Home) — NursingHomeGuide.my">
 <meta name="twitter:description" content="IHM Nursing Care Sdn Bhd (Sunshine Home) in Petaling Jaya. IHM Nursing Care Sdn Bhd operates the Sunshine Home brand across multiple Klang Valley…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/ihm-nursing-care-sdn-bhd-sunshine-home/","name":"IHM Nursing Care Sdn Bhd (Sunshine Home)","url":"https://nursinghomeguide.my/nursing-homes/ihm-nursing-care-sdn-bhd-sunshine-home/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Petaling Jaya","addressRegion":"Selangor"},"telephone":"03-77832196","description":"IHM Nursing Care Sdn Bhd operates the Sunshine Home brand across multiple Klang Valley locations; the Petaling Jaya branch sits at 80 Jalan Templer, 46000 PJ — a central address within walking distance of Assunta Hospital, which is among the most useful geographic facts about this facility. Assunta's proximity means that GP and specialist consultations, emergency transfers, and diagnostics are logistically straightforward compared with homes in more suburban corridors. The PJ Sunshine Home is a ","geo":{"@type":"GeoCoordinates","latitude":3.0951452,"longitude":101.6430819},"aggregateRating":{"@type":"AggregateRating","ratingValue":"1.0","reviewCount":1,"bestRating":"5","worstRating":"1"}}</script>
+<meta name="twitter:image" content="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Z0aCkezQOKNlWAWtbNfPlA&amp;cb_client=search.gws-prod.gps&amp;w=408&amp;h=240&amp;yaw=56.122055&amp;pitch=0&amp;thumbfov=100">
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/ihm-nursing-care-sdn-bhd-sunshine-home/","name":"IHM Nursing Care Sdn Bhd (Sunshine Home)","url":"https://nursinghomeguide.my/nursing-homes/ihm-nursing-care-sdn-bhd-sunshine-home/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Petaling Jaya","addressRegion":"Selangor"},"image":"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Z0aCkezQOKNlWAWtbNfPlA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=56.122055&pitch=0&thumbfov=100","telephone":"03-77832196","description":"IHM Nursing Care Sdn Bhd operates the Sunshine Home brand across multiple Klang Valley locations; the Petaling Jaya branch sits at 80 Jalan Templer, 46000 PJ — a central address within walking distance of Assunta Hospital, which is among the most useful geographic facts about this facility. Assunta's proximity means that GP and specialist consultations, emergency transfers, and diagnostics are logistically straightforward compared with homes in more suburban corridors. The PJ Sunshine Home is a ","geo":{"@type":"GeoCoordinates","latitude":3.0951452,"longitude":101.6430819},"aggregateRating":{"@type":"AggregateRating","ratingValue":"1.0","reviewCount":1,"bestRating":"5","worstRating":"1"}}</script>
 <script>window.__FACILITY_SLUG="ihm-nursing-care-sdn-bhd-sunshine-home";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">IHM Nursing Care Sdn Bhd (Sunshine Home) — NursingHomeGuide.my</title>
 <meta name="description" id="pageDesc" content="IHM Nursing Care Sdn Bhd (Sunshine Home) in Petaling Jaya. IHM Nursing Care Sdn Bhd operates the Sunshine Home brand across multiple Klang Valley…" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=8" />
+<link rel="stylesheet" href="style.css?v=9" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
 <style>
 /* Profile-page–specific styles (kept inline to avoid bloating the global stylesheet) */
@@ -233,6 +235,7 @@
 </footer>
 
 <script src="data.js?v=3"></script>
+<script src="badges.js?v=1"></script>
 <script>
 /* ── Helpers ────────────────────────────────────────────── */
 function yn(val) {
@@ -685,6 +688,7 @@ function render(f) {
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
+          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: true }) : ''}
         </div>
         ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
@@ -710,6 +714,14 @@ function render(f) {
         <div class="tab-panel active" id="tab-overview">
           ${galleryHtml}
           ${editorialHtml}
+          ${window.NHGBadges ? `
+          <div class="badge-section">
+            <div class="badge-section-head">
+              <span class="badge-section-title">Capability badges</span>
+            </div>
+            ${NHGBadges.profileBadgeGrid(f)}
+            ${NHGBadges.tierMarker(f)}
+          </div>` : ''}
           <div class="profile-card">
             <h2>Quick Facts</h2>
             ${overviewQuickFacts || '<p class="text-muted">Details not yet collected.</p>'}
