@@ -103,21 +103,23 @@
   }
 
   // ── Trust label (MOH Licensed / Unverified listing / JKM Registered) ─
-  // Cards: MOH Licensed + Unverified listing only; JKM is silent default.
-  // Profile: render JKM too.
+  // Cards: MOH Licensed only. JKM is the silent ~96% default; "Unverified
+  // listing" would shout on every card while verification is in progress.
+  // Both render on the profile detail view.
   function trustLabel(f, opts) {
-    const showJkm = !!(opts && opts.showJkm);
+    const isProfile = !!(opts && opts.showJkm);
     const cat = (f._effective_license_category || f.license_category || 'Unverified').trim();
     if (cat === 'MOH Licensed') {
       return '<span class="trust-pill trust-moh" title="Confirmed under MOH Act 586 / Act 802">⭐ MOH Licensed</span>';
     }
     if (cat === 'JKM Registered') {
-      return showJkm
+      return isProfile
         ? '<span class="trust-pill trust-jkm" title="Pusat Jagaan registered under Act 506">JKM Registered</span>'
         : '';
     }
-    // Unverified — show the warning pill on cards AND profile
-    return '<span class="trust-pill trust-unverified" title="No licence evidence on file yet">Unverified listing</span>';
+    return isProfile
+      ? '<span class="trust-pill trust-unverified" title="No licence evidence on file yet">Unverified listing</span>'
+      : '';
   }
 
   // Compact card-summary: show up to N confirmed clinical badges (in card row).
