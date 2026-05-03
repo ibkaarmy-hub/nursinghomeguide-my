@@ -18,7 +18,7 @@ Research and write detailed 3-paragraph editorial profiles for the next 10 nursi
 - Note everything concrete — avoid marketing fluff
 
 **Step 2 — External research**
-- Search Google Maps URL (from sheet) for reviews — read the top 10–20 reviews. Note recurring themes (positive and negative), staff mentions, specific care events described
+- Search Google Maps URL (from sheet) for reviews — read **all** reviews, not just the first page. Note recurring themes (positive and negative), staff mentions, specific care events described
 - Search `site:[website-domain]` for additional indexed content
 - Check if mentioned in any news, JKM lists, or directories
 
