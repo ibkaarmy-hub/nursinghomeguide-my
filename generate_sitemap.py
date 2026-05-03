@@ -85,6 +85,9 @@ def main():
     entries.append(url_entry(f"{BASE}/", lastmod=today, changefreq="daily", priority="1.0"))
     # AL landing
     entries.append(url_entry(f"{BASE}/assisted-living/", lastmod=today, changefreq="daily", priority="0.9"))
+    # Home care + day care national directories
+    entries.append(url_entry(f"{BASE}/home-care/", lastmod=today, changefreq="weekly", priority="0.85"))
+    entries.append(url_entry(f"{BASE}/day-care/", lastmod=today, changefreq="weekly", priority="0.8"))
     # NH state pages
     for state in ("johor", "kuala-lumpur", "selangor"):
         entries.append(url_entry(f"{BASE}/nursing-homes/{state}/", lastmod=today, changefreq="daily", priority="0.9"))

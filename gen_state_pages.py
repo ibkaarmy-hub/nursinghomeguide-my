@@ -97,15 +97,18 @@ STATES = [
 
 
 def make_listing_page(category, state):
-    """Generate a state listing page for the given category and state."""
+    """Generate a state listing page for the given category and state.
+
+    If state is None, generates a national directory (no state filter) — used
+    for /home-care/ and /day-care/ where most operators are multi-state."""
     html = TEMPLATE
-    state_val = state['state_val']
-    state_slug = state['slug']
-    h1_state = state['h1_state']
+    national = state is None
+    state_val = '' if national else state['state_val']
+    state_slug = '' if national else state['slug']
+    h1_state = 'Malaysia' if national else state['h1_state']
 
     if category == 'nursing-homes':
         cat_label = 'Nursing Homes'
-        cat_label_lower = 'nursing homes'
         page_title = f'Nursing Homes in {h1_state} | Compare Prices & Reviews'
         meta_desc = f'Browse licensed nursing homes in {h1_state}, Malaysia. Compare monthly fees, care types, RN coverage, and reviews. Detailed profiles to help your family choose with confidence.'
         h1 = f'Nursing Homes in {h1_state}'
@@ -114,9 +117,8 @@ def make_listing_page(category, state):
         ld_desc = f'Directory of licensed nursing homes in {h1_state} with pricing and reviews.'
         category_filter_js = "(f.care_category === 'Nursing Home' || f.care_category === 'Mixed' || !f.care_category)"
         section_label = f'in {h1_state}'
-    else:  # assisted-living
+    elif category == 'assisted-living':
         cat_label = 'Assisted Living'
-        cat_label_lower = 'assisted living communities'
         page_title = f'Assisted Living in {h1_state} | Senior Living Communities'
         meta_desc = f'Assisted living communities and senior living residences in {h1_state}, Malaysia. Lifestyle-led profiles covering amenities, community character, dining, and care escalation. Helping families choose with confidence.'
         h1 = f'Assisted Living in {h1_state}'
@@ -125,8 +127,31 @@ def make_listing_page(category, state):
         ld_desc = f'Directory of assisted living and senior living communities in {h1_state} with amenities and pricing.'
         category_filter_js = "(f.care_category === 'Assisted Living' || f.care_category === 'Mixed')"
         section_label = f'in {h1_state}'
+    elif category == 'home-care':
+        cat_label = 'Home Care'
+        page_title = 'Home Care Malaysia | Caregivers & Home Nursing Agencies'
+        meta_desc = 'Home care services in Malaysia. Caregivers, home nursing agencies, and live-in care providers covering Klang Valley, Johor, Penang and beyond. Hourly, daily, and monthly packages compared.'
+        h1 = 'Home Care in Malaysia'
+        intro = 'Browse <strong id="heroCount">—</strong> home care providers serving Malaysian families. Caregivers and home nurses come to your home — for personal care, post-stroke recovery, dementia support, palliative care, and live-in arrangements. Most providers cover multiple states, so we list them as a single national directory.'
+        ld_name = 'Home Care Providers in Malaysia'
+        ld_desc = 'Directory of home care agencies and home nursing services in Malaysia.'
+        category_filter_js = "(f.care_category === 'Home Care')"
+        section_label = 'in Malaysia'
+    elif category == 'day-care':
+        cat_label = 'Day Care'
+        page_title = 'Day Care Centres for Seniors in Malaysia | PAWE & Private'
+        meta_desc = 'Adult day care centres in Malaysia. Daytime supervision, social programmes, and structured activities — residents return home in the evening. JKM-subsidised PAWE centres and private day care compared.'
+        h1 = 'Day Care for Seniors in Malaysia'
+        intro = 'Browse <strong id="heroCount">—</strong> day care centres for seniors. Daytime programmes only — residents return home each evening. Useful for working family carers and for socialisation when staying home alone is no longer safe.'
+        ld_name = 'Senior Day Care Centres in Malaysia'
+        ld_desc = 'Directory of adult day care centres and PAWE programmes in Malaysia.'
+        category_filter_js = "(f.care_category === 'Day Care')"
+        section_label = 'in Malaysia'
+    else:
+        raise ValueError(f"Unknown category: {category}")
 
-    canonical = f'https://nursinghomeguide.my/{category}/{state_slug}/'
+    canonical = (f'https://nursinghomeguide.my/{category}/' if national
+                 else f'https://nursinghomeguide.my/{category}/{state_slug}/')
 
     # ── Title ──
     html = re.sub(
@@ -167,11 +192,17 @@ def make_listing_page(category, state):
         html, count=1)
 
     # ── Breadcrumb ──
-    new_breadcrumb = (
-        f'<a href="/">Malaysia</a>\n      <span>›</span>\n'
-        f'      <a href="/{category}/">{cat_label}</a>\n      <span>›</span>\n'
-        f'      <span>{h1_state}</span>'
-    )
+    if national:
+        new_breadcrumb = (
+            f'<a href="/">Malaysia</a>\n      <span>›</span>\n'
+            f'      <span>{cat_label}</span>'
+        )
+    else:
+        new_breadcrumb = (
+            f'<a href="/">Malaysia</a>\n      <span>›</span>\n'
+            f'      <a href="/{category}/">{cat_label}</a>\n      <span>›</span>\n'
+            f'      <span>{h1_state}</span>'
+        )
     html = re.sub(
         r'<a href="index\.html">Malaysia</a>\s*<span>›</span>\s*<span>Johor</span>',
         new_breadcrumb,
@@ -234,9 +265,13 @@ function facUrl(f) {
     )
 
     # ── State + category filter ──
+    if national:
+        filter_js = f"allFacilities = data.filter(f => {category_filter_js});"
+    else:
+        filter_js = f"allFacilities = data.filter(f => f.state === '{state_val}' && {category_filter_js});"
     html = re.sub(
         r"allFacilities = data\.filter\(f =>[^)]*\);",
-        f"allFacilities = data.filter(f => f.state === '{state_val}' && {category_filter_js});",
+        filter_js,
         html, count=1)
 
     # ── Result label ──
@@ -388,13 +423,23 @@ def make_al_landing():
 # ── 5. Generate everything ───────────────────────────────────────────────
 written = []
 
-# Category state listing pages
+# Category state listing pages (NH + AL)
 for category in ('nursing-homes', 'assisted-living'):
     for s in STATES:
         page = make_listing_page(category, s)
         path = f"{category}/{s['slug']}/index.html"
         write_file(path, page)
         written.append(path)
+
+# National directories: home care + day care
+# Home care providers are typically multi-state (Homage, Care Concierge, Noble
+# Care). Day care has too few entries (7) for state pages. Single national
+# listing per category instead of state pages.
+for category in ('home-care', 'day-care'):
+    page = make_listing_page(category, None)
+    path = f"{category}/index.html"
+    write_file(path, page)
+    written.append(path)
 
 # AL landing
 write_file('assisted-living/index.html', make_al_landing())
