@@ -286,6 +286,23 @@ function facUrl(f) {
     elif state_val == 'Selangor':
         html = html.replace('setView([1.8, 103.5], 9)', 'setView([3.07, 101.5], 9)')
 
+    # ── State hero landmark photo ──
+    photo_map = {
+        'johor': '/img/states/johor.jpg',
+        'kuala-lumpur': '/img/states/kuala-lumpur.jpg',
+        'selangor': '/img/states/selangor.jpg',
+    }
+    photo = photo_map.get(state_slug, '/img/states/kuala-lumpur.jpg')
+    hero_style = (
+        f"background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url('{photo}'); "
+        f"background-size: cover; background-position: center;"
+    )
+    html = html.replace(
+        '<section class="state-hero">',
+        f'<section class="state-hero" style="{hero_style}">',
+        1
+    )
+
     # ── Footer state-page links → category-prefixed ──
     # The footer points to johor.html etc; rewire to /nursing-homes/<state>/
     # (only for NH listing pages; for AL pages, point to /assisted-living/<state>/)
@@ -344,8 +361,8 @@ def make_al_landing():
 
   <div class="state-grid">
 
-    <a href="/assisted-living/johor/" class="state-card" style="--sc:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%)">
-      <div class="state-card-pattern"><span class="state-flag">🏙️</span></div>
+    <a href="/assisted-living/johor/" class="state-card">
+      <div class="state-card-pattern" style="background-image: linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22)), url('/img/states/johor.jpg'); background-size: cover; background-position: center;"></div>
       <div class="state-card-body">
         <div class="state-card-name">Johor</div>
         <div class="state-card-count">Assisted living &amp; senior residences</div>
@@ -353,8 +370,8 @@ def make_al_landing():
       </div>
     </a>
 
-    <a href="/assisted-living/kuala-lumpur/" class="state-card" style="--sc:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%)">
-      <div class="state-card-pattern"><span class="state-flag">🌆</span></div>
+    <a href="/assisted-living/kuala-lumpur/" class="state-card">
+      <div class="state-card-pattern" style="background-image: linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22)), url('/img/states/kuala-lumpur.jpg'); background-size: cover; background-position: center;"></div>
       <div class="state-card-body">
         <div class="state-card-name">Kuala Lumpur</div>
         <div class="state-card-count">Boutique &amp; premium AL</div>
@@ -362,8 +379,8 @@ def make_al_landing():
       </div>
     </a>
 
-    <a href="/assisted-living/selangor/" class="state-card" style="--sc:linear-gradient(135deg,#14532d 0%,#166534 100%)">
-      <div class="state-card-pattern"><span class="state-flag">🏘️</span></div>
+    <a href="/assisted-living/selangor/" class="state-card">
+      <div class="state-card-pattern" style="background-image: linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22)), url('/img/states/selangor.jpg'); background-size: cover; background-position: center;"></div>
       <div class="state-card-body">
         <div class="state-card-name">Selangor</div>
         <div class="state-card-count">Resort-style &amp; community AL</div>
