@@ -159,28 +159,17 @@
         <div class="badge-block-head">Service &amp; logistics</div>
         <div class="badge-grid">${renderRow(SERVICE_BADGES)}</div>
       </div>
-      <div class="badge-tags">${docPill}</div>
-      <div class="badge-legend">
-        <span><span class="cap-icon ok-mini">✓</span> Confirmed — positive evidence on file</span>
-        <span><span class="cap-icon muted-mini">?</span> Unverified — no data yet (absence ≠ denied)</span>
-      </div>`;
+      <div class="badge-tags">${docPill}</div>`;
   }
 
-  // Tier marker + last verified date — profile only
+  // Last-updated marker — profile only.
   function tierMarker(f) {
-    const tier = parseInt(f._effective_verification_tier != null ? f._effective_verification_tier : f.verification_tier, 10) || 0;
-    const date = (f.last_verified_on || '').trim();
-    const tierLabels = {
-      1: 'operator-attested',
-      2: 'document-verified',
-      3: 'MD-confirmed',
-    };
-    const label = tierLabels[tier] || 'unverified';
-    const dateText = date ? `Last verified: ${escapeHtml(date)} · ` : '';
+    const date = (f.last_verified_on || f.last_updated || '').trim();
+    if (!date) return '';
     const expired = f._licence_expired
       ? ` <span class="tier-warn">Licence expired — re-verifying.</span>`
       : '';
-    return `<div class="tier-marker">${dateText}Tier ${tier} (${label})${expired}</div>`;
+    return `<div class="tier-marker">Last updated: ${escapeHtml(date)}${expired}</div>`;
   }
 
   // ── Hybrid need-based search ─────────────────────────────────────────
