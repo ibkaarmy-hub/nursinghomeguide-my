@@ -1,4 +1,8 @@
 {
   "genesis-life-care-centre-puchong": "manually fixed in session 2026-05-03",
-  "multicare-nursing-home-johor": "manually fixed in session 2026-05-03 (state corrected Selangor->Johor, full pricing tier list added, operator photos integrated)"
+  "multicare-nursing-home-johor": "manually fixed in session 2026-05-03 (state corrected Selangor->Johor, full pricing tier list added, operator photos integrated)",
+  "jasper-lodge-nursing-home-pj1": "manually fixed in session 2026-05-03 (chain rewrite: photos, maps URL, phone, editorial)",
+  "jasper-lodge-nursing-home-pj2": "manually fixed in session 2026-05-03 (chain rewrite: photos, maps URL, phone, editorial; cleared bad latitude blurb)",
+  "jasper-lodge-nursing-home-pj3": "manually fixed in session 2026-05-03 (chain rewrite: photos, maps URL, phone, editorial; cleared bad latitude blurb)",
+  "jasper-lodge-nursing-home-pj5": "manually fixed in session 2026-05-03 (chain rewrite: photos, maps URL, phone, editorial; cleared bad latitude blurb)"
 }
