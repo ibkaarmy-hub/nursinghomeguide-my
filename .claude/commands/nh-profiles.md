@@ -174,3 +174,16 @@ When the user pastes a specific facility URL with feedback, switch from the bulk
 ### Token + script location
 - `token_sheets.json` lives only in the **main repo root** (gitignored). When working from a worktree, reference it via absolute path or `cd` to main repo to run the update script.
 - Headers index changes occasionally — never hardcode column letters; always look up via `headers.index(name)`.
+
+### Read the rating timeline before judging it (locked 2026-05-03)
+A low Google aggregate is not automatically a current red flag. Many Malaysian homes opened around 2017–2019 caught a cluster of harsh reviews in their shake-down period that still drag the average down years later, even when current operations are fine. Before letting a rating shape the editorial:
+
+- **Filter Google reviews by "Newest" and check the dates.** If the 1-stars cluster in the opening years and recent reviews trend positive, the headline number is a stale snapshot, not a current signal.
+- **Cross-check with the soft-launch / opening date** (operator website, FB page, "since YYYY" tagline). 1-stars from year 1–2 of operations are growing pains; 1-stars from the last 12 months are a current-state signal.
+- If the pattern is old-negative / recent-positive: say so explicitly in the editorial and tell families to filter by "newest" before forming a view. Don't write the rating off, but don't let it steer the verdict either.
+- If recent reviews are also negative: that's a current signal — still don't use banned framing ("warrants caution", "concerning rating", "leave off your shortlist"). Stick to verified facts and call-time questions per the editorial rules.
+
+Never write off a facility with "for most families there are better options" framing based on aggregate alone. That phrasing is banned regardless of what the rating is.
+
+### Don't call a website "sparse" without checking sub-pages
+Before describing a website as thin / sparse / lacking specifics, actually fetch `/about`, `/services`, `/contact-us`, `/gallery`, `/packages` (or whatever the nav lists). The AustinLoyal site looked empty on the homepage but `/contact-us` had the registered company number, exact address, opening date, services list, and visiting policy — none of which made it into the original editorial. Sparse-website framing should describe what's actually missing after you've checked the sub-pages, not what you didn't see on the homepage.
