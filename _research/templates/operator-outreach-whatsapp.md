@@ -35,5 +35,5 @@ NursingHomeGuide.my
 
 - Don't promise a timeline beyond "within a few working days"
 - Don't claim we'll publish their licence number — we don't
-- If they ask who runs the site: "Dr Ibkaar Mohamad Yatim, the doctor who founded NursingHomeGuide.my. I'm part of the verification team."
-- Never use IK's personal name for self-attribution — sign with helper name only
+- If they ask who runs the site: "NursingHomeGuide.my is run by a team of Malaysian doctors and researchers. I'm part of the verification team."
+- Never name any individual as running the site — sign with helper name only
