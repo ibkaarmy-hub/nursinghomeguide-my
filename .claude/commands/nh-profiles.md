@@ -175,15 +175,36 @@ When the user pastes a specific facility URL with feedback, switch from the bulk
 - `token_sheets.json` lives only in the **main repo root** (gitignored). When working from a worktree, reference it via absolute path or `cd` to main repo to run the update script.
 - Headers index changes occasionally — never hardcode column letters; always look up via `headers.index(name)`.
 
-### Read the rating timeline before judging it (locked 2026-05-03)
-A low Google aggregate is not automatically a current red flag. Many Malaysian homes opened around 2017–2019 caught a cluster of harsh reviews in their shake-down period that still drag the average down years later, even when current operations are fine. Before letting a rating shape the editorial:
+### Chain reconciliation (multi-branch operators)
+- When existing sheet slugs are address-named (e.g. `jln-antoi`, `jln-belinggai`), **map them to operator branches by street address**, not by guessing from the name. Fetch each operator branch page and compare the address to the existing row's area/coords before deciding which slug maps to which branch.
+- Present the full mapping table to the user before pushing: `existing slug → operator branch name → address`. The slug-to-branch mapping is the highest-risk part of a chain fix.
+- For facilities that share a similar name with a chain but have a different phone number and aren't in the operator's branch directory: **do not group them**. Phone + operator directory are the two checkpoints.
+- The operator's "branch count" is what they publish. Re-count from their live site before planning — the screenshot the user provides may be stale.
 
-- **Filter Google reviews by "Newest" and check the dates.** If the 1-stars cluster in the opening years and recent reviews trend positive, the headline number is a stale snapshot, not a current signal.
-- **Cross-check with the soft-launch / opening date** (operator website, FB page, "since YYYY" tagline). 1-stars from year 1–2 of operations are growing pains; 1-stars from the last 12 months are a current-state signal.
-- If the pattern is old-negative / recent-positive: say so explicitly in the editorial and tell families to filter by "newest" before forming a view. Don't write the rating off, but don't let it steer the verdict either.
-- If recent reviews are also negative: that's a current signal — still don't use banned framing ("warrants caution", "concerning rating", "leave off your shortlist"). Stick to verified facts and call-time questions per the editorial rules.
+### Operator photos: Wix CDN
+- Wix-hosted operator sites serve photos from `static.wixstatic.com/media/<id>~mv2.jpg`.
+- WebFetch returns URLs with transformation suffixes like `/v1/fill/w_238,h_237,q_90,enc_avif,quality_auto/<id>~mv2.jpg` — strip everything after `/media/` except `<id>~mv2.jpg` to get the stable base URL.
+- Hero = first image on the branch page; gallery = all subsequent `0807fc_*` images. Skip logo files (`d3104b_*`) and generic social-proof photos (e.g. `1cd9eba76...`).
+- No WordPress `/wp-content/uploads/` pattern to expect from Wix sites; adjust URL probing accordingly.
 
-Never write off a facility with "for most families there are better options" framing based on aggregate alone. That phrasing is banned regardless of what the rating is.
+### Static page regeneration after new rows
+- `generate_facility_pages.py` fetches the **published CSV** (`/pub?output=csv`), not the export URL. There is typically a **5–10 minute publishing delay** after sheet edits before new rows appear in the pub CSV.
+- After appending new facility rows to the sheet: **poll the pub CSV until the new slug count is correct** before running the generator; otherwise the new pages will be silently skipped.
+  ```bash
+  # Poll pattern (adjust slug prefix / expected count as needed)
+  until python -c "
+  import csv, urllib.request, sys
+  rows = list(csv.DictReader(...))
+  print(sum(1 for r in rows if 'merry' in r.get('slug','').lower()))
+  " | grep -qx '6'; do sleep 60; done
+  ```
+- After the pub CSV reflects all new rows: run both `python generate_facility_pages.py` AND `python generate_sitemap.py`, then commit the `facility/` tree + `sitemap.xml` together. New facility URLs 404 until this is done.
 
-### Don't call a website "sparse" without checking sub-pages
-Before describing a website as thin / sparse / lacking specifics, actually fetch `/about`, `/services`, `/contact-us`, `/gallery`, `/packages` (or whatever the nav lists). The AustinLoyal site looked empty on the homepage but `/contact-us` had the registered company number, exact address, opening date, services list, and visiting policy — none of which made it into the original editorial. Sparse-website framing should describe what's actually missing after you've checked the sub-pages, not what you didn't see on the homepage.
+### Worktree rebase collisions
+- Automated agents (editorial bulk writer, WhatsApp fix, etc.) commit to `main` concurrently. When pushing from a worktree, `git push origin HEAD:main` may fail with "non-fast-forward". Pattern:
+  ```bash
+  git fetch origin main
+  GIT_EDITOR=true git rebase origin/main
+  git push origin HEAD:main
+  ```
+- If `_blockers.json` conflicts during rebase: merge both sets of keys manually (keep all existing entries + add new ones), then `git add` and `GIT_EDITOR=true git rebase --continue`.
