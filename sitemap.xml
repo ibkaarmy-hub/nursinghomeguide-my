@@ -1712,7 +1712,7 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/facility/merry-care-centre-jln-belinggai/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2066,19 +2066,19 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/facility/jasper-lodge-nursing-home-pj2/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nursinghomeguide.my/facility/jasper-lodge-nursing-home-pj3/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nursinghomeguide.my/facility/jasper-lodge-nursing-home-pj5/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2126,6 +2126,30 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/facility/seniora-johor-bahru/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/facility/merry-care-kepong-baru-3/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/facility/merry-care-kepong-baru-4/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/facility/merry-care-selayang-baru/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/facility/merry-care-desa-jaya-kepong/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -2294,6 +2318,18 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/org.html?slug=woodrose-senior-residences</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=jasper-lodge</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=merry-care-centre</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
