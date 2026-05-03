@@ -408,7 +408,12 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const canonicalUrl = `${CANONICAL_BASE}/facility/${encodeURIComponent(f.slug || '')}/`;
+  const c = (f.care_category || '').trim();
+  const catDir = c === 'Assisted Living' ? 'assisted-living'
+               : c === 'Home Care'       ? 'home-care'
+               : c === 'Day Care'        ? 'day-care'
+               : 'nursing-homes';
+  const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
   injectSocialMeta(f, canonicalUrl, metaDesc.slice(0, 155));
   injectStructuredData(f, canonicalUrl);
@@ -647,13 +652,18 @@ function render(f) {
   })();
 
   /* Assemble */
+  const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
+  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
+  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">
         <div class="hero-breadcrumb">
-          <a href="index.html">Malaysia</a>
+          <a href="/">Malaysia</a>
           <span class="bc-sep">/</span>
-          <a href="johor.html">${escapeHtml(f.state || 'Johor')}</a>
+          <a href="${breadcrumbCatUrl}">${breadcrumbCatLabel}</a>
+          <span class="bc-sep">/</span>
+          <a href="${breadcrumbCatUrl}${stateSlug}/">${escapeHtml(f.state || 'Johor')}</a>
           <span class="bc-sep">/</span>
           <span>${escapeHtml(f.area || 'Johor')}</span>
           <span class="bc-sep">/</span>

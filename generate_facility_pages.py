@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-"""Generate one static HTML page per live facility at facility/<slug>/index.html.
+"""Generate one static HTML page per live facility under category-prefixed paths.
+
+URL scheme (post-restructure 2026-05-03):
+  /nursing-homes/<slug>/    for care_category in {Nursing Home, Mixed}
+  /assisted-living/<slug>/  for care_category in {Assisted Living}
+                            and ALSO mirrored for Mixed (cross-listed; canonical is /nursing-homes/)
+  /home-care/<slug>/        for care_category = Home Care
+  /day-care/<slug>/         for care_category = Day Care
+  /facility/<slug>/         legacy redirect stub (meta-refresh + canonical to new URL)
 
 Each page bakes in per-facility <title>, meta description, canonical, Open Graph,
-Twitter Card, and LocalBusiness JSON-LD into the static HTML — so social scrapers
-(WhatsApp, Facebook, Twitter, LinkedIn) and SEO crawlers see them without
-executing JavaScript.
-
-The page still loads the same client-side JS (data.js + facility.html's render
-script) to populate the interactive UI. The JS reads window.__FACILITY_SLUG to
-know which facility to load.
+Twitter Card, and LocalBusiness JSON-LD. Static so social scrapers (WhatsApp,
+Facebook, Twitter, LinkedIn) and SEO crawlers see them without executing JS.
 
 Run:  python generate_facility_pages.py
 """
@@ -27,7 +30,18 @@ FACILITIES_CSV = (
     "?gid=292378871&single=true&output=csv"
 )
 TEMPLATE_PATH = "facility.html"
-OUT_DIR = "facility"
+
+# Maps care_category → (canonical_dir, also_mirror_dirs)
+# canonical_dir is where the rich static page lives; mirror dirs get a small
+# redirect-to-canonical stub so the URL resolves but Google sees one canonical.
+CATEGORY_DIRS = {
+    "Nursing Home":     ("nursing-homes",   []),
+    "Assisted Living":  ("assisted-living", []),
+    "Mixed":            ("nursing-homes",   ["assisted-living"]),
+    "Home Care":        ("home-care",       []),
+    "Day Care":         ("day-care",        []),
+}
+DEFAULT_CATEGORY = "Nursing Home"
 
 UNKNOWN_TOKENS = ("not stated", "not published", "not declared", "not confirmed", "unknown", "tbd")
 
@@ -127,8 +141,7 @@ def html_escape(s):
             .replace("'", "&#39;"))
 
 
-def build_head_inserts(f, slug):
-    canonical = f"{BASE}/facility/{slug}/"
+def build_head_inserts(f, slug, canonical):
     title = f.get("title", "").strip()
     page_title = f"{title} — NursingHomeGuide.my"
     desc = build_meta_description(f)
@@ -138,10 +151,10 @@ def build_head_inserts(f, slug):
     ld_json = json.dumps(ld, ensure_ascii=False, separators=(",", ":"))
 
     parts = [
-        f'<base href="/">',
+        '<base href="/">',
         f'<link rel="canonical" href="{html_escape(canonical)}">',
-        f'<meta property="og:type" content="website">',
-        f'<meta property="og:site_name" content="NursingHomeGuide.my">',
+        '<meta property="og:type" content="website">',
+        '<meta property="og:site_name" content="NursingHomeGuide.my">',
         f'<meta property="og:title" content="{html_escape(page_title)}">',
         f'<meta property="og:description" content="{html_escape(desc)}">',
         f'<meta property="og:url" content="{html_escape(canonical)}">',
@@ -160,22 +173,47 @@ def build_head_inserts(f, slug):
 
 def transform_template(template, page_title, desc, head_inserts):
     out = template
-    # Replace <title>
     out = re.sub(
         r'<title id="pageTitle">[^<]*</title>',
         f'<title id="pageTitle">{html_escape(page_title)}</title>',
         out, count=1)
-    # Replace meta description content
     out = re.sub(
         r'(<meta name="description" id="pageDesc" content=)"[^"]*"(\s*/>)',
         lambda m: f'{m.group(1)}"{html_escape(desc)}"{m.group(2)}',
         out, count=1)
-    # Insert head additions right after <meta charset> line so <base> is early
     out = out.replace(
         '<meta charset="UTF-8" />',
         '<meta charset="UTF-8" />\n' + head_inserts,
         1)
     return out
+
+
+def build_redirect_stub(canonical, page_title, desc):
+    """Tiny HTML page that meta-refreshes to canonical and points rel=canonical there.
+    Google treats 0-second meta-refresh as equivalent to a 301 for indexing purposes.
+    """
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0; url={html_escape(canonical)}">
+<link rel="canonical" href="{html_escape(canonical)}">
+<meta name="robots" content="noindex,follow">
+<title>{html_escape(page_title)}</title>
+<meta name="description" content="{html_escape(desc)}">
+<script>window.location.replace({json.dumps(canonical)});</script>
+</head>
+<body>
+<p>This page has moved to <a href="{html_escape(canonical)}">{html_escape(canonical)}</a>.</p>
+</body>
+</html>
+"""
+
+
+def write_file(path, content):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        f.write(content)
 
 
 def main():
@@ -187,28 +225,59 @@ def main():
     with open(TEMPLATE_PATH, "r", encoding="utf-8") as f:
         template = f.read()
 
-    # Wipe old output dir to avoid stale slugs lingering
-    if os.path.isdir(OUT_DIR):
-        shutil.rmtree(OUT_DIR)
-    os.makedirs(OUT_DIR, exist_ok=True)
+    # Wipe category dirs + legacy facility dir to avoid stale slugs
+    for d in ("nursing-homes", "assisted-living", "home-care", "day-care", "facility"):
+        # Preserve any handcrafted index.html at /nursing-homes/ etc — only wipe slug subdirs.
+        if d == "facility":
+            if os.path.isdir(d):
+                shutil.rmtree(d)
+            continue
+        if os.path.isdir(d):
+            for entry in os.listdir(d):
+                p = os.path.join(d, entry)
+                if os.path.isdir(p):
+                    shutil.rmtree(p)
 
-    written = 0
+    counts = {"nursing-homes": 0, "assisted-living": 0, "home-care": 0, "day-care": 0, "redirects": 0, "mirrors": 0}
+    skipped_invalid = 0
+
     for r in live:
         slug = r["slug"].strip()
         if re.search(r"[\s/?#&\\]", slug) or not slug:
             print(f"  skip invalid slug: {slug!r}", file=sys.stderr)
+            skipped_invalid += 1
             continue
-        page_title, desc, head_inserts = build_head_inserts(r, slug)
+
+        category = (r.get("care_category") or "").strip() or DEFAULT_CATEGORY
+        if category not in CATEGORY_DIRS:
+            category = DEFAULT_CATEGORY
+
+        canonical_dir, mirror_dirs = CATEGORY_DIRS[category]
+        canonical = f"{BASE}/{canonical_dir}/{slug}/"
+
+        page_title, desc, head_inserts = build_head_inserts(r, slug, canonical)
         page_html = transform_template(template, page_title, desc, head_inserts)
 
-        slug_dir = os.path.join(OUT_DIR, slug)
-        os.makedirs(slug_dir, exist_ok=True)
-        with open(os.path.join(slug_dir, "index.html"), "w", encoding="utf-8", newline="\n") as f:
-            f.write(page_html)
-        written += 1
+        # Canonical static page
+        write_file(os.path.join(canonical_dir, slug, "index.html"), page_html)
+        counts[canonical_dir] += 1
 
-    print(f"Wrote {written} static facility pages under ./{OUT_DIR}/<slug>/index.html",
-          file=sys.stderr)
+        # Mirror redirect stubs (e.g. Mixed: also at /assisted-living/<slug>/)
+        for mdir in mirror_dirs:
+            stub = build_redirect_stub(canonical, page_title, desc)
+            write_file(os.path.join(mdir, slug, "index.html"), stub)
+            counts["mirrors"] += 1
+
+        # Legacy redirect stub at /facility/<slug>/
+        legacy_stub = build_redirect_stub(canonical, page_title, desc)
+        write_file(os.path.join("facility", slug, "index.html"), legacy_stub)
+        counts["redirects"] += 1
+
+    summary = (f"Wrote: {counts['nursing-homes']} NH + {counts['assisted-living']} AL + "
+               f"{counts['home-care']} HC + {counts['day-care']} DC canonical pages, "
+               f"{counts['mirrors']} mirror stubs, {counts['redirects']} legacy /facility/ redirects"
+               + (f" (skipped {skipped_invalid} invalid slugs)" if skipped_invalid else ""))
+    print(summary, file=sys.stderr)
 
 
 if __name__ == "__main__":

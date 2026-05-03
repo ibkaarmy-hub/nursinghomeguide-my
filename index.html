@@ -18,7 +18,7 @@
     "description": "Malaysia's most comprehensive guide to elder care, senior care, nursing homes, day care, and home care.",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://nursinghomeguide.my/johor.html?q={search_term_string}",
+      "target": "https://nursinghomeguide.my/nursing-homes/johor/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
@@ -51,15 +51,45 @@
   </div>
 </section>
 
-<!-- State picker -->
+<!-- Care category picker -->
 <div class="section">
-  <div class="section-title">Browse by State</div>
-  <div class="section-sub">Select your state to compare nursing homes, day care, assisted living, and home care options</div>
+  <div class="section-title">Browse by Care Type</div>
+  <div class="section-sub">Different decisions, different criteria. Pick the care category that matches your family's situation.</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-bottom:48px">
+    <a href="#by-state" style="display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='var(--shadow-hover)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
+      <div style="background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);padding:22px 24px;color:#fff">
+        <div style="font-size:2rem;margin-bottom:8px">🏥</div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.85">Higher acuity care</div>
+        <div style="font-size:1.15rem;font-weight:700;line-height:1.3;margin-top:4px">Nursing Homes</div>
+      </div>
+      <div style="padding:16px 20px 18px;flex:1">
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px">24-hour nursing, dementia care, post-stroke recovery, palliative. For families asking <em>"will my parent be safe?"</em></p>
+        <span style="font-size:.85rem;font-weight:600;color:var(--primary)">Browse nursing homes ↓</span>
+      </div>
+    </a>
+    <a href="/assisted-living/" style="display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='var(--shadow-hover)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
+      <div style="background:linear-gradient(135deg,#14532d 0%,#16a34a 100%);padding:22px 24px;color:#fff">
+        <div style="font-size:2rem;margin-bottom:8px">🌿</div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.85">Independent &amp; lifestyle-led</div>
+        <div style="font-size:1.15rem;font-weight:700;line-height:1.3;margin-top:4px">Assisted Living</div>
+      </div>
+      <div style="padding:16px 20px 18px;flex:1">
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px">Senior living communities &amp; retirement residences. Amenities, dining, social calendar. For families asking <em>"will my parent be happy?"</em></p>
+        <span style="font-size:.85rem;font-weight:600;color:#16a34a">Browse assisted living →</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- State picker -->
+<div class="section" id="by-state">
+  <div class="section-title">Browse Nursing Homes by State</div>
+  <div class="section-sub">Select your state to compare nursing homes, day care, and home care options</div>
 
   <div class="state-grid">
 
     <!-- LIVE: Johor -->
-    <a href="johor.html" class="state-card" style="--sc:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%)">
+    <a href="/nursing-homes/johor/" class="state-card" style="--sc:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%)">
       <div class="state-card-pattern">
         <span class="state-flag">🏙️</span>
       </div>
@@ -71,7 +101,7 @@
     </a>
 
     <!-- LIVE: Kuala Lumpur -->
-    <a href="kuala-lumpur.html" class="state-card" style="--sc:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%)">
+    <a href="/nursing-homes/kuala-lumpur/" class="state-card" style="--sc:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%)">
       <div class="state-card-pattern"><span class="state-flag">🌆</span></div>
       <div class="state-card-body">
         <div class="state-card-name">Kuala Lumpur</div>
@@ -81,7 +111,7 @@
     </a>
 
     <!-- LIVE: Selangor -->
-    <a href="selangor.html" class="state-card" style="--sc:linear-gradient(135deg,#14532d 0%,#166534 100%)">
+    <a href="/nursing-homes/selangor/" class="state-card" style="--sc:linear-gradient(135deg,#14532d 0%,#166534 100%)">
       <div class="state-card-pattern"><span class="state-flag">🏘️</span></div>
       <div class="state-card-body">
         <div class="state-card-name">Selangor</div>
@@ -226,11 +256,12 @@
       <div class="footer-tagline">A free resource for Malaysian families navigating eldercare</div>
     </div>
     <div class="footer-links">
-      <a href="johor.html">Johor</a>
-      <a href="kuala-lumpur.html">Kuala Lumpur</a>
-      <a href="selangor.html">Selangor</a>
-      <a href="guides/which-care.html">Which Care?</a>
-      <a href="guides/government-assistance.html">Govt Assistance</a>
+      <a href="/nursing-homes/johor/">Johor NH</a>
+      <a href="/nursing-homes/kuala-lumpur/">KL NH</a>
+      <a href="/nursing-homes/selangor/">Selangor NH</a>
+      <a href="/assisted-living/">Assisted Living</a>
+      <a href="/guides/which-care.html">Which Care?</a>
+      <a href="/guides/government-assistance.html">Govt Assistance</a>
     </div>
     <div class="footer-copy">© 2026 NursingHomeGuide.my — Not affiliated with JKM or any facility</div>
   </div>
@@ -240,7 +271,7 @@
 <script>
 function doSearch() {
   const q = document.getElementById('heroSearch').value.trim();
-  if (q) window.location.href = `johor.html?q=${encodeURIComponent(q)}`;
+  if (q) window.location.href = `/nursing-homes/johor/?q=${encodeURIComponent(q)}`;
 }
 document.getElementById('heroSearch').addEventListener('keydown', e => {
   if (e.key === 'Enter') doSearch();

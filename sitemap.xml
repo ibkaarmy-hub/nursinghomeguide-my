@@ -7,22 +7,46 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/johor.html</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/kuala-lumpur.html</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/johor/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/selangor.html</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/kuala-lumpur/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/nursing-homes/selangor/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/assisted-living/johor/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/assisted-living/kuala-lumpur/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/assisted-living/selangor/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://nursinghomeguide.my/guides/which-care.html</loc>
@@ -37,2125 +61,2131 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/area/petaling-jaya/</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nursinghomeguide.my/facility/eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh/</loc>
     <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/master-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/master-care-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/rebina-house-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/rebina-house-care-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/eha-parkview-eldercare-perling-1-nursing-home-johor-bahru/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/eha-parkview-eldercare-perling-1-nursing-home-johor-bahru/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/nursing-home-johor-bahru-loving-mansion-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/nursing-home-johor-bahru-loving-mansion-care-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/econ-medicare-centre-nursing-home-taman-perling-branch/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/econ-medicare-centre-nursing-home-taman-perling-branch/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/spring-valley-homecare-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/spring-valley-homecare-nursing-home/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/woon-ho-family-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/woon-ho-family-care-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/fcc-family-care-centre-johor-bahru/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/fcc-family-care-centre-johor-bahru/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/multicare-nursing-home-johor/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/multicare-nursing-home-johor/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/anzaletta-living-care-centre-old-age-home-in-johor-bahru-age/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/anzaletta-living-care-centre-old-age-home-in-johor-bahru-age/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/genesis-life-care-centre-jb/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/genesis-life-care-centre-jb/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/prestige-residence-care-group-sdn-bhd/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/prestige-residence-care-group-sdn-bhd/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/evergreen-eldercare-centre-eecmsia/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/evergreen-eldercare-centre-eecmsia/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/eha-elder-care-home-kluang-licensed-and-certified-by-govern/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/eha-elder-care-home-kluang-licensed-and-certified-by-govern/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/gentle-hill-elder-care/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/gentle-hill-elder-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/green-acres-elderly-care-centre-managed-by-green-acres-resid/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/green-acres-elderly-care-centre-managed-by-green-acres-resid/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/lee-nursing/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/lee-nursing/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/lotus-ville-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/lotus-ville-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/yong-an-old-folks-care-centre-ulu-tiram-jb/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/yong-an-old-folks-care-centre-ulu-tiram-jb/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/austinloyal-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/austinloyal-care-centre/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/blissful-senior-care-centre-licensed-and-certified-by-gover/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/blissful-senior-care-centre-licensed-and-certified-by-gover/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/jr-segamat-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/jr-segamat-care-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/golden-age-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/golden-age-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/haywood-senior-living-medini-johor-bahru/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/haywood-senior-living-medini-johor-bahru/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/golden-age-care-centre-tangkak/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/golden-age-care-centre-tangkak/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/summer-eldercare-johor-bahru/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/summer-eldercare-johor-bahru/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-nur-ehsan-tangkak/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-emas-nur-ehsan-tangkak/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-kebajikan-manna-sinar-cahaya/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-kebajikan-manna-sinar-cahaya/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/master-nursing-care-centre-daya/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/master-nursing-care-centre-daya/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/hibiscus-serenity-care-centre-nursing-home-in-larkin-johor-b/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/hibiscus-serenity-care-centre-nursing-home-in-larkin-johor-b/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/master-care-centre-taman-abad/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/master-care-centre-taman-abad/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sunrise-care-centre-sdn-bhd/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sunrise-care-centre-sdn-bhd/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/alda-homes-eldercare/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/alda-homes-eldercare/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/ax-nursing-home-plt/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/ax-nursing-home-plt/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/rebina-home-care-centre-sdn-bhd/</loc>
+    <loc>https://nursinghomeguide.my/home-care/rebina-home-care-centre-sdn-bhd/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-perjagaan-orang-tua-ren-ai/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-perjagaan-orang-tua-ren-ai/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/fu-ka-care-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/fu-ka-care-center/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-orang-tua-yeo-jb/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-orang-tua-yeo-jb/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-nur-ehsan/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-emas-nur-ehsan/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/agape-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/agape-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/comfort-home-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/comfort-home-care-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sincere-heart-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sincere-heart-care-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/graceville-senior-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/graceville-senior-care-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/graceville-care-centre-sungai-mati/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/graceville-care-centre-sungai-mati/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/wcc-woundcare-nursing-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/wcc-woundcare-nursing-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/green-acres-home-care-centre-managed-by-green-acres-residenc/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/green-acres-home-care-centre-managed-by-green-acres-residenc/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/ummi-naura-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/ummi-naura-care-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/healthlife-old-folks-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/healthlife-old-folks-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-tua-hayati-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-hayati-care-centre/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/golden-age-care-centre-batu-pahat/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/golden-age-care-centre-batu-pahat/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-wargatua-parit-bilal/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-wargatua-parit-bilal/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-impian-syimah-jalan-kemaman/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-impian-syimah-jalan-kemaman/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-impian-syimah-jalan-kemuncak/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-impian-syimah-jalan-kemuncak/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/elderia-care-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/elderia-care-center/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/elim-nursing-home-batu-pahat/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/elim-nursing-home-batu-pahat/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/hang-nursing-home-gelang-patah-branch/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/hang-nursing-home-gelang-patah-branch/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/green-garden-care-center-sdn-bhd/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/green-garden-care-center-sdn-bhd/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-teduhan-zafrah-warga-emas-oku-lelaki/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-teduhan-zafrah-warga-emas-oku-lelaki/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/amitabha-foundation-amitabha-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/day-care/amitabha-foundation-amitabha-malaysia/</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/yang-xin-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/yang-xin-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/fcc-family-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/day-care/fcc-family-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/jeta-care/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/jeta-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/rumah-penjagaan-oku-asyiq/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/rumah-penjagaan-oku-asyiq/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/serim-home-nursing/</loc>
+    <loc>https://nursinghomeguide.my/home-care/serim-home-nursing/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/wellness-carer-nursing-services-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/wellness-carer-nursing-services-malaysia/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-place-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-place-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/emzis-care-old-folks-and-nursing-home-in-bangsar/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/emzis-care-old-folks-and-nursing-home-in-bangsar/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/h2hcarebangsar/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/h2hcarebangsar/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/eden-retirement-village/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/eden-retirement-village/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/capella-senior-living/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/capella-senior-living/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/harapan-senior-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/harapan-senior-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/serenity-lifecare/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/serenity-lifecare/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/meridian-care-living-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/meridian-care-living-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/haywood-senior-living-bangsar/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/haywood-senior-living-bangsar/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/the-senior-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/the-senior-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sunshine-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sunshine-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/cality-care-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/home-care/cality-care-malaysia/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/lecadia-primacare-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/lecadia-primacare-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/kv-guardian-senior-care-centre-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/kv-guardian-senior-care-centre-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/eha-grandview-titiwangsa-kl-elderly-care-post-surgery-recovery-stroke-rehabilita/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/eha-grandview-titiwangsa-kl-elderly-care-post-surgery-recovery-stroke-rehabilita/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mona-elder-care-nursing-home-in-taman-bunga-raya-kuala-lumpur/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mona-elder-care-nursing-home-in-taman-bunga-raya-kuala-lumpur/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/his-grace-home-care-centretaman-pramlee/</loc>
+    <loc>https://nursinghomeguide.my/day-care/his-grace-home-care-centretaman-pramlee/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/rejuvenate-elderly-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/rejuvenate-elderly-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/his-grace-home-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/his-grace-home-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mona-elder-care-nursing-home-in-taman-p-ramlee-setapak/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mona-elder-care-nursing-home-in-taman-p-ramlee-setapak/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/2e-nursing-healthcare/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/2e-nursing-healthcare/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/eldercare-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/eldercare-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/golden-years-senior-residence-kinrara-puchong/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/golden-years-senior-residence-kinrara-puchong/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/guardian-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/guardian-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/harvestars-care-centre-puchong-disland/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/harvestars-care-centre-puchong-disland/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/master-care-nursing-homesputeri-wangsa/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/master-care-nursing-homesputeri-wangsa/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pristine-nursing-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pristine-nursing-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/vida-senior-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/vida-senior-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/jia-yuan-retirement-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/jia-yuan-retirement-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/elderlove-living-care-centre-puchong/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/elderlove-living-care-centre-puchong/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/jj-blessing-care-centre-puchong/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/jj-blessing-care-centre-puchong/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/genesis-life-care-centre-puchong/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/genesis-life-care-centre-puchong/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/unique-family-care-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/unique-family-care-center/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/ks-care-centre-凯心安老院-shah-alam/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/ks-care-centre-凯心安老院-shah-alam/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/woodrose-senior-residences-1-seksyen-11-female-syariah-complaint/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/woodrose-senior-residences-1-seksyen-11-female-syariah-complaint/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/caring-hearts-elder-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/caring-hearts-elder-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/selcare-nursing/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/selcare-nursing/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/utopia-care-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/utopia-care-center/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sunshine-nursing-home-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sunshine-nursing-home-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/angel-best-centre-nursing-home-天使之家养老院-rawang-area-万挠区/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/angel-best-centre-nursing-home-天使之家养老院-rawang-area-万挠区/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/well-living-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/well-living-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-nursing-home-old-folks-home-rawang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care-nursing-home-old-folks-home-rawang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/elderlove-living-care-centre-sglong/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/elderlove-living-care-centre-sglong/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/ks-care-centre-凯心安老院-kajang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/ks-care-centre-凯心安老院-kajang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sincere-care-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sincere-care-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mintygreen-senior-care-center-cherassungai-long-蕉赖碧绿疗养院/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mintygreen-senior-care-center-cherassungai-long-蕉赖碧绿疗养院/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-retirement-resort/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care-retirement-resort/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-retirement-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care-retirement-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/kajang-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/kajang-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/geriacare/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/geriacare/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/genesis-life-care-centre-kajang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/genesis-life-care-centre-kajang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mintygreen-nursing-homesungai-long-kajang-eldercare-center-加影碧绿疗养院/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mintygreen-nursing-homesungai-long-kajang-eldercare-center-加影碧绿疗养院/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/good-family-home-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/good-family-home-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sree-sai-elder-home-care-mental-health-old-age-residential-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sree-sai-elder-home-care-mental-health-old-age-residential-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/woodrose-senior-residences/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/woodrose-senior-residences/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/canaan-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/canaan-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/love-and-care-centre-kajang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/love-and-care-centre-kajang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/blissful-family-old-folks-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/blissful-family-old-folks-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/gam-yam-senior-home-in-ampang-kuala-lumpur-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/home-care/gam-yam-senior-home-in-ampang-kuala-lumpur-malaysia/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/apple-nursery-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/apple-nursery-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-lekshmy-illam-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-lekshmy-illam-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/love-and-care-village/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/love-and-care-village/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/ampang-old-folks-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/ampang-old-folks-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/convee-elderly-care-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/convee-elderly-care-center/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/glory-living-care-home/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/glory-living-care-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mona-elder-care-nursing-home-in-jalan-sri-kemuning-lembah-jaya-selatan-ampang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mona-elder-care-nursing-home-in-jalan-sri-kemuning-lembah-jaya-selatan-ampang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-malaysia-ampang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care-malaysia-ampang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/aliz-nursing-care/</loc>
+    <loc>https://nursinghomeguide.my/home-care/aliz-nursing-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/golden-years-senior-residence-kota-kemuning-shah-alam/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/golden-years-senior-residence-kota-kemuning-shah-alam/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/care-concierge-care-luxe-ampang/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/care-concierge-care-luxe-ampang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/woodrose-senior-residences-2-seksyen-11-male-syariah-compliant/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/woodrose-senior-residences-2-seksyen-11-male-syariah-compliant/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sayang-nursing-home-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sayang-nursing-home-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/zara-aisyah-care-centre-zacc/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/zara-aisyah-care-centre-zacc/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/woodrose-senior-residences-3-seksyen-13-female-syariah-compliant/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/woodrose-senior-residences-3-seksyen-13-female-syariah-compliant/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/avicenna-nursing-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/avicenna-nursing-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/oasis-nursing-home-setia-alam/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/oasis-nursing-home-setia-alam/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/oasis-nursing-home-shah-alam-安康之家疗养院/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/oasis-nursing-home-shah-alam-安康之家疗养院/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mona-elder-care-nursing-home-in-pandan-perdana/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mona-elder-care-nursing-home-in-pandan-perdana/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/happy-family-nursing-home-kepong/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/happy-family-nursing-home-kepong/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mintygreen-nursing-retirement-home-kepong-and-pj-bandar-sri-damansara/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mintygreen-nursing-retirement-home-kepong-and-pj-bandar-sri-damansara/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/甲洞乐理护老之家-opulencecare-ii/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/甲洞乐理护老之家-opulencecare-ii/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/协和开心之家安心养老庭院-甲洞安老院-kepong-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/day-care/协和开心之家安心养老庭院-甲洞安老院-kepong-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/happy-family-nursing-home-taman-kepong-pusat-jagaan-warga-emas-happy-family/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/happy-family-nursing-home-taman-kepong-pusat-jagaan-warga-emas-happy-family/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/caregiver-in-kl/</loc>
+    <loc>https://nursinghomeguide.my/home-care/caregiver-in-kl/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/lorong-hj-othman-2-kampung-giching-hilir/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/lorong-hj-othman-2-kampung-giching-hilir/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-rumah-kebajikan-calvary-land/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-kebajikan-calvary-land/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sam-wound-and-home-nursing-care/</loc>
+    <loc>https://nursinghomeguide.my/home-care/sam-wound-and-home-nursing-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/alia-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/alia-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-komuniti/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/pusat-komuniti/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/loving-elderly-care-center-sdn-bhd-lecc/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/loving-elderly-care-center-sdn-bhd-lecc/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/aurora-home-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/home-care/aurora-home-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/home-town-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/home-town-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/city-home-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/city-home-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/house-of-glory/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/house-of-glory/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/komune-care/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/komune-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/papa-mama-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/papa-mama-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/loving-touch-care-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/loving-touch-care-center/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/i-care-haven-home-for-the-elderly/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/i-care-haven-home-for-the-elderly/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/hemei-life-care-center-klang/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/hemei-life-care-center-klang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/anns-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/anns-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pals-caring-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pals-caring-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/prowell-elderly-home-care-centre-hq/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/prowell-elderly-home-care-centre-hq/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/elderly-gardens-care-centre-kg-cheras-baru/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/elderly-gardens-care-centre-kg-cheras-baru/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-en-yuan-plt-kg-cheras-baru/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-en-yuan-plt-kg-cheras-baru/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/happy-family-nursing-home-cheras-pusat-jagaan-warga-emas-taman-sri-bahtera/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/happy-family-nursing-home-cheras-pusat-jagaan-warga-emas-taman-sri-bahtera/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mintygreen-care-suites-home-care-nursing-cheras-kl/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mintygreen-care-suites-home-care-nursing-cheras-kl/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/oasis-nursing-home-klang-安康之家巴生疗养院/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/oasis-nursing-home-klang-安康之家巴生疗养院/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/acacia-by-pacific-senior-living/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/acacia-by-pacific-senior-living/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/athena-care-centre-klang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/athena-care-centre-klang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/rs-global-home-care-only-for-muslim/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/rs-global-home-care-only-for-muslim/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-penyayang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-emas-penyayang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/goldleaf-villa-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/goldleaf-villa-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/ln-home-care-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/ln-home-care-center/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/suria-care-homepusat-jagaan-warga-emas舒利亚乐龄休养中心/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/suria-care-homepusat-jagaan-warga-emas舒利亚乐龄休养中心/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-persatuan-kebajikan-warga-emas-chan-kl/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-persatuan-kebajikan-warga-emas-chan-kl/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-orang-tua-cahaya-maju/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-orang-tua-cahaya-maju/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-orang-tua-damai/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-orang-tua-damai/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-tua-merry/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-merry/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-kangiten/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-emas-kangiten/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-nurul-jannah/</loc>
+    <loc>https://nursinghomeguide.my/home-care/pusat-jagaan-nurul-jannah/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-tua-sra/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-sra/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-harian-warga-tua-cheras-baru/</loc>
+    <loc>https://nursinghomeguide.my/day-care/pusat-jagaan-harian-warga-tua-cheras-baru/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-penjagaan-warga-emas-taman-kok-lian/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-penjagaan-warga-emas-taman-kok-lian/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-husna-arrashid/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-husna-arrashid/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/elderly-welfare-association-chan-kuala-lumpur/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/elderly-welfare-association-chan-kuala-lumpur/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/愛心樂齡休養中心-pusat-jagaan-warga-emas-cinta/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/愛心樂齡休養中心-pusat-jagaan-warga-emas-cinta/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-nursing-home-klang-selangor/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care-nursing-home-klang-selangor/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-rumah-orang-tua-wesley/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-orang-tua-wesley/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/attia-global-care-klang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/attia-global-care-klang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/golden-haven-nursing-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/golden-haven-nursing-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/genesis-life-care-centre-klang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/genesis-life-care-centre-klang/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/happy-family-nursing-home-taman-desa-jaya-pusat-jagaan-warga-emas-desa-jaya/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/happy-family-nursing-home-taman-desa-jaya-pusat-jagaan-warga-emas-desa-jaya/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/damai-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/damai-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mothers-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mothers-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/happy-family-nursing-home-jalan-ipoh-pusat-jagaan-warga-emas-jalan-batu-batan/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/happy-family-nursing-home-jalan-ipoh-pusat-jagaan-warga-emas-jalan-batu-batan/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/st-marys-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/st-marys-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-little-sisters-of-the-poor/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-little-sisters-of-the-poor/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-nursing-home-in-jalan-ipoh-kuala-lampur/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care-nursing-home-in-jalan-ipoh-kuala-lampur/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/bandar-damai-home-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/bandar-damai-home-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/ee-dian-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/ee-dian-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sahana-old-folks-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sahana-old-folks-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sunstar-golden-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sunstar-golden-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-retirement-home-jalan-usj-18/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care-retirement-home-jalan-usj-18/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sunway-home-healthcare-双威家庭护理/</loc>
+    <loc>https://nursinghomeguide.my/home-care/sunway-home-healthcare-双威家庭护理/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/elderly-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/elderly-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-murni-kasih/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-emas-murni-kasih/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/ph-guardian-senior-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/ph-guardian-senior-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/ixora-senior-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/ixora-senior-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/bright-care-home-pusat-jagaan-rumah-warga-tua-cahaya/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/bright-care-home-pusat-jagaan-rumah-warga-tua-cahaya/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-suria/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-emas-suria/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-dan-rawatan-orang-tua-al-ikhlas/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-dan-rawatan-orang-tua-al-ikhlas/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/harvestars-care-centre-klang-h-residence/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/harvestars-care-centre-klang-h-residence/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-al-fattah/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-emas-al-fattah/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-syurga-warga-emas/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-syurga-warga-emas/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-tua/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-penjagaan-warga-emas-hati-mesra/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-penjagaan-warga-emas-hati-mesra/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-tua-sri-tanjung-muslim-women-only/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-sri-tanjung-muslim-women-only/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-barakah/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-emas-barakah/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-semenyih/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-emas-semenyih/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-kaseh-bonda/</loc>
+    <loc>https://nursinghomeguide.my/home-care/pusat-jagaan-warga-emas-kaseh-bonda/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-tua-damai/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-damai/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/bait-al-mawaddah-pusat-jagaan-warga-emas-lembaga-zakat-selangor/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/bait-al-mawaddah-pusat-jagaan-warga-emas-lembaga-zakat-selangor/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/serene-skies-care-centre-nursing-home-bandar-sunway/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/serene-skies-care-centre-nursing-home-bandar-sunway/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mintygreen-care-centre-usj21-subang-jaya/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mintygreen-care-centre-usj21-subang-jaya/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/synergy-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/synergy-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-tua-impresif/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-impresif/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-warga-emas-muhammad-ibraahim-pjmi/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-emas-muhammad-ibraahim-pjmi/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care-malaysia/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/my-peaceful-home-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/my-peaceful-home-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/my-joyful-home-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/my-joyful-home-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-nursing-home-nursing-home-subang-jaya-selangor/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/noble-care-nursing-home-nursing-home-subang-jaya-selangor/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/attia-global-care-centre-subang-jaya/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/attia-global-care-centre-subang-jaya/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/my-precious-home-care-elder-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/my-precious-home-care-elder-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/emerald-nursing-care-home-usj-subang-jaya-elderly-home-梳邦再也疗养院/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/emerald-nursing-care-home-usj-subang-jaya-elderly-home-梳邦再也疗养院/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mega-senior-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mega-senior-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pj-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pj-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/my-aged-care-nursing-home-in-pj-my-manor/</loc>
+    <loc>https://nursinghomeguide.my/home-care/my-aged-care-nursing-home-in-pj-my-manor/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mega-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mega-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/unique-elderly-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/unique-elderly-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/my-aged-care-nursing-home-in-pj-old-town/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/my-aged-care-nursing-home-in-pj-old-town/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/de-luxe-retirement-nursing-home-petaling-jaya-house-39/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/de-luxe-retirement-nursing-home-petaling-jaya-house-39/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pj-senior-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pj-senior-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/home-sweet-home-care-centre-jalan-gasing/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/home-sweet-home-care-centre-jalan-gasing/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pearl-care-elderly-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pearl-care-elderly-center/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/amazing-grace-retirement-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/amazing-grace-retirement-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/my-aged-care-nursing-home-in-petaling-jaya-jalan-assunta/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/my-aged-care-nursing-home-in-petaling-jaya-jalan-assunta/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/st-marys-nursing-home-2/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/st-marys-nursing-home-2/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/genesis-life-care-centre-pj/</loc>
+    <loc>https://nursinghomeguide.my/assisted-living/genesis-life-care-centre-pj/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/golden-mansion-senior-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/golden-mansion-senior-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/my-precious-home-care-retirement-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/my-precious-home-care-retirement-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/amazing-grace-senior-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/amazing-grace-senior-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pearl-care-elderly-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pearl-care-elderly-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/clover-healthcare-sdn-bhd/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/clover-healthcare-sdn-bhd/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/jb-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/jb-care-centre/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/green-acres-home-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/green-acres-home-care/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-warga-emas-hillville/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-warga-emas-hillville/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/rumah-seri-kenangan-johor-bahru/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/rumah-seri-kenangan-johor-bahru/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pine-tree-home-care-centre-johor/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pine-tree-home-care-centre-johor/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/comfort-old-folks-home-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/comfort-old-folks-home-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-rumah-sejahtera-batu-pahat/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-sejahtera-batu-pahat/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/justlife-care-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/justlife-care-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-sri-sentosa/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-sri-sentosa/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/afh-elder-care/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/afh-elder-care/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/amazing-grace-caring-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/amazing-grace-caring-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/amitabha-malaysia-old-folks-home-kl/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/amitabha-malaysia-old-folks-home-kl/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/dementia-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/dementia-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/dhaalia-elderly-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/dhaalia-elderly-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/merry-care-centre-jln-belinggai/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/merry-care-centre-jln-belinggai/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/merry-care-centre-jln-antoi/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/merry-care-centre-jln-antoi/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/procare-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/procare-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/rumah-orang-tua-charis/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/rumah-orang-tua-charis/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/seavoy-nursing-home-taman-setapak-indah/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/seavoy-nursing-home-taman-setapak-indah/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/seavoy-nursing-home-desa-melawati/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/seavoy-nursing-home-desa-melawati/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/siri-jayanti-metta-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/siri-jayanti-metta-care-centre/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sri-seronok-retirement-village/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sri-seronok-retirement-village/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/tai-kuk-wah-si-buddist-society/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/tai-kuk-wah-si-buddist-society/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/persatuan-kebajikan-dan-social-kim-loo-ting/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/persatuan-kebajikan-dan-social-kim-loo-ting/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/klc-senior-care-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/klc-senior-care-center/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/lyc-senior-living-care-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/lyc-senior-living-care-center/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-en-yuan-cheras/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-en-yuan-cheras/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pj-mentalink-care-pj-old-folks/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pj-mentalink-care-pj-old-folks/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-rumah-warga-tua-cahaya/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-warga-tua-cahaya/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/rumah-victory-elderly-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/rumah-victory-elderly-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/vivekananda-shelter/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/vivekananda-shelter/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/attia-nursing-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/attia-nursing-care-centre/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-selangor-king-george-v-silver-jubilee-fund/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-selangor-king-george-v-silver-jubilee-fund/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/berniece-care-service-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/berniece-care-service-centre/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/columbia-asia-extended-care-hospital/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/columbia-asia-extended-care-hospital/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-ebenezer-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-ebenezer-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/bethel-retirement-home-plt/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/bethel-retirement-home-plt/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-chik-sin-thong-klang-dan-pantai-selangor/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-chik-sin-thong-klang-dan-pantai-selangor/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-persatuan-kebajikan-rumah-jagaan-vcu-selangor-dan-wilayah-persekutu/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-persatuan-kebajikan-rumah-jagaan-vcu-selangor-dan-wilayah-persekutu/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/rumah-kebajikan-chong-keng-seong/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/rumah-kebajikan-chong-keng-seong/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-beverly-care-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-beverly-care-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-rumah-amal-murni-kajang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-amal-murni-kajang/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-al-fikrah-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-al-fikrah-malaysia/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/mintygreen-nursing-home-eldercare-center/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/mintygreen-nursing-home-eldercare-center/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/kajang-nursing-home-selangor/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/kajang-nursing-home-selangor/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sam-ching-kong-old-folks-home-hulu-langat/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sam-ching-kong-old-folks-home-hulu-langat/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-orang-tua-apex-way/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-orang-tua-apex-way/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-warga-mas-penyayang/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-warga-mas-penyayang/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/wan-hing-care-center-sdn-bhd/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/wan-hing-care-center-sdn-bhd/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/wan-hing-care-center-psk-sdn-bhd/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/wan-hing-care-center-psk-sdn-bhd/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-mahmudah-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-mahmudah-malaysia/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-dan-pendidikan-warga-emas-darul-insyirah/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-dan-pendidikan-warga-emas-darul-insyirah/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-rumah-nur-hasanah/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-nur-hasanah/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sincere-care-home-selangor/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sincere-care-home-selangor/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/sri-sayang-welfare-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/sri-sayang-welfare-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/bellevue-residential-homecare-m-sdn-bhd/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/bellevue-residential-homecare-m-sdn-bhd/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/dr-teo-keng-huat-home-care/</loc>
+    <loc>https://nursinghomeguide.my/home-care/dr-teo-keng-huat-home-care/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/felicity-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/felicity-nursing-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/ihm-nursing-care-sdn-bhd-sunshine-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/ihm-nursing-care-sdn-bhd-sunshine-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/moonleaf-medicare-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/moonleaf-medicare-centre/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/evagayle-care-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/evagayle-care-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/stella-maris-home-plt-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/stella-maris-home-plt-care-centre/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/than-hsiang-wan-ching-yuen-pj/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/than-hsiang-wan-ching-yuen-pj/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/corning-elderly-care-centre/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/corning-elderly-care-centre/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/my-aged-care-sdn-bhd/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/my-aged-care-sdn-bhd/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/summer-breeze-cottage-caring-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/summer-breeze-cottage-caring-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/golden-cares-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/golden-cares-nursing-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/star-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/star-nursing-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/cherish-retirement-and-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/cherish-retirement-and-nursing-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/multicare-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/multicare-nursing-home/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-jivi/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-jivi/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/white-dove-retirement-nursing-home/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/white-dove-retirement-nursing-home/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/jasper-lodge-nursing-home-pj1/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/jasper-lodge-nursing-home-pj1/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/jasper-lodge-nursing-home-pj2/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/jasper-lodge-nursing-home-pj2/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/jasper-lodge-nursing-home-pj3/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/jasper-lodge-nursing-home-pj3/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/jasper-lodge-nursing-home-pj5/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/jasper-lodge-nursing-home-pj5/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pusat-jagaan-rumah-kebajikan-warga-emas-st-mark/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-kebajikan-warga-emas-st-mark/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/homage-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/home-care/homage-malaysia/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/care-concierge-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/home-care/care-concierge-malaysia/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/noble-care-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/home-care/noble-care-malaysia/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/pillar-care/</loc>
+    <loc>https://nursinghomeguide.my/home-care/pillar-care/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/whereweare-malaysia/</loc>
+    <loc>https://nursinghomeguide.my/home-care/whereweare-malaysia/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/komune-care-cheras/</loc>
+    <loc>https://nursinghomeguide.my/day-care/komune-care-cheras/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/seniora-johor-bahru/</loc>
+    <loc>https://nursinghomeguide.my/day-care/seniora-johor-bahru/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/merry-care-kepong-baru-3/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/merry-care-kepong-baru-3/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/merry-care-kepong-baru-4/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/merry-care-kepong-baru-4/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/merry-care-selayang-baru/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/merry-care-selayang-baru/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/facility/merry-care-desa-jaya-kepong/</loc>
+    <loc>https://nursinghomeguide.my/nursing-homes/merry-care-desa-jaya-kepong/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/assisted-living/sunway-sanctuary/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/nursing-homes/reu-living/</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
