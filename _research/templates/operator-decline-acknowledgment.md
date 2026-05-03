@@ -33,7 +33,7 @@ NursingHomeGuide.my
 
 Use only if removal request is firm. Escalate to IK before acting.
 
-> Thank you for getting in touch. I've passed your removal request to Dr Ibkaar, who runs the site, and he'll come back to you directly within a few working days. In the meantime, if there is anything factually wrong on the current profile, please do let me know which line is incorrect — we can fix factual errors right away.
+> Thank you for getting in touch. I've passed your removal request to our editorial team and someone will come back to you directly within a few working days. In the meantime, if there is anything factually wrong on the current profile, please do let me know which line is incorrect — we can fix factual errors right away.
 >
 > — `<helper-name>`
 
