@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-05-03",
+  "agent": "claude-sonnet-4-6",
+  "batch": 5,
+  "note": "Final GROUPS chains: WCC Care Centres (Muar), Pusat Jagaan Impian Syimah (JB), Pusat Sri Kenangan (Muar/Bukit Pasir). SLG Nursing Home and Roseville Villa skipped — no static pages and minimal online presence. Data sourced from GitHub nursing-homes JSON-LD pages + data.js GROUPS descriptions.",
+  "facilities": [
+    {
+      "slug": "wcc-woundcare-nursing-centre",
+      "title": "Wcc WoundCare & Nursing Centre",
+      "chain_slug": "wcc-care",
+      "area": "Muar, Johor",
+      "rating": "5.0",
+      "review_count": 1,
+      "data_quality": "partial",
+      "rewrite": true,
+      "editorial_summary": "WCC WoundCare and Nursing Centre is a nursing home in Taman Sungai Abong, Muar, with a documented specialisation in wound care that sets it apart from most community nursing homes in the area. Wound management — covering chronic wound care for conditions such as diabetic foot ulcers, pressure injuries, and post-surgical wounds — requires trained clinical staff and appropriate dressing supplies, and a facility that names this as a core competency signals a clinical capability beyond general nursing. WCC operates alongside WCC Home Care Muar, together forming a two-service offering that spans residential nursing and community-based home care.\n\nThe wound care specialisation is directly relevant for residents with diabetes, poor circulation, prolonged bed rest, or post-surgical wounds that have not healed through hospital management. Taman Sungai Abong is one of Muar's established residential areas, making it accessible for families travelling from Muar town, Pagoh, and the wider Muar district. No pricing has been published publicly; families will need to enquire directly for current rates and availability.\n\nFor families in the Muar area managing a relative with chronic wound complications, diabetic foot disease, or pressure sore risk, WCC WoundCare is one of the few local facilities with a declared clinical focus in this area. On the visit, ask specifically about the wound care team's clinical qualifications, what assessment and dressing protocols they follow, and whether a doctor is involved in wound management decisions. Confirm the JKM licence number, ask about current occupancy and nurse-to-resident ratios, and request to see the care environment — including the wound care equipment and stock — directly."
+    },
+    {
+      "slug": "wcc-home-care-muar",
+      "title": "WCC Home Care Muar",
+      "chain_slug": "wcc-care",
+      "area": "Muar, Johor",
+      "rating": null,
+      "review_count": 0,
+      "data_quality": "stub",
+      "rewrite": true,
+      "editorial_summary": "WCC Home Care Muar is the community-based home care service operated by WCC Care Centres, which also runs WCC WoundCare and Nursing Centre in Taman Sungai Abong, Muar. Home care services bring nursing and personal care support to a resident's own home rather than requiring a move to a residential facility — an option that suits families where the elder prefers to remain at home, or where full-time residential placement is not yet necessary. WCC's dual offering allows families to transition from home care to residential nursing within the same operator if care needs escalate.\n\nGiven the parent operator's wound care specialisation at the nursing home, WCC Home Care Muar may be particularly suited to cases where wound management is a primary need but hospitalisation is not required — for example, post-surgical monitoring, diabetic foot care, or ongoing dressing changes in a home setting. Specific service packages, visit frequencies, and pricing for the home care service are not published publicly; these vary by case and must be confirmed directly. The Muar base makes this service accessible for families across Muar town and the surrounding district.\n\nFor families in Muar exploring care options short of full residential placement, WCC Home Care is worth enquiring about alongside the WCC nursing home. Ask what specific nursing and care tasks are covered in each visit, whether wound care and clinical interventions are available, how frequently visits can be scheduled, and what the process is if the resident deteriorates and residential nursing becomes necessary. Request to see credentials for the home care staff and confirm whether they share clinical protocols with the nursing home team. A written service agreement with clear scope, frequency, and fees should be obtained before care begins."
+    },
+    {
+      "slug": "pusat-jagaan-impian-syimah-jalan-kemuncak",
+      "title": "Pusat Jagaan Impian Syimah (Jalan Kemuncak)",
+      "chain_slug": "impian-syimah",
+      "area": "Johor Bahru, Johor",
+      "rating": "3.5",
+      "review_count": 11,
+      "data_quality": "full",
+      "rewrite": true,
+      "editorial_summary": "Pusat Jagaan Impian Syimah's Jalan Kemuncak branch is the established, larger location of this two-branch operator in Johor Bahru, situated in Kampung Nong Chik. The centre has been run for over a decade by the same founding team — Hasyimah and Rosmi — whose sustained involvement is a meaningful signal of continuity in a sector where management changes are common. The facility is registered under SSM No. JM0635898-M and serves primarily Malay-Muslim elderly residents, with care framed around the cultural and community values of that resident base.\n\nAt the time of a Sunway Group CSR visit during Ramadan 2026, the centre was reported to be home to 61 residents, of whom 23 were bedridden — a resident profile indicating active nursing care rather than simple assisted living. The home has attracted CSR visits from multiple organisations including Lalamove (2023) and Holiday Inn JB City Centre (2024), reflecting a degree of visibility and community connection in the JB area. Pricing is not published; families will need to enquire directly.\n\nFor Muslim families in Johor Bahru seeking a care home with a long-tenured operator and a resident community that reflects Malay-Muslim values, Impian Syimah Kemuncak is worth visiting. The decade-plus management tenure and consistent community presence are genuine indicators of an embedded, known operation. On the visit, ask specifically about nursing staffing for the bedridden residents — ratios, qualifications, and overnight coverage — how acute medical events are handled, JKM licence and inspection history, and how family communication is managed. The second branch on Jalan Kemaman is run by the same management and also worth visiting to compare the two settings."
+    },
+    {
+      "slug": "pusat-jagaan-impian-syimah-jalan-kemaman",
+      "title": "Pusat Jagaan Impian Syimah (Jalan Kemaman)",
+      "chain_slug": "impian-syimah",
+      "area": "Johor Bahru, Johor",
+      "rating": "5.0",
+      "review_count": 1,
+      "data_quality": "full",
+      "rewrite": true,
+      "editorial_summary": "Pusat Jagaan Impian Syimah's Jalan Kemaman branch is the second residential location of this Johor Bahru operator, situated at Lot 1818, No. 7, Jalan Kemaman in Kampung Tarom — approximately 3 kilometres west of the JB city centre in the older kampung-belt fabric of the city. Both branches operate under the same management team (Hasyimah and Rosmi) and share the same contact details and SSM registration (No. JM0635898-M), running as a coordinated two-branch operation rather than independently.\n\nAs the newer of the two branches, Jalan Kemaman is likely smaller in capacity than the Kemuncak site, which was documented at 61 residents. The shared management structure means care philosophy, staffing approach, and community ties carry across from the established Kemuncak branch. Like the flagship branch, this facility serves primarily Malay-Muslim elderly residents, with halal provisions and culturally aligned care as operating standards.\n\nFamilies considering Impian Syimah should visit both branches — the established Kemuncak home to understand the scale and operating track record, and Kemaman to assess the physical environment, current occupancy, and resident-to-caregiver ratios at this newer site. At either visit, ask about nursing staffing for overnight shifts and for bedridden or high-dependency residents, how medical emergencies are handled, whether the JKM licence covers both branches under the same registration, and how family communication is structured. Visiting at different times of day — including the evening — will give the most useful picture of staffing levels in practice."
+    },
+    {
+      "slug": "pusat-sri-kenangan",
+      "title": "Pusat Sri Kenangan",
+      "chain_slug": "pusat-sri-kenangan",
+      "area": "Bukit Pasir, Muar District, Johor",
+      "rating": null,
+      "review_count": 0,
+      "data_quality": "stub",
+      "rewrite": true,
+      "editorial_summary": "Pusat Sri Kenangan is a residential welfare home for the elderly in Bukit Pasir, Muar District, Johor, and is one of three homes under the Pusat Sri Kenangan name — with additional branches in Muar town. Welfare-oriented residential homes in Malaysia typically operate with a community or non-profit character, providing basic residential care and daily supervision rather than clinical nursing services. For ambulant or low-dependency elderly residents who need regular supervision and a structured daily routine rather than medical care, a well-run welfare home can be a practical and affordable option.\n\nAs a welfare home, Pusat Sri Kenangan focuses on residential daily care rather than clinical nursing. Families should be aware that welfare homes vary considerably in their levels of staffing, documentation, and JKM registration — some are fully registered and inspected, while others operate with less formal oversight. The Bukit Pasir location in Muar District gives it good reach for families in Muar and surrounding areas including Ledang and Pagoh. Pricing and availability should be confirmed directly with the operator, as welfare homes do not typically publish fee schedules.\n\nBefore placing a family member at Pusat Sri Kenangan or any of its branches, families should ask directly about JKM registration status and licence number — this is the single most important question for welfare-sector homes. Ask what level of medical care is available on-site, whether a trained nurse or caregiver with formal qualifications is present, and what happens if a resident falls ill or deteriorates unexpectedly. Visiting in person at different times of day will give the most accurate picture of staffing levels, care quality, and daily conditions at this facility."
+    },
+    {
+      "slug": "pusat-sri-kenangan-2",
+      "title": "Pusat Sri Kenangan 2",
+      "chain_slug": "pusat-sri-kenangan",
+      "area": "Muar, Johor",
+      "rating": null,
+      "review_count": 0,
+      "data_quality": "stub",
+      "rewrite": true,
+      "editorial_summary": "Pusat Sri Kenangan 2 is one of two Muar town locations in the Pusat Sri Kenangan network, which also includes a branch in Bukit Pasir. The three-branch network operates as welfare-oriented residential homes for the elderly, providing basic residential care and daily supervision within a community-facing rather than commercially oriented model. This type of home typically serves elderly residents who need structured daily care and supervision without requiring intensive clinical nursing.\n\nAs a welfare home, Pusat Sri Kenangan 2 provides residential daily care within the Muar area. Welfare homes in Malaysia range considerably in their standards, JKM registration status, and staffing structures — families should approach any welfare-sector placement with the same due diligence as a commercial nursing home. The Muar location gives it access to families in Muar town and nearby areas. Fees and availability must be confirmed directly with the operator; welfare homes rarely publish pricing publicly.\n\nFamilies considering this facility should prioritise confirming JKM registration and licence number before visiting — this is non-negotiable for any residential care placement. At the visit, ask about caregiver qualifications and the nurse-to-resident ratio, what happens when a resident requires medical attention, and how family communication is managed. Also ask about the relationship between this branch and the other Pusat Sri Kenangan branches — whether management is coordinated, and whether care staff are shared or independent across locations. Visiting more than once, including on an unannounced visit if the operator permits, will give the most useful picture of day-to-day care quality."
+    },
+    {
+      "slug": "pusat-sri-kenangan-3",
+      "title": "Pusat Sri Kenangan 3",
+      "chain_slug": "pusat-sri-kenangan",
+      "area": "Muar, Johor",
+      "rating": null,
+      "review_count": 0,
+      "data_quality": "stub",
+      "rewrite": true,
+      "editorial_summary": "Pusat Sri Kenangan 3 is the third branch of the Pusat Sri Kenangan network, which operates welfare-oriented residential homes for the elderly across the Muar district in Johor, with a branch in Bukit Pasir and two in Muar town. Welfare homes of this type serve elderly residents who primarily need residential supervision and daily care support rather than clinical nursing — a reasonable fit for ambulant or minimally dependent seniors whose families cannot provide full-time home-based care.\n\nLike its sibling branches, Pusat Sri Kenangan 3 operates within the welfare residential care model, which prioritises basic care and community over clinical services. The Muar town location makes this branch accessible for families throughout Muar and the surrounding district. As with all welfare homes, JKM registration status, staffing structure, and care documentation vary by facility and must be verified directly — the existence of sister branches under the same name does not guarantee uniformity of standards across all three locations.\n\nFamilies evaluating this facility should treat the site visit as the primary information source, as welfare homes have limited online presence. Key questions to ask on arrival: Is this branch registered with JKM, and what is the licence number? What are the caregiver qualifications at this specific branch? What is the resident count and caregiver ratio? How are medical emergencies handled? And does the operator manage all three Pusat Sri Kenangan branches under consistent standards? Comparing all three branches — Bukit Pasir, Muar 2, and Muar 3 — at a single shortlisting visit is the most efficient way to assess the network."
+    }
+  ],
+  "skipped": [
+    {
+      "slug": "slg-nursing-home-muar",
+      "reason": "no static nursing-homes page in origin/main; GROUPS describes 'minimal online presence'"
+    },
+    {
+      "slug": "slg-nursing-home",
+      "reason": "no static nursing-homes page in origin/main; GROUPS describes 'minimal online presence'"
+    },
+    {
+      "slug": "roseville-villa-residential-home-care",
+      "reason": "no static nursing-homes page in origin/main; GROUPS description too thin for stub"
+    },
+    {
+      "slug": "roseville-villa-residential-home-care-2",
+      "reason": "no static nursing-homes page in origin/main; GROUPS description too thin for stub"
+    }
+  ]
+}
