@@ -779,8 +779,7 @@ function parseSheetValues(values) {
 // ── Load data ─────────────────────────────────────────────
 async function loadData() {
   setLoading(true);
-  // Only use the Sheets API token if it's currently valid (not expired)
-  const token = sheetsTokenValid() ? gTokenEl.value.trim() : '';
+  const token = gTokenEl.value.trim();
   try {
     if (token) {
       // Use Sheets API — gets ALL rows including hidden
@@ -788,24 +787,34 @@ async function loadData() {
         `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${encodeURIComponent(SHEET_TAB)}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      if (!res.ok) throw new Error(`Sheets API ${res.status}`);
-      const data = await res.json();
-      allFacilities = parseSheetValues(data.values || []).filter(f => f.title);
-    } else {
-      // Fallback: published CSV (live rows only — no hidden)
-      const res = await fetch(SHEET_CSV_URL);
-      if (!res.ok) throw new Error(`CSV fetch ${res.status}`);
-      allFacilities = parseCSV(await res.text()).filter(f => f.title);
+      if (res.status === 401 || res.status === 400) {
+        // Token expired or rejected — clear it and fall through to CSV
+        gTokenEl.value = '';
+        localStorage.removeItem(GTOKEN_KEY);
+        localStorage.removeItem(GTOKEN_EXPIRY_KEY);
+        setSheetsStatus('err', 'Token expired — refresh via Google sign-in');
+      } else if (!res.ok) {
+        throw new Error(`Sheets API ${res.status}`);
+      } else {
+        const data = await res.json();
+        allFacilities = parseSheetValues(data.values || []).filter(f => f.title);
+        if (!allFacilities.length) throw new Error('0 facilities loaded');
+        setLoading(false);
+        buildFacSidebar(); buildPmSidebar(); buildStats();
+        return;
+      }
     }
+    // Fallback: published CSV (live rows only — no hidden)
+    const res = await fetch(SHEET_CSV_URL);
+    if (!res.ok) throw new Error(`CSV fetch ${res.status}`);
+    allFacilities = parseCSV(await res.text()).filter(f => f.title);
     if (!allFacilities.length) throw new Error('0 facilities loaded');
   } catch(e) {
     setLoadError(e.message);
     return;
   }
   setLoading(false);
-  buildFacSidebar();
-  buildPmSidebar();
-  buildStats();
+  buildFacSidebar(); buildPmSidebar(); buildStats();
 }
 
 function setLoading(on) {
@@ -986,9 +995,8 @@ function fac_setDirty(dirty) {
 }
 
 async function fac_save() {
-  const ok = await ensureSheetsToken();
   const token = gTokenEl.value.trim();
-  if (!ok || !token) { fac_showMsg('Google Sheets not connected — sign in again', 'err'); return; }
+  if (!token) { fac_showMsg('No Sheets token — sign in with Google', 'err'); return; }
 
   // Auto-stamp screened_date if blank
   const sdEl = document.getElementById('fac-editor').querySelector('[data-field=screened_date]');
@@ -1051,7 +1059,6 @@ let fac_deactType = 'unverified';
 
 async function fac_writeFields(fields) {
   // fields: [{field, value}] — writes to sheet, updates local state
-  await ensureSheetsToken();
   const token = gTokenEl.value.trim();
   if (!token) throw new Error('No Google token');
   const updates = fields.map(({field, value}) => {
@@ -1374,7 +1381,6 @@ async function stats_saveReason(inp) {
   const newVal = inp.value.trim();
   if (newVal === (f.deactivation_reason || '')) return;
 
-  await ensureSheetsToken();
   const token = gTokenEl.value.trim();
   if (!token) { inp.style.borderColor = '#ef4444'; setTimeout(() => inp.style.borderColor = '', 2000); return; }
 
