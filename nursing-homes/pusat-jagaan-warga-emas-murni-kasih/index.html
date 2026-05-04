@@ -193,6 +193,11 @@
 
 .unverified-pill { display: inline-block; background: #fffbeb; color: #92400e; border: 1px dashed #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: .72rem; font-weight: 500; margin-left: 6px; vertical-align: middle; }
 
+/* Plain-language tooltips for clinical/jargon terms */
+.term-tip { border-bottom: 1px dashed #94a3b8; cursor: help; position: relative; white-space: nowrap; }
+.term-tip::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #1e293b; color: #f8fafc; font-size: .75rem; font-weight: 400; line-height: 1.45; padding: 6px 10px; border-radius: 6px; white-space: normal; width: max-content; max-width: 240px; z-index: 100; opacity: 0; pointer-events: none; transition: opacity .15s; }
+.term-tip:hover::after { opacity: 1; }
+
 .warning-box { background: #fef3c7; border-radius: 8px; padding: 14px; margin-top: 18px; font-size: .88rem; color: #78350f; line-height: 1.6; }
 
 @media (max-width: 600px) {
@@ -234,6 +239,7 @@
 
 <script src="data.js?v=3"></script>
 <script src="badges.js?v=1"></script>
+<script src="compare-save.js?v=1"></script>
 <script>
 /* ── Helpers ────────────────────────────────────────────── */
 function yn(val) {
@@ -251,11 +257,16 @@ function isUnknownText(v) {
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
+/* tipLabel: returns a pre-built HTML fragment safe to embed in checkCell labels */
+function tipLabel(text, tip) {
+  return { raw: `<span class="term-tip" data-tip="${escapeHtml(tip)}">${escapeHtml(text)}</span>` };
+}
 function checkCell(label, val) {
   const state = yn(val);
-  if (state === true)  return `<div class="check-cell yes"><span class="check-icon-sm">✓</span> ${escapeHtml(label)}</div>`;
-  if (state === false) return `<div class="check-cell no"><span class="check-icon-sm">✗</span> ${escapeHtml(label)}</div>`;
-  return `<div class="check-cell unknown"><span class="check-icon-sm">?</span> ${escapeHtml(label)}</div>`;
+  const lHtml = (label && label.raw) ? label.raw : escapeHtml(label);
+  if (state === true)  return `<div class="check-cell yes"><span class="check-icon-sm">✓</span> ${lHtml}</div>`;
+  if (state === false) return `<div class="check-cell no"><span class="check-icon-sm">✗</span> ${lHtml}</div>`;
+  return `<div class="check-cell unknown"><span class="check-icon-sm">?</span> ${lHtml}</div>`;
 }
 function infoRow(label, value, options = {}) {
   const isUnknown = !value || isUnknownText(value);
@@ -544,23 +555,23 @@ function render(f) {
 
   /* CARE tab */
   const careCells = [
-    checkCell('Skilled Nursing',     f.care_nursing),
-    checkCell('Assisted Living',     f.care_assisted),
-    checkCell('Dementia Care',       f.care_dementia),
-    checkCell('Palliative Care',     f.care_palliative),
-    checkCell('Rehab / Step-down',   f.care_rehab),
-    checkCell('Respite / Short-stay',f.care_respite),
+    checkCell(tipLabel('Skilled Nursing',      'Care requiring licensed nurses — wound care, IV drips, tube feeding, etc.'),    f.care_nursing),
+    checkCell('Assisted Living',               f.care_assisted),
+    checkCell('Dementia Care',                 f.care_dementia),
+    checkCell(tipLabel('Palliative Care',      'Comfort-focused care for serious illness — not curative, focuses on quality of life'), f.care_palliative),
+    checkCell('Rehab / Step-down',             f.care_rehab),
+    checkCell(tipLabel('Respite / Short-stay', 'Short-term stays to give family caregivers a break'),                           f.care_respite),
   ].join('');
   const medCells = [
-    checkCell('Doctor Visits',          f.doctor_visits),
-    checkCell('Physiotherapy',          f.medical_physio),
-    checkCell('Occupational Therapy',   f.medical_ot),
-    checkCell('Wound Care',             f.medical_wound),
-    checkCell('Tube Feeding (NG/PEG)',  f.medical_peg),
-    checkCell('Dementia Unit',          f.medical_dementia_unit),
-    checkCell('Dialysis Support',       f.medical_dialysis),
-    checkCell('Oxygen Therapy',         f.medical_oxygen),
-    checkCell('Medication Management',  f.medical_meds),
+    checkCell('Doctor Visits',                                                                                                    f.doctor_visits),
+    checkCell(tipLabel('Physiotherapy',        'Exercise and movement therapy to improve strength and mobility'),                f.medical_physio),
+    checkCell(tipLabel('Occupational Therapy', 'Helps residents regain ability to dress, bathe, and do daily tasks'),           f.medical_ot),
+    checkCell('Wound Care',                                                                                                       f.medical_wound),
+    checkCell(tipLabel('Tube Feeding (NG/PEG)','NG = tube through the nose; PEG = tube surgically placed into the stomach'),   f.medical_peg),
+    checkCell(tipLabel('Dementia Unit',        'A secured wing specifically designed for residents with memory loss'),           f.medical_dementia_unit),
+    checkCell('Dialysis Support',                                                                                                 f.medical_dialysis),
+    checkCell('Oxygen Therapy',                                                                                                   f.medical_oxygen),
+    checkCell('Medication Management',                                                                                            f.medical_meds),
   ].join('');
   const clinicalDetailHtml = D.clinical?.length ? `
     <div class="profile-card"><h2>Clinical Capability Detail</h2>${renderCheckSection(D.clinical)}</div>` : '';
@@ -627,7 +638,7 @@ function render(f) {
         <li>What is the nurse-to-resident ratio during the day and overnight?</li>
         <li>Who do I call at 2am if there is an emergency?</li>
         <li>How do you communicate updates to families — WhatsApp, phone, app?</li>
-        <li>When was the last JKM inspection, and can I see the result?</li>
+        <li>When was the last <span class="term-tip" data-tip="Jabatan Kebajikan Masyarakat — Malaysia&#39;s social welfare department that licenses nursing homes">JKM</span> inspection, and can I see the result?</li>
         <li>What is your policy if a resident's condition deteriorates significantly?</li>
       </ul>
     </div>`;
@@ -776,12 +787,50 @@ function render(f) {
             <strong>${escapeHtml(f.title)}</strong><br />
             ${escapeHtml(f.area || '')}<br />
           </div>
-          <div class="compare-row" onclick="alert('Compare feature coming soon')">⚖️ Add to Compare (up to 3)</div>
-          <div class="compare-row" style="background:#f1f5f9; color:var(--text,#0f172a); border-color:var(--border,#e2e8f0); margin-top:6px;" onclick="alert('Save feature coming soon')">❤️ Save this facility</div>
+          <div class="compare-row" id="nhg-compare-btn">⚖️ Add to Compare (up to 3)</div>
+          <div class="compare-row" style="background:#f1f5f9; color:var(--text,#0f172a); border-color:var(--border,#e2e8f0); margin-top:6px;" id="nhg-save-btn">❤️ Save this facility</div>
         </div>
         ${checklistHtml}
       </aside>
     </div>`;
+
+  /* Wrap government acronyms (BWE, BPT, JKM) in dynamic sheet content with tooltips */
+  const ACRONYM_TIPS = {
+    BWE: 'Bantuan Warga Emas — government monthly cash aid for low-income seniors',
+    BPT: 'Bantuan Peralatan Tiruan — government aid for assistive devices (wheelchairs, prosthetics)',
+    JKM: "Jabatan Kebajikan Masyarakat — Malaysia's social welfare department that licenses nursing homes",
+  };
+  const acronymRe = /\b(BWE|BPT|JKM)\b/g;
+  const walker = document.createTreeWalker(
+    document.getElementById('profileContent'),
+    NodeFilter.SHOW_TEXT,
+    { acceptNode: n => {
+        const tag = n.parentElement?.tagName;
+        if (['SCRIPT','STYLE','A'].includes(tag)) return NodeFilter.FILTER_REJECT;
+        if (n.parentElement?.classList.contains('term-tip')) return NodeFilter.FILTER_REJECT;
+        acronymRe.lastIndex = 0;
+        return acronymRe.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+    }}
+  );
+  const textNodes = [];
+  let tn;
+  while ((tn = walker.nextNode())) textNodes.push(tn);
+  textNodes.forEach(node => {
+    acronymRe.lastIndex = 0;
+    const frag = document.createDocumentFragment();
+    let last = 0, m;
+    while ((m = acronymRe.exec(node.nodeValue)) !== null) {
+      if (m.index > last) frag.appendChild(document.createTextNode(node.nodeValue.slice(last, m.index)));
+      const span = document.createElement('span');
+      span.className = 'term-tip';
+      span.dataset.tip = ACRONYM_TIPS[m[1]];
+      span.textContent = m[1];
+      frag.appendChild(span);
+      last = m.index + m[1].length;
+    }
+    if (last < node.nodeValue.length) frag.appendChild(document.createTextNode(node.nodeValue.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  });
 
   /* (Hero carousel removed in favour of Booking.com-style gallery in Overview tab.) */
 }
@@ -806,6 +855,7 @@ function render(f) {
       return;
     }
     render(f);
+    if (window.NHGCompareSave) NHGCompareSave.init(f.slug, f.title);
   } catch (e) {
     console.error(e);
     document.getElementById('profileContent').innerHTML = `<div style="padding:60px 20px;text-align:center;"><p>Error loading facility data.</p></div>`;

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Compare Facilities — NursingHomeGuide.my</title>
+<meta name="description" content="Compare nursing homes and care facilities side by side. View pricing, care types, ratings and contact details." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css?v=9" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
+<style>
+.cmp-page { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+.cmp-header { margin-bottom: 24px; }
+.cmp-header h1 { font-size: 1.6rem; font-weight: 800; color: var(--text, #0f172a); margin: 0 0 6px; }
+.cmp-header p  { font-size: .9rem; color: var(--text-muted, #64748b); margin: 0; }
+.cmp-actions   { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.cmp-btn-clear { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 16px; cursor: pointer; font: inherit; font-size: .88rem; color: #64748b; }
+.cmp-btn-clear:hover { background: #e2e8f0; }
+.cmp-btn-back  { background: #2563eb; color: white; border: none; border-radius: 8px; padding: 8px 16px; cursor: pointer; font: inherit; font-size: .88rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.cmp-btn-back:hover { opacity: .9; text-decoration: none; }
+
+/* Grid of facility columns */
+.cmp-grid { display: grid; gap: 16px; }
+.cmp-grid.cols-1 { grid-template-columns: minmax(0, 480px); }
+.cmp-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cmp-grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 700px) { .cmp-grid.cols-2, .cmp-grid.cols-3 { grid-template-columns: 1fr; } }
+
+/* Facility card in compare view */
+.cmp-card { background: white; border: 1px solid var(--border, #e2e8f0); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+.cmp-card-hero { height: 160px; background: #f1f5f9 url('') center/cover no-repeat; position: relative; }
+.cmp-card-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,23,42,.6) 0%, transparent 60%); }
+.cmp-card-body { padding: 18px; }
+.cmp-card-title { font-size: 1rem; font-weight: 700; margin: 0 0 4px; line-height: 1.3; }
+.cmp-card-title a { color: var(--text, #0f172a); text-decoration: none; }
+.cmp-card-title a:hover { color: #2563eb; }
+.cmp-card-area  { font-size: .82rem; color: var(--text-muted, #64748b); margin-bottom: 14px; }
+
+.cmp-row { display: flex; flex-direction: column; gap: 2px; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
+.cmp-row:last-child { border-bottom: none; }
+.cmp-row-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted, #64748b); }
+.cmp-row-value { font-size: .9rem; font-weight: 600; color: var(--text, #0f172a); }
+.cmp-row-value.unknown { font-weight: 400; color: #94a3b8; }
+
+.cmp-care-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.cmp-care-tag { padding: 3px 9px; border-radius: 999px; font-size: .78rem; font-weight: 500; }
+.cmp-care-tag.yes { background: #dcfce7; color: #166534; }
+.cmp-care-tag.no  { background: #fef2f2; color: #991b1b; }
+.cmp-care-tag.unk { background: #fffbeb; color: #92400e; }
+
+.cmp-contact { display: flex; flex-direction: column; gap: 7px; margin-top: 14px; }
+.cmp-cta { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; border-radius: 8px; font-weight: 600; font-size: .85rem; text-decoration: none; transition: opacity .15s; }
+.cmp-cta:hover { opacity: .88; text-decoration: none; }
+.cmp-cta-call { background: #2563eb; color: white; }
+.cmp-cta-wa   { background: #25d366; color: white; }
+.cmp-cta-view { background: #f1f5f9; color: var(--text, #0f172a); border: 1px solid #e2e8f0; }
+
+.cmp-remove-btn { display: block; width: 100%; margin-top: 10px; background: none; border: 1px dashed #e2e8f0; border-radius: 8px; padding: 7px; font: inherit; font-size: .8rem; color: #94a3b8; cursor: pointer; }
+.cmp-remove-btn:hover { color: #ef4444; border-color: #fca5a5; background: #fef2f2; }
+
+/* Empty state */
+.cmp-empty { text-align: center; padding: 80px 20px; }
+.cmp-empty h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+.cmp-empty p  { color: var(--text-muted, #64748b); font-size: .9rem; margin-bottom: 18px; }
+.cmp-empty a  { display: inline-block; background: #2563eb; color: white; padding: 11px 22px; border-radius: 8px; font-weight: 600; font-size: .9rem; text-decoration: none; }
+
+/* Saved list section */
+.saved-section { margin-top: 40px; border-top: 1px solid var(--border, #e2e8f0); padding-top: 28px; }
+.saved-section h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; }
+.saved-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.saved-item { background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.saved-item-name { font-size: .9rem; font-weight: 600; }
+.saved-item-name a { color: var(--text, #0f172a); text-decoration: none; }
+.saved-item-name a:hover { color: #2563eb; }
+.saved-item-area { font-size: .78rem; color: #94a3b8; }
+.saved-item-actions { display: flex; gap: 6px; margin-top: 4px; }
+.saved-item-compare-btn { flex: 1; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 5px 8px; cursor: pointer; font: inherit; font-size: .78rem; color: #1d4ed8; font-weight: 600; }
+.saved-item-remove-btn  { background: none; border: 1px solid #e2e8f0; border-radius: 6px; padding: 5px 8px; cursor: pointer; font: inherit; font-size: .78rem; color: #94a3b8; }
+.saved-item-remove-btn:hover { color: #ef4444; border-color: #fca5a5; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><a href="index.html" style="text-decoration:none;">NursingHome<span>Guide.my</span></a></div>
+  </div>
+</nav>
+
+<div class="cmp-page">
+  <div id="compareContent">
+    <div class="loading" style="padding:80px 20px"><div class="spinner"></div><p style="margin-top:12px">Loading comparison...</p></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">NursingHomeGuide.my</span>
+      <p class="footer-tagline">A free resource for Malaysian families navigating elderly care.</p>
+    </div>
+    <nav class="footer-links">
+      <a href="facilities.html">All Facilities</a>
+      <a href="mailto:admin@nursinghomeguide.my">Contact</a>
+    </nav>
+    <p class="footer-copy">© 2026 NursingHomeGuide.my</p>
+  </div>
+</footer>
+
+<script src="data.js?v=3"></script>
+<script src="compare-save.js?v=1"></script>
+<script>
+const COMPARE_KEY = 'nh_compare_list';
+const SAVED_KEY   = 'nh_saved_facilities';
+
+function getCompare() { try { return JSON.parse(localStorage.getItem(COMPARE_KEY) || '[]'); } catch { return []; } }
+function getSaved()   { try { return JSON.parse(localStorage.getItem(SAVED_KEY)   || '[]'); } catch { return []; } }
+function setCompare(a) { localStorage.setItem(COMPARE_KEY, JSON.stringify(a)); }
+function setSaved(a)   { localStorage.setItem(SAVED_KEY, JSON.stringify(a)); }
+
+function escH(s) {
+  return String(s || '').replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function escAttr(s) { return String(s || '').replace(/'/g, "\\'"); }
+
+function yn(val) {
+  if (val == null) return null;
+  const v = String(val).trim().toLowerCase();
+  if (['yes','y','true','1'].includes(v)) return true;
+  if (['no','n','false','0'].includes(v)) return false;
+  return null;
+}
+
+function facilityUrl(f) {
+  const c = (f.care_category || '').trim();
+  const dir = c === 'Assisted Living' ? 'assisted-living'
+            : c === 'Home Care'       ? 'home-care'
+            : c === 'Day Care'        ? 'day-care'
+            : 'nursing-homes';
+  return `/${dir}/${encodeURIComponent(f.slug || '')}/`;
+}
+
+function waNumber(f) {
+  if (f.whatsapp) return f.whatsapp.replace(/\D/g, '');
+  if (!f.phone) return null;
+  const digits = f.phone.replace(/\D/g, '');
+  const local = digits.startsWith('60') ? digits.slice(2) : digits.replace(/^0/, '');
+  return local.startsWith('1') ? (digits.startsWith('60') ? digits : '60' + local) : null;
+}
+
+function careTag(label, val) {
+  const state = yn(val);
+  const cls = state === true ? 'yes' : state === false ? 'no' : 'unk';
+  return `<span class="cmp-care-tag ${cls}">${escH(label)}</span>`;
+}
+
+function renderCard(f) {
+  const url   = facilityUrl(f);
+  const wa    = waNumber(f);
+  const waMsg = encodeURIComponent(`Hi, I found ${f.title} on NursingHomeGuide.my and would like to enquire about availability and pricing.`);
+
+  const price = f.shared_price || f.private_price || f.pricing_display || '';
+  const priceDisplay = price && !['not stated','not published','unknown'].some(t => price.toLowerCase().includes(t))
+    ? (f.shared_price ? `From RM ${f.shared_price}/mo` : price)
+    : 'Call for pricing';
+  const priceKnown = priceDisplay !== 'Call for pricing';
+
+  const rating = parseFloat(f.rating);
+  const ratingDisplay = !isNaN(rating)
+    ? `⭐ ${rating.toFixed(1)} (${f.review_count || 0} reviews)`
+    : 'No rating';
+
+  const careTags = [
+    careTag('Skilled Nursing',     f.care_nursing),
+    careTag('Assisted Living',     f.care_assisted),
+    careTag('Dementia Care',       f.care_dementia),
+    careTag('Rehab / Step-down',   f.care_rehab),
+    careTag('Palliative Care',     f.care_palliative),
+    careTag('Respite',             f.care_respite),
+  ].join('');
+
+  const heroStyle = f.hero_image ? `background-image:url('${escH(f.hero_image)}')` : '';
+
+  return `
+    <div class="cmp-card" id="cmp-card-${escH(f.slug)}">
+      <div class="cmp-card-hero" style="${heroStyle}">
+        <div class="cmp-card-hero-overlay"></div>
+      </div>
+      <div class="cmp-card-body">
+        <div class="cmp-card-title"><a href="${escH(url)}">${escH(f.title)}</a></div>
+        <div class="cmp-card-area">📍 ${escH(f.area || '')}${f.state ? ', ' + escH(f.state) : ''}</div>
+
+        <div class="cmp-row">
+          <span class="cmp-row-label">Monthly Fee</span>
+          <span class="cmp-row-value${priceKnown ? '' : ' unknown'}">${escH(priceDisplay)}</span>
+        </div>
+
+        <div class="cmp-row">
+          <span class="cmp-row-label">Google Rating</span>
+          <span class="cmp-row-value${!isNaN(rating) ? '' : ' unknown'}">${escH(ratingDisplay)}</span>
+        </div>
+
+        <div class="cmp-row">
+          <span class="cmp-row-label">Languages</span>
+          <span class="cmp-row-value${f.languages ? '' : ' unknown'}">${escH(f.languages || 'Not stated')}</span>
+        </div>
+
+        <div class="cmp-row">
+          <span class="cmp-row-label">Halal</span>
+          <span class="cmp-row-value${yn(f.halal) === null ? ' unknown' : ''}">
+            ${yn(f.halal) === true ? '✓ Yes' : yn(f.halal) === false ? '✗ No' : 'Not declared'}
+          </span>
+        </div>
+
+        <div class="cmp-row">
+          <span class="cmp-row-label">Care Types</span>
+          <div class="cmp-care-tags">${careTags}</div>
+        </div>
+
+        <div class="cmp-contact">
+          ${f.phone ? `<a href="tel:${escH(f.phone)}" class="cmp-cta cmp-cta-call">📞 Call ${escH(f.phone)}</a>` : ''}
+          ${wa     ? `<a href="https://wa.me/${wa}?text=${waMsg}" target="_blank" class="cmp-cta cmp-cta-wa">💬 WhatsApp</a>` : ''}
+          <a href="${escH(url)}" class="cmp-cta cmp-cta-view">View full profile →</a>
+        </div>
+
+        <button class="cmp-remove-btn" onclick="removeFacility('${escAttr(f.slug)}')">Remove from comparison</button>
+      </div>
+    </div>`;
+}
+
+function removeFacility(slug) {
+  const arr = getCompare().filter(x => x.slug !== slug);
+  setCompare(arr);
+  if (window.NHGCompareSave) NHGCompareSave.clearCompare && setCompare(arr);
+  init();
+}
+
+function clearAll() {
+  setCompare([]);
+  init();
+}
+
+function renderSavedSection(allFacilities) {
+  const saved = getSaved();
+  if (!saved.length) return '';
+
+  const compareList = getCompare();
+  const items = saved.map(slug => {
+    const f = allFacilities.find(x => x.slug === slug);
+    if (!f) return '';
+    const url = facilityUrl(f);
+    const inCompare = compareList.some(x => x.slug === slug);
+    const compareBtn = inCompare
+      ? `<button class="saved-item-compare-btn" onclick="addToCompare('${escAttr(slug)}','${escAttr(f.title)}')" style="background:#fef3c7;color:#78350f;border-color:#fcd34d;">✓ In compare</button>`
+      : `<button class="saved-item-compare-btn" onclick="addToCompare('${escAttr(slug)}','${escAttr(f.title)}')">+ Compare</button>`;
+    return `
+      <div class="saved-item" id="saved-item-${escH(slug)}">
+        <div class="saved-item-name"><a href="${escH(url)}">${escH(f.title)}</a></div>
+        <div class="saved-item-area">${escH(f.area || '')}</div>
+        <div class="saved-item-actions">
+          ${compareBtn}
+          <button class="saved-item-remove-btn" onclick="unsaveFacility('${escAttr(slug)}')">✕</button>
+        </div>
+      </div>`;
+  }).filter(Boolean).join('');
+
+  if (!items) return '';
+  return `
+    <div class="saved-section">
+      <h2>💙 Saved Facilities (${saved.length})</h2>
+      <div class="saved-list">${items}</div>
+    </div>`;
+}
+
+function addToCompare(slug, name) {
+  const arr = getCompare();
+  if (arr.length >= 3 && !arr.some(x => x.slug === slug)) {
+    alert('Remove one facility first to add another (max 3).');
+    return;
+  }
+  if (!arr.some(x => x.slug === slug)) {
+    arr.push({ slug, name });
+    setCompare(arr);
+  }
+  init();
+}
+
+function unsaveFacility(slug) {
+  const arr = getSaved().filter(s => s !== slug);
+  setSaved(arr);
+  init();
+}
+
+let _allFacilities = null;
+
+async function init() {
+  const compareList = getCompare();
+  const saved = getSaved();
+  const el = document.getElementById('compareContent');
+
+  if (!_allFacilities && (compareList.length || saved.length)) {
+    try {
+      _allFacilities = await loadFacilities();
+    } catch (e) {
+      el.innerHTML = '<div class="cmp-empty"><h2>Error loading data</h2><p>Could not fetch facility data. Please try again.</p></div>';
+      return;
+    }
+  }
+
+  /* Empty state */
+  if (!compareList.length && !saved.length) {
+    el.innerHTML = `
+      <div class="cmp-empty">
+        <div style="font-size:2.5rem;margin-bottom:12px">⚖️</div>
+        <h2>No facilities to compare</h2>
+        <p>Browse facilities and click "Add to Compare" to build your comparison.</p>
+        <a href="/">Browse facilities →</a>
+      </div>`;
+    return;
+  }
+
+  const facilities = compareList
+    .map(item => _allFacilities.find(f => f.slug === item.slug))
+    .filter(Boolean);
+
+  const colClass = `cols-${Math.max(1, facilities.length)}`;
+
+  const compareHtml = facilities.length ? `
+    <div class="cmp-header">
+      <h1>⚖️ Compare Facilities</h1>
+      <p>Comparing ${facilities.length} of 3 facilities. Click any facility name to view the full profile.</p>
+      <div class="cmp-actions">
+        <a class="cmp-btn-back" href="/">← Browse more</a>
+        ${compareList.length ? `<button class="cmp-btn-clear" onclick="clearAll()">Clear comparison</button>` : ''}
+      </div>
+    </div>
+    <div class="cmp-grid ${colClass}">
+      ${facilities.map(f => renderCard(f)).join('')}
+    </div>` : `
+    <div class="cmp-header">
+      <h1>⚖️ Compare Facilities</h1>
+      <p>Some selected facilities could not be found. They may have been removed.</p>
+      <div class="cmp-actions">
+        <a class="cmp-btn-back" href="/">← Browse facilities</a>
+        <button class="cmp-btn-clear" onclick="clearAll()">Clear list</button>
+      </div>
+    </div>`;
+
+  const savedHtml = renderSavedSection(_allFacilities || []);
+
+  el.innerHTML = compareHtml + savedHtml;
+}
+
+init();
+</script>
+</body>
+</html>
