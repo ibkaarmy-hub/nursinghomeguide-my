@@ -13,10 +13,7 @@ body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; c
 .login-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 40px 48px; text-align: center; width: 380px; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
 .login-card h1 { margin: 0 0 4px; font-size: 20px; color: #0f172a; }
 .login-card p { margin: 0 0 20px; font-size: 13px; color: #64748b; }
-.login-name-row { display: flex; gap: 8px; }
-.login-name-row input { flex: 1; padding: 9px 12px; font: inherit; font-size: 14px; border-radius: 8px; border: 1px solid #e2e8f0; outline: none; color: #1e293b; min-width: 0; }
-.login-name-row input:focus { border-color: #2563eb; box-shadow: 0 0 0 2px #eff6ff; }
-.login-err { margin: 10px 0 0; font-size: 12px; color: #dc2626; min-height: 16px; }
+.login-err { margin: 12px 0 0; font-size: 12px; color: #dc2626; min-height: 16px; text-align: center; }
 
 /* ── Topbar ──────────────────────────────────────────────── */
 .topbar { padding: 0 20px; border-bottom: 1px solid #e2e8f0; background: #fff; display: flex; align-items: stretch; gap: 0; flex-shrink: 0; height: 48px; }
@@ -230,10 +227,7 @@ table.stats-tbl tr:hover td { background: #f8fafc; }
   <div class="login-card">
     <h1>NHG Admin</h1>
     <p>NursingHomeGuide.my · Internal tool</p>
-    <div class="login-name-row">
-      <input id="login-email-input" type="email" placeholder="your@email.com" autocomplete="email" />
-      <button id="login-submit" class="btn btn-save">Sign in</button>
-    </div>
+    <div id="g-signin-btn" style="display:flex;justify-content:center;"></div>
     <p class="login-err" id="login-err"></p>
   </div>
 </div>
@@ -840,7 +834,7 @@ function fac_load(f) {
   ed.querySelectorAll('[data-field]').forEach(el => {
     if (el.tagName === 'DIV') return;
     let v = f[el.dataset.field] || '';
-    // Auto-fill screened_by from logged-in user if blank
+      // Auto-fill screened_by from logged-in user if blank
     if (el.dataset.field === 'screened_by' && !v && currentUser) v = currentUser.name;
     el.value = v;
     el.classList.remove('dirty');
@@ -1346,8 +1340,28 @@ function initStats() {
 // ══════════════════════════════════════════════════════════
 // LOGIN
 // ══════════════════════════════════════════════════════════
+const GOOGLE_CLIENT_ID = '143384304189-mipoc0ohfsfg2b9sbom9il4bc2bs3l27.apps.googleusercontent.com';
 let currentUser = null;
 let allowedEmails = []; // loaded from /_config; empty = no restriction
+
+function parseJwt(token) {
+  const b64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+  const pad = b64 + '=='.slice(0, (4 - b64.length % 4) % 4);
+  return JSON.parse(atob(pad));
+}
+
+function handleGoogleCredential(response) {
+  const payload = parseJwt(response.credential);
+  const email = (payload.email || '').toLowerCase();
+  const errEl = document.getElementById('login-err');
+  if (allowedEmails.length && !allowedEmails.includes(email)) {
+    errEl.textContent = 'Access denied — this Google account is not authorised.';
+    return;
+  }
+  const u = { name: payload.given_name || payload.name || email.split('@')[0], email };
+  localStorage.setItem('nhg_admin_user', JSON.stringify(u));
+  setUser(u);
+}
 
 function initLogin() {
   const stored = localStorage.getItem('nhg_admin_user');
@@ -1359,27 +1373,22 @@ function initLogin() {
   }
   document.getElementById('login-overlay').style.display = 'flex';
 
-  async function doLogin() {
-    const email = document.getElementById('login-email-input').value.trim().toLowerCase();
-    const errEl = document.getElementById('login-err');
-    if (!email || !email.includes('@')) {
-      errEl.textContent = 'Enter a valid email address.';
-      return;
-    }
-    if (allowedEmails.length && !allowedEmails.includes(email)) {
-      errEl.textContent = 'Access denied — this email is not authorised.';
-      return;
-    }
-    const name = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-    const u = { name, email };
-    localStorage.setItem('nhg_admin_user', JSON.stringify(u));
-    setUser(u);
-  }
-
-  document.getElementById('login-submit').addEventListener('click', doLogin);
-  document.getElementById('login-email-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') doLogin();
-  });
+  // Load GIS library then render the Sign in with Google button
+  const script = document.createElement('script');
+  script.src = 'https://accounts.google.com/gsi/client';
+  script.onload = () => {
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleCredential,
+      auto_select: false,
+      cancel_on_tap_outside: false,
+    });
+    google.accounts.id.renderButton(
+      document.getElementById('g-signin-btn'),
+      { theme: 'outline', size: 'large', text: 'sign_in_with', width: 280, logo_alignment: 'center' }
+    );
+  };
+  document.head.appendChild(script);
 }
 
 function setUser(u) {
