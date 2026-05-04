@@ -1,0 +1,127 @@
+{
+  "generated_at": "2026-05-04T00:00:00+08:00",
+  "agent": "claude-sonnet-4-6 / editorial-batch-agent",
+  "note": "Batch 5 — chain completions: Woodrose (2 remaining branches), Oasis (3), Mona Elder Care (4), Harvestars (2), Elderlove Puchong (1). Total 12 facilities. Woodrose and Mona use chain-aware shared paragraph 2. Operator websites not fetched; facts sourced from nursing-homes/ static page JSON-LD excerpts and data.js GROUPS registry. All marked data_quality=stub.",
+  "facilities": [
+    {
+      "slug": "woodrose-senior-residences-2-seksyen-11-male-syariah-compliant",
+      "title": "Woodrose Senior Residences 2 Seksyen 11 (Male - Syariah Compliant)",
+      "chain_slug": "woodrose-senior-residences",
+      "data_quality": "stub",
+      "rating": "4.2",
+      "review_count": 26,
+      "new_editorial_length": 258,
+      "editorial_summary": "Woodrose Senior Residences 2 is the male wing of the Woodrose Healthcare campus in Seksyen 11, Shah Alam, located on Jalan Gamelan — directly adjacent to Residence 1 (female wing) on Jalan Silat. Operated by Woodrose Senior Residences Sdn Bhd, which emerged from the merger of Zara Aisyah Care Centre (ZACC) and MLL Sdn Bhd, this is the male counterpart within what the operator describes as the most established Shariah-compliant nursing home campus in the Klang Valley. The Seksyen 11 campus structure allows couples to remain within the same neighbourhood while respecting gender-segregated care requirements.\n\nAll Woodrose Residences operate under in-house Ustaz-governed service protocols integrating Islamic practice into the daily care routine — including prayers, halal meals, and spiritual support for palliative residents. Across the campus, the operator provides dementia care, palliative care, rehabilitation, respite admissions, and day care. Pricing is not published publicly on the Woodrose website; monthly fees depend on room type and care level, and families should request a written quote when visiting.\n\nResidence 2 holds a 4.2-star rating across 26 Google reviews — matching Residence 1 as the largest review base in the Woodrose network. Reading the full review content on Google Maps before visiting will give families useful context for the range of experience recorded. Shah Alam Hospital and Columbia Asia Hospital Shah Alam are the nearest hospitals for clinical referrals and emergency transfers. On your visit, ask for the JKM licence number, confirm current bed availability, and enquire about dementia and palliative care staffing across the campus."
+    },
+    {
+      "slug": "woodrose-senior-residences-3-seksyen-13-female-syariah-compliant",
+      "title": "Woodrose Senior Residences 3 Seksyen 13 (Female - Syariah compliant)",
+      "chain_slug": "woodrose-senior-residences",
+      "data_quality": "stub",
+      "rating": "5.0",
+      "review_count": 5,
+      "new_editorial_length": 256,
+      "editorial_summary": "Woodrose Senior Residences 3 is the Seksyen 13 branch of the Woodrose Healthcare campus in Shah Alam — a female-only, Shariah-compliant residence extending the group's footprint across two sections of Shah Alam. Seksyen 13 is a short drive from the Seksyen 11 pair of residences, giving families the option of visiting all three Woodrose branches in a single trip. Operated by Woodrose Senior Residences Sdn Bhd — which grew from the merger of Zara Aisyah Care Centre (ZACC) and MLL Sdn Bhd and describes itself as the leading Shariah-compliant eldercare brand in Selangor — this is one of the newer additions to the campus.\n\nAll Woodrose Residences operate under in-house Ustaz-governed service protocols integrating Islamic practice into the daily care routine — including prayers, halal meals, and spiritual support for palliative residents. Across the campus, the operator provides dementia care, palliative care, rehabilitation, respite admissions, and day care. Pricing is not published publicly on the Woodrose website; monthly fees depend on room type and care level, and families should request a written quote when visiting.\n\nResidence 3 carries a 5.0-star rating from a small initial review base. Families should supplement this with an in-person visit before placing a relative here. Shah Alam Hospital is accessible for emergency transfers. For Muslim families seeking a female-only Shariah-compliant option, Residence 3 is worth visiting alongside Residence 1 (Seksyen 11) for comparison. Ask for the JKM licence number, confirm current room availability, and enquire whether clinical oversight is shared with the Seksyen 11 campus."
+    },
+    {
+      "slug": "oasis-nursing-home-setia-alam",
+      "title": "Oasis Nursing Home Setia Alam",
+      "chain_slug": "oasis-nursing-home",
+      "data_quality": "stub",
+      "rating": "5.0",
+      "review_count": 6,
+      "new_editorial_length": 259,
+      "editorial_summary": "Oasis Nursing Home's Setia Alam branch is at 66 Jalan Setia Impian U13/8B in the Setia Alam township, Shah Alam — a double-storey corner house in one of Selangor's best-planned residential developments. Setia Alam is a well-maintained township with good road links to the North-South Expressway and the Guthrie Corridor, making it accessible from Klang, Shah Alam, and the western Klang Valley. The facility is one of three Oasis Nursing Home (安康之家) branches across the greater Klang Valley, alongside locations in Shah Alam U12 and Kapar in Klang. The network was founded by Dr. Wendy Oon, a named physician whose involvement is documented across the group's online presence.\n\nOasis Nursing Home (安康之家) operates as a Chinese-speaking group with Dr. Wendy Oon as the named physician across the network. The Klang branch's operator website publishes the names of the head of nursing, assistant head nurse, and in-house physiotherapist — an unusual degree of staff transparency for the private nursing home sector in Malaysia. The group primarily serves Chinese-speaking residents and families. Specific care services and pricing are not listed publicly for individual branches; contact the group at +60 12-270 3166 for a current fee schedule and care assessment.\n\nThe Setia Alam branch carries a 5.0-star rating from 6 reviews. The western Shah Alam and Elmina corridor is not densely served by nursing homes, making this branch a practical option for families in Setia Alam, Bukit Jelutong, and Kota Kemuning. Columbia Asia Hospital Shah Alam is among the nearest large private hospitals for emergency transfers. On your visit, confirm the care levels accepted, nursing staffing across shifts, and ask for the JKM licence number."
+    },
+    {
+      "slug": "oasis-nursing-home-shah-alam-安康之家疗养院",
+      "title": "Oasis Nursing Home Shah Alam (安康之家疗养院)",
+      "chain_slug": "oasis-nursing-home",
+      "data_quality": "stub",
+      "rating": "5.0",
+      "review_count": 15,
+      "new_editorial_length": 263,
+      "editorial_summary": "Oasis Nursing Home (安康之家疗养院) operates from a three-storey semi-detached house with a lift at 6 Taman Pegaga U12/1AA, 40170 Shah Alam — in the U12 section of Shah Alam's newer northwestern townships. The three-storey building with lift access is suited to residents with mobility limitations who would struggle with stairs. The U12 location, close to the Setia Alam and Elmina growth corridors, serves the Chinese-speaking community in this part of Shah Alam and Klang. It is part of the three-branch Oasis network founded by Dr. Wendy Oon, a named physician whose involvement is published across the group's profile.\n\nOasis Nursing Home (安康之家) operates as a Chinese-speaking group with Dr. Wendy Oon as the named physician across the network. The Klang branch's operator website publishes the names of the head of nursing, assistant head nurse, and in-house physiotherapist — an unusual degree of staff transparency for the private nursing home sector in Malaysia. The group primarily serves Chinese-speaking residents and families. Specific care services and pricing are not listed publicly for individual branches; contact the group at +60 12-270 3166 for a current fee schedule and care assessment.\n\nThe Shah Alam U12 branch carries a 5.0-star rating across 15 reviews — the most substantive review base in the Oasis network and a reliable indicator of consistent positive family experience. For families in U12, Setia Alam, and northern Shah Alam, this branch is the most accessible Oasis location. On your visit, confirm which care levels are accepted, ask for the JKM licence number, and enquire about Dr. Wendy Oon's regular presence at this branch."
+    },
+    {
+      "slug": "oasis-nursing-home-klang-安康之家巴生疗养院",
+      "title": "Oasis Nursing Home Klang (安康之家巴生疗养院)",
+      "chain_slug": "oasis-nursing-home",
+      "data_quality": "stub",
+      "rating": "5.0",
+      "review_count": 8,
+      "new_editorial_length": 265,
+      "editorial_summary": "Oasis Nursing Home (安康之家巴生疗养院) is at No. 50, Jalan Sungai Kapar Indah 5E, Taman Sungai Kapar Indah, in the Kapar district of northern Klang — a suburban residential area north of Klang town proper. This branch is distinguished by the transparency of its published staff list: the operator's website names Dr. Wendy Oon as founder and doctor-in-charge, Shaziq as head of nursing, Siti Ramlah as assistant head nurse, and Nur Ain as in-house physiotherapist. Named clinical staff on an operator website is uncommon in the Malaysian nursing home sector and gives families a basis for specific questions before visiting.\n\nOasis Nursing Home (安康之家) operates as a Chinese-speaking group with Dr. Wendy Oon as the named physician across the network. The Klang branch's operator website publishes the names of the head of nursing, assistant head nurse, and in-house physiotherapist — an unusual degree of staff transparency for the private nursing home sector in Malaysia. The group primarily serves Chinese-speaking residents and families. Specific care services and pricing are not listed publicly for individual branches; contact the group at +60 12-270 3166 for a current fee schedule and care assessment.\n\nThe Klang branch carries a 5.0-star rating across 8 reviews. For families in Kapar, northern Klang, and the Meru corridor, this is the most accessible Oasis location. Tengku Ampuan Rahimah (TAR) Hospital in Klang town is the nearest large government hospital for emergency transfers. On your visit, confirm whether the named physiotherapist provides sessions included in the monthly fee or charged separately, confirm the care levels accepted, and ask for the JKM licence number."
+    },
+    {
+      "slug": "mona-elder-care-nursing-home-in-taman-bunga-raya-kuala-lumpur",
+      "title": "Mona Elder Care Nursing Home in Taman Bunga Raya, Kuala Lumpur",
+      "chain_slug": "mona-elder-care",
+      "data_quality": "stub",
+      "rating": "5.0",
+      "review_count": 3,
+      "new_editorial_length": 252,
+      "editorial_summary": "Mona Elder Care's Taman Bunga Raya branch is located in Kuala Lumpur, serving as the northernmost KL entry in the group's Klang Valley network. Mona Elder Care is a Chinese-community nursing home operator with branches in Ampang, Pandan Perdana, Setapak, and Taman Bunga Raya in KL, and a further branch in Taiping, Perak. The group positions itself as an affordable mid-tier operator rather than a premium home and routes all enquiries through a shared central contact line: +60 14-688 7358. The Taman Bunga Raya location sits within the northern KL residential corridor, accessible from Kepong, Sentul, and Jalan Ipoh.\n\nMona Elder Care's published service scope covers dementia care, stroke rehabilitation, post-surgical recovery, and palliative care, with 24-hour nursing supervision across all branches. The group is Chinese-community oriented, with a care model emphasising medically complex cases. Pricing is not published publicly on the Mona Elder Care website; families should contact the relevant branch directly for monthly fees and a care assessment.\n\nThis branch carries a 5.0-star rating from 3 reviews — a very small sample. Families should treat the rating as an early positive indicator and supplement it with an in-person visit rather than using it as the primary basis for a placement decision. On your visit, ask for the JKM licence number, confirm the care dependency levels accepted at this specific branch, ask about nursing staffing on night shifts, and request a written monthly fee breakdown for your family member's care level."
+    },
+    {
+      "slug": "mona-elder-care-nursing-home-in-taman-p-ramlee-setapak",
+      "title": "Mona Elder Care Nursing Home in Taman P. Ramlee, Setapak",
+      "chain_slug": "mona-elder-care",
+      "data_quality": "stub",
+      "rating": "4.8",
+      "review_count": 9,
+      "new_editorial_length": 255,
+      "editorial_summary": "Mona Elder Care runs a nursing home at 57 Jalan Teratai 2, Taman P. Ramlee, Setapak, on a quiet residential road in the northern suburbs of Kuala Lumpur. Setapak is an established neighbourhood on the edge of the city, accessible from Wangsa Maju and the Hulu Kelang corridor, and within reach of the Jalan Ipoh arterial route. This branch is one of four Mona Elder Care locations in the Klang Valley, sharing the group's Chinese-community orientation and mid-tier market positioning. The central contact for the group is +60 14-688 7358.\n\nMona Elder Care's published service scope covers dementia care, stroke rehabilitation, post-surgical recovery, and palliative care, with 24-hour nursing supervision across all branches. The group is Chinese-community oriented, with a care model emphasising medically complex cases. Pricing is not published publicly on the Mona Elder Care website; families should contact the relevant branch directly for monthly fees and a care assessment.\n\nThe Setapak branch carries a 4.8-star rating across 9 Google reviews — the second-highest rating in the Mona network and a solid indicator for a neighbourhood home in northern KL. Families in Setapak, Wangsa Maju, Keramat, and northern KL suburbs will find this location practical. Hospital Kuala Lumpur (HKL) and Pantai Hospital Cheras are accessible for specialist referrals and emergency transfers. When you call, ask for the JKM licence number, confirm current bed availability and which care levels are accepted, and enquire about the nursing staffing arrangement on night shifts."
+    },
+    {
+      "slug": "mona-elder-care-nursing-home-in-jalan-sri-kemuning-lembah-jaya-selatan-ampang",
+      "title": "Mona Elder Care Nursing Home in Jalan Sri Kemuning, Lembah Jaya, Ampang",
+      "chain_slug": "mona-elder-care",
+      "data_quality": "stub",
+      "rating": "4.7",
+      "review_count": 15,
+      "new_editorial_length": 257,
+      "editorial_summary": "Mona Elder Care's Ampang branch is at 2 Jalan Sri Kemuning, Lembah Jaya Selatan, 68000 Ampang — a residential pocket just south of the main Ampang corridor, with reasonable road access to Hospital Ampang and the broader Ampang-Cheras clinical network. Lembah Jaya Selatan is on the Selangor side of the Ampang boundary, accessible from Cheras and the Ulu Klang area. The Ampang branch is noted in the group's own materials as particularly suited for residents with medically complex needs — reflecting a clinical orientation across the chain. The direct contact for this branch is +60 16-616 4535.\n\nMona Elder Care's published service scope covers dementia care, stroke rehabilitation, post-surgical recovery, and palliative care, with 24-hour nursing supervision across all branches. The group is Chinese-community oriented, with a care model emphasising medically complex cases. Pricing is not published publicly on the Mona Elder Care website; families should contact the relevant branch directly for monthly fees and a care assessment.\n\nThe Ampang branch carries a 4.7-star rating across 15 reviews — the most substantive review base among the four Mona Elder Care Klang Valley branches. Reading individual reviews before visiting will give useful context for recurring themes in family feedback. For families in Ampang, Ulu Klang, and eastern Cheras, this is the most accessible Mona branch. Hospital Ampang is nearby for government specialist referrals. On your visit, ask for the JKM licence number, confirm the clinical care levels accepted, and request a written monthly fee breakdown."
+    },
+    {
+      "slug": "mona-elder-care-nursing-home-in-pandan-perdana",
+      "title": "Mona Elder Care Nursing Home in Pandan Perdana",
+      "chain_slug": "mona-elder-care",
+      "data_quality": "stub",
+      "rating": "4.5",
+      "review_count": 17,
+      "new_editorial_length": 254,
+      "editorial_summary": "Mona Elder Care's Pandan Perdana branch is at 32 Jalan Perdana 1/4, Pandan Perdana — a densely residential area straddling the KL-Selangor boundary near Cheras, accessible from Pandan Jaya, Cheras Baru, and Pandan Indah. This is one of four Mona Elder Care locations in the Klang Valley, and shares the group's Chinese-community orientation and clinical service model with the Ampang, Setapak, and Taman Bunga Raya branches. Central group enquiries go to +60 14-688 7358.\n\nMona Elder Care's published service scope covers dementia care, stroke rehabilitation, post-surgical recovery, and palliative care, with 24-hour nursing supervision across all branches. The group is Chinese-community oriented, with a care model emphasising medically complex cases. Pricing is not published publicly on the Mona Elder Care website; families should contact the relevant branch directly for monthly fees and a care assessment.\n\nThe Pandan Perdana branch carries a 4.5-star rating across 17 Google reviews — the second-largest review base in the Mona network, making it the most data-rich of the KL branches for pre-visit research. Reading the full review content before visiting is advisable to understand any recurring themes. Columbia Asia Hospital Cheras and Hospital Cheras are accessible for acute referrals. When you contact the branch, ask for the JKM licence number, confirm which care levels are currently accepted, and request a written monthly fee breakdown based on your family member's assessed care needs."
+    },
+    {
+      "slug": "harvestars-care-centre-puchong-disland",
+      "title": "Harvestars Care Centre Puchong D'Island",
+      "chain_slug": "harvestars-care",
+      "data_quality": "stub",
+      "rating": "4.9",
+      "review_count": 8,
+      "new_editorial_length": 264,
+      "editorial_summary": "Harvestars Care Centre at D'Island Puchong opened in April 2023 as the group's flagship facility, occupying a triple-storey superlink building at 9 Jalan Barat 5 in the D'Island Residence township. The building includes a lift for resident transfers and is described as having approximately 100 beds. D'Island is an integrated residential township in Puchong roughly 20 kilometres from Petaling Jaya — a practical location for families in Puchong, IOI City, and the southern Klang Valley. Harvestars runs a parallel branch in Kawasan 6, Klang, and markets both locations as part of Malaysia's first nursing care home network built in a condo-style residential format.\n\nHarvestars Care Centre markets its facilities as the first nursing care homes in Malaysia built in a stand-alone condominium format — each branch occupies purpose-fitted residential building space rather than converted shophouses or landed houses, providing lift access and a distinctive physical environment. Both the Puchong and Klang branches offer nursing care for stroke rehabilitation, dementia support, and palliative cases. Pricing is not published publicly; contact the operator at +60 16-623 5796 for current availability and a written fee schedule.\n\nThe D'Island Puchong branch carries a 4.9-star rating across 8 reviews. As a facility that opened in 2023, the review profile is still forming; families should prioritise an in-person visit alongside the rating. Sunway Medical Centre and Columbia Asia Hospital Puchong are among the nearest hospitals for emergency transfers. On your visit, confirm which care levels are accepted, ask about nursing staffing on night shifts, and request the JKM licence number."
+    },
+    {
+      "slug": "harvestars-care-centre-klang-h-residence",
+      "title": "Harvestars Care Centre Klang H-Residence",
+      "chain_slug": "harvestars-care",
+      "data_quality": "stub",
+      "rating": "4.8",
+      "review_count": 17,
+      "new_editorial_length": 262,
+      "editorial_summary": "Harvestars Care Centre's Klang branch operates from H-Residence, a stand-alone condominium block in Kawasan 6, Klang. The condo format is designed to accommodate around 200 residents across multiple care levels, from assisted living through to full nursing care for stroke recovery, dementia, and palliative cases. Kawasan 6 is in the industrial-residential fringe of Klang town, accessible from central Klang, Port Klang, and the KESAS highway corridor. Harvestars runs a parallel branch at D'Island Puchong and markets both as Malaysia's first nursing care homes built in a stand-alone condo residential format.\n\nHarvestars Care Centre markets its facilities as the first nursing care homes in Malaysia built in a stand-alone condominium format — each branch occupies purpose-fitted residential building space rather than converted shophouses or landed houses, providing lift access and a distinctive physical environment. Both the Puchong and Klang branches offer nursing care for stroke rehabilitation, dementia support, and palliative cases. Pricing is not published publicly; contact the operator at +60 16-623 5796 for current availability and a written fee schedule.\n\nThe Klang H-Residence branch carries a 4.8-star rating across 17 Google reviews — the larger and more established of the two Harvestars facilities in terms of review volume. At approximately 200-bed capacity, the Klang branch operates at materially greater scale than the Puchong branch. For families in Klang, Banting, and Port Klang, this is the most accessible Harvestars location. Tengku Ampuan Rahimah (TAR) Hospital is nearby for government specialist referrals. Ask for the JKM licence number and confirm current occupancy and available care levels when you visit."
+    },
+    {
+      "slug": "elderlove-living-care-centre-puchong",
+      "title": "Elderlove Living Care Centre Puchong",
+      "chain_slug": "elderlove-living",
+      "data_quality": "stub",
+      "rating": "5.0",
+      "review_count": 15,
+      "new_editorial_length": 268,
+      "editorial_summary": "Elderlove Living Care Centre's Puchong branch occupies ground-floor shophouse units (SS-G-23, SS-G-23A, and SS-G-25) at Skypod Square, Persiaran Puchong Jaya Selatan, Bandar Puchong Jaya — a commercial podium with easy carpark access and proximity to major roads in one of Puchong's newer mixed-use developments. Unusually for the private nursing home sector, Elderlove was co-founded by two medical specialists — giving the group a clinically-oriented founding ethos that differentiates it from commercially-driven operators. This is one of two Elderlove branches in the Klang Valley, alongside the Sungai Long and Kajang branch.\n\nElderlove Living Care Centre's published services cover nursing care, dementia support, rehabilitation, and palliative care. The group's medical specialist founding background suggests a clinical orientation in its care model. Specific pricing and detailed service lists are not published publicly on the operator's website; families should contact the Puchong branch at +60 11-2324 7838 for a current written fee schedule and care assessment.\n\nThe Puchong branch carries a 5.0-star rating across 15 Google reviews — a consistently high score on a meaningful sample, suggesting reliable positive family experience over time. For families in Puchong, IOI City, and Bukit Jalil, this branch offers a locally accessible nursing home with a strong review profile. Sunway Medical Centre and Columbia Asia Hospital Puchong are among the nearest hospitals for emergency transfers. On your visit, ask about the founders' clinical involvement in day-to-day care, confirm which dependency levels are accepted, and request the JKM licence number."
+    }
+  ]
+}
