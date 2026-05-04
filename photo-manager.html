@@ -5,78 +5,153 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Photo Manager — NursingHomeGuide.my</title>
 <style>
-  body { font-family: system-ui, -apple-system, sans-serif; background:#0f172a; color:#e5e7eb; margin:0; padding:20px; max-width:1100px; margin:0 auto; }
-  h1 { margin:0 0 6px; }
-  .sub { color:#94a3b8; font-size:14px; margin-bottom:20px; }
-  .controls { display:flex; gap:12px; align-items:center; margin-bottom:20px; flex-wrap:wrap; }
-  select, button, input { font:inherit; padding:8px 12px; border-radius:6px; border:1px solid #334155; background:#1e293b; color:#e5e7eb; }
-  select { min-width:320px; }
-  button { cursor:pointer; }
-  button.primary { background:#2563eb; border-color:#2563eb; color:white; font-weight:600; }
-  button.primary:hover { background:#1d4ed8; }
+  *, *::before, *::after { box-sizing:border-box; }
+  body { font-family:system-ui,-apple-system,sans-serif; background:#0f172a; color:#e5e7eb; margin:0; height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+
+  /* ── Top bar ─────────────────────────────── */
+  .topbar { padding:12px 20px; border-bottom:1px solid #1e293b; display:flex; align-items:center; gap:16px; flex-shrink:0; }
+  .topbar h1 { margin:0; font-size:18px; }
+  .topbar .hint { color:#64748b; font-size:13px; }
+  .progress-pill { margin-left:auto; background:#1e293b; border-radius:20px; padding:4px 14px; font-size:13px; color:#94a3b8; white-space:nowrap; }
+  .progress-pill span { color:#34d399; font-weight:600; }
+
+  /* ── Two-panel ───────────────────────────── */
+  .app { display:flex; flex:1; overflow:hidden; }
+
+  /* ── Sidebar ─────────────────────────────── */
+  .sidebar { width:300px; flex-shrink:0; border-right:1px solid #1e293b; display:flex; flex-direction:column; background:#0b1120; }
+  .sidebar-top { padding:10px; border-bottom:1px solid #1e293b; display:flex; flex-direction:column; gap:8px; }
+  .sidebar-top input[type=search] { width:100%; padding:7px 10px; font:inherit; font-size:13px; border-radius:6px; border:1px solid #334155; background:#1e293b; color:#e5e7eb; outline:none; }
+  .sidebar-top input[type=search]::placeholder { color:#475569; }
+  .filter-row { display:flex; gap:4px; }
+  .ftab { flex:1; padding:5px 0; font:inherit; font-size:12px; border-radius:6px; border:1px solid #334155; background:transparent; color:#94a3b8; cursor:pointer; text-align:center; }
+  .ftab.active { background:#2563eb; border-color:#2563eb; color:#fff; font-weight:600; }
+  .photos-only-row { display:flex; align-items:center; gap:6px; font-size:12px; color:#64748b; padding:2px 2px 0; cursor:pointer; }
+  .photos-only-row input { cursor:pointer; accent-color:#2563eb; }
+
+  .facility-list { flex:1; overflow-y:auto; }
+  .group-label { padding:8px 12px 3px; font-size:10px; font-weight:700; color:#334155; text-transform:uppercase; letter-spacing:1px; position:sticky; top:0; background:#0b1120; z-index:1; }
+  .fac-item { display:flex; align-items:center; gap:8px; padding:9px 12px; cursor:pointer; border-bottom:1px solid #0f172a; transition:background .1s; }
+  .fac-item:hover { background:#1e293b; }
+  .fac-item.selected { background:#1e3a5f; }
+  .fac-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; background:#334155; transition:background .2s; }
+  .fac-item.done .fac-dot { background:#34d399; }
+  .fac-info { flex:1; min-width:0; }
+  .fac-name { font-size:13px; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .fac-item.done .fac-name { color:#64748b; }
+  .fac-meta { font-size:11px; color:#475569; margin-top:1px; }
+  .fac-count { flex-shrink:0; font-size:11px; color:#475569; }
+  .sidebar-footer { padding:8px 12px; font-size:12px; color:#334155; border-top:1px solid #1e293b; }
+
+  /* ── Workspace ───────────────────────────── */
+  .workspace { flex:1; overflow-y:auto; padding:20px; }
+  .empty-state { display:flex; align-items:center; justify-content:center; height:200px; color:#334155; font-size:15px; }
+
+  /* ── Photo grid ──────────────────────────── */
+  .workspace-header { display:flex; align-items:center; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
+  .workspace-header h2 { margin:0; font-size:16px; }
   .meta { color:#94a3b8; font-size:13px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin-top:14px; }
-  .photo { position:relative; border-radius:8px; overflow:hidden; background:#1e293b; aspect-ratio:16/9; }
-  .photo img { width:100%; height:100%; object-fit:cover; display:block; transition: opacity .2s; }
+  button { font:inherit; cursor:pointer; }
+  .btn { padding:7px 14px; border-radius:6px; border:1px solid #334155; background:#1e293b; color:#e5e7eb; }
+  .btn:hover { background:#253448; }
+  .btn-primary { background:#2563eb; border-color:#2563eb; color:#fff; font-weight:600; }
+  .btn-primary:hover { background:#1d4ed8; }
+  .btn-done { background:#064e3b; border-color:#065f46; color:#6ee7b7; }
+  .btn-done.is-done { background:#065f46; color:#34d399; font-weight:600; }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px; }
+  .photo { position:relative; border-radius:8px; overflow:hidden; background:#1e293b; aspect-ratio:16/9; cursor:grab; user-select:none; }
+  .photo img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity .2s; pointer-events:none; }
+  .photo.removed { cursor:default; }
   .photo.removed img { opacity:.15; filter:grayscale(1); }
-  .photo .x { position:absolute; top:6px; right:6px; width:32px; height:32px; border-radius:50%; background:#ef4444; color:white; border:none; font-weight:700; cursor:pointer; font-size:18px; line-height:1; }
+  .photo.dragging { opacity:.35; outline:2px dashed #2563eb; }
+  .photo.drag-over { outline:3px solid #f59e0b; outline-offset:-3px; }
+  .photo .x { position:absolute; top:6px; right:6px; width:28px; height:28px; border-radius:50%; background:#ef4444; color:#fff; border:none; font-size:16px; line-height:1; display:flex; align-items:center; justify-content:center; cursor:pointer; }
   .photo.removed .x { background:#10b981; }
   .photo.removed .x::after { content:"↺"; }
   .photo .x::after { content:"✕"; }
-  .photo .x span { display:none; }
+  .hero-badge { position:absolute; bottom:6px; left:6px; background:#f59e0b; color:#000; font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; pointer-events:none; }
+
+  /* ── Output ──────────────────────────────── */
   .output { margin-top:20px; }
-  .output textarea { width:100%; min-height:120px; font-family:ui-monospace,monospace; font-size:12px; background:#0b1220; color:#a5f3fc; border:1px solid #334155; border-radius:6px; padding:10px; resize:vertical; }
-  .legend { font-size:13px; color:#94a3b8; margin-top:8px; }
-  .ok { color:#34d399; }
+  .output textarea { width:100%; min-height:100px; font-family:ui-monospace,monospace; font-size:12px; background:#0b1220; color:#a5f3fc; border:1px solid #334155; border-radius:6px; padding:10px; resize:vertical; }
+  .legend { font-size:12px; color:#64748b; margin-top:6px; }
+  .output-fields { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px; }
+  .output-fields input { width:100%; padding:7px 10px; font-family:ui-monospace,monospace; font-size:12px; background:#1e293b; color:#a5f3fc; border:1px solid #334155; border-radius:6px; }
+  .copy-row { display:flex; gap:8px; margin-top:10px; align-items:center; flex-wrap:wrap; }
+  .ok { color:#34d399; font-size:13px; }
 </style>
 </head>
 <body>
 
-<h1>Photo Manager</h1>
-<div class="sub">Pick a facility, click ✕ to remove a photo, then copy the updated cell back to the <code>photos</code> column in your Google Sheet.</div>
-
-<div class="controls">
-  <select id="facilitySel"><option>Loading…</option></select>
-  <button id="resetBtn">Reset</button>
-  <span class="meta" id="counter"></span>
+<div class="topbar">
+  <h1>Photo Manager</h1>
+  <span class="hint">Drag to reorder · first photo = hero · ✕ to remove</span>
+  <div class="progress-pill" id="progressPill"><span id="doneCount">0</span> / <span id="totalCount">0</span> done</div>
 </div>
 
-<div id="grid" class="grid"></div>
+<div class="app">
 
-<div class="output">
-  <h3 style="margin:24px 0 8px">Updated <code>photos</code> cell value</h3>
-  <div class="legend">Copy this string and paste it into the <code>photos</code> column for this row in the Google Sheet. Also update <code>hero_image</code> with the first URL and <code>photo_count</code> with the count below.</div>
-  <textarea id="outPhotos" readonly></textarea>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
-    <div>
-      <div class="legend">hero_image</div>
-      <input id="outHero" readonly style="width:100%;font-family:ui-monospace,monospace;font-size:12px" />
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-top">
+      <input type="search" id="searchBox" placeholder="Search facilities…" />
+      <div class="filter-row">
+        <button class="ftab active" data-filter="all">All</button>
+        <button class="ftab" data-filter="pending">Pending</button>
+        <button class="ftab" data-filter="done">Done</button>
+      </div>
+      <label class="photos-only-row">
+        <input type="checkbox" id="photosOnlyChk" checked />
+        Only show facilities with photos
+      </label>
     </div>
-    <div>
-      <div class="legend">photo_count</div>
-      <input id="outCount" readonly style="width:100%;font-family:ui-monospace,monospace;font-size:12px" />
+    <div class="facility-list" id="facilityList"></div>
+    <div class="sidebar-footer" id="sidebarFooter"></div>
+  </div>
+
+  <!-- Workspace -->
+  <div class="workspace" id="workspace">
+    <div class="empty-state" id="emptyState">← Select a facility to start</div>
+    <div id="editor" style="display:none">
+      <div class="workspace-header">
+        <h2 id="editorTitle"></h2>
+        <span class="meta" id="counter"></span>
+        <button class="btn" id="resetBtn">Reset</button>
+        <button class="btn btn-done" id="doneToggleBtn">Mark as done ✓</button>
+      </div>
+      <div id="grid" class="grid"></div>
+      <div class="output">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+          <strong style="font-size:14px">Updated <code>photos</code> cell value</strong>
+        </div>
+        <div class="legend">Paste into the <code>photos</code> column in your Google Sheet. Update <code>hero_image</code> and <code>photo_count</code> below too.</div>
+        <textarea id="outPhotos" readonly></textarea>
+        <div class="output-fields">
+          <div>
+            <div class="legend">hero_image</div>
+            <input id="outHero" readonly />
+          </div>
+          <div>
+            <div class="legend">photo_count</div>
+            <input id="outCount" readonly />
+          </div>
+        </div>
+        <div class="copy-row">
+          <button class="btn btn-primary" id="copyBtn">Copy photos cell</button>
+          <button class="btn" id="copyAllBtn">Copy all 3 (TSV)</button>
+          <span id="copyMsg"></span>
+        </div>
+      </div>
     </div>
   </div>
-  <div style="display:flex;gap:8px;margin-top:10px">
-    <button class="primary" id="copyBtn">Copy photos cell</button>
-    <button id="copyAllBtn">Copy all 3 (TSV)</button>
-    <span class="meta" id="copyMsg"></span>
-  </div>
+
 </div>
 
 <script>
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub?output=csv";
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub?gid=292378871&single=true&output=csv";
+const DONE_KEY = 'photo-manager-done-v1';
 
-function parseCSVLine(line) {
-  const r = []; let cur = '', q = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') { if (q && line[i+1] === '"') { cur += '"'; i++; } else q = !q; }
-    else if (c === ',' && !q) { r.push(cur); cur = ''; }
-    else cur += c;
-  }
-  r.push(cur); return r;
-}
 function parseCSV(text) {
   const rows = []; let cur = '', q = false, fields = [];
   for (let i = 0; i < text.length; i++) {
@@ -91,61 +166,222 @@ function parseCSV(text) {
   if (cur || fields.length) { fields.push(cur); rows.push(fields); }
   const headers = rows[0];
   return rows.slice(1).filter(r => r.length > 1).map(r => {
-    const o = {}; headers.forEach((h,i) => o[h.trim()] = (r[i]||'').trim()); return o;
+    const o = {}; headers.forEach((h, i) => o[h.trim()] = (r[i] || '').trim()); return o;
   });
 }
 
-let facilities = [], current = null, removed = new Set();
+// ── State ────────────────────────────────────────────────
+let facilities = [];
+let doneSet = new Set(JSON.parse(localStorage.getItem(DONE_KEY) || '[]'));
+let current = null;
+let photos = [];
+let removedSet = new Set();
+let dragSrcIdx = null;
+let activeFilter = 'all';
+let photosOnly = true;
+let searchQuery = '';
 
+function saveDone() {
+  localStorage.setItem(DONE_KEY, JSON.stringify([...doneSet]));
+}
+function facilityKey(f) { return f.slug || f.title; }
+function photoCount(f) { return (f.photos || '').split('|').filter(Boolean).length; }
+
+// ── Load data ─────────────────────────────────────────────
 async function init() {
-  const res = await fetch(SHEET_CSV_URL);
-  const text = await res.text();
-  facilities = parseCSV(text).filter(f => f.title);
-  const sel = document.getElementById('facilitySel');
-  sel.innerHTML = '<option value="">— pick a facility —</option>' +
-    facilities.map((f,i) => {
-      const n = (f.photos || '').split('|').filter(Boolean).length;
-      return `<option value="${i}">${f.title} ${n ? `(${n} photos)` : '(no photos)'}</option>`;
-    }).join('');
-  sel.addEventListener('change', e => loadFacility(facilities[+e.target.value]));
-  document.getElementById('resetBtn').addEventListener('click', () => { removed.clear(); render(); });
-  document.getElementById('copyBtn').addEventListener('click', () => copy(document.getElementById('outPhotos').value));
+  document.getElementById('facilityList').innerHTML = '<div style="padding:16px;color:#475569;font-size:13px">Loading…</div>';
+  try {
+    const res = await fetch(SHEET_CSV_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+    facilities = parseCSV(text).filter(f => f.title && (!f.status || (f.status !== 'removed' && f.status !== 'unverified')));
+    if (!facilities.length) throw new Error('CSV parsed but 0 facilities found — wrong tab?');
+    console.log(`Loaded ${facilities.length} facilities`);
+  } catch(e) {
+    document.getElementById('facilityList').innerHTML = `<div style="padding:16px;color:#ef4444;font-size:13px">
+      <strong>Failed to load facilities</strong><br><br>
+      <code style="font-size:11px;color:#fca5a5">${e.message}</code><br><br>
+      <span style="color:#94a3b8">Check browser console (F12) for details. Make sure the Google Sheet is published: File → Share → Publish to web.</span>
+    </div>`;
+    console.error('Photo manager load error:', e);
+    return;
+  }
+
+  buildSidebar();
+
+  document.getElementById('searchBox').addEventListener('input', e => { searchQuery = e.target.value.toLowerCase(); buildSidebar(); });
+  document.querySelectorAll('.ftab').forEach(t => t.addEventListener('click', () => {
+    activeFilter = t.dataset.filter;
+    document.querySelectorAll('.ftab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    buildSidebar();
+  }));
+  document.getElementById('photosOnlyChk').addEventListener('change', e => { photosOnly = e.target.checked; buildSidebar(); });
+  document.getElementById('resetBtn').addEventListener('click', () => { if (current) { removedSet.clear(); photos = (current.photos || '').split('|').filter(Boolean); renderPhotos(); } });
+  document.getElementById('doneToggleBtn').addEventListener('click', () => {
+    if (!current) return;
+    const k = facilityKey(current);
+    if (doneSet.has(k)) doneSet.delete(k); else doneSet.add(k);
+    saveDone();
+    updateDoneBtn();
+    buildSidebar();
+    updateProgress();
+  });
+  document.getElementById('copyBtn').addEventListener('click', () => copyText(document.getElementById('outPhotos').value));
   document.getElementById('copyAllBtn').addEventListener('click', () => {
     const t = [document.getElementById('outPhotos').value, document.getElementById('outHero').value, document.getElementById('outCount').value].join('\t');
-    copy(t);
+    copyText(t);
+    // Auto-mark done
+    if (current) {
+      doneSet.add(facilityKey(current));
+      saveDone();
+      updateDoneBtn();
+      buildSidebar();
+      updateProgress();
+    }
   });
 }
+
+// ── Sidebar ───────────────────────────────────────────────
+function buildSidebar() {
+  const states = ['Kuala Lumpur', 'Selangor', 'Johor'];
+  let visible = 0;
+  let html = '';
+
+  for (const state of states) {
+    let group = facilities.filter(f => f.state === state);
+    if (photosOnly) group = group.filter(f => photoCount(f) > 0);
+    if (searchQuery) group = group.filter(f => f.title.toLowerCase().includes(searchQuery));
+    if (activeFilter === 'pending') group = group.filter(f => !doneSet.has(facilityKey(f)));
+    if (activeFilter === 'done') group = group.filter(f => doneSet.has(facilityKey(f)));
+    if (!group.length) continue;
+    visible += group.length;
+    html += `<div class="group-label">${state} (${group.length})</div>`;
+    for (const f of group) {
+      const key = facilityKey(f);
+      const done = doneSet.has(key);
+      const selected = current && facilityKey(current) === key;
+      const n = photoCount(f);
+      html += `<div class="fac-item ${done ? 'done' : ''} ${selected ? 'selected' : ''}" data-key="${key}">
+        <div class="fac-dot"></div>
+        <div class="fac-info">
+          <div class="fac-name">${f.title}</div>
+          <div class="fac-meta">${f.area || state}</div>
+        </div>
+        <div class="fac-count">${n > 0 ? n + ' 📷' : '—'}</div>
+      </div>`;
+    }
+  }
+
+  if (!visible) html = '<div style="padding:20px 12px;color:#475569;font-size:13px;text-align:center">No facilities match.</div>';
+
+  document.getElementById('facilityList').innerHTML = html;
+  document.getElementById('sidebarFooter').textContent = `Showing ${visible} facilities`;
+
+  document.querySelectorAll('.fac-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const f = facilities.find(f => facilityKey(f) === el.dataset.key);
+      if (f) loadFacility(f);
+    });
+  });
+
+  updateProgress();
+}
+
+function updateProgress() {
+  const withPhotos = facilities.filter(f => photoCount(f) > 0);
+  const done = withPhotos.filter(f => doneSet.has(facilityKey(f))).length;
+  document.getElementById('doneCount').textContent = done;
+  document.getElementById('totalCount').textContent = withPhotos.length;
+}
+
+// ── Load facility ─────────────────────────────────────────
 function loadFacility(f) {
-  current = f; removed.clear(); render();
+  current = f;
+  photos = (f.photos || '').split('|').filter(Boolean);
+  removedSet = new Set();
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('editor').style.display = '';
+  document.getElementById('editorTitle').textContent = f.title;
+  updateDoneBtn();
+  renderPhotos();
+  buildSidebar();
 }
-function render() {
+
+function updateDoneBtn() {
+  const btn = document.getElementById('doneToggleBtn');
+  if (!current) return;
+  const done = doneSet.has(facilityKey(current));
+  btn.textContent = done ? '✓ Done' : 'Mark as done ✓';
+  btn.classList.toggle('is-done', done);
+}
+
+// ── Photo grid ────────────────────────────────────────────
+function renderPhotos() {
   const grid = document.getElementById('grid');
-  if (!current) { grid.innerHTML = ''; document.getElementById('counter').textContent = ''; document.getElementById('outPhotos').value=''; document.getElementById('outHero').value=''; document.getElementById('outCount').value=''; return; }
-  const all = (current.photos || '').split('|').filter(Boolean);
-  grid.innerHTML = all.map((u,i) => `
-    <div class="photo ${removed.has(i) ? 'removed' : ''}">
+  const kept = photos.filter(u => !removedSet.has(u));
+  const heroUrl = kept[0] || null;
+
+  grid.innerHTML = photos.map((u, i) => {
+    const isRemoved = removedSet.has(u);
+    const isHero = u === heroUrl && !isRemoved;
+    return `<div class="photo ${isRemoved ? 'removed' : ''}" draggable="${isRemoved ? 'false' : 'true'}" data-i="${i}">
       <img src="${u}" loading="lazy" />
+      ${isHero ? '<span class="hero-badge">HERO</span>' : ''}
       <button class="x" data-i="${i}"></button>
-    </div>
-  `).join('');
-  grid.querySelectorAll('.x').forEach(b => b.addEventListener('click', () => {
-    const i = +b.dataset.i;
-    if (removed.has(i)) removed.delete(i); else removed.add(i);
-    render();
+    </div>`;
+  }).join('');
+
+  grid.querySelectorAll('.x').forEach(b => b.addEventListener('click', e => {
+    e.stopPropagation();
+    const u = photos[+b.dataset.i];
+    if (removedSet.has(u)) removedSet.delete(u); else removedSet.add(u);
+    renderPhotos();
   }));
-  const kept = all.filter((_,i) => !removed.has(i));
-  document.getElementById('counter').textContent = `${kept.length} kept · ${removed.size} removed`;
+
+  grid.querySelectorAll('.photo:not(.removed)').forEach(el => {
+    el.addEventListener('dragstart', e => {
+      dragSrcIdx = +el.dataset.i;
+      el.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    el.addEventListener('dragend', () => {
+      el.classList.remove('dragging');
+      grid.querySelectorAll('.drag-over').forEach(x => x.classList.remove('drag-over'));
+    });
+    el.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      grid.querySelectorAll('.drag-over').forEach(x => x.classList.remove('drag-over'));
+      el.classList.add('drag-over');
+    });
+    el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
+    el.addEventListener('drop', e => {
+      e.preventDefault();
+      const destIdx = +el.dataset.i;
+      if (dragSrcIdx === null || dragSrcIdx === destIdx) return;
+      const moved = photos.splice(dragSrcIdx, 1)[0];
+      photos.splice(destIdx, 0, moved);
+      dragSrcIdx = null;
+      renderPhotos();
+    });
+  });
+
+  const keptCount = kept.length;
+  document.getElementById('counter').textContent = `${keptCount} kept · ${removedSet.size} removed`;
   document.getElementById('outPhotos').value = kept.join('|');
-  document.getElementById('outHero').value = kept[0] || '';
-  document.getElementById('outCount').value = String(kept.length);
+  document.getElementById('outHero').value = heroUrl || '';
+  document.getElementById('outCount').value = String(keptCount);
 }
-function copy(t) {
+
+function copyText(t) {
   navigator.clipboard.writeText(t).then(() => {
     const m = document.getElementById('copyMsg');
     m.textContent = '✓ copied'; m.className = 'ok';
     setTimeout(() => m.textContent = '', 2000);
   });
 }
+
 init();
 </script>
 </body>
