@@ -652,8 +652,12 @@ async function tryLoadTokensFromEnv() {
     const res = await fetch('/_config');
     if (!res.ok) return;
     const cfg = await res.json();
-    // Local serve.py: google token pre-filled (fallback if GIS fails)
-    if (cfg.googleToken) { gTokenEl.value = cfg.googleToken; localStorage.setItem(GTOKEN_KEY, cfg.googleToken); }
+    // Local serve.py: google token pre-filled — mark valid for 55 min
+    if (cfg.googleToken) {
+      gTokenEl.value = cfg.googleToken;
+      localStorage.setItem(GTOKEN_KEY, cfg.googleToken);
+      localStorage.setItem(GTOKEN_EXPIRY_KEY, String(Date.now() + 55 * 60 * 1000));
+    }
     if (cfg.githubToken && !ghTokenEl.value) { ghTokenEl.value = cfg.githubToken; localStorage.setItem(GHTOKEN_KEY, cfg.githubToken); }
     if (Array.isArray(cfg.allowedEmails)) allowedEmails = cfg.allowedEmails.map(e => e.toLowerCase());
     updateTokenUi();
