@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Admin — NursingHomeGuide.my</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #e5e7eb; margin: 0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* ── Topbar ──────────────────────────────────────────────── */
+.topbar { padding: 0 20px; border-bottom: 1px solid #1e293b; display: flex; align-items: stretch; gap: 0; flex-shrink: 0; height: 46px; }
+.topbar h1 { margin: 0; font-size: 16px; font-weight: 700; display: flex; align-items: center; padding-right: 20px; border-right: 1px solid #1e293b; color: #f1f5f9; }
+.tab-nav { display: flex; align-items: stretch; padding: 0 8px; gap: 2px; }
+.tnav { background: none; border: none; color: #64748b; font: inherit; font-size: 13px; font-weight: 500; padding: 0 14px; cursor: pointer; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+.tnav:hover { color: #e2e8f0; }
+.tnav.active { color: #f1f5f9; border-bottom-color: #2563eb; font-weight: 600; }
+.topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.pill { background: #1e293b; border-radius: 20px; padding: 3px 12px; font-size: 12px; color: #94a3b8; white-space: nowrap; }
+.pill b { color: #34d399; }
+
+/* ── Token bars ──────────────────────────────────────────── */
+.token-bars { display: flex; gap: 0; border-bottom: 1px solid #1e293b; background: #080f1e; flex-shrink: 0; flex-wrap: wrap; }
+.token-entry { display: flex; align-items: center; gap: 8px; padding: 6px 16px; border-right: 1px solid #1e293b; flex-wrap: wrap; }
+.token-entry label { font-size: 11px; color: #475569; white-space: nowrap; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+.token-entry input { width: 280px; padding: 4px 8px; font: inherit; font-size: 12px; font-family: ui-monospace, monospace; border-radius: 5px; border: 1px solid #334155; background: #1e293b; color: #e5e7eb; }
+.token-entry input::placeholder { color: #334155; }
+.token-ok { font-size: 11px; color: #34d399; }
+.token-hint { font-size: 11px; color: #334155; }
+.token-hint a { color: #2563eb; text-decoration: none; }
+.token-hint a:hover { text-decoration: underline; }
+
+/* ── Tab panels ──────────────────────────────────────────── */
+.tab-panel { display: none; flex: 1; overflow: hidden; flex-direction: column; }
+.tab-panel.active { display: flex; }
+
+/* ── Two-panel shell (facilities + photos) ───────────────── */
+.app { display: flex; flex: 1; overflow: hidden; }
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+.sidebar { width: 286px; flex-shrink: 0; border-right: 1px solid #1e293b; display: flex; flex-direction: column; background: #080f1e; }
+.sb-top { padding: 8px; border-bottom: 1px solid #1e293b; display: flex; flex-direction: column; gap: 6px; }
+.sb-top input[type=search] { width: 100%; padding: 6px 10px; font: inherit; font-size: 12px; border-radius: 6px; border: 1px solid #1e293b; background: #1e293b; color: #e5e7eb; outline: none; }
+.sb-top input[type=search]::placeholder { color: #334155; }
+.filter-row { display: flex; gap: 3px; }
+.ftab { flex: 1; padding: 4px 0; font: inherit; font-size: 11px; border-radius: 5px; border: 1px solid #1e293b; background: transparent; color: #475569; cursor: pointer; }
+.ftab.active { background: #1e3a5f; border-color: #2563eb; color: #93c5fd; font-weight: 600; }
+.sb-check { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #475569; cursor: pointer; }
+.sb-check input { cursor: pointer; accent-color: #2563eb; }
+.fac-list { flex: 1; overflow-y: auto; }
+.group-lbl { padding: 6px 10px 2px; font-size: 10px; font-weight: 700; color: #1e3a5f; text-transform: uppercase; letter-spacing: 1px; position: sticky; top: 0; background: #080f1e; z-index: 1; }
+.fac-row { display: flex; align-items: center; gap: 7px; padding: 8px 10px; cursor: pointer; border-bottom: 1px solid #0b1220; transition: background .1s; }
+.fac-row:hover { background: #111827; }
+.fac-row.sel { background: #1e3a5f; }
+.fac-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; background: #1e293b; }
+.fac-row.st-live .fac-dot { background: #334155; }
+.fac-row.st-edited .fac-dot { background: #f59e0b; }
+.fac-row.st-saved .fac-dot { background: #34d399; }
+.fac-row.pm-done .fac-dot { background: #34d399; }
+.fac-body { flex: 1; min-width: 0; }
+.fac-title { font-size: 12px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fac-row.pm-done .fac-title { color: #475569; }
+.fac-sub { font-size: 10px; color: #334155; margin-top: 1px; }
+.fac-badge { flex-shrink: 0; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: 700; text-transform: uppercase; }
+.badge-live { background: #052e16; color: #34d399; }
+.badge-unverified { background: #431407; color: #fb923c; }
+.badge-removed { background: #18181b; color: #3f3f46; }
+.sb-foot { padding: 6px 10px; font-size: 11px; color: #1e293b; border-top: 1px solid #1e293b; }
+
+/* ── Workspace shared ────────────────────────────────────── */
+.workspace { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+.empty-st { flex: 1; display: flex; align-items: center; justify-content: center; color: #1e293b; font-size: 15px; }
+
+/* ── Facilities: save bar ────────────────────────────────── */
+.save-bar { padding: 10px 20px; background: #0b1220; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: 10px; flex-shrink: 0; flex-wrap: wrap; position: sticky; top: 0; z-index: 5; }
+.save-bar h2 { margin: 0; font-size: 14px; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.unsaved-pill { background: #451a03; color: #fb923c; border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 600; display: none; }
+.unsaved-pill.show { display: inline-block; }
+.save-msg { font-size: 12px; }
+.save-msg.ok { color: #34d399; }
+.save-msg.err { color: #ef4444; }
+
+/* ── Buttons ─────────────────────────────────────────────── */
+button { font: inherit; cursor: pointer; }
+.btn { padding: 6px 12px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #e5e7eb; font-size: 13px; }
+.btn:hover { background: #253448; }
+.btn:disabled { opacity: .35; cursor: not-allowed; }
+.btn-save { background: #1d4ed8; border-color: #2563eb; color: #fff; font-weight: 600; }
+.btn-save:hover:not(:disabled) { background: #1e40af; }
+.btn-muted { color: #64748b; }
+.btn-done { background: #052e16; border-color: #065f46; color: #6ee7b7; }
+.btn-done.is-done { background: #065f46; color: #34d399; font-weight: 600; }
+.btn-primary { background: #1d4ed8; border-color: #2563eb; color: #fff; font-weight: 600; }
+.btn-primary:hover { background: #1e40af; }
+
+/* ── Facilities: form ────────────────────────────────────── */
+.form-body { padding: 16px 20px; }
+.section { margin-bottom: 24px; }
+.sec-title { font-size: 10px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 1px solid #1e293b; }
+.field-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.field-grid.one { grid-template-columns: 1fr; }
+.field-grid.two { grid-template-columns: 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 3px; }
+.field label { font-size: 11px; color: #475569; }
+.field input, .field select, .field textarea {
+  padding: 6px 9px; font: inherit; font-size: 13px;
+  border-radius: 6px; border: 1px solid #1e293b;
+  background: #1e293b; color: #e5e7eb; transition: border-color .15s;
+}
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: #2563eb; }
+.field input.dirty, .field select.dirty, .field textarea.dirty { border-color: #f59e0b; background: #1c1507; }
+.field textarea { resize: vertical; min-height: 110px; line-height: 1.55; }
+.field .sub { font-size: 10px; color: #334155; }
+.deact-reason { display: none; }
+.deact-reason.show { display: flex; }
+
+/* Toggle (yes / no / ?) */
+.toggle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 7px; }
+.tgl-field { display: flex; flex-direction: column; gap: 3px; }
+.tgl-field label { font-size: 11px; color: #475569; }
+.tgl-row { display: flex; border-radius: 6px; overflow: hidden; border: 1px solid #1e293b; }
+.tgl-row button { flex: 1; padding: 4px 0; font: inherit; font-size: 11px; background: #1e293b; color: #334155; border: none; border-right: 1px solid #0f172a; cursor: pointer; }
+.tgl-row button:last-child { border-right: none; }
+.tgl-row button.ay { background: #052e16; color: #34d399; font-weight: 600; }
+.tgl-row button.an { background: #3b0a0a; color: #f87171; font-weight: 600; }
+.tgl-row button.aq { background: #1e293b; color: #64748b; }
+.tgl-row.dirty { border-color: #f59e0b; }
+
+/* ── Photos tab ──────────────────────────────────────────── */
+.pm-workspace { flex: 1; overflow-y: auto; padding: 16px 20px; }
+.pm-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.pm-header h2 { margin: 0; font-size: 15px; flex: 1; }
+.upload-zone { border: 2px dashed #1e293b; border-radius: 8px; padding: 14px; margin-bottom: 14px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; }
+.upload-zone:hover, .upload-zone.drag-on { border-color: #5b21b6; background: #130a26; }
+.upload-zone input[type=file] { display: none; }
+.uz-label { font-size: 13px; color: #475569; }
+.uz-label strong { color: #a78bfa; }
+.uz-prog { min-height: 16px; font-size: 12px; margin-top: 6px; color: #a78bfa; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.photo { position: relative; border-radius: 7px; overflow: hidden; background: #1e293b; aspect-ratio: 16/9; cursor: grab; user-select: none; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; transition: opacity .2s; }
+.photo.removed { cursor: default; }
+.photo.removed img { opacity: .12; filter: grayscale(1); }
+.photo.dragging { opacity: .3; outline: 2px dashed #2563eb; }
+.photo.drag-on { outline: 3px solid #f59e0b; outline-offset: -3px; }
+.photo .xbtn { position: absolute; top: 5px; right: 5px; width: 26px; height: 26px; border-radius: 50%; background: #ef4444; color: #fff; border: none; font-size: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.photo.removed .xbtn::after { content: "↺"; }
+.photo .xbtn::after { content: "✕"; }
+.hero-badge { position: absolute; bottom: 5px; left: 5px; background: #f59e0b; color: #000; font-size: 9px; font-weight: 700; padding: 2px 5px; border-radius: 3px; pointer-events: none; }
+.new-badge  { position: absolute; top: 5px;  left: 5px;  background: #7c3aed; color: #fff; font-size: 9px; font-weight: 700; padding: 2px 5px; border-radius: 3px; pointer-events: none; }
+.pm-output { margin-top: 16px; padding-top: 16px; border-top: 1px solid #1e293b; }
+.pm-output textarea { width: 100%; min-height: 80px; font-family: ui-monospace, monospace; font-size: 11px; background: #070d1a; color: #67e8f9; border: 1px solid #1e293b; border-radius: 6px; padding: 8px; resize: vertical; }
+.pm-out-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+.pm-out-row input { width: 100%; padding: 5px 8px; font-family: ui-monospace, monospace; font-size: 11px; background: #1e293b; color: #67e8f9; border: 1px solid #1e293b; border-radius: 6px; }
+.copy-row { display: flex; gap: 8px; margin-top: 10px; align-items: center; flex-wrap: wrap; }
+.ok { color: #34d399; font-size: 12px; }
+
+/* ── Stats tab ───────────────────────────────────────────── */
+.stats-body { flex: 1; overflow-y: auto; padding: 20px; }
+.stat-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.stat-card { background: #0b1220; border: 1px solid #1e293b; border-radius: 10px; padding: 16px; }
+.stat-card .sc-label { font-size: 11px; color: #475569; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.stat-card .sc-num { font-size: 32px; font-weight: 700; line-height: 1; }
+.stat-card .sc-sub { font-size: 12px; color: #475569; margin-top: 4px; }
+.sc-live .sc-num { color: #34d399; }
+.sc-hidden .sc-num { color: #fb923c; }
+.sc-removed .sc-num { color: #475569; }
+.sc-total .sc-num { color: #93c5fd; }
+.stats-toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.stats-toolbar h3 { margin: 0; font-size: 14px; font-weight: 600; flex: 1; }
+.export-btn { padding: 5px 12px; font: inherit; font-size: 12px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #94a3b8; cursor: pointer; }
+.export-btn:hover { background: #253448; }
+.stats-filter-row { display: flex; gap: 4px; margin-bottom: 12px; }
+.sflt { padding: 4px 12px; font: inherit; font-size: 12px; border-radius: 20px; border: 1px solid #1e293b; background: transparent; color: #475569; cursor: pointer; }
+.sflt.active { background: #1e293b; color: #e2e8f0; border-color: #334155; }
+.stats-table-wrap { overflow-x: auto; }
+table.stats-tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+table.stats-tbl th { text-align: left; padding: 7px 10px; color: #334155; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid #1e293b; white-space: nowrap; cursor: pointer; user-select: none; }
+table.stats-tbl th:hover { color: #64748b; }
+table.stats-tbl td { padding: 8px 10px; border-bottom: 1px solid #0b1220; vertical-align: middle; }
+table.stats-tbl tr:hover td { background: #0b1220; }
+.td-name { font-weight: 500; color: #e2e8f0; max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.td-state { color: #64748b; white-space: nowrap; }
+.td-status .badge-unverified, .td-status .badge-removed { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+.reason-cell { min-width: 200px; }
+.reason-input { width: 100%; background: transparent; border: 1px solid transparent; border-radius: 4px; padding: 3px 6px; font: inherit; font-size: 12px; color: #94a3b8; cursor: text; }
+.reason-input:focus { outline: none; background: #1e293b; border-color: #334155; color: #e2e8f0; }
+.reason-input::placeholder { color: #1e293b; }
+.reason-input:hover::placeholder { color: #334155; }
+.td-date { color: #334155; white-space: nowrap; font-size: 11px; }
+.no-data { padding: 40px; text-align: center; color: #1e293b; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- ── Topbar ──────────────────────────────────────────── -->
+<div class="topbar">
+  <h1>NHG Admin</h1>
+  <nav class="tab-nav">
+    <button class="tnav active" data-tab="facilities">Facilities</button>
+    <button class="tnav" data-tab="photos">Photos</button>
+    <button class="tnav" data-tab="stats">Stats</button>
+  </nav>
+  <div class="topbar-right">
+    <div class="pill" id="fac-pill" style="display:none"><b id="fac-saved-ct">0</b> saved</div>
+    <div class="pill" id="pm-pill"  style="display:none"><b id="pm-done-ct">0</b> / <span id="pm-total-ct">0</span> done</div>
+  </div>
+</div>
+
+<!-- ── Token bars ──────────────────────────────────────── -->
+<div class="token-bars">
+  <div class="token-entry">
+    <label>Google Token</label>
+    <input type="password" id="gToken" placeholder="ya29.…" autocomplete="off" />
+    <span class="token-ok" id="gTokenOk"></span>
+    <span class="token-hint">
+      <a href="https://developers.google.com/oauthplayground/#step1&scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fspreadsheets" target="_blank">Get token</a>
+      · scope: spreadsheets · 1 hr
+    </span>
+  </div>
+  <div class="token-entry">
+    <label>GitHub Token</label>
+    <input type="password" id="ghToken" placeholder="ghp_…" autocomplete="off" />
+    <span class="token-ok" id="ghTokenOk"></span>
+    <span class="token-hint">
+      <a href="https://github.com/settings/tokens/new?scopes=public_repo&description=NHG+Admin" target="_blank">Create PAT</a>
+      · scope: public_repo
+    </span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- TAB: FACILITIES                                        -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="tab-facilities" class="tab-panel active">
+<div class="app">
+
+  <div class="sidebar">
+    <div class="sb-top">
+      <input type="search" id="fac-search" placeholder="Search…" />
+      <div class="filter-row">
+        <button class="ftab active" data-fac-filter="all">All</button>
+        <button class="ftab" data-fac-filter="edited">Edited</button>
+        <button class="ftab" data-fac-filter="saved">Saved</button>
+      </div>
+      <label class="sb-check">
+        <input type="checkbox" id="fac-show-all" />
+        Include hidden profiles
+      </label>
+    </div>
+    <div class="fac-list" id="fac-list"></div>
+    <div class="sb-foot" id="fac-foot"></div>
+  </div>
+
+  <div class="workspace">
+    <div class="empty-st" id="fac-empty">← Select a facility to edit</div>
+    <div id="fac-editor" style="display:none; flex:1; flex-direction:column;">
+
+      <div class="save-bar">
+        <h2 id="fac-title"></h2>
+        <span class="unsaved-pill" id="fac-dirty">Unsaved changes</span>
+        <button class="btn btn-muted" id="fac-discard">Discard</button>
+        <button class="btn btn-save" id="fac-save" disabled>Save to Sheet</button>
+        <span class="save-msg" id="fac-save-msg"></span>
+      </div>
+
+      <div class="form-body">
+
+        <div class="section">
+          <div class="sec-title">Basic Info</div>
+          <div class="field-grid">
+            <div class="field"><label>Facility Name</label><input data-field="title" /></div>
+            <div class="field"><label>Slug <span class="sub">(changing breaks URLs)</span></label><input data-field="slug" /></div>
+            <div class="field"><label>Area / Neighbourhood</label><input data-field="area" /></div>
+            <div class="field"><label>State</label>
+              <select data-field="state">
+                <option value="">— select —</option>
+                <option>Johor</option><option>Kuala Lumpur</option><option>Selangor</option>
+              </select>
+            </div>
+            <div class="field"><label>Status</label>
+              <select data-field="status" id="fac-status-sel">
+                <option value="">Live (blank)</option>
+                <option value="unverified">unverified — hidden</option>
+                <option value="removed">removed — permanent</option>
+              </select>
+            </div>
+            <div class="field"><label>Ownership Type</label><input data-field="ownership_type" placeholder="Private / NGO / Government" /></div>
+            <div class="field"><label>Licence Number</label><input data-field="licence_number" /></div>
+            <div class="field"><label>Last Updated</label><input data-field="last_updated" placeholder="YYYY-MM-DD" /></div>
+          </div>
+          <!-- Deactivation reason — only shown when status ≠ live -->
+          <div class="field-grid one deact-reason" id="deact-reason-row" style="margin-top:10px">
+            <div class="field">
+              <label>Deactivation Reason <span class="sub">(saved to sheet — explain why hidden/removed)</span></label>
+              <input data-field="deactivation_reason" placeholder="e.g. Care types unknown, pending outreach / Confirmed: confinement centre" />
+            </div>
+          </div>
+          <div class="field-grid one" style="margin-top:10px">
+            <div class="field"><label>Google Maps URL</label><input data-field="google_maps_url" /></div>
+            <div class="field"><label>Website URL</label><input data-field="url" /></div>
+          </div>
+          <div class="field-grid two" style="margin-top:10px">
+            <div class="field"><label>Latitude</label><input data-field="latitude" /></div>
+            <div class="field"><label>Longitude</label><input data-field="longitude" /></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="sec-title">Contact</div>
+          <div class="field-grid">
+            <div class="field"><label>Phone</label><input data-field="phone" placeholder="03-XXXX XXXX" /></div>
+            <div class="field"><label>WhatsApp</label><input data-field="whatsapp" placeholder="601X-XXX XXXX" /></div>
+            <div class="field"><label>Website</label><input data-field="website" /></div>
+            <div class="field"><label>Facebook</label><input data-field="facebook" /></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="sec-title">Pricing</div>
+          <div class="field-grid one" style="margin-bottom:10px">
+            <div class="field"><label>Pricing Display <span class="sub">(shown on card)</span></label><input data-field="pricing_display" placeholder="From RM 2,500/mo" /></div>
+          </div>
+          <div class="field-grid">
+            <div class="field"><label>Shared Room (RM/mo)</label><input data-field="shared_price" /></div>
+            <div class="field"><label>Private Room (RM/mo)</label><input data-field="private_price" /></div>
+            <div class="field"><label>4-Bed Room (RM/mo)</label><input data-field="four_bed_price" /></div>
+            <div class="field"><label>Dormitory (RM/mo)</label><input data-field="dorm_price" /></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="sec-title">Care Types</div>
+          <div class="field-grid one" style="margin-bottom:10px">
+            <div class="field"><label>Care Types <span class="sub">(pipe-separated)</span></label><input data-field="care_types" placeholder="Nursing Care|Dementia Care" /></div>
+          </div>
+          <div class="toggle-grid" id="fac-care-toggles"></div>
+        </div>
+
+        <div class="section">
+          <div class="sec-title">Medical Services</div>
+          <div class="field-grid" style="margin-bottom:10px">
+            <div class="field"><label>Doctor Visits</label><input data-field="doctor_visits" placeholder="Weekly / On-call" /></div>
+            <div class="field"><label>Nurse Ratio (Day)</label><input data-field="nurse_ratio_day" /></div>
+            <div class="field"><label>Nurse Ratio (Night)</label><input data-field="nurse_ratio_night" /></div>
+          </div>
+          <div class="toggle-grid" id="fac-medical-toggles"></div>
+        </div>
+
+        <div class="section">
+          <div class="sec-title">Facilities &amp; Access</div>
+          <div class="field-grid">
+            <div class="field"><label>Total Beds</label><input data-field="total_beds" /></div>
+            <div class="field"><label>Availability</label><input data-field="availability" placeholder="Available / Full / Call" /></div>
+            <div class="field"><label>Visiting Hours</label><input data-field="visiting_hours" placeholder="10am–7pm daily" /></div>
+            <div class="field"><label>Parking</label><input data-field="parking" placeholder="Free / Street / Limited" /></div>
+          </div>
+          <div class="toggle-grid" id="fac-access-toggles" style="margin-top:10px"></div>
+        </div>
+
+        <div class="section">
+          <div class="sec-title">Other</div>
+          <div class="field-grid">
+            <div class="field"><label>Religion</label><input data-field="religion" placeholder="Non-denominational" /></div>
+            <div class="field"><label>Languages</label><input data-field="languages" placeholder="English, Malay, Mandarin" /></div>
+            <div class="field"><label>Rating</label><input data-field="rating" /></div>
+            <div class="field"><label>Review Count</label><input data-field="review_count" /></div>
+          </div>
+          <div class="toggle-grid" id="fac-other-toggles" style="margin-top:10px"></div>
+        </div>
+
+        <div class="section">
+          <div class="sec-title">Editorial Summary</div>
+          <div class="field">
+            <label>250–400 words · 3 paragraphs · verified facts only</label>
+            <textarea data-field="editorial_summary" style="min-height:200px"></textarea>
+            <div class="sub" id="fac-wc"></div>
+          </div>
+        </div>
+
+      </div><!-- /form-body -->
+    </div><!-- /fac-editor -->
+  </div><!-- /workspace -->
+</div><!-- /app -->
+</div><!-- /tab-facilities -->
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- TAB: PHOTOS                                            -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="tab-photos" class="tab-panel">
+<div class="app">
+
+  <div class="sidebar">
+    <div class="sb-top">
+      <input type="search" id="pm-search" placeholder="Search…" />
+      <div class="filter-row">
+        <button class="ftab active" data-pm-filter="all">All</button>
+        <button class="ftab" data-pm-filter="pending">Pending</button>
+        <button class="ftab" data-pm-filter="done">Done</button>
+      </div>
+      <label class="sb-check">
+        <input type="checkbox" id="pm-photos-only" checked />
+        Only with photos
+      </label>
+    </div>
+    <div class="fac-list" id="pm-list"></div>
+    <div class="sb-foot" id="pm-foot"></div>
+  </div>
+
+  <div class="workspace">
+    <div class="empty-st" id="pm-empty">← Select a facility to start</div>
+    <div id="pm-editor" style="display:none" class="pm-workspace">
+      <div class="pm-header">
+        <h2 id="pm-title"></h2>
+        <span class="btn btn-muted" id="pm-counter" style="cursor:default;font-size:12px;padding:4px 8px"></span>
+        <button class="btn" id="pm-reset">Reset</button>
+        <button class="btn btn-done" id="pm-done-btn">Mark as done ✓</button>
+      </div>
+
+      <div class="upload-zone" id="pm-upload-zone">
+        <input type="file" id="pm-file-input" accept="image/*" multiple />
+        <div class="uz-label"><strong>Click to upload</strong> or drag &amp; drop — saved to <code>photos/{slug}/</code> in GitHub</div>
+        <div class="uz-prog" id="pm-upload-prog"></div>
+      </div>
+
+      <div class="photo-grid" id="pm-grid"></div>
+
+      <div class="pm-output">
+        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Updated <code>photos</code> cell value</div>
+        <div class="sub" style="margin-bottom:6px">Paste into the <code>photos</code> column in your Google Sheet.</div>
+        <textarea id="pm-out-photos" readonly></textarea>
+        <div class="pm-out-row">
+          <div><div class="sub" style="margin-bottom:3px">hero_image</div><input id="pm-out-hero" readonly /></div>
+          <div><div class="sub" style="margin-bottom:3px">photo_count</div><input id="pm-out-count" readonly /></div>
+        </div>
+        <div class="copy-row">
+          <button class="btn btn-primary" id="pm-copy-photos">Copy photos cell</button>
+          <button class="btn" id="pm-copy-all">Copy all 3 (TSV)</button>
+          <span id="pm-copy-msg"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- /tab-photos -->
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- TAB: STATS                                             -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="tab-stats" class="tab-panel">
+<div class="stats-body">
+  <div class="stat-cards" id="stat-cards"></div>
+  <div class="stats-toolbar">
+    <h3>Deactivated Profiles</h3>
+    <button class="export-btn" id="stats-export">Export CSV</button>
+  </div>
+  <div class="stats-filter-row">
+    <button class="sflt active" data-sflt="all">All deactivated</button>
+    <button class="sflt" data-sflt="unverified">Unverified only</button>
+    <button class="sflt" data-sflt="removed">Removed only</button>
+  </div>
+  <div class="stats-table-wrap">
+    <table class="stats-tbl">
+      <thead>
+        <tr>
+          <th data-sort="title">Facility ↕</th>
+          <th data-sort="state">State ↕</th>
+          <th data-sort="status">Status ↕</th>
+          <th>Deactivation Reason <span style="color:#1e293b;font-weight:400">(click to edit → auto-saves)</span></th>
+          <th data-sort="last_updated">Last Updated ↕</th>
+        </tr>
+      </thead>
+      <tbody id="stats-tbody"></tbody>
+    </table>
+    <div class="no-data" id="stats-empty" style="display:none">No deactivated profiles.</div>
+  </div>
+</div>
+</div><!-- /tab-stats -->
+
+<script>
+// ── Constants ─────────────────────────────────────────────
+const SHEET_ID      = '1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk';
+const SHEET_TAB     = 'Facilities';
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub?gid=292378871&single=true&output=csv';
+const GH_REPO       = 'ibkaarmy-hub/nursinghomeguide-my';
+const GH_BRANCH     = 'main';
+const PM_DONE_KEY   = 'nhg-pm-done-v1';
+const GTOKEN_KEY    = 'nhg-gtoken';
+const GHTOKEN_KEY   = 'nhg-ghtoken';
+
+// Toggle definitions
+const CARE_TOGGLES    = [{f:'care_nursing',l:'Nursing Care'},{f:'care_dementia',l:'Dementia Care'},{f:'care_palliative',l:'Palliative Care'},{f:'care_rehab',l:'Rehabilitation'},{f:'care_respite',l:'Respite Care'},{f:'care_assisted',l:'Assisted Living'}];
+const MEDICAL_TOGGLES = [{f:'medical_physio',l:'Physiotherapy'},{f:'medical_ot',l:'Occupational Therapy'},{f:'medical_wound',l:'Wound Care'},{f:'medical_peg',l:'PEG / Tube Feeding'},{f:'medical_dementia_unit',l:'Dementia Unit'},{f:'medical_dialysis',l:'Dialysis'},{f:'medical_oxygen',l:'Oxygen Therapy'},{f:'medical_meds',l:'Medication Mgmt'}];
+const ACCESS_TOGGLES  = [{f:'wheelchair',l:'Wheelchair Access'}];
+const OTHER_TOGGLES   = [{f:'halal',l:'Halal Food'},{f:'subsidy',l:'Subsidy / JKM'}];
+
+// ── Shared data ───────────────────────────────────────────
+let allFacilities = [];
+let sheetHeaders  = [];
+
+// ── Facilities tab state ──────────────────────────────────
+let fac_current   = null;
+let fac_original  = {};
+let fac_editedSet = new Set();
+let fac_savedSet  = new Set();
+let fac_filter    = 'all';
+let fac_showAll   = false;
+let fac_query     = '';
+
+// ── Photos tab state ──────────────────────────────────────
+let pm_doneSet    = new Set(JSON.parse(localStorage.getItem(PM_DONE_KEY) || '[]'));
+let pm_current    = null;
+let pm_photos     = [];
+let pm_removedSet = new Set();
+let pm_newUrls    = new Set();
+let pm_dragIdx    = null;
+let pm_filter     = 'all';
+let pm_photosOnly = true;
+let pm_query      = '';
+
+// ── Stats tab state ───────────────────────────────────────
+let stats_filter  = 'all';
+let stats_sortCol = 'status';
+let stats_sortDir = 1;
+
+// ── Helpers ───────────────────────────────────────────────
+const facKey    = f => f.slug || f.title;
+const photoCt   = f => (f.photos || '').split('|').filter(Boolean).length;
+const saveDone  = () => localStorage.setItem(PM_DONE_KEY, JSON.stringify([...pm_doneSet]));
+
+function idxToCol(n) {
+  let s = '';
+  for (n++; n > 0; n = Math.floor((n - 1) / 26)) s = String.fromCharCode(65 + (n - 1) % 26) + s;
+  return s;
+}
+
+// ── Token management ──────────────────────────────────────
+const gTokenEl  = document.getElementById('gToken');
+const ghTokenEl = document.getElementById('ghToken');
+
+function initTokens() {
+  gTokenEl.value  = localStorage.getItem(GTOKEN_KEY)  || '';
+  ghTokenEl.value = localStorage.getItem(GHTOKEN_KEY) || '';
+  updateTokenUi();
+  gTokenEl.addEventListener('input',  () => { localStorage.setItem(GTOKEN_KEY,  gTokenEl.value.trim());  updateTokenUi(); });
+  ghTokenEl.addEventListener('input', () => { localStorage.setItem(GHTOKEN_KEY, ghTokenEl.value.trim()); updateTokenUi(); });
+}
+function updateTokenUi() {
+  document.getElementById('gTokenOk').textContent  = gTokenEl.value.trim()  ? '✓' : '';
+  document.getElementById('ghTokenOk').textContent = ghTokenEl.value.trim() ? '✓' : '';
+}
+async function tryLoadTokensFromEnv() {
+  try {
+    const res = await fetch('/_config');
+    if (!res.ok) return;
+    const cfg = await res.json();
+    if (cfg.googleToken && !gTokenEl.value)  { gTokenEl.value  = cfg.googleToken;  localStorage.setItem(GTOKEN_KEY,  cfg.googleToken); }
+    if (cfg.githubToken && !ghTokenEl.value) { ghTokenEl.value = cfg.githubToken;  localStorage.setItem(GHTOKEN_KEY, cfg.githubToken); }
+    updateTokenUi();
+  } catch(_) {}
+}
+
+// ── Tab switching ─────────────────────────────────────────
+document.querySelectorAll('.tnav').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    document.querySelectorAll('.tnav').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('fac-pill').style.display = tab === 'facilities' ? '' : 'none';
+    document.getElementById('pm-pill').style.display  = tab === 'photos'     ? '' : 'none';
+    if (tab === 'stats') buildStats();
+  });
+});
+
+// ── CSV parse (fallback) ──────────────────────────────────
+function parseCSV(text) {
+  const rows = []; let cur = '', q = false, fields = [];
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i], n = text[i+1];
+    if (c === '"') { if (q && n === '"') { cur += '"'; i++; } else q = !q; }
+    else if (c === ',' && !q) { fields.push(cur); cur = ''; }
+    else if ((c === '\n' || c === '\r') && !q) {
+      if (c === '\r' && n === '\n') i++;
+      fields.push(cur); rows.push(fields); fields = []; cur = '';
+    } else cur += c;
+  }
+  if (cur || fields.length) { fields.push(cur); rows.push(fields); }
+  sheetHeaders = rows[0].map(h => h.trim());
+  return rows.slice(1).filter(r => r.length > 1).map((r, idx) => {
+    const o = { _rowIndex: idx + 2 };
+    sheetHeaders.forEach((h, i) => o[h] = (r[i] || '').trim());
+    return o;
+  });
+}
+
+// ── Sheets API parse (when token available) ───────────────
+function parseSheetValues(values) {
+  sheetHeaders = values[0].map(h => h.trim());
+  return values.slice(1).filter(r => r.some(c => c)).map((r, idx) => {
+    const o = { _rowIndex: idx + 2 };
+    sheetHeaders.forEach((h, i) => o[h] = (r[i] || '').trim());
+    return o;
+  });
+}
+
+// ── Load data ─────────────────────────────────────────────
+async function loadData() {
+  setLoading(true);
+  const token = gTokenEl.value.trim();
+  try {
+    if (token) {
+      // Use Sheets API — gets ALL rows including hidden
+      const res = await fetch(
+        `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${encodeURIComponent(SHEET_TAB)}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (!res.ok) throw new Error(`Sheets API ${res.status}`);
+      const data = await res.json();
+      allFacilities = parseSheetValues(data.values || []).filter(f => f.title);
+    } else {
+      // Fallback: published CSV (live rows only — no hidden)
+      const res = await fetch(SHEET_CSV_URL);
+      if (!res.ok) throw new Error(`CSV fetch ${res.status}`);
+      allFacilities = parseCSV(await res.text()).filter(f => f.title);
+    }
+    if (!allFacilities.length) throw new Error('0 facilities loaded');
+    console.log(`Loaded ${allFacilities.length} facilities (token: ${!!token})`);
+  } catch(e) {
+    setLoadError(e.message);
+    return;
+  }
+  setLoading(false);
+  buildFacSidebar();
+  buildPmSidebar();
+  buildStats();
+}
+
+function setLoading(on) {
+  const msg = on ? 'Loading…' : '';
+  ['fac-list', 'pm-list'].forEach(id => {
+    if (on) document.getElementById(id).innerHTML = `<div style="padding:16px;color:#334155;font-size:13px">${msg}</div>`;
+  });
+}
+function setLoadError(msg) {
+  const html = `<div style="padding:14px;color:#ef4444;font-size:12px"><strong>Load failed</strong><br><code>${msg}</code></div>`;
+  ['fac-list', 'pm-list'].forEach(id => document.getElementById(id).innerHTML = html);
+}
+
+// ══════════════════════════════════════════════════════════
+// FACILITIES TAB
+// ══════════════════════════════════════════════════════════
+
+function buildFacSidebar() {
+  const states = ['Kuala Lumpur', 'Selangor', 'Johor'];
+  let html = '', ct = 0;
+  for (const state of states) {
+    let g = allFacilities.filter(f => f.state === state);
+    if (!fac_showAll) g = g.filter(f => !f.status || (f.status !== 'removed' && f.status !== 'unverified'));
+    if (fac_query)   g = g.filter(f => f.title.toLowerCase().includes(fac_query));
+    if (fac_filter === 'edited') g = g.filter(f => fac_editedSet.has(facKey(f)));
+    if (fac_filter === 'saved')  g = g.filter(f => fac_savedSet.has(facKey(f)));
+    if (!g.length) continue;
+    ct += g.length;
+    html += `<div class="group-lbl">${state} (${g.length})</div>`;
+    for (const f of g) {
+      const k = facKey(f), edited = fac_editedSet.has(k), saved = fac_savedSet.has(k), sel = fac_current && facKey(fac_current) === k;
+      const st = !f.status ? 'live' : f.status;
+      const cls = edited ? 'st-edited' : saved ? 'st-saved' : 'st-live';
+      const badgeCls = st === 'live' ? 'badge-live' : st === 'unverified' ? 'badge-unverified' : 'badge-removed';
+      html += `<div class="fac-row ${cls} ${sel ? 'sel' : ''}" data-key="${k}">
+        <div class="fac-dot"></div>
+        <div class="fac-body"><div class="fac-title">${f.title}</div><div class="fac-sub">${f.area || state}</div></div>
+        <span class="fac-badge ${badgeCls}">${st}</span>
+      </div>`;
+    }
+  }
+  if (!ct) html = `<div style="padding:20px;text-align:center;color:#1e293b;font-size:12px">No results</div>`;
+  document.getElementById('fac-list').innerHTML = html;
+  document.getElementById('fac-foot').textContent = `${ct} facilities`;
+  document.querySelectorAll('#tab-facilities .fac-row').forEach(el => {
+    el.addEventListener('click', () => {
+      if (fac_hasDirty() && !confirm('Unsaved changes — discard?')) return;
+      const f = allFacilities.find(f => facKey(f) === el.dataset.key);
+      if (f) fac_load(f);
+    });
+  });
+  document.getElementById('fac-pill').style.display = '';
+  document.getElementById('fac-saved-ct').textContent = fac_savedSet.size;
+}
+
+// Init sidebar controls
+function initFacSidebar() {
+  document.getElementById('fac-search').addEventListener('input', e => { fac_query = e.target.value.toLowerCase(); buildFacSidebar(); });
+  document.querySelectorAll('[data-fac-filter]').forEach(b => b.addEventListener('click', () => {
+    fac_filter = b.dataset.facFilter;
+    document.querySelectorAll('[data-fac-filter]').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    buildFacSidebar();
+  }));
+  document.getElementById('fac-show-all').addEventListener('change', e => { fac_showAll = e.target.checked; buildFacSidebar(); });
+}
+
+// Build toggle groups
+function buildToggleGroup(containerId, defs) {
+  document.getElementById(containerId).innerHTML = defs.map(({f, l}) => `
+    <div class="tgl-field"><label>${l}</label>
+      <div class="tgl-row" data-field="${f}">
+        <button data-v="yes">Yes</button>
+        <button data-v="no">No</button>
+        <button data-v="" class="aq">?</button>
+      </div>
+    </div>`).join('');
+  document.getElementById(containerId).querySelectorAll('.tgl-row').forEach(row => {
+    row.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => {
+      row.querySelectorAll('button').forEach(b => b.className = '');
+      const v = btn.dataset.v;
+      btn.className = v === 'yes' ? 'ay' : v === 'no' ? 'an' : 'aq';
+      fac_onChange(row);
+    }));
+  });
+}
+
+function tglGet(row) {
+  const a = row.querySelector('.ay, .an, .aq');
+  return a ? a.dataset.v : '';
+}
+function tglSet(row, val) {
+  row.querySelectorAll('button').forEach(b => b.className = '');
+  const n = (val || '').toLowerCase().trim();
+  if (n === 'yes' || n === '1' || n === 'true') row.querySelector('[data-v=yes]').className = 'ay';
+  else if (n === 'no'  || n === '0' || n === 'false') row.querySelector('[data-v=no]').className = 'an';
+  else row.querySelector('[data-v=""]').className = 'aq';
+  row.classList.remove('dirty');
+}
+
+// Load a facility into the form
+function fac_load(f) {
+  fac_current  = f;
+  fac_original = { ...f };
+  document.getElementById('fac-empty').style.display = 'none';
+  const ed = document.getElementById('fac-editor');
+  ed.style.display = 'flex';
+  ed.style.flexDirection = 'column';
+  document.getElementById('fac-title').textContent = f.title;
+
+  // Text/select fields (scoped to fac-editor)
+  ed.querySelectorAll('[data-field]').forEach(el => {
+    if (el.tagName === 'DIV') return;
+    el.value = f[el.dataset.field] || '';
+    el.classList.remove('dirty');
+  });
+  // Toggles
+  ed.querySelectorAll('.tgl-row[data-field]').forEach(row => tglSet(row, f[row.dataset.field] || ''));
+
+  // Deactivation reason visibility
+  updateDeactRow(f.status);
+
+  // Word count
+  fac_updateWc(f.editorial_summary || '');
+  fac_setDirty(false);
+  document.getElementById('fac-save-msg').textContent = '';
+  buildFacSidebar();
+}
+
+function fac_onChange(el) {
+  const field = el.dataset.field;
+  if (!field || !fac_current) return;
+  const newVal = el.tagName === 'DIV' ? tglGet(el) : el.value;
+  const isDirty = newVal !== (fac_original[field] || '');
+  el.classList.toggle('dirty', isDirty);
+  if (field === 'status') updateDeactRow(newVal);
+  if (field === 'editorial_summary') fac_updateWc(el.value);
+  fac_setDirty(fac_hasDirty());
+}
+
+function updateDeactRow(status) {
+  const row = document.getElementById('deact-reason-row');
+  row.classList.toggle('show', !!(status && status !== ''));
+}
+
+function fac_updateWc(text) {
+  const wc = (text.trim().match(/\S+/g) || []).length;
+  const el = document.getElementById('fac-wc');
+  el.textContent = `${wc} words`;
+  el.style.color = wc < 200 ? '#ef4444' : wc > 450 ? '#f59e0b' : '#34d399';
+}
+
+function fac_hasDirty() {
+  const ed = document.getElementById('fac-editor');
+  for (const el of ed.querySelectorAll('[data-field]')) {
+    const v = el.tagName === 'DIV' ? tglGet(el) : el.value;
+    if (v !== (fac_original[el.dataset.field] || '')) return true;
+  }
+  return false;
+}
+
+function fac_setDirty(dirty) {
+  document.getElementById('fac-dirty').classList.toggle('show', dirty);
+  document.getElementById('fac-save').disabled = !dirty;
+}
+
+async function fac_save() {
+  const token = gTokenEl.value.trim();
+  if (!token) { fac_showMsg('No Google token — enter one above', 'err'); return; }
+  const saveBtn = document.getElementById('fac-save');
+  saveBtn.disabled = true; saveBtn.textContent = 'Saving…';
+
+  const ed = document.getElementById('fac-editor');
+  const updates = [];
+  ed.querySelectorAll('[data-field]').forEach(el => {
+    const field = el.dataset.field;
+    const newVal = el.tagName === 'DIV' ? tglGet(el) : el.value;
+    if (newVal === (fac_original[field] || '')) return;
+    const colIdx = sheetHeaders.indexOf(field);
+    if (colIdx === -1) return;
+    updates.push({ range: `'${SHEET_TAB}'!${idxToCol(colIdx)}${fac_current._rowIndex}`, values: [[newVal]] });
+  });
+
+  if (!updates.length) { fac_showMsg('Nothing changed', ''); saveBtn.disabled = false; saveBtn.textContent = 'Save to Sheet'; return; }
+
+  try {
+    const res = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values:batchUpdate`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ valueInputOption: 'USER_ENTERED', data: updates }),
+    });
+    if (!res.ok) { const e = await res.json().catch(()=>({})); throw new Error(e.error?.message || `API ${res.status}`); }
+
+    // Commit updated values locally
+    ed.querySelectorAll('[data-field]').forEach(el => {
+      const v = el.tagName === 'DIV' ? tglGet(el) : el.value;
+      fac_current[el.dataset.field]  = v;
+      fac_original[el.dataset.field] = v;
+      el.classList.remove('dirty');
+    });
+    ed.querySelectorAll('.tgl-row').forEach(r => r.classList.remove('dirty'));
+    fac_setDirty(false);
+    fac_savedSet.add(facKey(fac_current));
+    fac_editedSet.delete(facKey(fac_current));
+    fac_showMsg(`✓ Saved ${updates.length} field${updates.length > 1 ? 's' : ''}`, 'ok');
+    buildFacSidebar();
+  } catch(e) {
+    fac_showMsg(`✗ ${e.message}`, 'err');
+  }
+  saveBtn.disabled = false; saveBtn.textContent = 'Save to Sheet';
+}
+
+function fac_showMsg(msg, cls) {
+  const el = document.getElementById('fac-save-msg');
+  el.textContent = msg; el.className = 'save-msg' + (cls ? ' ' + cls : '');
+  if (cls === 'ok') setTimeout(() => { if (el.textContent === msg) el.textContent = ''; }, 4000);
+}
+
+function initFacForm() {
+  buildToggleGroup('fac-care-toggles',    CARE_TOGGLES);
+  buildToggleGroup('fac-medical-toggles', MEDICAL_TOGGLES);
+  buildToggleGroup('fac-access-toggles',  ACCESS_TOGGLES);
+  buildToggleGroup('fac-other-toggles',   OTHER_TOGGLES);
+
+  document.getElementById('fac-editor').querySelectorAll('[data-field]').forEach(el => {
+    el.addEventListener('input', () => fac_onChange(el));
+    el.addEventListener('change', () => fac_onChange(el));
+  });
+  document.getElementById('fac-save').addEventListener('click', fac_save);
+  document.getElementById('fac-discard').addEventListener('click', () => { if (fac_current) fac_load(fac_current); });
+}
+
+// ══════════════════════════════════════════════════════════
+// PHOTOS TAB
+// ══════════════════════════════════════════════════════════
+
+function buildPmSidebar() {
+  const liveFacs = allFacilities.filter(f => !f.status || (f.status !== 'removed' && f.status !== 'unverified'));
+  const states = ['Kuala Lumpur', 'Selangor', 'Johor'];
+  let html = '', ct = 0;
+  for (const state of states) {
+    let g = liveFacs.filter(f => f.state === state);
+    if (pm_photosOnly) g = g.filter(f => photoCt(f) > 0);
+    if (pm_query)     g = g.filter(f => f.title.toLowerCase().includes(pm_query));
+    if (pm_filter === 'pending') g = g.filter(f => !pm_doneSet.has(facKey(f)));
+    if (pm_filter === 'done')    g = g.filter(f =>  pm_doneSet.has(facKey(f)));
+    if (!g.length) continue;
+    ct += g.length;
+    html += `<div class="group-lbl">${state} (${g.length})</div>`;
+    for (const f of g) {
+      const k = facKey(f), done = pm_doneSet.has(k), sel = pm_current && facKey(pm_current) === k;
+      const n = photoCt(f);
+      html += `<div class="fac-row ${done ? 'pm-done' : ''} ${sel ? 'sel' : ''}" data-key="${k}">
+        <div class="fac-dot"></div>
+        <div class="fac-body"><div class="fac-title">${f.title}</div><div class="fac-sub">${f.area || state}</div></div>
+        <div style="font-size:10px;color:#334155;flex-shrink:0">${n > 0 ? n + '📷' : '—'}</div>
+      </div>`;
+    }
+  }
+  if (!ct) html = `<div style="padding:20px;text-align:center;color:#1e293b;font-size:12px">No results</div>`;
+  document.getElementById('pm-list').innerHTML = html;
+  document.getElementById('pm-foot').textContent = `${ct} facilities`;
+  document.querySelectorAll('#tab-photos .fac-row').forEach(el => {
+    el.addEventListener('click', () => {
+      const f = allFacilities.find(f => facKey(f) === el.dataset.key);
+      if (f) pm_load(f);
+    });
+  });
+  const withPhotos = liveFacs.filter(f => photoCt(f) > 0);
+  document.getElementById('pm-done-ct').textContent  = withPhotos.filter(f => pm_doneSet.has(facKey(f))).length;
+  document.getElementById('pm-total-ct').textContent = withPhotos.length;
+}
+
+function initPmSidebar() {
+  document.getElementById('pm-search').addEventListener('input', e => { pm_query = e.target.value.toLowerCase(); buildPmSidebar(); });
+  document.querySelectorAll('[data-pm-filter]').forEach(b => b.addEventListener('click', () => {
+    pm_filter = b.dataset.pmFilter;
+    document.querySelectorAll('[data-pm-filter]').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    buildPmSidebar();
+  }));
+  document.getElementById('pm-photos-only').addEventListener('change', e => { pm_photosOnly = e.target.checked; buildPmSidebar(); });
+}
+
+function pm_load(f) {
+  pm_current = f;
+  pm_photos  = (f.photos || '').split('|').filter(Boolean);
+  pm_removedSet.clear();
+  pm_newUrls.clear();
+  document.getElementById('pm-empty').style.display = 'none';
+  document.getElementById('pm-editor').style.display = '';
+  document.getElementById('pm-title').textContent = f.title;
+  pm_updateDoneBtn();
+  pm_render();
+  buildPmSidebar();
+}
+
+function pm_updateDoneBtn() {
+  const btn = document.getElementById('pm-done-btn');
+  const done = pm_current && pm_doneSet.has(facKey(pm_current));
+  btn.textContent = done ? '✓ Done' : 'Mark as done ✓';
+  btn.classList.toggle('is-done', !!done);
+}
+
+function pm_render() {
+  const grid = document.getElementById('pm-grid');
+  const kept = pm_photos.filter(u => !pm_removedSet.has(u));
+  const hero = kept[0] || null;
+  grid.innerHTML = pm_photos.map((u, i) => {
+    const rm = pm_removedSet.has(u), isHero = u === hero && !rm, isNew = pm_newUrls.has(u);
+    return `<div class="photo ${rm ? 'removed' : ''}" draggable="${rm ? 'false' : 'true'}" data-i="${i}">
+      <img src="${u}" loading="lazy" />
+      ${isHero ? '<span class="hero-badge">HERO</span>' : ''}
+      ${isNew  ? '<span class="new-badge">NEW</span>'  : ''}
+      <button class="xbtn" data-i="${i}"></button>
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('.xbtn').forEach(b => b.addEventListener('click', e => {
+    e.stopPropagation();
+    const u = pm_photos[+b.dataset.i];
+    pm_removedSet.has(u) ? pm_removedSet.delete(u) : pm_removedSet.add(u);
+    pm_render();
+  }));
+  grid.querySelectorAll('.photo:not(.removed)').forEach(el => {
+    el.addEventListener('dragstart', e => { pm_dragIdx = +el.dataset.i; el.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
+    el.addEventListener('dragend',   () => { el.classList.remove('dragging'); grid.querySelectorAll('.drag-on').forEach(x => x.classList.remove('drag-on')); });
+    el.addEventListener('dragover',  e => { e.preventDefault(); grid.querySelectorAll('.drag-on').forEach(x => x.classList.remove('drag-on')); el.classList.add('drag-on'); });
+    el.addEventListener('dragleave', () => el.classList.remove('drag-on'));
+    el.addEventListener('drop', e => {
+      e.preventDefault();
+      const dest = +el.dataset.i;
+      if (pm_dragIdx === null || pm_dragIdx === dest) return;
+      pm_photos.splice(dest, 0, pm_photos.splice(pm_dragIdx, 1)[0]);
+      pm_dragIdx = null; pm_render();
+    });
+  });
+  document.getElementById('pm-counter').textContent = `${kept.length} kept · ${pm_removedSet.size} removed`;
+  document.getElementById('pm-out-photos').value = kept.join('|');
+  document.getElementById('pm-out-hero').value   = hero || '';
+  document.getElementById('pm-out-count').value  = String(kept.length);
+}
+
+async function pm_upload(files) {
+  if (!files.length || !pm_current) return;
+  const slug = pm_current.slug || facKey(pm_current).replace(/\s+/g, '-').toLowerCase();
+  const prog = document.getElementById('pm-upload-prog');
+  const token = ghTokenEl.value.trim();
+  if (!token) { prog.style.color = '#ef4444'; prog.textContent = 'No GitHub token — enter it in the token bar'; return; }
+
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    prog.style.color = '#a78bfa'; prog.textContent = `Uploading ${file.name} (${i+1}/${files.length})…`;
+    try {
+      const safe   = file.name.replace(/[^a-z0-9.\-_]/gi, '-').toLowerCase();
+      const path   = `photos/${slug}/${Date.now()}-${safe}`;
+      const b64    = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result.split(',')[1]); r.onerror = rej; r.readAsDataURL(file); });
+      const resp   = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${path}`, {
+        method: 'PUT', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: `Add photo for ${pm_current.title}`, content: b64, branch: GH_BRANCH }),
+      });
+      if (!resp.ok) { const e = await resp.json().catch(()=>({})); throw new Error(e.message || `GitHub ${resp.status}`); }
+      const url = `https://raw.githubusercontent.com/${GH_REPO}/${GH_BRANCH}/${path}`;
+      pm_photos.push(url); pm_newUrls.add(url); pm_render();
+      prog.style.color = '#34d399'; prog.textContent = `✓ ${file.name} uploaded`;
+    } catch(e) {
+      prog.style.color = '#ef4444'; prog.textContent = `✗ ${file.name}: ${e.message}`; break;
+    }
+  }
+  setTimeout(() => { prog.textContent = ''; prog.style.color = ''; }, 5000);
+}
+
+function initPmEditor() {
+  const zone  = document.getElementById('pm-upload-zone');
+  const input = document.getElementById('pm-file-input');
+  zone.addEventListener('click', () => input.click());
+  input.addEventListener('change', () => pm_upload([...input.files]));
+  zone.addEventListener('dragover',  e => { e.preventDefault(); zone.classList.add('drag-on'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-on'));
+  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-on'); pm_upload([...e.dataTransfer.files].filter(f => f.type.startsWith('image/'))); });
+
+  document.getElementById('pm-reset').addEventListener('click', () => {
+    if (pm_current) { pm_removedSet.clear(); pm_newUrls.clear(); pm_photos = (pm_current.photos || '').split('|').filter(Boolean); pm_render(); }
+  });
+  document.getElementById('pm-done-btn').addEventListener('click', () => {
+    if (!pm_current) return;
+    const k = facKey(pm_current);
+    pm_doneSet.has(k) ? pm_doneSet.delete(k) : pm_doneSet.add(k);
+    saveDone(); pm_updateDoneBtn(); buildPmSidebar();
+  });
+  document.getElementById('pm-copy-photos').addEventListener('click', () => pm_copy(document.getElementById('pm-out-photos').value));
+  document.getElementById('pm-copy-all').addEventListener('click', () => {
+    pm_copy([document.getElementById('pm-out-photos').value, document.getElementById('pm-out-hero').value, document.getElementById('pm-out-count').value].join('\t'));
+    if (pm_current) { pm_doneSet.add(facKey(pm_current)); saveDone(); pm_updateDoneBtn(); buildPmSidebar(); }
+  });
+}
+
+function pm_copy(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const m = document.getElementById('pm-copy-msg');
+    m.textContent = '✓ copied'; m.className = 'ok';
+    setTimeout(() => m.textContent = '', 2000);
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+// STATS TAB
+// ══════════════════════════════════════════════════════════
+
+function buildStats() {
+  const live       = allFacilities.filter(f => !f.status);
+  const unverified = allFacilities.filter(f => f.status === 'unverified');
+  const removed    = allFacilities.filter(f => f.status === 'removed');
+
+  document.getElementById('stat-cards').innerHTML = `
+    <div class="stat-card sc-live"><div class="sc-label">Live</div><div class="sc-num">${live.length}</div><div class="sc-sub">published on site</div></div>
+    <div class="stat-card sc-hidden"><div class="sc-label">Hidden</div><div class="sc-num">${unverified.length}</div><div class="sc-sub">unverified · no URL</div></div>
+    <div class="stat-card sc-removed"><div class="sc-label">Removed</div><div class="sc-num">${removed.length}</div><div class="sc-sub">permanently hidden</div></div>
+    <div class="stat-card sc-total"><div class="sc-label">Total</div><div class="sc-num">${allFacilities.length}</div><div class="sc-sub">rows in sheet</div></div>`;
+
+  renderStatsTable();
+}
+
+function renderStatsTable() {
+  let data = allFacilities.filter(f => f.status === 'unverified' || f.status === 'removed');
+  if (stats_filter === 'unverified') data = data.filter(f => f.status === 'unverified');
+  if (stats_filter === 'removed')    data = data.filter(f => f.status === 'removed');
+  data.sort((a, b) => {
+    const av = (a[stats_sortCol] || '').toLowerCase(), bv = (b[stats_sortCol] || '').toLowerCase();
+    return av < bv ? -stats_sortDir : av > bv ? stats_sortDir : 0;
+  });
+
+  const tbody = document.getElementById('stats-tbody');
+  const empty = document.getElementById('stats-empty');
+  if (!data.length) { tbody.innerHTML = ''; empty.style.display = ''; return; }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = data.map(f => {
+    const st = f.status === 'unverified' ? 'badge-unverified' : 'badge-removed';
+    const reason = f.deactivation_reason || '';
+    return `<tr data-key="${facKey(f)}">
+      <td class="td-name" title="${f.title}">${f.title}</td>
+      <td class="td-state">${f.state || '—'}</td>
+      <td class="td-status"><span class="fac-badge ${st}">${f.status}</span></td>
+      <td class="reason-cell"><input class="reason-input" data-key="${facKey(f)}" value="${reason.replace(/"/g,'&quot;')}" placeholder="add reason…" /></td>
+      <td class="td-date">${f.last_updated || '—'}</td>
+    </tr>`;
+  }).join('');
+
+  tbody.querySelectorAll('.reason-input').forEach(inp => {
+    inp.addEventListener('blur', () => stats_saveReason(inp));
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); inp.blur(); } });
+  });
+}
+
+async function stats_saveReason(inp) {
+  const key   = inp.dataset.key;
+  const f     = allFacilities.find(f => facKey(f) === key);
+  if (!f) return;
+  const newVal = inp.value.trim();
+  if (newVal === (f.deactivation_reason || '')) return;
+
+  const token = gTokenEl.value.trim();
+  if (!token) { inp.style.borderColor = '#ef4444'; setTimeout(() => inp.style.borderColor = '', 2000); return; }
+
+  const colIdx = sheetHeaders.indexOf('deactivation_reason');
+  if (colIdx === -1) {
+    inp.title = 'Add a "deactivation_reason" column to your Google Sheet first';
+    inp.style.borderColor = '#f59e0b';
+    setTimeout(() => inp.style.borderColor = '', 3000);
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values:batchUpdate`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ valueInputOption: 'USER_ENTERED', data: [{ range: `'${SHEET_TAB}'!${idxToCol(colIdx)}${f._rowIndex}`, values: [[newVal]] }] }),
+    });
+    if (!res.ok) throw new Error(`API ${res.status}`);
+    f.deactivation_reason = newVal;
+    inp.style.borderColor = '#34d399';
+    setTimeout(() => inp.style.borderColor = '', 1500);
+  } catch(e) {
+    inp.style.borderColor = '#ef4444';
+    setTimeout(() => inp.style.borderColor = '', 2000);
+    console.error('stats_saveReason', e);
+  }
+}
+
+function initStats() {
+  document.querySelectorAll('.sflt').forEach(b => b.addEventListener('click', () => {
+    stats_filter = b.dataset.sflt;
+    document.querySelectorAll('.sflt').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    renderStatsTable();
+  }));
+  document.querySelectorAll('.stats-tbl th[data-sort]').forEach(th => {
+    th.addEventListener('click', () => {
+      if (stats_sortCol === th.dataset.sort) stats_sortDir *= -1;
+      else { stats_sortCol = th.dataset.sort; stats_sortDir = 1; }
+      renderStatsTable();
+    });
+  });
+  document.getElementById('stats-export').addEventListener('click', () => {
+    const data = allFacilities.filter(f => f.status === 'unverified' || f.status === 'removed');
+    const cols = ['title', 'state', 'area', 'status', 'deactivation_reason', 'last_updated', 'phone', 'whatsapp'];
+    const csv  = [cols.join(','), ...data.map(f => cols.map(c => `"${(f[c]||'').replace(/"/g,'""')}"`).join(','))].join('\n');
+    const a = Object.assign(document.createElement('a'), { href: 'data:text/csv,' + encodeURIComponent(csv), download: 'deactivated-facilities.csv' });
+    a.click();
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════
+async function init() {
+  initTokens();
+  await tryLoadTokensFromEnv();
+  initFacSidebar();
+  initFacForm();
+  initPmSidebar();
+  initPmEditor();
+  initStats();
+  document.getElementById('fac-pill').style.display = '';
+  document.getElementById('pm-pill').style.display  = 'none';
+  await loadData();
+}
+
+init();
+</script>
+</body>
+</html>
