@@ -40,6 +40,7 @@ body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; c
 .sheets-status { font-size: 11px; color: #94a3b8; }
 .sheets-status.ok { color: #16a34a; }
 .sheets-status.err { color: #dc2626; }
+.sheets-status.warn { color: #d97706; }
 .token-hint { font-size: 11px; color: #94a3b8; }
 .token-hint a { color: #2563eb; text-decoration: none; }
 .token-hint a:hover { text-decoration: underline; }
@@ -788,11 +789,12 @@ async function loadData() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       if (res.status === 401 || res.status === 400) {
-        // Token expired or rejected — clear it and fall through to CSV
+        // Token expired or rejected — clear it, fall through to CSV, silently refresh
         gTokenEl.value = '';
         localStorage.removeItem(GTOKEN_KEY);
         localStorage.removeItem(GTOKEN_EXPIRY_KEY);
-        setSheetsStatus('err', 'Token expired — refresh via Google sign-in');
+        setSheetsStatus('warn', 'Token expired — refreshing…');
+        requestSheetsToken().catch(() => {});
       } else if (!res.ok) {
         throw new Error(`Sheets API ${res.status}`);
       } else {
@@ -995,8 +997,13 @@ function fac_setDirty(dirty) {
 }
 
 async function fac_save() {
-  const token = gTokenEl.value.trim();
-  if (!token) { fac_showMsg('No Sheets token — sign in with Google', 'err'); return; }
+  let token = gTokenEl.value.trim();
+  if (!token) {
+    fac_showMsg('Requesting Sheets access…', '');
+    try { await requestSheetsToken(); } catch(e) {}
+    token = gTokenEl.value.trim();
+    if (!token) { fac_showMsg('Sign in with Google to enable saving', 'err'); return; }
+  }
 
   // Auto-stamp screened_date if blank
   const sdEl = document.getElementById('fac-editor').querySelector('[data-field=screened_date]');
