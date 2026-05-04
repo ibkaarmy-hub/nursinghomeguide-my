@@ -14,7 +14,7 @@ body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; c
 .login-card h1 { margin: 0 0 4px; font-size: 20px; color: #0f172a; }
 .login-card p { margin: 0 0 20px; font-size: 13px; color: #64748b; }
 .login-name-row { display: flex; gap: 8px; }
-.login-name-row input { flex: 1; padding: 9px 12px; font: inherit; font-size: 14px; border-radius: 8px; border: 1px solid #e2e8f0; outline: none; color: #1e293b; }
+.login-name-row input { flex: 1; padding: 9px 12px; font: inherit; font-size: 14px; border-radius: 8px; border: 1px solid #e2e8f0; outline: none; color: #1e293b; min-width: 0; }
 .login-name-row input:focus { border-color: #2563eb; box-shadow: 0 0 0 2px #eff6ff; }
 .login-err { margin: 10px 0 0; font-size: 12px; color: #dc2626; min-height: 16px; }
 
@@ -231,7 +231,7 @@ table.stats-tbl tr:hover td { background: #f8fafc; }
     <h1>NHG Admin</h1>
     <p>NursingHomeGuide.my · Internal tool</p>
     <div class="login-name-row">
-      <input id="login-name-input" type="text" placeholder="Your name" autocomplete="off" />
+      <input id="login-email-input" type="email" placeholder="your@email.com" autocomplete="email" />
       <button id="login-submit" class="btn btn-save">Sign in</button>
     </div>
     <p class="login-err" id="login-err"></p>
@@ -646,6 +646,7 @@ async function tryLoadTokensFromEnv() {
     const cfg = await res.json();
     if (cfg.googleToken && !gTokenEl.value)  { gTokenEl.value  = cfg.googleToken;  localStorage.setItem(GTOKEN_KEY,  cfg.googleToken); }
     if (cfg.githubToken && !ghTokenEl.value) { ghTokenEl.value = cfg.githubToken;  localStorage.setItem(GHTOKEN_KEY, cfg.githubToken); }
+    if (Array.isArray(cfg.allowedEmails)) allowedEmails = cfg.allowedEmails.map(e => e.toLowerCase());
     updateTokenUi();
   } catch(_) {}
 }
@@ -1346,30 +1347,37 @@ function initStats() {
 // LOGIN
 // ══════════════════════════════════════════════════════════
 let currentUser = null;
+let allowedEmails = []; // loaded from /_config; empty = no restriction
 
 function initLogin() {
   const stored = localStorage.getItem('nhg_admin_user');
   if (stored) {
     try {
       const u = JSON.parse(stored);
-      if (u.name) { setUser(u); return; }
+      if (u.email) { setUser(u); return; }
     } catch {}
   }
   document.getElementById('login-overlay').style.display = 'flex';
 
-  function doLogin() {
-    const name = document.getElementById('login-name-input').value.trim();
-    if (!name) {
-      document.getElementById('login-err').textContent = 'Enter your name to continue.';
+  async function doLogin() {
+    const email = document.getElementById('login-email-input').value.trim().toLowerCase();
+    const errEl = document.getElementById('login-err');
+    if (!email || !email.includes('@')) {
+      errEl.textContent = 'Enter a valid email address.';
       return;
     }
-    const u = { name };
+    if (allowedEmails.length && !allowedEmails.includes(email)) {
+      errEl.textContent = 'Access denied — this email is not authorised.';
+      return;
+    }
+    const name = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    const u = { name, email };
     localStorage.setItem('nhg_admin_user', JSON.stringify(u));
     setUser(u);
   }
 
   document.getElementById('login-submit').addEventListener('click', doLogin);
-  document.getElementById('login-name-input').addEventListener('keydown', e => {
+  document.getElementById('login-email-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') doLogin();
   });
 }
@@ -1390,9 +1398,9 @@ function setUser(u) {
 // INIT
 // ══════════════════════════════════════════════════════════
 async function init() {
-  initLogin();
   initTokens();
-  await tryLoadTokensFromEnv();
+  await tryLoadTokensFromEnv(); // must run before initLogin so allowedEmails is ready
+  initLogin();
   initFacSidebar();
   initFacForm();
   initPmSidebar();

@@ -20,9 +20,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/_config':
             env = load_env_local()
+            raw_emails = env.get('ALLOWED_EMAILS', '')
+            allowed = [e.strip() for e in raw_emails.split(',') if e.strip()]
             data = {
                 'googleToken': env.get('GOOGLE_TOKEN', ''),
                 'githubToken': env.get('GITHUB_TOKEN', ''),
+                'allowedEmails': allowed,
             }
             body = json.dumps(data).encode()
             self.send_response(200)
