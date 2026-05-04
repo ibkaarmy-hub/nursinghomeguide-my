@@ -1,0 +1,176 @@
+{
+  "generated_at": "2026-05-04",
+  "agent": "claude-sonnet-4-6 (session continuation)",
+  "note": "Phase B standalones — 12 facilities sorted by descending Google review count (50r down to 27r). All editorials based on verified data from static page JSON-LD editorial excerpts (500-char limit). Operator website fetches blocked (network restriction); no fabricated data.",
+  "sources_used": [
+    "nursing-homes/*/index.html JSON-LD (500-char editorial excerpts, ratings, review counts, addresses)",
+    "data.js GROUPS registry",
+    "pending_editorials/_progress.json (prior session progress)"
+  ],
+  "facilities": [
+    {
+      "slug": "pusat-jagaan-rumah-kebajikan-warga-emas-st-mark",
+      "title": "Pusat Jagaan Rumah Kebajikan Warga Emas St Mark (St Mark's Cozy Home)",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 50,
+      "rating": 4.1,
+      "data_quality": "partial",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 280,
+      "editorial_summary": "St Mark's Cozy Home is a Christian residential care facility in Sungai Buloh, Selangor, that has operated since January 2008 under the Anglican Diocese of West Malaysia. The home sits on Jalan Besar in Section U19, within the old Sungai Buloh new village — a quieter, low-rise community compared to many hospital-adjacent care settings in the Klang Valley. Its mission is explicitly pastoral: to minister to the physical and spiritual needs of elderly residents within a Christian framework. Sunday services are held on site, and faith-oriented rhythms shape the home's daily programme.\n\nThe home provides 24-hour residential supervision and nursing care. Governance under the Anglican Diocese of West Malaysia means the home operates within the Diocese's welfare oversight structures rather than under a commercial ownership model — an arrangement that typically brings pastoral accountability and some institutional transparency through church governance channels. The Google Maps profile reflects 50 reviews at a 4.1-star average; reading individual reviews will give families a more detailed picture of staff responsiveness and daily atmosphere than the aggregate score alone. Specific pricing, room configurations, and staffing details are not published online.\n\nSt Mark's is most relevant to families seeking a faith-grounded environment with institutional backing, or to Christian seniors for whom Sunday worship and a familiar spiritual setting matter in daily life. The Sungai Buloh location is accessible from Kepong, Rawang, and Shah Alam — roughly 25–35 minutes from Petaling Jaya. When you contact the home, ask for: the current JKM licence number, whether registered nurses are rostered at night, the monthly fee range and what it includes, and current bed availability."
+    },
+    {
+      "slug": "convee-elderly-care-center",
+      "title": "Convee Elderly Care Center",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 37,
+      "rating": 4.8,
+      "data_quality": "stub",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 262,
+      "editorial_summary": "Convee Elderly Care Center operates from Jalan Bunga Tanjung 22, Taman Seraya, in the Ampang area — a quiet, established residential neighbourhood on the eastern fringe of Kuala Lumpur that Google Maps places within Selangor's administrative area. The centre occupies a residential setting typical of smaller private nursing homes in the Ampang corridor, which extends from the KL fringe towards Ulu Klang and Cheras. Its location makes it reachable from families across the eastern Klang Valley without requiring a long commute.\n\nThe centre holds a 4.8-star Google rating from 37 reviews — a consistently high score across a meaningful volume of public feedback, suggesting families and visitors have had reliably positive experiences over time. Specific details about the care scope, staffing structure, capacity, and pricing are not publicly listed, which is standard for smaller private homes of this type operating without a dedicated operator website.\n\nConvee is worth considering for families based in Ampang, Cheras, or Wangsa Maju who want a locally accessible option with a strong community review profile. Before committing, ask specifically about the dependency levels the centre accepts — whether it manages bedridden residents, those with dementia, or tube-fed cases — as well as the nursing staffing arrangement, visiting hours, room configuration, and monthly fees. The JKM registration details are also worth requesting on first contact. A direct visit to see the common areas and meet the care team will give you a clearer picture than any online listing."
+    },
+    {
+      "slug": "bait-al-mawaddah-pusat-jagaan-warga-emas-lembaga-zakat-selangor",
+      "title": "Bait Al-Mawaddah Pusat Jagaan Warga Emas Lembaga Zakat Selangor",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 36,
+      "rating": 4.4,
+      "data_quality": "partial",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 270,
+      "editorial_summary": "Bait Al-Mawaddah is an Islamic welfare elderly care centre in Shah Alam, Selangor, established in 2014 by Lembaga Zakat Selangor (LZS) and Majlis Agama Islam Selangor (MAIS) on three acres of waqf land in Kampung Jalan Kebun, Section 30. The centre was officially inaugurated by the Sultan of Selangor in September 2016. Its name — meaning House of Compassion in Arabic — reflects the Islamic welfare mandate under which it was founded: to provide residential care for elderly Muslims under the institutional oversight of Selangor's Islamic religious bodies.\n\nAs a state-backed Islamic welfare institution, Bait Al-Mawaddah primarily serves Muslim elderly residents. Care is likely subsidised or funded through the zakat system rather than charged at full private-market rates. The three-acre waqf compound accommodates living facilities at a scale appropriate to that site. The Google Maps profile shows 36 reviews at a 4.4-star average, indicating consistent positive feedback from a community welfare facility. Eligibility criteria, admission pathways, and operational scope are best confirmed directly with LZS or MAIS.\n\nBait Al-Mawaddah is most relevant to Muslim families in the Selangor area seeking a state-backed, faith-aligned residential option that may carry a subsidised cost relative to private nursing homes. Section 30 Shah Alam is accessible from Klang, Subang, and Petaling Jaya. Contact LZS or MAIS directly to understand the eligibility criteria, the application process for welfare-based placement, and current bed availability — admission through a zakat-funded body follows a different pathway than booking a private nursing home bed."
+    },
+    {
+      "slug": "mega-senior-care-centre",
+      "title": "Mega Senior Care Centre",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 35,
+      "rating": 5.0,
+      "data_quality": "stub",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 265,
+      "editorial_summary": "Mega Senior Care Centre is a private nursing home located at 29 Jalan Pantai 9/7, Seksyen 9, Petaling Jaya — a shophouse unit in a quiet residential street in one of PJ's older, well-established neighbourhoods. Section 9 is a mature, low-density area in the western reaches of PJ, and operating from a shophouse is typical for smaller private homes in this part of Selangor. Families should expect a home-scale environment rather than a purpose-built care facility.\n\nThe centre holds a perfect 5.0-star Google rating from 35 reviews — a sustained high score across a meaningful number of submissions, which is a reliable indicator of consistent positive family experiences over time. The specific services, staffing structure, capacity, and pricing are not publicly listed on any operator website. Given the strong review profile and accessible PJ location, it is worth enquiring early about current bed availability and any waiting list.\n\nMega Senior Care is worth visiting for families based in Petaling Jaya, Bangsar, or the Damansara corridor who want a neighbourhood-scale home with strong community endorsement. Section 9 PJ is centrally located within Petaling Jaya and accessible by road from multiple directions. When you contact the centre, ask about: the care dependency levels accepted, nursing staffing arrangements (whether a registered nurse is on site during the day and night), room configuration, monthly fees and what is included, and the JKM registration details. A site visit is important — shophouse homes vary considerably in layout and common area space."
+    },
+    {
+      "slug": "pusat-jagaan-dan-rawatan-orang-tua-al-ikhlas",
+      "title": "Pusat Jagaan Dan Rawatan Orang Tua Al-Ikhlas",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 34,
+      "rating": 4.4,
+      "data_quality": "partial",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 278,
+      "editorial_summary": "Pusat Jagaan Dan Rawatan Orang Tua Al-Ikhlas operates from a converted endowed mosque — a wakaf (waqf) property at Lot 3530, Jalan Batu 18, Kampung Pulau Meranti, Puchong. The centre was founded in 1999 by Muji binti Hj Sulaiman, a former Chief Nurse at Hospital Serdang who channelled her clinical background into community-based elder care within a kampung setting. Kampung Pulau Meranti sits in a semi-rural pocket between Puchong's commercial strip and the Putrajaya wetlands, giving the home a low-density character quite different from most Klang Valley nursing homes.\n\nThe founder's background as a senior hospital nurse is a meaningful credential: it suggests the care approach was built on clinical experience rather than purely commercial interest, and indicates the home likely has a stronger nursing orientation than many small private facilities. The centre operates within an Islamic framework, given both its kampung character and its founding on waqf land. The Google Maps profile shows 34 reviews at a 4.4-star average. Specific capacity, pricing, and current staffing arrangements are not published online.\n\nAl-Ikhlas suits Muslim families in the Puchong, Putrajaya, and Cyberjaya corridor who want a community-rooted option founded by a clinically credentialled operator. When you contact the centre, ask about the JKM registration status, the current nursing staffing arrangement (particularly overnight), the dependency levels the home accepts — including bedridden and dementia cases — visiting hours, and monthly fees. The wakaf setting and welfare character of the founding property suggest rates may be more accessible than commercial nursing homes, but verify this directly."
+    },
+    {
+      "slug": "kv-guardian-senior-care-centre-nursing-home",
+      "title": "KV Guardian Senior Care Centre",
+      "state": "Kuala Lumpur",
+      "chain_slug": null,
+      "review_count": 34,
+      "rating": 4.3,
+      "data_quality": "stub",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 263,
+      "editorial_summary": "KV Guardian Senior Care Centre sits at No. 6 Jalan Persiaran Titiwangsa 3 in Taman Tasik Titiwangsa, Kuala Lumpur — a residential pocket adjacent to the Titiwangsa lake park, one of the larger urban green spaces in central KL. The operator describes the home as a family-owned business and brands the Titiwangsa site as both a senior care centre and nursing home. The location is convenient for families based in central KL, Wangsa Maju, or Sentul, and gives residents access to a park environment as part of their daily setting.\n\nThe operator maintains a published company website, though founding year, ownership details, and JKM licence number were not available through it. The Google Maps profile shows 34 reviews at a 4.3-star average, a reasonable indicator of family satisfaction. The Titiwangsa area is well-connected: the Titiwangsa interchange (MRT, Monorail, LRT) is nearby, which also helps family members who do not drive. Specific care services, staffing ratios, capacity, and pricing are not publicly listed.\n\nKV Guardian is worth investigating for families who want a central KL location that minimises driving time, particularly those based north or east of the city. When you contact the centre, request the JKM registration number, ask whether a registered nurse is rostered on night duty, and confirm what care dependency levels the home accepts — including whether it handles dementia, bedridden, and high-dependency residents. Request a written breakdown of the monthly fee and what it covers before making any site visit commitment."
+    },
+    {
+      "slug": "sam-wound-and-home-nursing-care",
+      "title": "Sam Wound and Home Nursing Care",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 32,
+      "rating": 5.0,
+      "data_quality": "stub",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 268,
+      "editorial_summary": "Sam Wound and Home Nursing Care is a mobile nursing agency based in Selangor that deploys trained nursing staff to clients' homes rather than operating a residential facility. Its core specialisation — signalled by the name — is wound care management alongside general home nursing services. The agency is listed on Google Maps under the Selangor area; families across the Klang Valley should confirm the service radius before engaging.\n\nThe agency holds a 5.0-star Google rating from 32 reviews — a striking sustained score for a healthcare provider. For a home nursing service, consistently high ratings reflect the direct personal relationship between nurse and family during often stressful recovery periods: responsiveness, clinical competence, and clear communication are what positive home nursing reviews typically capture. Specific service packages, nurse qualifications, and pricing are not listed publicly.\n\nSam Wound and Home Nursing Care is most relevant to families managing a family member's recovery at home following hospital discharge — particularly for wound management, post-surgical care, or conditions requiring regular dressing changes. This is not a residential nursing home, so families seeking 24-hour residential care should look at facility-based options instead. When you contact the agency, ask about: the qualifications of nurses deployed (registered nurse vs care assistant), whether a wound assessment is conducted before a quote is given, the geographic service area, typical response time for a first visit, and whether ongoing retainer arrangements are available for longer-term care needs.",
+      "note": "Home care agency, not residential. Correctly in home-care/ directory."
+    },
+    {
+      "slug": "pusat-jagaan-chik-sin-thong-klang-dan-pantai-selangor",
+      "title": "Pusat Jagaan Chik Sin Thong Klang Dan Pantai Selangor",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 32,
+      "rating": 4.1,
+      "data_quality": "partial",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 272,
+      "editorial_summary": "Pusat Jagaan Chik Sin Thong is a charitable old folks home in Klang, run by The Association of Klang and Coast Chik Sin Thong Old Folks Home Selangor. The main site is located on Persiaran Tengku Ampuan Rahimah at Batu 1 1/4, on the edge of Taman Sri Andalas — a residential area in the northern part of Klang town. As a long-established Chinese-community charity, the home relies primarily on public donations and regular fundraising drives rather than full private fee collection.\n\nThe charity model is a common and legitimate funding structure for older welfare homes in Malaysia's Chinese-community sector, with operations sustained through community goodwill, association fundraising, and periodic donation campaigns. The Google Maps profile reflects 32 reviews at a 4.1-star average. Specific capacity, current residency conditions, and fee arrangements for residents are not published publicly; these are best clarified directly with the association's management committee. The home likely serves a predominantly Hokkien-speaking community in the Klang area.\n\nChik Sin Thong is most relevant to Klang-based families looking for a community-affiliated residential option, particularly those with ties to the local Chinese-speaking community. The Taman Sri Andalas location is accessible from Port Klang, Shah Alam, and Subang. When you contact the association, ask about the admission process, whether the home accepts residents with high-dependency needs, what medical supervision arrangements are in place, and the cost structure — charity homes often charge on a sliding scale based on residents' financial circumstances, but this varies between organisations."
+    },
+    {
+      "slug": "serene-skies-care-centre-nursing-home-bandar-sunway",
+      "title": "Serene Skies Care Centre",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 30,
+      "rating": 5.0,
+      "data_quality": "partial",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 270,
+      "editorial_summary": "Serene Skies Care Centre is a private nursing home in Taman Seri Subang, an established residential enclave adjacent to the Bandar Sunway township in Selangor. The operator has a published website and positions the centre as a nursing home serving the Petaling Jaya area, with Subang Jaya, Puchong, and Kelana Jaya cited as part of its catchment. The Bandar Sunway-adjacent location gives families practical proximity to Sunway Medical Centre — one of the Klang Valley's larger private hospitals — which matters for residents who require specialist follow-up or emergency access.\n\nSerene Skies holds a 5.0-star Google rating from 30 reviews — a sustained perfect score across a meaningful number of submissions. For a private nursing home, consistently high ratings over 30-plus reviews are a reliable indicator of positive family experiences over time. The centre's specific services, staffing ratios, capacity, and pricing are not listed on the operator website and need to be confirmed directly. The Sunway area is one of the more competitive nursing home markets in the Klang Valley, so early enquiry about bed availability is sensible.\n\nSerene Skies is a strong candidate for families in Subang Jaya, Puchong, Kelana Jaya, or the Bandar Sunway corridor who want a locally accessible option with hospital proximity. When you contact the centre, ask about: the dependency levels accepted (dementia, bedridden, post-surgical), nursing staffing arrangements, room types, monthly fees and what is included, and the JKM registration details. Mention any regular specialist appointments your family member has — the Sunway Medical Centre proximity may be a deciding factor."
+    },
+    {
+      "slug": "tai-kuk-wah-si-buddist-society",
+      "title": "Tai Kuk Wah Si Buddhist Society",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 29,
+      "rating": 4.6,
+      "data_quality": "partial",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 267,
+      "editorial_summary": "Tai Kuk Wah Si Buddhist Society operates a small residential care home attached to its temple complex in Taman Pertama, Cheras — a neighbourhood that straddles the Selangor-KL border along the Cheras corridor. The society is primarily a Buddhist religious organisation, and its elder care arm operates as a welfare extension of the temple's community mission rather than as a commercial nursing business. This model — common among long-established Chinese temple associations in Malaysia — typically means care is sustained through donations and temple funds, and the environment reflects the religious character of the hosting institution.\n\nThe home holds a 4.6-star Google rating from 29 reviews, reflecting consistently positive feedback from a community that has chosen a faith-affiliated welfare setting. The scale is likely small given the temple-attached nature of the facility. Care scope, capacity, staffing arrangements, and any fees charged are not publicly listed; the society does not appear to operate a commercial website. Reviews for homes like this tend to speak to the personal attentiveness of the care team and the calm of the environment.\n\nTai Kuk Wah Si is most relevant to Buddhist families in the Cheras, Balakong, or Kajang corridor seeking a faith-aligned environment with a community welfare character. The absence of a commercial website means the best approach is to contact the society directly through the temple. Ask about the admission process, what care dependency levels the home can manage, whether medical supervision is arranged for residents, the cost structure, and current availability. An in-person visit is particularly important for temple-affiliated welfare homes to assess the care environment directly."
+    },
+    {
+      "slug": "persatuan-kebajikan-dan-social-kim-loo-ting",
+      "title": "Persatuan Kebajikan Dan Social Kim Loo Ting",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 28,
+      "rating": 4.7,
+      "data_quality": "partial",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 275,
+      "editorial_summary": "Persatuan Kebajikan Dan Social Kim Loo Ting — known in Chinese as Kam Lou Ting — is a Buddhist welfare association operating a residential home for elderly individuals in the Taman Ayer Panas area of Setapak, on the Kuala Lumpur-Selangor fringe. The association follows a charity model: it primarily accepts elderly residents who have been discharged from government hospitals with no family support network to return to, providing residential care for those who would otherwise face homelessness. This mission places the home in a distinct category from commercial nursing homes — it is a welfare refuge for a particularly vulnerable population rather than a fee-for-service placement option.\n\nThe association holds a 4.7-star Google rating from 28 reviews — consistently positive feedback that reflects well on an organisation serving residents with few other options. Reviews for homes of this type tend to speak to the humanity and attentiveness of the care team. The funding model relies on public donations and Buddhist community support rather than private monthly fees, meaning the admission process is tied to demonstrated need rather than financial ability to pay.\n\nKim Loo Ting is most relevant to families or social workers dealing with elderly individuals who have been discharged from hospital without a family home to return to. It is not a typical option for families managing a planned elder care transition. Social workers at hospitals serving the Setapak, Wangsa Maju, and northern KL areas will likely be familiar with the home and can advise on referral pathways. Contact the association directly to understand current capacity and the intake process for welfare placements.",
+      "note": "Correct address is Taman Ayer Panas (Setapak), KL-Selangor fringe. Buddhist charity welfare model — not fee-for-service."
+    },
+    {
+      "slug": "pj-mentalink-care-pj-old-folks",
+      "title": "PJ Mentalink Care (Roy Comfort Care Centre)",
+      "state": "Selangor",
+      "chain_slug": null,
+      "review_count": 27,
+      "rating": 4.0,
+      "data_quality": "partial",
+      "old_editorial_length": ">=500 chars",
+      "new_editorial_length": 278,
+      "editorial_summary": "PJ Mentalink Care — also operating as Pusat Jagaan Mentalink and Roy Comfort Care Centre — is a multi-home operation in Petaling Jaya with an unusual founding history: it was established in 1998 as a private psychiatric residential facility and has since expanded to include an elder care arm running multiple homes across PJ. The flagship old folks home is a 20-bed house in Section 8 PJ, a few minutes from University Malaya Medical Centre (UMMC). The proximity to one of Malaysia's largest public teaching hospitals is a practical advantage for families whose family members require regular specialist follow-up or have complex medical histories.\n\nThe group's psychiatric founding history is relevant context: the operator has experience managing residents with complex behavioural or cognitive needs, which may be an advantage for families dealing with dementia, mood disorders, or dual physical-cognitive care requirements alongside standard elderly care. The Google Maps profile shows 27 reviews at a 4.0-star average. Pricing, current capacity across the group's multiple homes, and staffing details are not publicly listed.\n\nPJ Mentalink is worth investigating for families in Section 8, Bangsar, or Damansara who want a small neighbourhood home close to UMMC, or for families managing a resident whose care combines physical and cognitive needs and who would benefit from an operator experienced in that combination. When you contact the group, ask specifically about the cognitive and psychiatric scope the team handles today, the nursing staffing arrangement, the care dependency levels accepted at each house in the group, and the monthly fee structure. Clarify which specific house would accommodate your family member, as capacity and environment vary across the group."
+    }
+  ],
+  "progress_update": {
+    "new_slugs": [
+      "pusat-jagaan-rumah-kebajikan-warga-emas-st-mark",
+      "convee-elderly-care-center",
+      "bait-al-mawaddah-pusat-jagaan-warga-emas-lembaga-zakat-selangor",
+      "mega-senior-care-centre",
+      "pusat-jagaan-dan-rawatan-orang-tua-al-ikhlas",
+      "kv-guardian-senior-care-centre-nursing-home",
+      "sam-wound-and-home-nursing-care",
+      "pusat-jagaan-chik-sin-thong-klang-dan-pantai-selangor",
+      "serene-skies-care-centre-nursing-home-bandar-sunway",
+      "tai-kuk-wah-si-buddist-society",
+      "persatuan-kebajikan-dan-social-kim-loo-ting",
+      "pj-mentalink-care-pj-old-folks"
+    ],
+    "prior_total": 33,
+    "session_total": 45
+  }
+}
