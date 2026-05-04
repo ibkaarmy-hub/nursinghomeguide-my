@@ -45,10 +45,7 @@
 .cmp-row-value.unknown { font-weight: 400; color: #94a3b8; }
 
 .cmp-care-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
-.cmp-care-tag { padding: 3px 9px; border-radius: 999px; font-size: .78rem; font-weight: 500; }
-.cmp-care-tag.yes { background: #dcfce7; color: #166534; }
-.cmp-care-tag.no  { background: #fef2f2; color: #991b1b; }
-.cmp-care-tag.unk { background: #f1f5f9; color: #94a3b8; font-weight: 400; }
+.cmp-care-tag { padding: 3px 9px; border-radius: 999px; font-size: .78rem; font-weight: 500; background: #dcfce7; color: #166534; }
 
 .cmp-contact { display: flex; flex-direction: column; gap: 7px; margin-top: 14px; }
 .cmp-cta { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; border-radius: 8px; font-weight: 600; font-size: .85rem; text-decoration: none; transition: opacity .15s; }
@@ -152,10 +149,8 @@ function waNumber(f) {
 }
 
 function careTag(label, val) {
-  const state = yn(val);
-  const cls    = state === true ? 'yes' : state === false ? 'no' : 'unk';
-  const prefix = state === true ? '✓ ' : state === false ? '✗ ' : '? ';
-  return `<span class="cmp-care-tag ${cls}">${prefix}${escH(label)}</span>`;
+  if (yn(val) !== true) return '';
+  return `<span class="cmp-care-tag yes">${escH(label)}</span>`;
 }
 
 function renderCard(f) {
@@ -218,7 +213,7 @@ function renderCard(f) {
 
         <div class="cmp-row">
           <span class="cmp-row-label">Care Types</span>
-          <div class="cmp-care-tags">${careTags}</div>
+          <div class="cmp-care-tags">${careTags || '<span style="font-size:.82rem;color:#94a3b8">Not confirmed</span>'}</div>
         </div>
 
         <div class="cmp-contact">
