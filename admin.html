@@ -761,7 +761,8 @@ function parseSheetValues(values) {
 // ── Load data ─────────────────────────────────────────────
 async function loadData() {
   setLoading(true);
-  const token = gTokenEl.value.trim();
+  // Only use the Sheets API token if it's currently valid (not expired)
+  const token = sheetsTokenValid() ? gTokenEl.value.trim() : '';
   try {
     if (token) {
       // Use Sheets API — gets ALL rows including hidden
@@ -779,7 +780,6 @@ async function loadData() {
       allFacilities = parseCSV(await res.text()).filter(f => f.title);
     }
     if (!allFacilities.length) throw new Error('0 facilities loaded');
-    console.log(`Loaded ${allFacilities.length} facilities (token: ${!!token})`);
   } catch(e) {
     setLoadError(e.message);
     return;
@@ -1432,8 +1432,7 @@ function handleGoogleCredential(response) {
   const u = { name: payload.given_name || payload.name || email.split('@')[0], email };
   localStorage.setItem('nhg_admin_user', JSON.stringify(u));
   setUser(u);
-  // Request Sheets access — shows one-time consent popup if needed
-  requestSheetsToken(false);
+  afterSignIn();
 }
 
 function initLogin() {
@@ -1443,8 +1442,7 @@ function initLogin() {
       const u = JSON.parse(stored);
       if (u.email) {
         setUser(u);
-        // GIS already loaded — silently refresh Sheets token
-        requestSheetsToken(false);
+        afterSignIn();
         return;
       }
     } catch {}
@@ -1475,6 +1473,12 @@ function setUser(u) {
   });
 }
 
+async function afterSignIn() {
+  // Get a fresh Sheets token, then load data
+  await requestSheetsToken(false);
+  await loadData();
+}
+
 // ══════════════════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════════════════
@@ -1482,7 +1486,6 @@ async function init() {
   initTokens();
   await tryLoadTokensFromEnv();  // local serve.py: fills allowedEmails + tokens
   await loadGIS();               // loads GIS + sets up token client
-  initLogin();                   // shows overlay or auto-restores session
   initFacSidebar();
   initFacForm();
   initPmSidebar();
@@ -1490,7 +1493,7 @@ async function init() {
   initStats();
   document.getElementById('fac-pill').style.display = '';
   document.getElementById('pm-pill').style.display  = 'none';
-  await loadData();
+  initLogin();                   // shows overlay or calls setUser() → afterSignIn()
 }
 
 init();
