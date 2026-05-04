@@ -57,6 +57,17 @@
 .cmp-remove-btn { display: block; width: 100%; margin-top: 10px; background: none; border: 1px dashed #e2e8f0; border-radius: 8px; padding: 7px; font: inherit; font-size: .8rem; color: #94a3b8; cursor: pointer; }
 .cmp-remove-btn:hover { color: #ef4444; border-color: #fca5a5; background: #fef2f2; }
 
+/* Section headers within cards */
+.cmp-section { margin-top: 14px; padding-top: 12px; border-top: 2px solid #f1f5f9; }
+.cmp-section-head { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #2563eb; margin-bottom: 8px; }
+
+/* Price rows */
+.cmp-price-rows { display: flex; flex-direction: column; gap: 4px; }
+.cmp-price-row  { display: flex; justify-content: space-between; align-items: baseline; font-size: .85rem; }
+.cmp-price-type { color: var(--text-muted, #64748b); }
+.cmp-price-val  { font-weight: 700; color: var(--text, #0f172a); }
+.cmp-price-val.unknown { font-weight: 400; color: #94a3b8; }
+
 /* Empty state */
 .cmp-empty { text-align: center; padding: 80px 20px; }
 .cmp-empty h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
@@ -153,32 +164,56 @@ function careTag(label, val) {
   return `<span class="cmp-care-tag yes">${escH(label)}</span>`;
 }
 
+function priceRow(label, val) {
+  if (!val || ['not stated','not published','unknown','tbd'].some(t => val.toLowerCase().includes(t))) return '';
+  return `<div class="cmp-price-row"><span class="cmp-price-type">${escH(label)}</span><span class="cmp-price-val">RM ${escH(val)}/mo</span></div>`;
+}
+
 function renderCard(f) {
   const url   = facilityUrl(f);
   const wa    = waNumber(f);
   const waMsg = encodeURIComponent(`Hi, I found ${f.title} on NursingHomeGuide.my and would like to enquire about availability and pricing.`);
-
-  const price = f.shared_price || f.private_price || f.pricing_display || '';
-  const priceDisplay = price && !['not stated','not published','unknown'].some(t => price.toLowerCase().includes(t))
-    ? (f.shared_price ? `From RM ${f.shared_price}/mo` : price)
-    : 'Call for pricing';
-  const priceKnown = priceDisplay !== 'Call for pricing';
 
   const rating = parseFloat(f.rating);
   const ratingDisplay = !isNaN(rating)
     ? `⭐ ${rating.toFixed(1)} (${f.review_count || 0} reviews)`
     : 'No rating';
 
+  /* ── Pricing ── */
+  const pricingRows = [
+    priceRow('Shared room',   f.shared_price),
+    priceRow('4-bed room',    f.four_bed_price),
+    priceRow('Open ward',     f.dorm_price),
+    priceRow('Private room',  f.private_price),
+  ].join('');
+  const hasAnyPrice = !!pricingRows;
+
+  /* ── Care types (confirmed yes only) ── */
   const careTags = [
-    careTag('Skilled Nursing',     f.care_nursing),
-    careTag('Assisted Living',     f.care_assisted),
-    careTag('Dementia Care',       f.care_dementia),
-    careTag('Rehab / Step-down',   f.care_rehab),
-    careTag('Palliative Care',     f.care_palliative),
-    careTag('Respite',             f.care_respite),
+    careTag('Skilled Nursing',   f.care_nursing),
+    careTag('Assisted Living',   f.care_assisted),
+    careTag('Dementia Care',     f.care_dementia),
+    careTag('Rehab / Step-down', f.care_rehab),
+    careTag('Palliative Care',   f.care_palliative),
+    careTag('Respite',           f.care_respite),
+  ].join('');
+
+  /* ── Medical capabilities (confirmed yes only) ── */
+  const medTags = [
+    careTag('Doctor Visits',     f.doctor_visits),
+    careTag('Physiotherapy',     f.medical_physio),
+    careTag('Occupational Therapy', f.medical_ot),
+    careTag('Wound Care',        f.medical_wound),
+    careTag('Tube Feeding (PEG/NG)', f.medical_peg),
+    careTag('Dementia Unit',     f.medical_dementia_unit),
+    careTag('Dialysis Support',  f.medical_dialysis),
+    careTag('Oxygen Therapy',    f.medical_oxygen),
+    careTag('Medication Mgmt',   f.medical_meds),
   ].join('');
 
   const heroStyle = f.hero_image ? `background-image:url('${escH(f.hero_image)}')` : '';
+  const unknown = s => `<span class="cmp-row-value unknown">${s}</span>`;
+  const known   = s => `<span class="cmp-row-value">${s}</span>`;
 
   return `
     <div class="cmp-card" id="cmp-card-${escH(f.slug)}">
@@ -190,30 +225,52 @@ function renderCard(f) {
         <div class="cmp-card-area">📍 ${escH(f.area || '')}${f.state ? ', ' + escH(f.state) : ''}</div>
 
         <div class="cmp-row">
-          <span class="cmp-row-label">Monthly Fee</span>
-          <span class="cmp-row-value${priceKnown ? '' : ' unknown'}">${escH(priceDisplay)}</span>
-        </div>
-
-        <div class="cmp-row">
           <span class="cmp-row-label">Google Rating</span>
-          <span class="cmp-row-value${!isNaN(rating) ? '' : ' unknown'}">${escH(ratingDisplay)}</span>
+          ${!isNaN(rating) ? known(escH(ratingDisplay)) : unknown('No rating')}
         </div>
 
         <div class="cmp-row">
           <span class="cmp-row-label">Languages</span>
-          <span class="cmp-row-value${f.languages ? '' : ' unknown'}">${escH(f.languages || 'Not stated')}</span>
+          ${f.languages ? known(escH(f.languages)) : unknown('Not stated')}
         </div>
 
         <div class="cmp-row">
           <span class="cmp-row-label">Halal food / certified kitchen</span>
-          <span class="cmp-row-value${yn(f.halal) === null ? ' unknown' : ''}">
-            ${yn(f.halal) === true ? '✓ Yes' : yn(f.halal) === false ? '✗ No' : 'Not declared'}
-          </span>
+          ${yn(f.halal) === true ? known('✓ Yes') : yn(f.halal) === false ? known('✗ No') : unknown('Not declared')}
         </div>
 
         <div class="cmp-row">
-          <span class="cmp-row-label">Care Types</span>
+          <span class="cmp-row-label">Wheelchair access</span>
+          ${yn(f.wheelchair) === true ? known('✓ Yes') : yn(f.wheelchair) === false ? known('✗ No') : (f.wheelchair ? known(escH(f.wheelchair)) : unknown('Not stated'))}
+        </div>
+
+        <div class="cmp-row">
+          <span class="cmp-row-label">Subsidy / JKM accepted</span>
+          ${yn(f.subsidy) === true ? known('✓ Yes') : yn(f.subsidy) === false ? known('✗ No') : (f.subsidy ? known(escH(f.subsidy)) : unknown('Not stated'))}
+        </div>
+
+        ${f.visiting_hours ? `<div class="cmp-row"><span class="cmp-row-label">Visiting hours</span>${known(escH(f.visiting_hours))}</div>` : ''}
+
+        ${f.total_beds ? `<div class="cmp-row"><span class="cmp-row-label">Total beds</span>${known(escH(f.total_beds))}</div>` : ''}
+
+        <!-- Pricing -->
+        <div class="cmp-section">
+          <div class="cmp-section-head">Pricing</div>
+          ${hasAnyPrice
+            ? `<div class="cmp-price-rows">${pricingRows}</div>`
+            : `<span class="cmp-row-value unknown">Call for pricing</span>`}
+        </div>
+
+        <!-- Care types -->
+        <div class="cmp-section">
+          <div class="cmp-section-head">Care offered</div>
           <div class="cmp-care-tags">${careTags || '<span style="font-size:.82rem;color:#94a3b8">Not confirmed</span>'}</div>
+        </div>
+
+        <!-- Medical capabilities -->
+        <div class="cmp-section">
+          <div class="cmp-section-head">Medical capabilities</div>
+          <div class="cmp-care-tags">${medTags || '<span style="font-size:.82rem;color:#94a3b8">Not confirmed</span>'}</div>
         </div>
 
         <div class="cmp-contact">
