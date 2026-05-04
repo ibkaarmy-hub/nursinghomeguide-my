@@ -37,6 +37,9 @@ body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; c
 .token-entry input { width: 280px; padding: 4px 8px; font: inherit; font-size: 12px; font-family: ui-monospace, monospace; border-radius: 5px; border: 1px solid #cbd5e1; background: #fff; color: #1e293b; }
 .token-entry input::placeholder { color: #94a3b8; }
 .token-ok { font-size: 11px; color: #16a34a; }
+.sheets-status { font-size: 11px; color: #94a3b8; }
+.sheets-status.ok { color: #16a34a; }
+.sheets-status.err { color: #dc2626; }
 .token-hint { font-size: 11px; color: #94a3b8; }
 .token-hint a { color: #2563eb; text-decoration: none; }
 .token-hint a:hover { text-decoration: underline; }
@@ -251,24 +254,23 @@ table.stats-tbl tr:hover td { background: #f8fafc; }
   </div>
 </div>
 
+<!-- hidden input keeps existing JS working unchanged -->
+<input type="hidden" id="gToken" />
+
 <!-- ── Token bars ──────────────────────────────────────── -->
 <div class="token-bars">
   <div class="token-entry">
-    <label>Google Token</label>
-    <input type="password" id="gToken" placeholder="ya29.…" autocomplete="off" />
+    <label>Google Sheets</label>
     <span class="token-ok" id="gTokenOk"></span>
-    <span class="token-hint">
-      <a href="https://developers.google.com/oauthplayground/#step1&scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fspreadsheets" target="_blank">Get token</a>
-      · scope: spreadsheets · 1 hr
-    </span>
+    <span class="sheets-status" id="sheets-status">connecting…</span>
   </div>
   <div class="token-entry">
     <label>GitHub Token</label>
-    <input type="password" id="ghToken" placeholder="ghp_…" autocomplete="off" />
+    <input type="password" id="ghToken" placeholder="ghp_… (for photo uploads)" autocomplete="off" />
     <span class="token-ok" id="ghTokenOk"></span>
     <span class="token-hint">
       <a href="https://github.com/settings/tokens/new?scopes=public_repo&description=NHG+Admin" target="_blank">Create PAT</a>
-      · scope: public_repo
+      · saved permanently
     </span>
   </div>
 </div>
@@ -622,27 +624,93 @@ function idxToCol(n) {
 const gTokenEl  = document.getElementById('gToken');
 const ghTokenEl = document.getElementById('ghToken');
 
+const GTOKEN_EXPIRY_KEY = 'nhg_gtoken_expiry';
+let gTokenClient = null;
+let _sheetsTokenResolve = null;
+
 function initTokens() {
+  // Restore cached Sheets token (may already be valid)
   gTokenEl.value  = localStorage.getItem(GTOKEN_KEY)  || '';
   ghTokenEl.value = localStorage.getItem(GHTOKEN_KEY) || '';
   updateTokenUi();
-  gTokenEl.addEventListener('input',  () => { localStorage.setItem(GTOKEN_KEY,  gTokenEl.value.trim());  updateTokenUi(); });
   ghTokenEl.addEventListener('input', () => { localStorage.setItem(GHTOKEN_KEY, ghTokenEl.value.trim()); updateTokenUi(); });
 }
+
 function updateTokenUi() {
-  document.getElementById('gTokenOk').textContent  = gTokenEl.value.trim()  ? '✓' : '';
   document.getElementById('ghTokenOk').textContent = ghTokenEl.value.trim() ? '✓' : '';
 }
+
+function setSheetsStatus(state, msg) {
+  const el = document.getElementById('sheets-status');
+  el.textContent = msg;
+  el.className = 'sheets-status' + (state ? ' ' + state : '');
+  document.getElementById('gTokenOk').textContent = state === 'ok' ? '✓' : '';
+}
+
 async function tryLoadTokensFromEnv() {
   try {
     const res = await fetch('/_config');
     if (!res.ok) return;
     const cfg = await res.json();
-    if (cfg.googleToken && !gTokenEl.value)  { gTokenEl.value  = cfg.googleToken;  localStorage.setItem(GTOKEN_KEY,  cfg.googleToken); }
-    if (cfg.githubToken && !ghTokenEl.value) { ghTokenEl.value = cfg.githubToken;  localStorage.setItem(GHTOKEN_KEY, cfg.githubToken); }
+    // Local serve.py: google token pre-filled (fallback if GIS fails)
+    if (cfg.googleToken) { gTokenEl.value = cfg.googleToken; localStorage.setItem(GTOKEN_KEY, cfg.googleToken); }
+    if (cfg.githubToken && !ghTokenEl.value) { ghTokenEl.value = cfg.githubToken; localStorage.setItem(GHTOKEN_KEY, cfg.githubToken); }
     if (Array.isArray(cfg.allowedEmails)) allowedEmails = cfg.allowedEmails.map(e => e.toLowerCase());
     updateTokenUi();
   } catch(_) {}
+}
+
+// ── Google Identity Services ──────────────────────────────
+function loadGIS() {
+  return new Promise(resolve => {
+    if (window.google?.accounts) { initTokenClientOnce(); resolve(); return; }
+    const s = document.createElement('script');
+    s.src = 'https://accounts.google.com/gsi/client';
+    s.onload = () => { initTokenClientOnce(); resolve(); };
+    s.onerror = resolve; // fail gracefully
+    document.head.appendChild(s);
+  });
+}
+
+function initTokenClientOnce() {
+  if (gTokenClient) return;
+  gTokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: GOOGLE_CLIENT_ID,
+    scope: 'https://www.googleapis.com/auth/spreadsheets',
+    callback: (resp) => {
+      if (resp.error) {
+        setSheetsStatus('err', 'Sheets access denied');
+        if (_sheetsTokenResolve) { _sheetsTokenResolve(false); _sheetsTokenResolve = null; }
+        return;
+      }
+      const expiry = Date.now() + (parseInt(resp.expires_in) - 60) * 1000;
+      gTokenEl.value = resp.access_token;
+      localStorage.setItem(GTOKEN_KEY, resp.access_token);
+      localStorage.setItem(GTOKEN_EXPIRY_KEY, String(expiry));
+      setSheetsStatus('ok', '✓ connected');
+      if (_sheetsTokenResolve) { _sheetsTokenResolve(true); _sheetsTokenResolve = null; }
+    },
+  });
+}
+
+function sheetsTokenValid() {
+  const expiry = parseInt(localStorage.getItem(GTOKEN_EXPIRY_KEY) || '0');
+  return !!(gTokenEl.value && Date.now() < expiry);
+}
+
+function requestSheetsToken(interactive = false) {
+  if (!gTokenClient) return Promise.resolve(false);
+  if (sheetsTokenValid()) { setSheetsStatus('ok', '✓ connected'); return Promise.resolve(true); }
+  return new Promise(resolve => {
+    _sheetsTokenResolve = resolve;
+    gTokenClient.requestAccessToken({ prompt: interactive ? 'consent' : '' });
+  });
+}
+
+async function ensureSheetsToken() {
+  if (sheetsTokenValid()) return true;
+  setSheetsStatus('', 'refreshing…');
+  return requestSheetsToken(false);
 }
 
 // ── Tab switching ─────────────────────────────────────────
@@ -900,8 +968,9 @@ function fac_setDirty(dirty) {
 }
 
 async function fac_save() {
+  const ok = await ensureSheetsToken();
   const token = gTokenEl.value.trim();
-  if (!token) { fac_showMsg('No Google token — enter one above', 'err'); return; }
+  if (!ok || !token) { fac_showMsg('Google Sheets not connected — sign in again', 'err'); return; }
 
   // Auto-stamp screened_date if blank
   const sdEl = document.getElementById('fac-editor').querySelector('[data-field=screened_date]');
@@ -964,6 +1033,7 @@ let fac_deactType = 'unverified';
 
 async function fac_writeFields(fields) {
   // fields: [{field, value}] — writes to sheet, updates local state
+  await ensureSheetsToken();
   const token = gTokenEl.value.trim();
   if (!token) throw new Error('No Google token');
   const updates = fields.map(({field, value}) => {
@@ -1286,6 +1356,7 @@ async function stats_saveReason(inp) {
   const newVal = inp.value.trim();
   if (newVal === (f.deactivation_reason || '')) return;
 
+  await ensureSheetsToken();
   const token = gTokenEl.value.trim();
   if (!token) { inp.style.borderColor = '#ef4444'; setTimeout(() => inp.style.borderColor = '', 2000); return; }
 
@@ -1361,6 +1432,8 @@ function handleGoogleCredential(response) {
   const u = { name: payload.given_name || payload.name || email.split('@')[0], email };
   localStorage.setItem('nhg_admin_user', JSON.stringify(u));
   setUser(u);
+  // Request Sheets access — shows one-time consent popup if needed
+  requestSheetsToken(false);
 }
 
 function initLogin() {
@@ -1368,27 +1441,26 @@ function initLogin() {
   if (stored) {
     try {
       const u = JSON.parse(stored);
-      if (u.email) { setUser(u); return; }
+      if (u.email) {
+        setUser(u);
+        // GIS already loaded — silently refresh Sheets token
+        requestSheetsToken(false);
+        return;
+      }
     } catch {}
   }
+  // Show login overlay — GIS already loaded by this point
   document.getElementById('login-overlay').style.display = 'flex';
-
-  // Load GIS library then render the Sign in with Google button
-  const script = document.createElement('script');
-  script.src = 'https://accounts.google.com/gsi/client';
-  script.onload = () => {
-    google.accounts.id.initialize({
-      client_id: GOOGLE_CLIENT_ID,
-      callback: handleGoogleCredential,
-      auto_select: false,
-      cancel_on_tap_outside: false,
-    });
-    google.accounts.id.renderButton(
-      document.getElementById('g-signin-btn'),
-      { theme: 'outline', size: 'large', text: 'sign_in_with', width: 280, logo_alignment: 'center' }
-    );
-  };
-  document.head.appendChild(script);
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleGoogleCredential,
+    auto_select: false,
+    cancel_on_tap_outside: false,
+  });
+  google.accounts.id.renderButton(
+    document.getElementById('g-signin-btn'),
+    { theme: 'outline', size: 'large', text: 'sign_in_with', width: 280, logo_alignment: 'center' }
+  );
 }
 
 function setUser(u) {
@@ -1408,8 +1480,9 @@ function setUser(u) {
 // ══════════════════════════════════════════════════════════
 async function init() {
   initTokens();
-  await tryLoadTokensFromEnv(); // must run before initLogin so allowedEmails is ready
-  initLogin();
+  await tryLoadTokensFromEnv();  // local serve.py: fills allowedEmails + tokens
+  await loadGIS();               // loads GIS + sets up token client
+  initLogin();                   // shows overlay or auto-restores session
   initFacSidebar();
   initFacForm();
   initPmSidebar();
