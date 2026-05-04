@@ -1,0 +1,187 @@
+{
+  "batch": "2026-05-04-5",
+  "created": "2026-05-04",
+  "facilities": [
+    {
+      "slug": "genesis-life-care-centre-puchong",
+      "name": "Genesis Life Care Centre Puchong",
+      "editorial": "Genesis Life Care Centre Puchong sits in Taman Perindustrian Puchong, with highway access via the LDP and ELITE corridors — a practical location for families in Puchong, Subang Jaya, and Putrajaya who need a nursing home within the same quadrant of greater Kuala Lumpur. The centre opened in 2022 and is the chain's largest single site, with the operator stating capacity for 120 or more residents. The industrial park address follows a common pattern for newer nursing homes in Selangor, where residential zoning constraints push operators toward commercial or light-industrial lots that offer larger floor plates and more room for ward configuration.\n\nGenesis Life Care Centre operates five branches across the Klang Valley and Johor — Petaling Jaya, Kajang, Klang, Puchong, and Johor Bahru — under a shared model the operator describes as Ministry-approved and JKM-registered. The chain markets 24-hour nursing supervision and dementia care programmes across all locations, with rehabilitation and post-acute recovery available within the same operational framework. Care pricing is not published and is quoted on enquiry.\n\nThe Puchong branch holds a 5.0-star rating from 20 Google reviews at the time of writing — a favourable early signal for a facility that opened in 2022. With a still-building review base, families should request references from other families with relatives currently placed there, and verify JKM licence status, staffing levels, and available care protocols on a scheduled visit. As the chain's largest site, Puchong may suit families who need capacity certainty or who prefer a purpose-built, larger-scale environment over a converted bungalow format.",
+      "word_count": 281,
+      "source_data": {
+        "rating": 5.0,
+        "review_count": 20,
+        "address": "Taman Perindustrian Puchong, Selangor",
+        "price_range": "Call for pricing",
+        "phone": "+60 19-759 0457",
+        "chain": "genesis-life-care-centre",
+        "notes": "Opened 2022; chain's largest site (120+ residents capacity stated by operator)"
+      }
+    },
+    {
+      "slug": "eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh",
+      "name": "EHA Golfview Eldercare Mansion (Johor Jaya)",
+      "editorial": "EHA Golfview Eldercare Mansion is EHA Eldercare Group's Johor Jaya branch, sited within the grounds of Daiman 18 Golf Club at 85 Jalan Pesona, Taman Johor Jaya — an unusual setting that gives the facility genuine greenery and an open aspect rare among nursing homes in the JB urban core. Visiting hours are 9am to 6pm daily, and the group operates a shared enquiry email at ask.ehagroup@gmail.com alongside the branch direct lines. The Johor Jaya location sits in eastern JB within reasonable reach of Hospital Sultanah Aminah and the northern JB private hospital corridor, giving families workable hospital access for acute escalations.\n\nEHA Eldercare (registration 1478860-U) traces its history to the Justlife ElderCare Home brand, which was founded in 2009. The group now operates eight branches across Johor and Kuala Lumpur under the EHA name and publishes group information at ehaeldercare.com.my. All branches carry JKM licensing. Published monthly fees start from approximately RM 2,300 at the Kluang branch; JB and KL branches are priced from around RM 3,200 per month, placing EHA in the premium segment of the Malaysian private nursing home market.\n\nGolfview carries a 4.9-star rating from 70 Google reviews — one of the stronger review profiles in the JB nursing home market in terms of both volume and consistency. Families visiting should confirm which room types are available at the quoted starting fee of approximately RM 3,200 per month and ask specifically about what is included versus charged separately. A personal visit to see the physical space, the golf-course setting, and meet the care team is the right starting point before committing to placement.",
+      "word_count": 281,
+      "source_data": {
+        "rating": 4.9,
+        "review_count": 70,
+        "address": "85 Jalan Pesona, Taman Johor Jaya, 81100 Johor Bahru",
+        "price_range": "From RM 3,200/mo",
+        "phone": "+60197283697",
+        "chain": "eha-eldercare",
+        "notes": "Within Daiman 18 Golf Club grounds; group email ask.ehagroup@gmail.com; visiting hours 9am-6pm daily"
+      }
+    },
+    {
+      "slug": "eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home",
+      "name": "EHA Lakeview Eldercare Mansion (Permas Branch)",
+      "editorial": "EHA Lakeview Eldercare Mansion is EHA Eldercare Group's Permas Jaya branch, sited lakeside in Taman Bayu Puteri on the eastern side of Johor Bahru. The lake-facing setting is a genuine differentiator for residents who respond positively to natural views and open space — reviewer comments have specifically noted the lake aspect and landscaped grounds as features that distinguish it from more densely-built urban nursing homes. EHA has marketed this branch internally as a \"Most Beautiful Elderly Care Mansion,\" a label that reflects aesthetic positioning rather than a third-party accreditation; families should verify what the environment looks like in its current state during a visit rather than relying on promotional materials.\n\nEHA Eldercare (registration 1478860-U) traces its history to the Justlife ElderCare Home brand, which was founded in 2009. The group now operates eight branches across Johor and Kuala Lumpur under the EHA name and publishes group information at ehaeldercare.com.my. All branches carry JKM licensing. Published monthly fees start from approximately RM 2,300 at the Kluang branch; JB and KL branches are priced from around RM 3,200 per month, placing EHA in the premium segment of the Malaysian private nursing home market.\n\nLakeview holds a 4.9-star rating from 40 Google reviews at the time of writing — a solid signal for a branch serving the Permas Jaya residential catchment on the eastern side of Johor Bahru. Families in Permas Jaya, Taman Molek, and the eastern JB corridor who want to reduce journey times for regular visits may find this branch a more practical option than the Johor Jaya, Perling, or Kempas locations. On a visit, confirm available room types, the pricing structure and what is included in the monthly fee, current care team staffing levels, and the hospital escalation pathway for medical emergencies from this branch.",
+      "word_count": 295,
+      "source_data": {
+        "rating": 4.9,
+        "review_count": 40,
+        "address": "Taman Bayu Puteri, Permas Jaya, Johor Bahru",
+        "price_range": "From RM 3,200/mo",
+        "phone": "+60197281686",
+        "chain": "eha-eldercare",
+        "notes": "Lakeside setting; EHA internal label 'Most Beautiful Elderly Care Mansion'"
+      }
+    },
+    {
+      "slug": "eha-parkview-eldercare-perling-1-nursing-home-johor-bahru",
+      "name": "EHA Parkview ElderCare (Perling)",
+      "editorial": "EHA Parkview ElderCare is EHA Eldercare Group's Perling branch, on the western side of Johor Bahru along the Skudai corridor. With 85 Google reviews at a 4.9-star average, Parkview has the largest review base of any branch in the EHA network — a meaningful indicator of operating continuity and sustained family satisfaction rather than a recently-opened facility still accumulating its first reviews. The Skudai location gives families in Taman Universiti, Skudai, and Perling a closer option than the JB city-centre or Johor Jaya branches, with easy access to the Senai highway corridor for families visiting from further afield.\n\nEHA Eldercare (registration 1478860-U) traces its history to the Justlife ElderCare Home brand, which was founded in 2009. The group now operates eight branches across Johor and Kuala Lumpur under the EHA name and publishes group information at ehaeldercare.com.my. All branches carry JKM licensing. Published monthly fees start from approximately RM 2,300 at the Kluang branch; JB and KL branches are priced from around RM 3,200 per month, placing EHA in the premium segment of the Malaysian private nursing home market.\n\nThe combination of volume and consistency makes Parkview one of the better-evidenced nursing homes in the greater JB market at this price tier. Families should still visit in person to confirm room availability at the quoted price point, review the current staffing roster, and meet the care team before placing a relative. Ask about clinical escalation protocols and which hospital EHA Perling coordinates with for medical emergencies — hospital access routes differ from the JB city-centre branches.",
+      "word_count": 266,
+      "source_data": {
+        "rating": 4.9,
+        "review_count": 85,
+        "address": "Perling, western Johor Bahru, Skudai corridor",
+        "price_range": "From RM 3,200/mo",
+        "phone": "+60 18-218 2727",
+        "chain": "eha-eldercare",
+        "notes": "Highest review count in EHA network (85 reviews)"
+      }
+    },
+    {
+      "slug": "eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru",
+      "name": "EHA Sunview ElderCare (Kempas)",
+      "editorial": "EHA Sunview ElderCare is EHA Eldercare Group's Kempas branch and the group's newest Johor Bahru opening. Sunview markets itself as Malaysia's first \"theme-styled therapeutic villa,\" a concept the group attributes to Taiwanese eldercare design — using environmental theming and sensory cues to reduce cognitive disorientation among residents with dementia and to reinforce a consistent sense of daily structure. Launch materials highlight fully automatic medical beds and on-site rehabilitation equipment. The Kempas location sits on the western JB periphery near the Second Link corridor, making it accessible for families in Gelang Patah, Bukit Indah, and Tebrau. Whether the themed environment translates to measurable clinical benefit is a question families with dementia residents should explore directly on a visit.\n\nEHA Eldercare (registration 1478860-U) traces its history to the Justlife ElderCare Home brand, which was founded in 2009. The group now operates eight branches across Johor and Kuala Lumpur under the EHA name and publishes group information at ehaeldercare.com.my. All branches carry JKM licensing. Published monthly fees start from approximately RM 2,300 at the Kluang branch; JB and KL branches are priced from around RM 3,200 per month, placing EHA in the premium segment of the Malaysian private nursing home market.\n\nWith a 5.0-star rating from 24 reviews, the early signal for Sunview is positive, though the review base remains modest for a newly-opened facility. Families in Kempas and the western JB corridor have a purpose-built option here that may suit residents who respond well to structured environmental design and who would benefit from rehabilitation equipment on-site. Confirm current staffing levels, available room configurations, and what the themed concept means in practice for daily care routines before committing to placement.",
+      "word_count": 284,
+      "source_data": {
+        "rating": 5.0,
+        "review_count": 24,
+        "address": "Kempas, Johor Bahru",
+        "price_range": "From RM 3,200/mo",
+        "phone": "+60187881686",
+        "chain": "eha-eldercare",
+        "notes": "Group's newest JB opening; claims Malaysia's first 'theme-styled therapeutic villa' (Taiwanese eldercare design concept)"
+      }
+    },
+    {
+      "slug": "eha-elder-care-home-kluang-licensed-and-certified-by-govern",
+      "name": "EHA Elder Care Home (Kluang)",
+      "editorial": "EHA Elder Care Home in Kluang is EHA Eldercare Group's only non-Johor-Bahru Johor branch, set in the Kluang–Batu Pahat–Yong Peng corridor of interior Johor. Reviewers have specifically cited the cost advantage relative to JB: one review states it is more than 30 per cent cheaper than comparable JB options while maintaining a service standard above most JB nursing homes — a direct comparison that families in this corridor will find useful. At a published starting fee of approximately RM 2,300 per month, Kluang is EHA's most accessible price point across the group and may suit families who want the group's established operational framework without the full JB premium.\n\nEHA Eldercare (registration 1478860-U) traces its history to the Justlife ElderCare Home brand, which was founded in 2009. The group now operates eight branches across Johor and Kuala Lumpur under the EHA name and publishes group information at ehaeldercare.com.my. All branches carry JKM licensing. Published monthly fees start from approximately RM 2,300 at the Kluang branch; JB and KL branches are priced from around RM 3,200 per month, placing EHA in the premium segment of the Malaysian private nursing home market.\n\nKluang holds a 5.0-star rating from 33 Google reviews — a meaningful volume for an interior-Johor location, and one of the more consistently-reviewed nursing homes in the Kluang catchment. Reviews suggest a more hands-on, locally-grounded character compared with the larger JB urban branches. Families should confirm room type availability, what the monthly fee includes, staffing ratios, and the clinical escalation pathway — specifically which hospital EHA Kluang coordinates with for acute medical emergencies — during a visit before finalising a placement.",
+      "word_count": 276,
+      "source_data": {
+        "rating": 5.0,
+        "review_count": 33,
+        "address": "Kluang, Johor",
+        "price_range": "From RM 2,300/mo",
+        "phone": "+60197133697",
+        "chain": "eha-eldercare",
+        "notes": "Only non-JB Johor branch; reviewer-cited price advantage of 30%+ vs JB"
+      }
+    },
+    {
+      "slug": "eha-grandview-titiwangsa-kl-elderly-care-post-surgery-recovery-stroke-rehabilita",
+      "name": "EHA Grandview Titiwangsa KL",
+      "editorial": "EHA Grandview Titiwangsa is EHA Eldercare Group's Kuala Lumpur city-centre branch, sited near Lake Titiwangsa. Third-party listings and the branch's own listing title associate it with post-surgery recovery and stroke rehabilitation; EHA's own website does not publish branch-specific rehab protocols, therapist staffing levels, or rehabilitation equipment lists for this branch, so any specialist rehab positioning should be verified on a visit rather than assumed from the listing title. The lake-adjacent setting gives the facility a central KL address that is accessible for families across Chow Kit, Sentul, Setapak, and Wangsa Maju.\n\nEHA Eldercare (registration 1478860-U) traces its history to the Justlife ElderCare Home brand, which was founded in 2009. The group now operates eight branches across Johor and Kuala Lumpur under the EHA name and publishes group information at ehaeldercare.com.my. All branches carry JKM licensing. Published monthly fees start from approximately RM 2,300 at the Kluang branch; JB and KL branches are priced from around RM 3,200 per month, placing EHA in the premium segment of the Malaysian private nursing home market.\n\nGrandview Titiwangsa holds a 5.0-star rating from 10 Google reviews at the time of writing — the smallest review base of any EHA branch, reflecting a relatively early operating stage in the KL market. KL families in the Titiwangsa corridor looking for a premium private nursing home with a named group operator and JKM licensing will find this a relevant option to investigate. Families should request independent references from current residents' families and schedule a direct visit to assess the physical environment, current care team staffing, and the specific clinical services available at this branch before placing a relative.",
+      "word_count": 271,
+      "source_data": {
+        "rating": 5.0,
+        "review_count": 10,
+        "address": "Titiwangsa, Kuala Lumpur",
+        "price_range": "From RM 3,200/mo",
+        "phone": "+60 19-553 3690",
+        "chain": "eha-eldercare",
+        "notes": "Rehab/post-surgery claims in listing title; EHA website does not publish branch-specific rehab protocols — verify on visit"
+      }
+    },
+    {
+      "slug": "eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip",
+      "name": "EHA Grandview Eldercare Kepong (甲洞温馨疗养别墅)",
+      "editorial": "EHA Grandview Eldercare in Kepong is EHA Eldercare Group's north-Kuala Lumpur branch, serving the Kepong, Desa Parkcity, and Jalan Ipoh corridor from a site in Taman Kaya. The location positions the facility within a densely-populated north-KL catchment where families in Kepong, Sri Damansara, and Mont Kiara have fewer premium nursing home options compared with more suburban Klang Valley zones. The group's KL branches share a central enquiry line — families should specify the Kepong or Taman Kaya branch when making initial contact to ensure the enquiry reaches the right team.\n\nEHA Eldercare (registration 1478860-U) traces its history to the Justlife ElderCare Home brand, which was founded in 2009. The group now operates eight branches across Johor and Kuala Lumpur under the EHA name and publishes group information at ehaeldercare.com.my. All branches carry JKM licensing. Published monthly fees start from approximately RM 2,300 at the Kluang branch; JB and KL branches are priced from around RM 3,200 per month, placing EHA in the premium segment of the Malaysian private nursing home market.\n\nGrandview Kepong holds a 5.0-star rating from 27 Google reviews — a stronger early track record than the Titiwangsa branch and one of the better-reviewed nursing homes in the north-KL catchment. Families should visit to confirm current room availability, the physical layout of the Taman Kaya site, staffing levels, and care protocols available at this specific branch. The north-KL position and EHA's established operational framework make this a relevant option for families in Kepong, Sri Damansara, and the Desa Parkcity corridor who prefer a recognisable chain operator over a standalone independent home.",
+      "word_count": 271,
+      "source_data": {
+        "rating": 5.0,
+        "review_count": 27,
+        "address": "Taman Kaya, Kepong, Kuala Lumpur",
+        "price_range": "From RM 3,200/mo",
+        "phone": "+60 19-553 3690",
+        "chain": "eha-eldercare",
+        "notes": "Shares central KL enquiry line with Titiwangsa branch; serves Kepong/Desa Parkcity/Jalan Ipoh corridor"
+      }
+    },
+    {
+      "slug": "eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl",
+      "name": "EHA Bayview Eldercare (Cheras | Sungai Long | Kajang)",
+      "editorial": "EHA Bayview ElderCare is EHA Eldercare Group's Klang Valley branch, sited in Bandar Sungai Long on the Cheras–Kajang fringe of greater Kuala Lumpur. The branch markets its catchment across Cheras, Sungai Long, and Kajang — an eastern KL corridor where the alternative nursing home supply is comparatively thinner than more central Klang Valley zones. The Bandar Sungai Long location gives families in Cheras, Kajang, Balakong, and Semenyih a closer option than travelling to central KL or Johor for a placement with an established group operator.\n\nEHA Eldercare (registration 1478860-U) traces its history to the Justlife ElderCare Home brand, which was founded in 2009. The group now operates eight branches across Johor and Kuala Lumpur under the EHA name and publishes group information at ehaeldercare.com.my. All branches carry JKM licensing. Published monthly fees start from approximately RM 2,300 at the Kluang branch; JB and KL branches are priced from around RM 3,200 per month, placing EHA in the premium segment of the Malaysian private nursing home market.\n\nBayview holds a 5.0-star rating from 22 Google reviews at the time of writing — a favourable early signal for a newer branch in the Cheras–Kajang catchment. Families in this corridor who want a nationally-known operator with JKM licensing and a published fee structure will find this a relevant option to visit. As with all EHA branches, a personal visit to see the facility, meet the care team, and confirm what is included in the monthly fee is the essential step before making a placement decision.",
+      "word_count": 258,
+      "source_data": {
+        "rating": 5.0,
+        "review_count": 22,
+        "address": "Bandar Sungai Long, Selangor",
+        "price_range": "From RM 3,200/mo",
+        "phone": "+60 17-755 6997",
+        "chain": "eha-eldercare",
+        "notes": "KV branch; listed under Selangor despite Cheras/KL-fringe catchment"
+      }
+    },
+    {
+      "slug": "golden-age-care-centre",
+      "name": "Golden Age Care Centre (Muar)",
+      "editorial": "Golden Age Care Centre is a multi-branch private nursing home chain headquartered in Muar, Johor — a distinct town roughly 90 kilometres north-west of Johor Bahru, well outside the JB conurbation. The Muar branch, the chain's founding location, sits at 28-10 Jalan Ria 2, Taman Ria, on the same arterial road as Hospital Pakar Sultanah Fatimah — placing residents within practical reach of Muar's principal government specialist hospital for acute escalations. The home was established in 2004 and formally incorporated in 2014, making it one of the longer-established private nursing homes in the Muar district.\n\nGolden Age Care Centre was founded in 2004 and incorporated in 2014, and holds a JKM 4-star rating across its Johor branches, licensed under the Akta Pusat Jagaan. The group operates branches in Muar, Tangkak, Batu Pahat, and Melaka — serving interior Johor and Melaka communities where nursing home supply is significantly thinner than the JB urban corridor. Pricing is not published and is quoted on direct enquiry.\n\nThe Muar branch carries a 3.9-star rating from 8 Google reviews at the time of writing. The review count is modest given more than twenty years of operation — not unusual for a Muar-based home serving a community that relies more on local referral and word-of-mouth than online search. Families considering GACC Muar should request independent references from other families with relatives currently placed there, ask about room configurations, staffing ratios, and the range of care levels the branch can support, and confirm current JKM licence status on a visit. The JKM 4-star rating is a positive structural indicator; ask the operator to show documentation during your visit.",
+      "word_count": 282,
+      "source_data": {
+        "rating": 3.9,
+        "review_count": 8,
+        "address": "28-10 Jalan Ria 2, Taman Ria, Muar, Johor",
+        "price_range": "Contact for rates",
+        "phone": "+60 6-952 7711",
+        "chain": "golden-age-care-centre",
+        "notes": "Founded 2004, incorporated 2014; chain HQ; near Hospital Pakar Sultanah Fatimah; JKM 4-star rated chain"
+      }
+    },
+    {
+      "slug": "golden-age-care-centre-tangkak",
+      "name": "Golden Age Care Centre Tangkak",
+      "editorial": "Golden Age Care Centre Tangkak is the chain's northern Johor branch, set at 5 Jalan Teratai 2 in Taman Tangkak Jaya — a small-town setting in Muar District where most placements are driven by local family proximity rather than the cross-district commuter dynamic that shapes JB demand. Tangkak town sits approximately 35 kilometres north of Muar on the Muar–Segamat road, making this branch a practical option for families in Tangkak, Ledang, and the surrounding kampung area who want to place a relative within short visiting distance of home.\n\nGolden Age Care Centre was founded in 2004 and incorporated in 2014, and holds a JKM 4-star rating across its Johor branches, licensed under the Akta Pusat Jagaan. The group operates branches in Muar, Tangkak, Batu Pahat, and Melaka — serving interior Johor and Melaka communities where nursing home supply is significantly thinner than the JB urban corridor. Pricing is not published and is quoted on direct enquiry.\n\nTangkak holds a 4.0-star rating from 3 Google reviews — a thin sample that carries no statistical weight, but consistent with the chain's overall positive reputation at its Muar headquarters. Families should speak directly with other families who have relatives placed at the Tangkak branch, visit to assess the physical environment and current staffing levels, and confirm room availability and care scope on enquiry. As a small-town facility operating within the same JKM-licensed chain as the Muar HQ, Tangkak is a worthwhile option for families who specifically need a nursing home within the Tangkak–Ledang catchment.",
+      "word_count": 263,
+      "source_data": {
+        "rating": 4.0,
+        "review_count": 3,
+        "address": "5 Jalan Teratai 2, Taman Tangkak Jaya, Tangkak, Johor",
+        "price_range": "Call for pricing",
+        "phone": "+60 18-952 7711",
+        "chain": "golden-age-care-centre",
+        "notes": "Northern Johor branch; ~35km north of Muar; JKM 4-star chain"
+      }
+    },
+    {
+      "slug": "golden-age-care-centre-batu-pahat",
+      "name": "Golden Age Care Centre Batu Pahat",
+      "editorial": "Golden Age Care Centre Batu Pahat is the chain's south-Johor branch, at Lot 7887 Jalan Bukit Pasir in Batu Pahat town — a larger-town setting than the Tangkak sister branch, with a different resident profile and competitive landscape. Batu Pahat is well served by KPJ Batu Pahat Specialist Hospital and Hospital Sultanah Nora Ismail, placing the home in a corridor where post-discharge care placements are a realistic part of the enquiry mix for families whose relatives have recently had surgery or a stroke at either hospital.\n\nGolden Age Care Centre was founded in 2004 and incorporated in 2014, and holds a JKM 4-star rating across its Johor branches, licensed under the Akta Pusat Jagaan. The group operates branches in Muar, Tangkak, Batu Pahat, and Melaka — serving interior Johor and Melaka communities where nursing home supply is significantly thinner than the JB urban corridor. Pricing is not published and is quoted on direct enquiry.\n\nThe Batu Pahat branch carries a 1.3-star rating from 3 Google reviews at the time of writing. Three reviews cannot define a facility's care quality, but the rating is a clear prompt for extra due diligence before placing a relative. Families should request independent references from other families currently or recently using the branch, visit at different times of day rather than a single pre-arranged tour, and ask the operator specifically how care standards at Batu Pahat align with the chain's Muar and Tangkak branches. The proximity to KPJ Batu Pahat and Hospital Sultanah Nora Ismail is a genuine practical asset — confirm which hospital the branch coordinates with for emergency medical escalations.",
+      "word_count": 273,
+      "source_data": {
+        "rating": 1.3,
+        "review_count": 3,
+        "address": "Lot 7887 Jalan Bukit Pasir, Batu Pahat, Johor",
+        "price_range": "Call for pricing",
+        "phone": "+60 12-771 1083",
+        "chain": "golden-age-care-centre",
+        "notes": "Low rating (1.3/5, 3 reviews) — handled neutrally per editorial rules; near KPJ Batu Pahat Specialist Hospital and Hospital Sultanah Nora Ismail"
+      }
+    }
+  ],
+  "notes": "Batch 5: 1 missed Genesis branch (Puchong) + 8 EHA ElderCare branches (5 Johor, 3 KL/Selangor) + 3 Golden Age Care Centre branches (all Johor). EHA P2 boilerplate established: Justlife origins 2009, 8 branches, ehaeldercare.com.my, JKM-licensed, RM 2,300 Kluang / RM 3,200+ JB+KL. GACC P2 boilerplate established: founded 2004, JKM 4-star, Akta Pusat Jagaan, 4 states. GACC Batu Pahat 1.3/3 handled neutrally per editorial rules. EHA Titiwangsa rehab claims flagged as unverified by EHA own site."
+}

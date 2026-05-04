@@ -1,0 +1,147 @@
+{
+  "batch": "2026-05-04-7",
+  "created": "2026-05-04",
+  "facilities": [
+    {
+      "slug": "amitabha-malaysia-old-folks-home-kl",
+      "name": "Amitabha Malaysia Old Folks Home",
+      "editorial": "Amitabha Malaysia Old Folks Home operates from Happy Garden, off Jalan Kuchai Lama in Kuala Lumpur, as part of the Amitabha Foundation established in 1998. The Foundation runs a range of welfare services including a dialysis centre and an orphanage alongside the elderly home. Despite its Buddhist name, the home explicitly serves elderly residents of all religions, ethnicities, and backgrounds — the name reflects the organisation's founding community rather than a restriction on who it serves. Current capacity is approximately 30 residents.\n\nThe model here is welfare-based residential care: meals, shelter, daily supervision, and basic nursing support, with a community and volunteer network that keeps day-to-day operations running alongside paid staff. The Happy Garden location off Jalan Kuchai Lama in KL's south-west corridor is accessible from the Sri Petaling and Kuchai Lama catchment. Hospital proximity to HUKM (Cheras) and Hospital Universiti Malaya provides escalation pathways for acute medical events.\n\nThe home holds a 4.7-star rating from 69 Google reviews — a strong signal for a welfare-model facility operating at approximately 30-resident capacity. Families should understand that this is not a fee-based private nursing home: eligibility criteria, admission processes, and waiting lists differ significantly from commercial facilities. Direct contact with the Amitabha Foundation is the right starting point to understand current capacity, the admission process, and what care is available for specific medical conditions.",
+      "word_count": 244,
+      "source_data": {
+        "rating": 4.7,
+        "review_count": 69,
+        "address": "Happy Garden, Jalan Kuchai Lama, Kuala Lumpur",
+        "price_range": null,
+        "phone": "03-7890 3700",
+        "notes": "Amitabha Foundation (est 1998); welfare model (not fee-based); ~30 residents; also runs dialysis centre and orphanage; all religions welcome"
+      }
+    },
+    {
+      "slug": "zara-aisyah-care-centre-zacc",
+      "name": "ZARA AISYAH CARE CENTRE (ZACC)",
+      "editorial": "ZARA AISYAH CARE CENTRE (ZACC) was founded in 2015 by Wan Salbiah Mior Yahya in Seksyen U11, Shah Alam — one of Malaysia's more prominently known Islamic-oriented elderly care providers, positioning itself as a pioneer Shariah-compliant care specialist. From a starting point of two staff caring for two residents, the operator reports growth to over 300 employees and more than 500 patients, a trajectory that reflects the rapid scaling of demand for Shariah-compliant eldercare in Malaysia. The Shah Alam base at Jalan Gunung Tahan U11/10A serves a predominantly Muslim catchment in western Selangor.\n\nThe Shariah-compliant model covers not only halal food and Islamic observance protocols but also care delivery practices — gender-appropriate staffing, prayer time accommodation, and death rites performed in accordance with Islamic requirements. ZACC is the founding entity behind the Woodrose Senior Residences campus in Shah Alam (Seksyen 11 and Seksyen 13), where ZACC's operational model evolved into a purpose-built, gender-segregated multi-building campus in partnership with MLL Sdn Bhd. The Bukit Bandaraya facility predates the Woodrose campus and continues as a separate operating location.\n\nZACC holds a 4.8-star rating from 68 Google reviews — a strong signal for a community-focused Islamic care provider. Families considering ZACC for a Muslim relative should contact the facility to clarify whether this Seksyen U11 location or one of the Woodrose campus branches (Seksyen 11 or Seksyen 13) is more appropriate for their relative's care level, confirm current capacity, pricing, staffing levels, and JKM licence status. The operator's growth trajectory suggests demand is high and waiting lists may apply.",
+      "word_count": 275,
+      "source_data": {
+        "rating": 4.8,
+        "review_count": 68,
+        "address": "Jalan Gunung Tahan U11/10A, Bukit Bandaraya, Seksyen U11, Shah Alam",
+        "price_range": "Call for pricing",
+        "phone": "+60 14-200 9099",
+        "notes": "Founded 2015 by Wan Salbiah Mior Yahya; pioneer Shariah-compliant specialist; 300+ staff, 500+ patients; parent entity of Woodrose Senior Residences"
+      }
+    },
+    {
+      "slug": "rumah-seri-kenangan-johor-bahru",
+      "name": "Rumah Seri Kenangan Johor Bahru",
+      "editorial": "Rumah Seri Kenangan Johor Bahru (RSK JB) is a government-operated welfare institution managed by Jabatan Kebajikan Masyarakat (JKM), located in Kampung Ungku Mohsin, Johor Bahru. One of ten such public elderly homes nationwide, RSK JB provides fully subsidised residential care for Malaysian citizens aged 60 and above who have no permanent housing, no income, and no family able to support them. With a listed capacity of 300 beds, it is among the largest public residential facilities for the aged in Johor.\n\nAs a JKM-operated facility, RSK JB is funded by the federal government and operates under a welfare mandate rather than a commercial one. Admission is restricted to those who meet JKM's eligibility criteria — typically involving income thresholds, housing status, and family situation assessments — and applications are managed through JKM's district offices rather than by direct facility enquiry. Fees, if charged at all, are minimal or means-tested. Care protocols and operational standards are set by JKM policy rather than by individual facility management.\n\nRSK JB holds a 4.4-star rating from 65 Google reviews. Families researching public residential care for an eligible relative should contact their nearest JKM Johor district office to understand the application and assessment process, which differs substantially from the private nursing home enquiry pathway. For families who need fee-based private care, RSK JB is not a substitute; for elderly individuals who meet JKM's eligibility criteria and cannot afford private options, it represents one of the few government-backed residential safety nets in Johor Bahru.",
+      "word_count": 258,
+      "source_data": {
+        "rating": 4.4,
+        "review_count": 65,
+        "address": "Kampung Ungku Mohsin, Johor Bahru",
+        "price_range": "Subsidised (JKM-operated)",
+        "phone": "07-2371737",
+        "notes": "JKM government welfare home; 300-bed capacity; one of 10 nationwide; not fee-based private nursing home"
+      }
+    },
+    {
+      "slug": "geriacare",
+      "name": "GERIACARE",
+      "editorial": "GERIACARE is a nursing and rehabilitation facility at Jalan Desa Impian 6, Taman Desa Impian, Kajang — a semi-suburban residential township in the Kajang corridor, approximately 30 kilometres south-east of Kuala Lumpur. The facility's materials and Facebook presence position it as doctor-overseen, with a rehabilitation orientation alongside standard nursing home care — a combination that makes it relevant for both long-term nursing residents and post-acute patients requiring structured recovery. The GERIACARE name signals the geriatric care focus explicitly.\n\nThe Kajang location gives GERIACARE reasonable hospital proximity to Hospital Kajang and the Cheras–Kajang private hospital corridor, relevant for residents requiring specialist review or acute escalation. Taman Desa Impian has good road access from the SILK highway corridor, making the facility reachable for families in Kajang, Bangi, Semenyih, and the outer Cheras catchment — communities underserved by nursing homes compared with the PJ–Subang corridor.\n\nGERIACARE holds a 4.9-star rating from 60 Google reviews — one of the highest ratings for a nursing and rehabilitation combination in the Kajang catchment. Families should visit to confirm the specific rehabilitation programme: frequency of physiotherapy sessions, therapist qualifications, and which conditions the rehab programme covers. Ask about the scope and frequency of doctor involvement in resident monitoring, room types, current occupancy, pricing, and staffing levels. The Kajang positioning and rehab orientation make GERIACARE a candidate to compare alongside hospital-based step-down facilities for post-acute placements in this corridor.",
+      "word_count": 255,
+      "source_data": {
+        "rating": 4.9,
+        "review_count": 60,
+        "address": "Jalan Desa Impian 6, Taman Desa Impian, Kajang, Selangor",
+        "price_range": "Call for pricing",
+        "phone": "+60 14-905 2844",
+        "notes": "Doctor-overseen; nursing + rehabilitation; Kajang corridor"
+      }
+    },
+    {
+      "slug": "rumah-victory-elderly-home",
+      "name": "Rumah Victory Elderly Home",
+      "editorial": "Rumah Victory is a non-profit Christian welfare organisation founded in 1988 by the late Philip Mok Sew Kwong, operating from 2 Jalan 8, Taman Bukit Kuchai, off the Puchong main road in Selangor. What began as a drug rehabilitation centre has grown into three programmes: drug rehabilitation, a children and youth home, and — added in 2005 — an elderly home. The organisation reports having provided care for over 300 elderly residents since inception, with approximately 57 in residence at any one time.\n\nAs a welfare-model organisation, Rumah Victory relies partly on donations and volunteers alongside paid staff, and its admission process and fee structure reflect the welfare mission rather than market pricing. The Christian ethos shapes the daily environment. Families of non-Christian backgrounds should verify whether the care culture is compatible with their relative's preferences before applying. The Taman Bukit Kuchai location in Puchong Selangor provides access to Puchong-area clinics and the wider Subang-PJ hospital network for medical escalations.\n\nRumah Victory holds a 4.2-star rating from 53 Google reviews. For families considering this option, direct contact is essential to understand the admission process, eligibility criteria, current capacity, and what level of nursing care is available — welfare homes typically provide residential supervision and basic care rather than the full clinical nursing scope of JKM-licensed private nursing homes. Families with a relative who fits both the care needs and the organisational mission should visit and speak with the team directly before applying.",
+      "word_count": 258,
+      "source_data": {
+        "rating": 4.2,
+        "review_count": 53,
+        "address": "2 Jalan 8, Taman Bukit Kuchai, Puchong, Selangor",
+        "price_range": null,
+        "phone": "03-80802608",
+        "notes": "Non-profit Christian welfare org (est 1988); founded by late Philip Mok Sew Kwong; 3 arms (drug rehab, youth home, elderly home since 2005); ~57 current residents"
+      }
+    },
+    {
+      "slug": "pusat-jagaan-rumah-kebajikan-warga-emas-st-mark",
+      "name": "St Mark's Cozy Home",
+      "editorial": "St Mark's Cozy Home is a Christian elder-care facility in the Sungai Buloh new village area of Selangor, run under the Anglican Diocese of West Malaysia and operating since January 2008. Located on Jalan Besar, the home identifies its mission as ministering to the physical and spiritual needs of older adults within a Christian setting — Sunday services are held on site for residents who wish to attend. The facility provides 24-hour residential supervision and nursing care within a faith-based community environment.\n\nThe Sungai Buloh location gives residents proximity to Hospital Sungai Buloh, one of the larger government hospitals in Selangor, which serves as a practical escalation pathway for acute medical events. The Anglican Diocese connection provides institutional governance backing that most small residential care homes lack — including a known accountability structure and a community of congregation members who volunteer and support the home. The faith-based environment is a meaningful differentiator for elderly Christians who value spiritual continuity alongside physical care.\n\nSt Mark's holds a 4.1-star rating from 50 Google reviews. Families considering placement here should contact the Diocese or the home directly to understand the admission process, current capacity, fee structure, and the level of nursing care available for specific medical conditions. As with faith-based facilities generally, visiting and meeting the staff and current residents is the most informative step before applying — the community environment and care culture are as important as the clinical profile for placement decisions at homes like this.",
+      "word_count": 252,
+      "source_data": {
+        "rating": 4.1,
+        "review_count": 50,
+        "address": "Jalan Besar, Kampung Baru Sungai Buloh, Selangor",
+        "price_range": null,
+        "phone": "03-61433234",
+        "notes": "Anglican Diocese of West Malaysia; since January 2008; Sunday services on site; near Hospital Sungai Buloh"
+      }
+    },
+    {
+      "slug": "jj-blessing-care-centre-puchong",
+      "name": "JJ Blessing Care Centre (Puchong)",
+      "editorial": "JJ Blessing Care Centre (互爱安老疗养中心) operates a branch at 12 Jalan Prima 6/3 in Taman Puchong Prima, Puchong — part of a small multi-site operator whose other known locations include Taman OUG in Kuala Lumpur and a branch in Ipoh. The Puchong Prima address sits in an established residential neighbourhood with good road access to the Puchong Perdana and IOI City corridor. The Chinese-language name — 互爱 (mutual love) — reflects the facility's positioning as a Chinese-community nursing home.\n\nThe multi-site structure across Puchong, OUG (KL), and Ipoh gives JJ Blessing a geographic spread unusual for a small operator, and families enquiring should specify which branch they need. For families in Puchong, the Taman Puchong Prima location reduces travel time for regular visits compared with more central KL options. Hospital access from Puchong is oriented toward Subang Jaya Medical Centre or Sunway Medical Centre, both accessible via the Puchong main road and LDP corridor.\n\nJJ Blessing Puchong holds a 4.6-star rating from 44 Google reviews — a solid signal for a smaller community nursing home in this catchment. Families should visit the specific Puchong branch to assess the physical environment, confirm current room availability and pricing, verify JKM licence status, and ask about the care scope and staffing levels at this location. Multi-site operators can vary in how staffing and protocols apply across branches, so confirming the position of the Puchong branch specifically rather than the group overall is important.",
+      "word_count": 258,
+      "source_data": {
+        "rating": 4.6,
+        "review_count": 44,
+        "address": "12 Jalan Prima 6/3, Taman Puchong Prima, Puchong, Selangor",
+        "price_range": "Call for pricing",
+        "phone": "+60 16-530 1952",
+        "notes": "互爱安老疗养中心; multi-site (also OUG KL + Ipoh); Chinese-community operator"
+      }
+    },
+    {
+      "slug": "spring-valley-homecare-nursing-home",
+      "name": "Spring Valley Homecare (Johor Bahru)",
+      "editorial": "Spring Valley Homecare (J.B.) Sdn. Bhd. operates from Lot 3456 Jalan Lurah Utama in Kempas Baru — a stretch of Johor Bahru that has become a small cluster of private nursing homes. The operation has Singapore links: director Frankie Ker manages the parent operation from Singapore, while local manager Ada Teo handles day-to-day enquiries in JB. Trilingual website and Mandarin signage (新山安老院 — Johor Bahru Elderly Home) point to a primarily Chinese-speaking resident base, with the Singapore cross-border connection making it relevant for families making placements from the island.\n\nSpring Valley publishes pricing transparency unusual for small private nursing homes in Malaysia: shared room at RM 1,700 per month and private room at RM 1,850 per month. These rates are significantly below the RM 3,000-plus premium-tier pricing common in purpose-built JB nursing homes, and represent a more accessible price point for families in the Kempas and western JB corridor. The Kempas Baru location is approximately 20 minutes from the Causeway.\n\nThe facility holds a 4.2-star rating from 38 Google reviews. Families should confirm whether the published fees cover all care needs or whether additional charges apply for specific clinical requirements such as wound care, tube feeding, or physiotherapy. Visit to assess the physical environment and meet the care team, and ask about staffing levels, care conditions the facility can manage, and the specific protocols for emergency medical escalation from the Kempas branch. Confirm who the primary contact is for care-related concerns given the Singapore management structure.",
+      "word_count": 262,
+      "source_data": {
+        "rating": 4.2,
+        "review_count": 38,
+        "address": "Lot 3456 Jalan Lurah Utama, Kempas Baru, Johor Bahru",
+        "price_range": "Shared: RM 1,700 | Private: RM 1,850/mo",
+        "phone": "+60 19-754 6410",
+        "notes": "Spring Valley Homecare (J.B.) Sdn Bhd; Singapore director Frankie Ker; local mgr Ada Teo; 新山安老院; Chinese-speaking focus"
+      }
+    },
+    {
+      "slug": "convee-elderly-care-center",
+      "name": "Convee Elderly Care Center",
+      "editorial": "Convee Elderly Care Center is located at Jalan Bunga Tanjung 22 in Taman Seraya, Ampang — a quiet, established residential neighbourhood on the Ampang–KL fringe. The centre offers three distinct service lines: residential nursing home care, adult day care for seniors who return home in the evenings, and home health care for families who prefer professional nursing delivered in the resident's own home. This multi-modal structure makes Convee relevant to a broader range of family situations than a purely residential nursing home.\n\nThe day care offering is particularly useful for families where a working adult lives with an elderly relative who needs daytime supervision and structured activity but is not yet at a stage where full residential placement is appropriate. The home health care option extends the operator's reach across the Ampang and Cheras catchment for families managing care at home. The Taman Seraya location is accessible from the Ampang–KL corridor and within reasonable distance of Ampang-area private hospitals.\n\nConvee holds a 4.8-star rating from 37 Google reviews — an unusually high score for its review volume, suggesting consistent positive feedback from families using the service. Families should contact the centre to understand the specific scope of each service line, what conditions are managed under the residential model, and the pricing structure across all three options. For families at an early planning stage who are not yet certain whether residential, day care, or home care is the right model, a consultation with Convee's team may help clarify the most appropriate pathway.",
+      "word_count": 260,
+      "source_data": {
+        "rating": 4.8,
+        "review_count": 37,
+        "address": "Jalan Bunga Tanjung 22, Taman Seraya, Ampang",
+        "price_range": "Call for pricing",
+        "phone": "+60 11-4022 2144",
+        "notes": "Three service lines: nursing home + adult day care + home health care; Ampang-KL fringe"
+      }
+    },
+    {
+      "slug": "bait-al-mawaddah-pusat-jagaan-warga-emas-lembaga-zakat-selangor",
+      "name": "Bait Al-Mawaddah (Lembaga Zakat Selangor)",
+      "editorial": "Bait Al-Mawaddah is an elderly care complex established in 2014 by Lembaga Zakat Selangor (LZS) and Majlis Agama Islam Selangor (MAIS), built on three acres of waqf land in Kampung Jalan Kebun, Section 30, Shah Alam. Formally inaugurated by the Sultan of Selangor in September 2016, it operates under an explicitly Islamic welfare mandate — the name translates as \"House of Compassion\" — and is designed to shelter elderly Muslim asnaf (zakat-eligible poor) in Selangor who are abandoned or lack family support.\n\nThe LZS and MAIS backing places Bait Al-Mawaddah in a distinct category from commercial nursing homes and even most Islamic-oriented private care providers: it is a zakat-funded welfare institution with institutional accountability to Selangor's state Islamic authorities. Admission is restricted to eligible Muslim asnaf in Selangor, and families should not approach this as a fee-based private nursing home option. The three-acre waqf campus in Section 30, Shah Alam provides space for a larger-scale welfare facility than the converted-house format common in private nursing homes.\n\nBait Al-Mawaddah holds a 4.4-star rating from 36 Google reviews. Families with eligible relatives — elderly Muslim asnaf in Selangor — should contact LZS or MAIS through the relevant welfare referral pathway rather than making a direct private nursing home enquiry. For eligible individuals, Bait Al-Mawaddah represents one of the more institutionally stable Islamic welfare care options in Selangor, backed by the state authority structure. Confirm current capacity, admission criteria, and referral process through the LZS or MAIS channels.",
+      "word_count": 264,
+      "source_data": {
+        "rating": 4.4,
+        "review_count": 36,
+        "address": "Kampung Jalan Kebun, Section 30, Shah Alam, Selangor",
+        "price_range": "Zakat-funded (not fee-based)",
+        "phone": "+60 3-5161 0533",
+        "notes": "LZS + MAIS zakat-funded welfare institution; est 2014; inaugurated by Sultan of Selangor Sept 2016; 3 acres waqf land; Muslim asnaf only"
+      }
+    }
+  ],
+  "notes": "Batch 7: Next 10 standalone facilities (review count 36–69). Mix of welfare/NGO/faith-based (Amitabha, Rumah Victory, St Mark's, RSK JB, Bait Al-Mawaddah) and private (ZACC, Geriacare, JJ Blessing, Spring Valley, Convee). RSK JB and Bait Al-Mawaddah noted as non-fee-based government/zakat welfare homes. ZACC noted as parent of Woodrose Senior Residences."
+}
