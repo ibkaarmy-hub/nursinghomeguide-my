@@ -287,6 +287,7 @@ table.stats-tbl tr:hover td { background: #f8fafc; }
       <input type="search" id="fac-search" placeholder="Search…" />
       <div class="filter-row">
         <button class="ftab active" data-fac-filter="all">All</button>
+        <button class="ftab" data-fac-filter="unscreened">Unscreened</button>
         <button class="ftab" data-fac-filter="edited">Edited</button>
         <button class="ftab" data-fac-filter="saved">Saved</button>
       </div>
@@ -841,8 +842,9 @@ function buildFacSidebar() {
     let g = allFacilities.filter(f => f.state === state);
     if (!fac_showAll) g = g.filter(f => !f.status || (f.status !== 'removed' && f.status !== 'unverified'));
     if (fac_query)   g = g.filter(f => f.title.toLowerCase().includes(fac_query));
-    if (fac_filter === 'edited') g = g.filter(f => fac_editedSet.has(facKey(f)));
-    if (fac_filter === 'saved')  g = g.filter(f => fac_savedSet.has(facKey(f)));
+    if (fac_filter === 'unscreened') g = g.filter(f => !f.screened_date);
+    if (fac_filter === 'edited')     g = g.filter(f => fac_editedSet.has(facKey(f)));
+    if (fac_filter === 'saved')      g = g.filter(f => fac_savedSet.has(facKey(f)));
     if (!g.length) continue;
     ct += g.length;
     html += `<div class="group-lbl">${state} (${g.length})</div>`;
