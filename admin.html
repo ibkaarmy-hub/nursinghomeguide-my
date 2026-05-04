@@ -114,6 +114,21 @@ button { font: inherit; cursor: pointer; }
 .deact-reason { display: none; }
 .deact-reason.show { display: flex; }
 
+/* Deactivate panel */
+.btn-deactivate { background: #3b0a0a; border-color: #7f1d1d; color: #fca5a5; }
+.btn-deactivate:hover { background: #450a0a; }
+.btn-reactivate { background: #052e16; border-color: #065f46; color: #6ee7b7; }
+.btn-reactivate:hover { background: #065f46; }
+.deact-panel { background: #180505; border-bottom: 1px solid #7f1d1d; padding: 12px 20px; display: none; flex-direction: column; gap: 10px; flex-shrink: 0; }
+.deact-panel.show { display: flex; }
+.deact-panel h4 { margin: 0; font-size: 13px; color: #fca5a5; font-weight: 600; }
+.dtype-row { display: flex; gap: 6px; }
+.dtype-btn { flex: 1; padding: 6px 10px; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #64748b; font: inherit; font-size: 12px; cursor: pointer; text-align: left; }
+.dtype-btn.active { border-color: #ef4444; background: #2d0808; color: #fca5a5; font-weight: 600; }
+
+/* Screening notes */
+.screening-badge { display: inline-block; background: #1e3a5f; color: #60a5fa; font-size: 10px; padding: 1px 6px; border-radius: 3px; font-weight: 600; margin-left: 6px; vertical-align: middle; }
+
 /* Toggle (yes / no / ?) */
 .toggle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 7px; }
 .tgl-field { display: flex; flex-direction: column; gap: 3px; }
@@ -261,7 +276,27 @@ table.stats-tbl tr:hover td { background: #0b1220; }
         <span class="unsaved-pill" id="fac-dirty">Unsaved changes</span>
         <button class="btn btn-muted" id="fac-discard">Discard</button>
         <button class="btn btn-save" id="fac-save" disabled>Save to Sheet</button>
+        <button class="btn btn-deactivate" id="fac-deactivate-btn" style="display:none">Deactivate ↓</button>
+        <button class="btn btn-reactivate" id="fac-reactivate-btn" style="display:none">Reactivate ✓</button>
         <span class="save-msg" id="fac-save-msg"></span>
+      </div>
+
+      <!-- Deactivate panel -->
+      <div class="deact-panel" id="deact-panel">
+        <h4>Deactivate this listing</h4>
+        <div class="dtype-row">
+          <button class="dtype-btn active" data-dtype="unverified">⚠️ Hide (unverified) — can restore later</button>
+          <button class="dtype-btn" data-dtype="removed">🚫 Remove permanently — confirmed non-NH</button>
+        </div>
+        <div class="field">
+          <label>Reason <span class="sub">(required — saved to sheet)</span></label>
+          <input id="deact-panel-reason" placeholder="e.g. Care types unknown, pending outreach / Confirmed: confinement centre" />
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn" style="background:#7f1d1d;border-color:#991b1b;color:#fca5a5;font-weight:600" id="deact-confirm-btn">Confirm Deactivate</button>
+          <button class="btn btn-muted" id="deact-cancel-btn">Cancel</button>
+          <span class="save-msg" id="deact-msg"></span>
+        </div>
       </div>
 
       <div class="form-body">
@@ -375,6 +410,24 @@ table.stats-tbl tr:hover td { background: #0b1220; }
             <label>250–400 words · 3 paragraphs · verified facts only</label>
             <textarea data-field="editorial_summary" style="min-height:200px"></textarea>
             <div class="sub" id="fac-wc"></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="sec-title">Screening Notes <span class="screening-badge">INTERNAL</span></div>
+          <div class="field" style="margin-bottom:10px">
+            <label>Remarks — gaps found, discrepancies vs website, follow-up needed</label>
+            <textarea data-field="remarks" style="min-height:90px" placeholder="e.g. Phone on website differs from sheet. No pricing listed anywhere. Facebook page inactive since 2022."></textarea>
+          </div>
+          <div class="field-grid two">
+            <div class="field">
+              <label>Screened Date <span class="sub">(auto-fills on save)</span></label>
+              <input data-field="screened_date" placeholder="YYYY-MM-DD" />
+            </div>
+            <div class="field">
+              <label>Screened By</label>
+              <input data-field="screened_by" placeholder="Helper's name" />
+            </div>
           </div>
         </div>
 
@@ -762,7 +815,15 @@ function fac_load(f) {
   fac_updateWc(f.editorial_summary || '');
   fac_setDirty(false);
   document.getElementById('fac-save-msg').textContent = '';
+  fac_updateDeactivateBtn();
   buildFacSidebar();
+}
+
+function fac_updateDeactivateBtn() {
+  const isDeact = !!(fac_current && fac_current.status && fac_current.status !== '');
+  document.getElementById('fac-deactivate-btn').style.display = isDeact ? 'none' : '';
+  document.getElementById('fac-reactivate-btn').style.display = isDeact ? '' : 'none';
+  document.getElementById('deact-panel').classList.remove('show');
 }
 
 function fac_onChange(el) {
@@ -805,6 +866,14 @@ function fac_setDirty(dirty) {
 async function fac_save() {
   const token = gTokenEl.value.trim();
   if (!token) { fac_showMsg('No Google token — enter one above', 'err'); return; }
+
+  // Auto-stamp screened_date if blank
+  const sdEl = document.getElementById('fac-editor').querySelector('[data-field=screened_date]');
+  if (sdEl && !sdEl.value.trim()) {
+    sdEl.value = new Date().toISOString().slice(0, 10);
+    sdEl.classList.add('dirty');
+  }
+
   const saveBtn = document.getElementById('fac-save');
   saveBtn.disabled = true; saveBtn.textContent = 'Saving…';
 
@@ -854,6 +923,71 @@ function fac_showMsg(msg, cls) {
   if (cls === 'ok') setTimeout(() => { if (el.textContent === msg) el.textContent = ''; }, 4000);
 }
 
+// ── Deactivate / Reactivate ───────────────────────────────
+let fac_deactType = 'unverified';
+
+async function fac_writeFields(fields) {
+  // fields: [{field, value}] — writes to sheet, updates local state
+  const token = gTokenEl.value.trim();
+  if (!token) throw new Error('No Google token');
+  const updates = fields.map(({field, value}) => {
+    const ci = sheetHeaders.indexOf(field);
+    if (ci === -1) return null;
+    return { range: `'${SHEET_TAB}'!${idxToCol(ci)}${fac_current._rowIndex}`, values: [[value]] };
+  }).filter(Boolean);
+  if (!updates.length) throw new Error('Column(s) not found in sheet headers');
+  const res = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values:batchUpdate`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ valueInputOption: 'USER_ENTERED', data: updates }),
+  });
+  if (!res.ok) { const e = await res.json().catch(()=>({})); throw new Error(e.error?.message || `API ${res.status}`); }
+  fields.forEach(({field, value}) => { fac_current[field] = value; fac_original[field] = value; });
+}
+
+async function fac_deactivate() {
+  const reason = document.getElementById('deact-panel-reason').value.trim();
+  if (!reason) { document.getElementById('deact-panel-reason').focus(); return; }
+  const msgEl = document.getElementById('deact-msg');
+  msgEl.textContent = 'Saving…'; msgEl.className = 'save-msg';
+  try {
+    await fac_writeFields([
+      { field: 'status',               value: fac_deactType },
+      { field: 'deactivation_reason',  value: reason },
+    ]);
+    // Sync form fields
+    const ed = document.getElementById('fac-editor');
+    const statusEl = ed.querySelector('[data-field=status]');
+    const reasonEl = ed.querySelector('[data-field=deactivation_reason]');
+    if (statusEl) statusEl.value = fac_deactType;
+    if (reasonEl) reasonEl.value = reason;
+    updateDeactRow(fac_deactType);
+    document.getElementById('deact-panel').classList.remove('show');
+    fac_updateDeactivateBtn();
+    fac_showMsg(`✓ Listing deactivated (${fac_deactType})`, 'ok');
+    buildFacSidebar();
+    buildStats();
+  } catch(e) {
+    msgEl.textContent = `✗ ${e.message}`; msgEl.className = 'save-msg err';
+  }
+}
+
+async function fac_reactivate() {
+  if (!confirm(`Reactivate "${fac_current.title}"? This sets status back to live.`)) return;
+  try {
+    await fac_writeFields([{ field: 'status', value: '' }]);
+    const statusEl = document.getElementById('fac-editor').querySelector('[data-field=status]');
+    if (statusEl) statusEl.value = '';
+    updateDeactRow('');
+    fac_updateDeactivateBtn();
+    fac_showMsg('✓ Listing reactivated — now live', 'ok');
+    buildFacSidebar();
+    buildStats();
+  } catch(e) {
+    fac_showMsg(`✗ ${e.message}`, 'err');
+  }
+}
+
 function initFacForm() {
   buildToggleGroup('fac-care-toggles',    CARE_TOGGLES);
   buildToggleGroup('fac-medical-toggles', MEDICAL_TOGGLES);
@@ -866,6 +1000,22 @@ function initFacForm() {
   });
   document.getElementById('fac-save').addEventListener('click', fac_save);
   document.getElementById('fac-discard').addEventListener('click', () => { if (fac_current) fac_load(fac_current); });
+
+  // Deactivate panel
+  document.getElementById('fac-deactivate-btn').addEventListener('click', () => {
+    document.getElementById('deact-panel').classList.toggle('show');
+    document.getElementById('deact-panel-reason').value = fac_current?.deactivation_reason || '';
+  });
+  document.getElementById('fac-reactivate-btn').addEventListener('click', fac_reactivate);
+  document.getElementById('deact-cancel-btn').addEventListener('click', () => {
+    document.getElementById('deact-panel').classList.remove('show');
+  });
+  document.getElementById('deact-confirm-btn').addEventListener('click', fac_deactivate);
+  document.querySelectorAll('.dtype-btn').forEach(b => b.addEventListener('click', () => {
+    fac_deactType = b.dataset.dtype;
+    document.querySelectorAll('.dtype-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+  }));
 }
 
 // ══════════════════════════════════════════════════════════
