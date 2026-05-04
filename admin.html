@@ -674,13 +674,16 @@ function loadGIS() {
 
 function initTokenClientOnce() {
   if (gTokenClient) return;
+  function resolveToken(ok) {
+    if (_sheetsTokenResolve) { _sheetsTokenResolve(ok); _sheetsTokenResolve = null; }
+  }
   gTokenClient = google.accounts.oauth2.initTokenClient({
     client_id: GOOGLE_CLIENT_ID,
     scope: 'https://www.googleapis.com/auth/spreadsheets',
     callback: (resp) => {
       if (resp.error) {
-        setSheetsStatus('err', 'Sheets access denied');
-        if (_sheetsTokenResolve) { _sheetsTokenResolve(false); _sheetsTokenResolve = null; }
+        setSheetsStatus('err', `Sheets: ${resp.error}`);
+        resolveToken(false);
         return;
       }
       const expiry = Date.now() + (parseInt(resp.expires_in) - 60) * 1000;
@@ -688,7 +691,15 @@ function initTokenClientOnce() {
       localStorage.setItem(GTOKEN_KEY, resp.access_token);
       localStorage.setItem(GTOKEN_EXPIRY_KEY, String(expiry));
       setSheetsStatus('ok', '✓ connected');
-      if (_sheetsTokenResolve) { _sheetsTokenResolve(true); _sheetsTokenResolve = null; }
+      resolveToken(true);
+    },
+    error_callback: (err) => {
+      // Fires when popup is closed, blocked, or origin not authorised
+      const msg = err?.type === 'popup_closed' ? 'popup closed'
+                : err?.type === 'popup_failed_to_open' ? 'popup blocked — allow popups for this site'
+                : (err?.type || 'access denied');
+      setSheetsStatus('err', `Sheets: ${msg}`);
+      resolveToken(false);
     },
   });
 }
@@ -698,19 +709,22 @@ function sheetsTokenValid() {
   return !!(gTokenEl.value && Date.now() < expiry);
 }
 
-function requestSheetsToken(interactive = false) {
+function requestSheetsToken() {
   if (!gTokenClient) return Promise.resolve(false);
   if (sheetsTokenValid()) { setSheetsStatus('ok', '✓ connected'); return Promise.resolve(true); }
+  setSheetsStatus('', 'connecting…');
   return new Promise(resolve => {
     _sheetsTokenResolve = resolve;
-    gTokenClient.requestAccessToken({ prompt: interactive ? 'consent' : '' });
+    // No prompt option — GIS shows consent if needed, silent if already granted
+    gTokenClient.requestAccessToken();
+    // Safety timeout: if callback never fires (e.g. popup blocked), resolve false
+    setTimeout(() => { if (_sheetsTokenResolve) { _sheetsTokenResolve(false); _sheetsTokenResolve = null; } }, 30000);
   });
 }
 
 async function ensureSheetsToken() {
   if (sheetsTokenValid()) return true;
-  setSheetsStatus('', 'refreshing…');
-  return requestSheetsToken(false);
+  return requestSheetsToken();
 }
 
 // ── Tab switching ─────────────────────────────────────────
@@ -1474,8 +1488,8 @@ function setUser(u) {
 }
 
 async function afterSignIn() {
-  // Get a fresh Sheets token, then load data
-  await requestSheetsToken(false);
+  // Try to get Sheets token; load data regardless (CSV fallback if token fails)
+  await requestSheetsToken();
   await loadData();
 }
 
