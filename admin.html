@@ -12,14 +12,11 @@ body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; c
 #login-overlay { position: fixed; inset: 0; background: #f1f5f9; z-index: 100; display: flex; align-items: center; justify-content: center; }
 .login-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 40px 48px; text-align: center; width: 380px; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
 .login-card h1 { margin: 0 0 4px; font-size: 20px; color: #0f172a; }
-.login-card p { margin: 0 0 28px; font-size: 13px; color: #64748b; }
-.login-users { display: flex; flex-direction: column; gap: 10px; }
-.login-user-btn { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: #f8fafc; cursor: pointer; font: inherit; font-size: 14px; color: #1e293b; transition: border-color .15s, background .15s; }
-.login-user-btn:hover { border-color: #2563eb; background: #eff6ff; }
-.login-avatar { width: 36px; height: 36px; border-radius: 50%; background: #2563eb; color: #fff; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.login-info { text-align: left; }
-.login-name { font-weight: 600; }
-.login-email { font-size: 11px; color: #64748b; }
+.login-card p { margin: 0 0 20px; font-size: 13px; color: #64748b; }
+.login-name-row { display: flex; gap: 8px; }
+.login-name-row input { flex: 1; padding: 9px 12px; font: inherit; font-size: 14px; border-radius: 8px; border: 1px solid #e2e8f0; outline: none; color: #1e293b; }
+.login-name-row input:focus { border-color: #2563eb; box-shadow: 0 0 0 2px #eff6ff; }
+.login-err { margin: 10px 0 0; font-size: 12px; color: #dc2626; min-height: 16px; }
 
 /* ── Topbar ──────────────────────────────────────────────── */
 .topbar { padding: 0 20px; border-bottom: 1px solid #e2e8f0; background: #fff; display: flex; align-items: stretch; gap: 0; flex-shrink: 0; height: 48px; }
@@ -233,22 +230,11 @@ table.stats-tbl tr:hover td { background: #f8fafc; }
   <div class="login-card">
     <h1>NHG Admin</h1>
     <p>NursingHomeGuide.my · Internal tool</p>
-    <div class="login-users">
-      <button class="login-user-btn" data-name="Ibkaar" data-email="ibkaarmy@gmail.com">
-        <div class="login-avatar">I</div>
-        <div class="login-info">
-          <div class="login-name">Ibkaar</div>
-          <div class="login-email">ibkaarmy@gmail.com</div>
-        </div>
-      </button>
-      <button class="login-user-btn" data-name="Ruffie" data-email="muhd.ruffie@gmail.com">
-        <div class="login-avatar" style="background:#7c3aed">R</div>
-        <div class="login-info">
-          <div class="login-name">Ruffie</div>
-          <div class="login-email">muhd.ruffie@gmail.com</div>
-        </div>
-      </button>
+    <div class="login-name-row">
+      <input id="login-name-input" type="text" placeholder="Your name" autocomplete="off" />
+      <button id="login-submit" class="btn btn-save">Sign in</button>
     </div>
+    <p class="login-err" id="login-err"></p>
   </div>
 </div>
 
@@ -1359,11 +1345,6 @@ function initStats() {
 // ══════════════════════════════════════════════════════════
 // LOGIN
 // ══════════════════════════════════════════════════════════
-const ALLOWED_USERS = [
-  { name: 'Ibkaar', email: 'ibkaarmy@gmail.com' },
-  { name: 'Ruffie', email: 'muhd.ruffie@gmail.com' },
-];
-
 let currentUser = null;
 
 function initLogin() {
@@ -1371,29 +1352,33 @@ function initLogin() {
   if (stored) {
     try {
       const u = JSON.parse(stored);
-      if (ALLOWED_USERS.find(x => x.email === u.email)) {
-        setUser(u);
-        return;
-      }
+      if (u.name) { setUser(u); return; }
     } catch {}
   }
   document.getElementById('login-overlay').style.display = 'flex';
-  document.querySelectorAll('.login-user-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const u = { name: btn.dataset.name, email: btn.dataset.email };
-      localStorage.setItem('nhg_admin_user', JSON.stringify(u));
-      setUser(u);
-    });
+
+  function doLogin() {
+    const name = document.getElementById('login-name-input').value.trim();
+    if (!name) {
+      document.getElementById('login-err').textContent = 'Enter your name to continue.';
+      return;
+    }
+    const u = { name };
+    localStorage.setItem('nhg_admin_user', JSON.stringify(u));
+    setUser(u);
+  }
+
+  document.getElementById('login-submit').addEventListener('click', doLogin);
+  document.getElementById('login-name-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doLogin();
   });
 }
 
 function setUser(u) {
   currentUser = u;
   document.getElementById('login-overlay').style.display = 'none';
-  const chip = document.getElementById('user-chip');
-  chip.style.display = '';
-  document.getElementById('user-chip-av').textContent = u.name[0];
-  document.getElementById('user-chip-av').style.background = u.email === 'ibkaarmy@gmail.com' ? '#2563eb' : '#7c3aed';
+  document.getElementById('user-chip').style.display = '';
+  document.getElementById('user-chip-av').textContent = u.name[0].toUpperCase();
   document.getElementById('user-chip-name').textContent = u.name;
   document.getElementById('logout-btn').addEventListener('click', () => {
     localStorage.removeItem('nhg_admin_user');
