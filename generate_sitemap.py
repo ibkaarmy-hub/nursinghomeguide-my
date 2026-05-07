@@ -21,6 +21,11 @@ DATA_JS_PATH = "data.js"
 
 
 def fetch_csv(url):
+    import os
+    local = os.path.join(os.path.dirname(os.path.abspath(__file__)), "existing_facilities.csv")
+    if os.path.exists(local):
+        with open(local, encoding="utf-8-sig") as f:
+            return list(csv.DictReader(f))
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     with urllib.request.urlopen(req, timeout=30) as r:
         body = r.read().decode("utf-8", errors="replace")
@@ -88,10 +93,16 @@ def main():
     # Home care + day care national directories
     entries.append(url_entry(f"{BASE}/home-care/", lastmod=today, changefreq="weekly", priority="0.85"))
     entries.append(url_entry(f"{BASE}/day-care/", lastmod=today, changefreq="weekly", priority="0.8"))
-    # NH state pages
-    for state in ("johor", "kuala-lumpur", "selangor"):
+    # NH state pages (3 original + 13 new from JKM nationwide expansion)
+    NH_STATES = (
+        "johor", "kuala-lumpur", "selangor",
+        "perak", "penang", "negeri-sembilan", "pahang", "kedah",
+        "melaka", "sabah", "sarawak", "terengganu", "kelantan",
+        "perlis", "putrajaya", "labuan",
+    )
+    for state in NH_STATES:
         entries.append(url_entry(f"{BASE}/nursing-homes/{state}/", lastmod=today, changefreq="daily", priority="0.9"))
-    # AL state pages
+    # AL state pages (only the original 3 — others not yet built)
     for state in ("johor", "kuala-lumpur", "selangor"):
         entries.append(url_entry(f"{BASE}/assisted-living/{state}/", lastmod=today, changefreq="daily", priority="0.85"))
     # Guide pages
@@ -132,7 +143,7 @@ def main():
         f.write(xml)
 
     print(f"Wrote sitemap.xml: {len(entries)} URLs total "
-          f"(2 landings + 6 state pages + 2 guides + {facility_count} facilities + {org_count} orgs)",
+          f"(2 landings + 19 state pages + 2 guides + {facility_count} facilities + {org_count} orgs)",
           file=sys.stderr)
 
 

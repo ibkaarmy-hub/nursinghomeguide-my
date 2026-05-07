@@ -436,7 +436,7 @@ Object.values(GROUPS).forEach(g => {
 // Per _research/verification-sop.md §6 and regulatory-framework.md §4.
 // Tier 1 entries older than 12 months auto-downgrade to Tier 0 (Unverified).
 // Tier 2 entries older than 24 months auto-downgrade to Tier 1.
-// If licence_expiry has passed, license_category drops to 'Unverified'
+// If licence_expiry has passed, licence category drops to 'Unverified'
 // regardless of stored tier.
 // Exposed as `_effective_*` fields so the raw Sheet value is preserved.
 const MS_PER_DAY = 86400000;
@@ -463,7 +463,7 @@ function parseSheetDate(s) {
 function applyVerificationStaleness(row, now = new Date()) {
   const tier = parseInt(row.verification_tier || '0', 10) || 0;
   const verifiedOn = parseSheetDate(row.last_verified_on);
-  const licenceExpiry = parseSheetDate(row.license_expiry);
+  const licenceExpiry = parseSheetDate(row.licence_expiry || row.license_expiry);
 
   // Tier staleness
   let effectiveTier = tier;
@@ -476,8 +476,9 @@ function applyVerificationStaleness(row, now = new Date()) {
     effectiveTier = 0;
   }
 
-  // Licence expiry → forces Unverified license_category.
-  let effectiveLicenceCategory = row.license_category || 'Unverified';
+  // Licence expiry → forces Unverified licence category.
+  // (license_category column was dropped from sheet — always defaults to 'Unverified')
+  let effectiveLicenceCategory = 'Unverified';
   let licenceExpired = false;
   let licenceExpiryWarning = false;
   if (licenceExpiry) {

@@ -1,0 +1,787 @@
+slug,section,label,value
+eha-parkview-eldercare-perling,policies,Visiting hours,Contact facility to confirm
+eha-parkview-eldercare-perling,policies,Deposit,Contact facility to confirm
+eha-parkview-eldercare-perling,policies,JKM licence,Verify before listing
+eha-parkview-eldercare-perling,policies,Halal dining,Confirm with facility
+eha-parkview-eldercare-perling,policies,Ownership type,Private
+eha-parkview-eldercare-perling,rooms,Long-term care (monthly),RM 3,200/month (all-in)
+eha-parkview-eldercare-perling,rooms,Respite / short-term,RM 120/day
+eha-parkview-eldercare-perling,rooms,Day care,RM 1,500/month
+eha-parkview-eldercare-perling,included,4 meals per day,Yes — included in base rate
+eha-parkview-eldercare-perling,included,Nursing care 24/7,Yes
+eha-parkview-eldercare-perling,included,Physiotherapy,Yes
+eha-parkview-eldercare-perling,included,Occupational therapy,Yes
+eha-parkview-eldercare-perling,included,Speech therapy,Yes
+eha-parkview-eldercare-perling,included,Wound care,Yes
+eha-parkview-eldercare-perling,included,Catheter care,Yes
+eha-parkview-eldercare-perling,included,NGT management,Yes
+eha-parkview-eldercare-perling,included,Stoma care,Yes
+eha-parkview-eldercare-perling,included,Suction,Yes
+eha-parkview-eldercare-perling,included,Wheelchair accessible,Yes
+eha-parkview-eldercare-perling,clinical,Physiotherapy (PT),yes
+eha-parkview-eldercare-perling,clinical,Occupational therapy (OT),yes
+eha-parkview-eldercare-perling,clinical,Speech therapy,yes
+eha-parkview-eldercare-perling,clinical,Nasogastric tube (NGT),yes
+eha-parkview-eldercare-perling,clinical,Catheter care,yes
+eha-parkview-eldercare-perling,clinical,Suction,yes
+eha-parkview-eldercare-perling,clinical,Stoma care,yes
+eha-parkview-eldercare-perling,clinical,Wound care,yes
+eha-parkview-eldercare-perling,clinical,Dementia unit,unknown — not confirmed
+eha-parkview-eldercare-perling,clinical,Dialysis,unknown — not confirmed
+eha-parkview-eldercare-perling,clinical,PEG tube,unknown — not confirmed
+eha-parkview-eldercare-perling,staffing,Nursing care,24/7
+eha-parkview-eldercare-perling,staffing,Physiotherapy,In-house
+eha-parkview-eldercare-perling,staffing,Occupational therapy,In-house
+eha-parkview-eldercare-perling,staffing,Speech therapy,In-house
+eha-parkview-eldercare-perling,staffing,Doctor visits,Confirm frequency with facility
+eha-parkview-eldercare-perling,dining,Meals per day,4 (included in base rate)
+eha-parkview-eldercare-perling,dining,Meal inclusion,Yes — 4 meals/day in RM 3,200/mo rate
+eha-parkview-eldercare-perling,checklist,Confirm current pricing (published rates may have changed),
+eha-parkview-eldercare-perling,checklist,Ask about dementia capability,
+eha-parkview-eldercare-perling,checklist,Confirm doctor visit schedule and frequency,
+eha-parkview-eldercare-perling,checklist,Request JKM registration certificate,
+eha-parkview-eldercare-perling,checklist,Ask about waiting list for base-rate rooms,
+eha-parkview-eldercare-perling,checklist,Confirm halal kitchen certification,
+fcc-family-care-centre,policies,Deposit (local residents),1 month
+fcc-family-care-centre,policies,Deposit (foreign residents),3 months
+fcc-family-care-centre,policies,Visiting hours,Contact facility to confirm
+fcc-family-care-centre,policies,JKM licence,Verify before listing
+fcc-family-care-centre,policies,Ownership type,Private
+fcc-family-care-centre,rooms,Standard / shared,RM 3,500/month (third-party — verify with facility)
+fcc-family-care-centre,rooms,Mid-tier,RM 3,800/month (third-party — verify with facility)
+fcc-family-care-centre,rooms,Premium,RM 4,300/month (third-party — verify with facility)
+fcc-family-care-centre,included,Nursing care,Yes
+fcc-family-care-centre,included,Meals,Yes — included in monthly rate
+fcc-family-care-centre,included,Dementia care (MemoryCare Home),Yes — dedicated unit
+fcc-family-care-centre,included,AI monitoring (SmartPeep),Yes — fall detection and resident monitoring
+fcc-family-care-centre,included,Organic farm activities,Yes — residents participate in planting/harvesting
+fcc-family-care-centre,included,Animal therapy,Yes — animals on campus
+fcc-family-care-centre,included,Wheelchair accessible,Yes
+fcc-family-care-centre,clinical,Nursing care 24/7,yes
+fcc-family-care-centre,clinical,Dementia / memory care,yes — dedicated MemoryCare Home
+fcc-family-care-centre,clinical,AI fall detection (SmartPeep),yes
+fcc-family-care-centre,clinical,Physiotherapy,unknown — confirm with facility
+fcc-family-care-centre,clinical,PEG tube,unknown — confirm with facility
+fcc-family-care-centre,clinical,Dialysis,unknown — confirm with facility
+fcc-family-care-centre,clinical,Palliative care,unknown — confirm with facility
+fcc-family-care-centre,staffing,Nursing care,24/7 confirmed
+fcc-family-care-centre,staffing,Doctor visits,Confirm frequency with facility
+fcc-family-care-centre,staffing,Dementia specialists,In MemoryCare Home (confirm staffing ratio)
+fcc-family-care-centre,dining,Meals,Included in monthly rate
+fcc-family-care-centre,dining,Farm produce,Yes — organic farm on campus
+fcc-family-care-centre,dining,Halal,Confirm with facility
+fcc-family-care-centre,activities,Organic farm,Yes — planting and harvesting with residents
+fcc-family-care-centre,activities,Animal interaction,Yes — animals on campus
+fcc-family-care-centre,activities,Activity programme,Yes — wellness village concept
+fcc-family-care-centre,outdoor,Organic farm,On campus — residents participate
+fcc-family-care-centre,outdoor,Gardens,Integrated wellness village landscaping
+fcc-family-care-centre,services,AI monitoring (SmartPeep),In-room / facility-wide fall detection
+fcc-family-care-centre,services,Wheelchair accessible,Yes
+fcc-family-care-centre,checklist,Confirm current pricing directly with FCC (third-party rates may be outdated),
+fcc-family-care-centre,checklist,Request JKM licence for main facility AND MemoryCare Home,
+fcc-family-care-centre,checklist,Ask about SmartPeep alert protocol — who is notified and how fast?,
+fcc-family-care-centre,checklist,For dementia residents: ask about wandering protocol and secure environment,
+fcc-family-care-centre,checklist,Ask about nursing ratio in MemoryCare Home specifically,
+fcc-family-care-centre,checklist,Clarify foreign resident deposit terms before signing,
+jeta-care,policies,JKM/MOH licence,MOH CKAPS licensed (valid to Feb 2028)
+jeta-care,policies,Visiting hours,Contact facility to confirm
+jeta-care,policies,Deposit,Contact facility to confirm
+jeta-care,policies,Ownership type,Private (Australian-concept model)
+jeta-care,policies,Halal dining,Yes — halal café on premises
+jeta-care,policies,Religion,Muslim-friendly (surau on-site)
+jeta-care,rooms,Monthly rate,RM 3,001–6,000/month (2020 data — confirm current)
+jeta-care,rooms,Bed count,62 beds
+jeta-care,included,Nursing care 24/7,Yes
+jeta-care,included,Meals,Yes — included in monthly rate
+jeta-care,included,Physiotherapy,Yes — in-house
+jeta-care,included,Halal meals,Yes — halal café on premises
+jeta-care,included,Surau (prayer room),Yes
+jeta-care,included,Rooftop garden,Yes
+jeta-care,included,Wheelchair accessible,Yes
+jeta-care,clinical,PEG tube management,yes
+jeta-care,clinical,Colostomy / ileostomy care,yes
+jeta-care,clinical,Tracheostomy management,yes
+jeta-care,clinical,Catheter care,yes
+jeta-care,clinical,Complex wound care,yes
+jeta-care,clinical,Physiotherapy,yes
+jeta-care,clinical,Palliative care,yes
+jeta-care,clinical,Post-hospitalisation rehab,yes
+jeta-care,clinical,Dementia unit,unknown — confirm with facility
+jeta-care,clinical,Dialysis,unknown — confirm with facility
+jeta-care,clinical,Syringe driver,unknown — confirm with facility
+jeta-care,staffing,Medical director,Dr. Goh Yi Xiong (named)
+jeta-care,staffing,Nursing care,24/7 (Australian model)
+jeta-care,staffing,Physiotherapy,In-house
+jeta-care,staffing,MOH CKAPS,Yes — licensed healthcare facility
+jeta-care,dining,Meals,Included in monthly rate
+jeta-care,dining,Halal,Yes — halal café on premises
+jeta-care,activities,Rooftop garden,Yes — outdoor space with views
+jeta-care,outdoor,Rooftop garden,Yes — accessible outdoor garden space
+jeta-care,services,Wheelchair accessible,Yes
+jeta-care,services,Halal café,On premises
+jeta-care,services,Surau,On premises
+jeta-care,nearby,Nearest hospital,Confirm with facility
+jeta-care,checklist,Request MOH CKAPS certificate and verify on ministry website,
+jeta-care,checklist,Ask to meet Dr. Goh Yi Xiong or clinical deputy during tour,
+jeta-care,checklist,Confirm current pricing (2020 rates are outdated),
+jeta-care,checklist,Ask for sample care plan (Australian-model care planning),
+jeta-care,checklist,Confirm overnight RN coverage for high-dependency patients,
+jeta-care,checklist,Ask about waiting list and availability,
+jeta-care,checklist,For PEG/trach patients: ask about after-hours emergency protocol,
+gentle-hill-elder-care,policies,Visiting hours,Appointment only — 3 time slots daily (confirm times)
+gentle-hill-elder-care,policies,Trial admission,2-week refundable trial available
+gentle-hill-elder-care,policies,Deposit,Contact facility to confirm
+gentle-hill-elder-care,policies,JKM licence,Verify before listing
+gentle-hill-elder-care,policies,Ownership type,Private
+gentle-hill-elder-care,policies,Muslim-friendly,Yes — halal meals available
+gentle-hill-elder-care,policies,Vegetarian-friendly,Yes
+gentle-hill-elder-care,rooms,2-bed room,Semi-private (available — confirm pricing)
+gentle-hill-elder-care,rooms,6-bed room,Shared ward (available — confirm pricing)
+gentle-hill-elder-care,rooms,Private / single,Not confirmed
+gentle-hill-elder-care,rooms,Monthly rate,Contact facility (not published)
+gentle-hill-elder-care,included,Nursing care,Yes
+gentle-hill-elder-care,included,Meals,Yes — included in monthly rate
+gentle-hill-elder-care,included,Fall detection technology,Yes — smart sensors / fall detection
+gentle-hill-elder-care,included,VOC-free environment,Yes — low-chemical indoor air quality
+gentle-hill-elder-care,included,Wheelchair accessible,Yes
+gentle-hill-elder-care,clinical,Fall detection technology,yes
+gentle-hill-elder-care,clinical,Standard nursing care,yes
+gentle-hill-elder-care,clinical,Physiotherapy,unknown — confirm with facility
+gentle-hill-elder-care,clinical,Doctor visits,unknown — confirm with facility
+gentle-hill-elder-care,clinical,Dementia care,unknown — confirm with facility
+gentle-hill-elder-care,clinical,Catheter care,unknown — confirm with facility
+gentle-hill-elder-care,clinical,PEG tube,unknown — confirm with facility
+gentle-hill-elder-care,clinical,Palliative care,unknown — confirm with facility
+gentle-hill-elder-care,staffing,Nursing care,Yes — 24/7 (confirm ratio)
+gentle-hill-elder-care,staffing,Doctor visits,Confirm frequency with facility
+gentle-hill-elder-care,dining,Meals,Included in monthly rate
+gentle-hill-elder-care,dining,Halal,Yes — Muslim-friendly meals
+gentle-hill-elder-care,dining,Vegetarian,Yes — vegetarian option available
+gentle-hill-elder-care,services,Fall detection,Smart sensor / fall detection technology in use
+gentle-hill-elder-care,services,Wheelchair accessible,Yes
+gentle-hill-elder-care,services,VOC-free materials,Yes — healthier indoor air quality
+gentle-hill-elder-care,services,2-week trial,Refundable 2-week trial admission available
+gentle-hill-elder-care,nearby,Hospital Kulai,~5 minutes
+gentle-hill-elder-care,checklist,Ask what the fall detection technology is specifically (wearable / camera / sensor),
+gentle-hill-elder-care,checklist,Ask about the 2-week trial — get refund terms in writing,
+gentle-hill-elder-care,checklist,Confirm visiting slot times and whether exceptions can be made,
+gentle-hill-elder-care,checklist,Ask whether 2-bed rooms are available at intake,
+gentle-hill-elder-care,checklist,Confirm nursing capabilities for complex needs (catheter / NGT / dementia),
+gentle-hill-elder-care,checklist,Request JKM licence number,
+gentle-hill-elder-care,checklist,Ask about doctor visit schedule,
+haywood-senior-living-medini-johor-bahru,policies,Admin enquiry hours,Mon–Fri 9am–6pm (walk-in by appointment)
+haywood-senior-living-medini-johor-bahru,policies,Visiting hours,Not published — contact facility
+haywood-senior-living-medini-johor-bahru,policies,Deposit,Not published — contact facility
+haywood-senior-living-medini-johor-bahru,policies,JKM licence,Not confirmed publicly — verify before listing
+haywood-senior-living-medini-johor-bahru,policies,AGECOPE member,Not listed (parent brand Mintygreen is — verify)
+haywood-senior-living-medini-johor-bahru,policies,Halal dining,Not confirmed — Ramada hotel restaurant (verify)
+haywood-senior-living-medini-johor-bahru,policies,Religion,Not stated
+haywood-senior-living-medini-johor-bahru,policies,Subsidy accepted,Not mentioned
+haywood-senior-living-medini-johor-bahru,policies,Ownership type,Private commercial (Mintygreen Healthcare Group / Emerald Care Center Sdn Bhd)
+haywood-senior-living-medini-johor-bahru,rooms,Studio apartment,400 sqft private studio with balcony and modern washroom (inside Ramada hotel)
+haywood-senior-living-medini-johor-bahru,rooms,Room style,Hotel room remodelled for senior care — CCTV + call bell installed
+haywood-senior-living-medini-johor-bahru,rooms,Shared suite,Care Suites with housemates (available — details not published)
+haywood-senior-living-medini-johor-bahru,rooms,Bathroom,Wall-mounted bath chair + grab bars + wheelchair accessible
+haywood-senior-living-medini-johor-bahru,included,Daily housekeeping,Yes
+haywood-senior-living-medini-johor-bahru,included,Laundry,Yes
+haywood-senior-living-medini-johor-bahru,included,4 meals per day,Yes (breakfast + lunch + afternoon tea + dinner)
+haywood-senior-living-medini-johor-bahru,included,Weekly hotel breakfast buffet,Yes — free once per week (resident's choice of day)
+haywood-senior-living-medini-johor-bahru,included,24/7 caregiver,Yes
+haywood-senior-living-medini-johor-bahru,included,Vital sign monitoring,Yes (temperature / pulse / respiration / BP / glucose)
+haywood-senior-living-medini-johor-bahru,included,Medicine dispensary,Yes
+haywood-senior-living-medini-johor-bahru,included,Swimming pool access,Yes (senior-friendly / aqua aerobics)
+haywood-senior-living-medini-johor-bahru,included,Gym access,Yes (fully equipped)
+haywood-senior-living-medini-johor-bahru,included,Outdoor exercise area,Yes
+haywood-senior-living-medini-johor-bahru,included,Reflexology pathway,Yes
+haywood-senior-living-medini-johor-bahru,included,AI security system,Yes
+haywood-senior-living-medini-johor-bahru,included,Monthly resident outings,Yes (Emerald Lake JB + Singapore Botanic Gardens)
+haywood-senior-living-medini-johor-bahru,extras,Physiotherapy sessions,Add-on (in-house physio — rate not published)
+haywood-senior-living-medini-johor-bahru,extras,Complex wound dressing,Add-on
+haywood-senior-living-medini-johor-bahru,extras,MRSA screening,Add-on
+haywood-senior-living-medini-johor-bahru,extras,Acupuncture,Add-on
+haywood-senior-living-medini-johor-bahru,extras,Tui Na massage,Add-on
+haywood-senior-living-medini-johor-bahru,extras,Psychological counselling,Available (rate not published)
+haywood-senior-living-medini-johor-bahru,extras,Online consultations / virtual visits,Available
+haywood-senior-living-medini-johor-bahru,clinical,24/7 caregivers on-site,yes
+haywood-senior-living-medini-johor-bahru,clinical,Nurses on-site,yes
+haywood-senior-living-medini-johor-bahru,clinical,Doctor standby,yes (stated as standby — on-site vs on-call unconfirmed)
+haywood-senior-living-medini-johor-bahru,clinical,Physiotherapy,yes
+haywood-senior-living-medini-johor-bahru,clinical,Palliative care,yes
+haywood-senior-living-medini-johor-bahru,clinical,Post-hospitalisation rehab,yes
+haywood-senior-living-medini-johor-bahru,clinical,Day care,yes
+haywood-senior-living-medini-johor-bahru,clinical,Wound care,yes (complex — add-on)
+haywood-senior-living-medini-johor-bahru,clinical,TCM (acupuncture / Tui Na),yes (add-on)
+haywood-senior-living-medini-johor-bahru,clinical,Dementia unit,unknown — not mentioned
+haywood-senior-living-medini-johor-bahru,clinical,Dialysis,unknown — not mentioned
+haywood-senior-living-medini-johor-bahru,clinical,Ventilator / PEG,unknown — not mentioned
+haywood-senior-living-medini-johor-bahru,clinical,Psychological counselling,yes
+haywood-senior-living-medini-johor-bahru,staffing,24/7 caregivers,Yes
+haywood-senior-living-medini-johor-bahru,staffing,Doctors,Standby (frequency/type not stated)
+haywood-senior-living-medini-johor-bahru,staffing,Physiotherapists,In-house
+haywood-senior-living-medini-johor-bahru,staffing,Counsellors,In-house
+haywood-senior-living-medini-johor-bahru,staffing,TCM practitioners,Listed as in-house (parent brand)
+haywood-senior-living-medini-johor-bahru,staffing,Staff training,Hotel service + senior care trained
+haywood-senior-living-medini-johor-bahru,staffing,Languages,Not stated — contact to confirm
+haywood-senior-living-medini-johor-bahru,dining,Meals per day,4 (breakfast / lunch / afternoon tea / dinner)
+haywood-senior-living-medini-johor-bahru,dining,Special diets,Yes — diabetic menus confirmed; others available
+haywood-senior-living-medini-johor-bahru,dining,Weekly hotel buffet,Free hotel breakfast buffet once per week
+haywood-senior-living-medini-johor-bahru,dining,Halal certified,Not confirmed — verify Ramada Medini restaurant
+haywood-senior-living-medini-johor-bahru,dining,Restaurant on-site,Yes — Delish Restaurant (Ramada hotel)
+haywood-senior-living-medini-johor-bahru,activities,Swimming (aqua aerobics),Yes
+haywood-senior-living-medini-johor-bahru,activities,Gym / fitness,Yes
+haywood-senior-living-medini-johor-bahru,activities,Outdoor exercise,Yes
+haywood-senior-living-medini-johor-bahru,activities,Reflexology walks,Yes
+haywood-senior-living-medini-johor-bahru,activities,Recreational programs,Yes — mahjong / card games / TV / art & crafts / music
+haywood-senior-living-medini-johor-bahru,activities,Monthly outings,Yes — JB + Singapore destinations
+haywood-senior-living-medini-johor-bahru,activities,Light physiotherapy exercises,Yes
+haywood-senior-living-medini-johor-bahru,outdoor,Swimming pool,Senior-friendly pool + aqua aerobics (Ramada hotel)
+haywood-senior-living-medini-johor-bahru,outdoor,Outdoor gym,Yes
+haywood-senior-living-medini-johor-bahru,outdoor,Reflexology path,Yes
+haywood-senior-living-medini-johor-bahru,outdoor,Balcony (per room),Yes — private balcony in studio units
+haywood-senior-living-medini-johor-bahru,services,Daily housekeeping,Included
+haywood-senior-living-medini-johor-bahru,services,Laundry,Included
+haywood-senior-living-medini-johor-bahru,services,CCTV monitoring,In-room (emergency use)
+haywood-senior-living-medini-johor-bahru,services,In-room call bell,Yes — 24/7 caregiver response
+haywood-senior-living-medini-johor-bahru,services,Online visitation,Yes — virtual family visits available
+haywood-senior-living-medini-johor-bahru,services,Wheelchair accessible,Yes
+haywood-senior-living-medini-johor-bahru,services,Parking,At Ramada hotel (assumed — verify)
+haywood-senior-living-medini-johor-bahru,nearby,Gleneagles Hospital Medini Johor,~3 minutes (explicitly stated)
+haywood-senior-living-medini-johor-bahru,nearby,Bukit Indah (commercial),~12 minutes (explicitly stated)
+haywood-senior-living-medini-johor-bahru,nearby,JB city centre,~15 minutes (explicitly stated)
+haywood-senior-living-medini-johor-bahru,nearby,Tuas Checkpoint (Singapore border),~20 km (explicitly stated)
+haywood-senior-living-medini-johor-bahru,checklist,Confirm JKM licence number before committing,
+haywood-senior-living-medini-johor-bahru,checklist,Verify halal status of Ramada restaurant,
+haywood-senior-living-medini-johor-bahru,checklist,Ask for all-in monthly rate (studio / shared),
+haywood-senior-living-medini-johor-bahru,checklist,Confirm deposit amount and exit notice period,
+haywood-senior-living-medini-johor-bahru,checklist,Ask whether doctor is on-site 24/7 or on-call,
+haywood-senior-living-medini-johor-bahru,checklist,Ask about dementia capability,
+haywood-senior-living-medini-johor-bahru,checklist,Confirm staff languages (Mandarin / BM / English),
+haywood-senior-living-medini-johor-bahru,checklist,Ask about Singapore-resident admission process,
+haywood-senior-living-medini-johor-bahru,checklist,Request AGECOPE or JKM documentation,
+woon-ho-family-care-centre,policies,Visiting hours,Not published — call to confirm
+woon-ho-family-care-centre,policies,Deposit required,Not published
+woon-ho-family-care-centre,policies,Minimum stay,Not published
+woon-ho-family-care-centre,policies,Payment frequency,Not published
+woon-ho-family-care-centre,policies,Refund policy,Not published
+woon-ho-family-care-centre,policies,JKM registration #,Not published — ask on visit
+woon-ho-family-care-centre,policies,AGECOPE member,Yes
+woon-ho-family-care-centre,policies,Office hours,"Mon–Sun, 11am–6pm"
+woon-ho-family-care-centre,rooms,Single room (RM/mo),Not published
+woon-ho-family-care-centre,rooms,2-bed room (RM/mo),Not published
+woon-ho-family-care-centre,rooms,4-bed room (RM/mo),Not published
+woon-ho-family-care-centre,rooms,Air-conditioning,Not stated
+woon-ho-family-care-centre,rooms,En-suite bathroom,Not stated
+woon-ho-family-care-centre,rooms,Call button,Not stated
+woon-ho-family-care-centre,included,4 nutritious meals daily,yes
+woon-ho-family-care-centre,included,24-hour caregiver coverage,yes
+woon-ho-family-care-centre,included,Doctor consultations × 2 / month,yes
+woon-ho-family-care-centre,included,Basic nursing care,yes
+woon-ho-family-care-centre,included,Medication administration,yes
+woon-ho-family-care-centre,included,Activities & social events,yes
+woon-ho-family-care-centre,included,CCTV monitoring,yes
+woon-ho-family-care-centre,included,Outdoor compound & garden access,yes
+woon-ho-family-care-centre,extras,Diapers,Not declared
+woon-ho-family-care-centre,extras,Medication / pharmacy,Not declared
+woon-ho-family-care-centre,extras,Doctor visits beyond 2/month,Likely billed
+woon-ho-family-care-centre,extras,Milk feeds / supplements,Not declared
+woon-ho-family-care-centre,extras,Wound dressings,Not declared
+woon-ho-family-care-centre,extras,Physiotherapy sessions,Not declared
+woon-ho-family-care-centre,extras,Transport / ambulance,Not declared
+woon-ho-family-care-centre,clinical,Wound dressing,yes
+woon-ho-family-care-centre,clinical,Catheter management,yes
+woon-ho-family-care-centre,clinical,Tube feeding (NG/PEG type unspecified),yes
+woon-ho-family-care-centre,clinical,Stroke rehabilitation,yes
+woon-ho-family-care-centre,clinical,Dementia: sensory & cognition stimulation,yes
+woon-ho-family-care-centre,clinical,Reminiscence therapy,yes
+woon-ho-family-care-centre,clinical,Palliative care framework,yes
+woon-ho-family-care-centre,clinical,Oxygen therapy,Not stated
+woon-ho-family-care-centre,clinical,Tracheostomy care,Not stated
+woon-ho-family-care-centre,clinical,Dialysis transport,Not stated
+woon-ho-family-care-centre,clinical,Syringe driver (palliative),Not stated
+woon-ho-family-care-centre,staffing,RN on site overnight,Not confirmed
+woon-ho-family-care-centre,staffing,Caregiver:resident ratio (day),Not published
+woon-ho-family-care-centre,staffing,Caregiver:resident ratio (night),Not published
+woon-ho-family-care-centre,staffing,Doctor visits,"2 / month included, on-call thereafter"
+woon-ho-family-care-centre,staffing,Physiotherapy,Available — frequency not stated
+woon-ho-family-care-centre,staffing,Occupational therapy,Not stated
+woon-ho-family-care-centre,dining,Meals per day,4
+woon-ho-family-care-centre,dining,Nutritionally planned,Yes
+woon-ho-family-care-centre,dining,Halal certified,Not declared
+woon-ho-family-care-centre,dining,Diabetic diet,Not stated
+woon-ho-family-care-centre,dining,Soft / pureed diet,Not stated
+woon-ho-family-care-centre,dining,Family meals on-site,Not stated
+woon-ho-family-care-centre,activities,Regular exercise sessions,yes
+woon-ho-family-care-centre,activities,Social events & entertainment,yes
+woon-ho-family-care-centre,activities,Sensory stimulation,yes
+woon-ho-family-care-centre,activities,Cognitive activities,yes
+woon-ho-family-care-centre,activities,Daily schedule,Not published
+woon-ho-family-care-centre,activities,Religious observance,Not stated
+woon-ho-family-care-centre,outdoor,Compound size,"21,800 sqft"
+woon-ho-family-care-centre,outdoor,Lawn garden / patio,yes
+woon-ho-family-care-centre,outdoor,Walking paths,yes
+woon-ho-family-care-centre,outdoor,Grab bars in bathrooms & hallways,yes
+woon-ho-family-care-centre,outdoor,Non-slip flooring,yes
+woon-ho-family-care-centre,outdoor,Bed alarms,yes
+woon-ho-family-care-centre,outdoor,"Walkers, wheelchairs, shower seats provided",yes
+woon-ho-family-care-centre,services,24/7 ambulance / emergency escort,yes
+woon-ho-family-care-centre,services,CCTV monitoring (interior & exterior),yes
+woon-ho-family-care-centre,services,Laundry,Not stated
+woon-ho-family-care-centre,services,Housekeeping,Not stated
+woon-ho-family-care-centre,services,Hairdressing,Not stated
+woon-ho-family-care-centre,services,Resident transport,Not stated
+woon-ho-family-care-centre,nearby,Hospital Sultanah Aminah (govt),~12 km
+woon-ho-family-care-centre,nearby,Columbia Asia Hospital Tebrau,~8 km
+woon-ho-family-care-centre,nearby,KPJ Bandar Dato' Onn,~7 km
+woon-ho-family-care-centre,nearby,AEON Tebrau City,~6 km
+woon-ho-family-care-centre,nearby,Tebrau Highway access,~3 km
+woon-ho-family-care-centre,nearby,Mosque / Buddhist temple,within Kempas Baru
+woon-ho-family-care-centre,checklist,Ask for JKM registration certificate,
+woon-ho-family-care-centre,checklist,Itemised price quote (room type + extras),
+woon-ho-family-care-centre,checklist,Caregiver:resident ratio day & night,
+woon-ho-family-care-centre,checklist,Whether RN is on-site overnight,
+woon-ho-family-care-centre,checklist,Halal kitchen confirmation,
+woon-ho-family-care-centre,checklist,Refund / early-discharge policy,
+woon-ho-family-care-centre,checklist,Hospital escalation pathway,
+jeta-care,rooms,Single room (shared toilet),"RM 3,001–4,000/mo (2020 — confirm current)"
+jeta-care,rooms,Twin room (shared toilet),"RM 3,001–4,500/mo (2020 — confirm current)"
+jeta-care,rooms,Twin room (attached toilet),"RM 4,000–5,500/mo (2020 — confirm current)"
+jeta-care,rooms,Triple room,"RM 3,001–4,000/mo (2020 — confirm current)"
+jeta-care,rooms,Total beds,62
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,policies,Operating hours,Mon–Sun 9:00am – 6:00pm (24-hr residential)
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,policies,Setting,Adjacent to Daiman 18 Golf Club with golf course views
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,policies,Group affiliation,EHA Eldercare Group Sdn Bhd (1478860-U)
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,policies,JKM licence,Not published — verify on-site
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,rooms,Assisted Living (from RM/mo),"3,200"
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,rooms,Respite / Short-term (from RM/day),120
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,rooms,Day Care (from RM/mo),"1,500"
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,included,Meals (chef-prepared),yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,included,Housekeeping,yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,included,Wi-Fi,yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,included,Utilities,yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,included,Vital signs monitoring,yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,included,ADL assistance (feeding/washing/dressing/toileting),yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,included,Recreational activities,yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,clinical,Special nursing procedures (NGT/catheter/suction/stoma/trach),yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,clinical,Wound management,yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,clinical,Physiotherapy,yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,clinical,Traditional Chinese Medicine (acupuncture/herbal),yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,clinical,Dementia care,yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,clinical,Post-surgery recovery,yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,staffing,24/7 caregiver cover,Yes
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,outdoor,Setting,Golf course precinct with landscaped gardens
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,checklist,Request JKM licence certificate number,
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,checklist,Ask for room type options and current availability,
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,checklist,Confirm RN overnight vs caregiver only,
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,checklist,Confirm doctor visit schedule and panel doctor,
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,nearby,Daiman 18 Golf Club,Adjacent
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,policies,Operating hours,Mon–Sun 9:00am – 6:00pm (24-hr residential)
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,policies,Setting,Lakeside in Taman Bayu Puteri with lake views
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,policies,Group affiliation,EHA Eldercare Group Sdn Bhd (1478860-U)
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,policies,Award,Most Beautiful Elderly Care Mansion (Facebook-announced)
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,rooms,Assisted Living (from RM/mo),"3,200"
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,rooms,Respite / Short-term (from RM/day),120
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,rooms,Day Care (from RM/mo),"1,500"
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,included,Meals (chef-prepared),yes
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,included,Housekeeping,yes
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,included,Wi-Fi,yes
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,included,ADL assistance,yes
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,clinical,Special nursing procedures (NGT/catheter/suction/stoma/trach),yes
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,clinical,Wound management,yes
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,clinical,Physiotherapy,yes
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,clinical,Traditional Chinese Medicine,yes
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,clinical,Dementia care,yes
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,staffing,24/7 caregiver cover,Yes
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,outdoor,Setting,Lakeside with abundant greenery
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,checklist,Request JKM licence certificate number,
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,checklist,Confirm RN overnight vs caregiver only,
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,nearby,Permas Jaya commercial hub,~2 km
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,policies,Operating hours,Mon–Sun 9:00am – 6:00pm (24-hr residential)
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,policies,Concept,Malaysia's first theme-styled therapeutic villa (self-claimed)
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,policies,Group affiliation,EHA Eldercare Group Sdn Bhd (1478860-U)
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,rooms,Assisted Living (from RM/mo),"From 3,200"
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,rooms,Respite / Short-term (from RM/day),120
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,rooms,Day Care (from RM/mo),"1,500"
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,included,Meals,yes
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,included,Wi-Fi,yes
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,included,ADL assistance,yes
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,clinical,Special nursing procedures,yes
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,clinical,Physiotherapy (in-house),yes (claimed at launch)
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,clinical,Dementia care,yes
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,clinical,Fully automatic medical beds,yes
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,staffing,24/7 caregiver cover,Yes
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,checklist,Request JKM licence certificate number,
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,checklist,Verify current doctor/nurse/physio roster vs launch claims,
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,nearby,Kempas town centre,~2 km
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,policies,Operating hours,Mon–Sun 9:00am – 6:00pm (24-hr residential)
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,policies,Group affiliation,EHA Eldercare Group Sdn Bhd (1478860-U)
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,policies,JKM licence,Claimed on Google listing — verify licence number on-site
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,rooms,Assisted Living (from RM/mo),"2,300"
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,rooms,Respite / Short-term (from RM/day),80
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,rooms,Day Care (from RM/mo),"1,300"
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,included,Meals (chef-prepared),yes
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,included,Wi-Fi,yes
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,included,ADL assistance,yes
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,clinical,Special nursing procedures,yes
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,clinical,Physiotherapy,yes
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,clinical,Dementia care,yes
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,staffing,Owner-operated feel,Yes — management praised by name in reviews
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,checklist,Request specific JKM licence number,
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,checklist,Confirm nearest hospital with emergency capability,Kluang Hospital ~3 km
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,nearby,Kluang Hospital (government),~3 km estimated
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,nearby,Johor Bahru (nearest major hospital hub),~100 km
+econ-medicare-centre-nursing-home-taman-perling-branch,policies,Visiting hours,10am – 7pm daily
+econ-medicare-centre-nursing-home-taman-perling-branch,policies,Visitors per visit,Maximum 2
+econ-medicare-centre-nursing-home-taman-perling-branch,policies,Operating hours,24 hours / 7 days a week
+econ-medicare-centre-nursing-home-taman-perling-branch,policies,Email,tp@econhealthcare.com
+econ-medicare-centre-nursing-home-taman-perling-branch,policies,Phone (main),07-234 4680
+econ-medicare-centre-nursing-home-taman-perling-branch,rooms,Total beds,199
+econ-medicare-centre-nursing-home-taman-perling-branch,rooms,Building,"4 storeys + basement carpark; 57,000 sq ft purpose-built"
+econ-medicare-centre-nursing-home-taman-perling-branch,rooms,Monthly fee range (group-wide MY),"RM 1,950 – RM 6,600"
+econ-medicare-centre-nursing-home-taman-perling-branch,included,24-hour nursing care,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,included,Physiotherapy,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,included,Wound dressing,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,included,Rehabilitation programme,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,included,Social activities programme,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,clinical,Dementia care,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,clinical,Parkinson's care,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,clinical,Stroke rehabilitation,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,clinical,Palliative care,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,clinical,Cancer care,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,clinical,Occupational therapy,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,clinical,Traditional Chinese Medicine / acupuncture,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,staffing,Registered Nurses,Yes — confirmed
+econ-medicare-centre-nursing-home-taman-perling-branch,staffing,Physiotherapist,Yes — on-site
+econ-medicare-centre-nursing-home-taman-perling-branch,staffing,Occupational therapist,Yes — confirmed
+econ-medicare-centre-nursing-home-taman-perling-branch,services,Ambulance service,yes (in-house)
+econ-medicare-centre-nursing-home-taman-perling-branch,services,Home care coordination,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,services,Short-term / respite admission,yes
+econ-medicare-centre-nursing-home-taman-perling-branch,nearby,Singapore Woodlands Checkpoint,~45 min drive
+econ-medicare-centre-nursing-home-taman-perling-branch,nearby,Johor Bahru city centre,~10–15 min drive
+econ-medicare-centre-nursing-home-taman-perling-branch,checklist,Ask for current room-type pricing breakdown,
+econ-medicare-centre-nursing-home-taman-perling-branch,checklist,Confirm JKM Private Aged Healthcare Facility licence number,
+econ-medicare-centre-nursing-home-taman-perling-branch,checklist,Confirm halal meal availability if required,
+econ-medicare-centre-nursing-home-taman-perling-branch,checklist,Note: ownership changed to TPG (US private equity) mid-2025,
+pusat-jagaan-warga-emas-nur-ehsan,policies,Address,"Lot 3353, MLD 1034, No. 3, Jalan Denai 1, Kempas Baru, 81200 Johor Bahru"
+pusat-jagaan-warga-emas-nur-ehsan,policies,Visiting hours,10am – 6pm daily
+pusat-jagaan-warga-emas-nur-ehsan,policies,Operator,Persatuan Kebajikan Nur Ehsan Negeri Johor (PKNENJ)
+pusat-jagaan-warga-emas-nur-ehsan,policies,Operating since,November 2008 (incorporated June 2009)
+pusat-jagaan-warga-emas-nur-ehsan,policies,Admission eligibility,Elderly Muslims without heirs; destitute; converts (muallaf); disabled
+pusat-jagaan-warga-emas-nur-ehsan,policies,Referral sources,JKM officers; hospital social work; MAIJ; JAIJ
+pusat-jagaan-warga-emas-nur-ehsan,policies,Capacity (Kempas Baru),56 beds
+pusat-jagaan-warga-emas-nur-ehsan,policies,Number of branches,"4 (JB, Ledang, Bukit Indah, Simpang Renggam)"
+pusat-jagaan-warga-emas-nur-ehsan,policies,Fee model,Donation-based; families with means asked to contribute modestly
+pusat-jagaan-warga-emas-nur-ehsan,policies,Manager contact,Encik Saiful — 013-794 0350
+pusat-jagaan-warga-emas-nur-ehsan,clinical,Physiotherapy,yes
+pusat-jagaan-warga-emas-nur-ehsan,clinical,Regular medical examinations,yes
+pusat-jagaan-warga-emas-nur-ehsan,clinical,24-hour CCTV security,yes
+pusat-jagaan-warga-emas-nur-ehsan,checklist,Confirm current gender policy (male-only or mixed),
+pusat-jagaan-warga-emas-nur-ehsan,checklist,Request JKM licence number before referral,
+pusat-jagaan-warga-emas-nur-ehsan,checklist,Clarify monthly contribution expected for family-placed residents,
+pusat-jagaan-warga-emas-nur-ehsan,nearby,Hospital Permai Johor Bahru,~10 km (referring hospital for mental health cases)
+fu-ka-care-center,policies,Address,"PTD 14521, Jalan Persiaran Kempas Baru, Kempas Baru, 81200 Johor Bahru"
+fu-ka-care-center,policies,Email,fukanursinghome14521@gmail.com
+fu-ka-care-center,policies,Established,2023 (incorporated May 2023)
+fu-ka-care-center,clinical,24/7 nursing care,yes
+fu-ka-care-center,clinical,Dementia care,yes
+fu-ka-care-center,clinical,Physiotherapy,yes
+fu-ka-care-center,clinical,Specialist care,yes
+fu-ka-care-center,nearby,Kempas Medical Centre,~1–2 km
+fu-ka-care-center,checklist,Confirm JKM licence number,
+fu-ka-care-center,checklist,Verify halal food certification,
+fu-ka-care-center,checklist,Ask for monthly pricing by room type,
+fu-ka-care-center,checklist,Confirm RN staffing ratio day/night,
+pusat-jagaan-impian-syimah-jalan-kemuncak,policies,Address,"No 3, Lorong 3, Jalan Kemuncak 3, Kampung Nong Chik, 80000 Johor Bahru"
+pusat-jagaan-impian-syimah-jalan-kemuncak,policies,Management,Run by Rosmi and Hasyimah (husband and wife; ~10 years)
+pusat-jagaan-impian-syimah-jalan-kemuncak,policies,SSM Registration,JM0635898-M
+pusat-jagaan-impian-syimah-jalan-kemuncak,policies,Resident capacity,~61 elderly residents (Sunway 2026 figure)
+pusat-jagaan-impian-syimah-jalan-kemuncak,clinical,Bedridden care,Yes — 23 bedridden residents noted across operator
+pusat-jagaan-impian-syimah-jalan-kemuncak,checklist,Ask to see JKM licence — confirm current and displayed on-site,
+pusat-jagaan-impian-syimah-jalan-kemuncak,checklist,"Ask about bedridden care protocol — turning schedule, wound care",
+pusat-jagaan-impian-syimah-jalan-kemuncak,checklist,Note 3.5-star rating — only 11 reviews; ask other families,
+lotus-ville-care-centre,policies,AGECOPE member,Yes
+lotus-ville-care-centre,policies,Act 586 licensed,Yes (Johor)
+lotus-ville-care-centre,policies,Operating hours,9:00am – 5:00pm daily (closed Sunday)
+lotus-ville-care-centre,clinical,Dementia care,yes
+lotus-ville-care-centre,clinical,Palliative care,yes
+lotus-ville-care-centre,clinical,Assisted living,yes
+lotus-ville-care-centre,clinical,Physiotherapy,yes
+lotus-ville-care-centre,checklist,Confirm address (two locations listed in aggregators),
+lotus-ville-care-centre,checklist,Request JKM licence number,
+lotus-ville-care-centre,checklist,Request monthly pricing for shared and private rooms,
+golden-age-care-centre,policies,Address,"28-10 Jalan Ria 2, Taman Ria, 84000 Muar, Johor"
+golden-age-care-centre,policies,Visiting hours,9:00am – 6:00pm daily (Mon–Sun)
+golden-age-care-centre,policies,Phone (branch),06-952 7711
+golden-age-care-centre,policies,JKM Rating,4-Star (Jabatan Kebajikan Masyarakat)
+golden-age-care-centre,policies,Operator,Golden Age Care Centre Sdn. Bhd. (Co. 1122813-K)
+golden-age-care-centre,policies,Other branches,Batu Pahat | Tangkak | Melaka
+golden-age-care-centre,clinical,Memory Care,yes
+golden-age-care-centre,clinical,Physiotherapy,yes
+golden-age-care-centre,clinical,Occupational therapy,yes
+golden-age-care-centre,clinical,Speech therapy,yes
+golden-age-care-centre,clinical,CCTV monitoring,24/7
+golden-age-care-centre,nearby,Hospital Pakar Sultanah Fatimah Muar,~1–2 km (same road — Jalan Salleh)
+golden-age-care-centre,checklist,Confirm which branch — Muar vs Batu Pahat (1.3 star poor reviews),
+golden-age-care-centre,checklist,Ask about halal meal provision,
+golden-age-care-centre,checklist,Confirm 24/7 nursing coverage,
+master-nursing-care-centre-daya,policies,Operating hours,Monday–Sunday 9am–7pm
+master-nursing-care-centre-daya,policies,Email,mastercarecentre@gmail.com
+master-nursing-care-centre-daya,policies,Branch type,One of three MCC branches in JB
+master-nursing-care-centre-daya,services,Post-surgery care,yes
+master-nursing-care-centre-daya,services,Stroke rehabilitation,yes
+master-nursing-care-centre-daya,services,Dementia / memory care,yes
+master-nursing-care-centre-daya,services,Palliative & comfort care,yes
+master-nursing-care-centre-daya,checklist,Confirm which branch (3 branches exist),
+master-nursing-care-centre-daya,checklist,Ask for JKM licence number,
+master-nursing-care-centre-daya,nearby,Klinik Komuniti Taman Daya,Adjacent (Jalan Nipah 13)
+sunrise-care-centre-sdn-bhd,policies,Operator group,Rebina Sunrise Elderly Care (family-owned since 2003)
+sunrise-care-centre-sdn-bhd,policies,Sister facility,Rebina House Care Centre — 15 & 17 Jalan Keranji (same road)
+sunrise-care-centre-sdn-bhd,policies,Email,care@rebinasunrise.com
+sunrise-care-centre-sdn-bhd,clinical,CAPD (peritoneal dialysis),yes
+sunrise-care-centre-sdn-bhd,clinical,Ryle's tube feeding & replacement,yes
+sunrise-care-centre-sdn-bhd,clinical,Phlegm suction,yes
+sunrise-care-centre-sdn-bhd,clinical,Nebuliser therapy,yes
+sunrise-care-centre-sdn-bhd,clinical,Balloon catheter management,yes
+sunrise-care-centre-sdn-bhd,clinical,Post-operative wound dressing,yes
+sunrise-care-centre-sdn-bhd,clinical,Oxygen supply,yes
+sunrise-care-centre-sdn-bhd,clinical,Acupuncture,yes
+sunrise-care-centre-sdn-bhd,clinical,Physiotherapy,yes
+sunrise-care-centre-sdn-bhd,clinical,Palliative / hospice care,yes
+sunrise-care-centre-sdn-bhd,checklist,Ask for pricing — not published online,
+sunrise-care-centre-sdn-bhd,checklist,Confirm JKM facility licence number,
+sunrise-care-centre-sdn-bhd,nearby,Rebina House Care Centre,"~50 m (same operator, same road)"
+lee-nursing,policies,Visiting hours,9am–12pm and 4pm–7pm daily
+lee-nursing,policies,Short-term stays,Yes
+lee-nursing,included,3 meals per day + tea break,yes
+lee-nursing,included,Diaper changes,yes
+lee-nursing,included,Laundry,yes
+lee-nursing,included,Transport to clinic/hospital,yes
+lee-nursing,clinical,Ryle's tube / nasogastric feeding,yes
+lee-nursing,clinical,Tracheal suctioning,yes
+lee-nursing,clinical,Catheter management,yes
+lee-nursing,clinical,Wound care,yes
+lee-nursing,staffing,Registered nurse (24-hour),yes
+lee-nursing,staffing,Key contact (admin),Richard How — +60 12-777 6673
+lee-nursing,staffing,Key contact (nursing),Mdm Lee — +60 19-779 6688
+lee-nursing,checklist,Verify current address — multiple addresses in directories,Call before visiting
+lee-nursing,checklist,Ask for JKM licence number,
+lee-nursing,checklist,Google rating 3★ from 2 reviews — ask for family references,
+lee-nursing,nearby,Hibiscus Serenity Care Centre (same operator),"Larkin, JB"
+ax-nursing-home-plt,policies,Pricing information,Contact facility directly — not published online
+ax-nursing-home-plt,policies,Ownership structure,Private (PLT — Perkongsian Liabiliti Terhad)
+ax-nursing-home-plt,checklist,Verify JKM nursing home licence number,
+ax-nursing-home-plt,checklist,Confirm bed count and room types available,
+ax-nursing-home-plt,checklist,Ask for full monthly fee breakdown,
+elim-nursing-home-batu-pahat,policies,Chinese name,冠冕疗养院 (Crown Nursing Home)
+elim-nursing-home-batu-pahat,policies,Religious character,Likely Christian faith-based — verify with facility
+elim-nursing-home-batu-pahat,checklist,Confirm JKM or MOH licence number,
+elim-nursing-home-batu-pahat,checklist,Verify church or NGO affiliation,
+elim-nursing-home-batu-pahat,checklist,Ask whether halal meals available for non-Christian residents,
+elim-nursing-home-batu-pahat,nearby,KPJ Batu Pahat Specialist Hospital,In Batu Pahat town
+healthlife-old-folks-home,policies,Address,"No. 85-4, Jalan Haji Basir, Jalan Kluang, Taman Limpoon, 83000 Batu Pahat"
+healthlife-old-folks-home,policies,Chinese name,爱心疗养中心 (Ai Xin Liao Yang Zhong Xin — Love Heart Care Centre)
+healthlife-old-folks-home,policies,Languages,Mandarin / Chinese dialects (inferred)
+healthlife-old-folks-home,checklist,Confirm current bed availability by phone,
+healthlife-old-folks-home,checklist,Request JKM registration / licence number,
+pusat-jagaan-wargatua-parit-bilal,policies,Address,"POS 8A, Jalan Batu 3, Parit Bilal, 83000 Batu Pahat, Johor"
+pusat-jagaan-wargatua-parit-bilal,policies,Location notes,Rural township ~15 km north of Batu Pahat town
+pusat-jagaan-wargatua-parit-bilal,checklist,Confirm ownership type (welfare society vs private business),
+pusat-jagaan-wargatua-parit-bilal,checklist,Verify JKM licence / registration status,
+pusat-jagaan-wargatua-parit-bilal,checklist,Confirm halal food and solat facilities available,
+pusat-jagaan-impian-syimah-jalan-kemaman,policies,Address,"Lot 1818, No. 7, Jalan Kemaman, Kampung Tarom, 80100 Johor Bahru"
+pusat-jagaan-impian-syimah-jalan-kemaman,policies,Email,pusatjagaanimpiansyimah12@gmail.com
+pusat-jagaan-impian-syimah-jalan-kemaman,policies,SSM Registration,JM0635898-M
+pusat-jagaan-impian-syimah-jalan-kemaman,policies,Sister branch,Jalan Kemuncak branch at 40N Jalan Kemuncak 1 Taman Nong Chik
+pusat-jagaan-impian-syimah-jalan-kemaman,checklist,Confirm capacity at this branch specifically (not Kemuncak),
+pusat-jagaan-impian-syimah-jalan-kemaman,checklist,Verify JKM licence number for this branch,
+pusat-perjagaan-orang-tua-ren-ai,policies,Area,Senai / Kulai District — near Senai International Airport
+pusat-perjagaan-orang-tua-ren-ai,policies,Online presence,Facebook only (RenAiSenai); not listed in major directories
+pusat-perjagaan-orang-tua-ren-ai,checklist,Verify JKM registration,Check jkm.gov.my for Kulai District listing
+pusat-perjagaan-orang-tua-ren-ai,checklist,Confirm address before visiting — exact street not confirmed online,
+pusat-perjagaan-orang-tua-ren-ai,checklist,Ask about care model (nursing vs residential),
+pusat-jagaan-orang-tua-yeo-jb,policies,Operator,Family-operated; proprietor surname Yeo
+pusat-jagaan-orang-tua-yeo-jb,checklist,Verify current address — two addresses in public data,
+pusat-jagaan-orang-tua-yeo-jb,checklist,Address (Waze) — Taman Bukit Kempas 81200 JB (likely current),
+pusat-jagaan-orang-tua-yeo-jb,checklist,Verify JKM registration,
+hang-nursing-home-gelang-patah-branch,policies,Location area,Gelang Patah — western JB near Second Link
+hang-nursing-home-gelang-patah-branch,policies,Operator,"Likely family-operated; ""Hang"" probable family surname"
+hang-nursing-home-gelang-patah-branch,checklist,Confirm exact address — no street address found online,
+hang-nursing-home-gelang-patah-branch,checklist,Verify JKM registration,
+hang-nursing-home-gelang-patah-branch,checklist,Ask about other branches — JKM data suggests multiple locations,
+yang-xin-nursing-home,policies,Chinese name,养心托管安老院 (Yǎng Xīn Tuōguǎn Ān Lǎo Yuàn)
+yang-xin-nursing-home,policies,Care model note,"""托管"" (tuoguan) = full-custody residential care (not day care)"
+yang-xin-nursing-home,policies,Online presence,"Facebook only (newer facility, high-ID profile)"
+yang-xin-nursing-home,checklist,Confirm address before visiting — no street address found online,
+yang-xin-nursing-home,checklist,Verify JKM registration,
+yang-xin-nursing-home,checklist,Language of care — likely Mandarin/Cantonese (unverified),
+pusat-jagaan-kebajikan-manna-sinar-cahaya,policies,Care model,Welfare home (kebajikan) — not a private nursing home
+pusat-jagaan-kebajikan-manna-sinar-cahaya,policies,Religious orientation,Christian (based on name etymology — unconfirmed)
+pusat-jagaan-kebajikan-manna-sinar-cahaya,policies,Admission route,Direct application or JKM social worker referral
+pusat-jagaan-kebajikan-manna-sinar-cahaya,policies,Target residents,Low-income elderly; JKM-referred cases
+pusat-jagaan-kebajikan-manna-sinar-cahaya,checklist,Verify JKM berdaftar certificate before admission,
+pusat-jagaan-kebajikan-manna-sinar-cahaya,checklist,Ask for monthly fee and subsidy eligibility,
+pusat-jagaan-kebajikan-manna-sinar-cahaya,checklist,Visit in person — check hygiene and staffing,
+pusat-jagaan-kebajikan-manna-sinar-cahaya,checklist,Confirm emergency medical protocol,
+alda-homes-eldercare,policies,Established,2016
+alda-homes-eldercare,policies,Operating model,Residential home (converted house — home-like environment)
+alda-homes-eldercare,policies,AGECOPE member,Not listed
+alda-homes-eldercare,policies,JKM licence,Not publicly confirmed — verify on-site
+alda-homes-eldercare,activities,Group exercise,Yes — evidenced on Instagram reels
+alda-homes-eldercare,activities,Social events,Yes — evidenced on Instagram reels
+alda-homes-eldercare,checklist,Verify JKM licence on-site,
+alda-homes-eldercare,checklist,Confirm RN staffing day + night,
+alda-homes-eldercare,checklist,Clarify which Facebook page is the active contact channel,
+agape-care-centre,policies,Visiting hours,Unknown — contact facility
+agape-care-centre,policies,Religious programming,Possibly Christian — unconfirmed
+agape-care-centre,checklist,Verify JKM licence number with facility,
+agape-care-centre,checklist,Confirm whether religious programming is optional or compulsory,
+agape-care-centre,checklist,Ask for nurse-to-resident ratio and overnight staffing model,
+agape-care-centre,nearby,Kempas Medical Centre,~1.5 km
+agape-care-centre,nearby,Woon Ho Family Care Centre (Jalan Lurah 23),~0.5 km
+blissful-senior-care-centre-licensed-and-certified-by-gover,policies,JKM registration,Act 506 — confirmed via Google listing; licence number unverified
+blissful-senior-care-centre-licensed-and-certified-by-gover,policies,Distance from JB,~106 km / ~1h 20m drive
+blissful-senior-care-centre-licensed-and-certified-by-gover,nearby,Hospital Enche' Besar Hajjah Khalsom,~5 km (public district hospital)
+blissful-senior-care-centre-licensed-and-certified-by-gover,nearby,KPJ Kluang Specialist Hospital,"~5 km (private, JCI-accredited)"
+blissful-senior-care-centre-licensed-and-certified-by-gover,checklist,Confirm JKM licence number,
+blissful-senior-care-centre-licensed-and-certified-by-gover,checklist,Ask for pricing breakdown,
+blissful-senior-care-centre-licensed-and-certified-by-gover,checklist,Confirm nursing staff level — RN vs attendant,
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,policies,Alternative phone,019-772 3697
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,policies,Email,ask.ehagroup@gmail.com
+eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh,rooms,Pricing source,ehaeldercare.com.my/our-packages/ — starting rates; final fee depends on care needs
+eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home,rooms,Pricing source,ehaeldercare.com.my/our-packages/ — starting rates; final fee depends on care needs
+eha-parkview-eldercare-perling-1-nursing-home-johor-bahru,rooms,Assisted Living (from RM/mo),"3,200"
+eha-parkview-eldercare-perling-1-nursing-home-johor-bahru,rooms,Respite / Short-term (from RM/day),120
+eha-parkview-eldercare-perling-1-nursing-home-johor-bahru,rooms,Day Care (from RM/mo),"1,500"
+eha-parkview-eldercare-perling-1-nursing-home-johor-bahru,rooms,Pricing source,ehaeldercare.com.my/our-packages/ — starting rates; final fee depends on care needs
+eha-parkview-eldercare-perling,rooms,Pricing source,ehaeldercare.com.my/our-packages/ — starting rates; final fee depends on care needs
+eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru,rooms,Pricing source,ehaeldercare.com.my/our-packages/ — starting rates; final fee depends on care needs
+eha-elder-care-home-kluang-licensed-and-certified-by-govern,rooms,Pricing source,ehaeldercare.com.my/our-packages/ — starting rates; final fee depends on care needs
+eha-grandview-titiwangsa-kl-elderly-care-post-surgery-recovery-stroke-rehabilita,rooms,Assisted Living (from RM/mo),"3,200"
+eha-grandview-titiwangsa-kl-elderly-care-post-surgery-recovery-stroke-rehabilita,rooms,Respite / Short-term (from RM/day),120
+eha-grandview-titiwangsa-kl-elderly-care-post-surgery-recovery-stroke-rehabilita,rooms,Day Care (from RM/mo),"1,500"
+eha-grandview-titiwangsa-kl-elderly-care-post-surgery-recovery-stroke-rehabilita,rooms,Pricing source,ehaeldercare.com.my/our-packages/ — starting rates; final fee depends on care needs
+eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip,rooms,Assisted Living (from RM/mo),"3,200"
+eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip,rooms,Respite / Short-term (from RM/day),120
+eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip,rooms,Day Care (from RM/mo),"1,500"
+eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip,rooms,Pricing source,ehaeldercare.com.my/our-packages/ — starting rates; final fee depends on care needs
+eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl,rooms,Assisted Living (from RM/mo),"3,200"
+eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl,rooms,Respite / Short-term (from RM/day),120
+eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl,rooms,Day Care (from RM/mo),"1,500"
+eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl,rooms,Pricing source,ehaeldercare.com.my/our-packages/ — starting rates; final fee depends on care needs
+eha-parkview-eldercare-perling,policies,Removed reason,Duplicate sheet entry for the same facility. Canonical row: eha-parkview-eldercare-perling-1-nursing-home-johor-bahru. Hidden from site via status=removed on 2026-05-03. All Detail rows preserved in sheet for audit.
+genesis-life-care-centre-puchong,rooms,Operator-stated capacity,120+ beds
+genesis-life-care-centre-puchong,rooms,Pricing source,Not published on operator site (genesiscare.com.my) — request a written quote during your visit
+genesis-life-care-centre-puchong,services,Nursing Home Care,yes
+genesis-life-care-centre-puchong,services,Dementia & Memory Care,"Psychologist-led, cognitive stimulation activities"
+genesis-life-care-centre-puchong,services,Stroke Rehabilitation,Physiotherapy + occupational therapy
+genesis-life-care-centre-puchong,services,Palliative Care,yes
+genesis-life-care-centre-puchong,services,Post-Operative Recovery,"Short-term, typically 2–8 weeks"
+genesis-life-care-centre-puchong,services,Senior Day Care,8am–5pm weekdays
+multicare-nursing-home-johor,rooms,VIP single (RM/mo),"3,500"
+multicare-nursing-home-johor,rooms,Single (RM/mo),"3,000"
+multicare-nursing-home-johor,rooms,2-bed shared (RM/mo),"2,800"
+multicare-nursing-home-johor,rooms,3-bed shared (RM/mo),"2,500"
+multicare-nursing-home-johor,rooms,4-bed shared (RM/mo),"2,300"
+multicare-nursing-home-johor,rooms,5-bed shared (RM/mo),"2,000"
+multicare-nursing-home-johor,rooms,6-bed shared (RM/mo),"1,800"
+multicare-nursing-home-johor,rooms,Pricing source,https://multicarehomes.com/packages.html — chain rates; final fee depends on care needs
+multicare-nursing-home-johor,included,AC,Yes
+multicare-nursing-home-johor,included,TV with Wifi,Yes
+multicare-nursing-home-johor,included,Attached bathroom,Yes
+multicare-nursing-home-johor,included,Meals delivered to room,Yes
+multicare-nursing-home-johor,included,Personal caregiver,Included
+multicare-nursing-home-johor,policies,Photo credits,Facility photos courtesy of multicarehomes.com
+merry-care-centre-jln-antoi,rooms,Pricing source,"elderlycare.my — starting rate RM 2,500/mo for shared room incl. 5 meals; final fee depends on care needs"
+merry-care-centre-jln-belinggai,rooms,Pricing source,"elderlycare.my — starting rate RM 2,500/mo for shared room incl. 5 meals; final fee depends on care needs"
+merry-care-kepong-baru-3,rooms,Pricing source,"elderlycare.my — starting rate RM 2,500/mo for shared room incl. 5 meals; final fee depends on care needs"
+merry-care-kepong-baru-4,rooms,Pricing source,"elderlycare.my — starting rate RM 2,500/mo for shared room incl. 5 meals; final fee depends on care needs"
+merry-care-selayang-baru,rooms,Pricing source,"elderlycare.my — starting rate RM 2,500/mo for shared room incl. 5 meals; final fee depends on care needs"
+merry-care-desa-jaya-kepong,rooms,Pricing source,"elderlycare.my — starting rate RM 2,500/mo for shared room incl. 5 meals; final fee depends on care needs"
+austinloyal-care-centre,policies,Address,"1, Jalan Mutiara Emas 3/4, Taman Mount Austin, 81100 Johor Bahru"
+austinloyal-care-centre,policies,Operator,AUSTINLOYAL SDN BHD (1142053-H)
+austinloyal-care-centre,policies,Opened,March 2018 (soft launch)
+austinloyal-care-centre,policies,Visiting hours,Sat/Sun & PH 12:30pm–4:30pm; weekdays by appointment
+austinloyal-care-centre,policies,Outpatient physio hours,Mon–Fri 10:00am–6:00pm (open to non-residents)
+austinloyal-care-centre,services,Long-term residential care,yes
+austinloyal-care-centre,services,Short-term / respite stays,yes
+austinloyal-care-centre,services,Post-hospital rehabilitative care,yes
+austinloyal-care-centre,services,Adult social day care,yes
+austinloyal-care-centre,services,Outpatient physiotherapy clinic,yes — open to non-residents
+austinloyal-care-centre,checklist,"Filter Google reviews by ""newest"" — most negatives are from 2018–2019 launch period",
+austinloyal-care-centre,checklist,Ask for JKM licence number and a copy of the most recent inspection result,
+austinloyal-care-centre,checklist,Ask whether physiotherapy is included or billed per session for residents,
+homage-malaysia,rooms,Daily living care (per hour),From RM30 — by certified local caregiver
+homage-malaysia,rooms,Home nursing (per hour),From RM36 — by licensed nurse
+homage-malaysia,rooms,Home therapy (per hour),From RM135 — by certified therapist
+homage-malaysia,rooms,24-hour care,Yes — 2 Care Pros in 12-hour shifts
+homage-malaysia,rooms,Minimum booking,1 hour
+homage-malaysia,rooms,Pricing source,https://www.homage.com.my/services/home-care/ — published on operator website
+homage-malaysia,services,Home Personal Care,"ADLs, companionship, medical escort, respite"
+homage-malaysia,services,Home Nursing,"Wound care, NGT, catheter, stoma, post-surgery, medication"
+homage-malaysia,services,Home Therapy,"Physiotherapy, occupational therapy, speech therapy"
+homage-malaysia,services,Dementia Care,Specialist programme
+homage-malaysia,services,Stroke Rehabilitation,Post-stroke at-home care
+homage-malaysia,services,Palliative / End-of-Life Care,Available
+homage-malaysia,policies,Coverage,"KL, Selangor, Johor, Penang, Perak (Ipoh), Kedah"
+homage-malaysia,policies,Booking method,Homage app (iOS / Android) — caregivers listed with qualifications
+homage-malaysia,policies,Care start time,Within 5 working days of confirmed booking
+care-concierge-malaysia,rooms,Care Plus live-in (20-day monthly min),From RM235/day (RM300 daily rate)
+care-concierge-malaysia,rooms,Care Plus day care (20-day monthly min),From RM270/day (RM320 daily rate)
+care-concierge-malaysia,rooms,Care Palliative live-in (7-day monthly),"From RM2,200 (RM8,000 for 28-day monthly)"
+care-concierge-malaysia,rooms,Flexi Care 4h plan (1-month validity),RM200
+care-concierge-malaysia,rooms,Flexi Care 20h plan (1-month validity),RM950
+care-concierge-malaysia,rooms,Flexi Care 100h plan (3-month validity),"RM4,250"
+care-concierge-malaysia,rooms,Flexi Nurse 4h plan (1-month validity),RM230
+care-concierge-malaysia,rooms,Flexi Nurse 20h plan (1-month validity),"RM1,010"
+care-concierge-malaysia,rooms,Flexi Nurse 100h plan (3-month validity),"RM4,750"
+care-concierge-malaysia,rooms,Stroke Care bundle (monthly),"RM10,800 — includes nurse/care manager, neurologist consult (1x), physio 3x/wk, medical chaperone 2x/mo, 1mo caregiving"
+care-concierge-malaysia,rooms,Dementia Care bundle (monthly),"RM10,800 — includes nurse/care manager, neurologist consult (1x), physio/OT 3x/wk, 1mo caregiving"
+care-concierge-malaysia,rooms,"Care Companion (daily, max 12h)","From RM260/day; RM4,000/mo (6 working days/wk)"
+care-concierge-malaysia,rooms,Doctor House Call (Medical Officer),"RM300/visit — available KL, Selangor, Cyberjaya, Putrajaya, Rawang"
+care-concierge-malaysia,rooms,Doctor House Call (Medical Specialist),RM500/visit
+care-concierge-malaysia,rooms,Physiotherapy (1h session),"RM200 single; RM950 / 5 sessions; RM1,800 / 10 sessions"
+care-concierge-malaysia,rooms,Occupational Therapy (1h),RM180/session
+care-concierge-malaysia,rooms,Speech Therapy (45 min),RM300/session
+care-concierge-malaysia,rooms,"Medical Chaperone (2-way, 5h)",RM220 — excludes transport charges
+care-concierge-malaysia,rooms,Medical Nursing Procedure (1h),RM180
+care-concierge-malaysia,rooms,Pricing source,https://mycareconcierge.com/at-home-care/ — full price list published on operator website
+care-concierge-malaysia,services,At-Home Care,Live-in (24/7) or Flexi (part-time) — caregivers and registered nurses
+care-concierge-malaysia,services,Assisted Living Residences,"KL, Petaling Jaya, Penang, Kuching (Sarawak)"
+care-concierge-malaysia,services,Senior Day Care,Multiple locations — see Care Concierge website
+care-concierge-malaysia,services,Stroke Care,"Multidisciplinary bundle with neurologist, physio, caregiving"
+care-concierge-malaysia,services,Dementia / Alzheimer's Care,"Multidisciplinary bundle with neurologist, physio/OT, caregiving"
+care-concierge-malaysia,services,Palliative Care,Advanced care needs — live-in or palliative package
+care-concierge-malaysia,services,Geriatric Physiotherapy,Specialised programme
+care-concierge-malaysia,policies,Coverage,"Penang, Perak (Ipoh), KL, Selangor, Melaka, Negeri Sembilan, Johor"
+care-concierge-malaysia,policies,Care Academy,Khazanah-sponsored K-Youth training programme for caregivers (May–Sep 2026)
+pillar-care,rooms,Home Care/Nursing Support (20-day package),"RM4,600"
+pillar-care,rooms,Equivalent daily rate,~RM230/day
+pillar-care,rooms,Market comparison (operator-cited),RM30–50/hr for hourly home care in Malaysia
+pillar-care,rooms,Pricing source,https://www.pillarcare.com/home-care/ — published on operator website
+pillar-care,services,Home Personal Care,"ADLs, companion care, senior transportation, medication management"
+pillar-care,services,Home Nursing,"Wound dressing, NGT, catheter, stoma, injections, medical procedures"
+pillar-care,services,Dementia Care,Guided dementia programme available
+pillar-care,services,Stroke Care,Available
+pillar-care,services,Palliative / End-of-Life Care,Available
+pillar-care,services,Respite Care,Available
+pillar-care,services,Hospital In Care,Short-term hospital companion/care available
+pillar-care,policies,Coverage area,Klang Valley (based in PJ SS3)
+pillar-care,policies,Standard billing cycle,20 working days per package
+pillar-care,policies,Availability,24/7 — nurses available any hour
+whereweare-malaysia,rooms,28-day Live-In package,"From RM3,700 (~RM132/day)"
+whereweare-malaysia,rooms,7-day Live-In package,"From RM1,200/week (~RM171/day)"
+whereweare-malaysia,rooms,1-day Live-In (daily rate),From RM200/day
+whereweare-malaysia,rooms,Pricing source,https://wherewecare.com/live-in-care — published on operator website
+whereweare-malaysia,services,Live-In Home Care,"24/7 in-home support, companionship, basic health monitoring, emergency support"
+whereweare-malaysia,services,Dementia Care,Tailored live-in programme
+whereweare-malaysia,services,Palliative Care,Comfort-focused live-in care for serious illness
+whereweare-malaysia,services,Post-Surgery Recovery,At-home assistance during recovery
+whereweare-malaysia,services,Customised Wellness Program,"Exercise, nutrition guidance, mental health support"
+whereweare-malaysia,services,Home Nursing,Registered nurses available for nursing procedures
+whereweare-malaysia,policies,Contract,No long-term contract required
+whereweare-malaysia,policies,Carer replacement,Free replacement if needed
+whereweare-malaysia,policies,Coverage,"KL, Penang, Johor Bahru, Ipoh, Melaka, Perak — nationwide on request"
+whereweare-malaysia,included,Meal preparation,yes
+whereweare-malaysia,included,Mobility support,yes
+whereweare-malaysia,included,Bedsore prevention,yes
+whereweare-malaysia,included,Medical appointment accompaniment,yes
+whereweare-malaysia,included,Companionship,yes
