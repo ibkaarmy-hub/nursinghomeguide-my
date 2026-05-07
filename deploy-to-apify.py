@@ -45,7 +45,8 @@ def source_payload(code):
             {"name": "package.json", "format": "TEXT",
              "content": json.dumps({
                  "name": "jkm-scraper", "version": "0.1.0",
-                 "dependencies": {"apify": "^2.3.2", "cheerio": "^1.0.0-rc.12"}
+                 "type": "module",
+                 "dependencies": {"apify": "^3.0.0", "crawlee": "^3.0.0"}
              }, indent=2)},
         ],
     }
