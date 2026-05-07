@@ -1,142 +1,121 @@
 #!/usr/bin/env python3
 """
 Deploy JKM scraper actor to Apify and run a 1-page test.
-Run locally: python3 deploy-to-apify.py
+Run: APIFY_TOKEN=apify_api_... python3 deploy-to-apify.py
 """
 
-import json
-import os
-import time
-import urllib.request
-import urllib.parse
+import json, os, time, urllib.request, urllib.parse, urllib.error
 
 APIFY_TOKEN = os.environ.get("APIFY_TOKEN") or input("Enter your Apify API token: ").strip()
-ACTOR_NAME = "jkm-elderly-care-scraper"
-SOURCE_FILE = os.path.join(os.path.dirname(__file__), "apify-jkm-scraper.js")
+ACTOR_NAME  = "jkm-elderly-care-scraper"
+SOURCE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "apify-jkm-scraper.js")
 
-def api_call(method, path, body=None):
-    url = f"https://api.apify.com/v2{path}?token={APIFY_TOKEN}"
+def api(method, path, body=None, params=None):
+    qs  = urllib.parse.urlencode({"token": APIFY_TOKEN, **(params or {})})
+    url = f"https://api.apify.com/v2{path}?{qs}"
     data = json.dumps(body).encode() if body else None
-    headers = {"Content-Type": "application/json"}
-    req = urllib.request.Request(url, data=data, headers=headers, method=method)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read().decode())
-
-def main():
-    # 1. Read actor source
-    with open(SOURCE_FILE) as f:
-        source_code = f.read()
-    print(f"✅ Read source: {SOURCE_FILE} ({len(source_code)} chars)")
-
-    # 2. Create actor
-    print(f"\n🚀 Creating actor '{ACTOR_NAME}'...")
+    req  = urllib.request.Request(url, data=data,
+                                  headers={"Content-Type": "application/json"},
+                                  method=method)
     try:
-        actor = api_call("POST", "/acts", {
-            "name": ACTOR_NAME,
-            "title": "JKM Elderly Care Centre Scraper",
-            "description": "Scrapes 529 elderly care centres from jkm.gov.my",
-        })
-        actor_id = actor["data"]["id"]
-        print(f"✅ Actor created: {actor_id}")
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read().decode())
     except urllib.error.HTTPError as e:
-        if e.code == 409:
-            # Already exists — get it
-            print("ℹ️  Actor already exists, fetching...")
-            actors = api_call("GET", "/acts")
-            actor_id = next(a["id"] for a in actors["data"]["items"] if a["name"] == ACTOR_NAME)
-            print(f"✅ Found existing actor: {actor_id}")
-        else:
-            raise
+        raise Exception(f"HTTP {e.code}: {e.read().decode()[:300]}") from None
 
-    # 3. Create version with source code
-    print("\n📦 Uploading source code...")
-    api_call("POST", f"/acts/{actor_id}/versions", {
+def wait_for(kind, actor_id, run_id, poll=5, retries=36):
+    for _ in range(retries):
+        time.sleep(poll)
+        r = api("GET", f"/acts/{actor_id}/{kind}/{run_id}")
+        status = r["data"]["status"]
+        print(f"   {status}", flush=True)
+        if status == "SUCCEEDED":
+            return r
+        if status in ("FAILED", "ABORTED", "TIMED-OUT"):
+            raise Exception(f"{kind} {status}")
+    raise Exception(f"{kind} timed out")
+
+def source_payload(code):
+    return {
         "versionNumber": "0.1",
         "sourceType": "SOURCE_FILES",
-        "sourceFiles": [
-            {
-                "name": "main.js",
-                "format": "TEXT",
-                "content": source_code,
-            },
-            {
-                "name": "package.json",
-                "format": "TEXT",
-                "content": json.dumps({
-                    "name": "jkm-scraper",
-                    "version": "0.1.0",
-                    "dependencies": {
-                        "apify": "^2.3.2",
-                        "cheerio": "^1.0.0-rc.12"
-                    }
-                }, indent=2),
-            }
-        ],
         "buildTag": "latest",
-    })
+        "sourceFiles": [
+            {"name": "main.js", "format": "TEXT", "content": code},
+            {"name": "package.json", "format": "TEXT",
+             "content": json.dumps({
+                 "name": "jkm-scraper", "version": "0.1.0",
+                 "dependencies": {"apify": "^2.3.2", "cheerio": "^1.0.0-rc.12"}
+             }, indent=2)},
+        ],
+    }
+
+def main():
+    with open(SOURCE_FILE) as f:
+        code = f.read()
+    print(f"✅ Source read ({len(code)} chars)")
+
+    # --- 1. Get or create actor ---
+    print(f"\n🔍 Looking up actor '{ACTOR_NAME}'...")
+    actors = api("GET", "/acts", params={"limit": 100})
+    existing = [a for a in actors["data"]["items"] if a["name"] == ACTOR_NAME]
+
+    if existing:
+        actor_id = existing[0]["id"]
+        print(f"✅ Found existing actor: {actor_id}")
+        # Update the version
+        print("📦 Updating source code...")
+        try:
+            api("PUT", f"/acts/{actor_id}/versions/0.1", source_payload(code))
+        except Exception:
+            api("POST", f"/acts/{actor_id}/versions", source_payload(code))
+    else:
+        print(f"🚀 Creating actor...")
+        r = api("POST", "/acts", {
+            "name": ACTOR_NAME,
+            "title": "JKM Elderly Care Centre Scraper",
+        })
+        actor_id = r["data"]["id"]
+        print(f"✅ Actor created: {actor_id}")
+        print("📦 Uploading source code...")
+        api("POST", f"/acts/{actor_id}/versions", source_payload(code))
     print("✅ Source uploaded")
 
-    # 4. Build the actor
-    print("\n🔨 Triggering build...")
-    build = api_call("POST", f"/acts/{actor_id}/builds", {"version": "0.1", "tag": "latest"})
+    # --- 2. Build ---
+    print("\n🔨 Building...")
+    build = api("POST", f"/acts/{actor_id}/builds", params={"version": "0.1", "tag": "latest"})
     build_id = build["data"]["id"]
-    print(f"✅ Build started: {build_id}")
+    print(f"   Build ID: {build_id}")
+    wait_for("builds", actor_id, build_id)
+    print("✅ Build succeeded")
 
-    # Wait for build to complete
-    print("⏳ Waiting for build to finish...")
-    for i in range(24):  # up to 2 minutes
-        time.sleep(5)
-        build_status = api_call("GET", f"/acts/{actor_id}/builds/{build_id}")
-        status = build_status["data"]["status"]
-        print(f"   Build status: {status}")
-        if status == "SUCCEEDED":
-            break
-        elif status in ("FAILED", "ABORTED", "TIMED-OUT"):
-            print(f"❌ Build failed: {status}")
-            return
+    # --- 3. Run (1-page test) ---
+    print("\n▶️  Starting 1-page test run...")
+    run = api("POST", f"/acts/{actor_id}/runs", {"memory": 512, "timeout": 180})
+    run_id  = run["data"]["id"]
+    print(f"   Run ID: {run_id}")
+    print(f"🔗 https://console.apify.com/actors/{actor_id}/runs/{run_id}")
+    run_result = wait_for("runs", actor_id, run_id)
+    print("✅ Run succeeded")
 
-    # 5. Run actor (1-page test)
-    print("\n▶️  Running 1-page test...")
-    run = api_call("POST", f"/acts/{actor_id}/runs", {
-        "memory": 512,
-        "timeout": 120,
-    })
-    run_id = run["data"]["id"]
-    print(f"✅ Run started: {run_id}")
-    print(f"🔗 View run: https://console.apify.com/actors/{actor_id}/runs/{run_id}")
+    # --- 4. Fetch results ---
+    ds_id = run_result["data"]["defaultDatasetId"]
+    items = api("GET", f"/datasets/{ds_id}/items")["data"]["items"]
+    print(f"\n📊 Scraped {len(items)} centres")
 
-    # Wait for run
-    print("⏳ Waiting for run to finish...")
-    for i in range(30):  # up to 2.5 minutes
-        time.sleep(5)
-        run_status = api_call("GET", f"/acts/{actor_id}/runs/{run_id}")
-        status = run_status["data"]["status"]
-        print(f"   Run status: {status}")
-        if status == "SUCCEEDED":
-            break
-        elif status in ("FAILED", "ABORTED", "TIMED-OUT"):
-            print(f"❌ Run failed: {status}")
-            return
-
-    # 6. Get results
-    print("\n📊 Fetching results...")
-    dataset_id = run_status["data"]["defaultDatasetId"]
-    results = api_call("GET", f"/datasets/{dataset_id}/items")
-    items = results.get("data", {}).get("items", [])
-
-    print(f"\n✅ Scraped {len(items)} centres on page 1")
-    if items:
-        print("\nSample (first result):")
-        print(json.dumps(items[0], indent=2, ensure_ascii=False))
-
-    # Save results
-    out_file = "jkm-results/jkm_page1_test.json"
     os.makedirs("jkm-results", exist_ok=True)
-    with open(out_file, "w") as f:
+    out = "jkm-results/jkm_page1_test.json"
+    with open(out, "w") as f:
         json.dump(items, f, indent=2, ensure_ascii=False)
-    print(f"\n💾 Saved to: {out_file}")
-    print(f"\nActor ID (save this): {actor_id}")
-    print(f"To run full scrape: edit MAX_PAGES=60 in apify-jkm-scraper.js, then re-deploy.")
+    print(f"💾 Saved: {out}")
+
+    if items:
+        print("\nSample result:")
+        print(json.dumps(items[0], indent=2, ensure_ascii=False))
+    else:
+        print("⚠️  No items — check selectors or proxy settings")
+
+    print(f"\nActor ID: {actor_id}  (save this for future runs)")
 
 if __name__ == "__main__":
     main()
