@@ -1,0 +1,237 @@
+{
+  "matches": [],
+  "new_with_beds": [
+    {
+      "name": "PURE LOTUS HOSPICE OF COMPASSION",
+      "state": "Penang",
+      "address": "73 JALAN UTAMA GEORGETOWN",
+      "city": "GEORGETOWN",
+      "postcode": "10450",
+      "beds": "21",
+      "capacity": "21 KATIL",
+      "has_facility": true
+    },
+    {
+      "name": "KUCHING LIFE CARE SOCIETY HOSPICE & PALLIATIVE CENTRE",
+      "state": "Sarawak",
+      "address": "LOT 6587, BLOCK 225, KNLD TAMAN DESA WIRA, JALAN BATU KAWAH,",
+      "city": "KUCHING",
+      "postcode": "93250",
+      "beds": "8",
+      "capacity": "8 KATIL",
+      "has_facility": true
+    },
+    {
+      "name": "HOSPIS MALAYSIA",
+      "state": "Kuala Lumpur",
+      "address": "2, JALAN 4/96, OFF JALAN SEKUCI, TAMAN SRI BAHTERA, JALAN CHERAS",
+      "city": "KUALA LUMPUR",
+      "postcode": "56100",
+      "beds": "4",
+      "capacity": "4 KATIL",
+      "has_facility": true
+    }
+  ],
+  "service_only": [
+    {
+      "name": "PALLIATIVE CARE ASSOCIATION OF JOHOR BAHRU",
+      "state": "Johor",
+      "address": "TINGKAT 2, 44 JALAN TUN ABDUL RAZAK, SUSUR 1",
+      "city": "JOHOR BAHRU",
+      "postcode": "80000",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PERSATUAN HOSPIS KEDAH",
+      "state": "Kedah",
+      "address": "NO.2 (TINGKAT BAWAH), KAMPUNG BARU",
+      "city": "ALOR SETAR",
+      "postcode": "05000",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "HOSPIS MELAKA",
+      "state": "Melaka",
+      "address": "NO 25 JALAN MH 1, TAMAN MUZAFFAR HEIGHTS",
+      "city": "AYER KEROH",
+      "postcode": "75450",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PERTUBUHAN HOSPICE NEGERI SEMBILAN",
+      "state": "Negeri Sembilan",
+      "address": "NO. 41 (GROUND FLOOR), OFF JALAN RASAH 70300 SEREMBAN NEGERI SEREMBAN",
+      "city": "SEREMBAN",
+      "postcode": "70300",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PERSATUAN HOSPIS PAHANG",
+      "state": "Pahang",
+      "address": "A4614, LORONG ALOR AKAR 19, 25250 KUANTAN PAHANG",
+      "city": "KUANTAN",
+      "postcode": "25250",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "CHARIS HOSPICE",
+      "state": "Penang",
+      "address": "NO. 26, 26A, 28 & 28A, LINTANG PAYA TERUBONG 3 11060 PULAU PINANG",
+      "city": "AIR ITAM",
+      "postcode": "11060",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PERSATUAN HOSPIS PULAU PINANG (PENANG HOSPICE SOCIETY)",
+      "state": "Penang",
+      "address": "250A JALAN AIR ITAM 10460 GEORGETOWN PULAU PINANG",
+      "city": "GEORGETOWN",
+      "postcode": "10460",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PERTUBUHAN RAWATAN PALLIATIF MANJUNG, PERAK (MANJUNG PALLIATIVE CARE SOCIETY)",
+      "state": "Perak",
+      "address": "NO. 128 (TINGKAT BAWAH), TAMAN SEJATI II, 32000 SITIAWAN PERAK",
+      "city": "SITIAWAN",
+      "postcode": "32000",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PERTUBUHAN RAWATAN PALLIATIF PERAK (PERAK PALLIATIVE CARE SOCIETY)",
+      "state": "Perak",
+      "address": "Based at 54, Jalan Sultan Azlan Shah, 31400 Ipoh, Perak",
+      "city": "IPOH",
+      "postcode": "31400",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "ASSISI PALLIATIVE CARE BERHAD",
+      "state": "Selangor",
+      "address": "NO.49, JALAN RAILWAY 1/2,",
+      "city": "PETALING JAYA",
+      "postcode": "46000",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "FHL HOSPICE CARE MALAYSIA",
+      "state": "Selangor",
+      "address": "NO. 7, JALAN 1/3 46000 PETALING JAYA SELANGOR",
+      "city": "PETALING JAYA",
+      "postcode": "46000",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "YAYASAN KASIH HOSPIS",
+      "state": "Selangor",
+      "address": "16 (TINGKAT BAWAH), JALAN SS3/29 47300 PETALING JAYA SELANGOR",
+      "city": "PETALING JAYA",
+      "postcode": "47300",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PERTUBUHAN HOSPIS KLANG (HOSPICE KLANG)",
+      "state": "Selangor",
+      "address": "PT 140457, PERSIARAN DELIMA KS/09, KOTA BAYU EMAS",
+      "city": "KLANG",
+      "postcode": "41200",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PERSATUAN HOSPIS SANDAKAN SABAH",
+      "state": "Sabah",
+      "address": "PPM 324 ELOPURA 90000 SANDAKAN SABAH",
+      "city": "SANDAKAN",
+      "postcode": "90000",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PERTUBUHAN PERKHIDMATAN PALIATIF KOTA KINABALU SABAH (PALLIATIVE CARE ASSOCIATION OF KOTA KINABALU, SABAH)",
+      "state": "Sabah",
+      "address": "PWD 7396 & 7397, TAMAN ROSE, OFF JALAN PENAMPANG, 88300 KOTA KINABALU SABAH",
+      "city": "KOTA KINABALU",
+      "postcode": "88300",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "RUMAH HOSPIS TAN SRI LAU GEK POH",
+      "state": "Sabah",
+      "address": "TB14748 MILE 3.5 (TINGKAT BAWAH), JALAN JAMES POWER, OFF JALAN KUHARA",
+      "city": "TAWAU",
+      "postcode": "91000",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PERSATUAN PERKHIDMATAN PALIATIF MIRI (PALLIATIVE CARE ASSOCIATION OF MIRI)",
+      "state": "Sarawak",
+      "address": "NO.406, JALAN PIASAU EDAR, PIASAU GARDEN",
+      "city": "MIRI",
+      "postcode": "98000",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "PUSAT JAGAAN TWO TREE HOSPIS KUCHING (TWO TREE LODGE HOSPICE KUCHING)",
+      "state": "Sarawak",
+      "address": "LEVEL 4, L7998, JALAN TUN JUGAH, CHAI YI GOLDLAND 93350 KUCHING SARAWAK",
+      "city": "KUCHING",
+      "postcode": "93350",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "THE NATIONAL CANCER SOCIETY OF MALAYSIA SARAWAK BRANCH",
+      "state": "Sarawak",
+      "address": "NO. 186, GROUND FLOOR & FIRST FLOOR JALAN NYIUR OFF JALAN TABUAN",
+      "city": "KUCHING",
+      "postcode": "92300",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    },
+    {
+      "name": "HOSPIS KANAK-KANAK MALAYSIA (MALAYSIAN CHILDREN'S HOSPICE",
+      "state": "Kuala Lumpur",
+      "address": "D-2-11, PUSAT KOMERSIAL JALAN KUCHING, NO 115 JALAN KEPAYANG, OFF JALAN KUCHING",
+      "city": "KUALA LUMPUR",
+      "postcode": "51200",
+      "beds": "",
+      "capacity": "",
+      "has_facility": false
+    }
+  ]
+}
