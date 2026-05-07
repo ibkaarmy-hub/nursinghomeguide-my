@@ -1,0 +1,1388 @@
+[
+  {
+    "slug": "aurora-home-care-centre",
+    "title": "Aurora Home Care Centre",
+    "jkm_name": "AURORA HOME CARE CENTRE (2)",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 006/2025",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "11.07.2025 - 10.07.2030",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "berniece-care-service-centre",
+    "title": "Berniece Care Service Centre",
+    "jkm_name": "BERNIECE CARE CENTRE SERVICE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "W/PJB WT 004/2021",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "18.05.2021 - 17.05.2026",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "blissful-senior-care-centre-licensed-and-certified-by-gover",
+    "title": "Blissful Senior Care Centre",
+    "jkm_name": "BLISSFUL SENIOR CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWE 045/2025",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "25.06.2025 - 24.06.2030",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "magna-resort-sdn-bhd",
+    "title": "Magna Resort Sdn. Bhd.",
+    "jkm_name": "CITY HEART CARE CENTRE",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 041/2023",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "22.11.2023 - 21.11.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "de-luxe-retirement-nursing-home-petaling-jaya-house-39",
+    "title": "De Luxe Retirement Nursing Home Petaling Jaya (House 39)",
+    "jkm_name": "DE LUXE RETIREMENT HOME CARE CENTRE (2)",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJBWT 014/2022",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "De Luxe Retirement Nursing Home Petaling Jaya (House 39) is a nursing home located in Kampung Tunku, Selangor. It holds a 4.9/5 rating on Google Maps from 9 reviews.",
+        "new": "101.620586",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "04.11.2022 - 03.11.2027",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "de-luxe-retirement-nursing-home-petaling-jaya-house-39",
+    "title": "De Luxe Retirement Nursing Home Petaling Jaya (House 39)",
+    "jkm_name": "DE LUXE RETIREMENT HOME CARE CENTRE (3)",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJBWT 015/2022",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "De Luxe Retirement Nursing Home Petaling Jaya (House 39) is a nursing home located in Kampung Tunku, Selangor. It holds a 4.9/5 rating on Google Maps from 9 reviews.",
+        "new": "101.61593",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "04.11.2022 - 03.11.2027",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "de-luxe-retirement-nursing-home-petaling-jaya-house-39",
+    "title": "De Luxe Retirement Nursing Home Petaling Jaya (House 39)",
+    "jkm_name": "DE LUXE RETIREMENT HOME CARE CENTRE (4)",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJBWT 016/2022",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "De Luxe Retirement Nursing Home Petaling Jaya (House 39) is a nursing home located in Kampung Tunku, Selangor. It holds a 4.9/5 rating on Google Maps from 9 reviews.",
+        "new": "101.61511",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "04.11.2022 - 03.11.2027",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "eha-elder-care-home-kluang-licensed-and-certified-by-govern",
+    "title": "EHA Elder Care Home (Kluang)",
+    "jkm_name": "EHA ELDERCARE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 045/2023",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "22.11.2023 - 21.11.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "evergreen-eldercare-centre-eecmsia",
+    "title": "Evergreen ElderCare Centre EECMSIA",
+    "jkm_name": "EVERGREEN ELDERLY CARE CENTRE",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWE002/26",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "26.01.2026 - 31.12.2030",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "fcc-family-care-centre-johor-bahru",
+    "title": "FCC Family Care Centre Johor Bahru",
+    "jkm_name": "FCC FAMILY CARE CENTRE SDN BHD",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWT066/2024",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "05.12.2024 - 04.12.2029",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "fu-ka-care-center",
+    "title": "Fu Ka Care Center",
+    "jkm_name": "FU KA CARE CENTRE",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWE003/2026",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "13.01.2026 - 01.01.2031",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "dementia-care-centre",
+    "title": "Dementia Care Centre",
+    "jkm_name": "Genting Dementia Care Centre",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "W/PJH WE 004/2026",
+        "reason": "fill_empty"
+      },
+      "latitude": {
+        "old": "",
+        "new": "3.18893",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Dementia Care Centre is a care home located in Johor. The home accommodates up to 20 residents.",
+        "new": "101.67349",
+        "reason": "fix_invalid"
+      },
+      "google_maps_url": {
+        "old": "",
+        "new": "http://maps.google.com/?q=3.18893, 101.67349",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "30.03.2026 - 29.03.2031",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "gentle-hill-elder-care",
+    "title": "Gentle Hill Elder Care",
+    "jkm_name": "GENTLE HILL ELDER CARE CENTRE",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWE086/2025",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "14.11.2025 - 13.11.2030",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "golden-age-care-centre",
+    "title": "Golden Age Care Centre",
+    "jkm_name": "Golden Age Care Centre Sdn. Bhd",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 030/2024",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "29.05.2024 - 28.05.2029",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "golden-age-care-centre-batu-pahat",
+    "title": "Golden Age Care Centre Batu Pahat",
+    "jkm_name": "Golden Age Care Centre Sdn. Bhd.",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "M/PJB WT 017 / 2021",
+        "reason": "fill_empty"
+      },
+      "email": {
+        "old": "",
+        "new": "goledenagecare01@gmail.com",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "21.04.2021 - 20.04.2026",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "green-cottage-retirement-and-nursing-home",
+    "title": "Green Cottage Retirement and Nursing Home",
+    "jkm_name": "Golden Age Elderly Care Centre (Cawangan)",
+    "confidence": "low",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "A/PJB WT 015/2021",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "23.03.2021 - 22.03.2026",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "golden-years-senior-residence-kinrara-puchong",
+    "title": "Golden Years Senior Residence Kinrara Puchong",
+    "jkm_name": "GOLDEN YEARS BANDAR KINRARA, CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 014/2024",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Golden Years Senior Residence Kinrara Puchong is a nursing home located in Bandar Kinrara, Selangor. It holds a 4.7/5 rating on Google Maps from 14 reviews.",
+        "new": "101.6390792",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "24.05.2024 - 23.05.2029",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "golden-years-senior-residence-kinrara-puchong",
+    "title": "Golden Years Senior Residence Kinrara Puchong",
+    "jkm_name": "GOLDEN YEARS BUKIT RIMAU CARE CENTRE (2)",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 001/2025",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Golden Years Senior Residence Kinrara Puchong is a nursing home located in Bandar Kinrara, Selangor. It holds a 4.7/5 rating on Google Maps from 14 reviews.",
+        "new": "101.5545856",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "05.02.2025 - 04.02.2030",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "golden-years-senior-residence-kinrara-puchong",
+    "title": "Golden Years Senior Residence Kinrara Puchong",
+    "jkm_name": "GOLDEN YEARS CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 017/2023",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Golden Years Senior Residence Kinrara Puchong is a nursing home located in Bandar Kinrara, Selangor. It holds a 4.7/5 rating on Google Maps from 14 reviews.",
+        "new": "101.54919608482679",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "06.10.2023 - 05.10.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "green-cottage-retirement-and-nursing-home",
+    "title": "Green Cottage Retirement and Nursing Home",
+    "jkm_name": "Green Gates Age Care Centre",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "A/PJB WT 024/2021",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "30.04.2021 - 29.04.2026",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-warga-tua-hayati-care-centre",
+    "title": "Pusat Jagaan Warga Tua Hayati Care Centre",
+    "jkm_name": "Hayati Care Centre",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWT046/2024",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Pusat Jagaan Warga Tua Hayati Care Centre is a nursing home located in Batu Pahat, Johor. It holds a 4.9/5 rating on Google Maps from 15 reviews.",
+        "new": "102.949307",
+        "reason": "fix_invalid"
+      },
+      "email": {
+        "old": "",
+        "new": "hayaticarecentre@gmail.com",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "28.11.2024 - 27.11.2029",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "jr-segamat-care-centre",
+    "title": "JR Segamat Care Centre",
+    "jkm_name": "Kee Ann Care Centre",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "M/PJB WE 019 / 2023",
+        "reason": "fill_empty"
+      },
+      "email": {
+        "old": "",
+        "new": "keeannmelaka@gmail.com",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "26.06.2023 - 25.06.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "lilly-loving-hut-home-care",
+    "title": "Lilly Loving Hut Home Care",
+    "jkm_name": "LILLY LOVING HUT HOME CARE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 049/2022",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "15.11.2022 - 14.11.2027",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "nursing-home-johor-bahru-loving-mansion-care-centre",
+    "title": "Loving Mansion Care Centre",
+    "jkm_name": "LOVING MANSION CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWE 091/2025",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "05.12.2025 - 04.12.2030",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "master-care-centre-taman-abad",
+    "title": "Master Care Centre • Taman Abad",
+    "jkm_name": "MASTER CARE CENTRE (CAWANGAN TAMAN ABAD)",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWE006/2026",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Master Care Centre • Taman Abad is a nursing home located in Johor Bahru, Johor. It holds a 4.7/5 rating on Google Maps from 6 reviews.",
+        "new": "103.75704038053992",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "13.01.2026 - 12.01.2031",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "merry-care-centre-jln-antoi",
+    "title": "Merry Care Kepong Baru 1",
+    "jkm_name": "Merry Care Centre",
+    "confidence": "low",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "W/PJB WT 016/2023",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "04.07.2023 - 03.07.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "my-aged-care-sdn-bhd",
+    "title": "My Aged Care Sdn. Bhd",
+    "jkm_name": "MY AGED CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 023/2023",
+        "reason": "fill_empty"
+      },
+      "latitude": {
+        "old": "",
+        "new": "3.096933361",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "My Aged Care Sdn. Bhd is a care home located in Selangor. The home accommodates up to 20 residents.",
+        "new": "101.6437519",
+        "reason": "fix_invalid"
+      },
+      "google_maps_url": {
+        "old": "",
+        "new": "http://maps.google.com/?q=3.096933361\t ,101.6437519",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "13.12.2023 - 12.12.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "my-precious-home-care-elder-care",
+    "title": "My Precious Home Care Elder Care",
+    "jkm_name": "MY PRECIOUS HOME  CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 011/2025",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "24.10.2025 - 23.10.2030",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "noble-care-retirement-home",
+    "title": "Noble Care Retirement Home",
+    "jkm_name": "NOBLE CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWE003/2026",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Noble Care Retirement Home is a nursing home located in Kampung Sungai Sekamat, Selangor. It holds a 4.8/5 rating on Google Maps from 4 reviews.",
+        "new": "103.703532",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "01.01.2026 - 31.12.2030",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "noble-care",
+    "title": "Noble Care",
+    "jkm_name": "NOBLE CARE CENTRE (3)",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 011/2021",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "23.06.2021 - 22.06.2026",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "noble-care-retirement-home",
+    "title": "Noble Care Retirement Home",
+    "jkm_name": "NOBLE HOME CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 008/2026",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Noble Care Retirement Home is a nursing home located in Kampung Sungai Sekamat, Selangor. It holds a 4.8/5 rating on Google Maps from 4 reviews.",
+        "new": "101.4446271",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "14.04.2026 - 13.04.2031",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-beverly-care-home",
+    "title": "Pusat Jagaan Beverly Care Home",
+    "jkm_name": "PUSAT JAGAAN BEVERLY CARE HOME",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 002/2020",
+        "reason": "fill_empty"
+      },
+      "latitude": {
+        "old": "",
+        "new": "2.977490",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Pusat Jagaan Beverly Care Home is a care home located in Selangor. The home accommodates up to 23 residents.",
+        "new": "101.787711",
+        "reason": "fix_invalid"
+      },
+      "google_maps_url": {
+        "old": "",
+        "new": "http://maps.google.com/?q=2.977490 ,101.787711",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "12.02.2020 - 11.02.2025",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-en-yuan-cheras",
+    "title": "Pusat Jagaan En Yuan (Cheras)",
+    "jkm_name": "Pusat Jagaan En Yuan PLT",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "W/PJB WT 008/2021",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "13.12.2021 - 12.12.2026",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "caring-nursing-home",
+    "title": "Caring Nursing Home",
+    "jkm_name": "PUSAT JAGAAN HEALTH LIFE OLD FOLKS HOME",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 051/2021",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "28.11.2021 - 27.11.2026",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-impian-syimah-jalan-kemaman",
+    "title": "Pusat Jagaan Impian Syimah (Jalan Kemaman)",
+    "jkm_name": "PUSAT JAGAAN IMPIAN SYIMAH",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWT056/2024",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "03.12.2024 - 02.12.2029",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-impian-syimah-jalan-kemaman",
+    "title": "Pusat Jagaan Impian Syimah (Jalan Kemaman)",
+    "jkm_name": "PUSAT JAGAAN IMPIAN SYIMAH ( CAWANGAN)",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 030/2020",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "12.10.2020 - 11.10.2025",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-ler-lin",
+    "title": "Pusat Jagaan Ler Lin",
+    "jkm_name": "PUSAT JAGAAN LER LIN",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWT022/2025",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "23.01.2025 - 22.01.2030",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "love-and-care-centre-kajang",
+    "title": "Love and Care Centre Kajang",
+    "jkm_name": "PUSAT JAGAAN LOVE AND CARE KAJANG",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJBWT 005/2023",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Love and Care Centre Kajang is a care home located in Taman Sakap, Selangor. It holds a 3.8/5 rating on Google Maps from 18 reviews.",
+        "new": "101.813929",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "10.04.2023 - 09.04.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "miriam-home-prefer-donation-address",
+    "title": "Miriam Home- prefer donation address",
+    "jkm_name": "PUSAT JAGAAN MIRIAM HOME FOR THE AGED",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 032/2021",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "15.06.2021 - 14.06.2026",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-murni-bahagia",
+    "title": "Pusat Jagaan Murni Bahagia",
+    "jkm_name": "PUSAT JAGAAN MURNI BAHAGIA",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 022/2022",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "18.07.2022 - 17.07.2027",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-rumah-nur-hasanah",
+    "title": "Pusat Jagaan Rumah Nur Hasanah",
+    "jkm_name": "PUSAT JAGAAN NUR HASANAH",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJBWT 014/2023",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "04.08.2023 - 03.08.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-pawana-sutera",
+    "title": "Pusat Jagaan Pawana Sutera",
+    "jkm_name": "PUSAT JAGAAN PAWANA SUTERA",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 25/2024",
+        "reason": "fill_empty"
+      },
+      "fax": {
+        "old": "",
+        "new": "07-7720889",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "15.05.2024 - 14.05.2029",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "ampang-old-folks-home",
+    "title": "Ampang Old Folks Home",
+    "jkm_name": "PUSAT JAGAAN RUMAH ORANG TUA AMPANG",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 006/2026",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Ampang Old Folks Home is a retirement home located in Kampung Baru Ampang, Selangor. It holds a 4.5/5 rating on Google Maps from 4 reviews.",
+        "new": "101.7648",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "30.03.2026 - 29.03.2031",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-chik-sin-thong-klang-dan-pantai-selangor",
+    "title": "Pusat Jagaan Chik Sin Thong Klang Dan Pantai Selangor",
+    "jkm_name": "PUSAT JAGAAN RUMAH ORANG TUA CHIK SIN THONG KLANG DAN PANTAI SELANGOR",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJBWT 009/2022",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "27.07.2022 - 26.07.2027",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-selangor-king-george-v-silver-jubilee-fund",
+    "title": "Pusat Jagaan Selangor King George V Silver Jubilee Fund",
+    "jkm_name": "Pusat Jagaan Selangor King George V Silver Jubilee Fund",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "W/PJB WT 006/2022",
+        "reason": "fill_empty"
+      },
+      "email": {
+        "old": "",
+        "new": "ksmanagamentkl@gmail.com",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "27.06.2022 - 26.06.2027",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-sri-kenangan-3",
+    "title": "Pusat Sri Kenangan",
+    "jkm_name": "PUSAT JAGAAN SRI KENANGAN",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 016/2023",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "17.04.2023 - 16.04.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "rumah-orang-tua-bukit-siput",
+    "title": "Rumah Orang Tua Bukit Siput",
+    "jkm_name": "PUSAT JAGAAN TAMAN FIRDAUS (CAW. BUKIT SIPUT)",
+    "confidence": "low",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 002/2023",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "02.01.2023 - 01.01.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-vr-melodies-old-folks-home",
+    "title": "Pusat Jagaan V.R Melodies Old Folks Home",
+    "jkm_name": "PUSAT JAGAAN VR MELODIES OLD FOLKS HOME",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWE018/2026",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "27.02.2026 - 26.02.2031",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-warga-emas-barakah",
+    "title": "Pusat Jagaan Warga Emas Barakah",
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS BARAKAH",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 013/2025",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Pusat Jagaan Warga Emas Barakah is a nursing home located in Saujana Rawang, Selangor. It holds a 3.7/5 rating on Google Maps from 3 reviews.",
+        "new": "101.51304",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "14.11.2025 - 13.11.2030",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "happy-family-nursing-home-taman-desa-jaya-pusat-jagaan-warga-emas-desa-jaya",
+    "title": "Happy Family Nursing Home (Taman Desa Jaya) (Pusat Jagaan Warga Emas Desa Jaya)",
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS DESA JAYA",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 021/2023",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Happy Family Nursing Home (Taman Desa Jaya) (Pusat Jagaan Warga Emas Desa Jaya) is a nursing home located in Taman Desa Jaya, Kuala Lumpur. It holds a 5.0/5 rating on Google Maps from 1 reviews.",
+        "new": "101.630336",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "21.11.2023 - 20.11.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "jeta-care",
+    "title": "Jeta Care",
+    "jkm_name": "Pusat Jagaan Warga Emas Jetta",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "JKM licensed (see jetacare.com) + MOH CKAPS (valid Feb 2028)",
+        "new": "J/PJB WT 010/2022",
+        "reason": "jkm_authoritative"
+      },
+      "latitude": {
+        "old": "",
+        "new": "1.6603463107821237",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "",
+        "new": "103.61087005922474",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "24.02.2022 - 23.02.2027",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-warga-emas-semenyih",
+    "title": "Pusat Jagaan Warga Emas Semenyih",
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS SEMENYIH",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB  WT 009/2019",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Pusat Jagaan Warga Emas Semenyih is a welfare home located in Bandar Teknologi Kajang, Selangor. It holds a 1.0/5 rating on Google Maps from 1 reviews.",
+        "new": "101.830544",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "31.12.2019 - 30.12.2024",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "happy-family-nursing-home-cheras-pusat-jagaan-warga-emas-taman-sri-bahtera",
+    "title": "Happy Family Nursing Home (Cheras) (Pusat Jagaan Warga Emas Taman Sri Bahtera)",
+    "jkm_name": "Pusat Jagaan Warga Emas Taman Kepong",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "W/PJB WT 021/2023",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Happy Family Nursing Home (Cheras) (Pusat Jagaan Warga Emas Taman Sri Bahtera) is a nursing home located in Taman Sri Bahtera, Kuala Lumpur. It holds a 3.0/5 rating on Google Maps from 2 reviews.",
+        "new": "101.63512",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "15.09.2023 - 14.09.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "happy-family-nursing-home-cheras-pusat-jagaan-warga-emas-taman-sri-bahtera",
+    "title": "Happy Family Nursing Home (Cheras) (Pusat Jagaan Warga Emas Taman Sri Bahtera)",
+    "jkm_name": "Pusat Jagaan Warga Emas Taman Sri Bahtera",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "W/PJB WT 005/2024",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Happy Family Nursing Home (Cheras) (Pusat Jagaan Warga Emas Taman Sri Bahtera) is a nursing home located in Taman Sri Bahtera, Kuala Lumpur. It holds a 3.0/5 rating on Google Maps from 2 reviews.",
+        "new": "101.73631",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "09.02.2024 - 08.02.2029",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-warga-istimewa-triple-one-tangkak",
+    "title": "Pusat Jagaan Warga Istimewa Triple One Tangkak",
+    "jkm_name": "Pusat Jagaan Warga Istimewa Ru Jia",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJBWE017/2026",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "26.02.2026 - 25.02.2031",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-jagaan-warga-tua-impresif",
+    "title": "Pusat Jagaan Warga Tua Impresif",
+    "jkm_name": "PUSAT JAGAAN WARGA TUA IMPRESIF",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 016/2021",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Pusat Jagaan Warga Tua Impresif is a care home located in Pjs 7, Selangor. It holds a 4.8/5 rating on Google Maps from 4 reviews.",
+        "new": "101.6453",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "22.10.2021 - 21.10.2026",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "pusat-warga-mas-penyayang",
+    "title": "Pusat Warga Mas Penyayang",
+    "jkm_name": "PUSAT JAGAAN WARGAMAS PENYAYANG",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 020/2021",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "03.12.2021 - 02.12.2026",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "sam-ching-kong-old-folks-home-hulu-langat",
+    "title": "Sam Ching Kong Old Folks Home, Hulu Langat",
+    "jkm_name": "PUSAT JAGAAN WARTA TUA PERSATUAN KEBAJIKAN SAM CHING KONG",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJBWT 013/2022",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "18.10.2022 - 17.10.2027",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "sincere-heart-care-centre",
+    "title": "Sincere Heart Care Centre 爱馨养老院",
+    "jkm_name": "SINCERE HEART CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 042/2024",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "08.10.2024 - 07.10.2029",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "stella-maris-home-plt-care-centre",
+    "title": "Stella Maris Home Plt Care Centre",
+    "jkm_name": "STELLA MARIS HOME CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 002/2024",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "05.01.2024 - 04.01.2029",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "synergy-care-centre",
+    "title": "Synergy Care Centre",
+    "jkm_name": "SYNERGY CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJBWT 008/2022",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Synergy Care Centre is a nursing home located in USJ Sentral, Selangor. It holds a 4.8/5 rating on Google Maps from 127 reviews.",
+        "new": "101.5951161",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "12.05.2022 - 11.05.2027",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "stella-maris-home-plt-care-centre",
+    "title": "Stella Maris Home Plt Care Centre",
+    "jkm_name": "THE MANSION CARE CENTRE (2)",
+    "confidence": "low",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 018/2023",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "21.11.2023 - 20.11.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "stella-maris-home-plt-care-centre",
+    "title": "Stella Maris Home Plt Care Centre",
+    "jkm_name": "THE MANSION CARE CENTRE (3)",
+    "confidence": "low",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 019/2023",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "21.11.2023 - 20.11.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "stella-maris-home-plt-care-centre",
+    "title": "Stella Maris Home Plt Care Centre",
+    "jkm_name": "THE MANSION CARE CENTRE (4)",
+    "confidence": "low",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJB WT 020/2023",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "21.11.2023 - 20.11.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "ummi-naura-care-centre",
+    "title": "Ummi Naura Care Centre",
+    "jkm_name": "UMMI NAURA CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 045/2020",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "31.12.2020 - 30.12.2025",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "unique-family-care-center",
+    "title": "Unique Family Care Center",
+    "jkm_name": "UNIQUE FAMILY CARE CENTRE",
+    "confidence": "high",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "B/PJBWT 007/2023",
+        "reason": "fill_empty"
+      },
+      "longitude": {
+        "old": "Unique Family Care Center is a nursing home located in Taman Puchong Utama, Selangor. It holds a 4.9/5 rating on Google Maps from 15 reviews.",
+        "new": "101.6157385",
+        "reason": "fix_invalid"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "05.05.2023 - 04.05.2028",
+        "reason": "fill_empty"
+      }
+    }
+  },
+  {
+    "slug": "yong-an-old-folks-care-centre-ulu-tiram-jb",
+    "title": "Yong An Old Folks Care Centre - Ulu Tiram, JB",
+    "jkm_name": "YONG AN OLD FOLKS CARE CENTRE",
+    "confidence": "medium",
+    "updates": {
+      "licence_number": {
+        "old": "",
+        "new": "J/PJB WT 34/2024",
+        "reason": "fill_empty"
+      },
+      "validity_date": {
+        "old": "",
+        "new": "19.06.2024 - 18.06.2029",
+        "reason": "fill_empty"
+      }
+    }
+  }
+]
