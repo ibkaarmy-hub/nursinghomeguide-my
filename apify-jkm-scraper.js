@@ -63,7 +63,9 @@ const crawler = new CheerioCrawler({
             const licencePara  = $(paras[0]).text().trim();
             const licenceMatch = licencePara.match(/No\.\s*Pendaftaran\s*:\s*([^(]+)/i);
             const validityMatch = licencePara.match(/Tarikh Tempoh\s*:\s*([\d.]+ - [\d.]+)/i);
-            const ownershipMatch = licencePara.match(/\)\s*[-–]\s*(.+?)[\r\n]*$/);
+            // Ownership: extract after ") - " or ")" followed by separator
+            const ownershipMatch = licencePara.match(/\)\s*[-–]\s*(.+?)(\s*$|\n)/);
+            const ownership = ownershipMatch ? ownershipMatch[1].trim() : '';
 
             const address = $(paras[1]).text().trim();
 
@@ -73,13 +75,14 @@ const crawler = new CheerioCrawler({
             const email = $(spans[2]).text().replace(/^Emel\s*:\s*/i, '').trim();
 
             const mapsHref  = $card.find('a[href*="maps.google"]').attr('href') || '';
-            const gpsMatch  = mapsHref.match(/[?&]q=([-\d.]+)\s*,\s*([-\d.]+)/);
+            // GPS: handle various separators (space, comma, tab, or mixed)
+            const gpsMatch  = mapsHref.match(/[?&]q=([-\d.]+)[\s,\t]+([-\d.]+)/);
 
             results.push({
                 name,
                 licence_number: licenceMatch  ? licenceMatch[1].trim()  : '',
                 validity_date:  validityMatch ? validityMatch[1].trim() : '',
-                ownership:      ownershipMatch ? ownershipMatch[1].trim() : '',
+                ownership,
                 address,
                 phone,
                 fax,
