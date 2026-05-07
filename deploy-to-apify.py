@@ -42,10 +42,17 @@ def source_payload(code):
         "buildTag": "latest",
         "sourceFiles": [
             {"name": "main.js", "format": "TEXT", "content": code},
+                {"name": ".actor/actor.json", "format": "TEXT", "content": json.dumps({
+                    "actorSpecification": 1,
+                    "name": ACTOR_NAME,
+                    "title": "JKM Elderly Care Centre Scraper",
+                    "version": "0.1",
+                }, indent=2)},
             {"name": "package.json", "format": "TEXT",
              "content": json.dumps({
                  "name": "jkm-scraper", "version": "0.1.0",
                  "type": "module",
+                 "scripts": {"start": "node main.js"},
                  "dependencies": {"apify": "^3.0.0", "crawlee": "^3.0.0"}
              }, indent=2)},
         ],
