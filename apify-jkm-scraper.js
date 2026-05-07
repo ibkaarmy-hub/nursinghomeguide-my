@@ -63,7 +63,7 @@ const crawler = new CheerioCrawler({
             const licencePara  = $(paras[0]).text().trim();
             const licenceMatch = licencePara.match(/No\.\s*Pendaftaran\s*:\s*([^(]+)/i);
             const validityMatch = licencePara.match(/Tarikh Tempoh\s*:\s*([\d.]+ - [\d.]+)/i);
-            const ownershipMatch = licencePara.match(/\)\s*-\s*(.+)$/);
+            const ownershipMatch = licencePara.match(/\)\s*[-–]\s*(.+?)[\r\n]*$/);
 
             const address = $(paras[1]).text().trim();
 
@@ -73,7 +73,7 @@ const crawler = new CheerioCrawler({
             const email = $(spans[2]).text().replace(/^Emel\s*:\s*/i, '').trim();
 
             const mapsHref  = $card.find('a[href*="maps.google"]').attr('href') || '';
-            const gpsMatch  = mapsHref.match(/[?&]q=([-\d.]+),([-\d.]+)/);
+            const gpsMatch  = mapsHref.match(/[?&]q=([-\d.]+)\s*,\s*([-\d.]+)/);
 
             results.push({
                 name,
