@@ -1,0 +1,19 @@
+[
+  {
+    "crawl": {
+      "httpStatusCode": 200,
+      "httpStatusMessage": "OK",
+      "loadedAt": "2026-05-08T10:23:49.219Z",
+      "uniqueKey": "WAzlwfusvL",
+      "requestStatus": "handled"
+    },
+    "metadata": {
+      "title": "AUSTINLOYAL | An Urban Care Retreat In The Heart Of Johor, Malaysia",
+      "languageCode": "en-US",
+      "url": "http://www.austinloyal.com/",
+      "redirectedUrl": "https://austinloyal.com/"
+    },
+    "query": "http://www.austinloyal.com/",
+    "markdown": "AUSTINLOYAL | An Urban Care Retreat In The Heart Of Johor, Malaysia\n\n[![AUSTINLOYAL](https://austinloyal.com/wp-content/uploads/2022/12/Screen-Shot-2022-12-06-at-5.27.03-PM.png)](https://austinloyal.com/)\n\nSelect Page\n\nAn Urban Care Retreat In The Heart Of Johor, Malaysia\n\n# Welcome to your home away from home."
+  }
+]
