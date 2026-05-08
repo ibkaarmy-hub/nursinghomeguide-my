@@ -23,18 +23,16 @@ import argparse, csv, io, json, os, sys, time
 from datetime import date
 from pathlib import Path
 
-import anthropic
 import urllib.request
 from apify_client import ApifyClient
-from google.oauth2.credentials import Credentials
-from googleapiclient.discovery import build
+try:
+    import anthropic
+    HAS_ANTHROPIC = True
+except ImportError:
+    HAS_ANTHROPIC = False
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 
-SPREADSHEET_ID = "1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk"
-FAC_TAB        = "google-sheets-facilities.csv"
-TOKEN_FILE     = "token_sheets.json"
-SCOPES         = ["https://www.googleapis.com/auth/spreadsheets"]
 
 CACHE_DIR      = Path("_enrich_cache")
 PENDING_DIR    = Path("pending_editorials")
@@ -42,7 +40,6 @@ TODAY          = str(date.today())
 OUTPUT_FILE    = PENDING_DIR / f"{TODAY}-enriched-batch.json"
 
 APIFY_TOKEN     = os.environ.get("APIFY_TOKEN", "").strip()
-ANTHROPIC_KEY   = os.environ.get("ANTHROPIC_API_KEY", "").strip()
 
 ACTOR_WEBSITE   = "apify/website-content-crawler"
 ACTOR_PLACES    = "compass/crawler-google-places"
@@ -59,19 +56,20 @@ def load_blockers():
 
 # ─── Sheet helpers ────────────────────────────────────────────────────────────
 
+FACILITIES_CSV_URL = (
+    "https://docs.google.com/spreadsheets/d/e/"
+    "2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh"
+    "/pub?gid=292378871&single=true&output=csv"
+)
+
 def load_sheet():
-    creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
-    svc   = build("sheets", "v4", credentials=creds)
-    data  = svc.spreadsheets().values().get(
-        spreadsheetId=SPREADSHEET_ID, range=f"'{FAC_TAB}'"
-    ).execute().get("values", [])
-    headers = data[0]
-    def g(row, col):
-        i = headers.index(col) if col in headers else None
-        return (row[i] if i is not None and i < len(row) else "").strip()
-    rows = []
-    for row in data[1:]:
-        rows.append({h: (row[i] if i < len(row) else "") for i, h in enumerate(headers)})
+    """Fetch facility list from public CSV export (no auth needed)."""
+    print("  Fetching facility list from Sheet...")
+    req = urllib.request.Request(FACILITIES_CSV_URL, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        body = r.read().decode("utf-8", errors="replace")
+    rows = list(csv.DictReader(io.StringIO(body)))
+    print(f"  Loaded {len(rows)} facilities from Sheet")
     return rows
 
 def get_top_n(rows, n, blockers):
@@ -393,13 +391,11 @@ def main():
 
     if not APIFY_TOKEN:
         sys.exit("❌ APIFY_TOKEN env var not set. Run: export APIFY_TOKEN=apify_api_xxxxx")
-    if not ANTHROPIC_KEY:
-        sys.exit("❌ ANTHROPIC_API_KEY env var not set.")
-    if not Path(TOKEN_FILE).exists():
-        sys.exit(f"❌ {TOKEN_FILE} not found. Run from the repo root.")
 
     apify_client = ApifyClient(APIFY_TOKEN)
-    claude_client = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
+    claude_client = None
+    if HAS_ANTHROPIC:
+        claude_client = anthropic.Anthropic()  # Use default credentials
 
     # Load existing output for resume
     already_done = set()
@@ -452,26 +448,39 @@ def main():
 
         print(f"  Photos:  {len(website_photos)} from website, {len(maps_photos)} from Maps → {len(merged_photos)} merged")
 
-        # Step 4: Generate editorial via Claude
-        print(f"  [claude] generating editorial...")
-        try:
-            response = generate_editorial(
-                claude_client, facility, website_pages, maps_data, website_photos
-            )
-            editorial, json_data = parse_editorial_response(response)
-        except Exception as e:
-            print(f"  [error] Claude API failed for {slug}: {e}")
-            continue
+        # Step 4: Generate editorial via Claude (optional)
+        editorial = ""
+        json_data = {}
+        if claude_client:
+            print(f"  [claude] generating editorial...")
+            try:
+                response = generate_editorial(
+                    claude_client, facility, website_pages, maps_data, website_photos
+                )
+                editorial, json_data = parse_editorial_response(response)
+            except Exception as e:
+                print(f"  [warn] Claude API failed for {slug}: {e} — skipping editorial generation")
+        else:
+            print(f"  [skip] Claude not available — editorial generation skipped")
+            print(f"         (run from Claude Code session or set ANTHROPIC_API_KEY)")
 
         # Step 5: Build result record
         new_hero = merged_photos[0] if merged_photos and not existing_hero else existing_hero
         new_photos_pipe = "|".join(merged_photos)
 
+        # Skip if no editorial (required for upload)
+        if not editorial:
+            if claude_client:
+                print(f"  ⚠️  No editorial generated — skipping")
+            else:
+                print(f"  [skip] No editorial (Claude unavailable)")
+            continue
+
         result = {
             "slug": slug,
             "title": title,
             "editorial_summary": editorial,
-            # Data gap fills from Claude
+            # Data gap fills from Claude (if available)
             "care_types":         json_data.get("care_types") or facility.get("care_types"),
             "total_beds":         json_data.get("total_beds") or facility.get("total_beds"),
             "pricing_display":    json_data.get("pricing_display") or facility.get("pricing_display"),
