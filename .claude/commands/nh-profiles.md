@@ -230,6 +230,13 @@ The `jkm_data_source` column in the sheet drives the editorial `**License & veri
 
 **Script:** `fix_jkm_ask.py` applies these rules across a batch. Re-run whenever editorials are regenerated in bulk.
 
+**Hardcoded "What to ask on your tour" card in `facility.html`** (the reviews tab, separate from the editorial):
+- The inspection question is rendered dynamically from `f.jkm_data_source`:
+  - MOH → "When was the last MOH inspection, and can I see the result?"
+  - JKM → "When was the last JKM inspection, and can I see the result?"
+  - Unverified → "Is the facility registered with JKM or MOH, and can I see the licence and last inspection result?"
+- After any change to this block, regenerate all static pages with `python generate_facility_pages.py`.
+
 ### Column-shift / corruption detection (locked 2026-05-03 from Jasper Lodge fix)
 When pulling a row, **dump every column raw** — not just the ones you expect — and look for misplaced data. Past corruption patterns to scan for:
 - `google_maps_url` that starts with `https://lh3.googleusercontent.com/` or `https://streetviewpixels-pa.googleapis.com/` → it's a Google CDN photo URL, not a place URL. Replace with a Maps search URL: `https://www.google.com/maps/search/?api=1&query=<urlencoded name + address>`.
