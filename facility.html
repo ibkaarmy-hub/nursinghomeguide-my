@@ -712,7 +712,7 @@ function render(f) {
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
-          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: true }) : ''}
+          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: false }) : ''}
         </div>
         ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
