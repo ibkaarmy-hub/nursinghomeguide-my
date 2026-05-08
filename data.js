@@ -96,17 +96,6 @@ const GROUPS = {
     ],
   },
 
-  'wcc-care': {
-    slug: 'wcc-care',
-    name: 'WCC Care Centres',
-    tagline: 'Wound care nursing and home care in Muar',
-    state: 'Johor',
-    description: 'WCC operates two care-related services in Muar: WCC WoundCare & Nursing Centre (specialising in wound management and nursing) and WCC Home Care Muar (home care services). Together they offer a continuum from institutional nursing to community-based home care.',
-    branches: [
-      'wcc-woundcare-nursing-centre',
-      'wcc-home-care-muar',
-    ],
-  },
 
   'pusat-sri-kenangan': {
     slug: 'pusat-sri-kenangan',
