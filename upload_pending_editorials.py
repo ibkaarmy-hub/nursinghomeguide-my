@@ -55,6 +55,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--apply', action='store_true',
                     help='Actually push to the sheet. Default is a dry run.')
+    ap.add_argument('--extended', action='store_true',
+                    help='Also push enriched fields: care_types, beds, pricing, photos, JKM columns.')
     args = ap.parse_args()
 
     if not PENDING_DIR.exists():
@@ -93,6 +95,17 @@ def main():
                 'editorial': text,
                 'data_quality': f.get('data_quality', '?'),
                 'source_file': p,
+                # Extended enrichment fields — only present in enrich_batch output
+                '_extended': {
+                    k: v for k, v in f.items()
+                    if k in (
+                        'care_types', 'total_beds', 'pricing_display',
+                        'shared_price', 'private_price',
+                        'jkm_status', 'jkm_licence_number', 'jkm_verified_by', 'moh_status',
+                        'doctor_visits', 'rn_24_7', 'languages',
+                        'hero_image', 'photos', 'photo_count',
+                    ) and v  # skip blank/null
+                },
             })
 
     if not updates:
@@ -123,6 +136,21 @@ def main():
     editorial_i = headers.index('editorial_summary')
     last_i      = headers.index('last_updated') if 'last_updated' in headers else None
 
+    # Build column index map for extended fields (only for columns that exist in the sheet)
+    EXTENDED_COLS = [
+        'care_types', 'total_beds', 'pricing_display',
+        'shared_price', 'private_price',
+        'jkm_status', 'jkm_licence_number', 'jkm_verified_by', 'moh_status',
+        'doctor_visits', 'rn_24_7', 'languages',
+        'hero_image', 'photos', 'photo_count',
+    ]
+    extended_col_map = {col: headers.index(col) for col in EXTENDED_COLS if col in headers}
+    if args.extended:
+        missing_cols = [c for c in EXTENDED_COLS if c not in headers]
+        if missing_cols:
+            print(f"  ⚠️  Extended columns not in sheet (skip): {missing_cols}")
+        print(f"  Extended mode: will also update {list(extended_col_map.keys())}")
+
     slug_to_row = {}
     for i, row in enumerate(fac[1:], start=2):
         if slug_i < len(row):
@@ -147,6 +175,14 @@ def main():
                 'range': f"'{FAC_TAB}'!{col_letter(last_i+1)}{row_n}",
                 'values': [[today]]
             })
+        # Extended enrichment fields
+        if args.extended and u.get('_extended'):
+            for col, val in u['_extended'].items():
+                if col in extended_col_map and val:
+                    sheet_updates.append({
+                        'range': f"'{FAC_TAB}'!{col_letter(extended_col_map[col]+1)}{row_n}",
+                        'values': [[str(val)]]
+                    })
 
     print(f"\n  → {len(sheet_updates)} cell update(s) queued for {len(updates)-len(missing)} facilities")
     print(f"  → {len(missing)} slug(s) not found in sheet (likely removed or renamed)")
