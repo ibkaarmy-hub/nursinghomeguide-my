@@ -500,6 +500,7 @@ function render(f) {
     infoRow('Subsidy accepted', f.subsidy),
     infoRow('Visiting hours', f.visiting_hours),
     infoRow('Google rating', f.rating ? `★ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} reviews)` : ''),
+    infoRow('Licence number', f.licence_number),
   ].filter(Boolean).join('');
 
   const policiesHtml = D.policies?.length ? `

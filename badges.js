@@ -82,21 +82,22 @@
     }[c]));
   }
 
-  // ── Trust label (MOH Licensed / Unverified listing / JKM Registered) ─
-  // Cards: MOH Licensed only. Profile: all three states rendered.
+  // ── Trust label (MOH Licensed / JKM Registered / Unverified) ──────────
+  // Reads jkm_data_source column (e.g. "MOH NH 2026", "JKM 2026", "JKM 2026; MOH NH 2026").
+  // Cards: MOH and JKM both shown. Profile: all three states rendered.
   function trustLabel(f, opts) {
     const isProfile = !!(opts && opts.showJkm);
-    const cat = (f.license_category || 'Unverified').trim();
-    if (cat === 'MOH Licensed') {
-      return '<span class="trust-pill trust-moh" title="Confirmed under MOH Act 586 / Act 802">⭐ MOH Licensed</span>';
+    const src = (f.jkm_data_source || '').toLowerCase();
+    const isMOH = src.includes('moh');
+    const isJKM = src.includes('jkm');
+    if (isMOH) {
+      return '<span class="trust-pill trust-moh" title="Licensed under MOH (Private Healthcare Facilities Act 586 / Act 802)">⭐ MOH Licensed</span>';
     }
-    if (cat === 'JKM Registered') {
-      return isProfile
-        ? '<span class="trust-pill trust-jkm" title="Pusat Jagaan registered under Act 506">JKM Registered</span>'
-        : '';
+    if (isJKM) {
+      return '<span class="trust-pill trust-jkm" title="Registered with JKM under the Care Centres Act 506">JKM Registered</span>';
     }
     return isProfile
-      ? '<span class="trust-pill trust-unverified" title="No licence evidence on file yet">Unverified listing</span>'
+      ? '<span class="trust-pill trust-unverified" title="No licence evidence on file yet">Not in MOH / JKM registry</span>'
       : '';
   }
 
