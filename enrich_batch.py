@@ -25,6 +25,11 @@ from pathlib import Path
 
 import urllib.request
 try:
+    from apify_client import ApifyClient
+except ImportError:
+    ApifyClient = None
+
+try:
     import anthropic
     HAS_ANTHROPIC = True
 except ImportError:
@@ -112,19 +117,18 @@ def apify_crawl_website(url, slug):
     cache = CACHE_DIR / slug / "website.json"
     if cache.exists():
         print(f"    [cache] website content for {slug}")
-        return json.loads(cache.read_text())
+        return json.loads(cache.read_text(encoding="utf-8"))
 
     print(f"    [apify] fetching website: {url}")
     try:
         items = _apify_post(ACTOR_RAG, {
-            "startUrls": [{"url": url}],
-            "maxCrawlDepth": 1,
-            "maxCrawlPages": 6,
+            "query": url,
+            "maxResults": 1,
             "outputFormats": ["markdown"],
             "requestTimeoutSecs": 60,
         })
         cache.parent.mkdir(parents=True, exist_ok=True)
-        cache.write_text(json.dumps(items, ensure_ascii=False, indent=2))
+        cache.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
         return items
     except Exception as e:
         print(f"    [warn] website fetch failed for {slug}: {e}")
@@ -135,14 +139,14 @@ def apify_scrape_maps(facility, slug):
     cache = CACHE_DIR / slug / "maps.json"
     if cache.exists():
         print(f"    [cache] maps data for {slug}")
-        return json.loads(cache.read_text())
+        return json.loads(cache.read_text(encoding="utf-8"))
 
     maps_url  = facility.get("google_maps_url", "").strip()
     title     = facility.get("title", "").strip()
     area      = facility.get("area", "").strip()
 
-    if not maps_url:
-        print(f"    [skip] no Maps URL for {slug}")
+    if not maps_url or "google.com/maps" not in maps_url:
+        print(f"    [skip] no valid Maps URL for {slug}")
         return None
 
     print(f"    [apify] scraping Google Maps for {slug}")
@@ -159,10 +163,12 @@ def apify_scrape_maps(facility, slug):
         items = _apify_post(ACTOR_PLACES, payload)
         result = items[0] if items else None
         cache.parent.mkdir(parents=True, exist_ok=True)
-        cache.write_text(json.dumps(result, ensure_ascii=False, indent=2))
+        cache.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
         return result
     except Exception as e:
         print(f"    [warn] Maps scrape failed for {slug}: {e}")
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        cache.write_text("null", encoding="utf-8")
         return None
 
 # ─── Photo helpers ────────────────────────────────────────────────────────────
@@ -376,16 +382,18 @@ def parse_editorial_response(response_text):
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    import sys
+    sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
     ap.add_argument("--n",      type=int, default=30, help="Number of facilities to process")
     ap.add_argument("--resume", action="store_true",  help="Skip slugs already in output file")
     ap.add_argument("--dry-run", action="store_true", help="Scrape + generate but don't save to pending_editorials")
+    ap.add_argument("--scrape-only", action="store_true", help="Scrape + cache only; skip Claude editorial generation")
     args = ap.parse_args()
 
     if not APIFY_TOKEN:
         sys.exit("❌ APIFY_TOKEN env var not set. Run: export APIFY_TOKEN=apify_api_xxxxx")
 
-    apify_client = ApifyClient(APIFY_TOKEN)
     claude_client = None
     if HAS_ANTHROPIC:
         claude_client = anthropic.Anthropic()  # Use default credentials
@@ -423,11 +431,11 @@ def main():
         # Step 1: Scrape website
         website_pages = []
         if website:
-            website_pages = apify_crawl_website(apify_client, website, slug)
+            website_pages = apify_crawl_website(website, slug)
             time.sleep(SLEEP_BETWEEN)
 
         # Step 2: Scrape Google Maps
-        maps_data = apify_scrape_maps(apify_client, facility, slug)
+        maps_data = apify_scrape_maps(facility, slug)
         if maps_data:
             time.sleep(SLEEP_BETWEEN)
 
@@ -444,7 +452,9 @@ def main():
         # Step 4: Generate editorial via Claude (optional)
         editorial = ""
         json_data = {}
-        if claude_client:
+        if args.scrape_only:
+            print(f"  [scrape-only] skipping editorial generation")
+        elif claude_client:
             print(f"  [claude] generating editorial...")
             try:
                 response = generate_editorial(
@@ -461,8 +471,8 @@ def main():
         new_hero = merged_photos[0] if merged_photos and not existing_hero else existing_hero
         new_photos_pipe = "|".join(merged_photos)
 
-        # Skip if no editorial (required for upload)
-        if not editorial:
+        # Skip if no editorial (required for upload) unless scrape-only
+        if not editorial and not args.scrape_only:
             if claude_client:
                 print(f"  ⚠️  No editorial generated — skipping")
             else:
@@ -524,7 +534,7 @@ def main():
 
     # Merge with existing output if resuming
     if args.resume and OUTPUT_FILE.exists():
-        existing_data = json.loads(OUTPUT_FILE.read_text())
+        existing_data = json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
         existing_facilities = existing_data.get("facilities", [])
     else:
         existing_facilities = []
@@ -534,12 +544,12 @@ def main():
         "batch_date": TODAY,
         "total": len(all_facilities),
         "facilities": all_facilities
-    }, ensure_ascii=False, indent=2))
+    }, ensure_ascii=False, indent=2), encoding="utf-8")
 
     # Save photo updates log
     photo_log = CACHE_DIR / "photo_updates.json"
     CACHE_DIR.mkdir(exist_ok=True)
-    photo_log.write_text(json.dumps(photo_updates, ensure_ascii=False, indent=2))
+    photo_log.write_text(json.dumps(photo_updates, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"\n{'='*60}")
     print(f"✅ Batch complete: {len(results)} facilities processed")
