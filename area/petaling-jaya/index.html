@@ -392,8 +392,14 @@ function filterGrid() {
   );
 
   result.sort((a, b) => {
-    if (sort === 'rating')    return (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0);
-    if (sort === 'reviews')   return (parseInt(b.review_count) || 0) - (parseInt(a.review_count) || 0);
+    if (sort === 'rating') {
+      const rd = (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0);
+      return rd !== 0 ? rd : (parseInt(b.review_count) || 0) - (parseInt(a.review_count) || 0);
+    }
+    if (sort === 'reviews') {
+      const rv = (parseInt(b.review_count) || 0) - (parseInt(a.review_count) || 0);
+      return rv !== 0 ? rv : (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0);
+    }
     if (sort === 'price_asc') return (priceFromShared(a) || 999999) - (priceFromShared(b) || 999999);
     if (sort === 'name')      return (a.title || '').localeCompare(b.title || '');
     return 0;

@@ -303,7 +303,10 @@
     );
 
     if (sort === 'rating') {
-      list.sort((a, b) => (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0));
+      list.sort((a, b) => {
+        const rd = (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0);
+        return rd !== 0 ? rd : (parseInt(b.review_count) || 0) - (parseInt(a.review_count) || 0);
+      });
     } else if (sort === 'price') {
       list.sort((a, b) => priceFromShared(a) - priceFromShared(b));
     } else {

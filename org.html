@@ -219,7 +219,11 @@ if (!slug || !GROUPS[slug]) {
 
   // Load facilities and render branches
   loadFacilities().then(all => {
-    const branches = org.branches.map(bSlug => all.find(f => f.slug === bSlug)).filter(Boolean);
+    const branches = org.branches.map(bSlug => all.find(f => f.slug === bSlug)).filter(Boolean)
+      .sort((a, b) => {
+        const rd = (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0);
+        return rd !== 0 ? rd : (parseInt(b.review_count) || 0) - (parseInt(a.review_count) || 0);
+      });
 
     // Key facts card
     const areas = [...new Set(branches.map(f => normArea(f.area)))];
