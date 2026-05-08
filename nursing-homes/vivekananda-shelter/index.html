@@ -12,7 +12,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vivekananda Shelter — NursingHomeGuide.my">
 <meta name="twitter:description" content="Vivekananda Shelter in Pjs 4. Vivekananda Shelter is a small care home located in PJS 4, an older residential precinct within Petaling Jaya in Selangor…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/vivekananda-shelter/","name":"Vivekananda Shelter","url":"https://nursinghomeguide.my/nursing-homes/vivekananda-shelter/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Pjs 4","addressRegion":"Selangor"},"telephone":"03-77818012","description":"Vivekananda Shelter is a small care home located in PJS 4, an older residential precinct within Petaling Jaya in Selangor. The name Vivekananda carries strong associations with the Indian Hindu tradition — Swami Vivekananda is a revered figure across the South Asian community in Malaysia — and the home likely serves primarily the Tamil-speaking Indian community, possibly with a Hindu cultural or religious orientation to daily life and dietary practice. With only 7 beds listed, this is one of the","geo":{"@type":"GeoCoordinates","latitude":3.0898246,"longitude":101.6439081}}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/vivekananda-shelter/","name":"Vivekananda Shelter","url":"https://nursinghomeguide.my/nursing-homes/vivekananda-shelter/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Pjs 4","addressRegion":"Selangor"},"telephone":"03-77818012","description":"Vivekananda Shelter is a small care home located in PJS 4, an older residential precinct within Petaling Jaya in Selangor. The name Vivekananda carries strong associations with the Indian Hindu tradition — Swami Vivekananda is a revered figure across the South Asian community in Malaysia — and the home likely serves primarily the Tamil-speaking Indian community, possibly with a Hindu cultural or religious orientation to daily life and dietary practice. With only 7 beds listed, this is one of the","geo":{"@type":"GeoCoordinates","latitude":3.0898246,"longitude":101.6439081},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="vivekananda-shelter";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Vivekananda Shelter — NursingHomeGuide.my</title>
@@ -432,10 +432,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -677,8 +677,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

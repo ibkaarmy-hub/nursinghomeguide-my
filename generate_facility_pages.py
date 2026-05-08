@@ -2,11 +2,11 @@
 """Generate one static HTML page per live facility under category-prefixed paths.
 
 URL scheme (post-restructure 2026-05-03):
-  /nursing-homes/<slug>/    for care_category in {Nursing Home, Mixed}
-  /assisted-living/<slug>/  for care_category in {Assisted Living}
-                            and ALSO mirrored for Mixed (cross-listed; canonical is /nursing-homes/)
-  /home-care/<slug>/        for care_category = Home Care
-  /day-care/<slug>/         for care_category = Day Care
+  /nursing-homes/<slug>/    for care_types containing 'Nursing Home' or blank (default)
+  /assisted-living/<slug>/  for care_types = 'Assisted Living' (pure, no Nursing Home)
+                            Mixed (Nursing Home + Assisted Living) → canonical /nursing-homes/, mirror /assisted-living/
+  /home-care/<slug>/        for care_types containing 'Home Care' (pure)
+  /day-care/<slug>/         for care_types containing 'Day Care' (pure)
   /facility/<slug>/         legacy redirect stub (meta-refresh + canonical to new URL)
 
 Each page bakes in per-facility <title>, meta description, canonical, Open Graph,
@@ -258,7 +258,15 @@ def main():
             skipped_invalid += 1
             continue
 
-        category = (r.get("care_category") or "").strip() or DEFAULT_CATEGORY
+        care_types_raw = (r.get("care_types") or "").strip().lower()
+        if "assisted living" in care_types_raw and "nursing home" not in care_types_raw:
+            category = "Assisted Living"
+        elif "home care" in care_types_raw and "nursing home" not in care_types_raw:
+            category = "Home Care"
+        elif "day care" in care_types_raw and "nursing home" not in care_types_raw:
+            category = "Day Care"
+        else:
+            category = DEFAULT_CATEGORY
         if category not in CATEGORY_DIRS:
             category = DEFAULT_CATEGORY
 

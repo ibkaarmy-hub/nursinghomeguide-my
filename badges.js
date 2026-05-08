@@ -1,12 +1,11 @@
 /* Capability badges — Phase C
  *
- * Two-state model per _research/regulatory-framework.md §3:
- *   Confirmed (positive evidence)  /  Unverified (greyed)
+ * Two-state model: Confirmed (positive evidence) / Unverified (greyed)
  *
  * The card shows trust label + (if any) confirmed-capability summary.
- * The profile shows the full Group A + Group B grid plus the tier marker.
+ * The profile shows the full Group A + Group B grid.
  *
- * Reads `_effective_*` fields populated by applyVerificationStaleness() in data.js.
+ * All columns read here must exist in the documented schema (CLAUDE.md).
  * Definitions: _research/badge_definitions.md
  */
 (function (root) {
@@ -22,22 +21,10 @@
   // Each entry: { key, label, tip, isConfirmed: (f) => bool }
   const CLINICAL_BADGES = [
     {
-      key: 'rn_24_7',
-      label: 'RN 24/7',
-      tip: 'Registered nurse confirmed on duty around the clock.',
-      isConfirmed: f => isYes(f.rn_24_7),
-    },
-    {
       key: 'peg',
       label: 'PEG / tube feeding',
       tip: 'Staff trained to manage PEG and nasogastric tube feeds.',
       isConfirmed: f => isYes(f.medical_peg),
-    },
-    {
-      key: 'tracheostomy',
-      label: 'Tracheostomy care',
-      tip: 'Staff trained to suction and manage tracheostomies.',
-      isConfirmed: f => isYes(f.medical_tracheostomy),
     },
     {
       key: 'wound',
@@ -68,12 +55,6 @@
   // Group B — Service / logistics badges
   const SERVICE_BADGES = [
     {
-      key: 'sg_transfer',
-      label: 'SG transfer ready',
-      tip: 'Accepts Singaporean residents — admission workflow + currency handling.',
-      isConfirmed: f => isYes(f.sg_transfer_ready),
-    },
-    {
       key: 'halal',
       label: 'Halal-certified kitchen',
       tip: 'Confirmed halal food preparation.',
@@ -89,11 +70,10 @@
 
   // Hybrid need-based search — required badges (all must be Confirmed)
   const NEED_BADGE_SETS = {
-    'post-stroke':       ['rn_24_7', 'rehab'],
-    'advanced-dementia': ['rn_24_7', 'dementia_secure'],
-    'peg':               ['rn_24_7', 'peg'],
-    'palliative':        ['rn_24_7', 'palliative'],
-    'tracheostomy':      ['rn_24_7', 'tracheostomy'],
+    'post-stroke':       ['rehab'],
+    'advanced-dementia': ['dementia_secure'],
+    'peg':               ['peg'],
+    'palliative':        ['palliative'],
   };
 
   function escapeHtml(s) {
@@ -103,12 +83,10 @@
   }
 
   // ── Trust label (MOH Licensed / Unverified listing / JKM Registered) ─
-  // Cards: MOH Licensed only. JKM is the silent ~96% default; "Unverified
-  // listing" would shout on every card while verification is in progress.
-  // Both render on the profile detail view.
+  // Cards: MOH Licensed only. Profile: all three states rendered.
   function trustLabel(f, opts) {
     const isProfile = !!(opts && opts.showJkm);
-    const cat = (f._effective_license_category || f.license_category || 'Unverified').trim();
+    const cat = (f.license_category || 'Unverified').trim();
     if (cat === 'MOH Licensed') {
       return '<span class="trust-pill trust-moh" title="Confirmed under MOH Act 586 / Act 802">⭐ MOH Licensed</span>';
     }
@@ -145,11 +123,6 @@
       return `<div class="${cls}" title="${escapeHtml(b.tip)}"><span class="cap-icon">${icon}</span>${escapeHtml(b.label)}</div>`;
     }).join('');
 
-    const docFreq = (f.doctor_visit_frequency || '').trim();
-    const docPill = docFreq && docFreq.toLowerCase() !== 'unverified'
-      ? `<span class="doc-pill ok" title="Doctor visit frequency on record.">Doctor: ${escapeHtml(docFreq)}</span>`
-      : `<span class="doc-pill muted" title="Doctor visit frequency not yet confirmed.">Doctor: Unverified</span>`;
-
     return `
       <div class="badge-block">
         <div class="badge-block-head">Clinical capability</div>
@@ -158,18 +131,7 @@
       <div class="badge-block">
         <div class="badge-block-head">Service &amp; logistics</div>
         <div class="badge-grid">${renderRow(SERVICE_BADGES)}</div>
-      </div>
-      <div class="badge-tags">${docPill}</div>`;
-  }
-
-  // Last-updated marker — profile only.
-  function tierMarker(f) {
-    const date = (f.last_verified_on || f.last_updated || '').trim();
-    if (!date) return '';
-    const expired = f._licence_expired
-      ? ` <span class="tier-warn">Licence expired — re-verifying.</span>`
-      : '';
-    return `<div class="tier-marker">Last updated: ${escapeHtml(date)}${expired}</div>`;
+      </div>`;
   }
 
   // ── Hybrid need-based search ─────────────────────────────────────────
@@ -178,7 +140,7 @@
   // 'possible'  = required badges are Unverified (no positive evidence yet,
   //               but no denial — facility may be suitable)
   // (We have no third state for "denied", so 'no-match' is reserved for
-  //  filtering on dimensions not in the badge set, e.g. care_category.)
+  //  filtering on dimensions not in the badge set, e.g. care_types.)
   function needMatchTier(f, need) {
     const required = NEED_BADGE_SETS[need];
     if (!required) return 'confirmed';
@@ -190,6 +152,9 @@
   }
 
   // Export
+  // Stub — kept for backwards-compat with generated static pages until they are regenerated.
+  function tierMarker() { return ''; }
+
   root.NHGBadges = {
     CLINICAL_BADGES,
     SERVICE_BADGES,

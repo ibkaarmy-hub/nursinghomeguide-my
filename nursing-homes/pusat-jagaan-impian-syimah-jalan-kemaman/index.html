@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Pusat Jagaan Impian Syimah (Jalan Kemaman) — NursingHomeGuide.my">
 <meta name="twitter:description" content="Pusat Jagaan Impian Syimah (Jalan Kemaman) in Johor Bahru. Pusat Jagaan Impian Syimah (Jalan Kemaman) is the second residential branch of the Impian…">
 <meta name="twitter:image" content="https://lh3.googleusercontent.com/p/AF1QipP7e66b2Lgn4I6sht9OgYqDBFsHt75e3Mu77TDS=w1920-h1080-k-no">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-impian-syimah-jalan-kemaman/","name":"Pusat Jagaan Impian Syimah (Jalan Kemaman)","url":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-impian-syimah-jalan-kemaman/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor Bahru","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/p/AF1QipP7e66b2Lgn4I6sht9OgYqDBFsHt75e3Mu77TDS=w1920-h1080-k-no","telephone":"+60 13-750 7134","description":"Pusat Jagaan Impian Syimah (Jalan Kemaman) is the second residential branch of the Impian Syimah operator in Johor Bahru, running alongside the established Jalan Kemuncak branch in Kampung Nong Chik. The Jalan Kemaman branch is located at Lot 1818, No. 7, Jalan Kemaman, Kampung Tarom, 80100 JB — a kampung-belt address in the older residential fabric of JB, about 3 km west of the city centre. Both branches share a single phone number, email address, and Facebook page (PusatJagaanImpianSyimah), in","geo":{"@type":"GeoCoordinates","latitude":1.471446,"longitude":103.7474903},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":1,"bestRating":"5","worstRating":"1"},"priceRange":"Contact for rates"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-impian-syimah-jalan-kemaman/","name":"Pusat Jagaan Impian Syimah (Jalan Kemaman)","url":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-impian-syimah-jalan-kemaman/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor Bahru","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/p/AF1QipP7e66b2Lgn4I6sht9OgYqDBFsHt75e3Mu77TDS=w1920-h1080-k-no","telephone":"+60 13-750 7134","description":"Pusat Jagaan Impian Syimah (Jalan Kemaman) is the second residential branch of the Impian Syimah operator in Johor Bahru, running alongside the established Jalan Kemuncak branch in Kampung Nong Chik. The Jalan Kemaman branch is located at Lot 1818, No. 7, Jalan Kemaman, Kampung Tarom, 80100 JB — a kampung-belt address in the older residential fabric of JB, about 3 km west of the city centre. Both branches share a single phone number, email address, and Facebook page (PusatJagaanImpianSyimah), in","geo":{"@type":"GeoCoordinates","latitude":1.471446,"longitude":103.7474903},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":1,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="pusat-jagaan-impian-syimah-jalan-kemaman";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Pusat Jagaan Impian Syimah (Jalan Kemaman) — NursingHomeGuide.my</title>
@@ -434,10 +434,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -679,8 +679,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

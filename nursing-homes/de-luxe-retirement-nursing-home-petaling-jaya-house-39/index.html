@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="De Luxe Retirement Nursing Home Petaling Jaya (House 39) — NursingHomeGuide.my">
 <meta name="twitter:description" content="De Luxe Retirement Nursing Home Petaling Jaya (House 39) in Kampung Tunku. De Luxe Retirement Home is a family-run operator with over 25 years in…">
 <meta name="twitter:image" content="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHN7PiIND0XE7sLme_AXxNFBndpQjrjnyPUAxd0UulmTOwCxeznlxfEmRzFIKVa8sUcnBpyyEKdGG3qR199fBgeoxIcM9HKW9mxGB-O3j1xwiLeKXtYh43wMb6kVXytaIoiZhcA=w1920-h1080-k-no">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/de-luxe-retirement-nursing-home-petaling-jaya-house-39/","name":"De Luxe Retirement Nursing Home Petaling Jaya (House 39)","url":"https://nursinghomeguide.my/nursing-homes/de-luxe-retirement-nursing-home-petaling-jaya-house-39/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Kampung Tunku","addressRegion":"Selangor"},"image":"https://lh3.googleusercontent.com/gps-cs-s/APNQkAHN7PiIND0XE7sLme_AXxNFBndpQjrjnyPUAxd0UulmTOwCxeznlxfEmRzFIKVa8sUcnBpyyEKdGG3qR199fBgeoxIcM9HKW9mxGB-O3j1xwiLeKXtYh43wMb6kVXytaIoiZhcA=w1920-h1080-k-no","telephone":"+60 12-291 3336","description":"De Luxe Retirement Home is a family-run operator with over 25 years in service, founded in 2000 by Susan Lim and co-founded with Dr. Kay Chee Goh — a geriatric practitioner with 40-plus years of experience who serves as the in-house doctor. The House 39 branch referred to here corresponds to the Kampung Tunku location at 37–39, Jalan SS 1/2, one of three licensed branches (the others at Jalan SS 1/1 Kampung Tunku and Jalan SS 3/39 Taman Universiti). The operator publishes its website at deluxerh","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":9,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/de-luxe-retirement-nursing-home-petaling-jaya-house-39/","name":"De Luxe Retirement Nursing Home Petaling Jaya (House 39)","url":"https://nursinghomeguide.my/nursing-homes/de-luxe-retirement-nursing-home-petaling-jaya-house-39/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Kampung Tunku","addressRegion":"Selangor"},"image":"https://lh3.googleusercontent.com/gps-cs-s/APNQkAHN7PiIND0XE7sLme_AXxNFBndpQjrjnyPUAxd0UulmTOwCxeznlxfEmRzFIKVa8sUcnBpyyEKdGG3qR199fBgeoxIcM9HKW9mxGB-O3j1xwiLeKXtYh43wMb6kVXytaIoiZhcA=w1920-h1080-k-no","telephone":"+60 12-291 3336","description":"De Luxe Retirement Home is a family-run operator with over 25 years in service, founded in 2000 by Susan Lim and co-founded with Dr. Kay Chee Goh — a geriatric practitioner with 40-plus years of experience who serves as the in-house doctor. The House 39 branch referred to here corresponds to the Kampung Tunku location at 37–39, Jalan SS 1/2, one of three licensed branches (the others at Jalan SS 1/1 Kampung Tunku and Jalan SS 3/39 Taman Universiti). The operator publishes its website at deluxerh","geo":{"@type":"GeoCoordinates","latitude":3.0925393,"longitude":101.61511},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":9,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="de-luxe-retirement-nursing-home-petaling-jaya-house-39";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">De Luxe Retirement Nursing Home Petaling Jaya (House 39) — NursingHomeGuide.my</title>
@@ -434,10 +434,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -679,8 +679,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

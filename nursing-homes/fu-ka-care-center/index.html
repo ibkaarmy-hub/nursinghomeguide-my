@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Fu Ka Care Center — NursingHomeGuide.my">
 <meta name="twitter:description" content="Fu Ka Care Center in Kempas Baru, Johor Bahru. Fu Ka Care Center, operating under the registered entity Fu Ka Nursing Care Center Sdn. Bhd. (reg…">
 <meta name="twitter:image" content="https://lh3.googleusercontent.com/p/AF1QipN9E8flfKUaukAp1F9Bx25SI5xcH9RBemPYl2J6=w1920-h1080-k-no">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/fu-ka-care-center/","name":"Fu Ka Care Center","url":"https://nursinghomeguide.my/nursing-homes/fu-ka-care-center/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Kempas Baru, Johor Bahru","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/p/AF1QipN9E8flfKUaukAp1F9Bx25SI5xcH9RBemPYl2J6=w1920-h1080-k-no","telephone":"+60 19-381 4521","description":"Fu Ka Care Center, operating under the registered entity Fu Ka Nursing Care Center Sdn. Bhd. (reg. 1512468W), is a private nursing home established in May 2023 and situated at PTD 14521, Jalan Persiaran Kempas Baru, Kempas Baru, Johor Bahru. The facility is located in the Kempas Baru corridor — a growing residential district in south-central JB well-served by Kempas Medical Centre nearby. Being a newer entrant, the centre has not yet appeared in major Malaysian elder-care directories such as AGE","geo":{"@type":"GeoCoordinates","latitude":1.5244638,"longitude":103.7048526},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":24,"bestRating":"5","worstRating":"1"},"priceRange":"Contact for rates"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/fu-ka-care-center/","name":"Fu Ka Care Center","url":"https://nursinghomeguide.my/nursing-homes/fu-ka-care-center/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Kempas Baru, Johor Bahru","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/p/AF1QipN9E8flfKUaukAp1F9Bx25SI5xcH9RBemPYl2J6=w1920-h1080-k-no","telephone":"+60 19-381 4521","description":"Fu Ka Care Center, operating under the registered entity Fu Ka Nursing Care Center Sdn. Bhd. (reg. 1512468W), is a private nursing home established in May 2023 and situated at PTD 14521, Jalan Persiaran Kempas Baru, Kempas Baru, Johor Bahru. The facility is located in the Kempas Baru corridor — a growing residential district in south-central JB well-served by Kempas Medical Centre nearby. Being a newer entrant, the centre has not yet appeared in major Malaysian elder-care directories such as AGE","geo":{"@type":"GeoCoordinates","latitude":1.5244638,"longitude":103.7048526},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":24,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="fu-ka-care-center";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Fu Ka Care Center — NursingHomeGuide.my</title>
@@ -434,10 +434,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -679,8 +679,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

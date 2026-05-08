@@ -12,7 +12,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sunway Sanctuary — NursingHomeGuide.my">
 <meta name="twitter:description" content="Sunway Sanctuary in Sunway City. Sunway Sanctuary is the senior-living arm of Sunway Group&#39;s integrated township in Bandar Sunway, Selangor - a…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/assisted-living/sunway-sanctuary/","name":"Sunway Sanctuary","url":"https://nursinghomeguide.my/assisted-living/sunway-sanctuary/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Sunway City","addressRegion":"Selangor"},"telephone":"+60 3-7491 9191","description":"Sunway Sanctuary is the senior-living arm of Sunway Group's integrated township in Bandar Sunway, Selangor - a purpose-built community offering hotel-grade apartments and suites for older adults who want to remain independent while having medical backup nearby. The community is annexed to Sunway Medical Centre, which is the practical reason most families consider it: residents have priority access to one of the country's largest private hospitals without leaving the compound. Suites are configur"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/assisted-living/sunway-sanctuary/","name":"Sunway Sanctuary","url":"https://nursinghomeguide.my/assisted-living/sunway-sanctuary/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Sunway City","addressRegion":"Selangor"},"telephone":"+60 3-7491 9191","description":"Sunway Sanctuary is the senior-living arm of Sunway Group's integrated township in Bandar Sunway, Selangor - a purpose-built community offering hotel-grade apartments and suites for older adults who want to remain independent while having medical backup nearby. The community is annexed to Sunway Medical Centre, which is the practical reason most families consider it: residents have priority access to one of the country's largest private hospitals without leaving the compound. Suites are configur","priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="sunway-sanctuary";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Sunway Sanctuary — NursingHomeGuide.my</title>
@@ -432,10 +432,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -677,8 +677,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

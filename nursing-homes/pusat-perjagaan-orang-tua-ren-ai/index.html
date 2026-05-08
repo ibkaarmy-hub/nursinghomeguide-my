@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Pusat Perjagaan Orang Tua Ren Ai — NursingHomeGuide.my">
 <meta name="twitter:description" content="Pusat Perjagaan Orang Tua Ren Ai in Senai, Kulai, Johor. Pusat Perjagaan Orang Tua Ren Ai operates in the Senai township within Kulai District, Johor —…">
 <meta name="twitter:image" content="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEn8K8bX5kSnpToYFn5uXECjO7j9biNitHNH_4wLljdWZR8OIRWyPPTa8y7v2IaWzjcymoW7DtsWFDg3jIl7xKNr0oSrYfGiBZEVc2ICDMoFYj4t_jP-71EeroTAaq_da9fxJW27g=w1920-h1080-k-no">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/pusat-perjagaan-orang-tua-ren-ai/","name":"Pusat Perjagaan Orang Tua Ren Ai","url":"https://nursinghomeguide.my/nursing-homes/pusat-perjagaan-orang-tua-ren-ai/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Senai, Kulai, Johor","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/gps-cs-s/APNQkAEn8K8bX5kSnpToYFn5uXECjO7j9biNitHNH_4wLljdWZR8OIRWyPPTa8y7v2IaWzjcymoW7DtsWFDg3jIl7xKNr0oSrYfGiBZEVc2ICDMoFYj4t_jP-71EeroTAaq_da9fxJW27g=w1920-h1080-k-no","telephone":"+60 7-599 1944","description":"Pusat Perjagaan Orang Tua Ren Ai operates in the Senai township within Kulai District, Johor — an area near Senai International Airport, midway between Kulai town and central Johor Bahru. The name 'Ren Ai' (仁爱, benevolence and love) and its Facebook handle RenAiSenai indicate a Chinese-community welfare orientation, likely Buddhist or non-denominational Chinese charitable in character, consistent with the tradition of self-help elderly care associations common to Johor's Chinese townships.\n\nOnli","geo":{"@type":"GeoCoordinates","latitude":1.6286145,"longitude":103.6356158},"priceRange":"Contact for rates"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/pusat-perjagaan-orang-tua-ren-ai/","name":"Pusat Perjagaan Orang Tua Ren Ai","url":"https://nursinghomeguide.my/nursing-homes/pusat-perjagaan-orang-tua-ren-ai/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Senai, Kulai, Johor","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/gps-cs-s/APNQkAEn8K8bX5kSnpToYFn5uXECjO7j9biNitHNH_4wLljdWZR8OIRWyPPTa8y7v2IaWzjcymoW7DtsWFDg3jIl7xKNr0oSrYfGiBZEVc2ICDMoFYj4t_jP-71EeroTAaq_da9fxJW27g=w1920-h1080-k-no","telephone":"+60 7-599 1944","description":"Pusat Perjagaan Orang Tua Ren Ai operates in the Senai township within Kulai District, Johor — an area near Senai International Airport, midway between Kulai town and central Johor Bahru. The name 'Ren Ai' (仁爱, benevolence and love) and its Facebook handle RenAiSenai indicate a Chinese-community welfare orientation, likely Buddhist or non-denominational Chinese charitable in character, consistent with the tradition of self-help elderly care associations common to Johor's Chinese townships.\n\nOnli","geo":{"@type":"GeoCoordinates","latitude":1.6286145,"longitude":103.6356158},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="pusat-perjagaan-orang-tua-ren-ai";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Pusat Perjagaan Orang Tua Ren Ai — NursingHomeGuide.my</title>
@@ -434,10 +434,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -679,8 +679,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

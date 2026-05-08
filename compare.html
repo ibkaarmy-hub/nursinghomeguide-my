@@ -143,10 +143,10 @@ function yn(val) {
 }
 
 function facilityUrl(f) {
-  const c = (f.care_category || '').trim();
-  const dir = c === 'Assisted Living' ? 'assisted-living'
-            : c === 'Home Care'       ? 'home-care'
-            : c === 'Day Care'        ? 'day-care'
+  const ct = (f.care_types || '').toLowerCase();
+  const dir = ct.includes('assisted living') && !ct.includes('nursing home') ? 'assisted-living'
+            : ct.includes('home care') && !ct.includes('nursing home')       ? 'home-care'
+            : ct.includes('day care') && !ct.includes('nursing home')        ? 'day-care'
             : 'nursing-homes';
   return `/${dir}/${encodeURIComponent(f.slug || '')}/`;
 }

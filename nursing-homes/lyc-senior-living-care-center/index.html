@@ -12,7 +12,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LYC Senior Living Care Center — NursingHomeGuide.my">
 <meta name="twitter:description" content="LYC Senior Living Care Center in Selangor. LYC Senior Living sits at 12 Jalan Gallagher in Taman Duta, a quiet old-KL residential street near the…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/lyc-senior-living-care-center/","name":"LYC Senior Living Care Center","url":"https://nursinghomeguide.my/nursing-homes/lyc-senior-living-care-center/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Selangor","addressRegion":"Selangor"},"telephone":"03-2602 1994","description":"LYC Senior Living sits at 12 Jalan Gallagher in Taman Duta, a quiet old-KL residential street near the diplomatic quarter. The operator is LYC Senior Living Care Centre Sdn Bhd, a subsidiary of LYC Healthcare Bhd — a healthcare group listed on Bursa Malaysia. Bursa listing is an ownership-transparency fact: it means the parent files audited financials and is subject to listing-rule disclosures. It does not, on its own, mean the eldercare subsidiary's clinical practice is independently audited, a"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/lyc-senior-living-care-center/","name":"LYC Senior Living Care Center","url":"https://nursinghomeguide.my/nursing-homes/lyc-senior-living-care-center/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Selangor","addressRegion":"Selangor"},"telephone":"03-2602 1994","description":"LYC Senior Living sits at 12 Jalan Gallagher in Taman Duta, a quiet old-KL residential street near the diplomatic quarter. The operator is LYC Senior Living Care Centre Sdn Bhd, a subsidiary of LYC Healthcare Bhd — a healthcare group listed on Bursa Malaysia. Bursa listing is an ownership-transparency fact: it means the parent files audited financials and is subject to listing-rule disclosures. It does not, on its own, mean the eldercare subsidiary's clinical practice is independently audited, a","priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="lyc-senior-living-care-center";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">LYC Senior Living Care Center — NursingHomeGuide.my</title>
@@ -432,10 +432,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -677,8 +677,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

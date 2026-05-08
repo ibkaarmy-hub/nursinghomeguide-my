@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Hang Nursing Home (Gelang Patah Branch) — NursingHomeGuide.my">
 <meta name="twitter:description" content="Hang Nursing Home (Gelang Patah Branch) in Gelang Patah, Johor Bahru. Hang Nursing Home operates at least one branch in the Gelang Patah area of western…">
 <meta name="twitter:image" content="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=7V3jwt3vp-pqk78EmPkc2A&amp;cb_client=search.gws-prod.gps&amp;w=408&amp;h=240&amp;yaw=179.22972&amp;pitch=0&amp;thumbfov=100">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/hang-nursing-home-gelang-patah-branch/","name":"Hang Nursing Home (Gelang Patah Branch)","url":"https://nursinghomeguide.my/nursing-homes/hang-nursing-home-gelang-patah-branch/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Gelang Patah, Johor Bahru","addressRegion":"Johor"},"image":"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=7V3jwt3vp-pqk78EmPkc2A&cb_client=search.gws-prod.gps&w=408&h=240&yaw=179.22972&pitch=0&thumbfov=100","telephone":"+60 12-766 0927","description":"Hang Nursing Home operates at least one branch in the Gelang Patah area of western Johor Bahru, near the Second Link causeway — a district that has expanded rapidly with Iskandar Malaysia development and carries a substantial Chinese-Malaysian residential population. The Facebook page at pusatjagaanhang confirms the facility exists; the 'branch' designation in available data implies at least one other location exists, though no other branch could be identified online. The contact number is +60 1","geo":{"@type":"GeoCoordinates","latitude":1.4713853,"longitude":103.5908792},"priceRange":"Contact for rates"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/hang-nursing-home-gelang-patah-branch/","name":"Hang Nursing Home (Gelang Patah Branch)","url":"https://nursinghomeguide.my/nursing-homes/hang-nursing-home-gelang-patah-branch/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Gelang Patah, Johor Bahru","addressRegion":"Johor"},"image":"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=7V3jwt3vp-pqk78EmPkc2A&cb_client=search.gws-prod.gps&w=408&h=240&yaw=179.22972&pitch=0&thumbfov=100","telephone":"+60 12-766 0927","description":"Hang Nursing Home operates at least one branch in the Gelang Patah area of western Johor Bahru, near the Second Link causeway — a district that has expanded rapidly with Iskandar Malaysia development and carries a substantial Chinese-Malaysian residential population. The Facebook page at pusatjagaanhang confirms the facility exists; the 'branch' designation in available data implies at least one other location exists, though no other branch could be identified online. The contact number is +60 1","geo":{"@type":"GeoCoordinates","latitude":1.4713853,"longitude":103.5908792},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="hang-nursing-home-gelang-patah-branch";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Hang Nursing Home (Gelang Patah Branch) — NursingHomeGuide.my</title>
@@ -434,10 +434,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -679,8 +679,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

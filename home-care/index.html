@@ -142,11 +142,11 @@
 <script>
 // Category → URL path (must match generate_facility_pages.py CATEGORY_DIRS)
 function facUrl(f) {
-  const c = (f.care_category || '').trim();
-  if (c === 'Assisted Living') return '/assisted-living/' + f.slug + '/';
-  if (c === 'Home Care')       return '/home-care/'       + f.slug + '/';
-  if (c === 'Day Care')        return '/day-care/'        + f.slug + '/';
-  return '/nursing-homes/' + f.slug + '/';   // Nursing Home, Mixed, blank
+  const ct = (f.care_types || '').toLowerCase();
+  if (ct.includes('assisted living') && !ct.includes('nursing home')) return '/assisted-living/' + f.slug + '/';
+  if (ct.includes('home care') && !ct.includes('nursing home')) return '/home-care/' + f.slug + '/';
+  if (ct.includes('day care') && !ct.includes('nursing home')) return '/day-care/' + f.slug + '/';
+  return '/nursing-homes/' + f.slug + '/';
 }
 
 // ─── Area normalisation ────────────────────────────────────
@@ -560,7 +560,7 @@ function updateMapMarkers(facilities) {
 // ─── Init ──────────────────────────────────────────────────
 loadFacilities().then(data => {
   // Filter to this state only (fallback: no state column yet = legacy Johor data)
-  allFacilities = data.filter(f => (f.care_category === 'Home Care'));
+  allFacilities = data.filter(f => (f.care_types||'').toLowerCase().includes('home care'));
   document.getElementById('heroCount').textContent = allFacilities.length;
 
   // Build normalised area list (this state only)

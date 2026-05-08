@@ -160,7 +160,7 @@ function makeBranchCard(f, groupSlug) {
     : '';
 
   return `
-    <a href="${(f.care_category||'') === 'Assisted Living' ? '/assisted-living/' : (f.care_category||'') === 'Home Care' ? '/home-care/' : (f.care_category||'') === 'Day Care' ? '/day-care/' : '/nursing-homes/'}${f.slug}/" class="fac-card">
+    <a href="${(ct => ct.includes('assisted living') && !ct.includes('nursing home') ? '/assisted-living/' : ct.includes('home care') && !ct.includes('nursing home') ? '/home-care/' : ct.includes('day care') && !ct.includes('nursing home') ? '/day-care/' : '/nursing-homes/')((f.care_types||'').toLowerCase())}${f.slug}/" class="fac-card">
       <div class="fac-card-img${photoUrl ? '' : ' no-photo'}">
         ${photoHtml}
         ${priceHtml}

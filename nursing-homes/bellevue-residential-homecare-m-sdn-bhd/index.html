@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Bellevue Residential Homecare (M) Sdn Bhd — NursingHomeGuide.my">
 <meta name="twitter:description" content="Bellevue Residential Homecare (M) Sdn Bhd in Bukit Gasing. Bellevue Residential Homecare (M) Sdn Bhd was established in 1992 and operates a 60-bed home…">
 <meta name="twitter:image" content="http://bellevuepj.com/wordpress/wp-content/uploads/2017/05/copy-copy-Belle-logo8.png">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/bellevue-residential-homecare-m-sdn-bhd/","name":"Bellevue Residential Homecare (M) Sdn Bhd","url":"https://nursinghomeguide.my/nursing-homes/bellevue-residential-homecare-m-sdn-bhd/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Bukit Gasing","addressRegion":"Selangor"},"image":"http://bellevuepj.com/wordpress/wp-content/uploads/2017/05/copy-copy-Belle-logo8.png","telephone":"03-79557726","description":"Bellevue Residential Homecare (M) Sdn Bhd was established in 1992 and operates a 60-bed home at No. 9, Jalan 5/35, Petaling Jaya — in the Bukit Gasing pocket of Section 5. Three decades of continuous operation make Bellevue one of the older private retirement homes in the Klang Valley, and the operator publishes both a landline (03-7955 7726) and a mobile contact, with a Facebook presence used to document residents' activities and family events.\n\nThe home accepts retired, aged, handicapped and c","geo":{"@type":"GeoCoordinates","latitude":3.1092893,"longitude":101.6548248},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.6","reviewCount":9,"bestRating":"5","worstRating":"1"}}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/bellevue-residential-homecare-m-sdn-bhd/","name":"Bellevue Residential Homecare (M) Sdn Bhd","url":"https://nursinghomeguide.my/nursing-homes/bellevue-residential-homecare-m-sdn-bhd/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Bukit Gasing","addressRegion":"Selangor"},"image":"http://bellevuepj.com/wordpress/wp-content/uploads/2017/05/copy-copy-Belle-logo8.png","telephone":"03-79557726","description":"Bellevue Residential Homecare (M) Sdn Bhd was established in 1992 and operates a 60-bed home at No. 9, Jalan 5/35, Petaling Jaya — in the Bukit Gasing pocket of Section 5. Three decades of continuous operation make Bellevue one of the older private retirement homes in the Klang Valley, and the operator publishes both a landline (03-7955 7726) and a mobile contact, with a Facebook presence used to document residents' activities and family events.\n\nThe home accepts retired, aged, handicapped and c","geo":{"@type":"GeoCoordinates","latitude":3.1092893,"longitude":101.6548248},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.6","reviewCount":9,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="bellevue-residential-homecare-m-sdn-bhd";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Bellevue Residential Homecare (M) Sdn Bhd — NursingHomeGuide.my</title>
@@ -434,10 +434,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -679,8 +679,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Sunrise Care Centre Sdn Bhd — NursingHomeGuide.my">
 <meta name="twitter:description" content="Sunrise Care Centre Sdn Bhd in Johor Bahru. Sunrise Care Centre Sdn Bhd (Co. 567396-U) is one of three facilities operated under the Rebina Sunrise…">
 <meta name="twitter:image" content="https://lh3.googleusercontent.com/p/AF1QipOcfPmt3gwKXxeiTV9DRwCVtfy7OYCAhRUgx355=w1920-h1080-k-no">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/sunrise-care-centre-sdn-bhd/","name":"Sunrise Care Centre Sdn Bhd","url":"https://nursinghomeguide.my/nursing-homes/sunrise-care-centre-sdn-bhd/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor Bahru","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/p/AF1QipOcfPmt3gwKXxeiTV9DRwCVtfy7OYCAhRUgx355=w1920-h1080-k-no","telephone":"+60 7-333 7715","description":"Sunrise Care Centre Sdn Bhd (Co. 567396-U) is one of three facilities operated under the Rebina Sunrise Elderly Care group, a family-owned eldercare operator established in Johor Bahru in 2003. The group's founding mission was to address a critical shortage of reliable nursing care in the city, and it has since expanded to three locations clustered in and around Taman Kebun Teh. Sunrise Care Centre occupies No. 48 Jalan Keranji — directly adjacent to the original Rebina House Care Centre at Nos.","geo":{"@type":"GeoCoordinates","latitude":1.4888862,"longitude":103.7575633},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":3,"bestRating":"5","worstRating":"1"},"priceRange":"Contact for rates"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/sunrise-care-centre-sdn-bhd/","name":"Sunrise Care Centre Sdn Bhd","url":"https://nursinghomeguide.my/nursing-homes/sunrise-care-centre-sdn-bhd/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor Bahru","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/p/AF1QipOcfPmt3gwKXxeiTV9DRwCVtfy7OYCAhRUgx355=w1920-h1080-k-no","telephone":"+60 7-333 7715","description":"Sunrise Care Centre Sdn Bhd (Co. 567396-U) is one of three facilities operated under the Rebina Sunrise Elderly Care group, a family-owned eldercare operator established in Johor Bahru in 2003. The group's founding mission was to address a critical shortage of reliable nursing care in the city, and it has since expanded to three locations clustered in and around Taman Kebun Teh. Sunrise Care Centre occupies No. 48 Jalan Keranji — directly adjacent to the original Rebina House Care Centre at Nos.","geo":{"@type":"GeoCoordinates","latitude":1.4888862,"longitude":103.7575633},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":3,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="sunrise-care-centre-sdn-bhd";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Sunrise Care Centre Sdn Bhd — NursingHomeGuide.my</title>
@@ -434,10 +434,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -679,8 +679,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Agape Care Centre — NursingHomeGuide.my">
 <meta name="twitter:description" content="Agape Care Centre in Kempas Baru, Johor Bahru. Agape Care Centre sits quietly on Jalan Lurah 18 in Kempas Baru — a residential street that has become one…">
 <meta name="twitter:image" content="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=iF98VRULUz9KIB5MQRsmSg&amp;cb_client=search.gws-prod.gps&amp;w=408&amp;h=240&amp;yaw=58.8069&amp;pitch=0&amp;thumbfov=100">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/agape-care-centre/","name":"Agape Care Centre","url":"https://nursinghomeguide.my/nursing-homes/agape-care-centre/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Kempas Baru, Johor Bahru","addressRegion":"Johor"},"image":"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=iF98VRULUz9KIB5MQRsmSg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=58.8069&pitch=0&thumbfov=100","telephone":"+60 7-238 6880","description":"Agape Care Centre sits quietly on Jalan Lurah 18 in Kempas Baru — a residential street that has become one of Johor Bahru's most recognisable care home clusters, home also to Woon Ho Family Care Centre and Spring Valley Homecare. At No. 62, this small facility operates as both a nursing home and a retirement home, catering to elderly who need daily assistance rather than intensive clinical intervention. With a 4.6-star Google rating from five reviewers, it carries an excellent word-of-mouth repu","geo":{"@type":"GeoCoordinates","latitude":1.5290905,"longitude":103.7117116},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.6","reviewCount":5,"bestRating":"5","worstRating":"1"},"priceRange":"Contact for rates"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/agape-care-centre/","name":"Agape Care Centre","url":"https://nursinghomeguide.my/nursing-homes/agape-care-centre/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Kempas Baru, Johor Bahru","addressRegion":"Johor"},"image":"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=iF98VRULUz9KIB5MQRsmSg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=58.8069&pitch=0&thumbfov=100","telephone":"+60 7-238 6880","description":"Agape Care Centre sits quietly on Jalan Lurah 18 in Kempas Baru — a residential street that has become one of Johor Bahru's most recognisable care home clusters, home also to Woon Ho Family Care Centre and Spring Valley Homecare. At No. 62, this small facility operates as both a nursing home and a retirement home, catering to elderly who need daily assistance rather than intensive clinical intervention. With a 4.6-star Google rating from five reviewers, it carries an excellent word-of-mouth repu","geo":{"@type":"GeoCoordinates","latitude":1.5290905,"longitude":103.7117116},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.6","reviewCount":5,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="agape-care-centre";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Agape Care Centre — NursingHomeGuide.my</title>
@@ -434,10 +434,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -679,8 +679,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

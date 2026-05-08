@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Master Nursing Care Centre @Daya — NursingHomeGuide.my">
 <meta name="twitter:description" content="Master Nursing Care Centre @Daya in Johor Bahru. Master Care Centre @Daya (MCC@Daya) is one of three branches operated by Master Care Centre (慈康护理中心), a…">
 <meta name="twitter:image" content="https://lh3.googleusercontent.com/gps-cs-s/APNQkAFeJp-S94-f56XWe7P0R4fZTFHmx5az-yDqptUMY9lW3TZU4Ws6aUHoZenlNAvejYLDf2UQddYkB91ukDAHOGizKIG0A0_rEocfFSD6hUpONxrw2mqqQw3SmVwnL8-3c9UgN_-EGw=w1920-h1080-k-no">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/master-nursing-care-centre-daya/","name":"Master Nursing Care Centre @Daya","url":"https://nursinghomeguide.my/nursing-homes/master-nursing-care-centre-daya/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor Bahru","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/gps-cs-s/APNQkAFeJp-S94-f56XWe7P0R4fZTFHmx5az-yDqptUMY9lW3TZU4Ws6aUHoZenlNAvejYLDf2UQddYkB91ukDAHOGizKIG0A0_rEocfFSD6hUpONxrw2mqqQw3SmVwnL8-3c9UgN_-EGw=w1920-h1080-k-no","telephone":"+60 11-1080 1805","description":"Master Care Centre @Daya (MCC@Daya) is one of three branches operated by Master Care Centre (慈康护理中心), a private nursing home group with over a decade of presence in Johor Bahru. The Daya branch sits at 58–62, Jalan Nipah 14, in Taman Daya — a mature residential suburb in JB's Tebrau zone, roughly 10–12 km north of the city centre, served by Causeway Link bus T11. The group's website (masternursingcare.com) was offline during research, but third-party directory data confirms the group's core serv","geo":{"@type":"GeoCoordinates","latitude":1.5441562,"longitude":103.7582849},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":4,"bestRating":"5","worstRating":"1"},"priceRange":"Contact for rates"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/master-nursing-care-centre-daya/","name":"Master Nursing Care Centre @Daya","url":"https://nursinghomeguide.my/nursing-homes/master-nursing-care-centre-daya/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor Bahru","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/gps-cs-s/APNQkAFeJp-S94-f56XWe7P0R4fZTFHmx5az-yDqptUMY9lW3TZU4Ws6aUHoZenlNAvejYLDf2UQddYkB91ukDAHOGizKIG0A0_rEocfFSD6hUpONxrw2mqqQw3SmVwnL8-3c9UgN_-EGw=w1920-h1080-k-no","telephone":"+60 11-1080 1805","description":"Master Care Centre @Daya (MCC@Daya) is one of three branches operated by Master Care Centre (慈康护理中心), a private nursing home group with over a decade of presence in Johor Bahru. The Daya branch sits at 58–62, Jalan Nipah 14, in Taman Daya — a mature residential suburb in JB's Tebrau zone, roughly 10–12 km north of the city centre, served by Causeway Link bus T11. The group's website (masternursingcare.com) was offline during research, but third-party directory data confirms the group's core serv","geo":{"@type":"GeoCoordinates","latitude":1.5441562,"longitude":103.7582849},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":4,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="master-nursing-care-centre-daya";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Master Nursing Care Centre @Daya — NursingHomeGuide.my</title>
@@ -434,10 +434,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -679,8 +679,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

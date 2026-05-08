@@ -115,7 +115,7 @@ def make_listing_page(category, state):
         intro = f'Browse <strong id="heroCount">—</strong> licensed nursing homes in {h1_state}. Monthly fees, care types, and real reviews — all in one place.'
         ld_name = f'Nursing Homes in {h1_state}, Malaysia'
         ld_desc = f'Directory of licensed nursing homes in {h1_state} with pricing and reviews.'
-        category_filter_js = "(f.care_category === 'Nursing Home' || f.care_category === 'Mixed' || !f.care_category)"
+        category_filter_js = "((ct => !ct.includes('assisted living') && !ct.includes('home care') && !ct.includes('day care'))((f.care_types||'').toLowerCase()) || !(f.care_types||'').trim())"
         section_label = f'in {h1_state}'
     elif category == 'assisted-living':
         cat_label = 'Assisted Living'
@@ -125,7 +125,7 @@ def make_listing_page(category, state):
         intro = f'Browse <strong id="heroCount">—</strong> assisted living and senior living communities in {h1_state}. Built environment, amenities, dining, and what happens if care needs change — all in one place.'
         ld_name = f'Assisted Living Communities in {h1_state}, Malaysia'
         ld_desc = f'Directory of assisted living and senior living communities in {h1_state} with amenities and pricing.'
-        category_filter_js = "(f.care_category === 'Assisted Living' || f.care_category === 'Mixed')"
+        category_filter_js = "(f.care_types||'').toLowerCase().includes('assisted living')"
         section_label = f'in {h1_state}'
     elif category == 'home-care':
         cat_label = 'Home Care'
@@ -135,7 +135,7 @@ def make_listing_page(category, state):
         intro = 'Browse <strong id="heroCount">—</strong> home care providers serving Malaysian families. Caregivers and home nurses come to your home — for personal care, post-stroke recovery, dementia support, palliative care, and live-in arrangements. Most providers cover multiple states, so we list them as a single national directory.'
         ld_name = 'Home Care Providers in Malaysia'
         ld_desc = 'Directory of home care agencies and home nursing services in Malaysia.'
-        category_filter_js = "(f.care_category === 'Home Care')"
+        category_filter_js = "(f.care_types||'').toLowerCase().includes('home care')"
         section_label = 'in Malaysia'
     elif category == 'day-care':
         cat_label = 'Day Care'
@@ -145,7 +145,7 @@ def make_listing_page(category, state):
         intro = 'Browse <strong id="heroCount">—</strong> day care centres for seniors. Daytime programmes only — residents return home each evening. Useful for working family carers and for socialisation when staying home alone is no longer safe.'
         ld_name = 'Senior Day Care Centres in Malaysia'
         ld_desc = 'Directory of adult day care centres and PAWE programmes in Malaysia.'
-        category_filter_js = "(f.care_category === 'Day Care')"
+        category_filter_js = "(f.care_types||'').toLowerCase().includes('day care')"
         section_label = 'in Malaysia'
     else:
         raise ValueError(f"Unknown category: {category}")
@@ -231,16 +231,16 @@ def make_listing_page(category, state):
 
     # ── Card link path: route by category ──
     # Replace `/facility/${f.slug}/` with category-aware path. Used in makeCard
-    # and makeMapPopup. Approach: compute path from f.care_category at call time.
+    # and makeMapPopup. Approach: compute path from f.care_types at call time.
     # Insert a small helper at top of <script> block.
     helper_js = """
 // Category → URL path (must match generate_facility_pages.py CATEGORY_DIRS)
 function facUrl(f) {
-  const c = (f.care_category || '').trim();
-  if (c === 'Assisted Living') return '/assisted-living/' + f.slug + '/';
-  if (c === 'Home Care')       return '/home-care/'       + f.slug + '/';
-  if (c === 'Day Care')        return '/day-care/'        + f.slug + '/';
-  return '/nursing-homes/' + f.slug + '/';   // Nursing Home, Mixed, blank
+  const ct = (f.care_types || '').toLowerCase();
+  if (ct.includes('assisted living') && !ct.includes('nursing home')) return '/assisted-living/' + f.slug + '/';
+  if (ct.includes('home care') && !ct.includes('nursing home')) return '/home-care/' + f.slug + '/';
+  if (ct.includes('day care') && !ct.includes('nursing home')) return '/day-care/' + f.slug + '/';
+  return '/nursing-homes/' + f.slug + '/';
 }
 """
     # Insert helper after the opening <script> for the page logic

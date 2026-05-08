@@ -12,7 +12,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pusat Jagaan Rumah Sejahtera Batu Pahat — NursingHomeGuide.my">
 <meta name="twitter:description" content="Pusat Jagaan Rumah Sejahtera Batu Pahat in Batu Pahat. Pusat Jagaan Rumah Sejahtera Batu Pahat is a non-profit elderly care home located at KM 7 (Batu…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-sejahtera-batu-pahat/","name":"Pusat Jagaan Rumah Sejahtera Batu Pahat","url":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-sejahtera-batu-pahat/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Batu Pahat","addressRegion":"Johor"},"telephone":"07-4322706","description":"Pusat Jagaan Rumah Sejahtera Batu Pahat is a non-profit elderly care home located at KM 7 (Batu 4), Jalan Kluang, 83000 Batu Pahat, within the Kompleks Penyayang welfare complex. Registered with the Registrar of Societies under registration number J/PJB WT 024/2021 and affiliated with the Majlis Pusat Kebajikan Semalaysia framework, the home operates as a charitable institution rather than a commercial care provider — a distinction that typically means fee structures are lower or contribution-ba","geo":{"@type":"GeoCoordinates","latitude":1.863702,"longitude":102.965528},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.0","reviewCount":4,"bestRating":"5","worstRating":"1"}}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-sejahtera-batu-pahat/","name":"Pusat Jagaan Rumah Sejahtera Batu Pahat","url":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-sejahtera-batu-pahat/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Batu Pahat","addressRegion":"Johor"},"telephone":"07-4322706","description":"Pusat Jagaan Rumah Sejahtera Batu Pahat is a non-profit elderly care home located at KM 7 (Batu 4), Jalan Kluang, 83000 Batu Pahat, within the Kompleks Penyayang welfare complex. Registered with the Registrar of Societies under registration number J/PJB WT 024/2021 and affiliated with the Majlis Pusat Kebajikan Semalaysia framework, the home operates as a charitable institution rather than a commercial care provider — a distinction that typically means fee structures are lower or contribution-ba","geo":{"@type":"GeoCoordinates","latitude":1.863702,"longitude":102.965528},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.0","reviewCount":4,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="pusat-jagaan-rumah-sejahtera-batu-pahat";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Pusat Jagaan Rumah Sejahtera Batu Pahat — NursingHomeGuide.my</title>
@@ -432,10 +432,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -677,8 +677,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

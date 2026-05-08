@@ -12,7 +12,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Seniora Elderly Day Care Johor Bahru — NursingHomeGuide.my">
 <meta name="twitter:description" content="Seniora Elderly Day Care Johor Bahru in Johor Bahru. Private elderly day care centre with branches in Johor Bahru and Penang. Structured daily programmes…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/day-care/seniora-johor-bahru/","name":"Seniora Elderly Day Care Johor Bahru","url":"https://nursinghomeguide.my/day-care/seniora-johor-bahru/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor Bahru","addressRegion":"Johor"},"description":"Private elderly day care centre with branches in Johor Bahru and Penang. Structured daily programmes including exercise, cognitive activities, meals, and health monitoring. Trial day available for RM80. Monthly packages up to RM3,580. Suitable for mobile seniors with mild to moderate care needs including early-stage dementia. Seniors return home each evening."}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/day-care/seniora-johor-bahru/","name":"Seniora Elderly Day Care Johor Bahru","url":"https://nursinghomeguide.my/day-care/seniora-johor-bahru/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Johor Bahru","addressRegion":"Johor"},"description":"Private elderly day care centre with branches in Johor Bahru and Penang. Structured daily programmes including exercise, cognitive activities, meals, and health monitoring. Trial day available for RM80. Monthly packages up to RM3,580. Suitable for mobile seniors with mild to moderate care needs including early-stage dementia. Seniors return home each evening.","priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="seniora-johor-bahru";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Seniora Elderly Day Care Johor Bahru — NursingHomeGuide.my</title>
@@ -432,10 +432,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -677,8 +677,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

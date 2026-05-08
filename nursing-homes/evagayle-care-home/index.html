@@ -12,7 +12,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Evagayle Care Home — NursingHomeGuide.my">
 <meta name="twitter:description" content="Evagayle Care Home in Petaling Jaya. Evagayle Care Home has been providing assisted living and nursing care in Petaling Jaya since 1999, making it one of…">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/evagayle-care-home/","name":"Evagayle Care Home","url":"https://nursinghomeguide.my/nursing-homes/evagayle-care-home/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Petaling Jaya","addressRegion":"Selangor"},"telephone":"03-79575872","description":"Evagayle Care Home has been providing assisted living and nursing care in Petaling Jaya since 1999, making it one of the longer-established private care homes in the Klang Valley. The facility operates across three locations in PJ — Section 7/2 on Jalan Bukit Menteri Selatan, Section 9 on Jalan Pantai, and Section 18/15 in Taman Kanagapuram — all within a five-minute drive of University Malaya Medical Centre (PPUM) and Assunta Hospital. The batch entry lists 25 beds under the Petaling Jaya area."}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/evagayle-care-home/","name":"Evagayle Care Home","url":"https://nursinghomeguide.my/nursing-homes/evagayle-care-home/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Petaling Jaya","addressRegion":"Selangor"},"telephone":"03-79575872","description":"Evagayle Care Home has been providing assisted living and nursing care in Petaling Jaya since 1999, making it one of the longer-established private care homes in the Klang Valley. The facility operates across three locations in PJ — Section 7/2 on Jalan Bukit Menteri Selatan, Section 9 on Jalan Pantai, and Section 18/15 in Taman Kanagapuram — all within a five-minute drive of University Malaya Medical Centre (PPUM) and Assunta Hospital. The batch entry lists 25 beds under the Petaling Jaya area.","priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="evagayle-care-home";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Evagayle Care Home — NursingHomeGuide.my</title>
@@ -432,10 +432,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -677,8 +677,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">

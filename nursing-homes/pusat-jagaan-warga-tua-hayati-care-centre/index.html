@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Pusat Jagaan Warga Tua Hayati Care Centre — NursingHomeGuide.my">
 <meta name="twitter:description" content="Pusat Jagaan Warga Tua Hayati Care Centre in Batu Pahat. Pusat Jagaan Warga Tua Hayati Care Centre is a private nursing home serving the Batu Pahat…">
 <meta name="twitter:image" content="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEpGi6oyWSiYiBEyh_m9BfxzBaZ0-vVu_tfqIF85ZAt8RpbEsv4ELWKg2wmP4JOHMkq8TwweHS01PVUDiO-XSrwhcswxS2Hi_ExkAAWhUXNsfdQHBIhYYaEv1OxKoStYBRIDm4ryo-s8yVU=w1920-h1080-k-no">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-hayati-care-centre/","name":"Pusat Jagaan Warga Tua Hayati Care Centre","url":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-hayati-care-centre/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Batu Pahat","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/gps-cs-s/APNQkAEpGi6oyWSiYiBEyh_m9BfxzBaZ0-vVu_tfqIF85ZAt8RpbEsv4ELWKg2wmP4JOHMkq8TwweHS01PVUDiO-XSrwhcswxS2Hi_ExkAAWhUXNsfdQHBIhYYaEv1OxKoStYBRIDm4ryo-s8yVU=w1920-h1080-k-no","telephone":"+60 11-7023 3470","description":"Pusat Jagaan Warga Tua Hayati Care Centre is a private nursing home serving the Batu Pahat district of Johor, reachable at +60 11-7023 3470. Batu Pahat is a secondary city roughly 100 km southwest of Johor Bahru, and residential care options in the district are more limited than in the state capital — making local facilities like Hayati an important resource for families in the area who prefer to keep elderly relatives close to home. The facility is listed as a nursing home on Google Maps and ha","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":15,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-hayati-care-centre/","name":"Pusat Jagaan Warga Tua Hayati Care Centre","url":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-hayati-care-centre/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Batu Pahat","addressRegion":"Johor"},"image":"https://lh3.googleusercontent.com/gps-cs-s/APNQkAEpGi6oyWSiYiBEyh_m9BfxzBaZ0-vVu_tfqIF85ZAt8RpbEsv4ELWKg2wmP4JOHMkq8TwweHS01PVUDiO-XSrwhcswxS2Hi_ExkAAWhUXNsfdQHBIhYYaEv1OxKoStYBRIDm4ryo-s8yVU=w1920-h1080-k-no","telephone":"+60 11-7023 3470","description":"Pusat Jagaan Warga Tua Hayati Care Centre is a private nursing home serving the Batu Pahat district of Johor, reachable at +60 11-7023 3470. Batu Pahat is a secondary city roughly 100 km southwest of Johor Bahru, and residential care options in the district are more limited than in the state capital — making local facilities like Hayati an important resource for families in the area who prefer to keep elderly relatives close to home. The facility is listed as a nursing home on Google Maps and ha","geo":{"@type":"GeoCoordinates","latitude":1.8619167,"longitude":102.949307},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":15,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="pusat-jagaan-warga-tua-hayati-care-centre";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Pusat Jagaan Warga Tua Hayati Care Centre — NursingHomeGuide.my</title>
@@ -434,10 +434,10 @@ function render(f) {
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
 
-  const c = (f.care_category || '').trim();
-  const catDir = c === 'Assisted Living' ? 'assisted-living'
-               : c === 'Home Care'       ? 'home-care'
-               : c === 'Day Care'        ? 'day-care'
+  const careStr = (f.care_types || '').toLowerCase();
+  const catDir = careStr.includes('assisted living') ? 'assisted-living'
+               : careStr.includes('home care')       ? 'home-care'
+               : careStr.includes('day care')        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -679,8 +679,8 @@ function render(f) {
 
   /* Assemble */
   const stateSlug = (f.state || 'Johor').toLowerCase().replace(/\s+/g, '-');
-  const breadcrumbCatLabel = c === 'Assisted Living' ? 'Assisted Living' : 'Nursing Homes';
-  const breadcrumbCatUrl = c === 'Assisted Living' ? '/assisted-living/' : '/nursing-homes/';
+  const breadcrumbCatLabel = catDir === 'assisted-living' ? 'Assisted Living' : catDir === 'home-care' ? 'Home Care' : catDir === 'day-care' ? 'Day Care' : 'Nursing Homes';
+  const breadcrumbCatUrl = `/${catDir}/`;
   document.getElementById('profileContent').innerHTML = `
     <div class="profile-header">
       <div class="profile-header-inner">
