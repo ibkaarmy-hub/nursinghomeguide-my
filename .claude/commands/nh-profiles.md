@@ -131,7 +131,7 @@ When the user pastes a specific facility URL with feedback, switch from the bulk
 ### Editorial style — what NOT to write
 - **No meta-commentary opening lines.** Anything like "Note the slug first…" or "Despite the listing title…" reads as AI talking about its own data. The reader doesn't care about our slug; lead with what the home is.
 - **No "this is a stub" / "limited information available" disclaimers.** Either write a confident shorter editorial from verified facts, or don't publish.
-- Drop the standard EHA-style "ask for the JKM licence" line for established multi-branch chains with real websites; keep it for low-presence facilities.
+- Drop the JKM registration ask from "What to ask on visit" for any facility where `jkm_data_source` confirms MOH or JKM status — see **License status in editorials** section below for the full rule.
 
 ### Operator photos
 - Always check the operator website's `/gallery` page and homepage for usable images.
@@ -208,6 +208,27 @@ When the user pastes a specific facility URL with feedback, switch from the bulk
   git push origin HEAD:main
   ```
 - If `_blockers.json` conflicts during rebase: merge both sets of keys manually (keep all existing entries + add new ones), then `git add` and `GIT_EDITOR=true git rebase --continue`.
+
+### License status in editorials (locked 2026-05-09)
+
+**Rule: MOH and JKM are mutually exclusive registries. Do not ask about JKM for MOH-licensed facilities.**
+
+The `jkm_data_source` column in the sheet drives the editorial `**License & verification**` section and the "What to ask on visit" bullets.
+
+**License & verification block — write exactly one bullet:**
+| `jkm_data_source` value | Editorial text |
+|------------------------|----------------|
+| contains "moh" | `- MOH Licensed — confirmed in MOH nursing home registry.` |
+| contains "jkm" AND `licence_number` filled | `- JKM Registered — licence number: <number>.` |
+| contains "jkm" AND no licence number | `- JKM Registered — confirmed in JKM registry.` |
+| neither | `- To be verified — confirm JKM or MOH registration on visit.` |
+
+**"What to ask on visit" — JKM registration questions:**
+- **MOH licensed**: remove ALL bullets that mention JKM. MOH-licensed facilities are regulated by the Ministry of Health and will not hold a JKM registration. Asking about JKM is incorrect and confusing.
+- **JKM confirmed** (licence in sheet): remove "Is the facility registered with JKM?" style bullets — the answer is already known. Also remove "Can you show the JKM registration certificate?" if phrased as a registration check. It's fine to keep operational questions like admission eligibility or waiting lists.
+- **Unverified**: keep the JKM registration ask — families should verify it on visit.
+
+**Script:** `fix_jkm_ask.py` applies these rules across a batch. Re-run whenever editorials are regenerated in bulk.
 
 ### Column-shift / corruption detection (locked 2026-05-03 from Jasper Lodge fix)
 When pulling a row, **dump every column raw** — not just the ones you expect — and look for misplaced data. Past corruption patterns to scan for:
