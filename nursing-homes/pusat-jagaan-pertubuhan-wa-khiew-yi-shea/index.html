@@ -340,8 +340,13 @@ function showTab(id) {
   document.querySelector(`[data-tab="${id}"]`)?.classList.add('active');
   const nav = document.querySelector('.tabs-nav');
   if (nav) {
-    const y = nav.getBoundingClientRect().top + window.pageYOffset - 56;
-    window.scrollTo({ top: y, behavior: 'smooth' });
+    // offsetTop traversal gives true document position regardless of sticky state.
+    // getBoundingClientRect().top would return the pinned value (60px) when sticky,
+    // making scrollTo a no-op while the user is scrolled below the nav.
+    let docTop = 0;
+    let el = nav;
+    while (el) { docTop += el.offsetTop; el = el.offsetParent; }
+    window.scrollTo({ top: docTop - 60, behavior: 'smooth' });
   }
 }
 
