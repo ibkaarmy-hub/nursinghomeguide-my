@@ -7,16 +7,16 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NursingHomeGuide.my">
 <meta property="og:title" content="Pusat Jagaan Warga Tua Manjung, Perak — NursingHomeGuide.my">
-<meta property="og:description" content="Pusat Jagaan Warga Tua Manjung, Perak in Taman Desa Manjung Point.">
+<meta property="og:description" content="Pusat Jagaan Warga Tua Manjung, Perak in Malaysia.">
 <meta property="og:url" content="https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-manjung-perak/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pusat Jagaan Warga Tua Manjung, Perak — NursingHomeGuide.my">
-<meta name="twitter:description" content="Pusat Jagaan Warga Tua Manjung, Perak in Taman Desa Manjung Point.">
-<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-manjung-perak/","name":"Pusat Jagaan Warga Tua Manjung, Perak","url":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-manjung-perak/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Taman Desa Manjung Point","addressRegion":"Perak"},"telephone":"+6056879055","geo":{"@type":"GeoCoordinates","latitude":4.2125016,"longitude":100.6491414},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":1,"bestRating":"5","worstRating":"1"},"priceRange":"Call for pricing"}</script>
+<meta name="twitter:description" content="Pusat Jagaan Warga Tua Manjung, Perak in Malaysia.">
+<script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-manjung-perak/","name":"Pusat Jagaan Warga Tua Manjung, Perak","url":"https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-manjung-perak/","address":{"@type":"PostalAddress","addressCountry":"MY","addressRegion":"Perak"},"telephone":"+6056879055","geo":{"@type":"GeoCoordinates","latitude":4.2125016,"longitude":100.6491414},"priceRange":"Call for pricing"}</script>
 <script>window.__FACILITY_SLUG="pusat-jagaan-warga-tua-manjung-perak";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title id="pageTitle">Pusat Jagaan Warga Tua Manjung, Perak — NursingHomeGuide.my</title>
-<meta name="description" id="pageDesc" content="Pusat Jagaan Warga Tua Manjung, Perak in Taman Desa Manjung Point." />
+<meta name="description" id="pageDesc" content="Pusat Jagaan Warga Tua Manjung, Perak in Malaysia." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css?v=9" />
@@ -513,7 +513,6 @@ function render(f) {
     infoRow('Phone', f.phone),
     infoRow('Languages', f.languages),
     infoRow('Halal certified', yn(f.halal) === true ? '✓ Yes' : yn(f.halal) === false ? '✗ No' : ''),
-    infoRow('Wheelchair access', f.wheelchair),
     infoRow('Subsidy accepted', f.subsidy),
     infoRow('Visiting hours', f.visiting_hours),
     infoRow('Google rating', f.rating ? `★ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} reviews)` : ''),
@@ -583,26 +582,40 @@ function render(f) {
 
   const includedExtras = renderIncludedExtras(D.included || [], D.extras || []);
 
-  /* CARE tab */
-  const careCells = [
-    checkCell(tipLabel('Skilled Nursing',      'Care requiring licensed nurses — wound care, IV drips, tube feeding, etc.'),    f.care_nursing),
-    checkCell('Assisted Living',               f.care_assisted),
-    checkCell('Dementia Care',                 f.care_dementia),
-    checkCell(tipLabel('Palliative Care',      'Comfort-focused care for serious illness — not curative, focuses on quality of life'), f.care_palliative),
-    checkCell('Rehab / Step-down',             f.care_rehab),
-    checkCell(tipLabel('Respite / Short-stay', 'Short-term stays to give family caregivers a break'),                           f.care_respite),
-  ].join('');
+  /* Care levels — Overview tab (only confirmed) */
+  const careLevelDefs = [
+    { label: 'Skilled Nursing',    val: f.care_nursing,    tip: 'Care requiring licensed nurses — wound care, IV drips, tube feeding, etc.' },
+    { label: 'Assisted Living',    val: f.care_assisted },
+    { label: 'Dementia Care',      val: f.care_dementia },
+    { label: 'Palliative Care',    val: f.care_palliative, tip: 'Comfort-focused care for serious illness — not curative, focuses on quality of life' },
+    { label: 'Rehab / Step-down',  val: f.care_rehab },
+    { label: 'Respite / Short-stay', val: f.care_respite, tip: 'Short-term stays to give family caregivers a break' },
+  ].filter(c => yn(c.val) === true);
+  const careLevelsHtml = careLevelDefs.length ? `
+    <div class="profile-card">
+      <h2>Care Offered</h2>
+      <div class="check-grid">${careLevelDefs.map(c => {
+        const lHtml = c.tip ? `<span class="term-tip" data-tip="${escapeHtml(c.tip)}">${escapeHtml(c.label)}</span>` : escapeHtml(c.label);
+        return `<div class="check-cell yes"><span class="check-icon-sm">✓</span> ${lHtml}</div>`;
+      }).join('')}</div>
+    </div>` : '';
+
+  /* Medical tab — only offered services */
   const medCells = [
-    checkCell('Doctor Visits',                                                                                                    f.doctor_visits),
-    checkCell(tipLabel('Physiotherapy',        'Exercise and movement therapy to improve strength and mobility'),                f.medical_physio),
-    checkCell(tipLabel('Occupational Therapy', 'Helps residents regain ability to dress, bathe, and do daily tasks'),           f.medical_ot),
-    checkCell('Wound Care',                                                                                                       f.medical_wound),
-    checkCell(tipLabel('Tube Feeding (NG/PEG)','NG = tube through the nose; PEG = tube surgically placed into the stomach'),   f.medical_peg),
-    checkCell(tipLabel('Dementia Unit',        'A secured wing specifically designed for residents with memory loss'),           f.medical_dementia_unit),
-    checkCell('Dialysis Support',                                                                                                 f.medical_dialysis),
-    checkCell('Oxygen Therapy',                                                                                                   f.medical_oxygen),
-    checkCell('Medication Management',                                                                                            f.medical_meds),
-  ].join('');
+    { label: 'Doctor Visits',         val: f.doctor_visits },
+    { label: 'Physiotherapy',         val: f.medical_physio,        tip: 'Exercise and movement therapy to improve strength and mobility' },
+    { label: 'Occupational Therapy',  val: f.medical_ot,            tip: 'Helps residents regain ability to dress, bathe, and do daily tasks' },
+    { label: 'Wound Care',            val: f.medical_wound },
+    { label: 'Tube Feeding (NG/PEG)', val: f.medical_peg,           tip: 'NG = tube through the nose; PEG = tube surgically placed into the stomach' },
+    { label: 'Dementia Unit',         val: f.medical_dementia_unit, tip: 'A secured wing specifically designed for residents with memory loss' },
+    { label: 'Dialysis Support',      val: f.medical_dialysis },
+    { label: 'Oxygen Therapy',        val: f.medical_oxygen },
+    { label: 'Medication Management', val: f.medical_meds },
+  ].filter(c => yn(c.val) === true)
+   .map(c => {
+     const lHtml = c.tip ? `<span class="term-tip" data-tip="${escapeHtml(c.tip)}">${escapeHtml(c.label)}</span>` : escapeHtml(c.label);
+     return `<div class="check-cell yes"><span class="check-icon-sm">✓</span> ${lHtml}</div>`;
+   }).join('');
   const clinicalDetailHtml = D.clinical?.length ? `
     <div class="profile-card"><h2>Clinical Capability Detail</h2>${renderCheckSection(D.clinical)}</div>` : '';
   const staffingHtml = D.staffing?.length ? `
@@ -739,7 +752,7 @@ function render(f) {
       <div class="tabs-nav-inner">
         <button class="tab-btn active" data-tab="overview"  onclick="showTab('overview')">Overview</button>
         <button class="tab-btn"        data-tab="pricing"   onclick="showTab('pricing')">Pricing</button>
-        <button class="tab-btn"        data-tab="care"      onclick="showTab('care')">Care</button>
+        <button class="tab-btn"        data-tab="care"      onclick="showTab('care')">Medical</button>
         <button class="tab-btn"        data-tab="amenities" onclick="showTab('amenities')">Amenities</button>
         <button class="tab-btn"        data-tab="photos"    onclick="showTab('photos')">Photos</button>
         <button class="tab-btn"        data-tab="reviews"   onclick="showTab('reviews')">Reviews</button>
@@ -753,6 +766,7 @@ function render(f) {
         <div class="tab-panel active" id="tab-overview">
           ${galleryHtml}
           ${editorialHtml}
+          ${careLevelsHtml}
           ${window.NHGBadges ? `
           <div class="badge-section">
             <div class="badge-section-head">
@@ -780,14 +794,7 @@ function render(f) {
         </div>
 
         <div class="tab-panel" id="tab-care">
-          <div class="profile-card">
-            <h2>Care Levels Accepted</h2>
-            <div class="check-grid">${careCells}</div>
-          </div>
-          <div class="profile-card">
-            <h2>Medical Capabilities</h2>
-            <div class="check-grid">${medCells}</div>
-          </div>
+          ${medCells ? `<div class="profile-card"><h2>Medical Services</h2><div class="check-grid">${medCells}</div></div>` : '<div class="profile-card"><p class="text-muted">Medical service details not yet collected.</p></div>'}
           ${clinicalDetailHtml}
           ${staffingHtml}
         </div>
