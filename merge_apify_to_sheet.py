@@ -32,7 +32,19 @@ import warnings
 warnings.filterwarnings('ignore')
 sys.stdout.reconfigure(encoding='utf-8')
 
-APIFY_TOKEN  = 'YOUR_APIFY_TOKEN'
+# Load .env file if present (key=value pairs, no quoting needed)
+_env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
+if os.path.exists(_env_path):
+    with open(_env_path) as _f:
+        for _line in _f:
+            _line = _line.strip()
+            if _line and not _line.startswith('#') and '=' in _line:
+                _k, _v = _line.split('=', 1)
+                os.environ.setdefault(_k.strip(), _v.strip())
+
+APIFY_TOKEN = os.environ.get('APIFY_TOKEN', '')
+if not APIFY_TOKEN:
+    sys.exit('ERROR: APIFY_TOKEN not set. Add it to .env or set as environment variable.')
 SHEET_ID     = '1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk'
 SHEET_TAB    = 'google-sheets-facilities.csv'
 FACILITIES_CSV = (
