@@ -12,7 +12,7 @@ Quick lookup for "where do I work on X?". For working rules and conventions, see
 | UI changes to any HTML/CSS/JS page | `stages/04-design/` |
 | Static-site refactor or migration off GitHub Pages | `stages/05-build/` |
 
-## Current focus (2026-05-03)
+## Current focus (2026-05-10)
 
 **03-content — area guides + care-type guides**
 
@@ -27,8 +27,8 @@ Quick lookup for "where do I work on X?". For working rules and conventions, see
 |-------|--------|---------|
 | 01-data | ✅ Done | 406 rows in sheet; ~346 live after status filtering |
 | 02-enrich | ✅ Editorials done | 350/350 editorials; pricing + Details tab partial |
-| 03-content | 🟡 In progress | 2 guides shipped (`which-care`, `government-assistance`); area pages next |
-| 04-design | ✅ Done | All page templates shipped + per-facility static pages with OG/JSON-LD |
+| 03-content | 🟡 In progress | 6 guides shipped; area pages next |
+| 04-design | ✅ Done | Landing page redesigned (care quiz + state dropdown); site-wide nav on all pages; sitemap.html |
 | 05-build | ⬜ Deferred | Stay on static HTML/GitHub Pages |
 
 ## Live facility counts (2026-05-03)
