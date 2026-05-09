@@ -1,0 +1,742 @@
+[
+  {
+    "jkm_name": "AMAZING GRACE CARE CENTRE",
+    "jkm_phone": "0123052299",
+    "jkm_licence": "B/PJB WT 009/2025",
+    "existing_slug": "amazing-grace-retirement-home",
+    "existing_title": "AMAZING GRACE RETIREMENT HOME",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Amazing Grace Care Centre",
+    "jkm_phone": "0123052299",
+    "jkm_licence": "W/PJB WT 007/2021",
+    "existing_slug": "amazing-grace-retirement-home",
+    "existing_title": "AMAZING GRACE RETIREMENT HOME",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "AURORA SENIOR CARE CENTRE",
+    "jkm_phone": "016-3383947",
+    "jkm_licence": "B/PJB WT 003/2024",
+    "existing_slug": "aurora-home-care-centre",
+    "existing_title": "Aurora Home Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Blissful Care",
+    "jkm_phone": "012-6942882",
+    "jkm_licence": "A/PJB WT 049/2018",
+    "existing_slug": "blissful-senior-care-centre-licensed-and-certified-by-gover",
+    "existing_title": "Blissful Senior Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Blissful Care Centre",
+    "jkm_phone": "012-6942882",
+    "jkm_licence": "A/PJB WT 050/2024",
+    "existing_slug": "blissful-senior-care-centre-licensed-and-certified-by-gover",
+    "existing_title": "Blissful Senior Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Caring Retirement Home Care Centre",
+    "jkm_phone": "0164741153",
+    "jkm_licence": "P/PJB WT 013/2021",
+    "existing_slug": "caring-nursing-home",
+    "existing_title": "Caring Nursing Home",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "CONVEE ELDERLY CARE CENTRE",
+    "jkm_phone": "01111338518",
+    "jkm_licence": "B/PJB WT 0052026",
+    "existing_slug": "convee-elderly-care-center",
+    "existing_title": "Convee Elderly Care Center",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "EVAGAYLE CARE CENTRE",
+    "jkm_phone": "79324666",
+    "jkm_licence": "B/PJB  WT 007/2020",
+    "existing_slug": "evagayle-care-home",
+    "existing_title": "Evagayle Care Home",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "GOLD CARE CENTRE",
+    "jkm_phone": "012-3201067",
+    "jkm_licence": "B/PJB WT 019/2024",
+    "existing_slug": "old-home-senior-care-centre",
+    "existing_title": "Old Home Senior Care Centre",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Golden Age Care Centre",
+    "jkm_phone": "012-6942882",
+    "jkm_licence": "A/PJB WT 055/2024",
+    "existing_slug": "golden-age-care-centre",
+    "existing_title": "Golden Age Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Golden Age Elderly Care Centre",
+    "jkm_phone": "018-7895113",
+    "jkm_licence": "A/PJB WE 008/2026",
+    "existing_slug": "golden-age-care-centre",
+    "existing_title": "Golden Age Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Golden Hand Care Centre",
+    "jkm_phone": "018-3734010",
+    "jkm_licence": "A/PJB WT 018/2024",
+    "existing_slug": "golden-haven-nursing-care",
+    "existing_title": "Golden Haven Nursing Care",
+    "name_similarity": 0.87,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Green Garden Care Centre",
+    "jkm_phone": "016-3362088",
+    "jkm_licence": "A/PJB WE 027/2025",
+    "existing_slug": "green-garden-care-center-sdn-bhd",
+    "existing_title": "Green Garden Care Center Sdn Bhd",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "HOME LIVING CARE CENTER SDN. BHD.",
+    "jkm_phone": "0112081816",
+    "jkm_licence": "K/PJB WT 024/2022",
+    "existing_slug": "well-living-care-centre",
+    "existing_title": "Well Living Care Centre Sdn. Bhd.",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Home Town Care Centre",
+    "jkm_phone": "019-3564367/016-7118493",
+    "jkm_licence": "J/PJHWE032/2026",
+    "existing_slug": "home-town-care-centre",
+    "existing_title": "Home Town Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Komune Care Centre",
+    "jkm_phone": "016-2348088",
+    "jkm_licence": "W/PJB WT 008/2022",
+    "existing_slug": "komune-care",
+    "existing_title": "Komune Care",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "MASTER CARE CENTRE",
+    "jkm_phone": "07-2073378",
+    "jkm_licence": "J/PJB WT 005/2022",
+    "existing_slug": "master-care-centre",
+    "existing_title": "Master Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "NOBLE CARE CENTRE",
+    "jkm_phone": "017-3615308",
+    "jkm_licence": "N/PJBWE041/2025",
+    "existing_slug": "noble-care",
+    "existing_title": "Noble Care",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Noble Care Centre",
+    "jkm_phone": "017-3615308",
+    "jkm_licence": "W/PJB WT 023/2023",
+    "existing_slug": "noble-care",
+    "existing_title": "Noble Care",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Papa Mama Home",
+    "jkm_phone": "016-5951750, 05-3233506",
+    "jkm_licence": "A/PJB WT 051/2018",
+    "existing_slug": "papa-mama-care-centre",
+    "existing_title": "PAPA & MAMA CARE CENTRE",
+    "name_similarity": 0.9,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PINE TREE HOME CARE CENTRE",
+    "jkm_phone": "013-3123333",
+    "jkm_licence": "J/PJB WT 039/2021",
+    "existing_slug": "pine-tree-home-care-centre",
+    "existing_title": "Pine Tree Home Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PJ CARE CENTRE",
+    "jkm_phone": "012-7025534",
+    "jkm_licence": "B/PJB  WT 008/2019",
+    "existing_slug": "pj-care-centre",
+    "existing_title": "PJ Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PJ CARE CENTRE",
+    "jkm_phone": "0162700469",
+    "jkm_licence": "B/PJB WT 005/2025",
+    "existing_slug": "pj-care-centre",
+    "existing_title": "PJ Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat  Jagaan Warga Emas Intan",
+    "jkm_phone": "0194111923",
+    "jkm_licence": "P/PJB WT 011/2024",
+    "existing_slug": "pusat-jagaan-warga-emas-suria",
+    "existing_title": "Pusat Jagaan Warga Emas Suria",
+    "name_similarity": 0.9,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan  Warga Emas Wcc",
+    "jkm_phone": "013-794428",
+    "jkm_licence": "J/PJBWE012/2026",
+    "existing_slug": "pusat-jagaan-warga-emas-suria",
+    "existing_title": "Pusat Jagaan Warga Emas Suria",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN DAN RAWATAN ORANG TUA AL IKHLAS",
+    "jkm_phone": "012-7713743",
+    "jkm_licence": "B/PJB WT 001/2020",
+    "existing_slug": "pusat-jagaan-dan-rawatan-orang-tua-al-ikhlas",
+    "existing_title": "Pusat Jagaan dan Rawatan Orang Tua Al-Ikhlas",
+    "name_similarity": 0.98,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan LC",
+    "jkm_phone": "012-5073505, 011-10561474, 011-10561469",
+    "jkm_licence": "A/PJB WT 026/2022",
+    "existing_slug": "pusat-jagaan-place-care-centre",
+    "existing_title": "Pusat Jagaan Place Care Centre",
+    "name_similarity": 0.91,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan MJ",
+    "jkm_phone": "016-5570036",
+    "jkm_licence": "A/PJB WE 023/2025",
+    "existing_slug": "pusat-jagaan-jivi",
+    "existing_title": "Pusat Jagaan Jivi",
+    "name_similarity": 0.88,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN ORANG TUA CERIA",
+    "jkm_phone": "019-7785491",
+    "jkm_licence": "J/PJB WT 007/2023",
+    "existing_slug": "pusat-jagaan-orang-tua-damai",
+    "existing_title": "Pusat Jagaan Orang Tua Damai",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN ORANG TUA JIREH",
+    "jkm_phone": "044952676",
+    "jkm_licence": "K/PJB WT 09/2023",
+    "existing_slug": "pusat-jagaan-orang-tua-damai",
+    "existing_title": "Pusat Jagaan Orang Tua Damai",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Orang Tua Pantai",
+    "jkm_phone": "048909186",
+    "jkm_licence": "P/PJB WT053/2021",
+    "existing_slug": "pusat-jagaan-orang-tua-damai",
+    "existing_title": "Pusat Jagaan Orang Tua Damai",
+    "name_similarity": 0.91,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN ORANG TUA TAMPIN",
+    "jkm_phone": "012-6016308",
+    "jkm_licence": "N/PJB WE 09/2024",
+    "existing_slug": "pusat-jagaan-orang-tua-damai",
+    "existing_title": "Pusat Jagaan Orang Tua Damai",
+    "name_similarity": 0.91,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN ORANG TUA WENG DA",
+    "jkm_phone": "019-3628717",
+    "jkm_licence": "N/PJH WT 04/2021",
+    "existing_slug": "pusat-perjagaan-orang-tua-ren-ai",
+    "existing_title": "Pusat Perjagaan Orang Tua Ren Ai",
+    "name_similarity": 0.87,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Persatuan Kebajikan Warga Emas Harmoni Pulau Pinang",
+    "jkm_phone": "0103969681",
+    "jkm_licence": "P/PJB 018/2024",
+    "existing_slug": "pusat-jagaan-persatuan-kebajikan-warga-emas-chan-kl",
+    "existing_title": "Pusat Jagaan Persatuan Kebajikan Warga Emas Chan Kl",
+    "name_similarity": 0.85,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN RUMAH KEBAJIKAN WARGA EMAS ST.MARK",
+    "jkm_phone": "016-6261206/03-1433234",
+    "jkm_licence": "B/PJB WT 019/2021",
+    "existing_slug": "pusat-jagaan-rumah-kebajikan-warga-emas-st-mark",
+    "existing_title": "Pusat Jagaan Rumah Kebajikan Warga Emas St Mark",
+    "name_similarity": 0.98,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Rumah Orang Tua wesley",
+    "jkm_phone": "03-77277869",
+    "jkm_licence": "W/PJB WE 005/2026",
+    "existing_slug": "pusat-jagaan-rumah-orang-tua-wesley",
+    "existing_title": "Pusat Jagaan Rumah Orang Tua Wesley",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN RUMAH SEJAHTERA BAITUL HANNAN",
+    "jkm_phone": "0124747882",
+    "jkm_licence": "R/PJB WT 009/2021",
+    "existing_slug": "pusat-jagaan-rumah-sejahtera-batu-pahat",
+    "existing_title": "Pusat Jagaan Rumah Sejahtera Batu Pahat",
+    "name_similarity": 0.89,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Rumah Sejahtera Batu Pahat",
+    "jkm_phone": "07-4312915",
+    "jkm_licence": "J/PJB WT 024/2021",
+    "existing_slug": "pusat-jagaan-rumah-sejahtera-batu-pahat",
+    "existing_title": "Pusat Jagaan Rumah Sejahtera Batu Pahat",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN RUMAH SEJAHTERA BERTAM",
+    "jkm_phone": "0194478157/ 0458887080",
+    "jkm_licence": "P/PJBWT08/2020",
+    "existing_slug": "pusat-jagaan-rumah-sejahtera-batu-pahat",
+    "existing_title": "Pusat Jagaan Rumah Sejahtera Batu Pahat",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN RUMAH SEJAHTERA REMBAU",
+    "jkm_phone": "019-6608631",
+    "jkm_licence": "N/ PJB WT 14/2020",
+    "existing_slug": "pusat-jagaan-rumah-sejahtera-batu-pahat",
+    "existing_title": "Pusat Jagaan Rumah Sejahtera Batu Pahat",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN SRI MESRA",
+    "jkm_phone": "012-6677934",
+    "jkm_licence": "B/PJBWT 006/2022",
+    "existing_slug": "pusat-jagaan-sri-sentosa",
+    "existing_title": "Pusat Jagaan Sri Sentosa",
+    "name_similarity": 0.87,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Vr Melodies Old Folks Home",
+    "jkm_phone": "013-7712825",
+    "jkm_licence": "J/PJBWE018/2026",
+    "existing_slug": "pusat-jagaan-vr-melodies-old-folks-home",
+    "existing_title": "Pusat Jagaan V.R Melodies Old Folks Home",
+    "name_similarity": 0.99,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS AL-JANNAH",
+    "jkm_phone": "011-29715959",
+    "jkm_licence": "J/PJB WT 043/2022",
+    "existing_slug": "pusat-jagaan-warga-emas-al-fattah",
+    "existing_title": "Pusat Jagaan Warga Emas Al-Fattah",
+    "name_similarity": 0.91,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS BAHAGIA",
+    "jkm_phone": "019-7779500",
+    "jkm_licence": "J/PJB WT 008/2022",
+    "existing_slug": "pusat-jagaan-warga-emas-banang",
+    "existing_title": "Pusat Jagaan Warga Emas Banang",
+    "name_similarity": 0.92,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS BANANG",
+    "jkm_phone": "0162090878",
+    "jkm_licence": "J/PJBWE 040/2018",
+    "existing_slug": "pusat-jagaan-warga-emas-banang",
+    "existing_title": "Pusat Jagaan Warga Emas Banang",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Warga Emas Cinta",
+    "jkm_phone": "019-3308604",
+    "jkm_licence": "W/PJB WE 004/2025",
+    "existing_slug": "pusat-jagaan-warga-emas-suria",
+    "existing_title": "Pusat Jagaan Warga Emas Suria",
+    "name_similarity": 0.9,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS DIANA",
+    "jkm_phone": "0137652357",
+    "jkm_licence": "J/PJBWT047/2024",
+    "existing_slug": "pusat-jagaan-warga-emas-banang",
+    "existing_title": "Pusat Jagaan Warga Emas Banang",
+    "name_similarity": 0.92,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS HILLVILLE",
+    "jkm_phone": "012-7719933",
+    "jkm_licence": "J/PJBWE087/2025",
+    "existing_slug": "pusat-warga-emas-hillville",
+    "existing_title": "Pusat Warga Emas Hillville",
+    "name_similarity": 0.88,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS KEPAYANG",
+    "jkm_phone": "0126011612/067631223",
+    "jkm_licence": "N/PJB WT 05/2023",
+    "existing_slug": "pusat-jagaan-warga-emas-penyayang",
+    "existing_title": "Pusat Jagaan Warga Emas Penyayang",
+    "name_similarity": 0.92,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS NUR EHSAN",
+    "jkm_phone": "016-7881379",
+    "jkm_licence": "J/PJB WT 021/2022",
+    "existing_slug": "pusat-jagaan-warga-emas-nur-ehsan",
+    "existing_title": "Pusat Jagaan Warga Emas Nur Ehsan",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS NUR EHSAN (WANITA)",
+    "jkm_phone": "016-7881379",
+    "jkm_licence": "J/PJB WT 018/2023",
+    "existing_slug": "pusat-jagaan-warga-emas-nur-ehsan-tangkak",
+    "existing_title": "Pusat Jagaan Warga Emas Nur Ehsan Tangkak",
+    "name_similarity": 0.89,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS NUR EHSAN LEDANG",
+    "jkm_phone": "06-9513852",
+    "jkm_licence": "J/PJB WT 042/2022",
+    "existing_slug": "pusat-jagaan-warga-emas-nur-ehsan-tangkak",
+    "existing_title": "Pusat Jagaan Warga Emas Nur Ehsan Tangkak",
+    "name_similarity": 0.91,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS OASIS",
+    "jkm_phone": "01139336294",
+    "jkm_licence": "B/PJB WT 008/2025",
+    "existing_slug": "pusat-jagaan-warga-emas-suria",
+    "existing_title": "Pusat Jagaan Warga Emas Suria",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Warga Emas Pintu Harapan",
+    "jkm_phone": "046577893",
+    "jkm_licence": "P/PJB WT 001/2022",
+    "existing_slug": "pusat-jagaan-warga-emas-nur-ehsan",
+    "existing_title": "Pusat Jagaan Warga Emas Nur Ehsan",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS SERI INTAN",
+    "jkm_phone": "011-37321567",
+    "jkm_licence": "J/PJB WT 027/2023",
+    "existing_slug": "pusat-jagaan-warga-emas-suria",
+    "existing_title": "Pusat Jagaan Warga Emas Suria",
+    "name_similarity": 0.89,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA EMAS SHEKINAH",
+    "jkm_phone": "03-33746078",
+    "jkm_licence": "B/PJBWT 017/2022",
+    "existing_slug": "pusat-jagaan-warga-emas-suria",
+    "existing_title": "Pusat Jagaan Warga Emas Suria",
+    "name_similarity": 0.89,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Warga Emas Suria Cahaya",
+    "jkm_phone": "0122708417",
+    "jkm_licence": "W/PJB WT 006/2021",
+    "existing_slug": "pusat-jagaan-warga-emas-suria",
+    "existing_title": "Pusat Jagaan Warga Emas Suria",
+    "name_similarity": 0.89,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Warga Tua Elim",
+    "jkm_phone": "012-7671092/017-7317901",
+    "jkm_licence": "J/PJBWE022/2026",
+    "existing_slug": "pusat-jagaan-warga-tua",
+    "existing_title": "Pusat Jagaan Warga Tua",
+    "name_similarity": 0.9,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Warga Tua Elyon",
+    "jkm_phone": "01116292538, 05-2548781",
+    "jkm_licence": "A/PJB WT 028/2022",
+    "existing_slug": "pusat-jagaan-warga-tua-merry",
+    "existing_title": "Pusat Jagaan Warga Tua Merry",
+    "name_similarity": 0.89,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Warga Tua KP",
+    "jkm_phone": "016-5981294",
+    "jkm_licence": "A/PJB WT 003/2022",
+    "existing_slug": "pusat-jagaan-warga-tua",
+    "existing_title": "Pusat Jagaan Warga Tua",
+    "name_similarity": 0.94,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Warga Tua Pangkor",
+    "jkm_phone": "019-5588195",
+    "jkm_licence": "A/PJB WT 007/2022",
+    "existing_slug": "pusat-jagaan-warga-tua-sra",
+    "existing_title": "Pusat Jagaan Warga Tua SRA",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Warga Tua Rebina",
+    "jkm_phone": "016-2230298, 017-7169902",
+    "jkm_licence": "A/PJB WT 030/2022",
+    "existing_slug": "pusat-jagaan-warga-tua-sra",
+    "existing_title": "Pusat Jagaan Warga Tua SRA",
+    "name_similarity": 0.91,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA TUA SEREMBAN",
+    "jkm_phone": "0127812397",
+    "jkm_licence": "N/PJB WT 33/2022",
+    "existing_slug": "pusat-jagaan-warga-tua-sra",
+    "existing_title": "Pusat Jagaan Warga Tua SRA",
+    "name_similarity": 0.91,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA TUA SRI ORKID",
+    "jkm_phone": "016-7707576",
+    "jkm_licence": "J/PJBWE049/2025",
+    "existing_slug": "pusat-jagaan-warga-tua-sra",
+    "existing_title": "Pusat Jagaan Warga Tua SRA",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGA TUA SRI TANJUNG",
+    "jkm_phone": "03-60386591",
+    "jkm_licence": "B/PJB  WT 006/2019",
+    "existing_slug": "pusat-jagaan-warga-tua-sra",
+    "existing_title": "Pusat Jagaan Warga Tua SRA",
+    "name_similarity": 0.87,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGAMAS AIR TENANG",
+    "jkm_phone": "016-2551749",
+    "jkm_licence": "B/PJBWT 003/2023",
+    "existing_slug": "pusat-jagaan-warga-emas-banang",
+    "existing_title": "Pusat Jagaan Warga Emas Banang",
+    "name_similarity": 0.87,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Pusat Jagaan Wargamas Murni",
+    "jkm_phone": "016-3550819",
+    "jkm_licence": "M/PJB WT 022 / 2023",
+    "existing_slug": "pusat-jagaan-warga-emas-suria",
+    "existing_title": "Pusat Jagaan Warga Emas Suria",
+    "name_similarity": 0.89,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGATUA AMIRITA",
+    "jkm_phone": "016-7771314",
+    "jkm_licence": "J/PJB WT 028/2022",
+    "existing_slug": "pusat-jagaan-wargatua-amrita",
+    "existing_title": "Pusat Jagaan Wargatua Amrita",
+    "name_similarity": 0.98,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGATUA MAIMUNAH",
+    "jkm_phone": "019-6550135",
+    "jkm_licence": "J/PJB WT 047/2022",
+    "existing_slug": "pusat-jagaan-warga-tua-damai",
+    "existing_title": "Pusat Jagaan Warga Tua Damai",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "PUSAT JAGAAN WARGATUA MAIMUNAH",
+    "jkm_phone": "019-6550135",
+    "jkm_licence": "J/PJB WT 048/2022",
+    "existing_slug": "pusat-jagaan-warga-tua-damai",
+    "existing_title": "Pusat Jagaan Warga Tua Damai",
+    "name_similarity": 0.86,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "REBINA HOUSE CARE CENTRE",
+    "jkm_phone": "012-7089777",
+    "jkm_licence": "J/PJB WT 017/2023",
+    "existing_slug": "rebina-house-care-centre",
+    "existing_title": "Rebina House Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "ReU Living Care Centre",
+    "jkm_phone": "0103800938",
+    "jkm_licence": "W/PJB WT 011/2023",
+    "existing_slug": "reu-living-klcc",
+    "existing_title": "ReU Living",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "Sunshine Care Centre",
+    "jkm_phone": "06-2406219/012-6315465",
+    "jkm_licence": "M/PJB WT 022 / 2021",
+    "existing_slug": "sunshine-nursing-home",
+    "existing_title": "Sunshine Nursing Home",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  },
+  {
+    "jkm_name": "WOON HO FAMILY CARE CENTRE",
+    "jkm_phone": "0137099065",
+    "jkm_licence": "J/PJBWT019/2025",
+    "existing_slug": "woon-ho-family-care-centre",
+    "existing_title": "Woon Ho Family Care Centre",
+    "name_similarity": 1.0,
+    "match_type": "name_only",
+    "confidence": "low"
+  }
+]

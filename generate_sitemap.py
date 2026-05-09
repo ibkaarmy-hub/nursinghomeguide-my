@@ -6,6 +6,7 @@ Writes sitemap.xml at repo root.
 """
 import csv
 import io
+import os
 import re
 import sys
 import urllib.request
@@ -13,6 +14,7 @@ from datetime import date, datetime
 from xml.sax.saxutils import escape
 
 BASE = "https://nursinghomeguide.my"
+FACILITIES_CSV_LOCAL = "existing_facilities.csv"
 FACILITIES_CSV = (
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub"
     "?gid=292378871&single=true&output=csv"
@@ -21,6 +23,11 @@ DATA_JS_PATH = "data.js"
 
 
 def fetch_csv(url):
+    # Try local CSV first
+    if os.path.exists(FACILITIES_CSV_LOCAL):
+        with open(FACILITIES_CSV_LOCAL, 'r', encoding='utf-8') as f:
+            return list(csv.DictReader(f))
+    # Fall back to remote
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     with urllib.request.urlopen(req, timeout=30) as r:
         body = r.read().decode("utf-8", errors="replace")

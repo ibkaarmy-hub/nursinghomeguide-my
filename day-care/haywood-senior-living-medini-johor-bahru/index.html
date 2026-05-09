@@ -107,8 +107,12 @@
 
 .editor-note { background: #f0f9ff; border-left: 4px solid #2563eb; border-radius: 8px; padding: 20px 22px; font-size: .9rem; line-height: 1.75; margin-bottom: 20px; color: #1e3a5f; }
 .editor-note .editorial-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #2563eb; margin-bottom: 12px; }
-.editor-note p { margin: 0 0 14px; }
+.editor-note p { margin: 0 0 10px; }
 .editor-note p:last-child { margin-bottom: 0; }
+.editor-note .eh { font-weight: 700; color: #0f172a; margin: 14px 0 4px; }
+.editor-note .eh:first-child { margin-top: 0; }
+.editor-note ul { margin: 0 0 10px 1.1em; padding: 0; }
+.editor-note ul li { margin-bottom: 3px; }
 
 
 /* Pricing components */
@@ -514,15 +518,39 @@ function render(f) {
     infoRow('Subsidy accepted', f.subsidy),
     infoRow('Visiting hours', f.visiting_hours),
     infoRow('Google rating', f.rating ? `★ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} reviews)` : ''),
+    infoRow('Licence number', f.licence_number),
   ].filter(Boolean).join('');
 
   const policiesHtml = D.policies?.length ? `
     <div class="profile-card"><h2>Policies &amp; Registration</h2>${renderInfoSection(D.policies)}</div>` : '';
 
+  function renderEditorial(text) {
+    if (!text) return '';
+    function ri(s) { // render inline: escape then bold
+      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    }
+    const lines = text.split('\n');
+    let out = '', inList = false;
+    for (const line of lines) {
+      const t = line.trim();
+      if (!t) { if (inList) { out += '</ul>'; inList = false; } continue; }
+      if (/^\*\*[^*]+\*\*$/.test(t)) {          // section header: **Header**
+        if (inList) { out += '</ul>'; inList = false; }
+        out += `<p class="eh">${escapeHtml(t.replace(/^\*\*|\*\*$/g, ''))}</p>`;
+      } else if (t.startsWith('- ')) {           // bullet item
+        if (!inList) { out += '<ul>'; inList = true; }
+        out += `<li>${ri(t.slice(2))}</li>`;
+      } else {                                   // plain paragraph
+        if (inList) { out += '</ul>'; inList = false; }
+        out += `<p>${ri(t)}</p>`;
+      }
+    }
+    if (inList) out += '</ul>';
+    return out;
+  }
+
   const editorialHtml = f.editorial_summary
-    ? `<div class="editor-note"><div class="editorial-label">📋 About</div>${
-        f.editorial_summary.split(/\n\n+/).map(p => `<p>${escapeHtml(p.trim())}</p>`).join('')
-      }</div>` : '';
+    ? `<div class="editor-note"><div class="editorial-label">📋 About</div>${renderEditorial(f.editorial_summary)}</div>` : '';
 
   /* PRICING tab */
   const pricingRows = [
@@ -640,7 +668,7 @@ function render(f) {
         <li>What is the nurse-to-resident ratio during the day and overnight?</li>
         <li>Who do I call at 2am if there is an emergency?</li>
         <li>How do you communicate updates to families — WhatsApp, phone, app?</li>
-        <li>When was the last <span class="term-tip" data-tip="Jabatan Kebajikan Masyarakat — Malaysia&#39;s social welfare department that licenses nursing homes">JKM</span> inspection, and can I see the result?</li>
+        ${(()=>{ const src=(f.jkm_data_source||'').toLowerCase(); if(src.includes('moh')||src.includes('jkm')) return ''; return '<li>Is the facility registered with JKM or MOH, and can I see the licence?</li>'; })()}
         <li>What is your policy if a resident's condition deteriorates significantly?</li>
       </ul>
     </div>`;
@@ -699,7 +727,7 @@ function render(f) {
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
-          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: true }) : ''}
+          ${window.NHGBadges ? NHGBadges.trustLabel(f, { showJkm: false }) : ''}
         </div>
         ${(() => { const grp = GROUPS_BY_SLUG[f.slug]; return grp ? `<div class="profile-group-tag" style="margin-top:12px">🏢 Part of <a href="org.html?slug=${grp.slug}">${grp.name}</a> &rsaquo; View all ${grp.branches.length} branches</div>` : ''; })()}
       </div>
