@@ -11,5 +11,18 @@
 </head>
 <body>
 <p>This page has moved to <a href="/nursing-homes/kedah/">/nursing-homes/kedah/</a>.</p>
-</body>
+<script>
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('nav')) {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+</script></body>
 </html>
