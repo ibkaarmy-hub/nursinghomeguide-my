@@ -24,7 +24,7 @@ Migration to Next.js + Supabase + Vercel is deferred until data scale justifies 
 
 ---
 
-## Stage progress (as of 2026-05-03)
+## Stage progress (as of 2026-05-10)
 
 | Stage | Goal | Status |
 |-------|------|--------|
@@ -32,6 +32,7 @@ Migration to Next.js + Supabase + Vercel is deferred until data scale justifies 
 | 02-enrich | Pricing, care types, photos, editorials | ✅ Editorials 100% (350/350); pricing + Details tab partial |
 | 03-content | Guide pages, area pages, BM translations | 🟡 In progress: `guides/which-care.html` + `guides/government-assistance.html` shipped; area pages next |
 | 04-design | All page templates | ✅ Shipped |
+| 04-seo | AI + crawler visibility for all facility data | ✅ Done (2026-05-10) |
 | 05-build | Production stack migration | ⬜ Deferred |
 
 ---
@@ -51,13 +52,27 @@ Migration to Next.js + Supabase + Vercel is deferred until data scale justifies 
 - `status` column for visibility control (`unverified` / `removed` hidden automatically)
 - `data.js` — CSV fetcher + GROUPS registry (28 chain groups indexed)
 
-### SEO infrastructure (2026-05-03)
+### SEO infrastructure (updated 2026-05-10)
 - Custom domain live (Namecheap → GitHub Pages, CNAME committed)
 - `sitemap.xml` (~383 URLs) submitted to Google Search Console
 - `robots.txt`
-- 349 per-facility static pages with baked-in OG / Twitter / canonical / LocalBusiness JSON-LD
+- **786 per-facility static pages** with baked-in OG / Twitter / canonical / LocalBusiness JSON-LD
+  - Canonical pages under `/nursing-homes/`, `/assisted-living/`, `/home-care/`, `/day-care/`
+  - Legacy `/facility/<slug>/` pages are meta-refresh redirect stubs (noindex)
+- **AI crawler visibility (2026-05-10):** Every static page contains a `<div id="facility-static-data" style="display:none">` injected before `#profileContent` with all 56 CSV fields rendered as plain HTML — editorial, pricing, care capabilities, medical services, contact, operational info. GPTBot, ClaudeBot, PerplexityBot, and Ahrefs first-pass crawl read this without executing JS. The hidden div is invisible to users (no flash); JS replaces only `#profileContent` and never touches the static data block.
 - Weekly remote agent regenerates static pages + sitemap (Mondays 09:00 KL)
 - Manage agent: https://claude.ai/code/routines
+
+### Ahrefs SEO audit findings (2026-05-10)
+Audit run via Ahrefs Site Audit. Key issues identified and their status:
+
+| Issue | Root cause | Status |
+|-------|-----------|--------|
+| 353 pages missing H1 | All facility data was JS-rendered; raw HTML had no H1 | ✅ Fixed — `build_static_content()` injects H1 in hidden static block |
+| Editorial not crawlable | Editorial text fetched from Google Sheets at runtime via JS | ✅ Fixed — editorial now in hidden static block |
+| All facility data JS-rendered | `#profileContent` populated by JS; AI crawlers saw blank page | ✅ Fixed — all 56 CSV fields in hidden static block |
+| `/nursing-homes/` category pages noindex | State listing pages had noindex (legacy) | Investigate separately |
+| `org.html` uses query params | `org.html?slug=X` not crawlable with clean URLs | Deferred |
 
 ---
 
