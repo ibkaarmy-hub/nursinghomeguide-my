@@ -668,7 +668,7 @@ function render(f) {
         <li>What is the nurse-to-resident ratio during the day and overnight?</li>
         <li>Who do I call at 2am if there is an emergency?</li>
         <li>How do you communicate updates to families — WhatsApp, phone, app?</li>
-        <li>When was the last <span class="term-tip" data-tip="Jabatan Kebajikan Masyarakat — Malaysia&#39;s social welfare department that licenses nursing homes">JKM</span> inspection, and can I see the result?</li>
+        ${(()=>{ const src=(f.jkm_data_source||'').toLowerCase(); if(src.includes('moh')||src.includes('jkm')) return ''; return '<li>Is the facility registered with JKM or MOH, and can I see the licence?</li>'; })()}
         <li>What is your policy if a resident's condition deteriorates significantly?</li>
       </ul>
     </div>`;

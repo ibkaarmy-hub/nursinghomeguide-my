@@ -1,0 +1,134 @@
+{
+  "results": [
+    {
+      "slug": "bethel-retirement-home-plt",
+      "status": "thin",
+      "skip_reason": "Only 13 beds, 1 Google review (5-star), no website or Facebook, no care types listed, no verifiable operational details beyond address in Kawasan 6, Klang. Insufficient public information to write a factual editorial.",
+      "editorial": "",
+      "facts": {
+        "care_types": "",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "Only 1 Google review. No web presence at all. 13-bed capacity is very small — nature of care unknown."
+      }
+    },
+    {
+      "slug": "wan-hing-care-center-sdn-bhd",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Wan Hing Care Center is a Chinese-operated group of elderly care homes clustered in Seri Kembangan, Selangor, operating under the brand 温馨之家 (\"Warm Home\"). The listing in the Pusat Perdagangan Seri Kembangan area appears to correspond to Centre 4 (PSK), located at Jalan PSK 2, though the group runs at least three residential branches and a separate home-care arm in the same town. The homes position themselves as affordable, homelike facilities for seniors who need ongoing nursing support rather than a hospital setting.\n\nAcross the Wan Hing network, verified care conditions include stroke rehabilitation, dementia care, Parkinson's management, and post-fracture recovery. The PSK branch has approximately 26 beds in a mix of twin rooms with attached toilet, twin rooms with shared toilet, triple rooms, and dormitory-style accommodation. Monthly rates are reported to range from around RM 1,001 to RM 3,000 depending on room type and dependency level. Staff at Centre 3 have cited Columbia Asia Hospital Cheras — roughly 15 minutes away — as their nearest hospital reference.\n\nBecause Wan Hing operates multiple branches under the same brand, it is worth confirming which specific branch you are enquiring about and whether it holds a current JKM residential-care licence. Ask about nurse-to-resident ratios on overnight shifts, what constitutes \"high dependency\" for pricing purposes, and whether dementia residents are accommodated in a dedicated wing or mixed with the general population. Halal status and dietary options are also worth confirming given a mixed-community clientele.",
+      "facts": {
+        "care_types": "Nursing home; stroke, dementia, Parkinson's, post-fracture care",
+        "religion": "",
+        "languages": "Likely Mandarin, Cantonese; confirm English/Malay availability",
+        "licence_number": "",
+        "red_flags": "Multiple branches under same brand — confirm which specific branch and its individual JKM licence. Phone number 012-3110411 not matching published branch numbers — verify."
+      }
+    },
+    {
+      "slug": "ks-care-centre-凯心安老院-shah-alam",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "KS Care Centre (凯心安老院, meaning \"Caring Heart Senior Home\") is a professionally run, Chinese-managed nursing home with two Selangor branches — one in Bandar Sungai Long, Kajang, and one at Jalan Pulau Angsa U10/32F in Shah Alam, which is the branch listed here in the Bandar Nusa Rhu area. The Shah Alam branch operates seven days a week from 8:30 am to 10 pm, suggesting an active extended-day model rather than purely overnight residential care, though it markets itself as a live-in facility offering round-the-clock support.\n\nKS Care Centre's published service list covers nursing home (live-in) care, dementia care, stroke and post-cancer recovery, handicapped support, and outreach home nursing. The Shah Alam branch advertises pricing starting from approximately RM 2,950 per month for low-dependency residents, RM 3,450 for medium, and RM 3,950 for high dependency — positioning it at the mid-to-upper end of the Selangor market. Notably, the founding nurses are described as holding 25 years of Assunta Hospital experience, which, if verifiable, indicates a clinically trained core team. Recreational activities and nutritional meal planning are stated programme components.\n\nBed count for the Shah Alam branch specifically is not published, so families should confirm capacity and current availability during enquiry. Ask whether the dementia care programme includes secured access to prevent wandering, what the overnight nurse ratio is, and whether short-term or respite admissions are available. The facility has only one published Google review, so independent family testimonials are limited — a site visit before committing is strongly advisable.",
+      "facts": {
+        "care_types": "Nursing home, dementia care, stroke/cancer recovery, handicapped care, home nursing",
+        "religion": "",
+        "languages": "Likely Mandarin/Cantonese; English probable given clinical background claimed",
+        "licence_number": "",
+        "red_flags": "Only 1 Google review for Shah Alam branch. Bed count not publicly disclosed. Two-branch operation — confirm Shah Alam branch is separately licensed."
+      }
+    },
+    {
+      "slug": "pusat-jagaan-jivi",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Pusat Jagaan Jivi is a small residential care centre in Section 11, Petaling Jaya, reachable on +603-7931 9497, with additional contact persons listed as Ms Lucy and Mdm Avayee — Tamil-sounding names that suggest the facility likely serves, or was founded to serve, the Indian community in the Petaling Jaya area. Section 11 is a mature mixed-residential neighbourhood with easy access to public transport, and the centre operates at a reported capacity of 15 beds. Beyond these basic identifiers, Pusat Jagaan Jivi has a very limited public footprint: no active website, a minimal Facebook presence, and only one Google rating on record.\n\nGiven the care type is listed as unknown in public registries and no operational description has been published, it is not possible to verify what level of nursing care — if any — is provided versus basic custodial support. The 15-bed size is consistent with a small family-run or community-run home. The Tamil connection, if accurate, may mean Jivi serves seniors who are more comfortable in Tamil or other South Indian languages, which could be a significant advantage for Indian families in PJ who struggle to find culturally familiar placements.\n\nFamilies considering Jivi should treat this as an early-stage enquiry: confirm JKM registration status, ask what medical oversight is in place (whether a doctor or nurse visits regularly), and clarify what care dependency levels the home can actually manage. The absence of any public reviews makes a physical visit essential before making a placement decision.",
+      "facts": {
+        "care_types": "Unknown — unverified; likely basic residential/custodial",
+        "religion": "",
+        "languages": "Likely Tamil/English based on staff names; confirm",
+        "licence_number": "",
+        "red_flags": "No website, no published care type, 1 Google review. JKM registration unconfirmed. Very limited public information."
+      }
+    },
+    {
+      "slug": "pusat-jagaan-persatuan-kebajikan-warga-emas-chan-kl",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Pusat Jagaan Persatuan Kebajikan Warga Emas Chan KL — also known informally as 安安老人院 (An An Old Folks Home) — is a welfare-oriented elderly care centre in the Pandan Indah / Ampang Jaya area of Selangor, operated by a Chinese community welfare association bearing the Chan family name. The Malay listing includes \"KL\" in its title despite being situated in Selangor, reflecting its proximity to the Ampang border with Kuala Lumpur. It has a Facebook presence (pusatjagaanwargaemaschan) and is navigable via Waze, but maintains no independent website. The Google listing categorises it as a \"social services organisation\" rather than a formal nursing home, which is a meaningful distinction.\n\nAs a welfare association home, An An is likely structured around community charity rather than commercial care delivery — meaning it may accept subsidised or low-income referrals alongside self-paying residents. The \"languages: 30\" data point in the source file appears to be a data entry error rather than a languages field. Bed count is not published, and the care dependency levels the home manages are unverified. The 3-star Google average from a single review, while statistically unreliable, warrants noting.\n\nFamilies should clarify upfront whether the home is JKM-registered as a residential care facility, what nursing qualifications staff hold, and what happens when a resident's medical needs escalate beyond what the home can manage. If it is primarily a social welfare placement rather than a nursing home, it may not be suited for residents who need wound care, PEG feeding, or dementia-specific programmes. Visiting in person to assess the physical environment and staffing is essential.",
+      "facts": {
+        "care_types": "Social services / welfare home — nursing care level unverified",
+        "religion": "Likely Buddhist/non-denominational Chinese community",
+        "languages": "Likely Mandarin, Cantonese; Malay",
+        "licence_number": "",
+        "red_flags": "Categorised as social services org, not nursing home. Single 3-star review. 'languages: 30' in source data is likely a data entry error."
+      }
+    },
+    {
+      "slug": "pusat-jagaan-warga-emas-semenyih",
+      "status": "thin",
+      "skip_reason": "Categorised as a 'social welfare center' with a single 1-star Google review. Located in Bandar Teknologi Kajang near Semenyih. No website, no Facebook, no care type confirmed, no bed count, and no verifiable operational details found through web research. Insufficient public information to write a responsible editorial.",
+      "editorial": "",
+      "facts": {
+        "care_types": "Social welfare center (Google category only)",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "Single 1-star Google review. No web presence. Care level and JKM registration completely unverified."
+      }
+    },
+    {
+      "slug": "pusat-jagaan-orang-tua-apex-way",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Pusat Jagaan Orang Tua Apex Way is a private residential elderly care home (registered category: W/T Berkediaman Swasta) at Jalan LP 4/5, Taman Lestari Perdana, Seri Kembangan — a well-connected suburb southeast of Kuala Lumpur. The facility can be reached on 03-89429993 and is listed with a reported capacity of 30 beds. It sits in a neighbourhood served by multiple bus routes (540, T543, T545, 541, SJ05) and is within the MRT network's catchment, making it reasonably accessible for visiting family members without a car. Beyond the registration status and address, public information is very limited.\n\nNo website or Facebook page has been found for Apex Way, and it holds only a single 1-star Google rating — which, given the one-review sample size, cannot be treated as representative but is worth keeping in mind. The care types formally offered are not published in any verified public source. As a registered private residential home in the Seri Kembangan corridor, it likely provides basic to moderate dependency care, but clinical capabilities — nursing coverage, doctor visits, wound care, dementia capacity — are unconfirmed.\n\nFamilies should use an initial phone call to establish whether the home holds a current JKM operating licence, what level of medical supervision is on-site, and how they handle residents who develop higher-acuity needs over time. The Seri Kembangan location places it reasonably close to Columbia Asia Hospital Cheras and several GP clinics, which is a practical asset if emergencies arise. A site visit before committing any resident is strongly advisable given the limited online footprint.",
+      "facts": {
+        "care_types": "Residential care — specific levels unverified",
+        "religion": "",
+        "languages": "",
+        "licence_number": "Registered as W/T Berkediaman Swasta (private residential)",
+        "red_flags": "Single 1-star Google review. No website or Facebook. Care type not publicly confirmed."
+      }
+    },
+    {
+      "slug": "ihm-nursing-care-sdn-bhd-sunshine-home",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "IHM Nursing Care Sdn Bhd operates the Sunshine Home brand across multiple Klang Valley locations; the Petaling Jaya branch sits at 80 Jalan Templer, 46000 PJ — a central address within walking distance of Assunta Hospital, which is among the most useful geographic facts about this facility. Assunta's proximity means that GP and specialist consultations, emergency transfers, and diagnostics are logistically straightforward compared with homes in more suburban corridors. The PJ Sunshine Home is a 19-bed facility offering single and double-bedded rooms, wheelchair ramps, and a garden — modest in scale but well-located for families based in central PJ.\n\nThe home provides 24-hour nursing care and, based on information from the affiliated Carey Home branch, appears to include dementia-specific programming: one documented case references physical exercises twice weekly, mind stimulation activities, and structured rest periods for a dementia resident. While this is drawn from the sister branch rather than confirmed specifically for the Jalan Templer location, it suggests the IHM group has dementia care competency across its network. The group's website (ihm.com.my) confirms the nursing home focus, though granular staffing ratios and clinical protocols are not publicly published.\n\nFamilies should note that IHM Sunshine Home does not appear to use a computerised care management system, which may affect how care records and medication administration logs are tracked. Given the 19-bed ceiling, availability can be tight — enquiring about waitlist status early is sensible. Ask specifically about overnight nursing cover ratios, how high-dependency residents (PEG feeding, tracheostomy, active wound care) are managed, and whether pricing at the PJ branch differs from the Carey Home published rates.",
+      "facts": {
+        "care_types": "Nursing home; likely dementia, stroke, general elderly care",
+        "religion": "",
+        "languages": "Likely English, Malay, Mandarin/Cantonese",
+        "licence_number": "",
+        "red_flags": "19 beds only — low availability. No computerised care system noted. Clinical protocols not publicly disclosed."
+      }
+    },
+    {
+      "slug": "sri-sayang-welfare-home",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Sri Sayang Welfare Home is a welfare-oriented residential facility for the aged and physically handicapped, established in 2003 at No. 27 Jalan Kelisa 4C/3, Taman Desa Kelisa, Batang Kali in Hulu Selangor — well outside the Klang Valley's urban core, roughly 60 km north of KL. This is a distinctly rural placement: Batang Kali / Ulu Yam Bharu sits at the foothills of Titiwangsa, and families considering this home should factor in travel time for regular visits. The facility holds registration number B/PJB P 002/2020 and lists an administrative contact number (03-6075 3475 / 03-6075 1554). Office hours appear to be weekday mornings only (8am–5pm).\n\nSri Sayang is evidenced as a Chinese community-associated home: a 2014 Wesak Day visit organised by corporate volunteers, and a 2018 Chinese New Year visit by Main Place Mall that included ang pao distribution and Tai Chi, both confirm a predominantly Chinese Buddhist resident population and cultural programming aligned with that community. The home accepts residents with physical handicaps in addition to elderly residents, suggesting a broader dependency profile than a pure nursing home. Reported capacity is 55 beds, which makes it one of the larger facilities in this batch despite its rural location.\n\nBecause the facility is far from tertiary medical facilities, families should explicitly ask about medical emergency protocols — the nearest hospital is likely Hospital Kuala Kubu Bharu, approximately 15 km away. Ask whether a nurse or doctor visits on a scheduled basis, how the home handles residents who develop acute conditions, and what the staffing ratio looks like on weekends when administrative staff are absent. The rural setting can offer a calm, low-stimulation environment that suits some elderly residents, but it requires strong family confidence in the home's clinical oversight.",
+      "facts": {
+        "care_types": "Welfare home — aged and physically handicapped; nursing care level unverified",
+        "religion": "Likely Buddhist / Chinese community-oriented",
+        "languages": "Likely Mandarin, Cantonese",
+        "licence_number": "B/PJB P 002/2020",
+        "red_flags": "Remote location (Batang Kali) — 60+ km from KL. Weekday-only admin hours. Nearest hospital is Hospital Kuala Kubu Bharu (~15 km). Clinical nursing capability unverified."
+      }
+    },
+    {
+      "slug": "corning-elderly-care-centre",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Corning Elderly Care Centre (CECC) is a privately run nursing home at 7 Lorong 18/18b, Taman Sri Sentosa, Petaling Jaya — a residential side street just off Old Klang Road, an area with several elderly care homes in close proximity. The facility maintains a Facebook page (cecc.owner) and is reachable on 019-217 1108 and 010-788 7987. Reported capacity is 20 beds. The home's published service categories include retirement care, paralysis and post-stroke management, convalescence, post-operative recovery, and day-care for senior citizens — a wider care-type range than many small facilities in the area claim.\n\nRoom configurations span single rooms with shared toilet, twin rooms with shared or attached toilet, triple rooms, and dormitory beds, with monthly rates cited in the RM 1,001–RM 4,000 band — a wide range suggesting meaningful price differentiation by room type and dependency level. The Old Klang Road / Taman Sri Sentosa corridor is well-served by the Kesas highway and sits close to Columbia Asia Bukit Rimau and several private specialist clinics, which is a practical logistical advantage for families arranging medical appointments.\n\nOne notable operational flag: at least one care directory has noted that CECC does not use a computerised system for records management, which families should factor into their assessment of how medication tracking and care notes are maintained. With only 20 beds, availability is likely limited, and the home has no publicly visible ratings or reviews, making independent verification of care quality difficult. A direct visit — ideally on a weekday — to observe the physical environment, staffing presence, and resident engagement is the most reliable way to evaluate this facility.",
+      "facts": {
+        "care_types": "Nursing home; paralysis/stroke, post-operative, convalescent, day care",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "No computerised records system noted. No public reviews. 20-bed capacity — confirm availability. Care quality entirely unverified beyond published service list."
+      }
+    }
+  ]
+}

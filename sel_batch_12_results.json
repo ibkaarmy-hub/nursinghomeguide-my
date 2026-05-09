@@ -1,0 +1,134 @@
+{
+  "results": [
+    {
+      "slug": "pusat-jagaan-warga-tua-impresif",
+      "status": "thin",
+      "skip_reason": "",
+      "editorial": "Pusat Jagaan Warga Tua Impresif sits in a residential pocket of PJS 7, Petaling Jaya, at Jalan Bukit Menteri Selatan 7/2. It is classified as a non-profit organisation on Google, which suggests it may operate on welfare or charitable footing rather than as a fully commercial nursing home — though this has not been independently confirmed. The location gives reasonable access to the Asia Jaya area and several bus routes serving the PJ Selatan corridor.\n\nPublic information about the facility is almost entirely absent: no website, no Facebook page, and only four Google reviews giving it a 4.8 rating. Beyond the address and phone number (03-7954 9008), nothing has been verified about bed count, staffing, the scope of medical care provided, or whether it holds a current JKM registration as a care home. The non-profit classification could mean it operates as a charity home with subsidised or free placements, or it could reflect an outdated business-type tag on the listing.\n\nFamilies considering this centre should call first to establish whether it is taking new residents, what level of care is provided, and whether there is a waiting list as is common with welfare-based homes. Ask specifically about JKM licensing, nursing staff presence, and whether the home accepts bedridden residents. The very small review count and absence of any web presence make it hard to assess quality without a personal visit.",
+      "facts": {
+        "care_types": "Non-profit/welfare home (unconfirmed scope)",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "No website, no Facebook, only 4 reviews, non-profit classification unverified, no bed count or staffing data found"
+      }
+    },
+    {
+      "slug": "apple-nursery-home",
+      "status": "thin",
+      "skip_reason": "",
+      "editorial": "Apple Nursery Home is located at 241, Jalan 8, Kampung Baru Ampang, 68000 Ampang — a long-established residential area straddling the Selangor–Ampang Jaya corridor, within reasonable reach of public hospitals serving the Ampang district. Its name includes 'nursery', which raises a question about whether it is primarily an elderly nursing home or has a dual children-and-elderly function; the Google listing categorises it as a nursing home and gives a phone of 03-4292 8228.\n\nNo website, Facebook page, or any substantive third-party listings were found for this facility beyond basic map directory entries. With only four Google reviews at a 4.5 rating, there is very little user feedback to assess the quality of care, staffing ratios, or services on offer. Bed count, pricing, language of care, religious affiliation, and JKM registration status are all unknown.\n\nBefore visiting, families should call 03-4292 8228 to clarify whether this is a full nursing home or a smaller residential care arrangement, and ask about current vacancies, daily care routine, nursing staff availability, and whether the facility can handle common dependency needs such as incontinence care, post-stroke rehabilitation, or tube feeding.",
+      "facts": {
+        "care_types": "Nursing home (per Google listing; function unconfirmed)",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "Name suggests possible dual nursery/elderly function; no website or social media; only 4 reviews; no staffing or capacity data"
+      }
+    },
+    {
+      "slug": "ampang-old-folks-home",
+      "status": "thin",
+      "skip_reason": "",
+      "editorial": "Ampang Old Folks Home is one of the older recorded care facilities in Kampung Baru Ampang, 68000 Ampang, Selangor — an address that has appeared in social welfare directories going back at least to the mid-2000s. The Wikimapia record and legacy directory listings confirm its physical presence in the area, and the Google listing gives a phone of 03-4291 8978 with a 4.5 rating from four reviews and a retirement home classification.\n\nAs with many long-standing community welfare homes, public documentation is sparse. No website or social media presence could be located. There is no verified data on bed count, staffing, care scope, pricing, language of operations, or JKM licensing status. The retirement home classification on Google suggests it may cater to more mobile or semi-independent residents rather than high-dependency nursing cases, but this is not confirmed.\n\nFamilies should call to verify the home is still actively accepting residents — legacy listings sometimes persist after facilities have closed or significantly downsized. Ask about current capacity, the level of nursing care available for any medical needs your family member has, whether meals and laundry are included, and what the monthly fee structure looks like. A site visit is strongly recommended before committing.",
+      "facts": {
+        "care_types": "Retirement home (per Google listing)",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "Very old listing, may be outdated; no website or social presence; only 4 reviews; no staffing or capacity data verifiable"
+      }
+    },
+    {
+      "slug": "star-nursing-home",
+      "status": "thin",
+      "skip_reason": "",
+      "editorial": "Star Nursing Home sits in Taman Sri Sentosa, an address that appears in multiple sources placing it along Lorong 18/16a in the Sri Sentosa area of Petaling Jaya or Klang — the exact locality boundary is ambiguous from available map data. The Google listing shows 23 beds and a rating of 4.3 from four reviews, making it one of the few facilities in this batch with a disclosed bed count. Phone listed is 03-7781 4660.\n\nNo website or Facebook page was located. The care type field in the source data is blank, so it is not clear from any public source whether Star Nursing Home provides full nursing care (with qualified nurses on shift), basic assisted living, or a simpler residential arrangement. A 23-bed count in a single Taman Sri Sentosa shophouse or terrace setting is a reasonable size for a mid-range independent care home, but without further detail on staffing ratios or medical support, families cannot gauge whether it suits high-dependency residents.\n\nCall 03-7781 4660 to confirm the facility is active and taking enquiries. Key questions: what care level can they accommodate (ambulant versus bedridden), is there a licensed nurse on duty, do they have any experience with dementia or post-stroke care, and what is the monthly fee range for the bed types available.",
+      "facts": {
+        "care_types": "Unknown (blank in source data)",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "Care type unknown; no website or social media; google_maps_url is a Street View thumbnail rather than a proper Place link — confirms limited data in source"
+      }
+    },
+    {
+      "slug": "loving-elderly-care-center-sdn-bhd-lecc",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Loving Elderly Care Center (LECC) is a private, incorporated care home — registered as an Sdn Bhd — operating in Klang, Selangor, with a listed address at 2B, Jalan Bidor/KU1, off Jalan Landasan Bukit Kuda, Mukim Kapar, 41300 Klang. The Google Maps pin places it in the Taman Summit vicinity. With over six years of operation and a presence on Facebook (facebook.com/lovingelderly), LECC markets itself as a home-style nursing environment that combines nursing home medical support with assisted living flexibility, aiming at residents who need care but benefit from a less clinical setting.\n\nLECC describes itself as having managed two care facilities in the Klang Valley across its operating history, which suggests accumulated experience in the sector. The Google listing categorises it as both nursing home and assisted living facility, and staff have described an ongoing commitment to upgrading their physical environment and service standards. That said, specific verified data — bed capacity, staffing ratios, whether nurses are on duty overnight, and whether dementia or palliative care is offered — has not been independently confirmed from public sources.\n\nThe 3.5 Google rating from four reviews is on the lower side and warrants attention; read the actual reviews before visiting. Contact LECC on 019-217 1108 to ask about current vacancies, the daily care schedule, nurse coverage overnight, pricing structure, and whether they hold a valid JKM care home licence. Given the mixed rating, a physical inspection of the facility and staff interactions is particularly important before making a decision.",
+      "facts": {
+        "care_types": "Nursing home, Assisted living",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "3.5 Google rating (lowest in this batch) with only 4 reviews — read reviews carefully before visiting"
+      }
+    },
+    {
+      "slug": "utopia-care-center",
+      "status": "thin",
+      "skip_reason": "",
+      "editorial": "Utopia Care Center is listed at an address in Taman Makmur, a residential area in the Ampang district of Selangor, accessible via the Ampang corridor with links to public hospitals serving the east Klang Valley. The Google listing categorises it as a nursing home and gives a contact of 011-3323 0611, with a perfect 5-star rating from three reviews. While encouraging, three reviews is too small a sample to draw reliable conclusions about care quality.\n\nNo website, Facebook page, or third-party directory listing for Utopia Care Center was found in any search. This makes it one of the more opaque facilities in this batch — nothing has been publicly verified about bed count, staffing levels, care scope, pricing, language of operations, or JKM registration. The Taman Makmur area is predominantly residential, and many smaller care homes in such settings operate out of converted terrace houses with a limited bed count.\n\nFamilies should call 011-3323 0611 to establish whether the home is currently taking residents and what care level is available. Important questions include: how many beds are there, is there a registered nurse on site, can they handle bedridden or post-stroke residents, what is the monthly cost, and do they have a current JKM licence? A site visit before placement is essential given the absence of any verifiable public information.",
+      "facts": {
+        "care_types": "Nursing home (per Google listing)",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "No website or social media; only 3 reviews; no capacity, staffing, or care scope data available publicly"
+      }
+    },
+    {
+      "slug": "anns-care-centre",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Ann's Care Centre is a nursing home and assisted living facility at 123, Jalan Pakis 2, Taman Ferngrove, Batu 8½, Cheras 43200, Selangor — a well-established residential area in the inner Cheras belt with reasonable access to hospital facilities serving the Cheras corridor. Reachable on 03-9076 4855, the centre has been listed in multiple healthcare directories including nursinghome.my, and maintains a Facebook presence at facebook.com/AnnsCareCentre. Its 5-star rating comes from three reviews — encouraging but a small sample.\n\nThe facility openly describes its scope as covering geriatric care, medical and surgical nursing cases, bedsore management, post-stroke rehabilitation support, and major nursing care. It accepts both short-term stays (including respite and post-hospitalisation recovery) and long-term placements. This positions Ann's as a clinically-oriented nursing home rather than a basic residential home — suited to residents who need hands-on nursing attention rather than simply a supervised living environment.\n\nSpecific details not confirmed publicly include the bed count, staffing ratios (particularly nurse coverage at night), pricing, and whether specialised dementia care or palliative support is available. When calling to enquire, ask about current bed availability, nurse qualifications, how post-stroke cases are managed day-to-day, and the monthly fee for your family member's level of dependency. Confirm JKM registration and ask whether a doctor visits the facility regularly.",
+      "facts": {
+        "care_types": "Nursing home, post-stroke care, respite, short-term and long-term care",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "Only 3 reviews; bed count and staffing ratios not publicly available"
+      }
+    },
+    {
+      "slug": "ln-home-care-center",
+      "status": "thin",
+      "skip_reason": "",
+      "editorial": "LN Home Care Center is located in Taman Teluk Pulai, Klang — a township in the northern Klang area that has seen significant residential growth in recent years and sits within the catchment of several Klang district hospitals and clinics. The Google listing classifies it as both a nursing home and a retirement home, with a perfect 5-star rating from three reviews. Contact is via 019-888 8690.\n\nNo website, Facebook page, or any named directory listing was found for this facility. The combined nursing home and retirement home classification could indicate that LN caters to a range of dependency levels — from more independent older adults through to residents requiring full nursing support — but this is not confirmed from any public source. Bed count, staffing, care scope, pricing, and JKM licensing status are all unknown.\n\nFamilies in the northern Klang area looking for a local option should call 019-888 8690 to determine the facility's current status, capacity, and what care needs they can accommodate. Key questions: can they accept bedridden residents, is nursing staff present around the clock, what is the monthly fee, and do they hold a current JKM care home registration? A personal visit to see the physical premises is strongly recommended before placement.",
+      "facts": {
+        "care_types": "Nursing home, Retirement home (per Google listing)",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "No website or social media; only 3 reviews; no publicly verifiable data on staffing, capacity, or care scope"
+      }
+    },
+    {
+      "slug": "golden-haven-nursing-care",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Golden Haven Nursing Care (GHNC) is a small, deliberately boutique nursing home at 51, Jalan Bungor 3, Bandar Botanik, 41200 Klang — a modern, well-planned township in southern Klang with good road access and proximity to several private and public medical facilities. The home has its own website (goldenhavennursingcare.com.my) and markets itself as a personalised care environment. Contact is through Daniel Thomas at 017-583 7385, with a same-day response policy for enquiries.\n\nGHNC operates at intentionally small scale: eight resident beds across four rooms (a 3-bed master, two 2-bed standard rooms, and one private single), plus day care services for up to four non-resident visitors per day. The home is staffed around the clock. Services explicitly described on the website include vital signs monitoring (blood pressure, temperature, pulse, oxygen), assistance with bathing, dressing, grooming and feeding, mobility support, and cognitive engagement activities. Pricing is not published and requires direct enquiry.\n\nThe small scale is both the facility's strength and its main constraint. Eight beds means genuinely high staff-to-resident ratios and a family-like setting, but it also means limited availability and potentially a waiting list. No specialised dementia unit or palliative care programme is described on the website. Families should ask about nursing qualifications of the on-site staff, what happens if a resident needs urgent hospital transfer, whether the single private room is available, and the monthly rate for their family member's specific care needs.",
+      "facts": {
+        "care_types": "Nursing home, Day care",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "Only 8 beds — very limited availability; no published pricing; specialised dementia or palliative programmes not described"
+      }
+    },
+    {
+      "slug": "pusat-jagaan-warga-emas-murni-kasih",
+      "status": "thin",
+      "skip_reason": "",
+      "editorial": "Pusat Jagaan Warga Emas Murni Kasih is an aged care centre in Bandar Country Homes, Rawang — a township in northern Selangor roughly 30–40 minutes from central Kuala Lumpur, making it more relevant for families based in the Rawang, Serendah, or Kundang corridor than for those in the urban Klang Valley core. The facility has a Facebook presence (Pusat Jagaan Warga Emas Murni Kaseh) with over 1,700 followers, which suggests an active community-facing operation, though the Facebook page was not accessible for detailed content extraction.\n\nNo website was found and no contact phone number is listed in the source data. The Google listing classifies it as aged care and gives a 5-star rating from three reviews — positive but too small a sample to draw firm conclusions. The name 'Murni Kasih' (Pure Love) and the Rawang location are consistent with a smaller, community-style care home, possibly with a Muslim orientation given common naming conventions, but this has not been confirmed.\n\nFamilies should search for the facility on Facebook (Pusat Jagaan Warga Emas Murni Kaseh) to obtain a current contact number, as no phone was available from any directory source. Ask about the bed count, care level provided (ambulant versus bedridden), nursing staff availability, daily routine, meal provisions, pricing, and JKM registration status. If Islamic dietary and prayer arrangements matter to your family, confirm these during the initial call.",
+      "facts": {
+        "care_types": "Aged care (per Google listing)",
+        "religion": "Possibly Muslim-oriented (unconfirmed)",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "No phone number found; no website; Facebook is primary contact channel; only 3 reviews; Rawang location suits northern Selangor families only"
+      }
+    }
+  ]
+}

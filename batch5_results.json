@@ -1,0 +1,160 @@
+{
+  "results": [
+    {
+      "slug": "yong-an-old-folks-care-centre-ulu-tiram-jb",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Yong An Old Folks Care Centre (荣安养老院) sits on Jalan Berlian 4 in Taman Gunung Emas, Ulu Tiram, on the eastern edge of Johor Bahru. The home has been operating since 2013 under registration JM0650487-K and runs primarily in Mandarin and English, reflecting a largely Chinese-speaking resident base. Its location is elevated, which the operator notes helps with airflow and odour control — a small but practical detail that matters in long-term residential care.\n\nThe core offering is full-board residential care: four home-cooked meals daily, twice-daily showers, daily linen changes, medication support, and basic monitoring of temperature and blood pressure roughly three times a week. Wound care, post-hospital recovery support, on-site doctor consultations and physiotherapy are listed, alongside structured activities and pet therapy sessions. Pricing is publicly stated — RM 2,400/month for ambulatory residents and RM 2,700/month for those needing diapers — which is unusually transparent for a Johor home in this segment.\n\nYong An reads as a mid-sized Chinese-Malaysian residential home suited to families wanting straightforward elderly care with predictable monthly costs and no language barrier in Mandarin. Diet appears flexible (pork is on the menu, which rules it out for halal-only families). The website does not publish bed count, registered nurse coverage at night, or whether the on-site doctor is salaried or visiting — useful things to confirm by phone before placement, especially for residents with active medical needs.",
+      "facts": {
+        "care_types": "Residential, post-hospital recovery, basic nursing, day activities",
+        "religion": "Non-halal (pork served)",
+        "languages": "Mandarin, English",
+        "licence_number": "JM0650487-K",
+        "red_flags": "Bed count, RN night coverage, doctor frequency not disclosed online"
+      }
+    },
+    {
+      "slug": "elderia-care-center",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Elderia Care Center (安心养老院) is a small care home in Tongkang Pechah, Batu Pahat, run by an operator who describes themselves as a healthcare professional with prior clinical experience. The facility presents itself bilingually in Chinese and English and is positioned as a family-style home rather than a clinical institution — language on the site emphasises a low caregiver-to-resident ratio and a calm, home-like setting.\n\nTwo service tracks are offered: 24-hour full-time residential stay and a daytime-only daycare programme for seniors who still live with family. Basic health support includes blood pressure, glucose and oxygen monitoring, and medication management. There is no published list of clinical capabilities beyond these basics — no mention of wound care, PEG feeding, syringe drivers, dementia-specific programming, or palliative protocols on the public site.\n\nElderia is likely to suit ambulatory or low-dependency seniors, particularly Mandarin-speaking families in the Batu Pahat area looking for either respite-style daycare or a smaller alternative to large institutional homes. Families with higher-acuity needs — bedbound residents, advanced dementia, or complex medication regimens — should ask directly about caregiver qualifications, RN coverage, capacity, pricing, and what happens if a resident's condition deteriorates, since none of this is disclosed online.",
+      "facts": {
+        "care_types": "Residential, daycare, basic nursing",
+        "religion": "",
+        "languages": "Mandarin, English",
+        "licence_number": "",
+        "red_flags": "No published capacity, no RN/doctor detail, no pricing, very thin Wix site"
+      }
+    },
+    {
+      "slug": "multicare-nursing-home-johor",
+      "status": "done",
+      "skip_reason": "Slug says 'johor' but Multicare is in Petaling Jaya, Selangor — flag for the user; editorial written for the actual PJ location",
+      "editorial": "Multicare Nursing Home is located on Jalan 5/37 in Seksyon 5, Petaling Jaya — note that despite the directory slug, this facility is in Selangor, not Johor. The operator reports 32 years of operating history, which would place its origins in the early 1990s, making it one of the longer-established private nursing homes in the Klang Valley. The home runs as a fully residential nursing facility rather than an assisted-living setup.\n\nServices listed cover the broader nursing-home spectrum: assisted living, elderly care, nursing care, stroke rehabilitation, post-operative care, palliative care, dementia care, and respite care. The operator states 86 nursing rooms, around 165 current residents, and 38 assisted-living staff working day and night shifts, with registered nurses, caregivers and an on-call doctor providing 24-hour coverage. Three meals plus snacks, medication management by RNs, physiotherapy, occupational therapy and 24-hour ambulance/mobility support are part of the standard package. Visiting hours are published (10am–4pm weekdays, longer on weekends).\n\nMulticare suits families needing a higher-acuity nursing home rather than a light residential setup — stroke recovery, palliative cases, and dementia placements are all explicitly within scope. The website does not publish pricing, religious orientation, halal status, or specific nurse-to-resident ratios, so families should confirm room rates, language coverage among caregivers, and whether the on-call doctor visits routinely or only on emergencies.",
+      "facts": {
+        "care_types": "Nursing, assisted living, dementia, stroke rehab, palliative, post-op, respite",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "Slug mislabels as Johor — facility is in PJ; pricing not published; ratio claims unverified"
+      }
+    },
+    {
+      "slug": "fcc-family-care-centre-johor-bahru",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "FCC Family Care Centre operates on Jalan Resam in Taman Bukit Tiram, Ulu Tiram, on the JB outskirts. It positions itself as Malaysia's first integrated senior living and wellness village, and was confirmed in 2020 as the first Malaysian retirement village to deploy SmartPeep — a Singapore-developed vision-AI monitoring system used to flag falls and unusual movement at night. The campus is split into named sub-homes including The CHS Home and a separate MemoryCare Home for dementia residents.\n\nThe operator runs three service tiers: stay-in residential care, day care with meals and basic medical support, and rehabilitation/physiotherapy. The site differentiates itself on environment rather than clinical intensity — an edible garden, farm animals, library, craft room and outdoor walking areas form the core of the daily programme, with the AI monitoring layered on top of conventional caregiver staffing. Reviews on Google (4.9★ across 137+ ratings) consistently mention the gardens, animals and friendly staff.\n\nFCC suits families drawn to a low-stimulation, nature-based setting — early-stage dementia, recovery-phase residents, and seniors who would do poorly in a clinical ward are likely the best fit. Families considering it for higher-dependency cases (bedbound, advanced palliative, complex tube feeding) should ask specifically about night-shift RN cover, how SmartPeep alerts are triaged, and the split in capability between the general home and MemoryCare. Pricing, capacity and licence details are not on the public website.",
+      "facts": {
+        "care_types": "Stay-in residential, day care, rehab, dementia (MemoryCare unit)",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "No published pricing, capacity, or RN cover detail; AI monitoring is real (SmartPeep partnership confirmed) but doesn't replace nursing staff"
+      }
+    },
+    {
+      "slug": "nursing-home-johor-bahru-loving-mansion-care-centre",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Loving Mansion Care Centre occupies a cluster of shoplots on Jalan Kota 2/3 in Kawasan Perindustrial Kota Puteri, Masai, about 15 minutes from JB CIQ. Registered as CT0113053-M, the operator reports more than 20 years in elderly care, with day-to-day operations led by a manager named Alan who is repeatedly mentioned by name in family reviews. The home is bilingual in practice (English and Mandarin) and serves a predominantly Chinese-Malaysian resident base.\n\nServices listed include assisted living, full nursing care, palliative care, dementia and memory care, and stroke rehabilitation. Two complementary therapies are offered on-site that are unusual for the segment: acupuncture and physiotherapy, presented as part of the routine care plan rather than paid add-ons. Residents receive 24-hour nursing coverage, home-cooked meals and a daily activities programme. Google reviews (5★ across 17 ratings) consistently flag the cleanliness of the premises and professionalism of the nursing team.\n\nLoving Mansion is well-suited to families wanting nursing-grade care with built-in rehab and TCM-style therapy in one place — stroke recovery and chronic-pain elderly residents in particular benefit from the acupuncture/physio combination. The operator does not publish bed count, pricing, RN-to-resident ratio, or licence type on the website, so confirm capacity, monthly rates by room type, and whether acupuncture is delivered by a registered TCM practitioner before committing.",
+      "facts": {
+        "care_types": "Nursing, assisted living, palliative, dementia/memory, stroke rehab, acupuncture, physiotherapy",
+        "religion": "",
+        "languages": "English, Mandarin",
+        "licence_number": "CT0113053-M",
+        "red_flags": "Pricing, bed count, RN ratio, TCM practitioner credentials not disclosed online"
+      }
+    },
+    {
+      "slug": "eha-parkview-eldercare-perling-1-nursing-home-johor-bahru",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "EHA Parkview Eldercare in Perling is one of the JB branches of EHA ElderCare Group (registration 1478860-U), a multi-location operator with homes in both Johor Bahru and Kuala Lumpur. The Chinese name 温馨疗养院 (Wenxin Liaoyang Yuan) is used interchangeably with the English brand. Group-wide, EHA reports more than 15 years in elder care and over 100 caregivers across its branches, with the Perling outlet being one of several JB sites.\n\nServices across the EHA group are standardised: long-term assisted senior living, short-term respite stays, day care, and dedicated dementia care. Pricing is published group-wide and is more transparent than most competitors — assisted living from RM 3,200/month, respite from RM 120/day, and day care from RM 1,500/month, with these rates applying to JB and KL branches. Care is staffed 24/7 by trained caregivers, with branch-level clinical detail not broken out on the group site.\n\nEHA Parkview Perling is a sensible option for families who want predictable, mid-range monthly pricing under a chain operator with multiple sites — useful if a resident may later transfer between JB and KL. Families should confirm at branch level: registered-nurse cover (especially overnight), the dementia unit's specific protocols, exact bed count at Perling, and what is included or extra in the RM 3,200 rate (diapers, consumables, doctor visits). Halal status and language coverage are not stated on the group site.",
+      "facts": {
+        "care_types": "Assisted living, respite, day care, dementia",
+        "religion": "",
+        "languages": "",
+        "licence_number": "1478860-U (group)",
+        "red_flags": "RM 3,200 'all-inclusive' claim — confirm what's actually included; branch-level RN cover and bed count not published"
+      }
+    },
+    {
+      "slug": "jr-segamat-care-centre",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "JR Segamat Care Centre is the Johor branch of Johnson Residence, a Malaysian eldercare chain operating six locations: JR Pro (Kuala Lumpur), Kee Ann (Melaka), Turf View (Penang), JR Kuantan (Pahang), JR Segamat (Johor) and JR My Place (Ipoh, listed as forthcoming). The Segamat outlet is the chain's only Johor presence and serves a town and surrounding district where residential nursing options are limited compared to JB or the Klang Valley.\n\nGroup-wide, Johnson Residence positions itself on three pillars — affordable, professional, caring — and offers 24-hour care, personal hygiene support, laundry, customised meals, and a choice of private or shared rooms. Staff training is described as ongoing and explicitly includes vital-signs monitoring, body repositioning, hand hygiene and basic life support; the operator says it accommodates five distinct categories of residents but does not detail those categories publicly. Branch-level detail (capacity, RN coverage, pricing) for Segamat specifically is not on the website.\n\nJR Segamat is a reasonable option for families based in central or northern Johor who need residential care close to home rather than commuting to JB. The chain network is a real advantage if a resident later needs to relocate to KL, Melaka or Penang under the same operator. Specific things to confirm by phone: bed count, monthly pricing for shared vs private rooms, language coverage among caregivers, whether a doctor visits routinely, and how Segamat handles palliative or end-of-life cases given its smaller-town setting.",
+      "facts": {
+        "care_types": "Residential, personal care, multi-room (private/shared)",
+        "religion": "",
+        "languages": "English, Mandarin (group site bilingual)",
+        "licence_number": "",
+        "red_flags": "Branch-level capacity, pricing, clinical scope not published — only one Google review online"
+      }
+    },
+    {
+      "slug": "golden-age-care-centre-tangkak",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Golden Age Care Centre (GACC) Tangkak is one of four branches of a chain founded in 2004 and licensed under the Akta Pusat Jagaan, with a 4-star rating from Jabatan Kebajikan Masyarakat. The Tangkak branch sits at 5, Jalan Teratai 2, Taman Tangkak Jaya, and is the chain's northern Johor outlet alongside sister homes in Muar, Melaka and Batu Pahat. Group-wide, GACC reports more than 200 residents across its network.\n\nServices listed at chain level include private and semi-private residential rooms, on-site nurses and physiotherapists, dedicated memory care staff, rehabilitation (physical, occupational and speech therapy), chef-prepared meals, and a recreation programme. Operational features include CCTV monitoring, a 24/7 calling system, transport to hospital appointments, and security. The chain advertises trilingual operation — English, Chinese and Malay — which is genuinely useful in mixed-population towns like Tangkak and Muar.\n\nGACC Tangkak is well-suited to families in Muar District and northern Johor who want a licensed, mid-tier chain home with rehab capability, rather than a single-operator home. The trilingual staffing and JKM 4-star rating are real differentiators. Pricing is not published, and branch-specific capacity, exact RN-to-resident ratios, and the depth of the speech-therapy and OT services should be checked at the Tangkak branch directly — chain-level claims don't always map cleanly to every outlet.",
+      "facts": {
+        "care_types": "Residential (private/semi-private), nursing, memory care, rehab (PT/OT/ST)",
+        "religion": "",
+        "languages": "English, Mandarin, Malay",
+        "licence_number": "Licensed under Akta Pusat Jagaan; JKM 4-star",
+        "red_flags": "Branch-level pricing and capacity not disclosed; verify rehab depth at Tangkak specifically"
+      }
+    },
+    {
+      "slug": "golden-age-care-centre-batu-pahat",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Golden Age Care Centre Batu Pahat is the southern Johor outlet of the GACC chain, located at Lot 7887, Jalan Bukit Pasir, Batu Pahat. The chain was founded in 2004, licensed under the Akta Pusat Jagaan, and rated 4 stars by Jabatan Kebajikan Masyarakat — making it one of the more formally credentialled small-chain operators in Johor. Sister branches operate in Tangkak, Muar and Melaka.\n\nThe Batu Pahat branch shares the chain's standard service mix: residential rooms in private and semi-private configurations, on-site nursing and physiotherapy, a memory-care track with specialised staff, and a rehabilitation programme covering physical, occupational and speech therapy. Meals are chef-prepared; security includes CCTV and a 24/7 call system; and the chain provides transport for hospital and clinic appointments. Operating languages are English, Mandarin and Malay, which fits Batu Pahat's mixed Chinese-Malay demographic.\n\nFor Batu Pahat and surrounding south Johor families, GACC is one of the few options offering chain-level systems with multilingual staffing and a JKM rating in this part of the state. It suits residents needing rehab after stroke or surgery and those with memory loss who benefit from staff used to dementia behaviour. As with the Tangkak branch, pricing, current bed availability and the practical depth of OT/speech therapy need to be confirmed at branch level — and families should ask whether the same physiotherapist rotates between branches or is full-time at Batu Pahat.",
+      "facts": {
+        "care_types": "Residential (private/semi-private), nursing, memory care, rehab (PT/OT/ST)",
+        "religion": "",
+        "languages": "English, Mandarin, Malay",
+        "licence_number": "Licensed under Akta Pusat Jagaan; JKM 4-star",
+        "red_flags": "Pricing not disclosed; therapist rotation between branches unclear"
+      }
+    },
+    {
+      "slug": "bellevue-residential-homecare-m-sdn-bhd",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Bellevue Residential Homecare (M) Sdn Bhd was established in 1992 and operates a 60-bed home at No. 9, Jalan 5/35, Petaling Jaya — in the Bukit Gasing pocket of Section 5. Three decades of continuous operation make Bellevue one of the older private retirement homes in the Klang Valley, and the operator publishes both a landline (03-7955 7726) and a mobile contact, with a Facebook presence used to document residents' activities and family events.\n\nThe home accepts retired, aged, handicapped and convalescent residents requiring 24-hour care — that is, both ambulatory residents and those needing more hands-on nursing support. Meals are provided in-house, and the activities calendar visible online includes Chinese New Year celebrations, excursions and visits from external community groups, suggesting an active rather than purely custodial setting. The website does not break out clinical capabilities (wound care, palliative, dementia track) in detail.\n\nBellevue is likely to suit families looking for a long-running, mid-sized PJ home with an established track record, rather than a clinical nursing facility. The 60-bed scale is modest enough to feel personal but large enough to sustain a real activities programme. Specific things to ask before placement: registered nurse coverage (especially overnight), whether a doctor visits routinely, monthly pricing by room type, halal/dietary options, and how the home handles dementia residents who become bedbound — none of which are spelled out on the website.",
+      "facts": {
+        "care_types": "Residential 24-hour care for elderly, handicapped, convalescent",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "Clinical scope (wound, palliative, dementia) not detailed; pricing not published; dated WordPress site"
+      }
+    },
+    {
+      "slug": "summer-eldercare-johor-bahru",
+      "status": "done",
+      "skip_reason": "Website is a single Canva landing page with effectively no content — editorial limited to verified Google listing facts only",
+      "editorial": "Summer Eldercare is a small Johor Bahru eldercare provider with a public phone line at +60 17-220 3342 and a single-page Canva-hosted website that does not publish operational detail beyond the brand name. The facility appears on Google with a 5★ rating across a small number of reviews (around 5), placing it among newer or smaller operators in the JB market without significant directory or media coverage at the time of writing.\n\nBecause the website carries no service catalogue, no address detail beyond the JB area, and no description of clinical capability, almost nothing about scope can be verified from public sources. There is no published information on bed capacity, founding date, ownership, languages, religious orientation, halal status, registered-nurse coverage, or pricing. Likewise, whether the home accepts dementia, palliative or bedbound residents is not stated.\n\nSummer Eldercare is best treated as a facility that requires direct phone contact before any decision — families considering placement should ask for a site visit, request the licence number under the Akta Pusat Jagaan, confirm the operator's experience and staff qualifications, and obtain pricing in writing. The strong but small Google rating is a positive signal but not yet enough on its own to characterise the home; until the operator publishes more detail, this listing should be considered minimally documented.",
+      "facts": {
+        "care_types": "",
+        "religion": "",
+        "languages": "",
+        "licence_number": "",
+        "red_flags": "No real website — Canva placeholder only; no published scope, capacity, pricing, or licence; verify by phone before recommending"
+      }
+    },
+    {
+      "slug": "pusat-jagaan-mahmudah-malaysia",
+      "status": "done",
+      "skip_reason": "",
+      "editorial": "Pusat Jagaan Mahmudah Malaysia is a registered care centre at Lot 459/5, Jalan 1 Off Jalan Bangi Lama, Kampung Sungai Purun, 43500 Semenyih, Selangor — note the directory metadata lists this only as 'Selangor', but the actual location is Semenyih in Hulu Langat district. The centre was established in 2016 under the Care Centres Act 1993 and is registered with Jabatan Kebajikan Masyarakat. It is operated by the welfare organisation Persatuan Kebajikan Mahmudah Malaysia rather than a private company, which gives it a charitable rather than commercial structure.\n\nThe home cares for residents aged 38 to 90 — a wider age range than a typical nursing home — and current census reported in public coverage is around 47 residents, despite directory listings citing a 100-bed capacity (the gap is worth verifying). The population skews towards vulnerable cases: residents abandoned by family, those whose families cannot afford private care, persons with disabilities, individuals needing ongoing medical attention, and bedbound patients with non-communicable diseases requiring routine review. The centre's main public channel is Facebook rather than a standalone website.\n\nPusat Jagaan Mahmudah suits the welfare end of the eldercare spectrum — it is a meaningful option for Muslim Malay families in the Semenyih/Bangi corridor with limited financial means, or for cases where commercial homes have declined a placement. Families enquiring should expect the model to differ from a private nursing home: ask about funding arrangements (donations, JKM subsidy, family contribution), staff qualifications, clinical equipment for bedbound care, and whether placements depend on case approval by the welfare organisation rather than direct booking.",
+      "facts": {
+        "care_types": "Residential welfare care — elderly, disabled, bedbound, NCD patients",
+        "religion": "Muslim (welfare organisation, halal expected)",
+        "languages": "Malay",
+        "licence_number": "Registered under Care Centres Act 1993 (JKM)",
+        "red_flags": "Capacity gap (47 residents reported vs 100-bed claim); Facebook-only public presence; placement may be needs-tested rather than commercial"
+      }
+    }
+  ]
+}

@@ -1,0 +1,576 @@
+[
+  {
+    "title": "Clover Healthcare Sdn Bhd",
+    "slug": "clover-healthcare-sdn-bhd",
+    "state": "Johor",
+    "area": "Taman Nusa Peristis",
+    "phone": "07-513-0034"
+  },
+  {
+    "title": "JB Care Centre",
+    "slug": "jb-care-centre",
+    "state": "Johor",
+    "area": "Johor",
+    "phone": "07-3331999"
+  },
+  {
+    "title": "Green Acres Home Care",
+    "slug": "green-acres-home-care",
+    "state": "Johor",
+    "area": "Johor",
+    "phone": "07-2213393"
+  },
+  {
+    "title": "Pusat Warga Emas Hillville",
+    "slug": "pusat-warga-emas-hillville",
+    "state": "Johor",
+    "area": "Johor",
+    "phone": "07-357 8500"
+  },
+  {
+    "title": "Rumah Seri Kenangan- Johor Bahru",
+    "slug": "rumah-seri-kenangan-johor-bahru",
+    "state": "Johor",
+    "area": "Johor",
+    "phone": "07-2371737"
+  },
+  {
+    "title": "Pine Tree Home Care Centre",
+    "slug": "pine-tree-home-care-centre-johor",
+    "state": "Johor",
+    "area": "Johor",
+    "phone": "07-686 0042"
+  },
+  {
+    "title": "Comfort Old Folks Home Centre",
+    "slug": "comfort-old-folks-home-centre",
+    "state": "Johor",
+    "area": "Johor",
+    "phone": "07-4322590"
+  },
+  {
+    "title": "Pusat Jagaan Rumah Sejahtera Batu Pahat",
+    "slug": "pusat-jagaan-rumah-sejahtera-batu-pahat",
+    "state": "Johor",
+    "area": "Johor",
+    "phone": "07-4322706"
+  },
+  {
+    "title": "Justlife Care Home",
+    "slug": "justlife-care-home",
+    "state": "Johor",
+    "area": "Johor",
+    "phone": "07-7733928"
+  },
+  {
+    "title": "Pusat Jagaan Sri Sentosa",
+    "slug": "pusat-jagaan-sri-sentosa",
+    "state": "Johor",
+    "area": "Johor",
+    "phone": "07-7718460"
+  },
+  {
+    "title": "AFH Elder Care",
+    "slug": "afh-elder-care",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-6243 3824"
+  },
+  {
+    "title": "ACG Care Sdn Bhd",
+    "slug": "acg-care-sdn-bhd",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-2142 1666"
+  },
+  {
+    "title": "Amazing Grace Caring Home",
+    "slug": "amazing-grace-caring-home",
+    "state": "Selangor",
+    "area": "Taman Tan Yew Lai",
+    "phone": "03-77721161"
+  },
+  {
+    "title": "Amitabha Malaysia Old Folks Home KL",
+    "slug": "amitabha-malaysia-old-folks-home-kl",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-7890 3700"
+  },
+  {
+    "title": "Dementia Care Centre",
+    "slug": "dementia-care-centre",
+    "state": "Johor",
+    "area": "Johor",
+    "phone": "03-61222000"
+  },
+  {
+    "title": "Dhaalia Elderly Care Centre",
+    "slug": "dhaalia-elderly-care-centre",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-79814729"
+  },
+  {
+    "title": "Merry Care Centre (Jln Belinggai)",
+    "slug": "merry-care-centre-jln-belinggai",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-62574153"
+  },
+  {
+    "title": "Merry Care Centre (Jln Antoi)",
+    "slug": "merry-care-centre-jln-antoi",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-62574153"
+  },
+  {
+    "title": "Procare Care Centre",
+    "slug": "procare-care-centre",
+    "state": "Kuala Lumpur",
+    "area": "Kuala Lumpur",
+    "phone": "03-79818522"
+  },
+  {
+    "title": "Rumah Orang Tua Charis",
+    "slug": "rumah-orang-tua-charis",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-77815977"
+  },
+  {
+    "title": "Seavoy Nursing Home (Taman Setapak Indah)",
+    "slug": "seavoy-nursing-home-taman-setapak-indah",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-4021 1337"
+  },
+  {
+    "title": "Seavoy Nursing Home (Desa Melawati)",
+    "slug": "seavoy-nursing-home-desa-melawati",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-4108 4740"
+  },
+  {
+    "title": "Siri Jayanti Metta Care Centre",
+    "slug": "siri-jayanti-metta-care-centre",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-4031 2597"
+  },
+  {
+    "title": "Sri Seronok Retirement Village",
+    "slug": "sri-seronok-retirement-village",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-9133 4320"
+  },
+  {
+    "title": "Tai Kuk Wah Si Buddist Society",
+    "slug": "tai-kuk-wah-si-buddist-society",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-9285 8105"
+  },
+  {
+    "title": "Persatuan Kebajikan Dan Social Kim Loo Ting",
+    "slug": "persatuan-kebajikan-dan-social-kim-loo-ting",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-40232350"
+  },
+  {
+    "title": "KLC Senior Care Center",
+    "slug": "klc-senior-care-center",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-21817399"
+  },
+  {
+    "title": "LYC Senior Living Care Center",
+    "slug": "lyc-senior-living-care-center",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-2602 1994"
+  },
+  {
+    "title": "Pusat Jagaan En Yuan (Cheras)",
+    "slug": "pusat-jagaan-en-yuan-cheras",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-4288 3001"
+  },
+  {
+    "title": "PJ Mentalink Care/ PJ Old Folks",
+    "slug": "pj-mentalink-care-pj-old-folks",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-7932 1037"
+  },
+  {
+    "title": "Pusat Jagaan Rumah Warga Tua Cahaya",
+    "slug": "pusat-jagaan-rumah-warga-tua-cahaya",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-80710232"
+  },
+  {
+    "title": "Rumah Victory Elderly Home",
+    "slug": "rumah-victory-elderly-home",
+    "state": "Selangor",
+    "area": "Taman Bukit Kuchai Batu",
+    "phone": "03-80802608"
+  },
+  {
+    "title": "Vivekananda Shelter",
+    "slug": "vivekananda-shelter",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-77818012"
+  },
+  {
+    "title": "Attia Nursing Care Centre",
+    "slug": "attia-nursing-care-centre",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-62425786,"
+  },
+  {
+    "title": "Pusat Jagaan Selangor King George V Silver Jubilee Fund",
+    "slug": "pusat-jagaan-selangor-king-george-v-silver-jubilee-fund",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-92234891"
+  },
+  {
+    "title": "Berniece Care Service Centre",
+    "slug": "berniece-care-service-centre",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-40439507"
+  },
+  {
+    "title": "Green Cottage Retirement and Nursing Home",
+    "slug": "green-cottage-retirement-and-nursing-home",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-7781 2466"
+  },
+  {
+    "title": "Columbia Asia Extended Care Hospital",
+    "slug": "columbia-asia-extended-care-hospital",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-5541 7833"
+  },
+  {
+    "title": "Pusat Jagaan Ebenezer Home",
+    "slug": "pusat-jagaan-ebenezer-home",
+    "state": "Selangor",
+    "area": "Shah Alam",
+    "phone": "0163552248,011-26212084"
+  },
+  {
+    "title": "Bethel Retirement Home PLT",
+    "slug": "bethel-retirement-home-plt",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-33816742"
+  },
+  {
+    "title": "Pusat Jagaan Chik Sin Thong Klang Dan Pantai Selangor",
+    "slug": "pusat-jagaan-chik-sin-thong-klang-dan-pantai-selangor",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-33717822"
+  },
+  {
+    "title": "Pusat Jagaan Persatuan Kebajikan Rumah Jagaan VCU Selangor Dan Wilayah Persekutuan Kuala Lumpur",
+    "slug": "pusat-jagaan-persatuan-kebajikan-rumah-jagaan-vcu-selangor-dan-wilayah-persekutu",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-33725888"
+  },
+  {
+    "title": "Rumah Kebajikan Chong Keng Seong",
+    "slug": "rumah-kebajikan-chong-keng-seong",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-3344 1028"
+  },
+  {
+    "title": "Pusat Jagaan Beverly Care Home",
+    "slug": "pusat-jagaan-beverly-care-home",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-87370076"
+  },
+  {
+    "title": "Pusat Jagaan Rumah Amal Murni Kajang",
+    "slug": "pusat-jagaan-rumah-amal-murni-kajang",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-87348124"
+  },
+  {
+    "title": "Pusat Jagaan Al Fikrah Malaysia",
+    "slug": "pusat-jagaan-al-fikrah-malaysia",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-87330715"
+  },
+  {
+    "title": "Mintygreen Nursing Home (ElderCare Center)",
+    "slug": "mintygreen-nursing-home-eldercare-center",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-9011 0352"
+  },
+  {
+    "title": "Kajang Nursing Home",
+    "slug": "kajang-nursing-home-selangor",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-8734 1596"
+  },
+  {
+    "title": "Sam Ching Kong Old Folks Home, Hulu Langat",
+    "slug": "sam-ching-kong-old-folks-home-hulu-langat",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-90211498"
+  },
+  {
+    "title": "Pusat Jagaan Orang Tua Apex Way",
+    "slug": "pusat-jagaan-orang-tua-apex-way",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-89429993"
+  },
+  {
+    "title": "Pusat Warga Mas Penyayang",
+    "slug": "pusat-warga-mas-penyayang",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-89539932"
+  },
+  {
+    "title": "Wan Hing Care Center Sdn Bhd",
+    "slug": "wan-hing-care-center-sdn-bhd",
+    "state": "Selangor",
+    "area": "Taman Bukit Serdang",
+    "phone": "012-3110411"
+  },
+  {
+    "title": "Wan Hing Care Center (PSK Sdn Bhd)",
+    "slug": "wan-hing-care-center-psk-sdn-bhd",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "012-3110411"
+  },
+  {
+    "title": "Pusat Jagaan Mahmudah Malaysia",
+    "slug": "pusat-jagaan-mahmudah-malaysia",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-8723 2394"
+  },
+  {
+    "title": "Pusat Jagaan Dan Pendidikan Warga Emas Darul Insyirah",
+    "slug": "pusat-jagaan-dan-pendidikan-warga-emas-darul-insyirah",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-89209661"
+  },
+  {
+    "title": "Pusat Jagaan Rumah Nur Hasanah",
+    "slug": "pusat-jagaan-rumah-nur-hasanah",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-87668100"
+  },
+  {
+    "title": "Sincere Care Home",
+    "slug": "sincere-care-home-selangor",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-87341609"
+  },
+  {
+    "title": "Sri Sayang Welfare Home",
+    "slug": "sri-sayang-welfare-home",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-60753475"
+  },
+  {
+    "title": "Bellevue Residential Homecare (M) Sdn Bhd",
+    "slug": "bellevue-residential-homecare-m-sdn-bhd",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-79557726"
+  },
+  {
+    "title": "Dr Teo Keng Huat Home Care",
+    "slug": "dr-teo-keng-huat-home-care",
+    "state": "Selangor",
+    "area": "Petaling Jaya",
+    "phone": "03-79568879"
+  },
+  {
+    "title": "Felicity Nursing Home",
+    "slug": "felicity-nursing-home",
+    "state": "Selangor",
+    "area": "Petaling Jaya",
+    "phone": "017-3020285"
+  },
+  {
+    "title": "IHM Nursing Care Sdn Bhd (Sunshine Home)",
+    "slug": "ihm-nursing-care-sdn-bhd-sunshine-home",
+    "state": "Selangor",
+    "area": "Petaling Jaya",
+    "phone": "03-77832196"
+  },
+  {
+    "title": "Moonleaf Medicare Centre",
+    "slug": "moonleaf-medicare-centre",
+    "state": "Selangor",
+    "area": "Petaling Jaya",
+    "phone": "012-9300233"
+  },
+  {
+    "title": "Evagayle Care Home",
+    "slug": "evagayle-care-home",
+    "state": "Selangor",
+    "area": "Petaling Jaya",
+    "phone": "03-79575872"
+  },
+  {
+    "title": "Stella Maris Home Plt Care Centre",
+    "slug": "stella-maris-home-plt-care-centre",
+    "state": "Selangor",
+    "area": "Petaling Jaya",
+    "phone": "03-79606070"
+  },
+  {
+    "title": "Than Hsiang Wan Ching Yuen (PJ)",
+    "slug": "than-hsiang-wan-ching-yuen-pj",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-77854143"
+  },
+  {
+    "title": "Corning Elderly Care Centre",
+    "slug": "corning-elderly-care-centre",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-77730986"
+  },
+  {
+    "title": "My Aged Care Sdn. Bhd",
+    "slug": "my-aged-care-sdn-bhd",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-79322638"
+  },
+  {
+    "title": "Summer Breeze Cottage Caring Home",
+    "slug": "summer-breeze-cottage-caring-home",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-7931 8077"
+  },
+  {
+    "title": "Golden Cares Nursing Home",
+    "slug": "golden-cares-nursing-home",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-7955 6525"
+  },
+  {
+    "title": "Star Nursing Home",
+    "slug": "star-nursing-home",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-7781 4660"
+  },
+  {
+    "title": "Cherish Retirement And Nursing Home",
+    "slug": "cherish-retirement-and-nursing-home",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-7773 2333"
+  },
+  {
+    "title": "MultiCare Nursing Home",
+    "slug": "multicare-nursing-home",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-79321621"
+  },
+  {
+    "title": "Pusat Jagaan Jivi",
+    "slug": "pusat-jagaan-jivi",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-7931 9497"
+  },
+  {
+    "title": "White Dove Retirement Nursing Home",
+    "slug": "white-dove-retirement-nursing-home",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-74994943"
+  },
+  {
+    "title": "Rumah Ozanam",
+    "slug": "rumah-ozanam",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-7781 9013"
+  },
+  {
+    "title": "Jasper Lodge Nursing Home PJ1",
+    "slug": "jasper-lodge-nursing-home-pj1",
+    "state": "Selangor",
+    "area": "Petaling Jaya",
+    "phone": "03-56260033"
+  },
+  {
+    "title": "Jasper Lodge Nursing Home PJ2",
+    "slug": "jasper-lodge-nursing-home-pj2",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-56260033"
+  },
+  {
+    "title": "Jasper Lodge Nursing Home PJ3",
+    "slug": "jasper-lodge-nursing-home-pj3",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-56260033"
+  },
+  {
+    "title": "Jasper Lodge Nursing Home PJ5",
+    "slug": "jasper-lodge-nursing-home-pj5",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-56260033"
+  },
+  {
+    "title": "Pusat Jagaan Rumah Kebajikan Warga Emas St Mark",
+    "slug": "pusat-jagaan-rumah-kebajikan-warga-emas-st-mark",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-61433234"
+  },
+  {
+    "title": "Nurses at Home",
+    "slug": "nurses-at-home",
+    "state": "Selangor",
+    "area": "Selangor",
+    "phone": "03-86017172"
+  }
+]
