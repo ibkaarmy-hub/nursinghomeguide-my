@@ -28,8 +28,8 @@ Migration to Next.js + Supabase + Vercel is deferred until data scale justifies 
 
 | Stage | Goal | Status |
 |-------|------|--------|
-| 01-data | Clean MY facility list | ✅ 406 rows in sheet (~346 live after `status` filtering) |
-| 02-enrich | Pricing, care types, photos, editorials | ✅ Editorials 100% (350/350); pricing + Details tab partial |
+| 01-data | Clean MY facility list | ✅ 406 rows in sheet (~350 live after `status` filtering) |
+| 02-enrich | Pricing, care types, photos, editorials | 🟡 Editorials 100%; Maps placeId 350/471; pricing + Details tab partial |
 | 03-content | Guide pages, area pages, BM translations | 🟡 In progress: 6 guides shipped; area pages next |
 | 04-design | All page templates | ✅ Shipped + landing page redesigned (2026-05-10) |
 | 05-build | Production stack migration | ⬜ Deferred |
@@ -59,11 +59,15 @@ Migration to Next.js + Supabase + Vercel is deferred until data scale justifies 
 - `status` column for visibility control (`unverified` / `removed` hidden automatically)
 - `data.js` — CSV fetcher + GROUPS registry (28 chain groups indexed)
 
-### SEO infrastructure (2026-05-03)
+### SEO infrastructure (2026-05-03, updated 2026-05-10)
 - Custom domain live (Namecheap → GitHub Pages, CNAME committed)
 - `sitemap.xml` (~383 URLs) submitted to Google Search Console
 - `robots.txt`
-- 349 per-facility static pages with baked-in OG / Twitter / canonical / LocalBusiness JSON-LD
+- **786 per-facility static pages** (758 NH + 16 AL + 6 HC + 6 DC) with baked-in OG / Twitter / canonical / LocalBusiness JSON-LD + hidden `display:none` data block for AI crawlers
+- **350/471 licensed facilities** have Google Maps `query_place_id` URLs in col T (batch run 2026-05-10 via Apify, ~$0.21)
+- **8 social accounts** discovered via free website scraping (`scrape_social_from_websites.py`)
+- JS category classifier (`facility.html`) and Python generator now aligned — nursing home takes precedence over day-care/AL
+- `generate_facility_pages.py` STATE_DIRS expanded to all 15 states (previously wiped state listing pages on regeneration)
 - Weekly remote agent regenerates static pages + sitemap (Mondays 09:00 KL)
 - Manage agent: https://claude.ai/code/routines
 
@@ -85,7 +89,9 @@ Migration to Next.js + Supabase + Vercel is deferred until data scale justifies 
 | Field | Coverage | Gap |
 |-------|----------|-----|
 | Editorial summary | 350 / 350 live | ✅ done |
-| Pricing (`shared_price`) | ~15 / 346 | Outreach needed |
+| Google Maps placeId URL | 350 / 471 licensed | 121 unmatched (wrong result or no listing) |
+| Social media (Facebook/Instagram) | 8 new found 2026-05-10 | More via nh-enrich on demand |
+| Pricing (`shared_price`) | ~15 / 350 | Outreach needed |
 | JKM licence number | low | Bulk-lookup pending |
 | Details tab content | partial | KL/Selangor pending |
 | Hidden facilities (`status=unverified`) | 56 | Verify or remove |
