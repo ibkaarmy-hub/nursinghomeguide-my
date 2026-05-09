@@ -284,7 +284,11 @@ def build_static_content(f, category):
         pass
 
     # ── Assemble HTML ─────────────────────────────────────────────────────
+    # Wrapped in a hidden div so users never see it (no flash before JS loads).
+    # display:none is ignored by HTML crawlers — GPTBot, ClaudeBot, Ahrefs, and
+    # Google's first-pass crawler all read this from raw HTML.
     s = []
+    s.append('<div id="facility-static-data" style="display:none" aria-hidden="true">')
     s.append('<div style="max-width:900px;margin:0 auto;padding:24px 20px;font-family:system-ui,sans-serif;color:#0f172a;line-height:1.65">')
 
     # breadcrumb
@@ -345,7 +349,8 @@ def build_static_content(f, category):
     if contact_rows:
         s.append(dl_section('Contact & location', contact_rows))
 
-    s.append('</div>')
+    s.append('</div>')  # inner max-width wrapper
+    s.append('</div>')  # #facility-static-data
     return '\n'.join(s)
 
 
@@ -395,9 +400,8 @@ def transform_template(template, page_title, desc, head_inserts, static_content=
         1)
     if static_content:
         out = out.replace(
-            '<div id="profileContent">\n  <div class="loading" style="padding:80px 20px">'
-            '<div class="spinner"></div><p style="margin-top:12px">Loading facility...</p></div>\n</div>',
-            f'<div id="profileContent">\n{static_content}\n</div>',
+            '<div id="profileContent">',
+            f'{static_content}\n<div id="profileContent">',
             1)
     return out
 
