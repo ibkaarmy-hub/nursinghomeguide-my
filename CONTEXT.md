@@ -14,9 +14,7 @@ Quick lookup for "where do I work on X?". For working rules and conventions, see
 
 ## Current focus (2026-05-10)
 
-**SEO crawler visibility ✅ done** — all facility data now readable by AI crawlers without JS.
-
-Next: **03-content — area guides + care-type guides**
+**03-content — area guides + care-type guides**
 
 - Area pages: PJ first, then JB / Cheras / Subang Jaya / Kajang
 - Pricing/subsidy guide pages — link magnets
@@ -29,9 +27,8 @@ Next: **03-content — area guides + care-type guides**
 |-------|--------|---------|
 | 01-data | ✅ Done | 406 rows in sheet; ~346 live after status filtering |
 | 02-enrich | ✅ Editorials done | 350/350 editorials; pricing + Details tab partial |
-| 03-content | 🟡 In progress | 2 guides shipped (`which-care`, `government-assistance`); area pages next |
-| 04-design | ✅ Done | All page templates shipped + 786 per-facility static pages |
-| 04-seo | ✅ Done (2026-05-10) | All 56 CSV fields in hidden static block; AI crawlers see full data |
+| 03-content | 🟡 In progress | 6 guides shipped; area pages next |
+| 04-design | ✅ Done | Landing page redesigned (care quiz + state dropdown); site-wide nav on all pages; sitemap.html |
 | 05-build | ⬜ Deferred | Stay on static HTML/GitHub Pages |
 
 ## Live facility counts (2026-05-03)

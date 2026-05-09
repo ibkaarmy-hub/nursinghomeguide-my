@@ -4,7 +4,7 @@ Malaysia's most comprehensive elder care directory. Covers nursing homes, assist
 
 **Live:** https://nursinghomeguide.my
 **Repo:** https://github.com/ibkaarmy-hub/nursinghomeguide-my
-**Phase:** 3 states live (Johor, KL, Selangor) → Penang, Perak next
+**Phase:** All 15 states live; content + outreach next
 
 ---
 
@@ -30,9 +30,8 @@ Migration to Next.js + Supabase + Vercel is deferred until data scale justifies 
 |-------|------|--------|
 | 01-data | Clean MY facility list | ✅ 406 rows in sheet (~346 live after `status` filtering) |
 | 02-enrich | Pricing, care types, photos, editorials | ✅ Editorials 100% (350/350); pricing + Details tab partial |
-| 03-content | Guide pages, area pages, BM translations | 🟡 In progress: `guides/which-care.html` + `guides/government-assistance.html` shipped; area pages next |
-| 04-design | All page templates | ✅ Shipped |
-| 04-seo | AI + crawler visibility for all facility data | ✅ Done (2026-05-10) |
+| 03-content | Guide pages, area pages, BM translations | 🟡 In progress: 6 guides shipped; area pages next |
+| 04-design | All page templates | ✅ Shipped + landing page redesigned (2026-05-10) |
 | 05-build | Production stack migration | ⬜ Deferred |
 
 ---
@@ -40,39 +39,33 @@ Migration to Next.js + Supabase + Vercel is deferred until data scale justifies 
 ## What's been built
 
 ### Pages
-- `index.html` — Malaysia state picker landing
-- `johor.html`, `kuala-lumpur.html`, `selangor.html` — state pages with filter, sort, list/map toggle
+- `index.html` — landing page with embedded 2-question care-type quiz + state dropdown + care type cards
+- `nursing-homes/<state>/index.html` — state listing pages (all 15 states)
+- `assisted-living/`, `day-care/`, `home-care/` — care category pages
 - `facility.html` (template) + per-facility static pages at `/facility/<slug>/index.html`
 - `org.html` — chain/group profile with all branch cards
-- `guides/which-care.html`, `guides/government-assistance.html` — first guide pages
+- `sitemap.html` — human-readable site map (added 2026-05-10)
+- `guides/which-care.html` — rebuilt 2-question triage guide (English only)
+- `guides/government-assistance.html`, `guides/how-to-choose-nursing-home.html`, `guides/nursing-home-cost-malaysia.html`, `guides/jkm-moh-licensing.html`, `guides/jkm-nursing-home-licence-malaysia.html`
+- `area/petaling-jaya/`, `area/johor-bahru/`, `area/cheras/`, `area/subang-jaya/` — area guides
 - `photo-manager.html` — admin tool
+
+### Navigation
+- Site-wide sticky nav on all 46 user-facing pages: logo + 6 links (Nursing Homes, Assisted Living, Day Care, Home Care, Guides, Site Map)
+- Mobile hamburger menu (≤768px) — collapses to full-width dropdown
 
 ### Data infrastructure
 - Two-tab Google Sheet: Facilities (gid=292378871) + Details (gid=1104748854)
 - `status` column for visibility control (`unverified` / `removed` hidden automatically)
 - `data.js` — CSV fetcher + GROUPS registry (28 chain groups indexed)
 
-### SEO infrastructure (updated 2026-05-10)
+### SEO infrastructure (2026-05-03)
 - Custom domain live (Namecheap → GitHub Pages, CNAME committed)
 - `sitemap.xml` (~383 URLs) submitted to Google Search Console
 - `robots.txt`
-- **786 per-facility static pages** with baked-in OG / Twitter / canonical / LocalBusiness JSON-LD
-  - Canonical pages under `/nursing-homes/`, `/assisted-living/`, `/home-care/`, `/day-care/`
-  - Legacy `/facility/<slug>/` pages are meta-refresh redirect stubs (noindex)
-- **AI crawler visibility (2026-05-10):** Every static page contains a `<div id="facility-static-data" style="display:none">` injected before `#profileContent` with all 56 CSV fields rendered as plain HTML — editorial, pricing, care capabilities, medical services, contact, operational info. GPTBot, ClaudeBot, PerplexityBot, and Ahrefs first-pass crawl read this without executing JS. The hidden div is invisible to users (no flash); JS replaces only `#profileContent` and never touches the static data block.
+- 349 per-facility static pages with baked-in OG / Twitter / canonical / LocalBusiness JSON-LD
 - Weekly remote agent regenerates static pages + sitemap (Mondays 09:00 KL)
 - Manage agent: https://claude.ai/code/routines
-
-### Ahrefs SEO audit findings (2026-05-10)
-Audit run via Ahrefs Site Audit. Key issues identified and their status:
-
-| Issue | Root cause | Status |
-|-------|-----------|--------|
-| 353 pages missing H1 | All facility data was JS-rendered; raw HTML had no H1 | ✅ Fixed — `build_static_content()` injects H1 in hidden static block |
-| Editorial not crawlable | Editorial text fetched from Google Sheets at runtime via JS | ✅ Fixed — editorial now in hidden static block |
-| All facility data JS-rendered | `#profileContent` populated by JS; AI crawlers saw blank page | ✅ Fixed — all 56 CSV fields in hidden static block |
-| `/nursing-homes/` category pages noindex | State listing pages had noindex (legacy) | Investigate separately |
-| `org.html` uses query params | `org.html?slug=X` not crawlable with clean URLs | Deferred |
 
 ---
 
@@ -108,14 +101,17 @@ Audit run via Ahrefs Site Audit. Key issues identified and their status:
 4. Pricing & subsidy guides — link magnets for journalists / NGOs / social workers.
 5. BM translations of Tier 1 content (`panduan-pilih-pusat-jagaan.html` etc.)
 
+### Design / UX
+6. Add nav to auto-generated per-facility static pages (`generate_facility_pages.py` already updated via `_template_state.html`; re-run weekly agent or trigger manually).
+
 ### Data
-6. Pricing outreach — call/email facilities with blank pricing.
-7. JKM licence bulk lookup from public register.
-8. Verify or remove the 56 hidden facilities.
-9. Photo CDN migration — Google `lh3.googleusercontent.com` URLs are not stable long-term; mirror to Supabase Storage or Vercel Blob before scaling.
+7. Pricing outreach — call/email facilities with blank pricing.
+8. JKM licence bulk lookup from public register.
+9. Verify or remove the 56 hidden facilities.
+10. Photo CDN migration — Google `lh3.googleusercontent.com` URLs are not stable long-term; mirror to Supabase Storage or Vercel Blob before scaling.
 
 ### Reach
-10. Penang, Perak state expansion (data + pages).
+11. Penang, Perak state content expansion.
 
 ---
 
