@@ -4,6 +4,7 @@ External research that informs content strategy. Update these when you do new re
 
 | File | What's in it |
 |------|--------------|
+| [keywords.md](keywords.md) | EN + BM keyword/FAQ inventory by condition (nursing home, dementia, stroke, Parkinson's, general elderly care) with intent tags and sources — 2026-05-09 |
 | [market-demand.md](market-demand.md) | Malaysia ageing demographics, supply growth, projections |
 | [user-questions.md](user-questions.md) | What real Malaysian families ask before choosing — from forums |
 | [competitors.md](competitors.md) | Other Malaysian eldercare sites + their content angle and gaps |

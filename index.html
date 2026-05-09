@@ -28,8 +28,18 @@
 
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="logo">NursingHome<span>Guide.my</span></a>
-
+    <a href="/index.html" class="logo">NursingHome<span>Guide.my</span></a>
+    <button class="nav-hamburger" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/nursing-homes/selangor/" class="nav-link">Nursing Homes</a></li>
+      <li><a href="/assisted-living/" class="nav-link">Assisted Living</a></li>
+      <li><a href="/day-care/" class="nav-link">Day Care</a></li>
+      <li><a href="/home-care/" class="nav-link">Home Care</a></li>
+      <li><a href="/guides/which-care.html" class="nav-link">Guides</a></li>
+      <li><a href="/sitemap.html" class="nav-link nav-link-sitemap">Site Map</a></li>
+    </ul>
   </div>
 </nav>
 
@@ -37,10 +47,64 @@
 <section class="hero hero-home">
   <div class="hero-home-content">
     <div class="hero-eyebrow">🇲🇾 Malaysia's Most Comprehensive Eldercare Guide</div>
-    <h1>Find the Right Care<br/>for Your Family</h1>
-    <p>Nursing homes, assisted living, day care, and home care — all in one place. Detailed profiles to help families make the most important decision of their lives.</p>
+    <h1>Find the Right Care<br/>for Your Loved One</h1>
 
-    <!-- Care-type tabs + location autocomplete -->
+    <!-- Embedded 2-question quiz -->
+    <div class="hero-quiz" id="heroQuiz">
+
+      <!-- Q1: Where should care happen? -->
+      <div class="hq-step active" id="hq1">
+        <div class="hq-q-text">Where do you want care to happen?</div>
+        <div class="hq-options">
+          <button class="hq-option" onclick="hqAnswer(1,'A')">
+            <span class="hq-opt-icon">🏡</span>
+            <span class="hq-opt-body"><strong>At home — a carer comes to us</strong><span>A caregiver visits or lives in. Your loved one stays at home with family nearby.</span></span>
+          </button>
+          <button class="hq-option" onclick="hqAnswer(1,'B')">
+            <span class="hq-opt-icon">☀️</span>
+            <span class="hq-opt-body"><strong>Daytime only — back home each evening</strong><span>A day centre provides supervision and meals during work hours.</span></span>
+          </button>
+          <button class="hq-option" onclick="hqAnswer(1,'C')">
+            <span class="hq-opt-icon">🏘️</span>
+            <span class="hq-opt-body"><strong>Full-time residential — they move in</strong><span>24-hour care and support on-site. Home is no longer workable.</span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Q2: ADL level — residential path only -->
+      <div class="hq-step" id="hq2">
+        <div class="hq-explainer">
+          <div class="hq-explainer-grid">
+            <div><strong>🏘️ Assisted Living</strong>Still largely independent — needs company, meals, and light support nearby.</div>
+            <div><strong>🏥 Nursing Home</strong>Needs help with bathing, dressing, eating, or has ongoing medical needs.</div>
+          </div>
+        </div>
+        <div class="hq-q-text">How much daily help do they need?</div>
+        <div class="hq-options">
+          <button class="hq-option" onclick="hqAnswer(2,'A')">
+            <span class="hq-opt-icon">💪</span>
+            <span class="hq-opt-body"><strong>Mostly independent</strong><span>Can bathe, dress, and eat on their own.</span></span>
+          </button>
+          <button class="hq-option" onclick="hqAnswer(2,'B')">
+            <span class="hq-opt-icon">🤝</span>
+            <span class="hq-opt-body"><strong>Needs help with daily tasks</strong><span>Needs hands-on help with bathing, dressing, eating, or has medical needs.</span></span>
+          </button>
+        </div>
+        <button class="hq-back" onclick="hqBack()">← Back</button>
+      </div>
+
+      <!-- Result -->
+      <div class="hq-step" id="hqResult">
+        <div id="hqResultInner"></div>
+        <button class="hq-back" onclick="hqRestart()" style="margin-top:10px;">← Start again</button>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="hero-or-divider">or, if you already know what you need</div>
+
+    <!-- Secondary path: care type tabs + state dropdown -->
     <div class="hero-finder">
       <div class="hero-tabs" role="tablist" aria-label="Care type">
         <button class="hero-tab active" data-cat="nursing-homes" role="tab" aria-selected="true">Nursing Home</button>
@@ -49,71 +113,66 @@
         <button class="hero-tab" data-cat="day-care" role="tab" aria-selected="false">Day Care</button>
       </div>
       <form class="hero-search" onsubmit="event.preventDefault(); doFinderSearch();">
-        <input type="text" id="heroSearch" list="hero-locations" placeholder="Where? Johor, KL, Selangor, or area name…" autocomplete="off" />
-        <datalist id="hero-locations"></datalist>
-        <button type="submit">Find homes →</button>
+        <select id="heroState">
+          <option value="">Select a state…</option>
+          <option value="selangor">Selangor</option>
+          <option value="kuala-lumpur">Kuala Lumpur</option>
+          <option value="johor">Johor</option>
+          <option value="perak">Perak</option>
+          <option value="penang">Penang</option>
+          <option value="negeri-sembilan">Negeri Sembilan</option>
+          <option value="pahang">Pahang</option>
+          <option value="kedah">Kedah</option>
+          <option value="melaka">Melaka</option>
+          <option value="sabah">Sabah</option>
+          <option value="sarawak">Sarawak</option>
+          <option value="terengganu">Terengganu</option>
+          <option value="kelantan">Kelantan</option>
+          <option value="perlis">Perlis</option>
+          <option value="labuan">Labuan</option>
+        </select>
+        <button type="submit">Search →</button>
       </form>
-      <div class="hero-finder-help">
-        Not sure which type of care you need? <a href="/guides/which-care.html">Take the 2-minute care guide →</a>
-      </div>
     </div>
 
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">786+</div><div class="label">Verified Facilities</div></div>
-      <div class="hero-stat"><div class="num">16</div><div class="label">States &amp; FT Covered</div></div>
-      <div class="hero-stat"><div class="num">Free</div><div class="label">No Sign-Up Required</div></div>
+      <div class="hero-stat"><div class="num">16</div><div class="label">States Covered</div></div>
+      <div class="hero-stat"><div class="num">Free</div><div class="label">No Sign-Up</div></div>
     </div>
   </div>
 </section>
 
-<!-- Care category picker -->
-<div class="section">
+
+
+<!-- Care type cards -->
+<div class="section" id="by-care-type">
   <div class="section-title">Browse by Care Type</div>
-  <div class="section-sub">Different decisions, different criteria. Pick the care category that matches your family's situation.</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-bottom:48px">
-    <a href="#by-state" style="display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='var(--shadow-hover)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
-      <div style="background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);padding:22px 24px;color:#fff">
-        <div style="font-size:2rem;margin-bottom:8px">🏥</div>
-        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.85">Higher acuity care</div>
-        <div style="font-size:1.15rem;font-weight:700;line-height:1.3;margin-top:4px">Nursing Homes</div>
-      </div>
-      <div style="padding:16px 20px 18px;flex:1">
-        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px">For parents who need nurses around the clock — medical supervision, wound care, tube feeding.</p>
-        <span style="font-size:.85rem;font-weight:600;color:var(--primary)">Browse nursing homes ↓</span>
-      </div>
+  <div class="section-sub">Not sure what you need? Start with our 2-question quiz above, or jump straight to a category.</div>
+  <div class="care-type-grid">
+    <a href="/nursing-homes/" class="care-type-card">
+      <div class="ctc-icon">🏥</div>
+      <div class="ctc-name">Nursing Home</div>
+      <div class="ctc-desc">24-hour care for seniors who need daily help with bathing, dressing, eating, or medical management.</div>
+      <div class="ctc-cta">Browse Nursing Homes →</div>
     </a>
-    <a href="/assisted-living/" style="display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='var(--shadow-hover)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
-      <div style="background:linear-gradient(135deg,#14532d 0%,#16a34a 100%);padding:22px 24px;color:#fff">
-        <div style="font-size:2rem;margin-bottom:8px">🌿</div>
-        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.85">Independent &amp; lifestyle-led</div>
-        <div style="font-size:1.15rem;font-weight:700;line-height:1.3;margin-top:4px">Assisted Living</div>
-      </div>
-      <div style="padding:16px 20px 18px;flex:1">
-        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px">For parents who can manage most things alone but want support and company nearby.</p>
-        <span style="font-size:.85rem;font-weight:600;color:#16a34a">Browse assisted living →</span>
-      </div>
+    <a href="/assisted-living/" class="care-type-card">
+      <div class="ctc-icon">🏘️</div>
+      <div class="ctc-name">Assisted Living</div>
+      <div class="ctc-desc">Residential facilities for seniors who are largely independent but want meals, company, and light support nearby.</div>
+      <div class="ctc-cta">Browse Assisted Living →</div>
     </a>
-    <a href="/home-care/" style="display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='var(--shadow-hover)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
-      <div style="background:linear-gradient(135deg,#7c2d12 0%,#d97706 100%);padding:22px 24px;color:#fff">
-        <div style="font-size:2rem;margin-bottom:8px">🏡</div>
-        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.85">Care comes to you</div>
-        <div style="font-size:1.15rem;font-weight:700;line-height:1.3;margin-top:4px">Home Care</div>
-      </div>
-      <div style="padding:16px 20px 18px;flex:1">
-        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px">A trained carer comes to your home — bathing, meals, medication reminders, companionship.</p>
-        <span style="font-size:.85rem;font-weight:600;color:#d97706">Browse home care →</span>
-      </div>
+    <a href="/day-care/" class="care-type-card">
+      <div class="ctc-icon">☀️</div>
+      <div class="ctc-name">Day Care Centre</div>
+      <div class="ctc-desc">Daytime programmes — meals, activities, therapy — while family caregivers are at work. Home each evening.</div>
+      <div class="ctc-cta">Browse Day Care →</div>
     </a>
-    <a href="/day-care/" style="display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='var(--shadow-hover)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow)'">
-      <div style="background:linear-gradient(135deg,#581c87 0%,#7c3aed 100%);padding:22px 24px;color:#fff">
-        <div style="font-size:2rem;margin-bottom:8px">☀️</div>
-        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.85">Daytime supervision</div>
-        <div style="font-size:1.15rem;font-weight:700;line-height:1.3;margin-top:4px">Day Care</div>
-      </div>
-      <div style="padding:16px 20px 18px;flex:1">
-        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px">Drop off in the morning, pick up in the evening — activities, meals, and supervision during the day.</p>
-        <span style="font-size:.85rem;font-weight:600;color:#7c3aed">Browse day care →</span>
-      </div>
+    <a href="/home-care/" class="care-type-card">
+      <div class="ctc-icon">🏡</div>
+      <div class="ctc-name">Home Care</div>
+      <div class="ctc-desc">A trained carer comes to your home. Your loved one stays in familiar surroundings with family close by.</div>
+      <div class="ctc-cta">Browse Home Care →</div>
     </a>
   </div>
 </div>
@@ -426,7 +485,7 @@
 
 <script src="data.js?v=3"></script>
 <script>
-// ── Hero finder: care-type tabs + location autocomplete ─────────
+// ── Hero finder: care-type tabs ──────────────────────────────────
 let heroCat = 'nursing-homes';
 
 document.querySelectorAll('.hero-tab').forEach(tab => {
@@ -441,93 +500,125 @@ document.querySelectorAll('.hero-tab').forEach(tab => {
   });
 });
 
-// State name → URL slug. Keeps "selangor" / "kuala-lumpur" / "johor" canonical.
-const STATE_TO_SLUG = {
-  'selangor': 'selangor',
-  'kuala lumpur': 'kuala-lumpur',
-  'kl': 'kuala-lumpur',
-  'johor': 'johor',
-  'johor bahru': 'johor',
-  'jb': 'johor',
-  'perak': 'perak',
-  'ipoh': 'perak',
-  'penang': 'penang',
-  'pulau pinang': 'penang',
-  'george town': 'penang',
-  'negeri sembilan': 'negeri-sembilan',
-  'n. sembilan': 'negeri-sembilan',
-  'seremban': 'negeri-sembilan',
-  'pahang': 'pahang',
-  'kuantan': 'pahang',
-  'kedah': 'kedah',
-  'alor setar': 'kedah',
-  'melaka': 'melaka',
-  'malacca': 'melaka',
-  'sabah': 'sabah',
-  'kota kinabalu': 'sabah',
-  'sarawak': 'sarawak',
-  'kuching': 'sarawak',
-  'terengganu': 'terengganu',
-  'kuala terengganu': 'terengganu',
-  'kelantan': 'kelantan',
-  'kota bharu': 'kelantan',
-  'perlis': 'perlis',
-  'kangar': 'perlis',
-  'labuan': 'labuan',
-};
-
-function detectStateFromQuery(q) {
-  const lc = q.toLowerCase().trim();
-  if (STATE_TO_SLUG[lc]) return {state: STATE_TO_SLUG[lc], remainder: ''};
-  // Match a state token inside the query and treat the rest as area-search
-  for (const [k, v] of Object.entries(STATE_TO_SLUG)) {
-    if (lc.includes(k)) return {state: v, remainder: q};
-  }
-  return null;
-}
-
 function doFinderSearch() {
-  const q = document.getElementById('heroSearch').value.trim();
+  const state = document.getElementById('heroState').value;
   const isNational = (heroCat === 'home-care' || heroCat === 'day-care');
 
   if (isNational) {
-    // /home-care/ and /day-care/ are single national directories
-    window.location.href = q ? `/${heroCat}/?q=${encodeURIComponent(q)}` : `/${heroCat}/`;
+    window.location.href = `/${heroCat}/`;
     return;
   }
 
-  // /nursing-homes/ and /assisted-living/ need a state segment
-  if (!q) {
-    // No location — drop them on the category landing (NH = home /, AL = /assisted-living/)
+  if (state) {
+    window.location.href = `/${heroCat}/${state}/`;
+  } else {
     window.location.href = heroCat === 'assisted-living' ? '/assisted-living/' : '/#by-state';
-    return;
   }
-
-  const detected = detectStateFromQuery(q);
-  if (detected) {
-    const url = `/${heroCat}/${detected.state}/`;
-    window.location.href = detected.remainder ? `${url}?q=${encodeURIComponent(detected.remainder)}` : url;
-    return;
-  }
-
-  // No state match — search inside Selangor by default (largest catalogue) and
-  // pass the query so the area pill / search box surfaces relevant matches.
-  window.location.href = `/${heroCat}/selangor/?q=${encodeURIComponent(q)}`;
 }
 
-// Populate location autocomplete from live data — states + unique areas.
-// Filter out junk address fragments (digits, slashes, very short).
-loadFacilities().then(data => {
-  const dl = document.getElementById('hero-locations');
-  const set = new Set(['Johor', 'Kuala Lumpur', 'Selangor']);
-  data.forEach(f => {
-    const a = (f.area || '').trim();
-    if (!a || a.length < 4) return;
-    if (/^[0-9]/.test(a) || /[\/\\]/.test(a) || /\d{2,}/.test(a)) return;
-    set.add(a);
-  });
-  const opts = [...set].sort().map(v => `<option value="${v}">`).join('');
-  dl.innerHTML = opts;
-});</script>
+// ── Landing page care-type quiz ──────────────────────────────────
+const HQ_RESULTS = {
+  homecare: {
+    cls: 'hq-homecare',
+    icon: '🏡',
+    label: 'Home Care',
+    title: 'A carer visits your home',
+    desc: 'Your loved one stays in their own home. A trained carer visits for a few hours each day — helping with bathing, meals, medication, and companionship. Most flexible and least disruptive option.',
+    pills: [
+      { href: '/home-care/', text: 'Browse Home Care providers' },
+      { href: '/guides/which-care.html', text: 'Learn more about Home Care' },
+    ],
+  },
+  daycare: {
+    cls: 'hq-daycare',
+    icon: '☀️',
+    label: 'Day Care Centre',
+    title: 'Daytime activities, home at night',
+    desc: 'Your loved one attends a centre during the day — meals, activities, therapy, and social time — then comes home each evening. Great for family caregivers who work daytime hours.',
+    pills: [
+      { href: '/day-care/', text: 'Browse Day Care centres' },
+      { href: '/guides/which-care.html', text: 'Learn more about Day Care' },
+    ],
+  },
+  assisted: {
+    cls: 'hq-assisted',
+    icon: '🏘️',
+    label: 'Assisted Living',
+    title: 'Independent living with light support',
+    desc: 'Your loved one moves into a residential facility but remains largely independent. Staff are on hand for light assistance — meals, housekeeping, medication reminders — but residents manage their own daily routines.',
+    pills: [
+      { href: '/assisted-living/', text: 'Browse Assisted Living facilities' },
+      { href: '/guides/which-care.html', text: 'Assisted Living vs Nursing Home' },
+    ],
+  },
+  nursing: {
+    cls: 'hq-nursing',
+    icon: '🏥',
+    label: 'Nursing Home',
+    title: 'Full-time care with medical support',
+    desc: 'Your loved one needs hands-on help with bathing, dressing, eating, or moving around. Nursing homes provide 24-hour care staff, regular doctor visits, and medical management on-site.',
+    pills: [
+      { href: '/#by-state', text: 'Browse Nursing Homes by state' },
+      { href: '/guides/which-care.html', text: 'Nursing Home vs Assisted Living' },
+    ],
+  },
+};
+
+function hqAnswer(step, answer) {
+  if (step === 1) {
+    if (answer === 'A') return hqShow('homecare');
+    if (answer === 'B') return hqShow('daycare');
+    // C = residential — ask Q2
+    document.getElementById('hq1').classList.remove('active');
+    document.getElementById('hq2').classList.add('active');
+    return;
+  }
+  if (step === 2) {
+    hqShow(answer === 'A' ? 'assisted' : 'nursing');
+  }
+}
+
+function hqShow(type) {
+  const r = HQ_RESULTS[type];
+  const pillsHtml = r.pills.map(p =>
+    `<a class="hq-result-pill" href="${p.href}">${p.text}</a>`
+  ).join('');
+  document.getElementById('hqResultInner').innerHTML = `
+    <div class="hq-result-card ${r.cls}">
+      <div class="hq-result-label">${r.icon} ${r.label}</div>
+      <div class="hq-result-title">${r.title}</div>
+      <div class="hq-result-desc">${r.desc}</div>
+      <div class="hq-result-pills">${pillsHtml}</div>
+    </div>`;
+  document.getElementById('hq1').classList.remove('active');
+  document.getElementById('hq2').classList.remove('active');
+  document.getElementById('hqResult').classList.add('active');
+}
+
+function hqBack() {
+  document.getElementById('hq2').classList.remove('active');
+  document.getElementById('hq1').classList.add('active');
+}
+
+function hqRestart() {
+  document.getElementById('hqResult').classList.remove('active');
+  document.getElementById('hq2').classList.remove('active');
+  document.getElementById('hq1').classList.add('active');
+}
+
+// ── Mobile nav hamburger ─────────────────────────────────────────
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('nav')) {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+</script>
 </body>
 </html>
