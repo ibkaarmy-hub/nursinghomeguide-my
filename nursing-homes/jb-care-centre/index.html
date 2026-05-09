@@ -78,7 +78,7 @@
 @media (max-width: 768px) { .summary-card { grid-template-columns: 1fr 1fr; gap: 16px; padding: 18px; } }
 @media (max-width: 400px) { .summary-card { grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; } .summary-item .value { font-size: .92rem; } }
 
-.tabs-nav { background: white; border-bottom: 1px solid var(--border, #e2e8f0); position: sticky; top: 56px; z-index: 40; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.tabs-nav { background: white; border-bottom: 1px solid var(--border, #e2e8f0); position: sticky; top: 56px; z-index: 40; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; scroll-margin-top: 56px; }
 .tabs-nav::-webkit-scrollbar { display: none; }
 .tabs-nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 16px; display: flex; gap: 0; }
 .tab-btn { background: none; border: none; padding: 14px 14px; cursor: pointer; font: inherit; font-size: .88rem; font-weight: 500; color: var(--text-muted, #64748b); white-space: nowrap; border-bottom: 3px solid transparent; transition: all .15s; }
@@ -352,15 +352,11 @@ function showTab(id) {
   const panel = document.getElementById('tab-' + id);
   if (panel) panel.classList.add('active');
   document.querySelector(`[data-tab="${id}"]`)?.classList.add('active');
-  // Scroll so the tabs nav sits just below the fixed site header (60px).
-  // .profile-page-body immediately follows .tabs-nav in the DOM and is never sticky,
-  // so its getBoundingClientRect() always reflects the live document position.
-  const nav  = document.querySelector('.tabs-nav');
-  const body = document.querySelector('.profile-page-body');
-  if (nav && body) {
-    const bodyDocTop = body.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: bodyDocTop - nav.offsetHeight - 60, behavior: 'smooth' });
-  }
+  // scrollIntoView uses the element's layout box (not its sticky visual position),
+  // so it correctly scrolls up when the user is below the nav.
+  // scroll-margin-top: 56px on .tabs-nav keeps it clear of the fixed site header.
+  const nav = document.querySelector('.tabs-nav');
+  if (nav) nav.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 /* ── SEO: canonical URL, OG/Twitter meta, LocalBusiness JSON-LD ── */
