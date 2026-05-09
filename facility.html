@@ -320,15 +320,21 @@ function buildCarousel(photos) {
 }
 
 /* ── Tabs ───────────────────────────────────────────── */
-var _tabNavTop = 0; // captured at render time before user scrolls / before sticky kicks in
-
 function showTab(id) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   const panel = document.getElementById('tab-' + id);
   if (panel) panel.classList.add('active');
   document.querySelector(`[data-tab="${id}"]`)?.classList.add('active');
-  if (_tabNavTop) window.scrollTo({ top: _tabNavTop - 60, behavior: 'smooth' });
+  // Scroll so the tabs nav sits just below the fixed site header (60px).
+  // .profile-page-body immediately follows .tabs-nav in the DOM and is never sticky,
+  // so its getBoundingClientRect() always reflects the live document position.
+  const nav  = document.querySelector('.tabs-nav');
+  const body = document.querySelector('.profile-page-body');
+  if (nav && body) {
+    const bodyDocTop = body.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: bodyDocTop - nav.offsetHeight - 60, behavior: 'smooth' });
+  }
 }
 
 /* ── SEO: canonical URL, OG/Twitter meta, LocalBusiness JSON-LD ── */
@@ -856,10 +862,6 @@ function render(f) {
   });
 
   /* (Hero carousel removed in favour of Booking.com-style gallery in Overview tab.) */
-
-  /* Capture nav's natural document position now, before user scrolls and sticky kicks in */
-  const _nav = document.querySelector('.tabs-nav');
-  if (_nav) _tabNavTop = _nav.getBoundingClientRect().top + window.scrollY;
 }
 
 /* ── Boot ───────────────────────────────────────────── */
