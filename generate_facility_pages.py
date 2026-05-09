@@ -394,10 +394,11 @@ def transform_template(template, page_title, desc, head_inserts, static_content=
         '<meta charset="UTF-8" />\n' + head_inserts,
         1)
     if static_content:
-        out = re.sub(
-            r'(<div id="profileContent">).*?(</div>)',
-            lambda m: m.group(1) + '\n' + static_content + '\n' + m.group(2),
-            out, count=1, flags=re.DOTALL)
+        out = out.replace(
+            '<div id="profileContent">\n  <div class="loading" style="padding:80px 20px">'
+            '<div class="spinner"></div><p style="margin-top:12px">Loading facility...</p></div>\n</div>',
+            f'<div id="profileContent">\n{static_content}\n</div>',
+            1)
     return out
 
 
