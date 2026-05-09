@@ -60,12 +60,6 @@
       tip: 'Confirmed halal food preparation.',
       isConfirmed: f => isYes(f.halal),
     },
-    {
-      key: 'wheelchair',
-      label: 'Wheelchair accessible',
-      tip: 'Confirmed wheelchair-friendly throughout.',
-      isConfirmed: f => isYes(f.wheelchair),
-    },
   ];
 
   // Hybrid need-based search — required badges (all must be Confirmed)
@@ -124,15 +118,19 @@
       return `<div class="${cls}" title="${escapeHtml(b.tip)}"><span class="cap-icon">${icon}</span>${escapeHtml(b.label)}</div>`;
     }).join('');
 
+    const confirmedServices = SERVICE_BADGES.filter(b => b.isConfirmed(f));
+    const serviceBlock = confirmedServices.length ? `
+      <div class="badge-block">
+        <div class="badge-block-head">Service &amp; logistics</div>
+        <div class="badge-grid">${confirmedServices.map(b => `<div class="cap-badge ok" title="${escapeHtml(b.tip)}"><span class="cap-icon">✓</span>${escapeHtml(b.label)}</div>`).join('')}</div>
+      </div>` : '';
+
     return `
       <div class="badge-block">
         <div class="badge-block-head">Clinical capability</div>
         <div class="badge-grid">${renderRow(CLINICAL_BADGES)}</div>
       </div>
-      <div class="badge-block">
-        <div class="badge-block-head">Service &amp; logistics</div>
-        <div class="badge-grid">${renderRow(SERVICE_BADGES)}</div>
-      </div>`;
+      ${serviceBlock}`;
   }
 
   // ── Hybrid need-based search ─────────────────────────────────────────
