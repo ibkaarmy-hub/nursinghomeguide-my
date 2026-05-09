@@ -63,7 +63,7 @@ Admin: `state` (Johor / Kuala Lumpur / Selangor), `status` (blank=live, unverifi
 - **Never invent facility data.** Only publish what is verified from a source.
 - **Don't fabricate pricing.** Show "Call for pricing" when unknown — that's honest and acceptable.
 - The Google Sheet is the single source of truth. Edits go there, not in code.
-- All user-facing content must eventually exist in EN + BM.
+- All user-facing content must eventually exist in EN + BM. **Exception: the landing page triage flow (`index.html` hero + condition strip) and `guides/which-care.html` are English-only.** Do not add Malay text to these pages.
 - Don't mock the site against fake data — fetch the live CSV.
 - Push directly to `main` — no PR flow. GitHub Pages auto-deploys.
 
