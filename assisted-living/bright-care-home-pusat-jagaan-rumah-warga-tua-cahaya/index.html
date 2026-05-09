@@ -439,9 +439,9 @@ function render(f) {
   document.getElementById('pageDesc').content = metaDesc;
 
   const careStr = (f.care_types || '').toLowerCase();
-  const catDir = careStr.includes('assisted living') ? 'assisted-living'
-               : careStr.includes('home care')       ? 'home-care'
-               : careStr.includes('day care')        ? 'day-care'
+  const catDir = (careStr.includes('assisted living') && !careStr.includes('nursing home')) ? 'assisted-living'
+               : (careStr.includes('home care') && !careStr.includes('nursing home'))       ? 'home-care'
+               : (careStr.includes('day care') && !careStr.includes('nursing home'))        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
@@ -460,13 +460,14 @@ function render(f) {
     ? `<span>⭐ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} Google reviews)</span>` : '';
 
   /* Summary tiles */
+  const isDayCare = catDir === 'day-care';
   const priceVal = f.shared_price || f.private_price || f.pricing_display || 'Not published';
   const priceUnknown = !f.shared_price && !f.private_price && (!f.pricing_display || isUnknownText(f.pricing_display));
   const summaryTiles = `
     <div class="summary-item">
-      <div class="label">Monthly Fees</div>
+      <div class="label">${isDayCare ? 'Daily Rate' : 'Monthly Fees'}</div>
       <div class="value${priceUnknown ? ' unknown' : ''}">${escapeHtml(priceVal || 'Not published')}</div>
-      <div class="sub">${priceUnknown ? 'Call to enquire' : '/ month'}</div>
+      <div class="sub">${priceUnknown ? 'Call to enquire' : isDayCare ? '/ day' : '/ month'}</div>
     </div>
     <div class="summary-item">
       <div class="label">Google Rating</div>
@@ -553,11 +554,12 @@ function render(f) {
     ? `<div class="editor-note"><div class="editorial-label">📋 About</div>${renderEditorial(f.editorial_summary)}</div>` : '';
 
   /* PRICING tab */
+  const priceUnit = isDayCare ? '/day' : '/mo';
   const pricingRows = [
-    f.shared_price    ? `<tr><td>Shared Room</td><td class="price-cell">${escapeHtml(f.shared_price)}<span class="per-month">/mo</span></td></tr>` : '',
-    f.four_bed_price  ? `<tr><td>4-Bed Room</td><td class="price-cell">${escapeHtml(f.four_bed_price)}<span class="per-month">/mo</span></td></tr>` : '',
-    f.dorm_price      ? `<tr><td>Open Ward / Dorm</td><td class="price-cell">${escapeHtml(f.dorm_price)}<span class="per-month">/mo</span></td></tr>` : '',
-    f.private_price   ? `<tr><td>Private Room</td><td class="price-cell">${escapeHtml(f.private_price)}<span class="per-month">/mo</span></td></tr>` : '',
+    f.shared_price    ? `<tr><td>Shared Room</td><td class="price-cell">${escapeHtml(f.shared_price)}<span class="per-month">${priceUnit}</span></td></tr>` : '',
+    f.four_bed_price  ? `<tr><td>4-Bed Room</td><td class="price-cell">${escapeHtml(f.four_bed_price)}<span class="per-month">${priceUnit}</span></td></tr>` : '',
+    f.dorm_price      ? `<tr><td>Open Ward / Dorm</td><td class="price-cell">${escapeHtml(f.dorm_price)}<span class="per-month">${priceUnit}</span></td></tr>` : '',
+    f.private_price   ? `<tr><td>Private Room</td><td class="price-cell">${escapeHtml(f.private_price)}<span class="per-month">${priceUnit}</span></td></tr>` : '',
   ].filter(Boolean).join('');
   const hasPricing = !!pricingRows;
 
@@ -770,8 +772,8 @@ function render(f) {
 
         <div class="tab-panel" id="tab-pricing">
           <div class="profile-card">
-            <h2>Monthly Fees</h2>
-            ${hasPricing ? `<table class="price-table"><thead><tr><th>Room Type</th><th>Monthly Fee</th></tr></thead><tbody>${pricingRows}</tbody></table>`
+            <h2>${isDayCare ? 'Daily Rates' : 'Monthly Fees'}</h2>
+            ${hasPricing ? `<table class="price-table"><thead><tr><th>Room Type</th><th>${isDayCare ? 'Daily Rate' : 'Monthly Fee'}</th></tr></thead><tbody>${pricingRows}</tbody></table>`
                           : `<div class="price-band unknown"><div class="price-band-label">Pricing not yet published</div><div class="price-band-note">Contact this facility directly to get current rates.</div></div>`}
             ${includedExtras ? '<h3 style="margin-top:18px">What\'s included vs additional cost</h3>' + includedExtras : ''}
             <div class="warning-box"><strong>⚠️ Always confirm in writing.</strong> Ask for an itemised quote that names the room type, included services, monthly extras (diapers, meds, supplements), deposit, payment frequency, and refund policy. Get it on letterhead before deposit.</div>

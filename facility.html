@@ -425,9 +425,9 @@ function render(f) {
   document.getElementById('pageDesc').content = metaDesc;
 
   const careStr = (f.care_types || '').toLowerCase();
-  const catDir = careStr.includes('assisted living') ? 'assisted-living'
-               : careStr.includes('home care')       ? 'home-care'
-               : careStr.includes('day care')        ? 'day-care'
+  const catDir = (careStr.includes('assisted living') && !careStr.includes('nursing home')) ? 'assisted-living'
+               : (careStr.includes('home care') && !careStr.includes('nursing home'))       ? 'home-care'
+               : (careStr.includes('day care') && !careStr.includes('nursing home'))        ? 'day-care'
                : 'nursing-homes';
   const canonicalUrl = `${CANONICAL_BASE}/${catDir}/${encodeURIComponent(f.slug || '')}/`;
   setCanonical(canonicalUrl);
