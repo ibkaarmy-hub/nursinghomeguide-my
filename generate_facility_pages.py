@@ -147,6 +147,208 @@ def html_escape(s):
             .replace("'", "&#39;"))
 
 
+def yn_label(v):
+    """Convert yes/no column value to human-readable text, or None if unknown."""
+    if not v:
+        return None
+    s = v.strip().lower()
+    if s in ('yes', 'y', 'true', '1'):
+        return 'Yes'
+    if s in ('no', 'n', 'false', '0'):
+        return 'No'
+    if is_unknown(s):
+        return None
+    return v.strip()
+
+
+def build_static_content(f, category):
+    """Return static HTML with all facility CSV fields for crawler visibility.
+
+    Injected into <div id="profileContent"> so search engines and AI crawlers
+    (GPTBot, ClaudeBot, PerplexityBot, Ahrefs, etc.) see every data field
+    without executing JavaScript. The JS page renderer overwrites this block
+    at runtime for interactive users.
+    """
+    e = html_escape
+    title       = f.get('title', '').strip()
+    area        = f.get('area', '').strip()
+    state       = f.get('state', '').strip()
+    location    = ', '.join(filter(None, [area, state, 'Malaysia']))
+    care_types  = f.get('care_types', '').strip()
+    editorial   = f.get('editorial_summary', '').strip()
+
+    cat_dir = {
+        'Nursing Home':  'nursing-homes',
+        'Mixed':         'nursing-homes',
+        'Assisted Living': 'assisted-living',
+        'Home Care':     'home-care',
+        'Day Care':      'day-care',
+    }.get(category, 'nursing-homes')
+    cat_label = 'Nursing Home' if category == 'Mixed' else category
+    state_slug = re.sub(r'[^a-z0-9]+', '-', state.lower()).strip('-') if state else ''
+    state_url  = f'/{cat_dir}/{state_slug}/' if state_slug else f'/{cat_dir}/'
+
+    # ── Pricing ──────────────────────────────────────────────────────────
+    pricing_rows = []
+    pd = f.get('pricing_display', '').strip()
+    if pd and not is_unknown(pd):
+        pricing_rows.append(('Pricing', pd))
+    for col, label in [
+        ('shared_price',  'Shared room (RM/month)'),
+        ('private_price', 'Private room (RM/month)'),
+        ('four_bed_price','4-bed room (RM/month)'),
+        ('dorm_price',    'Dormitory (RM/month)'),
+    ]:
+        v = f.get(col, '').strip()
+        if v and not is_unknown(v):
+            pricing_rows.append((label, v))
+
+    # ── Care capabilities ─────────────────────────────────────────────────
+    care_rows = []
+    for col, label in [
+        ('care_nursing',   'Nursing care'),
+        ('care_dementia',  'Dementia care'),
+        ('care_palliative','Palliative / end-of-life care'),
+        ('care_rehab',     'Rehabilitation'),
+        ('care_respite',   'Respite care'),
+        ('care_assisted',  'Assisted daily living'),
+    ]:
+        v = yn_label(f.get(col, ''))
+        if v is not None:
+            care_rows.append((label, v))
+
+    # ── Medical services ──────────────────────────────────────────────────
+    medical_rows = []
+    for col, label in [
+        ('doctor_visits',        'Doctor visits'),
+        ('medical_physio',       'Physiotherapy'),
+        ('medical_ot',           'Occupational therapy'),
+        ('medical_wound',        'Wound care'),
+        ('medical_peg',          'PEG / tube feeding'),
+        ('medical_dementia_unit','Dedicated dementia unit'),
+        ('medical_dialysis',     'Dialysis'),
+        ('medical_oxygen',       'Oxygen therapy'),
+        ('medical_meds',         'Medication management'),
+    ]:
+        v = yn_label(f.get(col, ''))
+        if v is not None:
+            medical_rows.append((label, v))
+    for col, label in [
+        ('nurse_ratio_day',  'Nurse ratio (day shift)'),
+        ('nurse_ratio_night','Nurse ratio (night shift)'),
+    ]:
+        v = f.get(col, '').strip()
+        if v and not is_unknown(v):
+            medical_rows.append((label, v))
+
+    # ── Facility information ──────────────────────────────────────────────
+    ops_rows = []
+    for col, label in [
+        ('total_beds',    'Total beds'),
+        ('availability',  'Current availability'),
+        ('visiting_hours','Visiting hours'),
+        ('wheelchair',    'Wheelchair accessible'),
+        ('parking',       'Parking'),
+        ('religion',      'Religion / denomination'),
+        ('languages',     'Languages spoken'),
+        ('halal',         'Halal food'),
+        ('subsidy',       'Government subsidy / JKM-funded'),
+        ('ownership_type','Ownership type'),
+        ('licence_number','JKM licence number'),
+        ('last_updated',  'Last updated'),
+    ]:
+        v = f.get(col, '').strip()
+        if v and not is_unknown(v):
+            ops_rows.append((label, v))
+
+    # ── Contact ───────────────────────────────────────────────────────────
+    contact_rows = []
+    for col, label in [
+        ('phone',          'Phone'),
+        ('whatsapp',       'WhatsApp'),
+        ('website',        'Website'),
+        ('facebook',       'Facebook'),
+        ('google_maps_url','Google Maps'),
+    ]:
+        v = f.get(col, '').strip()
+        if v and not is_unknown(v):
+            contact_rows.append((label, v))
+
+    # ── Rating ────────────────────────────────────────────────────────────
+    rating_text = ''
+    try:
+        r = float(f.get('rating', '') or '')
+        rc = int(f.get('review_count', '') or 0)
+        rating_text = f'{r:.1f} / 5.0 ({rc} Google reviews)' if rc > 0 else f'{r:.1f} / 5.0'
+    except (ValueError, TypeError):
+        pass
+
+    # ── Assemble HTML ─────────────────────────────────────────────────────
+    s = []
+    s.append('<div style="max-width:900px;margin:0 auto;padding:24px 20px;font-family:system-ui,sans-serif;color:#0f172a;line-height:1.65">')
+
+    # breadcrumb
+    s.append(
+        f'<p style="font-size:.85rem;color:#64748b;margin:0 0 8px">'
+        f'<a href="/" style="color:#2563eb">Home</a> &rsaquo; '
+        f'<a href="/{cat_dir}/" style="color:#2563eb">{e(cat_label)}</a> &rsaquo; '
+        f'<a href="{e(state_url)}" style="color:#2563eb">{e(state or "Malaysia")}</a>'
+        f'</p>'
+    )
+
+    # H1
+    s.append(f'<h1 style="font-size:1.85rem;font-weight:800;margin:0 0 4px">{e(title)}</h1>')
+    s.append(f'<p style="color:#64748b;margin:0 0 12px">{e(location)}</p>')
+
+    # meta row
+    meta = []
+    if rating_text:
+        meta.append(f'<strong>Rating:</strong> {e(rating_text)}')
+    if care_types:
+        meta.append(f'<strong>Care type:</strong> {e(care_types)}')
+    if meta:
+        s.append(f'<p style="margin:0 0 20px">{"&ensp;&bull;&ensp;".join(meta)}</p>')
+
+    # editorial
+    if editorial:
+        s.append('<section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">')
+        s.append('<p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>')
+        for para in editorial.split('\n'):
+            para = para.strip()
+            if para:
+                s.append(f'<p style="margin:0 0 10px">{e(para)}</p>')
+        s.append('</section>')
+
+    def dl_section(heading, rows):
+        items = ''.join(
+            f'<div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9">'
+            f'<span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">{e(k)}</span>'
+            f'<span style="font-size:.88rem;font-weight:500">{e(v)}</span>'
+            f'</div>'
+            for k, v in rows
+        )
+        return (
+            f'<section aria-label="{e(heading)}" style="margin:0 0 24px">'
+            f'<h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">{e(heading)}</h2>'
+            f'{items}'
+            f'</section>'
+        )
+
+    if pricing_rows:
+        s.append(dl_section('Pricing', pricing_rows))
+    if care_rows:
+        s.append(dl_section('Care capabilities', care_rows))
+    if medical_rows:
+        s.append(dl_section('Medical services', medical_rows))
+    if ops_rows:
+        s.append(dl_section('Facility information', ops_rows))
+    if contact_rows:
+        s.append(dl_section('Contact & location', contact_rows))
+
+    s.append('</div>')
+    return '\n'.join(s)
+
+
 def build_head_inserts(f, slug, canonical):
     title = f.get("title", "").strip()
     page_title = f"{title} — NursingHomeGuide.my"
@@ -177,7 +379,7 @@ def build_head_inserts(f, slug, canonical):
     return page_title, desc, "\n".join(parts)
 
 
-def transform_template(template, page_title, desc, head_inserts):
+def transform_template(template, page_title, desc, head_inserts, static_content=''):
     out = template
     out = re.sub(
         r'<title id="pageTitle">[^<]*</title>',
@@ -191,6 +393,11 @@ def transform_template(template, page_title, desc, head_inserts):
         '<meta charset="UTF-8" />',
         '<meta charset="UTF-8" />\n' + head_inserts,
         1)
+    if static_content:
+        out = re.sub(
+            r'(<div id="profileContent">).*?(</div>)',
+            lambda m: m.group(1) + '\n' + static_content + '\n' + m.group(2),
+            out, count=1, flags=re.DOTALL)
     return out
 
 
@@ -285,7 +492,8 @@ def main():
         canonical = f"{BASE}/{canonical_dir}/{slug}/"
 
         page_title, desc, head_inserts = build_head_inserts(r, slug, canonical)
-        page_html = transform_template(template, page_title, desc, head_inserts)
+        static_content = build_static_content(r, category)
+        page_html = transform_template(template, page_title, desc, head_inserts, static_content)
 
         # Canonical static page
         write_file(os.path.join(canonical_dir, slug, "index.html"), page_html)
