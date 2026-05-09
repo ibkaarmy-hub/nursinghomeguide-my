@@ -39,6 +39,9 @@ __pycache__/
 *.pyc
 *.pyo
 
+# ── Claude Code worktrees (must never be committed as submodules) ──
+.claude/worktrees/
+
 # ── OS / editor ───────────────────────────────────────────────
 .DS_Store
 Thumbs.db
