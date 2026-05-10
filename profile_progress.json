@@ -1,76 +1,34 @@
 {
   "done": [
-    "afh-elder-care",
-    "amazing-grace-caring-home",
-    "amitabha-malaysia-old-folks-home-kl",
-    "austinloyal-care-centre",
-    "bellevue-residential-homecare-m-sdn-bhd",
-    "berniece-care-service-centre",
-    "dhaalia-elderly-care-centre",
-    "eha-golfview-eldercare-mansion-johor-jaya-1-nursing-home-joh",
-    "eha-lakeview-eldercare-mansion-permas-branch-1-nursing-home",
-    "eha-parkview-eldercare-perling-1-nursing-home-johor-bahru",
-    "elderia-care-center",
-    "evergreen-eldercare-centre-eecmsia",
-    "fcc-family-care-centre-johor-bahru",
-    "felicity-nursing-home",
-    "genesis-life-care-centre-jb",
-    "golden-age-care-centre-batu-pahat",
-    "golden-age-care-centre-tangkak",
-    "green-acres-home-care",
-    "green-garden-care-center-sdn-bhd",
-    "hibiscus-serenity-care-centre-nursing-home-in-larkin-johor-b",
-    "jasper-lodge-nursing-home-pj1",
-    "jb-care-centre",
-    "jr-segamat-care-centre",
-    "klc-senior-care-center",
-    "lyc-senior-living-care-center",
-    "merry-care-centre-jln-antoi",
-    "mintygreen-nursing-home-eldercare-center",
-    "multicare-nursing-home-johor",
-    "my-aged-care-sdn-bhd",
-    "noble-care",
-    "nursing-home-johor-bahru-loving-mansion-care-centre",
-    "pj-mentalink-care-pj-old-folks",
-    "prestige-residence-care-group-sdn-bhd",
-    "procare-care-centre",
-    "pusat-jagaan-chik-sin-thong-klang-dan-pantai-selangor",
-    "pusat-jagaan-mahmudah-malaysia",
-    "pusat-jagaan-persatuan-kebajikan-rumah-jagaan-vcu-selangor-dan-wilayah-persekutu",
-    "pusat-jagaan-rumah-amal-murni-kajang",
-    "pusat-jagaan-rumah-kebajikan-warga-emas-st-mark",
-    "rebina-house-care-centre",
-    "rumah-orang-tua-charis",
-    "rumah-victory-elderly-home",
-    "seavoy-nursing-home-desa-melawati",
-    "seavoy-nursing-home-taman-setapak-indah",
-    "spring-valley-homecare-nursing-home",
-    "sri-seronok-retirement-village",
-    "summer-eldercare-johor-bahru",
-    "than-hsiang-wan-ching-yuen-pj",
-    "ummi-naura-care-centre",
-    "white-dove-retirement-nursing-home",
-    "woon-ho-family-care-centre",
-    "yong-an-old-folks-care-centre-ulu-tiram-jb"
+    "my-place-convalescent-home-care-centre",
+    "d-palace-care-centre",
+    "dr-thomas-care-centre",
+    "ig-care-centre",
+    "pusat-jagaan-mesra-intan",
+    "pusat-jagaan-qaseh-murni",
+    "pusat-jagaan-rumah-orang-orang-tua-pkk-simee",
+    "pusat-jagaan-yayasan-teratai",
+    "starshine-care-centre",
+    "the-salvation-army-perak-home-for-the-aged-care-ce"
   ],
   "skipped": [
     {
-      "slug": "acg-care-sdn-bhd",
-      "reason": "Corporate entity / developer group, not a residential nursing home. Needs re-verification of what this listing represents."
+      "slug": "grace-care-centre",
+      "reason": "Website (amazinggracecarecentre.com) is for KL operation — cannot attribute to Perak branch without on-site confirmation"
     },
     {
-      "slug": "green-cottage-retirement-and-nursing-home",
-      "reason": "Operator's website (gcretirementhome.com) is dead (ECONNREFUSED) and there is no substantive third-party coverage in search beyond a Facebook page. Insufficient verified content to write an honest 3-paragraph editorial without fabricating details. Recommend phone outreach to 03-7781 2466 to verify the home is still operating before listing."
+      "slug": "pusat-jagaan-harian-chan",
+      "reason": "Website (damaisara.com) is an unrelated business"
     },
     {
-      "slug": "rumah-ozanam",
-      "reason": "Rumah Ozanam is a Society of St Vincent de Paul home for underprivileged BOYS/CHILDREN (founded 1987, focuses on academic enhancement and personal development), not an elder-care nursing home. Should be marked removed in the sheet."
+      "slug": "pusat-jagaan-pertubuhan-pengurusan-rumah-warga-tua",
+      "reason": "Website URL is a Maxis internship job listing — wrong URL in sheet"
     },
     {
-      "slug": "nurses-at-home",
-      "reason": "Nurses At Home (nursesathome.my) is a home-nursing service company providing private nurses to clients in their own homes, founded 2005, headquartered Menara Summit Subang Jaya. Not a residential nursing home. Sheet's claim of '20 beds' appears incorrect. Should be removed or recategorised as home-care service."
+      "slug": "qualicare-senior-citizens-home-care-centre",
+      "reason": "Website (linktr.ee/ModosInternational) is unrelated to facility"
     }
   ],
-  "last_batch": "2026-05-01-rewrites",
-  "total_done": 52
+  "last_batch": "2026-05-10",
+  "total_done": 10
 }
