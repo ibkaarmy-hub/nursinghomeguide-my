@@ -92,6 +92,40 @@ body > nav { background: #fff; border-bottom: 1px solid var(--border); position:
 .state-card.state-soon { opacity: .7; pointer-events: none; }
 .state-card.state-soon:hover { transform: none; }
 
+/* ── NH state carousels (index.html) ─────────────────────── */
+.nh-state-block { margin-bottom: 44px; }
+.nh-state-hdr { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; gap: 12px; }
+.nh-state-hdr-left { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.nh-state-hdr-name { font-size: 1.15rem; font-weight: 700; margin: 0; }
+.nh-state-hdr-count { font-size: .8rem; color: var(--text-muted); background: #f3f4f6; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
+.nh-state-hdr-link { font-size: .85rem; font-weight: 600; color: var(--primary); white-space: nowrap; flex-shrink: 0; }
+.nh-carousel-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: thin; scrollbar-color: #e5e7eb transparent; }
+.nh-carousel-wrap::-webkit-scrollbar { height: 4px; }
+.nh-carousel-wrap::-webkit-scrollbar-track { background: transparent; }
+.nh-carousel-wrap::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 2px; }
+.nh-carousel { display: flex; gap: 14px; padding: 4px 2px 8px; }
+.nhc-card { flex: 0 0 200px; border-radius: var(--radius); overflow: hidden; background: #fff; box-shadow: var(--shadow); text-decoration: none; color: inherit; transition: transform .2s, box-shadow .2s; display: flex; flex-direction: column; }
+.nhc-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+.nhc-img { height: 120px; background: linear-gradient(135deg, #1e3a5f, #2563eb); background-size: cover; background-position: center; flex-shrink: 0; }
+.nhc-body { padding: 11px 13px 13px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.nhc-name { font-size: .85rem; font-weight: 600; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.nhc-area { font-size: .75rem; color: var(--text-muted); }
+.nhc-rating { font-size: .78rem; color: var(--text-muted); }
+.nhc-rating .star { color: #f59e0b; }
+.nhc-price { font-size: .76rem; color: var(--text-muted); margin-top: auto; padding-top: 4px; }
+.nhc-skeleton { flex: 0 0 200px; height: 215px; border-radius: var(--radius); background: linear-gradient(90deg, #f3f4f6 25%, #e9eaec 50%, #f3f4f6 75%); background-size: 400% 100%; animation: nhc-shimmer 1.4s infinite linear; }
+@keyframes nhc-shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+.nh-see-all-link { display: inline-block; margin-top: 12px; font-size: .85rem; font-weight: 600; color: var(--primary); }
+.nh-see-all-link:hover { text-decoration: underline; }
+.nh-more-states { margin-top: 12px; padding-top: 32px; border-top: 1px solid var(--border); }
+.nh-more-states-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--text-muted); margin-bottom: 14px; }
+.nh-compact-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.nh-compact-card { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: #fff; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; font-size: .85rem; font-weight: 500; transition: border-color .15s, color .15s; white-space: nowrap; }
+.nh-compact-card:hover { border-color: var(--primary); color: var(--primary); }
+.nh-compact-count { font-size: .75rem; color: #9ca3af; background: #f3f4f6; padding: 1px 6px; border-radius: 10px; }
+.nh-all-states-btn { display: inline-block; padding: 10px 24px; background: #fff; border: 1.5px solid var(--primary); color: var(--primary); border-radius: 8px; font-size: .9rem; font-weight: 600; text-decoration: none; transition: background .15s, color .15s; }
+.nh-all-states-btn:hover { background: var(--primary); color: #fff; }
+
 /* ── Care type cards ──────────────────────────────────────── */
 .care-type-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 28px; }
 @media (max-width: 900px) { .care-type-grid { grid-template-columns: repeat(2, 1fr); } }
