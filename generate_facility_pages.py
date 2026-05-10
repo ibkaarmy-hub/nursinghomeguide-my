@@ -114,7 +114,8 @@ def build_jsonld(f, canonical):
     try:
         lat = float(f.get("latitude", ""))
         lng = float(f.get("longitude", ""))
-        ld["geo"] = {"@type": "GeoCoordinates", "latitude": lat, "longitude": lng}
+        if -90 <= lat <= 90 and -180 <= lng <= 180:
+            ld["geo"] = {"@type": "GeoCoordinates", "latitude": lat, "longitude": lng}
     except (TypeError, ValueError):
         pass
     try:
