@@ -247,28 +247,28 @@
 <section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Amazing Grace Caring Home is a nursing home and home care provider operating in the Klang Valley, with residential care, home nursing, and medical transport services. The centre accepts residents needing 24-hour supervision, daily living support, and rehabilitation, as well as patients with chronic conditions such as stroke and dementia.</p>
-<p style="margin:0 0 10px">**Care services**</p>
-<p style="margin:0 0 10px">- 24-hour residential nursing care</p>
-<p style="margin:0 0 10px">- Chronic disease management (stroke, dementia, diabetes)</p>
-<p style="margin:0 0 10px">- Wound care, injections, and medication administration</p>
-<p style="margin:0 0 10px">- Post-operative monitoring and recovery support</p>
-<p style="margin:0 0 10px">- Ambulance and medically equipped transport</p>
-<p style="margin:0 0 10px">- Home nursing (caregiver services) available separately</p>
-<p style="margin:0 0 10px">- Short-term and long-term care options</p>
-<p style="margin:0 0 10px">**Staffing &amp; support**</p>
-<p style="margin:0 0 10px">- Trained caregivers and nursing staff on site</p>
-<p style="margin:0 0 10px">- Emergency response team available</p>
-<p style="margin:0 0 10px">**Capacity &amp; pricing**</p>
-<p style="margin:0 0 10px">- 25 beds (confirmed)</p>
-<p style="margin:0 0 10px">- Pricing not published on operator website — request a written quote during your visit</p>
-<p style="margin:0 0 10px">**License &amp; verification**</p>
-<p style="margin:0 0 10px">- To be verified — confirm JKM or MOH registration on visit.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- Is the facility registered with JKM and can you see the licence?</p>
-<p style="margin:0 0 10px">- What is the monthly fee and what is included?</p>
-<p style="margin:0 0 10px">- How many qualified nurses are on duty during night shifts?</p>
-<p style="margin:0 0 10px">- What is the protocol for medical emergencies?</p>
-<p style="margin:0 0 10px">- Are dementia-specific care plans available?</p>
+<p style="margin:0 0 6px;font-weight:700">Care services</p>
+<li>24-hour residential nursing care</li>
+<li>Chronic disease management (stroke, dementia, diabetes)</li>
+<li>Wound care, injections, and medication administration</li>
+<li>Post-operative monitoring and recovery support</li>
+<li>Ambulance and medically equipped transport</li>
+<li>Home nursing (caregiver services) available separately</li>
+<li>Short-term and long-term care options</li>
+<p style="margin:0 0 6px;font-weight:700">Staffing &amp; support</p>
+<li>Trained caregivers and nursing staff on site</li>
+<li>Emergency response team available</li>
+<p style="margin:0 0 6px;font-weight:700">Capacity &amp; pricing</p>
+<li>25 beds (confirmed)</li>
+<li>Pricing not published on operator website — request a written quote during your visit</li>
+<p style="margin:0 0 6px;font-weight:700">License &amp; verification</p>
+<li>To be verified — confirm JKM or MOH registration on visit.</li>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>Is the facility registered with JKM and can you see the licence?</li>
+<li>What is the monthly fee and what is included?</li>
+<li>How many qualified nurses are on duty during night shifts?</li>
+<li>What is the protocol for medical emergencies?</li>
+<li>Are dementia-specific care plans available?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Facility information" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Facility information</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Total beds</span><span style="font-size:.88rem;font-weight:500">25</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Halal food</span><span style="font-size:.88rem;font-weight:500">15</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Last updated</span><span style="font-size:.88rem;font-weight:500">2026-05-09</span></div></section>
@@ -581,8 +581,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

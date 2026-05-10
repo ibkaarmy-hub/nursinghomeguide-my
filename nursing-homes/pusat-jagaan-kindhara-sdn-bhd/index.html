@@ -249,13 +249,13 @@
 <p style="margin:0 0 10px">Tucked into a quiet residential street in Taman Johor Jaya, Pusat Jagaan Kindhara Sdn Bhd — branded as KindHara Senior Care Home (康和苑养老院) — offers a deliberately home-like alternative to institutional elder care. The facility operates from a terrace-house premises at Jalan Teratai 38, which keeps it embedded in a regular neighbourhood rather than set apart in a clinical complex. That setting reflects its core philosophy: &quot;We care for every senior as family&quot; and &quot;Compassionate Living for Seniors&quot; — phrases that show up consistently in their materials and that families report feeling in the day-to-day rhythm of the place.</p>
 <p style="margin:0 0 10px">What distinguishes KindHara from many Johor Bahru competitors is the breadth of its care tiers under one roof. Day Care is available for seniors who still live at home but benefit from structured supervision during the day. Short-term and respite stays let families take a break without a long-term commitment. For those who need a permanent home, long-stay residential placement is offered. Most notably, the team explicitly handles Specialised Care for stroke survivors and post-hospital recovery — a meaningful gap-filler for families whose relative has been discharged from Hospital Sultanah Aminah or other Johor Bahru facilities but still needs more support than home alone can provide. Staff are multilingual (English, Mandarin, and Malay), which matters in a Chinese-heritage-heavy area like Taman Johor Jaya where families often feel more at ease discussing care in their mother tongue.</p>
 <p style="margin:0 0 10px">KindHara holds a valid JKM licence (J/PJBWE025/2026), confirming it meets the government&#39;s minimum standards for residential elder care. The home has produced a virtual tour video — accessible via their YouTube channel — which is a practical and transparent gesture that saves families an unnecessary first visit. Enquiries can be made via WhatsApp (016-612 2927) or email (KindHara25@gmail.com). When you do visit, ask about the nurse-to-resident ratio on night shifts, what the escalation protocol is if a stroke resident deteriorates, and how therapy sessions for post-hospital recovery are structured — whether in-house or via outpatient referral.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- What is the carer-to-resident ratio during the day and at night?</p>
-<p style="margin:0 0 10px">- For stroke patients, is there an in-house physiotherapist or is therapy arranged externally?</p>
-<p style="margin:0 0 10px">- What does the post-hospital recovery programme look like week by week?</p>
-<p style="margin:0 0 10px">- How are medical emergencies handled — is there a doctor on call?</p>
-<p style="margin:0 0 10px">- Can we trial a day care placement before committing to a long stay?</p>
-<p style="margin:0 0 10px">- What is included in the monthly fee and what is charged separately?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>What is the carer-to-resident ratio during the day and at night?</li>
+<li>For stroke patients, is there an in-house physiotherapist or is therapy arranged externally?</li>
+<li>What does the post-hospital recovery programme look like week by week?</li>
+<li>How are medical emergencies handled — is there a doctor on call?</li>
+<li>Can we trial a day care placement before committing to a long stay?</li>
+<li>What is included in the monthly fee and what is charged separately?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Respite care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -569,8 +569,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

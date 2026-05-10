@@ -187,6 +187,21 @@ def html_escape(s):
             .replace("'", "&#39;"))
 
 
+def render_inline(s):
+    """Convert markdown links [text](url) and **bold** to HTML, escaping everything else."""
+    parts = re.split(r'(\[[^\]]+\]\([^)]+\))', str(s or ''))
+    out = []
+    for i, part in enumerate(parts):
+        if i % 2 == 1:
+            m = re.match(r'^\[([^\]]+)\]\(([^)]+)\)$', part)
+            if m:
+                out.append(f'<a href="{html_escape(m.group(2))}" target="_blank" rel="noopener">{html_escape(m.group(1))}</a>')
+                continue
+        out.append(re.sub(r'\*\*([^*]+)\*\*', lambda b: f'<strong>{html_escape(b.group(1))}</strong>',
+                          html_escape(part)))
+    return ''.join(out)
+
+
 def yn_label(v):
     """Convert yes/no column value to human-readable text, or None if unknown."""
     if not v:
@@ -359,8 +374,14 @@ def build_static_content(f, category):
         s.append('<p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>')
         for para in editorial.split('\n'):
             para = para.strip()
-            if para:
-                s.append(f'<p style="margin:0 0 10px">{e(para)}</p>')
+            if not para:
+                continue
+            if para.startswith('- '):
+                s.append(f'<li>{render_inline(para[2:])}</li>')
+            elif re.match(r'^\*\*[^*]+\*\*$', para):
+                s.append(f'<p style="margin:0 0 6px;font-weight:700">{html_escape(para[2:-2])}</p>')
+            else:
+                s.append(f'<p style="margin:0 0 10px">{render_inline(para)}</p>')
         s.append('</section>')
 
     def dl_section(heading, rows):

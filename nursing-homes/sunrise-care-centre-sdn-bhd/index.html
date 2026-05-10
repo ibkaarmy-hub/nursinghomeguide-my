@@ -249,12 +249,12 @@
 <p style="margin:0 0 10px">Sunrise Care Centre Sdn Bhd (Co. 567396-U) is one of two residential care centres operated by the Rebina Sunrise Elderly Care group, a family-owned operator that has been running nursing care in Johor Bahru since 2003. The facility sits at No. 48 Jalan Keranji in Taman Kebun Teh — a quiet residential neighbourhood — directly across from the group&#39;s founding home, Rebina House, at Nos. 15 &amp; 17 on the same road. The group&#39;s stated origin story is practical: at founding, fewer than 30 care centres served a Johor Bahru population of nearly half a million, and the founders set out to fill that gap with reliable, no-frills care.</p>
 <p style="margin:0 0 10px">The clinical list documented on the group&#39;s website is unusually detailed for a residential home of this size. Confirmed services include Continuous Ambulatory Peritoneal Dialysis (CAPD), Ryle&#39;s tube feeding and replacement, phlegm suction, nebuliser therapy, oxygen supply, balloon catheter management, post-operative wound dressing, acupuncture, physiotherapy, and daily monitoring of blood pressure and glucose. Palliative and hospice care is also offered. Staff document individualised care plans with hourly schedules — a practice more commonly associated with step-down hospital wards than small community homes. The Instagram account shows Klinik Kesihatan Larkin doctors and nurses visiting the centres to conduct routine dental check-ups for residents, indicating an active public health partnership.</p>
 <p style="margin:0 0 10px">Pricing is not published on the rebinasunrise.com website; families should call +60 7-333 7715 or email care@rebinasunrise.com to request a quote. Gallery photos and social media posts show a busy activities programme — games sessions, seasonal celebrations spanning Chinese New Year, Deepavali, Eid, and Christmas — and regular community visits, giving the home a well-used, lived-in character. The facility accepts residents of all religions and backgrounds.</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- What is the monthly fee for the level of care needed, and what is included?</p>
-<p style="margin:0 0 10px">- Is the JKM or MOH registration certificate available to view?</p>
-<p style="margin:0 0 10px">- Which specific clinical services (CAPD, PEG feeding) are available at this branch versus Rebina House?</p>
-<p style="margin:0 0 10px">- What is the nursing staff ratio during day and night shifts?</p>
-<p style="margin:0 0 10px">- Are beds currently available, and what is the typical waiting time?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>What is the monthly fee for the level of care needed, and what is included?</li>
+<li>Is the JKM or MOH registration certificate available to view?</li>
+<li>Which specific clinical services (CAPD, PEG feeding) are available at this branch versus Rebina House?</li>
+<li>What is the nursing staff ratio during day and night shifts?</li>
+<li>Are beds currently available, and what is the typical waiting time?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Palliative / end-of-life care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -569,8 +569,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

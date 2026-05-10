@@ -247,27 +247,27 @@
 <section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">My Precious Home Care Elder Care is a nursing home in Subang Jaya, Selangor (Taman Subang Mewah), founded by medical professionals and positioned as a clinical yet homely residential care provider. It serves residents requiring nursing care, dementia support, palliative care, and rehabilitation, and also offers home care services as a separate offering.</p>
-<p style="margin:0 0 10px">**Care services**</p>
-<p style="margin:0 0 10px">- 24-hour residential nursing care</p>
-<p style="margin:0 0 10px">- Dementia care</p>
-<p style="margin:0 0 10px">- Palliative care</p>
-<p style="margin:0 0 10px">- Rehabilitation support</p>
-<p style="margin:0 0 10px">- Home care (separate team available)</p>
-<p style="margin:0 0 10px">- Four meals daily (home-cooked)</p>
-<p style="margin:0 0 10px">- Monitoring visits by healthcare personnel</p>
-<p style="margin:0 0 10px">**Staffing &amp; support**</p>
-<p style="margin:0 0 10px">- Founded and guided by medical professionals</p>
-<p style="margin:0 0 10px">- 24-hour care services confirmed</p>
-<p style="margin:0 0 10px">- Wheelchair accessible entrance, parking, restroom, and seating</p>
-<p style="margin:0 0 10px">- Assistive hearing loop available</p>
-<p style="margin:0 0 10px">**Capacity &amp; pricing**</p>
-<p style="margin:0 0 10px">- Pricing not published on operator website — request a written quote during your visit</p>
-<p style="margin:0 0 10px">**License &amp; verification**</p>
-<p style="margin:0 0 10px">- JKM Registered — licence number: B/PJB WT 011/2025.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- What is the monthly fee structure for dementia or palliative care residents?</p>
-<p style="margin:0 0 10px">- How are families notified in the event of a change in a resident&#39;s condition?</p>
-<p style="margin:0 0 10px">- What is the staff-to-resident ratio during night hours?</p>
+<p style="margin:0 0 6px;font-weight:700">Care services</p>
+<li>24-hour residential nursing care</li>
+<li>Dementia care</li>
+<li>Palliative care</li>
+<li>Rehabilitation support</li>
+<li>Home care (separate team available)</li>
+<li>Four meals daily (home-cooked)</li>
+<li>Monitoring visits by healthcare personnel</li>
+<p style="margin:0 0 6px;font-weight:700">Staffing &amp; support</p>
+<li>Founded and guided by medical professionals</li>
+<li>24-hour care services confirmed</li>
+<li>Wheelchair accessible entrance, parking, restroom, and seating</li>
+<li>Assistive hearing loop available</li>
+<p style="margin:0 0 6px;font-weight:700">Capacity &amp; pricing</p>
+<li>Pricing not published on operator website — request a written quote during your visit</li>
+<p style="margin:0 0 6px;font-weight:700">License &amp; verification</p>
+<li>JKM Registered — licence number: B/PJB WT 011/2025.</li>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>What is the monthly fee structure for dementia or palliative care residents?</li>
+<li>How are families notified in the event of a change in a resident&#39;s condition?</li>
+<li>What is the staff-to-resident ratio during night hours?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Facility information" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Facility information</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Languages spoken</span><span style="font-size:.88rem;font-weight:500">English, BM</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">JKM licence number</span><span style="font-size:.88rem;font-weight:500">B/PJB WT 011/2025</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Last updated</span><span style="font-size:.88rem;font-weight:500">2026-05-09</span></div></section>
@@ -580,8 +580,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

@@ -247,25 +247,25 @@
 <section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Mintygreen Care Suites (Cheras) is the Kuala Lumpur branch of the Mintygreen Wellness group, located in Phoenix Business Park along Jalan Cheras. Reviewers describe the environment as feeling more like a hotel than a traditional nursing home — a distinction that sets this branch apart from the group&#39;s suburban locations. The Cheras branch caters primarily to KL-based families seeking nursing care with a premium ambience.</p>
-<p style="margin:0 0 10px">**Care services**</p>
-<p style="margin:0 0 10px">- Residential nursing care</p>
-<p style="margin:0 0 10px">- Daily activities: exercise, gardening, mahjong, creative programmes</p>
-<p style="margin:0 0 10px">- Personal care and hygiene assistance</p>
-<p style="margin:0 0 10px">- Nutritious meals</p>
-<p style="margin:0 0 10px">- Caregiver support</p>
-<p style="margin:0 0 10px">**Staffing &amp; support**</p>
-<p style="margin:0 0 10px">- Caring nurses confirmed in Maps reviews</p>
-<p style="margin:0 0 10px">- Clean environment and activities highlighted</p>
-<p style="margin:0 0 10px">**Capacity &amp; pricing**</p>
-<p style="margin:0 0 10px">- Pricing not published on operator website — request a written quote during your visit</p>
-<p style="margin:0 0 10px">**License &amp; verification**</p>
-<p style="margin:0 0 10px">- To be verified — confirm JKM or MOH registration on visit.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- Is this Cheras branch registered with JKM?</p>
-<p style="margin:0 0 10px">- What is the monthly fee structure and what is included?</p>
-<p style="margin:0 0 10px">- What nurse-to-resident ratio is maintained, particularly at night?</p>
-<p style="margin:0 0 10px">- Are doctor visits arranged and at what frequency?</p>
-<p style="margin:0 0 10px">- How are families notified of incidents or changes in condition?</p>
+<p style="margin:0 0 6px;font-weight:700">Care services</p>
+<li>Residential nursing care</li>
+<li>Daily activities: exercise, gardening, mahjong, creative programmes</li>
+<li>Personal care and hygiene assistance</li>
+<li>Nutritious meals</li>
+<li>Caregiver support</li>
+<p style="margin:0 0 6px;font-weight:700">Staffing &amp; support</p>
+<li>Caring nurses confirmed in Maps reviews</li>
+<li>Clean environment and activities highlighted</li>
+<p style="margin:0 0 6px;font-weight:700">Capacity &amp; pricing</p>
+<li>Pricing not published on operator website — request a written quote during your visit</li>
+<p style="margin:0 0 6px;font-weight:700">License &amp; verification</p>
+<li>To be verified — confirm JKM or MOH registration on visit.</li>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>Is this Cheras branch registered with JKM?</li>
+<li>What is the monthly fee structure and what is included?</li>
+<li>What nurse-to-resident ratio is maintained, particularly at night?</li>
+<li>Are doctor visits arranged and at what frequency?</li>
+<li>How are families notified of incidents or changes in condition?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Facility information" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Facility information</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Languages spoken</span><span style="font-size:.88rem;font-weight:500">English, BM, Mandarin</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Last updated</span><span style="font-size:.88rem;font-weight:500">2026-05-09</span></div></section>
@@ -578,8 +578,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

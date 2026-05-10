@@ -248,13 +248,13 @@
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Dr Thomas Care Centre is an independent nursing home in Taman Pari, Ipoh, founded and run by Dr Thomas Arul — a physician with more than 40 years in medicine and over two decades operating nursing homes. The centre is located at 24 Jalan Labrooy, 30100 Ipoh, set within gardens and green space in a quiet residential neighbourhood. This is not a chain; it is an owner-operated facility where the founding doctor remains directly involved in resident care, conducting assessments in person.</p>
 <p style="margin:0 0 10px">Services span a wide range of complexity: wound care and management, stroke rehabilitation, general elderly care, palliative care, physiotherapy, post-hospitalisation recovery, day care, and specialised care for residents with higher clinical needs. Nursing cover is available 24/7. Google reviewers specifically note Dr Thomas&#39;s hands-on approach to assessing residents and the nursing team&#39;s attentiveness, with several mentioning faster-than-expected recovery for post-hospitalisation admissions. The garden-surrounded grounds are a recurring feature of positive reviews. The centre holds JKM licence A/PJB WT 045/2021.</p>
-<p style="margin:0 0 10px">Pricing is not published. Contact via email ([contact@drthomascarecentre.com](mailto:contact@drthomascarecentre.com)) or phone (+6012-581 9551). Visit the centre&#39;s website at [drthomascarecentre.com](https://drthomascarecentre.com/) for service details, and follow their Facebook page at [facebook.com/drthomas.carecentre](https://www.facebook.com/drthomas.carecentre) for resident activities and updates.</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- How often does Dr Thomas personally assess residents, and how is clinical deterioration escalated?</p>
-<p style="margin:0 0 10px">- What wound care is available on-site vs. requiring hospital referral?</p>
-<p style="margin:0 0 10px">- For stroke rehabilitation, is there a resident physiotherapist or do they visit on a schedule?</p>
-<p style="margin:0 0 10px">- What is the monthly cost for long-term care vs. short-stay post-hospitalisation?</p>
-<p style="margin:0 0 10px">- When was the last JKM inspection and can you see the result?</p>
+<p style="margin:0 0 10px">Pricing is not published. Contact via email (<a href="mailto:contact@drthomascarecentre.com" target="_blank" rel="noopener">contact@drthomascarecentre.com</a>) or phone (+6012-581 9551). Visit the centre&#39;s website at <a href="https://drthomascarecentre.com/" target="_blank" rel="noopener">drthomascarecentre.com</a> for service details, and follow their Facebook page at <a href="https://www.facebook.com/drthomas.carecentre" target="_blank" rel="noopener">facebook.com/drthomas.carecentre</a> for resident activities and updates.</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>How often does Dr Thomas personally assess residents, and how is clinical deterioration escalated?</li>
+<li>What wound care is available on-site vs. requiring hospital referral?</li>
+<li>For stroke rehabilitation, is there a resident physiotherapist or do they visit on a schedule?</li>
+<li>What is the monthly cost for long-term care vs. short-stay post-hospitalisation?</li>
+<li>When was the last JKM inspection and can you see the result?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Palliative / end-of-life care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -569,8 +569,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

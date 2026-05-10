@@ -249,13 +249,13 @@
 <p style="margin:0 0 10px">EHA Elder Care Home Kluang is the sole non-Johor Bahru branch of the EHA Eldercare Group (1478860-U), a multi-branch award-winning eldercare operator. Set in Taman Dato&#39; Amar Diraja at No. 3, Jalan Sheikh Kadir Ahmad, Kluang, it is the closest professionally managed private care option for families in the Kluang district who need a residential, day care, or short-stay solution. EHA markets itself as 24-hour senior care managed by a team of doctors, nurses, and physiotherapists — an unusually high professional density for a town-level centre.</p>
 <p style="margin:0 0 10px">The Kluang branch carries the same service menu as the JB group homes: 24-hour assisted living, respite care from one to six months, day care (11 hours, five days a week), dementia care, post-hospital rehabilitation, and physiotherapy. Pricing published on the EHA website starts at RM 2,300 per month for assisted living, RM 80 per day for respite, and RM 1,300 per month for day care — making it meaningfully more affordable than comparable EHA branches in JB. The centre operates Monday to Sunday, 9am to 6pm for enquiries, while residential care runs around the clock. Contact is via phone +6019-713 3697 or email ask.ehagroup@gmail.com, and the official website ehaeldercare.com.my has full package details in both English and Chinese.</p>
 <p style="margin:0 0 10px">Languages spoken include English and Mandarin Chinese. The Facebook page (ehakluang, 661 followers) notes the Kluang branch by its Chinese name &#39;Warm Home&#39; (温馨老家). The facility&#39;s JKM licensing claim appears in both the Google listing and the facility name itself; families should request the specific JKM licence number on-site to verify. Reviewers on Google have praised the management team by name, and KKM reportedly rates EHA Kluang among the best in the district. Email enquiries can be directed to ask.ehagroup@gmail.com.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- Can you show us the current JKM licence certificate for this branch?</p>
-<p style="margin:0 0 10px">- What is the current all-in monthly rate for a bed-bound resident?</p>
-<p style="margin:0 0 10px">- How many registered nurses are on duty overnight?</p>
-<p style="margin:0 0 10px">- Is physiotherapy in-house daily or on a scheduled weekly basis?</p>
-<p style="margin:0 0 10px">- What is the emergency transfer protocol to Kluang Hospital?</p>
-<p style="margin:0 0 10px">- What languages do the daily care staff speak for residents who do not speak Mandarin?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>Can you show us the current JKM licence certificate for this branch?</li>
+<li>What is the current all-in monthly rate for a bed-bound resident?</li>
+<li>How many registered nurses are on duty overnight?</li>
+<li>Is physiotherapy in-house daily or on a scheduled weekly basis?</li>
+<li>What is the emergency transfer protocol to Kluang Hospital?</li>
+<li>What languages do the daily care staff speak for residents who do not speak Mandarin?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">From RM 2,300/mo</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Private room (RM/month)</span><span style="font-size:.88rem;font-weight:500">2300</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Dementia care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Respite care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -570,8 +570,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

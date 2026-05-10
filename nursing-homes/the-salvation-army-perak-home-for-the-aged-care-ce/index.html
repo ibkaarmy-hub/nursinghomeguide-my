@@ -248,13 +248,13 @@
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">The Salvation Army Perak Home for the Aged is one of more than 20 care facilities operated by The Salvation Army Malaysia, a Christian charitable organisation with a longstanding presence in Malaysian welfare services. The Perak home is part of a national network providing residential care, meals, and daily support for older adults who need assistance with daily living. The Salvation Army&#39;s backing of institutional credibility and charitable governance gives this home an accountability structure that smaller private operators cannot replicate. The home holds JKM licence A/PJB WT 009/2023.</p>
 <p style="margin:0 0 10px">Specific operational details for the Perak home — its address, capacity, staffing, and fee structure — are not published on the Salvation Army Malaysia website, which is consistent with charitable welfare homes that operate with subsidised or means-tested admission rather than market rates. The home&#39;s coordinates place it in the Ipoh area. As a charitable entity, fees may be means-tested or subsidised depending on the resident&#39;s financial circumstances, and intake decisions typically involve an assessment of both care needs and financial situation.</p>
-<p style="margin:0 0 10px">Families interested in the Salvation Army Perak Home should contact the home directly at +605-526 2108. The national organisation&#39;s website at [salvationarmy.org.my](https://www.salvationarmy.org.my/) provides background on the broader network, and the Malaysia-wide Facebook page at [facebook.com/SalvationArmyMalaysia](https://www.facebook.com/SalvationArmyMalaysia) posts news and updates. A site visit to the Perak home is the most reliable way to understand current capacity and the admission process.</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- What is the fee structure — is it means-tested, subsidised, or a fixed monthly rate?</p>
-<p style="margin:0 0 10px">- What level of nursing care is provided, and is there registered nursing cover at night?</p>
-<p style="margin:0 0 10px">- What is the current capacity and is there a waiting list?</p>
-<p style="margin:0 0 10px">- What care needs can the home accommodate — is there support for dementia or high-dependency residents?</p>
-<p style="margin:0 0 10px">- When was the last JKM inspection and can you see the result?</p>
+<p style="margin:0 0 10px">Families interested in the Salvation Army Perak Home should contact the home directly at +605-526 2108. The national organisation&#39;s website at <a href="https://www.salvationarmy.org.my/" target="_blank" rel="noopener">salvationarmy.org.my</a> provides background on the broader network, and the Malaysia-wide Facebook page at <a href="https://www.facebook.com/SalvationArmyMalaysia" target="_blank" rel="noopener">facebook.com/SalvationArmyMalaysia</a> posts news and updates. A site visit to the Perak home is the most reliable way to understand current capacity and the admission process.</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>What is the fee structure — is it means-tested, subsidised, or a fixed monthly rate?</li>
+<li>What level of nursing care is provided, and is there registered nursing cover at night?</li>
+<li>What is the current capacity and is there a waiting list?</li>
+<li>What care needs can the home accommodate — is there support for dementia or high-dependency residents?</li>
+<li>When was the last JKM inspection and can you see the result?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -568,8 +568,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

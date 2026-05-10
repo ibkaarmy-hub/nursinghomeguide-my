@@ -248,13 +248,13 @@
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Pusat Jagaan Mesra Intan was established in Ipoh in 2012 by Ms. Chew Bee Teen, a registered nurse and midwife specialising in palliative and geriatric care, together with co-founder Mr. Inderjeet Singh. The facility sits within a green, elevated setting with mountain views, positioned within reach of four major hospitals: Hospital Raja Permaisuri Bainun, Fatimah Hospital, Pantai Hospital Ipoh, and KPJ Ipoh Specialist Hospital. That hospital proximity is a practical consideration — clinical events that exceed the home&#39;s on-site capabilities can be escalated quickly. The centre operates from two JKM-registered premises (A/PJB WT 015/2019 and A/PJB WT 049/2024).</p>
 <p style="margin:0 0 10px">Services focus on the post-acute spectrum: post-surgery recovery, post-stroke care, and day care alongside longer-term inpatient stays. Nursing is delivered by professionally trained registered nurses and caregivers. The centre emphasises emotional and social wellbeing alongside physical care, with the team mostly multilingual — English, Bahasa Malaysia, and Chinese are spoken. Resident testimonials mention cleanliness, good food, and attentive personalised care.</p>
-<p style="margin:0 0 10px">Pricing is not published. Contact the centre via email at [indichew@pusatjagaanmesraintan.com](mailto:indichew@pusatjagaanmesraintan.com) or by phone (+6019-511 2242). More information is available at [pusatjagaanmesraintan.com](https://www.pusatjagaanmesraintan.com/) and on the centre&#39;s Facebook page at [facebook.com/MesraLiving](https://www.facebook.com/MesraLiving).</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- What is the monthly fee for post-surgery short stays vs. long-term residential care?</p>
-<p style="margin:0 0 10px">- What is the bed count at each registered location and what is the current availability?</p>
-<p style="margin:0 0 10px">- How is post-stroke rehabilitation structured — physiotherapy on-site or via visiting therapist?</p>
-<p style="margin:0 0 10px">- How are family members informed of changes in a resident&#39;s condition?</p>
-<p style="margin:0 0 10px">- When was the last JKM inspection and can you share the result?</p>
+<p style="margin:0 0 10px">Pricing is not published. Contact the centre via email at <a href="mailto:indichew@pusatjagaanmesraintan.com" target="_blank" rel="noopener">indichew@pusatjagaanmesraintan.com</a> or by phone (+6019-511 2242). More information is available at <a href="https://www.pusatjagaanmesraintan.com/" target="_blank" rel="noopener">pusatjagaanmesraintan.com</a> and on the centre&#39;s Facebook page at <a href="https://www.facebook.com/MesraLiving" target="_blank" rel="noopener">facebook.com/MesraLiving</a>.</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>What is the monthly fee for post-surgery short stays vs. long-term residential care?</li>
+<li>What is the bed count at each registered location and what is the current availability?</li>
+<li>How is post-stroke rehabilitation structured — physiotherapy on-site or via visiting therapist?</li>
+<li>How are family members informed of changes in a resident&#39;s condition?</li>
+<li>When was the last JKM inspection and can you share the result?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Dementia care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -569,8 +569,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

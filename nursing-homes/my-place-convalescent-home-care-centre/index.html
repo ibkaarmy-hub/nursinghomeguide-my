@@ -248,13 +248,13 @@
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">JR My Place Care Centre is the Ipoh branch of Johnson Residence, a Malaysian care chain operating homes across Kuala Lumpur, Penang, Melaka, Pahang, and Johor. The Perak facility is organised around two residential areas — Garden Terrace and Garden Tower — both set within landscaped gardens in northern Ipoh. The Johnson Residence group&#39;s positioning is quality care at affordable prices, with a multilingual team serving residents in English and Mandarin.</p>
 <p style="margin:0 0 10px">Care at JR My Place covers the daily essentials — personal hygiene, laundry, tailored meals, and organised activities — alongside more clinical needs: 24-hour nursing, post-surgery recovery, physiotherapy, medication management, and scheduled hospital transport (additional charge). In-house care staff are trained in vital signs monitoring, repositioning, hand hygiene, and basic life support, supported by visiting geriatric specialists. The facility holds JKM registration A/PJB WT 054/2022.</p>
-<p style="margin:0 0 10px">Families have left 32 Google reviews averaging 4.6 stars, with comments consistently praising staff patience, cleanliness, and proactive communication with family members. Pricing is not published; contact the Ipoh branch directly on WhatsApp (+6017-449 6008) or through the Johnson Residence website at [johnsonresidence.com.my](http://www.johnsonresidence.com.my/) to request a quote. The centre is also active on Facebook at [facebook.com/myplacecarecentre](https://www.facebook.com/myplacecarecentre).</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- What is the monthly fee for shared vs private rooms, and what is included?</p>
-<p style="margin:0 0 10px">- What is current bed availability and the typical wait time for admission?</p>
-<p style="margin:0 0 10px">- How often does the visiting geriatric specialist attend, and can family be notified of visit findings?</p>
-<p style="margin:0 0 10px">- What post-surgery physiotherapy schedule is available?</p>
-<p style="margin:0 0 10px">- When was the last JKM inspection and can you share the result?</p>
+<p style="margin:0 0 10px">Families have left 32 Google reviews averaging 4.6 stars, with comments consistently praising staff patience, cleanliness, and proactive communication with family members. Pricing is not published; contact the Ipoh branch directly on WhatsApp (+6017-449 6008) or through the Johnson Residence website at <a href="http://www.johnsonresidence.com.my/" target="_blank" rel="noopener">johnsonresidence.com.my</a> to request a quote. The centre is also active on Facebook at <a href="https://www.facebook.com/myplacecarecentre" target="_blank" rel="noopener">facebook.com/myplacecarecentre</a>.</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>What is the monthly fee for shared vs private rooms, and what is included?</li>
+<li>What is current bed availability and the typical wait time for admission?</li>
+<li>How often does the visiting geriatric specialist attend, and can family be notified of visit findings?</li>
+<li>What post-surgery physiotherapy schedule is available?</li>
+<li>When was the last JKM inspection and can you share the result?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -569,8 +569,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

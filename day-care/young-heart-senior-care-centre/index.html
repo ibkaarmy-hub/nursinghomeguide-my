@@ -249,13 +249,13 @@
 <p style="margin:0 0 10px">Young Heart Senior Care Centre (童心乐龄日托休闲中心) sits inside Horizon Hills, one of Iskandar Puteri&#39;s most established gated townships, at Jalan Horizon Perdana 3. The name says it plainly: 日托 (day care) and 休闲中心 (leisure centre). This is not a residential nursing home — it is a weekday day care programme running Monday to Friday, 8 AM to 6 PM, designed for families where working adults leave for the office and do not want an elderly parent spending the day alone at home, disconnected and sedentary. The centre operates with an explicit Chinese-community orientation, with staff communicating comfortably in Mandarin and family reviews written in both English and Chinese.</p>
 <p style="margin:0 0 10px">What families describe in the reviews makes the value proposition clear. One reviewer&#39;s mother had stopped wearing her hearing aids at home and was deteriorating quietly — after three days at Young Heart she put them back on, her communication improved, and her energy returned. Another notes the shift from isolated scrolling at home to eating together, joining activities, and being part of what multiple reviewers call a &quot;big family&quot; atmosphere. The centre provides lunch and afternoon tea daily, cooked in-house, with multiple reviewers calling out the food as healthy and delicious. Group activities form the backbone of the daily schedule — the specifics vary, but the consistent theme across ten five-star reviews is that residents come home more alert and engaged than when they left. The facility itself is described as clean, bright, and well-maintained, set within the well-resourced Horizon Hills township.</p>
 <p style="margin:0 0 10px">Young Heart carries a Google rating of 5.0 across 10 reviews — an unusually clean score for a centre of its size. It sits in a part of Iskandar Puteri that has relatively few senior day care options relative to its large upper-middle-class population of working families with ageing parents. The operating hours of 8 AM to 6 PM cover a standard working day neatly, though it is worth confirming whether there is any flexibility at the edges or transport arrangements if you need them. When you visit, bring specific questions about how the day is structured for different ability levels, what happens when a resident is unwell, and whether the centre closes on public holidays.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- What does a typical day look like, hour by hour, and how is it adapted for different mobility or cognitive levels?</p>
-<p style="margin:0 0 10px">- Can you accommodate residents with mild dementia or early cognitive decline?</p>
-<p style="margin:0 0 10px">- Is there a nurse or trained first-aider on site at all times?</p>
-<p style="margin:0 0 10px">- Are there transport arrangements, or is it drop-off and pick-up only?</p>
-<p style="margin:0 0 10px">- Does the centre close on public holidays or during school holidays?</p>
-<p style="margin:0 0 10px">- Can we arrange a trial day before committing to a regular schedule?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>What does a typical day look like, hour by hour, and how is it adapted for different mobility or cognitive levels?</li>
+<li>Can you accommodate residents with mild dementia or early cognitive decline?</li>
+<li>Is there a nurse or trained first-aider on site at all times?</li>
+<li>Are there transport arrangements, or is it drop-off and pick-up only?</li>
+<li>Does the centre close on public holidays or during school holidays?</li>
+<li>Can we arrange a trial day before committing to a regular schedule?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Day care — call for rates</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -569,8 +569,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

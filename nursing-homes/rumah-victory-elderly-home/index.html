@@ -247,24 +247,24 @@
 <section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Rumah Victory Elderly Home is the elder care division of Rumah Victory, a non-profit charitable organisation founded in 1988 by the late Philip Mok Sew Kwong. The organisation also runs a drug rehabilitation centre and a children&#39;s home in the same compound. The elderly home functions as a welfare service for seniors requiring residential care, funded through charitable donations.</p>
-<p style="margin:0 0 10px">**Care services**</p>
-<p style="margin:0 0 10px">- Residential care for elderly</p>
-<p style="margin:0 0 10px">- Daily living support</p>
-<p style="margin:0 0 10px">- Community meals and activities</p>
-<p style="margin:0 0 10px">- Access to shared facilities with the wider Rumah Victory charitable campus</p>
-<p style="margin:0 0 10px">**Staffing &amp; support**</p>
-<p style="margin:0 0 10px">- Non-profit staffing with community and volunteer support</p>
-<p style="margin:0 0 10px">**Capacity &amp; pricing**</p>
-<p style="margin:0 0 10px">- 60 beds (confirmed)</p>
-<p style="margin:0 0 10px">- Pricing not applicable as a commercial rate — contact the organisation regarding admission procedures and any family contribution requested</p>
-<p style="margin:0 0 10px">**License &amp; verification**</p>
-<p style="margin:0 0 10px">- To be verified — confirm JKM or MOH registration on visit.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- What are the admission criteria for the elderly home?</p>
-<p style="margin:0 0 10px">- Is the home registered with JKM?</p>
-<p style="margin:0 0 10px">- What nursing or medical services are available on-site?</p>
-<p style="margin:0 0 10px">- What daily routine is maintained for elderly residents?</p>
-<p style="margin:0 0 10px">- How are medical emergencies handled?</p>
+<p style="margin:0 0 6px;font-weight:700">Care services</p>
+<li>Residential care for elderly</li>
+<li>Daily living support</li>
+<li>Community meals and activities</li>
+<li>Access to shared facilities with the wider Rumah Victory charitable campus</li>
+<p style="margin:0 0 6px;font-weight:700">Staffing &amp; support</p>
+<li>Non-profit staffing with community and volunteer support</li>
+<p style="margin:0 0 6px;font-weight:700">Capacity &amp; pricing</p>
+<li>60 beds (confirmed)</li>
+<li>Pricing not applicable as a commercial rate — contact the organisation regarding admission procedures and any family contribution requested</li>
+<p style="margin:0 0 6px;font-weight:700">License &amp; verification</p>
+<li>To be verified — confirm JKM or MOH registration on visit.</li>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>What are the admission criteria for the elderly home?</li>
+<li>Is the home registered with JKM?</li>
+<li>What nursing or medical services are available on-site?</li>
+<li>What daily routine is maintained for elderly residents?</li>
+<li>How are medical emergencies handled?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Facility information" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Facility information</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Total beds</span><span style="font-size:.88rem;font-weight:500">60</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Languages spoken</span><span style="font-size:.88rem;font-weight:500">English, BM, Mandarin</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Halal food</span><span style="font-size:.88rem;font-weight:500">15</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Last updated</span><span style="font-size:.88rem;font-weight:500">2026-05-09</span></div></section>
@@ -577,8 +577,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

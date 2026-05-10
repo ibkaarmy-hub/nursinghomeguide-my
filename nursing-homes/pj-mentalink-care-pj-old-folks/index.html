@@ -247,26 +247,26 @@
 <section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">PJ Mentalink Care is a specialist residential care home in Petaling Jaya, Selangor, focused primarily on caring for adults with mental health conditions including depression and other psychiatric diagnoses. This distinguishes it from standard nursing homes — it accepts elderly residents but its core specialism is mental health residential care.</p>
-<p style="margin:0 0 10px">**Care services**</p>
-<p style="margin:0 0 10px">- Residential care for mentally ill and depressed residents</p>
-<p style="margin:0 0 10px">- Daily activities and supervised living</p>
-<p style="margin:0 0 10px">- Compulsory pre-admission isolation period for all new and returning residents</p>
-<p style="margin:0 0 10px">- Garden/green space on premises</p>
-<p style="margin:0 0 10px">- Meals provided</p>
-<p style="margin:0 0 10px">**Staffing &amp; support**</p>
-<p style="margin:0 0 10px">- Supervised residential environment</p>
-<p style="margin:0 0 10px">- Pre-admission isolation protocol in place</p>
-<p style="margin:0 0 10px">**Capacity &amp; pricing**</p>
-<p style="margin:0 0 10px">- 30 beds (confirmed)</p>
-<p style="margin:0 0 10px">- Pricing not published on operator website — contact directly</p>
-<p style="margin:0 0 10px">**License &amp; verification**</p>
-<p style="margin:0 0 10px">- To be verified — confirm JKM or MOH registration on visit.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- Is the facility registered with JKM and/or MOH for mental health residential care?</p>
-<p style="margin:0 0 10px">- What psychiatric or psychological support is provided?</p>
-<p style="margin:0 0 10px">- What qualifications do on-duty staff hold in mental health care?</p>
-<p style="margin:0 0 10px">- What is the monthly fee and what does it include?</p>
-<p style="margin:0 0 10px">- How are behavioural crises managed?</p>
+<p style="margin:0 0 6px;font-weight:700">Care services</p>
+<li>Residential care for mentally ill and depressed residents</li>
+<li>Daily activities and supervised living</li>
+<li>Compulsory pre-admission isolation period for all new and returning residents</li>
+<li>Garden/green space on premises</li>
+<li>Meals provided</li>
+<p style="margin:0 0 6px;font-weight:700">Staffing &amp; support</p>
+<li>Supervised residential environment</li>
+<li>Pre-admission isolation protocol in place</li>
+<p style="margin:0 0 6px;font-weight:700">Capacity &amp; pricing</p>
+<li>30 beds (confirmed)</li>
+<li>Pricing not published on operator website — contact directly</li>
+<p style="margin:0 0 6px;font-weight:700">License &amp; verification</p>
+<li>To be verified — confirm JKM or MOH registration on visit.</li>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>Is the facility registered with JKM and/or MOH for mental health residential care?</li>
+<li>What psychiatric or psychological support is provided?</li>
+<li>What qualifications do on-duty staff hold in mental health care?</li>
+<li>What is the monthly fee and what does it include?</li>
+<li>How are behavioural crises managed?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Facility information" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Facility information</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Total beds</span><span style="font-size:.88rem;font-weight:500">30</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Languages spoken</span><span style="font-size:.88rem;font-weight:500">English, BM</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Halal food</span><span style="font-size:.88rem;font-weight:500">15</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Last updated</span><span style="font-size:.88rem;font-weight:500">2026-05-09</span></div></section>
@@ -579,8 +579,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

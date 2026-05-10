@@ -248,13 +248,13 @@
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Pusat Jagaan Qaseh Murni is a nursing home in Lumut, on the western coast of Perak, serving the Manjung district. The centre is located at No 223, Persiaran Venice Sutera 2, Desa Manjung Raya, 32200 Lumut — within reach of four hospitals: Hospital Seri Manjung, Pantai Hospital Manjung, KPJ Seri Manjung Specialist Hospital, and the military hospital 96 HAT. That cluster of medical facilities makes this a practical option for residents who anticipate regular specialist visits or may need emergency care. Qaseh Murni is registered with five agencies — JKM, KKM, SSM, MPM, and BOMBA — and holds JKM licence A/PJB WE 012/2025.</p>
 <p style="margin:0 0 10px">Care at Qaseh Murni includes 24-hour nursing with specialist doctor oversight, flexible stay options from hourly to permanent residence, and post-treatment elderly care. The centre runs a community programme called &quot;Sahabat Senja&quot; (Sunset Friends) — an adopted elderly initiative that connects residents with community support outside the home. The centre maintains an active online presence with promotional pricing available for new clients, though no figures are published.</p>
-<p style="margin:0 0 10px">Contact numbers: +60 12-547 9544, +60 19-220 6449, or +60 5-689 3544. Email: [pjqasehmurni@gmail.com](mailto:pjqasehmurni@gmail.com). More information is available at [pusatjagaanqasehmurni.wordpress.com](https://pusatjagaanqasehmurni.wordpress.com/) and on the centre&#39;s Facebook page at [facebook.com/PusatJagaanQasehMurni](https://www.facebook.com/p/Pusat-Jagaan-Qaseh-Murni-PJQM-61559010767489). The centre also posts on Instagram and TikTok under the PJQM account.</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- What are the monthly fees for different stay types — hourly, day care, and permanent residential?</p>
-<p style="margin:0 0 10px">- How does the Sahabat Senja adopted elderly programme work in practice?</p>
-<p style="margin:0 0 10px">- What level of specialist doctor involvement is provided on-site vs. hospital referrals?</p>
-<p style="margin:0 0 10px">- What is the bed count and current availability?</p>
-<p style="margin:0 0 10px">- When was the last JKM inspection and can you see the result?</p>
+<p style="margin:0 0 10px">Contact numbers: +60 12-547 9544, +60 19-220 6449, or +60 5-689 3544. Email: <a href="mailto:pjqasehmurni@gmail.com" target="_blank" rel="noopener">pjqasehmurni@gmail.com</a>. More information is available at <a href="https://pusatjagaanqasehmurni.wordpress.com/" target="_blank" rel="noopener">pusatjagaanqasehmurni.wordpress.com</a> and on the centre&#39;s Facebook page at <a href="https://www.facebook.com/p/Pusat-Jagaan-Qaseh-Murni-PJQM-61559010767489" target="_blank" rel="noopener">facebook.com/PusatJagaanQasehMurni</a>. The centre also posts on Instagram and TikTok under the PJQM account.</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>What are the monthly fees for different stay types — hourly, day care, and permanent residential?</li>
+<li>How does the Sahabat Senja adopted elderly programme work in practice?</li>
+<li>What level of specialist doctor involvement is provided on-site vs. hospital referrals?</li>
+<li>What is the bed count and current availability?</li>
+<li>When was the last JKM inspection and can you see the result?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -569,8 +569,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

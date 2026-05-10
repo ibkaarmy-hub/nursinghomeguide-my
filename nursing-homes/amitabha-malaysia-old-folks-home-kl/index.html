@@ -247,25 +247,25 @@
 <section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Amitabha Malaysia Old Folks Home is the residential care arm of Amitabha Malaysia, a charitable organisation in Kuala Lumpur that also operates a dialysis centre and poverty relief programmes. The home cares for abandoned and disadvantaged elderly, receiving funding from public donations and community support rather than operating as a commercial nursing home.</p>
-<p style="margin:0 0 10px">**Care services**</p>
-<p style="margin:0 0 10px">- Residential care for elderly with limited family support</p>
-<p style="margin:0 0 10px">- Basic daily living assistance</p>
-<p style="margin:0 0 10px">- Community activities and events</p>
-<p style="margin:0 0 10px">- Access to in-house dialysis centre (Amitabha group facility)</p>
-<p style="margin:0 0 10px">**Staffing &amp; support**</p>
-<p style="margin:0 0 10px">- Staff team supported by volunteers</p>
-<p style="margin:0 0 10px">- Community-funded model with regular donation drives</p>
-<p style="margin:0 0 10px">**Capacity &amp; pricing**</p>
-<p style="margin:0 0 10px">- 30 beds (confirmed)</p>
-<p style="margin:0 0 10px">- Pricing not applicable in standard commercial sense — contact the organisation for admission enquiry and contribution expectations</p>
-<p style="margin:0 0 10px">**License &amp; verification**</p>
-<p style="margin:0 0 10px">- To be verified — confirm JKM or MOH registration on visit.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- What are the admission criteria and who qualifies for placement here?</p>
-<p style="margin:0 0 10px">- Is the home registered with JKM?</p>
-<p style="margin:0 0 10px">- What daily care routine is provided for residents?</p>
-<p style="margin:0 0 10px">- How are medical needs handled — is there a visiting doctor or nurse?</p>
-<p style="margin:0 0 10px">- What is the contribution or fee arrangement for families who can afford to pay?</p>
+<p style="margin:0 0 6px;font-weight:700">Care services</p>
+<li>Residential care for elderly with limited family support</li>
+<li>Basic daily living assistance</li>
+<li>Community activities and events</li>
+<li>Access to in-house dialysis centre (Amitabha group facility)</li>
+<p style="margin:0 0 6px;font-weight:700">Staffing &amp; support</p>
+<li>Staff team supported by volunteers</li>
+<li>Community-funded model with regular donation drives</li>
+<p style="margin:0 0 6px;font-weight:700">Capacity &amp; pricing</p>
+<li>30 beds (confirmed)</li>
+<li>Pricing not applicable in standard commercial sense — contact the organisation for admission enquiry and contribution expectations</li>
+<p style="margin:0 0 6px;font-weight:700">License &amp; verification</p>
+<li>To be verified — confirm JKM or MOH registration on visit.</li>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>What are the admission criteria and who qualifies for placement here?</li>
+<li>Is the home registered with JKM?</li>
+<li>What daily care routine is provided for residents?</li>
+<li>How are medical needs handled — is there a visiting doctor or nurse?</li>
+<li>What is the contribution or fee arrangement for families who can afford to pay?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Facility information" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Facility information</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Total beds</span><span style="font-size:.88rem;font-weight:500">30</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Languages spoken</span><span style="font-size:.88rem;font-weight:500">English, BM, Mandarin</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Halal food</span><span style="font-size:.88rem;font-weight:500">15</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Last updated</span><span style="font-size:.88rem;font-weight:500">2026-05-09</span></div></section>
@@ -578,8 +578,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

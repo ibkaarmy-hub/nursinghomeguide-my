@@ -249,13 +249,13 @@
 <p style="margin:0 0 10px">Jasper Lodge PJ5 occupies 33 Jalan SS 1/25 in Kampung Tunku, Petaling Jaya, in the same SS 1 neighbourhood as the chain&#39;s PJ2 branch a short distance away. The site is part of the 11-branch Jasper Healthcare Sdn Bhd (SSM 930504W) network and follows the group&#39;s doctor-managed operating model. Kampung Tunku is a mature, low-rise residential area with convenient access from Damansara, Bangsar, and the Sprint Highway — practical for families making regular visits.</p>
 <p style="margin:0 0 10px">The care offering at PJ5 draws on the same group-wide service platform: 24-hour nursing care by trained staff, regular doctor oversight, customised physiotherapy recovery plans, and a structured programme of daily activities and exercises. Services confirmed across Jasper Lodge branches include dementia and Alzheimer&#39;s care, Parkinson&#39;s care, post-surgery rehabilitation, assisted living for semi-ambulant residents, short-term respite care, and a day care option for residents who need daytime supervision. Three meals and two snacks per day are provided on a nutritionally balanced plan, and all rooms are equipped with medical-grade beds. Contact is via the group hotline +6018-661 1380 or WhatsApp +60186611380, or email [email protected].</p>
 <p style="margin:0 0 10px">JKM licence details are not displayed on the Jasper Lodge website and should be verified on site for this specific branch. Pricing is not published and must be discussed directly with the admissions team. Visiting hours are 10 am to 8 pm daily, consistent with all PJ branches.</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- What is the JKM registration number and current licence status for PJ5 specifically?</p>
-<p style="margin:0 0 10px">- Is there a separate wing or structured programme for residents with dementia or Parkinson&#39;s?</p>
-<p style="margin:0 0 10px">- How does the physiotherapy schedule work — sessions per week, individual or group?</p>
-<p style="margin:0 0 10px">- What is the bed count and current occupancy for this branch?</p>
-<p style="margin:0 0 10px">- Is respite care available for a short stay of two to four weeks?</p>
-<p style="margin:0 0 10px">- How are medical emergencies managed — is there a protocol for hospital transfer?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>What is the JKM registration number and current licence status for PJ5 specifically?</li>
+<li>Is there a separate wing or structured programme for residents with dementia or Parkinson&#39;s?</li>
+<li>How does the physiotherapy schedule work — sessions per week, individual or group?</li>
+<li>What is the bed count and current occupancy for this branch?</li>
+<li>Is respite care available for a short stay of two to four weeks?</li>
+<li>How are medical emergencies managed — is there a protocol for hospital transfer?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Dementia care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Respite care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -570,8 +570,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

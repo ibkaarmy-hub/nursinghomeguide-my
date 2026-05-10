@@ -249,13 +249,13 @@
 <p style="margin:0 0 10px">Jasper Lodge PJ3 is situated at 47 Jalan SS 2/3 in the SS 2 precinct of Petaling Jaya, one of the more established mid-density residential areas in the Klang Valley. It is the third of five Jasper Lodge branches in PJ and part of an 11-site network run by Jasper Healthcare Sdn Bhd (SSM 930504W) under the doctor-managed banner. SS 2 is walkable to shops and services and is well-served by public transport, making it accessible for families visiting from Kepong, Bangsar, and Damansara.</p>
 <p style="margin:0 0 10px">The care model follows the chain standard: 24-hour on-site nursing, regular physician oversight, basic physiotherapy with personalised recovery plans, and a structured daily activities programme. Confirmed care categories across the Jasper Lodge network include nursing care, dementia and Alzheimer&#39;s care, Parkinson&#39;s care, post-surgery rehabilitation, assisted living for the semi-ambulant, short-term respite stays, and a day care service for residents who need daytime professional supervision without an overnight placement. Three balanced meals and two snacks are served daily. Enquiries are handled through the group hotline (+6018-661 1380) and WhatsApp (+60186611380), or by email at [email protected].</p>
 <p style="margin:0 0 10px">JKM registration details are not published on the chain&#39;s website; families should request the specific licence certificate for PJ3 on arrival. Pricing follows a call-to-enquire model. Visiting hours are 10 am to 8 pm daily, consistent with all PJ branches.</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- Can you show the JKM licence certificate for this branch and its current expiry date?</p>
-<p style="margin:0 0 10px">- How does the doctor-visit schedule work — is a physician based here or rotating across branches?</p>
-<p style="margin:0 0 10px">- Is day care available for a relative without committing to a full residential package?</p>
-<p style="margin:0 0 10px">- What is the nurse-to-resident ratio on the night shift?</p>
-<p style="margin:0 0 10px">- How is the physiotherapy programme tailored — is there an assessment on admission?</p>
-<p style="margin:0 0 10px">- What is the process if a resident&#39;s medical condition deteriorates overnight?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>Can you show the JKM licence certificate for this branch and its current expiry date?</li>
+<li>How does the doctor-visit schedule work — is a physician based here or rotating across branches?</li>
+<li>Is day care available for a relative without committing to a full residential package?</li>
+<li>What is the nurse-to-resident ratio on the night shift?</li>
+<li>How is the physiotherapy programme tailored — is there an assessment on admission?</li>
+<li>What is the process if a resident&#39;s medical condition deteriorates overnight?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Dementia care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Respite care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -570,8 +570,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

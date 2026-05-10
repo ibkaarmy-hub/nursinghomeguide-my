@@ -249,13 +249,13 @@
 <p style="margin:0 0 10px">Fu Ka Care Center (福家康乐疗养中心) is a nursing home and assisted living facility in Kempas Baru, Johor Bahru — an area that has become a notable cluster for private elderly care homes, partly due to its accessibility from the North-South Expressway and proximity to Kempas Medical Centre approximately one to two kilometres away. The centre was incorporated in May 2023, making it one of the newer entrants in the Johor Bahru nursing home market. Its address, confirmed via both the Facebook listing and company records, is PTD 14521, Jalan Persiaran Kempas Baru, 81200 Johor Bahru.</p>
 <p style="margin:0 0 10px">The centre provides 24-hour nursing care, dementia care, physiotherapy, and specialist care — all confirmed clinical services. Care types declared are nursing home and assisted living. Phone contact is +60 19-381 4521; email fukanursinghome14521@gmail.com. The Facebook page (fukacarecenter, 354 followers, 87 actively engaging) shows 44 check-ins, indicating regular visitor footfall from families. Business hours listed on Facebook show a front-office schedule; residential care runs continuously. The Chinese name 福家康乐 translates loosely to &#39;Fu Ka Happy Health&#39; — suggesting a homely, community-oriented positioning.</p>
 <p style="margin:0 0 10px">As an establishment incorporated in 2023, Fu Ka is still building its public track record. Families should request the JKM licence number, verify halal meal arrangements (not confirmed), and ask about pricing by room type. WhatsApp contact is not publicly listed — initial contact via phone is recommended. The nearby Kempas Medical Centre provides a reassuring emergency care backstop for medical incidents requiring hospital-level intervention.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- Can you show your JKM licence certificate for this branch?</p>
-<p style="margin:0 0 10px">- What room types are available (single, twin, dormitory) and what is the monthly rate?</p>
-<p style="margin:0 0 10px">- Is halal food served, and is there a halal certificate?</p>
-<p style="margin:0 0 10px">- How many registered nurses are on duty per shift?</p>
-<p style="margin:0 0 10px">- What happens if a resident needs emergency transfer to Kempas Medical Centre?</p>
-<p style="margin:0 0 10px">- Is physiotherapy in-house or referred externally?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>Can you show your JKM licence certificate for this branch?</li>
+<li>What room types are available (single, twin, dormitory) and what is the monthly rate?</li>
+<li>Is halal food served, and is there a halal certificate?</li>
+<li>How many registered nurses are on duty per shift?</li>
+<li>What happens if a resident needs emergency transfer to Kempas Medical Centre?</li>
+<li>Is physiotherapy in-house or referred externally?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Dementia care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -570,8 +570,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

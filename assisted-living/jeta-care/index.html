@@ -249,14 +249,14 @@
 <p style="margin:0 0 10px">Jeta Care Aged Care Centre in Kulai holds a genuinely distinctive position in the Malaysian elderly care landscape: it is Malaysia&#39;s first residential aged care facility built on Australian-model care principles, combined with Confucianist values — a hybrid designed to bridge Western clinical standards with Southeast Asian family expectations. Set at 1, 2 &amp; 3 Jalan Susur Kulai 1, Taman Seraya, Kulai Besar, 81000 Kulai, the facility spans 2,150 m2 across three floors and holds 62 beds. It is licensed by both JKM and the Ministry of Health under the CKAPS framework, with the MOH licence valid to February 2028 — one of the strongest regulatory credentials a private nursing home in Malaysia can hold.</p>
 <p style="margin:0 0 10px">The clinical offering is among the most comprehensive available in Johor outside Johor Bahru: skilled nursing (wound care, PEG tube management, colostomy/ileostomy, tracheostomy, catheter), dementia care, stroke and post-surgical rehabilitation, palliative and end-of-life care, respite care, day care, and transitional care from hospital discharge. Medical oversight is provided by named medical director Dr. Goh Yi Xiong. The centre has served over 2,000 seniors in 15 years of operation. A rooftop garden, 24-hour nurse call system, halal cafe on-premises, and surau (prayer room) make this one of the most fully-featured care homes in Johor. Languages spoken: English, Chinese dialects, and Bahasa Malaysia. Contact: +60 7-663 6888 or WhatsApp +60 18-769 5688; email enquiry@jetacare.com; website jetacare.com.</p>
 <p style="margin:0 0 10px">Pricing is not published on the website. Historical rates from 2020 ranged from approximately RM 3,000 to RM 5,500 per month depending on room type — these figures are several years out of date and should be confirmed directly with the centre. The Facebook page (jetacare, 1,092 followers, 375 check-ins) reflects the facility&#39;s standing as the most established and visited of the Kulai-area care homes.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- What is the current all-in monthly rate by room type?</p>
-<p style="margin:0 0 10px">- Is there a current waiting list and what is the expected lead time?</p>
-<p style="margin:0 0 10px">- For high-dependency patients (PEG, trach): walk us through the after-hours emergency protocol.</p>
-<p style="margin:0 0 10px">- Can we meet Dr. Goh Yi Xiong or the clinical deputy during the tour?</p>
-<p style="margin:0 0 10px">- Is the dementia care a physically separate wing, or integrated with the general ward?</p>
-<p style="margin:0 0 10px">- What is the staffing ratio for night shifts?</p>
-<p style="margin:0 0 10px">- Is respite care available for stays of one to four weeks?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>What is the current all-in monthly rate by room type?</li>
+<li>Is there a current waiting list and what is the expected lead time?</li>
+<li>For high-dependency patients (PEG, trach): walk us through the after-hours emergency protocol.</li>
+<li>Can we meet Dr. Goh Yi Xiong or the clinical deputy during the tour?</li>
+<li>Is the dementia care a physically separate wing, or integrated with the general ward?</li>
+<li>What is the staffing ratio for night shifts?</li>
+<li>Is respite care available for stays of one to four weeks?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">RM 3,001–6,000/mo (2020 — confirm)</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Shared room (RM/month)</span><span style="font-size:.88rem;font-weight:500">3001</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Private room (RM/month)</span><span style="font-size:.88rem;font-weight:500">6000</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Dementia care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Palliative / end-of-life care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -571,8 +571,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

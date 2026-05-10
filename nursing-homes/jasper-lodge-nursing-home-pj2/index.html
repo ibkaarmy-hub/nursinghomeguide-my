@@ -249,13 +249,13 @@
 <p style="margin:0 0 10px">Jasper Lodge PJ2 is one of five Petaling Jaya branches of Jasper Lodge Care Centres, a doctor-managed nursing home chain operated by Jasper Healthcare Sdn Bhd (SSM registration 930504W) with 11 sites across the Klang Valley, Penang, and Kuantan. PJ2 sits in the quiet residential enclave of SS 1, Kampung Tunku — a neighbourhood that families in Damansara, Subang, and central PJ find easy to reach — and occupies a converted terrace property at 15 Jalan SS 1/41 that is typical of the chain&#39;s community-scale model.</p>
 <p style="margin:0 0 10px">The chain&#39;s clinical proposition is consistent across all branches: 24-hour nursing care by trained staff, regular doctor visits, basic physiotherapy with customised recovery plans, and structured daily activities. Confirmed care services include Alzheimer and dementia care, Parkinson&#39;s care, post-surgery rehabilitation, assisted living for the semi-ambulant, respite care for caregiver breaks, and a day care option for those who do not need full residential placement. Three meals plus two snacks are provided daily on a balanced nutrition plan, and medical beds are standard. The WhatsApp number +60186611380 connects to a centralised intake line shared across all PJ branches.</p>
 <p style="margin:0 0 10px">Jasper Lodge does not publish JKM licence numbers on its website, so families should request the certificate for this specific branch before committing. Pricing is call-to-enquire. The email contact is [email protected] and the general hotline is +6018-661 1380. Visiting hours are 10 am to 8 pm daily.</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- What is the JKM licence number for this branch, and when does it expire?</p>
-<p style="margin:0 0 10px">- How often does the resident doctor visit, and is there an on-call physician after hours?</p>
-<p style="margin:0 0 10px">- Which physiotherapy sessions are included in the base fee and which attract an add-on charge?</p>
-<p style="margin:0 0 10px">- How is the dementia programme structured — is it a separate wing or integrated with general residents?</p>
-<p style="margin:0 0 10px">- What is the current bed occupancy and typical waiting time for a private room?</p>
-<p style="margin:0 0 10px">- How are families kept updated — daily notes, WhatsApp group, or scheduled calls?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>What is the JKM licence number for this branch, and when does it expire?</li>
+<li>How often does the resident doctor visit, and is there an on-call physician after hours?</li>
+<li>Which physiotherapy sessions are included in the base fee and which attract an add-on charge?</li>
+<li>How is the dementia programme structured — is it a separate wing or integrated with general residents?</li>
+<li>What is the current bed occupancy and typical waiting time for a private room?</li>
+<li>How are families kept updated — daily notes, WhatsApp group, or scheduled calls?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Dementia care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Respite care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -570,8 +570,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

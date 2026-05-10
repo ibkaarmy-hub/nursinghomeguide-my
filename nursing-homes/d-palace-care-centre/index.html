@@ -246,13 +246,13 @@
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">D Palace Care Centre is a nursing home in Bandar Baru Sri Klebang, Ipoh, founded by Ms. C.P. Premalatha Chellapa — a registered nurse who holds a Master&#39;s in Education from Universiti Sains Malaysia and an Advanced Diploma in Palliative Care from Nanyang Polytechnic in Singapore. That combined clinical and academic background defines what D Palace is: a care-and-teaching centre where local university students complete clinical placements alongside residents who need round-the-clock nursing. The centre operates under the motto &quot;We Treat Our Residents With Dignity.&quot;</p>
 <p style="margin:0 0 10px">Care at D Palace spans a wide clinical range — 24-hour nursing, assisted living, elderly care, palliative care for both cancer and non-cancer conditions, dementia and Parkinson&#39;s support, stroke and neurological care, physiotherapy, and day care. The operator emphasises personalised care plans for each resident and a home-like atmosphere. Staff are multilingual, serving in English, Bahasa Malaysia, and Chinese. The centre holds two JKM licences (A/PJB WT 063/2021 and A/PJB WT 031/2023), indicating it operates from more than one registered premises.</p>
-<p style="margin:0 0 10px">Pricing is not published. Contact the admissions team on +6016-555 4935 or +6016-444 3032. More information about services is available at [dpalacenursing.com](https://dpalacenursing.com/) and on the centre&#39;s Facebook page at [facebook.com/DPalaceCare](https://www.facebook.com/100049058575717).</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- What is the monthly fee for long-term residential vs. day care, and what does it include?</p>
-<p style="margin:0 0 10px">- How many beds and what is the current occupancy?</p>
-<p style="margin:0 0 10px">- What palliative protocols are in place for cancer patients and end-of-life care?</p>
-<p style="margin:0 0 10px">- Is there a dedicated area for dementia residents with secure access?</p>
-<p style="margin:0 0 10px">- When was the last JKM inspection and can you share the result?</p>
+<p style="margin:0 0 10px">Pricing is not published. Contact the admissions team on +6016-555 4935 or +6016-444 3032. More information about services is available at <a href="https://dpalacenursing.com/" target="_blank" rel="noopener">dpalacenursing.com</a> and on the centre&#39;s Facebook page at <a href="https://www.facebook.com/100049058575717" target="_blank" rel="noopener">facebook.com/DPalaceCare</a>.</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>What is the monthly fee for long-term residential vs. day care, and what does it include?</li>
+<li>How many beds and what is the current occupancy?</li>
+<li>What palliative protocols are in place for cancer patients and end-of-life care?</li>
+<li>Is there a dedicated area for dementia residents with secure access?</li>
+<li>When was the last JKM inspection and can you share the result?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Dementia care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Palliative / end-of-life care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -567,8 +567,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

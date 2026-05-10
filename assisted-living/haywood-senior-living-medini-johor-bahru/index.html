@@ -249,14 +249,14 @@
 <p style="margin:0 0 10px">Haywood Senior Living Medini is a premium elderly care and senior living centre situated inside Ramada by Wyndham Medini Johor Bahru, within the Iskandar Puteri corridor — approximately three minutes from Gleneagles Hospital Medini. Part of the Mintygreen Healthcare Group, the facility spans two branches in Peninsular Malaysia (Bangsar, KL and Medini, JB), positioning itself at the intersection of hotel hospitality and licensed senior care. It caters to families who want their parents to live comfortably rather than simply being managed, and to Singaporean families for whom Medini is a familiar 20-kilometre crossing.</p>
 <p style="margin:0 0 10px">Haywood covers the full spectrum from independent and assisted living through to long-term nursing care, day care, post-hospitalisation rehabilitation, and palliative care. The in-house team includes nurses, physiotherapists, and psychological counsellors — the centre has publicly demonstrated therapist-led sessions including Jenga-based emotional processing. In April 2026 the centre was named a Selected Senior Care and Rehabilitation Partner by Prudential Insurance Malaysia, a credential worth noting when comparing facilities with similar marketing claims. Residents receive four meals daily (including a weekly hotel breakfast buffet), access to the Ramada pool for aqua aerobics, an outdoor gym, reflexology walks, monthly outings to Emerald Lake JB and Singapore Botanic Gardens, and AI-monitored in-room CCTV and call-bell response. Traditional Chinese Medicine practitioners (acupuncture, Tui Na) are available as add-ons.</p>
 <p style="margin:0 0 10px">Haywood operates 24/7 with caregivers on duty around the clock; enquiry hours are Monday to Friday 9 am to 6 pm. Studio apartments include a private balcony, wall-mounted bath chair, and grab bars; shared suite options are available. Pricing is not published online — a written quote is required during a visit or enquiry call. Languages supported: English, Bahasa Malaysia, and Mandarin. Confirm JKM/MOH licence before committing. The closest hospital, Gleneagles Medini, is explicitly cited as three minutes away.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- Can you show us the JKM or MOH licence certificate for this branch?</p>
-<p style="margin:0 0 10px">- What is the all-in monthly fee for a studio versus a shared suite at my parent&#39;s care level?</p>
-<p style="margin:0 0 10px">- How does the Prudential partnership work in practice — does it affect billing or care protocols?</p>
-<p style="margin:0 0 10px">- Is the on-site doctor available every day, or on-call only?</p>
-<p style="margin:0 0 10px">- How are psychological counselling sessions allocated — included in the fee or charged separately?</p>
-<p style="margin:0 0 10px">- What is the transfer protocol if a resident deteriorates and needs hospital admission?</p>
-<p style="margin:0 0 10px">- Is halal certification in place for the Ramada restaurant that provides meals?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>Can you show us the JKM or MOH licence certificate for this branch?</li>
+<li>What is the all-in monthly fee for a studio versus a shared suite at my parent&#39;s care level?</li>
+<li>How does the Prudential partnership work in practice — does it affect billing or care protocols?</li>
+<li>Is the on-site doctor available every day, or on-call only?</li>
+<li>How are psychological counselling sessions allocated — included in the fee or charged separately?</li>
+<li>What is the transfer protocol if a resident deteriorates and needs hospital admission?</li>
+<li>Is halal certification in place for the Ramada restaurant that provides meals?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Palliative / end-of-life care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Respite care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -571,8 +571,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

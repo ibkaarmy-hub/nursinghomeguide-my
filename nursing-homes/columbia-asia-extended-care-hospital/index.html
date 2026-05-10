@@ -247,31 +247,31 @@
 <section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Columbia Asia Extended Care Hospital (Shah Alam) is a private MOH-licensed extended care hospital operated by the Columbia Asia hospital group, located in Section 17, Shah Alam, Selangor. Unlike typical nursing homes, it functions as a step-down hospital specifically designed for patients who have passed the acute phase of illness but still require intensive nursing and rehabilitation before returning home.</p>
-<p style="margin:0 0 10px">**Care services**</p>
-<p style="margin:0 0 10px">- 24-hour nursing care by State Registered Nurses</p>
-<p style="margin:0 0 10px">- Post-hospitalisation and long-term care</p>
-<p style="margin:0 0 10px">- Palliative care</p>
-<p style="margin:0 0 10px">- Respite care (short-term admissions)</p>
-<p style="margin:0 0 10px">- Physiotherapy, occupational therapy, and speech therapy</p>
-<p style="margin:0 0 10px">- Outpatient medical treatment by on-site doctors</p>
-<p style="margin:0 0 10px">- Dietary review by visiting dietitian</p>
-<p style="margin:0 0 10px">- Integrated orthopaedic recovery pathway (partnership with TAGS Chiro &amp; Rehab)</p>
-<p style="margin:0 0 10px">**Staffing &amp; support**</p>
-<p style="margin:0 0 10px">- State Registered Nurses on duty 24 hours</p>
-<p style="margin:0 0 10px">- In-house physiotherapists and occupational therapists</p>
-<p style="margin:0 0 10px">- Medical officers with extended care specialisation on site</p>
-<p style="margin:0 0 10px">- Doctor house calls available</p>
-<p style="margin:0 0 10px">**Capacity &amp; pricing**</p>
-<p style="margin:0 0 10px">- Daily room rates: single small room with meals RM 130/day; 2-bedded room with meals RM 105/day; nursing service RM 83.49/day</p>
-<p style="margin:0 0 10px">- Therapy sessions RM 80–180 per session</p>
-<p style="margin:0 0 10px">- Package deals available: 10-day neuro recovery RM 7,500; 30-day neuro recovery RM 30,000</p>
-<p style="margin:0 0 10px">**License &amp; verification**</p>
-<p style="margin:0 0 10px">- To be verified — confirm JKM or MOH registration on visit.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- What is the minimum and maximum intended length of stay?</p>
-<p style="margin:0 0 10px">- How are transitions back to home or to a nursing home managed?</p>
-<p style="margin:0 0 10px">- What insurance panels are accepted for extended care admissions?</p>
-<p style="margin:0 0 10px">- Is a geriatric specialist or psychiatrist available for dementia patients?</p>
+<p style="margin:0 0 6px;font-weight:700">Care services</p>
+<li>24-hour nursing care by State Registered Nurses</li>
+<li>Post-hospitalisation and long-term care</li>
+<li>Palliative care</li>
+<li>Respite care (short-term admissions)</li>
+<li>Physiotherapy, occupational therapy, and speech therapy</li>
+<li>Outpatient medical treatment by on-site doctors</li>
+<li>Dietary review by visiting dietitian</li>
+<li>Integrated orthopaedic recovery pathway (partnership with TAGS Chiro &amp; Rehab)</li>
+<p style="margin:0 0 6px;font-weight:700">Staffing &amp; support</p>
+<li>State Registered Nurses on duty 24 hours</li>
+<li>In-house physiotherapists and occupational therapists</li>
+<li>Medical officers with extended care specialisation on site</li>
+<li>Doctor house calls available</li>
+<p style="margin:0 0 6px;font-weight:700">Capacity &amp; pricing</p>
+<li>Daily room rates: single small room with meals RM 130/day; 2-bedded room with meals RM 105/day; nursing service RM 83.49/day</li>
+<li>Therapy sessions RM 80–180 per session</li>
+<li>Package deals available: 10-day neuro recovery RM 7,500; 30-day neuro recovery RM 30,000</li>
+<p style="margin:0 0 6px;font-weight:700">License &amp; verification</p>
+<li>To be verified — confirm JKM or MOH registration on visit.</li>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>What is the minimum and maximum intended length of stay?</li>
+<li>How are transitions back to home or to a nursing home managed?</li>
+<li>What insurance panels are accepted for extended care admissions?</li>
+<li>Is a geriatric specialist or psychiatrist available for dementia patients?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">From RM 105/day (2-bed room, meals included); nursing fee extra</span></div></section>
 <section aria-label="Medical services" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Medical services</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Doctor visits</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -585,8 +585,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

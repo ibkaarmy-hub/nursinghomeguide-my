@@ -249,13 +249,13 @@
 <p style="margin:0 0 10px">Pusat Jagaan Warga Emas Nur Ehsan is a welfare-model nursing home operated by Persatuan Kebajikan Nur Ehsan Negeri Johor (PKNENJ), a registered Johor welfare society, from its Kempas Baru branch at Lot 3353, MLD 1034, No. 3, Jalan Denai 1, 81200 Johor Bahru. Established in November 2008 and formally incorporated in June 2009, it is one of the older Muslim-focused elderly care institutions in southern Johor. The organisation operates four branches statewide — Johor Bahru, Ledang, Bukit Indah, and Simpang Renggam — with the Kempas Baru branch having a stated capacity of 56 beds.</p>
 <p style="margin:0 0 10px">Admission is structured around welfare need, not market rates: the home serves elderly Muslims without close heirs, those in destitution, converts (muallaf), and persons with disabilities. Referrals typically come via JKM officers, hospital social workers, and Islamic bodies MAIJ and JAIJ. Families with means who seek to place a relative here are asked to contribute modestly — exact amounts should be confirmed with the manager, Encik Saiful, at 013-794 0350. The fee model is donation-based rather than a fixed monthly fee. Clinical services confirmed include physiotherapy and regular medical examinations; 24-hour CCTV security is in place. Visiting hours are 10am to 6pm daily. Phone: +60 7-232 6415.</p>
 <p style="margin:0 0 10px">The Facebook page for this branch is privacy-restricted and not publicly viewable. The facility does not maintain a public website. The main contact route is via phone to the manager or the branch landline. Because this is a welfare institution with a Muslim focus, families from non-Muslim backgrounds or those seeking standard private nursing home terms should contact first to confirm eligibility and arrangement terms.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- What is the monthly contribution expected for family-placed residents?</p>
-<p style="margin:0 0 10px">- Is the current intake open or is there a waiting list?</p>
-<p style="margin:0 0 10px">- Can you show the JKM registration certificate for this branch?</p>
-<p style="margin:0 0 10px">- What are the on-site nursing care capabilities (wound care, tube feeding, catheter)?</p>
-<p style="margin:0 0 10px">- Is there a doctor who visits regularly?</p>
-<p style="margin:0 0 10px">- What is the gender policy — are both male and female residents admitted at this branch?</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>What is the monthly contribution expected for family-placed residents?</li>
+<li>Is the current intake open or is there a waiting list?</li>
+<li>Can you show the JKM registration certificate for this branch?</li>
+<li>What are the on-site nursing care capabilities (wound care, tube feeding, catheter)?</li>
+<li>Is there a doctor who visits regularly?</li>
+<li>What is the gender policy — are both male and female residents admitted at this branch?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -570,8 +570,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

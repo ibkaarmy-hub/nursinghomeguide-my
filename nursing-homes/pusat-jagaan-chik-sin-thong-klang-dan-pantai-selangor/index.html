@@ -247,20 +247,20 @@
 <section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Pusat Jagaan Chik Sin Thong is a community-based care home in Klang, Selangor. The centre appears to operate under a Chinese association or charitable framework, serving the Klang and Pantai Selangor communities. Minimal online information is available, suggesting a primarily word-of-mouth and community-referred operation.</p>
-<p style="margin:0 0 10px">**Care services**</p>
-<p style="margin:0 0 10px">- Residential care for elderly</p>
-<p style="margin:0 0 10px">- Basic daily living support</p>
-<p style="margin:0 0 10px">- Community meals and activities</p>
-<p style="margin:0 0 10px">**Capacity &amp; pricing**</p>
-<p style="margin:0 0 10px">- 30 beds (confirmed)</p>
-<p style="margin:0 0 10px">- Pricing not published — contact the centre directly</p>
-<p style="margin:0 0 10px">**License &amp; verification**</p>
-<p style="margin:0 0 10px">- JKM Registered — licence number: B/PJBWT 009/2022.</p>
-<p style="margin:0 0 10px">**What to ask on visit**</p>
-<p style="margin:0 0 10px">- What is the monthly fee and what does it include?</p>
-<p style="margin:0 0 10px">- What nursing qualifications do on-duty caregivers hold?</p>
-<p style="margin:0 0 10px">- How are medical emergencies handled?</p>
-<p style="margin:0 0 10px">- Are there visiting hours and what is the policy?</p>
+<p style="margin:0 0 6px;font-weight:700">Care services</p>
+<li>Residential care for elderly</li>
+<li>Basic daily living support</li>
+<li>Community meals and activities</li>
+<p style="margin:0 0 6px;font-weight:700">Capacity &amp; pricing</p>
+<li>30 beds (confirmed)</li>
+<li>Pricing not published — contact the centre directly</li>
+<p style="margin:0 0 6px;font-weight:700">License &amp; verification</p>
+<li>JKM Registered — licence number: B/PJBWT 009/2022.</li>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit</p>
+<li>What is the monthly fee and what does it include?</li>
+<li>What nursing qualifications do on-duty caregivers hold?</li>
+<li>How are medical emergencies handled?</li>
+<li>Are there visiting hours and what is the policy?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Facility information" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Facility information</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Total beds</span><span style="font-size:.88rem;font-weight:500">30</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Languages spoken</span><span style="font-size:.88rem;font-weight:500">BM, Mandarin</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Halal food</span><span style="font-size:.88rem;font-weight:500">15</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">JKM licence number</span><span style="font-size:.88rem;font-weight:500">B/PJBWT 009/2022</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Last updated</span><span style="font-size:.88rem;font-weight:500">2026-05-09</span></div></section>
@@ -573,8 +573,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

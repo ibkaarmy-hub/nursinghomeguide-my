@@ -248,13 +248,13 @@
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Pusat Jagaan Yayasan Teratai is an aged care home operated by Yayasan Teratai, an Ipoh-based charitable limited liability company incorporated in April 2001. The foundation&#39;s registered office is at 16 Jalan Raja Dihilir, 30350 Ipoh, and it also engages in education care alongside its aged care work. As a charitable entity with over two decades of presence in Ipoh, Yayasan Teratai predates most of the private nursing home operators that have entered the Perak market in recent years. The home holds JKM licence A/PJB WT 041/2022.</p>
 <p style="margin:0 0 10px">The foundation&#39;s website is minimal in public-facing detail — most operational information requires a login — which makes it difficult to assess the home&#39;s care model, capacity, or staffing from the outside. What is confirmed: Yayasan Teratai operates across health and aged care and has maintained JKM registration under the current licence cycle. The home&#39;s coordinates place it in central Ipoh.</p>
-<p style="margin:0 0 10px">Given the limited information available online, families considering Yayasan Teratai should visit in person to understand the home&#39;s current capacity, care model, and fee structure. Contact the home by phone (+6016-534 5679) or visit the foundation&#39;s website at [yayasanteratai.org.my](https://www.yayasanteratai.org.my/). Longer-established charitable homes in Malaysia sometimes maintain waiting lists for subsidised places.</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- Is this a subsidised charitable home, a fee-paying private home, or a mix?</p>
-<p style="margin:0 0 10px">- What is the bed count and current availability?</p>
-<p style="margin:0 0 10px">- What level of nursing care is provided — is there registered nursing cover overnight?</p>
-<p style="margin:0 0 10px">- Are there specific capabilities for residents with dementia, stroke, or high-dependency needs?</p>
-<p style="margin:0 0 10px">- When was the last JKM inspection and can you see the result?</p>
+<p style="margin:0 0 10px">Given the limited information available online, families considering Yayasan Teratai should visit in person to understand the home&#39;s current capacity, care model, and fee structure. Contact the home by phone (+6016-534 5679) or visit the foundation&#39;s website at <a href="https://www.yayasanteratai.org.my/" target="_blank" rel="noopener">yayasanteratai.org.my</a>. Longer-established charitable homes in Malaysia sometimes maintain waiting lists for subsidised places.</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>Is this a subsidised charitable home, a fee-paying private home, or a mix?</li>
+<li>What is the bed count and current availability?</li>
+<li>What level of nursing care is provided — is there registered nursing cover overnight?</li>
+<li>Are there specific capabilities for residents with dementia, stroke, or high-dependency needs?</li>
+<li>When was the last JKM inspection and can you see the result?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -568,8 +568,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;

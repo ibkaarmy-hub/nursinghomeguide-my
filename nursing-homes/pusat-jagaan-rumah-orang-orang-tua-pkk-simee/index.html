@@ -248,13 +248,13 @@
 <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
 <p style="margin:0 0 10px">Pusat Jagaan Rumah Orang-Orang Tua (PKK) Simee is a charitable home for the aged in the Simee area of Ipoh. Unlike most private nursing homes, PKK Simee operates as a welfare centre under the PKK (Pusat Khidmat Komuniti) framework, sustained by donations from individuals and corporations rather than market-rate fees. The centre is open every day including public holidays from 8:30am to 5:30pm, and welcomes organised group visits for birthday celebrations and CSR programmes. Families and corporations who donate RM5,000 or more are recognised on a Donor Recognition Wall; contributions of RM100,000 and above are featured on the Honorary Donor Board. The centre holds JKM licence A/PJB WT 046/2023.</p>
 <p style="margin:0 0 10px">Residents at PKK Simee receive daily care, meals, recreation, and essential provisions. The centre publishes a wishlist of in-kind donations and runs a volunteer programme open to individuals and groups — a community-integrated model that distinguishes it from private commercial homes.</p>
-<p style="margin:0 0 10px">As a charitable home, admission criteria, fees (if any), and waiting lists are not published on the website. Contact the centre directly at 05-545 2449 or via email at [kgsimeehome@gmail.com](mailto:kgsimeehome@gmail.com). Further details are available at [kgsimeehome.com](http://www.kgsimeehome.com/) and on the centre&#39;s Facebook page at [facebook.com/PKKSimee](https://www.facebook.com/p/Pusat-Jagaan-Rumah-Orang-Orang-Tua-PKK-Simee-100064488590548).</p>
-<p style="margin:0 0 10px">**What to ask on visit:**</p>
-<p style="margin:0 0 10px">- What are the admission criteria, and is there a waiting list?</p>
-<p style="margin:0 0 10px">- Are there fees for residents, or is placement fully subsidised? What financial assessment applies?</p>
-<p style="margin:0 0 10px">- What level of nursing care is available for residents with medical or high-dependency needs?</p>
-<p style="margin:0 0 10px">- Are there specific capabilities for residents with dementia or limited mobility?</p>
-<p style="margin:0 0 10px">- When was the last JKM inspection and can you see the result?</p>
+<p style="margin:0 0 10px">As a charitable home, admission criteria, fees (if any), and waiting lists are not published on the website. Contact the centre directly at 05-545 2449 or via email at <a href="mailto:kgsimeehome@gmail.com" target="_blank" rel="noopener">kgsimeehome@gmail.com</a>. Further details are available at <a href="http://www.kgsimeehome.com/" target="_blank" rel="noopener">kgsimeehome.com</a> and on the centre&#39;s Facebook page at <a href="https://www.facebook.com/p/Pusat-Jagaan-Rumah-Orang-Orang-Tua-PKK-Simee-100064488590548" target="_blank" rel="noopener">facebook.com/PKKSimee</a>.</p>
+<p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
+<li>What are the admission criteria, and is there a waiting list?</li>
+<li>Are there fees for residents, or is placement fully subsidised? What financial assessment applies?</li>
+<li>What level of nursing care is available for residents with medical or high-dependency needs?</li>
+<li>Are there specific capabilities for residents with dementia or limited mobility?</li>
+<li>When was the last JKM inspection and can you see the result?</li>
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
@@ -568,8 +568,16 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: escape then bold
-      return escapeHtml(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function ri(s) { // render inline: links, bold
+      // Split on markdown links [text](url) to avoid escaping their contents
+      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+      return parts.map((p, i) => {
+        if (i % 2 === 1) { // matched link token
+          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        }
+        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      }).join('');
     }
     const lines = text.split('\n');
     let out = '', inList = false;
