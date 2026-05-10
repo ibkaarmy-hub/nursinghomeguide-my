@@ -88,6 +88,45 @@ def build_meta_description(f):
     return trim_desc(" ".join(parts), 155)
 
 
+CATEGORY_LABELS = {
+    "nursing-homes":   "Nursing Homes",
+    "assisted-living": "Assisted Living",
+    "home-care":       "Home Care",
+    "day-care":        "Day Care",
+}
+
+
+def slugify_state(state):
+    return state.strip().lower().replace(" ", "-")
+
+
+def build_breadcrumb_jsonld(f, slug, canonical_dir):
+    state = (f.get("state") or "").strip()
+    state_slug = slugify_state(state) if state else ""
+    cat_label = CATEGORY_LABELS.get(canonical_dir, "Nursing Homes")
+    title = (f.get("title") or "").strip()
+
+    items = [
+        {"@type": "ListItem", "position": 1, "name": "Home",
+         "item": f"{BASE}/"},
+        {"@type": "ListItem", "position": 2, "name": cat_label,
+         "item": f"{BASE}/{canonical_dir}/"},
+    ]
+    if state_slug:
+        items.append({"@type": "ListItem", "position": 3,
+                      "name": state,
+                      "item": f"{BASE}/{canonical_dir}/{state_slug}/"})
+        items.append({"@type": "ListItem", "position": 4, "name": title})
+    else:
+        items.append({"@type": "ListItem", "position": 3, "name": title})
+
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": items,
+    }
+
+
 def build_jsonld(f, canonical):
     title = f.get("title", "").strip()
     address = {"@type": "PostalAddress", "addressCountry": "MY"}
@@ -355,7 +394,7 @@ def build_static_content(f, category):
     return '\n'.join(s)
 
 
-def build_head_inserts(f, slug, canonical):
+def build_head_inserts(f, slug, canonical, canonical_dir="nursing-homes"):
     title = f.get("title", "").strip()
     page_title = f"{title} — NursingHomeGuide.my"
     desc = build_meta_description(f)
@@ -363,10 +402,13 @@ def build_head_inserts(f, slug, canonical):
     twitter_card = "summary_large_image" if img else "summary"
     ld = build_jsonld(f, canonical)
     ld_json = json.dumps(ld, ensure_ascii=False, separators=(",", ":"))
+    bc_ld = build_breadcrumb_jsonld(f, slug, canonical_dir)
+    bc_json = json.dumps(bc_ld, ensure_ascii=False, separators=(",", ":"))
 
     parts = [
         '<base href="/">',
         f'<link rel="canonical" href="{html_escape(canonical)}">',
+        '<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">',
         '<meta property="og:type" content="website">',
         '<meta property="og:site_name" content="NursingHomeGuide.my">',
         f'<meta property="og:title" content="{html_escape(page_title)}">',
@@ -381,6 +423,7 @@ def build_head_inserts(f, slug, canonical):
     if img:
         parts.append(f'<meta name="twitter:image" content="{html_escape(img)}">')
     parts.append(f'<script type="application/ld+json" id="ld-localbusiness">{ld_json}</script>')
+    parts.append(f'<script type="application/ld+json" id="ld-breadcrumb">{bc_json}</script>')
     parts.append(f'<script>window.__FACILITY_SLUG={json.dumps(slug)};</script>')
     return page_title, desc, "\n".join(parts)
 
@@ -497,7 +540,7 @@ def main():
         canonical_dir, mirror_dirs = CATEGORY_DIRS[category]
         canonical = f"{BASE}/{canonical_dir}/{slug}/"
 
-        page_title, desc, head_inserts = build_head_inserts(r, slug, canonical)
+        page_title, desc, head_inserts = build_head_inserts(r, slug, canonical, canonical_dir)
         static_content = build_static_content(r, category)
         page_html = transform_template(template, page_title, desc, head_inserts, static_content)
 
