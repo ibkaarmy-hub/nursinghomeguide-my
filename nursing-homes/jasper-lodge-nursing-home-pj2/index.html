@@ -80,7 +80,7 @@
 @media (max-width: 768px) { .summary-card { grid-template-columns: 1fr 1fr; gap: 16px; padding: 18px; } }
 @media (max-width: 400px) { .summary-card { grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; } .summary-item .value { font-size: .92rem; } }
 
-.tabs-nav { background: white; border-bottom: 1px solid var(--border, #e2e8f0); position: sticky; top: 56px; z-index: 40; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+.tabs-nav { background: white; border-bottom: 1px solid var(--border, #e2e8f0); position: sticky; top: 56px; z-index: 40; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; scroll-margin-top: 56px; }
 .tabs-nav::-webkit-scrollbar { display: none; }
 .tabs-nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 16px; display: flex; gap: 0; }
 .tab-btn { background: none; border: none; padding: 14px 14px; cursor: pointer; font: inherit; font-size: .88rem; font-weight: 500; color: var(--text-muted, #64748b); white-space: nowrap; border-bottom: 3px solid transparent; transition: all .15s; }
@@ -220,26 +220,66 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="logo"><a href="index.html" style="text-decoration:none;">NursingHome<span>Guide.my</span></a></div>
-
+    <a href="/" class="logo">NursingHome<span>Guide.my</span></a>
+    <button class="nav-hamburger" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/nursing-homes/selangor/" class="nav-link">Nursing Homes</a></li>
+      <li><a href="/assisted-living/" class="nav-link">Assisted Living</a></li>
+      <li><a href="/day-care/" class="nav-link">Day Care</a></li>
+      <li><a href="/home-care/" class="nav-link">Home Care</a></li>
+      <li><a href="/guides/which-care.html" class="nav-link">Guides</a></li>
+      <li><a href="/sitemap.html" class="nav-link nav-link-sitemap">Site Map</a></li>
+    </ul>
   </div>
 </nav>
 
+<div id="facility-static-data" style="display:none" aria-hidden="true">
+<div style="max-width:900px;margin:0 auto;padding:24px 20px;font-family:system-ui,sans-serif;color:#0f172a;line-height:1.65">
+<p style="font-size:.85rem;color:#64748b;margin:0 0 8px"><a href="/" style="color:#2563eb">Home</a> &rsaquo; <a href="/nursing-homes/" style="color:#2563eb">Nursing Home</a> &rsaquo; <a href="/nursing-homes/selangor/" style="color:#2563eb">Selangor</a></p>
+<h1 style="font-size:1.85rem;font-weight:800;margin:0 0 4px">Jasper Lodge Nursing Home PJ2</h1>
+<p style="color:#64748b;margin:0 0 12px">SS 1, Kampung Tunku, Petaling Jaya, Selangor, Malaysia</p>
+<p style="margin:0 0 20px"><strong>Rating:</strong> 5.0 / 5.0 (1 Google reviews)&ensp;&bull;&ensp;<strong>Care type:</strong> Nursing Home, Dementia Care, Rehabilitation, Respite, Day Care, Assisted Living</p>
+<section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">
+<p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2563eb;margin:0 0 12px">About this facility</p>
+<p style="margin:0 0 10px">Jasper Lodge PJ2 is one of five Petaling Jaya branches of Jasper Lodge Care Centres, a doctor-managed nursing home chain operated by Jasper Healthcare Sdn Bhd (SSM registration 930504W) with 11 sites across the Klang Valley, Penang, and Kuantan. PJ2 sits in the quiet residential enclave of SS 1, Kampung Tunku — a neighbourhood that families in Damansara, Subang, and central PJ find easy to reach — and occupies a converted terrace property at 15 Jalan SS 1/41 that is typical of the chain&#39;s community-scale model.</p>
+<p style="margin:0 0 10px">The chain&#39;s clinical proposition is consistent across all branches: 24-hour nursing care by trained staff, regular doctor visits, basic physiotherapy with customised recovery plans, and structured daily activities. Confirmed care services include Alzheimer and dementia care, Parkinson&#39;s care, post-surgery rehabilitation, assisted living for the semi-ambulant, respite care for caregiver breaks, and a day care option for those who do not need full residential placement. Three meals plus two snacks are provided daily on a balanced nutrition plan, and medical beds are standard. The WhatsApp number +60186611380 connects to a centralised intake line shared across all PJ branches.</p>
+<p style="margin:0 0 10px">Jasper Lodge does not publish JKM licence numbers on its website, so families should request the certificate for this specific branch before committing. Pricing is call-to-enquire. The email contact is [email protected] and the general hotline is +6018-661 1380. Visiting hours are 10 am to 8 pm daily.</p>
+<p style="margin:0 0 10px">**What to ask on visit:**</p>
+<p style="margin:0 0 10px">- What is the JKM licence number for this branch, and when does it expire?</p>
+<p style="margin:0 0 10px">- How often does the resident doctor visit, and is there an on-call physician after hours?</p>
+<p style="margin:0 0 10px">- Which physiotherapy sessions are included in the base fee and which attract an add-on charge?</p>
+<p style="margin:0 0 10px">- How is the dementia programme structured — is it a separate wing or integrated with general residents?</p>
+<p style="margin:0 0 10px">- What is the current bed occupancy and typical waiting time for a private room?</p>
+<p style="margin:0 0 10px">- How are families kept updated — daily notes, WhatsApp group, or scheduled calls?</p>
+</section>
+<section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
+<section aria-label="Care capabilities" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Care capabilities</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Nursing care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Dementia care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Rehabilitation</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Respite care</span><span style="font-size:.88rem;font-weight:500">Yes</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Assisted daily living</span><span style="font-size:.88rem;font-weight:500">Yes</span></div></section>
+<section aria-label="Medical services" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Medical services</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">PEG / tube feeding</span><span style="font-size:.88rem;font-weight:500">15, Jalan SS 1/41, Kampung Tunku, 47300 Petaling Jaya, Selangor</span></div></section>
+<section aria-label="Facility information" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Facility information</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Total beds</span><span style="font-size:.88rem;font-weight:500">20</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Visiting hours</span><span style="font-size:.88rem;font-weight:500">10am–8pm daily</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Ownership type</span><span style="font-size:.88rem;font-weight:500">Private (chain)</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Last updated</span><span style="font-size:.88rem;font-weight:500">2026-05-03</span></div></section>
+<section aria-label="Contact &amp; location" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Contact &amp; location</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Phone</span><span style="font-size:.88rem;font-weight:500">+6018-661 1380</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">WhatsApp</span><span style="font-size:.88rem;font-weight:500">+60186611380</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Website</span><span style="font-size:.88rem;font-weight:500">https://jasperlodge.com.my/</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Facebook</span><span style="font-size:.88rem;font-weight:500">https://www.instagram.com/jasperlodge</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Google Maps</span><span style="font-size:.88rem;font-weight:500">https://www.google.com/maps/search/?api=1&amp;query=Jasper+Lodge+PJ2&amp;query_place_id=ChIJK72AbSxNzDERJj0JYN25NZ8</span></div></section>
+</div>
+</div>
 <div id="profileContent">
   <div class="loading" style="padding:80px 20px"><div class="spinner"></div><p style="margin-top:12px">Loading facility...</p></div>
 </div>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="footer-logo">NursingHomeGuide.my</span>
-      <p class="footer-tagline">A free resource for Malaysian families navigating elderly care.</p>
+    <div>
+      <div class="footer-logo">NursingHomeGuide.my</div>
+      <div class="footer-tagline">A free resource for Malaysian families navigating eldercare</div>
     </div>
-    <nav class="footer-links">
-      <a href="facilities.html">All Facilities</a>
-      <a href="mailto:admin@nursinghomeguide.my">Contact</a>
-    </nav>
-    <p class="footer-copy">© 2026 NursingHomeGuide.my</p>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/nursing-homes/selangor/">Nursing Homes</a>
+      <a href="/assisted-living/">Assisted Living</a>
+      <a href="/day-care/">Day Care</a>
+      <a href="/home-care/">Home Care</a>
+      <a href="/guides/which-care.html">Which Care?</a>
+    </div>
+    <div class="footer-copy">© 2026 NursingHomeGuide.my — Not affiliated with JKM or any facility</div>
   </div>
 </footer>
 
@@ -340,10 +380,11 @@ function showTab(id) {
   const panel = document.getElementById('tab-' + id);
   if (panel) panel.classList.add('active');
   document.querySelector(`[data-tab="${id}"]`)?.classList.add('active');
+  // Only scroll up to the tab bar if the user has scrolled past it (it's above viewport).
+  // Avoids unwanted scroll-down when clicking tabs while near the top of the page.
   const nav = document.querySelector('.tabs-nav');
-  if (nav) {
-    const y = nav.getBoundingClientRect().top + window.pageYOffset - 56;
-    window.scrollTo({ top: y, behavior: 'smooth' });
+  if (nav && window.scrollY > nav.offsetTop - 56) {
+    nav.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
@@ -515,7 +556,6 @@ function render(f) {
     infoRow('Phone', f.phone),
     infoRow('Languages', f.languages),
     infoRow('Halal certified', yn(f.halal) === true ? '✓ Yes' : yn(f.halal) === false ? '✗ No' : ''),
-    infoRow('Wheelchair access', f.wheelchair),
     infoRow('Subsidy accepted', f.subsidy),
     infoRow('Visiting hours', f.visiting_hours),
     infoRow('Google rating', f.rating ? `★ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} reviews)` : ''),
@@ -585,26 +625,40 @@ function render(f) {
 
   const includedExtras = renderIncludedExtras(D.included || [], D.extras || []);
 
-  /* CARE tab */
-  const careCells = [
-    checkCell(tipLabel('Skilled Nursing',      'Care requiring licensed nurses — wound care, IV drips, tube feeding, etc.'),    f.care_nursing),
-    checkCell('Assisted Living',               f.care_assisted),
-    checkCell('Dementia Care',                 f.care_dementia),
-    checkCell(tipLabel('Palliative Care',      'Comfort-focused care for serious illness — not curative, focuses on quality of life'), f.care_palliative),
-    checkCell('Rehab / Step-down',             f.care_rehab),
-    checkCell(tipLabel('Respite / Short-stay', 'Short-term stays to give family caregivers a break'),                           f.care_respite),
-  ].join('');
+  /* Care levels — Overview tab (only confirmed) */
+  const careLevelDefs = [
+    { label: 'Skilled Nursing',    val: f.care_nursing,    tip: 'Care requiring licensed nurses — wound care, IV drips, tube feeding, etc.' },
+    { label: 'Assisted Living',    val: f.care_assisted },
+    { label: 'Dementia Care',      val: f.care_dementia },
+    { label: 'Palliative Care',    val: f.care_palliative, tip: 'Comfort-focused care for serious illness — not curative, focuses on quality of life' },
+    { label: 'Rehab / Step-down',  val: f.care_rehab },
+    { label: 'Respite / Short-stay', val: f.care_respite, tip: 'Short-term stays to give family caregivers a break' },
+  ].filter(c => yn(c.val) === true);
+  const careLevelsHtml = careLevelDefs.length ? `
+    <div class="profile-card">
+      <h2>Care Offered</h2>
+      <div class="check-grid">${careLevelDefs.map(c => {
+        const lHtml = c.tip ? `<span class="term-tip" data-tip="${escapeHtml(c.tip)}">${escapeHtml(c.label)}</span>` : escapeHtml(c.label);
+        return `<div class="check-cell yes"><span class="check-icon-sm">✓</span> ${lHtml}</div>`;
+      }).join('')}</div>
+    </div>` : '';
+
+  /* Medical tab — only offered services */
   const medCells = [
-    checkCell('Doctor Visits',                                                                                                    f.doctor_visits),
-    checkCell(tipLabel('Physiotherapy',        'Exercise and movement therapy to improve strength and mobility'),                f.medical_physio),
-    checkCell(tipLabel('Occupational Therapy', 'Helps residents regain ability to dress, bathe, and do daily tasks'),           f.medical_ot),
-    checkCell('Wound Care',                                                                                                       f.medical_wound),
-    checkCell(tipLabel('Tube Feeding (NG/PEG)','NG = tube through the nose; PEG = tube surgically placed into the stomach'),   f.medical_peg),
-    checkCell(tipLabel('Dementia Unit',        'A secured wing specifically designed for residents with memory loss'),           f.medical_dementia_unit),
-    checkCell('Dialysis Support',                                                                                                 f.medical_dialysis),
-    checkCell('Oxygen Therapy',                                                                                                   f.medical_oxygen),
-    checkCell('Medication Management',                                                                                            f.medical_meds),
-  ].join('');
+    { label: 'Doctor Visits',         val: f.doctor_visits },
+    { label: 'Physiotherapy',         val: f.medical_physio,        tip: 'Exercise and movement therapy to improve strength and mobility' },
+    { label: 'Occupational Therapy',  val: f.medical_ot,            tip: 'Helps residents regain ability to dress, bathe, and do daily tasks' },
+    { label: 'Wound Care',            val: f.medical_wound },
+    { label: 'Tube Feeding (NG/PEG)', val: f.medical_peg,           tip: 'NG = tube through the nose; PEG = tube surgically placed into the stomach' },
+    { label: 'Dementia Unit',         val: f.medical_dementia_unit, tip: 'A secured wing specifically designed for residents with memory loss' },
+    { label: 'Dialysis Support',      val: f.medical_dialysis },
+    { label: 'Oxygen Therapy',        val: f.medical_oxygen },
+    { label: 'Medication Management', val: f.medical_meds },
+  ].filter(c => yn(c.val) === true)
+   .map(c => {
+     const lHtml = c.tip ? `<span class="term-tip" data-tip="${escapeHtml(c.tip)}">${escapeHtml(c.label)}</span>` : escapeHtml(c.label);
+     return `<div class="check-cell yes"><span class="check-icon-sm">✓</span> ${lHtml}</div>`;
+   }).join('');
   const clinicalDetailHtml = D.clinical?.length ? `
     <div class="profile-card"><h2>Clinical Capability Detail</h2>${renderCheckSection(D.clinical)}</div>` : '';
   const staffingHtml = D.staffing?.length ? `
@@ -741,7 +795,7 @@ function render(f) {
       <div class="tabs-nav-inner">
         <button class="tab-btn active" data-tab="overview"  onclick="showTab('overview')">Overview</button>
         <button class="tab-btn"        data-tab="pricing"   onclick="showTab('pricing')">Pricing</button>
-        <button class="tab-btn"        data-tab="care"      onclick="showTab('care')">Care</button>
+        <button class="tab-btn"        data-tab="care"      onclick="showTab('care')">Medical</button>
         <button class="tab-btn"        data-tab="amenities" onclick="showTab('amenities')">Amenities</button>
         <button class="tab-btn"        data-tab="photos"    onclick="showTab('photos')">Photos</button>
         <button class="tab-btn"        data-tab="reviews"   onclick="showTab('reviews')">Reviews</button>
@@ -755,6 +809,7 @@ function render(f) {
         <div class="tab-panel active" id="tab-overview">
           ${galleryHtml}
           ${editorialHtml}
+          ${careLevelsHtml}
           ${window.NHGBadges ? `
           <div class="badge-section">
             <div class="badge-section-head">
@@ -782,14 +837,7 @@ function render(f) {
         </div>
 
         <div class="tab-panel" id="tab-care">
-          <div class="profile-card">
-            <h2>Care Levels Accepted</h2>
-            <div class="check-grid">${careCells}</div>
-          </div>
-          <div class="profile-card">
-            <h2>Medical Capabilities</h2>
-            <div class="check-grid">${medCells}</div>
-          </div>
+          ${medCells ? `<div class="profile-card"><h2>Medical Services</h2><div class="check-grid">${medCells}</div></div>` : '<div class="profile-card"><p class="text-muted">Medical service details not yet collected.</p></div>'}
           ${clinicalDetailHtml}
           ${staffingHtml}
         </div>
@@ -894,5 +942,21 @@ function render(f) {
   }
 })();</script>
 
-</body>
+
+<script>
+(function() {
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  if (!toggle || !links) return;
+  toggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', function() {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+})();
+</script></body>
 </html>

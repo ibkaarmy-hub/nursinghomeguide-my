@@ -218,8 +218,18 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="logo"><a href="index.html" style="text-decoration:none;">NursingHome<span>Guide.my</span></a></div>
-
+    <a href="/" class="logo">NursingHome<span>Guide.my</span></a>
+    <button class="nav-hamburger" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/nursing-homes/selangor/" class="nav-link">Nursing Homes</a></li>
+      <li><a href="/assisted-living/" class="nav-link">Assisted Living</a></li>
+      <li><a href="/day-care/" class="nav-link">Day Care</a></li>
+      <li><a href="/home-care/" class="nav-link">Home Care</a></li>
+      <li><a href="/guides/which-care.html" class="nav-link">Guides</a></li>
+      <li><a href="/sitemap.html" class="nav-link nav-link-sitemap">Site Map</a></li>
+    </ul>
   </div>
 </nav>
 
@@ -237,7 +247,7 @@
 </section>
 <section aria-label="Pricing" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Pricing</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Pricing</span><span style="font-size:.88rem;font-weight:500">Call for pricing</span></div></section>
 <section aria-label="Facility information" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Facility information</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Last updated</span><span style="font-size:.88rem;font-weight:500">2026-05-01</span></div></section>
-<section aria-label="Contact &amp; location" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Contact &amp; location</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Phone</span><span style="font-size:.88rem;font-weight:500">+60 16-220 6247</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Google Maps</span><span style="font-size:.88rem;font-weight:500">https://www.google.com/maps/search/?api=1&amp;query=Elderly%20Welfare%20Association%20Chan%20Kuala%20Lumpur&amp;query_place_id=ChIJj6Nd6vs3zDER2ID4ejNr1sE</span></div></section>
+<section aria-label="Contact &amp; location" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Contact &amp; location</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Phone</span><span style="font-size:.88rem;font-weight:500">+60 16-220 6247</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Website</span><span style="font-size:.88rem;font-weight:500">https://www.facebook.com/pusatjagaanwargaemaschan</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Google Maps</span><span style="font-size:.88rem;font-weight:500">https://www.google.com/maps/search/?api=1&amp;query=Elderly%20Welfare%20Association%20Chan%20Kuala%20Lumpur&amp;query_place_id=ChIJj6Nd6vs3zDER2ID4ejNr1sE</span></div></section>
 </div>
 </div>
 <div id="profileContent">
@@ -246,15 +256,19 @@
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="footer-logo">NursingHomeGuide.my</span>
-      <p class="footer-tagline">A free resource for Malaysian families navigating elderly care.</p>
+    <div>
+      <div class="footer-logo">NursingHomeGuide.my</div>
+      <div class="footer-tagline">A free resource for Malaysian families navigating eldercare</div>
     </div>
-    <nav class="footer-links">
-      <a href="facilities.html">All Facilities</a>
-      <a href="mailto:admin@nursinghomeguide.my">Contact</a>
-    </nav>
-    <p class="footer-copy">© 2026 NursingHomeGuide.my</p>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/nursing-homes/selangor/">Nursing Homes</a>
+      <a href="/assisted-living/">Assisted Living</a>
+      <a href="/day-care/">Day Care</a>
+      <a href="/home-care/">Home Care</a>
+      <a href="/guides/which-care.html">Which Care?</a>
+    </div>
+    <div class="footer-copy">© 2026 NursingHomeGuide.my — Not affiliated with JKM or any facility</div>
   </div>
 </footer>
 
@@ -355,11 +369,12 @@ function showTab(id) {
   const panel = document.getElementById('tab-' + id);
   if (panel) panel.classList.add('active');
   document.querySelector(`[data-tab="${id}"]`)?.classList.add('active');
-  // scrollIntoView uses the element's layout box (not its sticky visual position),
-  // so it correctly scrolls up when the user is below the nav.
-  // scroll-margin-top: 56px on .tabs-nav keeps it clear of the fixed site header.
+  // Only scroll up to the tab bar if the user has scrolled past it (it's above viewport).
+  // Avoids unwanted scroll-down when clicking tabs while near the top of the page.
   const nav = document.querySelector('.tabs-nav');
-  if (nav) nav.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (nav && window.scrollY > nav.offsetTop - 56) {
+    nav.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 /* ── SEO: canonical URL, OG/Twitter meta, LocalBusiness JSON-LD ── */
@@ -916,5 +931,21 @@ function render(f) {
   }
 })();</script>
 
-</body>
+
+<script>
+(function() {
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  if (!toggle || !links) return;
+  toggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', function() {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+})();
+</script></body>
 </html>
