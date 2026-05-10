@@ -637,9 +637,7 @@ function hqRestart() {
   try {
     const facilities = await loadFacilities();
     for (const { state, id } of FEATURED) {
-      const nhFacilities = facilities.filter(f =>
-        f.state === state && (f.care_types || '').toLowerCase().includes('nursing home')
-      );
+      const nhFacilities = facilities.filter(f => f.state === state);
       const countEl = document.getElementById(`count-${id}`);
       if (countEl && nhFacilities.length > 0) {
         countEl.textContent = `${nhFacilities.length} nursing homes`;
