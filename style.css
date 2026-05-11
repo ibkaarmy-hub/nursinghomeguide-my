@@ -44,11 +44,13 @@ body > nav { background: #fff; border-bottom: 1px solid var(--border); position:
 }
 
 /* ── Hero (home) ──────────────────────────────────────────── */
-.hero { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color: #fff; padding: 72px 20px 60px; text-align: center; }
-.hero-home { padding: 80px 20px 64px; }
-.hero-home-content { max-width: 640px; margin: 0 auto; }
+.hero { background: linear-gradient(160deg, #0f2347 0%, #1a56db 100%); color: #fff; padding: 72px 20px 60px; text-align: center; }
+.hero-home { padding: 80px 20px 64px; position: relative; overflow: hidden; }
+.hero-home::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+.hero-home-content { max-width: 640px; margin: 0 auto; position: relative; }
 .hero-eyebrow { font-size: .85rem; font-weight: 600; letter-spacing: .06em; opacity: .75; margin-bottom: 16px; text-transform: uppercase; }
-.hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+.hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0; letter-spacing: -.02em; }
+.hero-sub { font-size: .95rem; opacity: .72; margin: 12px 0 28px; letter-spacing: .01em; }
 .hero p { font-size: 1.05rem; opacity: .85; max-width: 560px; margin: 0 auto 32px; }
 .hero-search { display: flex; max-width: 540px; margin: 0 auto; background: #fff; border-radius: 50px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.2); }
 .hero-search input { flex: 1; border: none; outline: none; padding: 14px 20px; font-size: 1rem; color: var(--text); min-width: 0; }
