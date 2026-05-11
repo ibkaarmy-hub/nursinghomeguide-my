@@ -17,10 +17,23 @@ Research and write detailed 3-paragraph editorial profiles for the next 10 nursi
 - Visit any pages that reveal: care specialisations, bed count, staff info, accreditations, founding story, religious affiliation, visiting hours, languages spoken, pricing range
 - Note everything concrete — avoid marketing fluff
 
-**Step 2 — External research**
-- Search Google Maps URL (from sheet) for reviews — read **all** reviews, not just the first page. Note recurring themes (positive and negative), staff mentions, specific care events described
-- Search `site:[website-domain]` for additional indexed content
-- Check if mentioned in any news, JKM lists, or directories
+**Step 2 — Google reviews (MANDATORY — do not skip)**
+- Run Apify `compass/crawler-google-places` for every facility before writing, even if the Maps URL is a raw lat/lng link with no place ID. Raw lat/lng URLs are NOT an excuse to skip this step — pass lat/lng + title to the actor; it resolves the place ID and returns reviews.
+- Read **all** reviews, not just the first page. Note recurring themes (positive only — see review rules below), staff mentions, specific care events described.
+- If the facility has **fewer than 5 reviews**: mention rating and count in prose only — "Google reviews stand at X★ across N reviews — too few to identify recurring trends" — do not write a bullet block.
+- Also check: `site:[website-domain]` for additional indexed content; JKM lists or directories for licence info.
+
+**Actor payload:**
+```python
+{
+    'searchStringsArray': [facility_title],
+    'lat': latitude,
+    'lng': longitude,
+    'zoom': 15,
+    'maxCrawledPlacesPerSearch': 3,
+    'language': 'en'
+}
+```
 
 **Step 3 — Medical social worker + consumer analysis**
 Evaluate from TWO lenses:
@@ -38,23 +51,67 @@ Evaluate from TWO lenses:
 - Social proof: are Google reviews detailed and believable?
 - Visiting hours, contact ease, WhatsApp availability
 
-**Step 4 — Write the editorial (3 paragraphs)**
-- **Paragraph 1**: What the home is, where it is, who runs it, and what type of care it primarily provides. Include founding year or operator background if known.
-- **Paragraph 2**: Specific care capabilities, capacity, notable facilities or programmes. Only state what is confirmed from website or reviews.
-- **Paragraph 3**: What families should know — practical considerations, who this home suits best, any gaps to ask about when calling.
+**Step 4 — Write the editorial (locked structure 2026-05-11)**
 
-Rules:
-- No fabrication. If unsure, don't say it.
+The editorial has a fixed five-part structure. Follow this exactly:
+
+**Part 1 — Prose opening paragraph**
+What the home is, where it is, who runs it, licence number (if known), capacity, founding year or operator background if known. No bullet lists here — prose only.
+
+**Part 2 — Services block**
+```
+**Services (from [domain.com]):**
+- [verbatim service name from operator website]
+- [verbatim service name]
+...
+```
+Quote the operator's own service categories verbatim. Do NOT rename, combine, or invent. If the operator website is unavailable, omit this block and note it in Key facts. Follow with 1–2 sentences of clinical context if relevant (e.g. visiting doctor frequency, RN on-site).
+
+**Part 3 — What reviewers say block (MANDATORY)**
+```
+**What reviewers say (Google, N reviews, X★):**
+- [positive/neutral theme]
+- [positive/neutral theme]
+...
+```
+- Only include **positive and neutral** themes. **Never include negative review content** — remove any complaints or criticisms entirely.
+- If a concern from reviews is worth surfacing (e.g. deposit policy, supervision standards), reframe it as a neutral visit question in Part 5 only — never cite the review as a source.
+- For <5 reviews: replace with prose — "Google reviews stand at X★ across N reviews — too few to identify recurring trends." No bullet block.
+
+**Part 4 — Practical paragraph**
+Pricing (published or "Call for pricing"), visiting hours (exact if known, "not published — confirm when booking" if not), bold-linked website and Facebook at end of paragraph:
+```
+Full details at **[domain.com](https://domain.com/)** and on Facebook at **[Page Name](https://facebook.com/...)**.
+```
+Links must be formatted as `**[text](url)**` — renders as bold hyperlink in static pages.
+
+**Part 5 — What to ask on visit**
+```
+**What to ask on visit:**
+- [practical question]
+- [practical question]
+...
+```
+5–7 bullets. Rules:
+- Plain-answer questions only — a family can get a direct answer on a visit or phone call
+- No process/operational speculation ("how does X work in practice")
+- No clinical jargon (outcome measures, gait, ADL, etc.)
+- If a concern was removed from Part 3 reviews, the neutralised version belongs here
+- If JKM/MOH confirmed: do not ask "Is it registered with JKM?" — see **License status** section
+
+**Writing rules (all parts):**
+- No fabrication. Only write what is confirmed from website, reviews, or sheet data.
 - Write like a knowledgeable friend, not a brochure or a bot.
 - No generic phrases: "warm and caring environment", "dedicated team", "holistic approach"
-- Max 120 words per paragraph. Total editorial: 250–400 words.
+- No phone/WhatsApp/email anywhere in editorial body — sidebar only.
+- Total editorial: 250–400 words.
 - Write in English.
 
 **Tone — DO NOT undermine the facility:**
-- Never frame thin review counts as "statistically unreliable", "warrants caution", or "a perfect score on very few reviews is suspicious". A small number of reviews is normal for many small homes — just describe it neutrally if at all ("a small but consistently positive reviewer base" is fine).
-- Never list absences as evidence ("does not appear in the top-10 roundups", "not in the AGECOPE directory", "not mentioned in any news"). Don't catalogue what's missing — focus on what's verified.
-- Don't use language that reads as accusatory or sceptical. Families are stressed enough; the editorial's job is to describe what's verified and tell them what to ask, not to cast doubt on the facility.
-- If something is unverified, frame it as something to ask about on a call ("worth confirming the JKM licence number when you visit"), not as a red flag in the prose. Red flags belong in the `facts.red_flags` field, not the editorial body.
+- Never frame thin review counts as "statistically unreliable", "warrants caution", or "a perfect score on very few reviews is suspicious". A small number of reviews is normal for many small homes — describe it neutrally if at all.
+- Never list absences as evidence ("does not appear in the top-10 roundups", "not in the AGECOPE directory", "not mentioned in any news"). Focus on what's verified.
+- Don't use language that reads as accusatory or sceptical. Families are stressed enough; the editorial describes what's verified and prompts practical enquiries — it does not cast doubt.
+- Frame unverified items as call-time questions. Red flags belong in `facts.red_flags` only.
 - Avoid "only", "merely", "just X reviews" — these read as belittling.
 
 **Step 5 — Produce the report**
@@ -93,8 +150,21 @@ After writing all 10:
 - Use the Google Sheets API (token_sheets.json, SCOPES=['https://www.googleapis.com/auth/spreadsheets'])
 - Sheet ID: 1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk
 - Tab: 'google-sheets-facilities.csv'
-- Update `editorial_summary` column for each facility using their `row_idx`
-- Also update any other columns where new verified data was found (care_types, total_beds, etc.)
+- Update `editorial_summary` column + any other changed columns for each facility
+
+**MANDATORY: use `batchUpdate` per row, not individual `values().update()` calls.** Individual calls at scale hit HTTP 429 rate-limit errors (quota: 60 writes/minute). Group all cell updates for one row into a single `batchUpdate`:
+```python
+data = [
+    {'range': f"'{TAB}'!{col_letter(51)}{row}", 'values': [[editorial]]},
+    {'range': f"'{TAB}'!{col_letter(21)}{row}", 'values': [[TODAY]]},
+    # add more cells as needed
+]
+svc.spreadsheets().values().batchUpdate(
+    spreadsheetId=SPREADSHEET_ID,
+    body={'valueInputOption': 'RAW', 'data': data}
+).execute()
+time.sleep(1)  # buffer between rows
+```
 
 ## Progress tracking file format
 
