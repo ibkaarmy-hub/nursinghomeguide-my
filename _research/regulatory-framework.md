@@ -1,6 +1,6 @@
 # Regulatory framework & data architecture (next-phase research)
 
-Last updated: 2026-05-03
+Last updated: 2026-05-11
 Source: External AI research (Perplexity), pasted in by IK 2026-05-03 and stress-tested through two evaluation passes. The composite "Clinical Acuity Score" was dropped after evaluation; this file reflects the **adopted** approach: licensing-first trust labels, descriptive capability badges, contextual need-based search, and tiered verification.
 
 ---
@@ -221,4 +221,86 @@ Last verified: 2026-03-02 · Tier 1 (operator-attested)
 - Don't apply "Palliative care offered" badge unless the facility explicitly confirms trained symptom-management capability
 - Cross-reference [pricing-benchmarks.md](pricing-benchmarks.md) before publishing any price estimator output
 - Write `badge_definitions.md` before the badge UI ships — every badge needs a published one-line definition
-- Decide a default verification tier for the 350 existing facilities (likely Tier 1 for everything until re-verified) before bulk migration
+
+---
+
+## 10. Staff-to-resident ratios
+
+Last updated: 2026-05-11
+Source: AI research synthesis (Claude), compiled 2026-05-11.
+
+### Malaysia
+**Three overlapping frameworks. Fact-checked against primary Act text via Perplexity 2026-05-11.**
+
+**Act 506 — Care Centres Act 1993 (JKM).** Source: commonlii.org/my/legis/consol_act/cca1993121/
+
+✅ **Verified from primary Act text:**
+- Administered by JKM (Director General of Social Welfare), not MOH
+- "Care" defined broadly: protection, supervision, rehabilitation, training
+- Act DOES require operators to make "arrangements for suitable medical treatment" — soft mandate, not in-house clinical staffing
+- DG and authorised officers may inspect premises "at any reasonable time" — unannounced inspection authority confirmed
+- Minister empowered to make regulations covering staffing, qualifications, records, health, nutrition, equipment, minimum standards
+
+⚠️ **NOT verifiable from the primary Act text — flagged for further sourcing:**
+- Caregiver ratios 1:18 / 1:4 — commonly cited in industry guidance (iElder.Asia etc.) but not in Act text. May be in subsidiary regulations or JKM standards doc — neither has been retrieved.
+- Floor space 3.0 m² / 16 m² / 4.1 m² / 12 m² — same provenance issue.
+- Caregiver age 18+, KAAK/KAP training, medical exam, police clearance — not mandated in Act; Act only empowers operators to set conditions on "fit and proper" persons.
+- RM50 registration fee + 3-year validity — Act only mentions "prescribed fee", not the amount.
+- 21-working-day processing time — not in Act.
+
+**Do not publish these specific numbers as legal requirements** until primary subsidiary regulations (likely the Care Centres Regulations 1994 P.U.(A) 248/1994 or current JKM standards document) are retrieved and verified. The article has been updated to flag them as industry-cited rather than legally established.
+
+**Action item:** Try to obtain Care Centres Regulations 1994 text from federalgazette.agc.gov.my or via direct JKM enquiry. Without this, the specific operational standards cannot be definitively published.
+
+**Act 586 — Private Healthcare Facilities and Services Act 1998 (MOH)** — covers ~18–21 clinical-grade facilities (689 beds, Oct 2025). Subsidiary: Private Healthcare Facilities and Services Regulations 2006. Source: moh.gov.my, msqh.com.my
+- Requires MOH Director General approval
+- Qualified nursing staff required (aides cannot perform nursing duties)
+- Emergency life-saving capability required
+- Fire safety: 8-hour backup generator fuel mandate
+- Specific staffing ratios under the 2006 Regulations are **not publicly accessible** online — flagged for further sourcing
+
+**Act 802 — Private Aged Healthcare Facilities and Services Act 2018 (MOH)** — Malaysia's would-be equivalent to Singapore's HSA 2020. Source: conventuslaw.com, healthyageing.org
+- Gazetted 29 March 2018, but **implementing regulations still pending AG approval** — cannot be enforced
+- Would replace Act 506 + Act 586 for aged care (60+)
+- Would mandate qualified medical personnel, infection prevention, stronger oversight
+- Industry bodies (MHAS) have called for full enforcement since 2022
+
+**Enforcement reality:**
+- Estimated 700–1,000+ facilities operating; only ~361–393 registered under JKM
+- ~31% of surveyed facilities unable to meet the JKM 1:18 ratio
+- Multi-agency split (JKM vs MOH) plus Act 802 inertia = enforcement vacuum
+
+### Singapore
+Regulated under the **Healthcare Services Act 2020** + **Healthcare Services (Nursing Home Service) Regulations 2023** (S 849/2023, in force 18 Dec 2023). Source: sso.agc.gov.sg — full text verified 2026-05-11.
+
+**No fixed numeric ratio is mandated in law.** The Regulations require "adequate" staffing. Specific requirements:
+- Each patient must have an assigned **attending medical practitioner** (overall responsibility for health)
+- Each patient must have an assigned **attending registered nurse** (overall responsibility for nursing needs)
+- A **registered nurse must be on call at all times** to support nursing personnel on site
+- **Clinical Governance Officer** mandatory — medical practitioner or senior RN, min 5 years experience
+- **Head of Nursing** mandatory — degree-qualified RN, min 5 years nursing + supervisory experience
+- Written **IPC programme** (infection prevention & control) with dedicated committee — mandatory
+- **Nutritional trigger**: dietitian assessment required if patient loses ≥5% body weight over 3 months
+- **Price transparency** legally mandated — fees displayed at premises, disclosed before care, referenced against MOH benchmarks
+
+Previously cited ratios (1 RN per 15 residents, aides 1:7–8) came from secondary sources and are **not in the primary legislation** — remove from any published content. MOH may publish separate staffing guidance documents; these have not been located.
+
+MOH also operates the **Enhanced Nursing Home Standards (ENHS)** (2014) as an internal quality audit framework covering pressure injuries, falls, pain, restraint use, advance care planning. Audit results are not published by facility — no public scorecard exists.
+
+### Global benchmarks
+
+| Country | Requirement | Notes |
+|---|---|---|
+| Australia | 200+ care min/resident/day (from 2023) | Min 40 min must be RN |
+| UK | No national ratio; CQC uses "safe staffing" judgement | Scotland has 1:5 proposals |
+| USA | Proposed federal rule (2024): 1 RN per 35 + 0.55 hrs aide/resident/day | Many states set higher floors |
+| Japan | 1 care worker per 3 residents | Long-term care insurance standard; among strictest globally |
+| Canada | Ontario targets 4 hrs/resident/day (2025) | Varies by province |
+| WHO | No single ratio; recommends risk-adjusted staffing | |
+
+### Implications for this site
+- Staff ratio is one of the top family questions (see user-questions.md) but almost never published by Malaysian operators
+- The `nurse_ratio_day` / `nurse_ratio_night` schema columns capture this when verified
+- Could support a "what to ask when visiting" guide section
+- Singapore context useful for the SG→Johor transfer audience
+- Global trend: shifting from ratio rules → hours-of-care-per-resident-per-day as a more meaningful measure
