@@ -1,32 +1,99 @@
-# /nh-profiles — Nursing Home Profile Research Batch
+# /nh-profiles — Nursing Home Profile Research & Enrichment
 
-Research and write detailed 3-paragraph editorial profiles for the next 10 nursing homes in `profile_queue.json` that have websites and need proper editorials. Track progress in `profile_progress.json`.
+Single skill for all facility profile work: writing new profiles, enriching existing ones, and batch processing.
 
-## What to do
+## Usage
 
-### Setup
-1. Load `profile_queue.json` — sorted by editorial quality (shortest first = most needs work)
-2. Load `profile_progress.json` if it exists (tracks completed slugs). If not, create it as `{"done": [], "skipped": []}`.
-3. Select the next 10 facilities NOT in `done` or `skipped`, with a real website (not Facebook/JKM/blogspot).
+| Command | What happens |
+|---------|-------------|
+| `/nh-profiles` | **Batch mode** — research + write next 10 from queue |
+| `/nh-profiles <slug>` | **Single mode** — new profile if editorial is blank/short; enrich-only if editorial already exists |
 
-### For each of the 10 facilities
+---
 
-**Step 1 — Website investigation**
-- Fetch the homepage: look for About Us, Our Services, Care Types, Team, Facilities, Pricing, Gallery pages
-- Check `/sitemap.xml` for additional pages
-- Visit any pages that reveal: care specialisations, bed count, staff info, accreditations, founding story, religious affiliation, visiting hours, languages spoken, pricing range
-- Note everything concrete — avoid marketing fluff
+## Mode detection (single slug)
 
-**Step 2 — Google reviews (MANDATORY — do not skip)**
-- Run Apify `compass/crawler-google-places` for every facility before writing, even if the Maps URL is a raw lat/lng link with no place ID. Raw lat/lng URLs are NOT an excuse to skip this step — pass lat/lng + title to the actor; it resolves the place ID and returns reviews.
-- Read **all** reviews, not just the first page. Note recurring themes (positive only — see review rules below), staff mentions, specific care events described.
-- If the facility has **fewer than 5 reviews**: mention rating and count in prose only — "Google reviews stand at X★ across N reviews — too few to identify recurring trends" — do not write a bullet block.
-- Also check: `site:[website-domain]` for additional indexed content; JKM lists or directories for licence info.
+1. Load the row from `facilities_local.csv` by slug
+2. Check `editorial_summary` (column AY):
+   - **Blank or under 100 words** → **New profile mode**: full website research + Google reviews + write editorial from scratch
+   - **100+ words already** → **Enrich mode**: check for new data (Maps placeId, Instagram, YouTube); rewrite editorial only if new care/services information was found
 
-**Actor payload:**
+---
+
+## Constants
+
 ```python
-{
-    'searchStringsArray': [facility_title],
+SPREADSHEET_ID = '1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk'
+TOKEN_PATH     = r'C:\Users\ibkaa\nursinghomeguide-my\Nursing Home Guide Malaysia\token_sheets.json'
+CSV_PATH       = r'C:\Users\ibkaa\nursinghomeguide-my\Nursing Home Guide Malaysia\facilities_local.csv'
+TAB            = 'google-sheets-facilities.csv'
+APIFY_TOKEN    = open(r'C:\Users\ibkaa\nursinghomeguide-my\Nursing Home Guide Malaysia\.env').read().split('APIFY_TOKEN=')[1].split()[0].strip()
+TODAY          = datetime.date.today().isoformat()
+```
+
+## Column map (1-based)
+
+| Col | Letter | Field |
+|-----|--------|-------|
+| 1 | A | title |
+| 2 | B | slug |
+| 4 | D | area |
+| 5 | E | phone |
+| 6 | F | website |
+| 10 | J | care_types |
+| 13 | M | languages |
+| 20 | T | google_maps_url |
+| 21 | U | last_updated |
+| 25 | Y | whatsapp |
+| 26 | Z | facebook (also Instagram) |
+| 27 | AA | care_nursing |
+| 28 | AB | care_dementia |
+| 29 | AC | care_palliative |
+| 30 | AD | care_rehab |
+| 31 | AE | care_respite |
+| 32 | AF | care_assisted |
+| 51 | AY | editorial_summary |
+| 52 | AZ | hero_image |
+| 53 | BA | photos (pipe-separated) |
+| 54 | BB | photo_count |
+
+**Details tab schema:** `slug | section | label | value`
+Recognised sections: `services`, `policies`, `social`, `clinical`, `staffing`, `rooms`, `included`, `extras`
+
+Never hardcode column letters in scripts — always resolve via `headers.index(name)` from the live CSV header row.
+
+---
+
+## Step 1 — Load facility data
+
+Extract from `facilities_local.csv`:
+- `title`, `slug`, `latitude`, `longitude`, `google_maps_url`, `facebook`, `phone`, `website`, `area`, `care_types`, `languages`, `editorial_summary`
+- Sheet row number = data row index + 2 (row 1 is header)
+
+Also read the Details tab from Google Sheets for this slug to check existing `section=social` rows (YouTube, Instagram URLs already stored).
+
+If slug not found: stop and report error.
+
+---
+
+## Step 2 — Website investigation *(new profile mode only)*
+
+- Fetch the homepage: look for About Us, Services, Care Types, Team, Facilities, Pricing, Gallery pages
+- Check `/sitemap.xml` for additional pages
+- Visit any pages that reveal: care specialisations, bed count, staff info, accreditations, founding story, religious affiliation, visiting hours, languages, pricing range, JKM licence number
+- Note everything concrete — avoid marketing fluff
+- Check the operator website's `/gallery` page for usable photos (see **Operator photos** section)
+
+---
+
+## Step 3 — Google Maps + reviews (MANDATORY — never skip)
+
+Run for **every facility** in every mode before writing or rewriting any editorial. Raw lat/lng URLs are NOT an excuse to skip — pass lat/lng + title to the actor; it resolves the place ID and returns reviews.
+
+**Actor:** `compass/crawler-google-places`
+```python
+payload = {
+    'searchStringsArray': [title],
     'lat': latitude,
     'lng': longitude,
     'zoom': 15,
@@ -35,124 +102,130 @@ Research and write detailed 3-paragraph editorial profiles for the next 10 nursi
 }
 ```
 
-**Step 3 — Medical social worker + consumer analysis**
-Evaluate from TWO lenses:
+**Validate the result before writing:**
+- Returned `title` must roughly match the facility name (fuzzy — allow Malay/English variants, Sdn Bhd vs without)
+- Returned `address` must be in the same state as the facility
+- If clearly wrong (different business, wrong city, permanently closed): flag to user, skip Maps update
 
-*Medical Social Worker lens:*
-- What clinical capabilities are confirmed vs claimed?
-- Is there a registered nurse on-site? Doctor visits?
-- Are there any red flags: vague staffing claims, no licence info, unverified medical services?
-- Suitability for: high-dependency residents, dementia, palliative
+**Extract if valid:**
+- `placeId` → build URL: `https://www.google.com/maps/search/?api=1&query=ENCODED_TITLE&query_place_id=PLACE_ID` → update column T
+- `address` → append to Details tab `policies | Address` if not already there
+- `totalScore`, `reviewsCount` → update sheet columns P/Q (rating/review_count); note for editorial
+- Reviews → extract **positive and neutral themes only** (see editorial rules on negatives)
 
-*Consumer/Family lens:*
-- Is pricing mentioned or completely opaque?
-- Can a family get key answers from the website alone?
-- Photo quality and authenticity (real photos vs stock)
-- Social proof: are Google reviews detailed and believable?
-- Visiting hours, contact ease, WhatsApp availability
+**Review block rules:**
+- **5+ reviews**: write `**What reviewers say (Google, N reviews, X★):**` bullet block
+- **Fewer than 5 reviews**: prose only — "Google reviews stand at X★ across N reviews — too few to identify recurring trends." No bullet block.
 
-**Step 4 — Write the editorial (locked structure 2026-05-11)**
+---
 
-The editorial has a fixed five-part structure. Follow this exactly:
+## Step 4 — Social media enrichment *(enrich mode; also run in new profile mode if Instagram URL exists)*
 
-**Part 1 — Prose opening paragraph**
-What the home is, where it is, who runs it, licence number (if known), capacity, founding year or operator background if known. No bullet lists here — prose only.
+### Instagram
+
+Only run if the `facebook` column contains an `instagram.com` URL.
+
+Extract username from URL. Run Apify `apify/instagram-profile-scraper`:
+```python
+payload = {'usernames': [username]}
+```
+
+Extract:
+- `biography` — any services or info mentioned
+- `externalUrl` / `externalUrls` — look for WhatsApp links (`wa.me/60XXXXXXXXX`); extract number → update column Y if currently empty
+- `latestPosts` — collect `displayUrl`, `caption`, `timestamp` for up to 5 newest posts
+- `postsCount`
+
+**Image analysis** — for each post image (up to 5, newest first):
+- Download `displayUrl` to `_temp_enrich/<slug>/post_N.jpg` with User-Agent header to avoid 403s
+- Use Read tool to visually analyse: services/care types visible, facility features, text on screen (flyers often list services, JKM number, email), staff/activities visible
+- **Never write Instagram CDN URLs (`fbcdn.net`) to the sheet** — expiry tokens make them dead links within days. Analysis only.
+- Delete temp files after: `shutil.rmtree('_temp_enrich', ignore_errors=True)`
+
+Also check Instagram captions for: activity programme mentions, languages, care types, pricing hints.
+
+### YouTube
+
+Check for a YouTube URL in:
+1. Arguments passed to the command (user may paste a URL)
+2. Details tab rows where `section=social` and `label=YouTube`
+
+If found, use WebFetch. Extract: video title (often reveals purpose — "Virtual Tour", "Services Overview"), any description text. Store in Details tab `social | YouTube | <url>` if not already there.
+
+---
+
+## Step 5 — Write or rewrite editorial
+
+**New profile mode**: always write editorial from scratch.
+**Enrich mode**: rewrite editorial only if any of these are true:
+- New care types or services were confirmed that aren't in the current editorial
+- New verified address, pricing, or visiting hours found
+- Current editorial is clearly outdated or wrong
+
+### Fixed 5-part structure (follow exactly)
+
+**Part 1 — Prose opening**
+What the home is, where it is, who runs it, licence number if known, capacity, founding year or operator background if known. Prose only — no bullet lists.
 
 **Part 2 — Services block**
 ```
 **Services (from [domain.com]):**
 - [verbatim service name from operator website]
 - [verbatim service name]
-...
 ```
-Quote the operator's own service categories verbatim. Do NOT rename, combine, or invent. If the operator website is unavailable, omit this block and note it in Key facts. Follow with 1–2 sentences of clinical context if relevant (e.g. visiting doctor frequency, RN on-site).
+Quote the operator's own service categories verbatim. Do NOT rename, combine, or invent. If operator website is unavailable, omit this block. Follow with 1–2 sentences of clinical context if relevant (visiting doctor frequency, RN on-site).
 
-**Part 3 — What reviewers say block (MANDATORY)**
+**Part 3 — What reviewers say (MANDATORY)**
 ```
 **What reviewers say (Google, N reviews, X★):**
 - [positive/neutral theme]
 - [positive/neutral theme]
-...
 ```
-- Only include **positive and neutral** themes. **Never include negative review content** — remove any complaints or criticisms entirely.
-- If a concern from reviews is worth surfacing (e.g. deposit policy, supervision standards), reframe it as a neutral visit question in Part 5 only — never cite the review as a source.
-- For <5 reviews: replace with prose — "Google reviews stand at X★ across N reviews — too few to identify recurring trends." No bullet block.
+- Include **positive and neutral themes only**
+- **Never include negative review content** — remove complaints/criticisms entirely from editorial
+- If a concern is worth surfacing, reframe as a neutral visit question in Part 5 only — never cite the review as a source
+- For <5 reviews: use prose line instead of bullet block (see Step 3)
 
 **Part 4 — Practical paragraph**
-Pricing (published or "Call for pricing"), visiting hours (exact if known, "not published — confirm when booking" if not), bold-linked website and Facebook at end of paragraph:
+Pricing (published with source, or "Pricing is not published — contact for a quote"), visiting hours (exact if known, or "Visiting hours are not published — confirm when booking a viewing"). End with bold-linked website and Facebook:
 ```
 Full details at **[domain.com](https://domain.com/)** and on Facebook at **[Page Name](https://facebook.com/...)**.
 ```
-Links must be formatted as `**[text](url)**` — renders as bold hyperlink in static pages.
+Links formatted as `**[text](url)**` render as bold hyperlinks in static pages.
 
 **Part 5 — What to ask on visit**
 ```
 **What to ask on visit:**
 - [practical question]
-- [practical question]
-...
 ```
 5–7 bullets. Rules:
-- Plain-answer questions only — a family can get a direct answer on a visit or phone call
+- Plain-answer questions only — a family can get a direct answer on a visit or call
 - No process/operational speculation ("how does X work in practice")
 - No clinical jargon (outcome measures, gait, ADL, etc.)
-- If a concern was removed from Part 3 reviews, the neutralised version belongs here
-- If JKM/MOH confirmed: do not ask "Is it registered with JKM?" — see **License status** section
+- Concerns removed from Part 3 (negative reviews): neutralised version belongs here
+- JKM/MOH confirmed: do not ask "Is it registered with JKM?" — see **License status** section
 
-**Writing rules (all parts):**
+### Hard rules (all parts)
 - No fabrication. Only write what is confirmed from website, reviews, or sheet data.
 - Write like a knowledgeable friend, not a brochure or a bot.
 - No generic phrases: "warm and caring environment", "dedicated team", "holistic approach"
-- No phone/WhatsApp/email anywhere in editorial body — sidebar only.
-- Total editorial: 250–400 words.
-- Write in English.
+- No phone/WhatsApp/email anywhere in editorial body — sidebar only
+- Total editorial: 250–400 words
+- Write in English
 
-**Tone — DO NOT undermine the facility:**
-- Never frame thin review counts as "statistically unreliable", "warrants caution", or "a perfect score on very few reviews is suspicious". A small number of reviews is normal for many small homes — describe it neutrally if at all.
-- Never list absences as evidence ("does not appear in the top-10 roundups", "not in the AGECOPE directory", "not mentioned in any news"). Focus on what's verified.
-- Don't use language that reads as accusatory or sceptical. Families are stressed enough; the editorial describes what's verified and prompts practical enquiries — it does not cast doubt.
-- Frame unverified items as call-time questions. Red flags belong in `facts.red_flags` only.
-- Avoid "only", "merely", "just X reviews" — these read as belittling.
+### Tone
+- Never: "statistically unreliable", "warrants caution", "warrants scrutiny", "concerning rating"
+- Never: "only/just/merely N reviews"
+- Never: list absences as evidence ("not in directory X", "absence of any digital presence")
+- Never: accusatory or sceptical framing
+- Frame unverified items as call-time questions. Red flags in `facts.red_flags` only.
 
-**Step 5 — Produce the report**
-For each facility, output:
+---
 
-```
-## [Facility Name] — [State]
-Website: [url]
-Slug: [slug]
+## Step 6 — Update Google Sheet
 
-### Key facts found
-- [bullet list of verified facts extracted]
-
-### Red flags / gaps
-- [anything concerning or missing]
-
-### Editorial (for sheet)
-[3 paragraphs]
-
-### Sheet updates recommended
-- care_types: [if found]
-- total_beds: [if found]
-- religion: [if found]
-- pricing_display: [if found]
-- any other columns with new data]
-```
-
-### Step 6 — Update progress tracker
-After completing each batch:
-1. Append all 10 slugs to `done` in `profile_progress.json`
-2. Append any skipped (Facebook-only, JKM links, broken sites) to `skipped` with reason
-3. Print summary: how many done total, how many remain
-
-### Step 7 — Upload editorials to Google Sheet
-After writing all 10:
-- Use the Google Sheets API (token_sheets.json, SCOPES=['https://www.googleapis.com/auth/spreadsheets'])
-- Sheet ID: 1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk
-- Tab: 'google-sheets-facilities.csv'
-- Update `editorial_summary` column + any other changed columns for each facility
-
-**MANDATORY: use `batchUpdate` per row, not individual `values().update()` calls.** Individual calls at scale hit HTTP 429 rate-limit errors (quota: 60 writes/minute). Group all cell updates for one row into a single `batchUpdate`:
+### Always use `batchUpdate` per row — never individual `values().update()` calls
+Individual calls hit HTTP 429 rate-limit errors (quota: 60 writes/minute). Group all updates for one row:
 ```python
 data = [
     {'range': f"'{TAB}'!{col_letter(51)}{row}", 'values': [[editorial]]},
@@ -166,163 +239,154 @@ svc.spreadsheets().values().batchUpdate(
 time.sleep(1)  # buffer between rows
 ```
 
-## Progress tracking file format
+### Facilities tab — update only confirmed new data
 
-`profile_progress.json`:
+| Finding | Column |
+|---------|--------|
+| Verified Maps URL with placeId | T |
+| WhatsApp from Instagram externalUrl | Y (if currently empty) |
+| Area/neighbourhood | D (if currently empty) |
+| Languages | M (if found) |
+| care_nursing = yes | AA |
+| care_dementia = yes | AB |
+| care_palliative = yes | AC |
+| care_rehab = yes | AD (stroke/post-hospital/rehab confirmed) |
+| care_respite = yes | AE (respite/short-term stay confirmed) |
+| care_assisted = yes | AF (day care/assisted living confirmed) |
+| care_types full text | J (expand if new types confirmed) |
+| editorial_summary | AY |
+| last_updated | U (always set to TODAY) |
+
+### Details tab — append new rows (check for duplicates first)
+
+| Section | Label | Value | Source |
+|---------|-------|-------|--------|
+| `services` | service name (verbatim) | `yes` | Website / Instagram |
+| `policies` | `Address` | verified address | Maps |
+| `policies` | `Visiting hours` | hours string | Website |
+| `policies` | `Email` | email address | Website / Instagram |
+| `policies` | `Photo credits` | `Facility photos courtesy of <domain>` | Operator website photos |
+| `rooms` | `Pricing source` | URL + caveat | Website |
+| `rooms` | `Operator-stated capacity` | `N beds` | Website |
+| `social` | `YouTube` | URL | YouTube |
+| `clinical` | clinical capability | `yes` / `no` | Website / Instagram |
+
+---
+
+## Step 7 — Output report
+
+```
+## [Facility Name] — [State]
+Slug: [slug]
+Mode: New profile / Enrich
+
+### Key facts found
+- [verified facts from website/Maps/Instagram]
+
+### Red flags / gaps
+- [anything concerning or missing — internal only, not in editorial]
+
+### Sheet updates
+- [col]: [old value] → [new value]
+- Details tab: +N rows appended
+
+### Editorial (written to column AY)
+[full editorial text]
+```
+
+---
+
+## Batch mode (no slug argument)
+
+1. Load `profile_queue.json` — sorted by editorial quality (shortest first = most needs work)
+2. Load `profile_progress.json` if it exists. If not, create: `{"done": [], "skipped": []}`
+3. Select next 10 facilities NOT in `done` or `skipped` with a real website (not Facebook/JKM/blogspot)
+4. Run Steps 1–7 for each facility
+5. If a website is broken/Facebook-only/JKM redirect: add to `skipped` with reason, pick next facility to reach 10
+
+**Progress tracking file:**
 ```json
 {
-  "done": ["slug-1", "slug-2", ...],
+  "done": ["slug-1", "slug-2"],
   "skipped": [{"slug": "slug-3", "reason": "Facebook only"}],
-  "last_batch": "2026-05-01",
+  "last_batch": "2026-05-11",
   "total_done": 10
 }
 ```
 
-## Important constraints
-- Never invent data. Only write what is confirmed from website, reviews, or existing sheet data.
-- If a website is broken/Facebook/JKM redirect: add to skipped, pick next facility to reach 10.
-- If a Google Maps URL is present, always check it for reviews.
-- The editorial goes in `editorial_summary` column in the sheet — this is the live public-facing text.
-- Flag any JKM licence numbers found — these are critical gaps to fill.
+After each batch: append done slugs, append skipped with reasons, print summary (N done total, N remain).
 
 ---
 
-## Hand-fix mode (single-profile, user-flagged)
-
-When the user pastes a specific facility URL with feedback, switch from the bulk batch workflow above to a focused per-profile fix. Lessons from past sessions:
-
-### Resolving location conflicts
-- The sheet has `state`, `area`, `slug`, `latitude/longitude`, and `google_maps_url` — when they disagree, **decode the coordinates first** before assuming any one of them is wrong.
-  - Lat 1.4–1.6, lng 103.5–104.0 = Johor Bahru metro (Skudai/Iskandar Puteri/Tampoi/Permas)
-  - Lat 3.0–3.3, lng 101.4–101.8 = Klang Valley (KL/PJ/Selangor)
-- A misleading slug is **not** automatic evidence of mis-classification. A multi-branch chain headquartered in PJ may have opened a real Johor branch — search Facebook + Google for "[chain] expanding to [city]" before flipping the data the wrong way.
-- A previous editorial that confidently states the wrong location (e.g. "actually in PJ, not Johor") is a red flag that someone else made the same mistake. Verify independently.
-
-### Editorial style — what NOT to write
-- **No meta-commentary opening lines.** Anything like "Note the slug first…" or "Despite the listing title…" reads as AI talking about its own data. The reader doesn't care about our slug; lead with what the home is.
-- **No "this is a stub" / "limited information available" disclaimers.** Either write a confident shorter editorial from verified facts, or don't publish.
-- Drop the JKM registration ask from "What to ask on visit" for any facility where `jkm_data_source` confirms MOH or JKM status — see **License status in editorials** section below for the full rule.
-
-### Operator photos
-- Always check the operator website's `/gallery` page and homepage for usable images.
-- Common URL patterns to probe with curl HEAD: `img/image1.jpg`–`image10.jpg`, `img/pf1.png`–`pf4.png`, `assets/img/...`, `images/...`. Stop at first 404 in a numeric sequence.
-- Prepend operator photos to the existing `photos` field (pipe-separated), keep Google CDN photos after, and bump `photo_count`. Don't replace the hero unless the existing one is broken.
-- **Attribution**: add a Details row with `section=policies`, `label=Photo credits`, `value=Facility photos courtesy of <domain>`. There's no per-photo attribution column; this single row is the canonical place.
-
-### Operator self-promotion — guard rule (locked 2026-05-03)
-- **Never cite, quote, paraphrase, or use as evidence ANY content where an operator rates themselves favourably against competitors.** This applies to operator blog listicles, "Top N" or "Best of" posts, internal awards, or any marketing piece that ranks the operator's own facility against others. Operator self-ratings are marketing, not evidence — citing them would compromise the site's editorial credibility.
-- Stick to the operator's own factual claims about THEIR OWN facility: services, pricing, locations, capacity, branch dates, awards from independent bodies, JKM licence numbers.
-- Skip blog/news pages entirely if their content is self-comparative. If the only material on the operator site is self-promotional, treat the facility as low-information and write a conservative stub instead — do not pad the editorial with marketing language.
-- This applies across the entire site, not just one operator. First seen on Genesis Life Care's `/blog/best-nursing-homes-kl-selangor-2026` (operator ranking themselves as best).
-
-### Operator-published services without pricing
-- Common pattern: operator publishes a clean services list (e.g. "Nursing Home Care, Dementia & Memory Care, Stroke Rehabilitation, Palliative Care, Post-Operative Recovery, Senior Day Care") but no monthly fees anywhere on the site.
-- Editorial should quote the operator's verbatim service categories — do not invent or rename them — and explicitly say pricing is not posted (e.g. "Pricing is not posted on the [chain] website for any branch — final monthly fees depend on care level and room type, so request a written quote during your visit").
-- Encode the services list as Details `services` rows: `label = service name (verbatim)`, `value = short qualifier or "yes"` (e.g. `Dementia & Memory Care` / `Psychologist-led, cognitive stimulation activities`).
-- Add a Details `rooms` row `Pricing source` / `Not published on operator site (<domain>) — request a written quote during your visit`.
-- Add a Details `rooms` row `Operator-stated capacity` / `<N> beds` if the operator publishes a bed count.
-- Do NOT invent "from RM X" pricing in the editorial just because past editorials had a number. Past editorials are not a source — verify against the live operator site every time. Genesis Puchong had an unsourced "from RM 2,500" claim that had to be removed.
-
-### Pricing on operator websites
-- If the operator publishes a tier list (rare and valuable), encode all tiers as Details `rooms` rows with labels like `2-bed shared (RM/mo)` → value `2,800`. Don't bury the range in the editorial only.
-- Default assumption: published rates apply chain-wide. Don't caveat as "flagship only" unless the operator explicitly says branch pricing differs.
-- Always add a Details row `rooms / Pricing source / <full-url> — chain rates; final fee depends on care needs`.
-- Update `pricing_display` to show the full range, not just shared/private (e.g. `From RM 1,800 (6-bed shared) to RM 3,500 (VIP single) — published on operator website`).
-- `four_bed_price` exists as a column — populate it when the tier list has a 4-bed rate.
-
-### Workflow checklist
-1. Pull row by slug from facilities CSV + Details rows by slug.
-2. Check `pending_editorials/_blockers.json` and `_progress.json` to avoid colliding with the bulk agent. If the slug is in flight, ask user before overriding.
-3. Decode coords; reconcile state/area/slug; flag any inconsistency to user.
-4. Visit operator website (homepage, /packages, /gallery, /contact, /weare, /about). Search FB for branch announcements if multi-branch.
-5. Present plan to user with: old vs new editorial (full new text), exact column diffs (old → new), Details rows to add. **Wait for confirmation.**
-6. Push via a dedicated `update_<slug>.py` script modeled on `update_eha_chain.py`. Always update `last_updated` to today.
-7. Append slug to `pending_editorials/_blockers.json` (it's an object: `{"slug": "reason"}`, NOT an array).
-8. Commit with author `ibkaarmy-hub@users.noreply.github.com`, push to main.
-9. Re-fetch the published CSV and verify the change is live before reporting done.
-
-### Token + script location
-- `token_sheets.json` lives only in the **main repo root** (gitignored). When working from a worktree, reference it via absolute path or `cd` to main repo to run the update script.
-- Headers index changes occasionally — never hardcode column letters; always look up via `headers.index(name)`.
-
-### Chain reconciliation (multi-branch operators)
-- When existing sheet slugs are address-named (e.g. `jln-antoi`, `jln-belinggai`), **map them to operator branches by street address**, not by guessing from the name. Fetch each operator branch page and compare the address to the existing row's area/coords before deciding which slug maps to which branch.
-- Present the full mapping table to the user before pushing: `existing slug → operator branch name → address`. The slug-to-branch mapping is the highest-risk part of a chain fix.
-- For facilities that share a similar name with a chain but have a different phone number and aren't in the operator's branch directory: **do not group them**. Phone + operator directory are the two checkpoints.
-- The operator's "branch count" is what they publish. Re-count from their live site before planning — the screenshot the user provides may be stale.
-
-### Operator photos: Wix CDN
-- Wix-hosted operator sites serve photos from `static.wixstatic.com/media/<id>~mv2.jpg`.
-- WebFetch returns URLs with transformation suffixes like `/v1/fill/w_238,h_237,q_90,enc_avif,quality_auto/<id>~mv2.jpg` — strip everything after `/media/` except `<id>~mv2.jpg` to get the stable base URL.
-- Hero = first image on the branch page; gallery = all subsequent `0807fc_*` images. Skip logo files (`d3104b_*`) and generic social-proof photos (e.g. `1cd9eba76...`).
-- No WordPress `/wp-content/uploads/` pattern to expect from Wix sites; adjust URL probing accordingly.
-
-### Static page regeneration after new rows
-- `generate_facility_pages.py` fetches the **published CSV** (`/pub?output=csv`), not the export URL. There is typically a **5–10 minute publishing delay** after sheet edits before new rows appear in the pub CSV.
-- After appending new facility rows to the sheet: **poll the pub CSV until the new slug count is correct** before running the generator; otherwise the new pages will be silently skipped.
-  ```bash
-  # Poll pattern (adjust slug prefix / expected count as needed)
-  until python -c "
-  import csv, urllib.request, sys
-  rows = list(csv.DictReader(...))
-  print(sum(1 for r in rows if 'merry' in r.get('slug','').lower()))
-  " | grep -qx '6'; do sleep 60; done
-  ```
-- After the pub CSV reflects all new rows: run both `python generate_facility_pages.py` AND `python generate_sitemap.py`, then commit the `facility/` tree + `sitemap.xml` together. New facility URLs 404 until this is done.
-
-### Worktree rebase collisions
-- Automated agents (editorial bulk writer, WhatsApp fix, etc.) commit to `main` concurrently. When pushing from a worktree, `git push origin HEAD:main` may fail with "non-fast-forward". Pattern:
-  ```bash
-  git fetch origin main
-  GIT_EDITOR=true git rebase origin/main
-  git push origin HEAD:main
-  ```
-- If `_blockers.json` conflicts during rebase: merge both sets of keys manually (keep all existing entries + add new ones), then `git add` and `GIT_EDITOR=true git rebase --continue`.
+## Reference: locked patterns
 
 ### License status in editorials (locked 2026-05-09)
 
-**Rule: MOH and JKM are mutually exclusive registries. Do not ask about JKM for MOH-licensed facilities.**
+MOH and JKM are mutually exclusive registries.
 
-The `jkm_data_source` column in the sheet drives the editorial `**License & verification**` section and the "What to ask on visit" bullets.
+| `jkm_data_source` | Editorial license line |
+|-------------------|----------------------|
+| contains "moh" | `MOH Licensed — confirmed in MOH nursing home registry.` |
+| contains "jkm" + licence_number filled | `JKM Registered — licence number: <number>.` |
+| contains "jkm" + no licence number | `JKM Registered — confirmed in JKM registry.` |
+| neither | `To be verified — confirm JKM or MOH registration on visit.` |
 
-**License & verification block — write exactly one bullet:**
-| `jkm_data_source` value | Editorial text |
-|------------------------|----------------|
-| contains "moh" | `- MOH Licensed — confirmed in MOH nursing home registry.` |
-| contains "jkm" AND `licence_number` filled | `- JKM Registered — licence number: <number>.` |
-| contains "jkm" AND no licence number | `- JKM Registered — confirmed in JKM registry.` |
-| neither | `- To be verified — confirm JKM or MOH registration on visit.` |
+**"What to ask on visit" — JKM/MOH:**
+- MOH licensed: remove ALL JKM bullets. MOH facilities do not hold JKM registration — asking is incorrect and confusing.
+- JKM confirmed (licence in sheet): remove "Is it registered with JKM?" — answer already known.
+- Unverified: keep the registration ask.
 
-**"What to ask on visit" — JKM registration questions:**
-- **MOH licensed**: remove ALL bullets that mention JKM. MOH-licensed facilities are regulated by the Ministry of Health and will not hold a JKM registration. Asking about JKM is incorrect and confusing.
-- **JKM confirmed** (licence in sheet): remove "Is the facility registered with JKM?" style bullets — the answer is already known. Also remove "Can you show the JKM registration certificate?" if phrased as a registration check. It's fine to keep operational questions like admission eligibility or waiting lists.
-- **Unverified**: keep the JKM registration ask — families should verify it on visit.
+The `facility.html` "What to ask on your tour" card also renders dynamically from `jkm_data_source` — after any change, regenerate all static pages.
 
-**Script:** `fix_jkm_ask.py` applies these rules across a batch. Re-run whenever editorials are regenerated in bulk.
+### Operator self-promotion guard (locked 2026-05-03)
+Never cite, quote, or use as evidence any content where an operator rates themselves favourably against competitors: blog listicles, "Top N" posts, internal awards. Stick to the operator's own factual claims about their own facility. If the only material is self-promotional, write a conservative stub.
 
-**Hardcoded "What to ask on your tour" card in `facility.html`** (the reviews tab, separate from the editorial):
-- The inspection question is rendered dynamically from `f.jkm_data_source`:
-  - MOH → "When was the last MOH inspection, and can I see the result?"
-  - JKM → "When was the last JKM inspection, and can I see the result?"
-  - Unverified → "Is the facility registered with JKM or MOH, and can I see the licence and last inspection result?"
-- After any change to this block, regenerate all static pages with `python generate_facility_pages.py`.
+### Operator-published services without pricing
+Quote the operator's verbatim service categories. Do not invent pricing because a past editorial had a number — verify against the live site every time. If pricing is not posted: "Pricing is not published — contact for a quote." Encode services as Details `services` rows.
 
-### Column-shift / corruption detection (locked 2026-05-03 from Jasper Lodge fix)
-When pulling a row, **dump every column raw** — not just the ones you expect — and look for misplaced data. Past corruption patterns to scan for:
-- `google_maps_url` that starts with `https://lh3.googleusercontent.com/` or `https://streetviewpixels-pa.googleapis.com/` → it's a Google CDN photo URL, not a place URL. Replace with a Maps search URL: `https://www.google.com/maps/search/?api=1&query=<urlencoded name + address>`.
-- `last_updated` containing pipe-separated URLs → photos got dumped into the wrong column. Move to `photos`, set `last_updated` to today.
-- `halal` containing a number like `10` → that's a misplaced `photo_count`. Clear it.
-- `latitude` or `longitude` containing prose ("X is a care home located in Selangor...") → an editorial blurb landed in the coords column. Clear both lat/lng unless you can verify real numbers.
-- `editorial_summary` containing literal `",\n\n      "` or other JSON fragments → broken upload from a previous batch. Rewrite from scratch.
+### Pricing on operator websites
+If a tier list is published, encode all tiers as Details `rooms` rows. Always add a Details `rooms | Pricing source` row with the URL. Update `pricing_display` to show the full range.
 
-**Pre-flight check in the update script:** before pushing, assert `'"' not in editorial_body` for every branch — any straight double-quote in a published editorial is suspicious (curly quotes are fine). The script should abort on failure, not push corrupted text.
+### Chain-aware editorials (locked 2026-05-03)
+For multi-branch chains: Part 1 and Part 4 are branch-specific. The Services block (Part 2) is identical across all branches — same operator website, same published services. Saves work and keeps the chain story consistent.
 
-### Chain-aware editorials with shared paragraph 2 (locked 2026-05-03)
-When fixing multiple branches of one chain in one pass:
-- Paragraph 1 = branch-specific (address, what's distinctive). Paragraph 3 = branch-specific (review trail, practical viewing notes). **Paragraph 2 is identical across all branches** — services list verbatim from operator + capacity + pricing line. Saves work and keeps the chain story consistent.
-- If the operator only has individual pages for SOME branches (Jasper had pages for PJ2/PJ5 only, none for PJ1/PJ3), say so explicitly in paragraph 3 of the un-paged branches and flag any third-party-sourced address as third-party (don't pretend it's operator-confirmed).
-- Phone normalisation: if the per-branch number on the sheet doesn't appear anywhere on the operator site, switch to the national careline (when the operator publishes one shared across branches) rather than keeping a number you can't verify.
+### Operator photos
+Always check `/gallery` and homepage for usable images. Common URL patterns to probe: `img/image1.jpg`–`image10.jpg`, `assets/img/...`, `images/...`. Stop at first 404 in a numeric sequence.
+- Wix CDN: `static.wixstatic.com/media/<id>~mv2.jpg` — strip transformation suffixes, keep `<id>~mv2.jpg` as the stable URL.
+- Prepend operator photos to `photos` field (pipe-separated), keep Google CDN photos after, bump `photo_count`.
+- Add Details row: `policies | Photo credits | Facility photos courtesy of <domain>`.
 
-### When the user supplies a pricing number
-- Treat user-supplied pricing the same as any unverified claim: confirm against the operator site before locking it into `editorial_summary`, `pricing_display`, `private_price`, `shared_price`. Don't shortcut just because the user said it.
-- If you can't find it on the operator site, ask the user once: "Operator site doesn't list a price — should I publish your number, or 'Call for pricing'?" The Jasper session burned a draft because the user gave a price ("from RM 2,500+") then retracted it as confused with another profile after the script was already written.
+### Resolving location conflicts
+When `state`, `area`, `slug`, and `latitude/longitude` disagree — decode coordinates first:
+- Lat 1.4–1.6, lng 103.5–104.0 = Johor Bahru metro
+- Lat 3.0–3.3, lng 101.4–101.8 = Klang Valley (KL/PJ/Selangor)
+A misleading slug is not automatic evidence of mis-classification. Verify independently.
+
+### Column corruption detection (locked 2026-05-03)
+When pulling a row, dump every column raw and check for misplaced data:
+- `google_maps_url` starting with `lh3.googleusercontent.com` → photo URL in wrong column
+- `last_updated` containing pipe-separated URLs → photos landed in wrong column
+- `halal` containing a number → misplaced `photo_count`
+- `latitude`/`longitude` containing prose → editorial blurb in coords column
+- `editorial_summary` containing JSON fragments → broken batch upload, rewrite from scratch
+
+Pre-flight check in update scripts: assert no straight double-quotes (`"`) in editorial body before pushing.
+
+### Token + script location
+`token_sheets.json` lives only in the main repo root (gitignored). When working from a worktree, reference via absolute path. Write update scripts to `.py` files — never inline `-c` heredocs.
+
+### Static page regeneration
+After sheet edits: run `python generate_facility_pages.py` AND `python generate_sitemap.py`, then commit together. The generator fetches the published CSV (`/pub?output=csv`) — there can be a 5–10 minute delay before new rows appear. Poll before running if new rows were added.
+
+`transform_template()` targets `<main id="profileContent">` (not `<div>`). After any change to this function, verify a generated page contains `facility-static-data` before committing.
+
+### Worktree rebase collisions
+```bash
+git fetch origin main
+GIT_EDITOR=true git rebase origin/main
+git push origin HEAD:main
+```
+If `_blockers.json` conflicts: merge both key sets manually, then `git add` and `GIT_EDITOR=true git rebase --continue`.
+
+### User-supplied pricing
+Treat as unverified. Confirm against the operator site before publishing. If not found: ask once — "Operator site doesn't list a price — should I publish your number, or 'Call for pricing'?"

@@ -132,33 +132,20 @@ Notes:
 - **100% editorial coverage** — every live facility has a 250+ word editorial in column AY
 - Editorial coverage confirmed: Johor 78/78, KL 66/66, Selangor 206/206 = 350/350
 
-## Editorial rules (locked 2026-05-02, updated 2026-05-11)
+## Editorial rules
 
-Tone: knowledgeable friend, 3 paragraphs, 250–400 words, verified facts only.
+**Full spec lives in `.claude/commands/nh-profiles.md` — that is the single source of truth.**
 
-### Structure (locked 2026-05-11)
-1. **Para 1** — What the home is, location, operator background, licence, capacity. Prose only.
-2. **`**Services (from [domain.com]):**`** — bullet list verbatim from operator's own website (not third-party listings)
-3. **`**What reviewers say (Google, N reviews, X★):**`** — MANDATORY bullet block. Must run Apify `compass/crawler-google-places` before writing, even if Maps URL is raw lat/lng. For <5 reviews: prose mention only, no bullet block.
-4. **Para 3** — Pricing, visiting hours, bold-linked website and Facebook. Links formatted as `**[domain.com](url)**`.
-5. **`**What to ask on visit:**`** — 5–7 practical bullets. Plain-answer questions only.
+Summary of hard rules (never violate):
+- Fixed 5-part structure: Prose → Services block → What reviewers say → Practical para → Visit questions
+- Google reviews are MANDATORY before writing any editorial — run Apify even for raw lat/lng Maps URLs
+- Never include negative review content in the editorial body — reframe as neutral visit questions only
+- No phone/WhatsApp/email in editorial body — sidebar only
+- Services list verbatim from operator's own website, not third-party listings
+- Never cite operator self-ratings or "best of" content they publish about themselves
+- 250–400 words, English, verified facts only
 
-### Hard rules
-- **Never include negative review mentions.** If a concern from reviews is worth surfacing, reframe it as a neutral visit question only — without citing the negative review. The editorial is not a review site.
-- No phone/WhatsApp/email anywhere in editorial body — sidebar only.
-- Visiting hours: state explicitly if found; if not published: "Visiting hours are not published — confirm when booking a viewing."
-- Services list must come from operator's own website, not third-party listings.
-- Never cite operator self-ratings or "best of" content the operator publishes about themselves.
-
-**Never use in editorial body:**
-- "statistically unreliable", "warrants caution", "warrants scrutiny", "concerning rating"
-- "only/just/merely N reviews"
-- "not in directory X", "absence of any digital presence" (absence ≠ evidence)
-- Any negative review content or critical framing
-
-Frame unverified items as call-time questions. Red flags belong in `facts.red_flags` only. Always write a complete editorial — never leave it empty.
-
-Skill: `.claude/commands/nh-profiles.md`
+Invoke with `/nh-profiles` (batch) or `/nh-profiles <slug>` (single facility — new or enrich).
 
 ## generate_facility_pages.py — critical notes
 
