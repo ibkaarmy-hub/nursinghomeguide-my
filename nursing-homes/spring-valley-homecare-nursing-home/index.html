@@ -19,7 +19,7 @@
 <script type="application/ld+json" id="ld-breadcrumb">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nursinghomeguide.my/"},{"@type":"ListItem","position":2,"name":"Nursing Homes","item":"https://nursinghomeguide.my/nursing-homes/"},{"@type":"ListItem","position":3,"name":"Johor","item":"https://nursinghomeguide.my/nursing-homes/johor/"},{"@type":"ListItem","position":4,"name":"Spring Valley HomeCare (Nursing Home)"}]}</script>
 <script>window.__FACILITY_SLUG="spring-valley-homecare-nursing-home";</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="robots" content="noindex, follow" />
 <title id="pageTitle">Spring Valley HomeCare (Nursing Home) — NursingHomeGuide.my</title>
 <meta name="description" id="pageDesc" content="Spring Valley HomeCare (Nursing Home) in Johor Bahru. From RM 1700/mo. Spring Valley HomeCare is a small private nursing home in Kempas Baru, Johor…" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -273,9 +273,9 @@
 <section aria-label="Contact &amp; location" style="margin:0 0 24px"><h2 style="font-size:1rem;font-weight:700;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0">Contact &amp; location</h2><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Phone</span><span style="font-size:.88rem;font-weight:500">+60 19-754 6410</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Website</span><span style="font-size:.88rem;font-weight:500">https://www.springvalleyhomecare.com.my/</span></div><div style="display:flex;gap:16px;padding:7px 0;border-bottom:1px solid #f1f5f9"><span style="min-width:220px;flex-shrink:0;color:#64748b;font-size:.88rem">Google Maps</span><span style="font-size:.88rem;font-weight:500">https://www.google.com/maps/place/Spring+Valley+HomeCare+%28Nursing+Home%29/@1.5293014999999999,103.7188257,14z/data=!4m8!1m2!2m1!1sSpring+Valley+HomeCare+%28Nursing+Home%29!3m4!1s0x31da7271939840d1:0x20bd940f24d37bc5!8m2!3d1.5293014999999999!4d103.7188257</span></div></section>
 </div>
 </div>
-<div id="profileContent">
+<main id="profileContent">
   <div class="loading" style="padding:80px 20px"><div class="spinner"></div><p style="margin-top:12px">Loading facility...</p></div>
-</div>
+</main>
 
 <footer>
   <div class="footer-inner">
@@ -579,15 +579,22 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: links, bold
-      // Split on markdown links [text](url) to avoid escaping their contents
-      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+    function ri(s) { // render inline: bold-links, bold, links
+      // Match in priority order: **[text](url)**, **text**, [text](url)
+      const parts = s.split(/(\*\*\[[^\]]+\]\([^)]+\)\*\*|\*\*[^*\n]+\*\*|\[[^\]]+\]\([^)]+\))/g);
       return parts.map((p, i) => {
-        if (i % 2 === 1) { // matched link token
-          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        if (i % 2 === 1) {
+          if (p.startsWith('**[')) { // bold link
+            const m = p.match(/^\*\*\[([^\]]+)\]\(([^)]+)\)\*\*$/);
+            if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener"><strong>${escapeHtml(m[1])}</strong></a>`;
+          } else if (p.startsWith('**')) { // plain bold
+            return `<strong>${escapeHtml(p.slice(2,-2))}</strong>`;
+          } else { // plain link
+            const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+            if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+          }
         }
-        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        return escapeHtml(p);
       }).join('');
     }
     const lines = text.split('\n');

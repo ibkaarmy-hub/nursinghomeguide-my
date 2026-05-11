@@ -475,10 +475,17 @@ def transform_template(template, page_title, desc, head_inserts, static_content=
         '<meta charset="UTF-8" />\n' + head_inserts,
         1)
     if static_content:
-        out = out.replace(
-            '<div id="profileContent">',
-            f'{static_content}\n<div id="profileContent">',
-            1)
+        # Template uses <main id="profileContent"> — try both main and div variants
+        if '<main id="profileContent">' in out:
+            out = out.replace(
+                '<main id="profileContent">',
+                f'{static_content}\n<main id="profileContent">',
+                1)
+        else:
+            out = out.replace(
+                '<div id="profileContent">',
+                f'{static_content}\n<div id="profileContent">',
+                1)
     return out
 
 
