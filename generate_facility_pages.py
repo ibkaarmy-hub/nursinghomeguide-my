@@ -457,6 +457,7 @@ def build_head_inserts(f, slug, canonical, canonical_dir="nursing-homes"):
     parts.append(f'<script type="application/ld+json" id="ld-localbusiness">{ld_json}</script>')
     parts.append(f'<script type="application/ld+json" id="ld-breadcrumb">{bc_json}</script>')
     parts.append(f'<script>window.__FACILITY_SLUG={json.dumps(slug)};</script>')
+    parts.append('<script data-host="https://app.microanalytics.io" data-dnt="false" src="https://app.microanalytics.io/js/script.js" id="ZwSg9rf6GA" async defer></script>')
     return page_title, desc, "\n".join(parts)
 
 
