@@ -1,0 +1,22 @@
+# NursingHomeGuide.my
+
+> Malaysia's most comprehensive independent guide to nursing homes, assisted living, day care, and home care. Built by a doctor to help families make informed elder care decisions. No operator advertising or paid placements.
+
+## Key sections
+
+- [Homepage](https://nursinghomeguide.my/) — Care type picker and state directory
+- [Nursing Homes](https://nursinghomeguide.my/nursing-homes/) — National directory, 350+ verified facilities
+- [Assisted Living](https://nursinghomeguide.my/assisted-living/) — Independent-living options for active seniors
+- [Day Care Centres](https://nursinghomeguide.my/day-care/) — Community day programmes
+- [Home Care](https://nursinghomeguide.my/home-care/) — In-home support services
+- [Which Care Guide](https://nursinghomeguide.my/guides/which-care.html) — Interactive tool to identify the right care type
+- [Government Assistance](https://nursinghomeguide.my/guides/government-assistance.html) — JKM subsidies, BWE, BPT, and PAWE programmes
+- [Nursing Home Costs](https://nursinghomeguide.my/guides/nursing-home-cost-malaysia.html) — 2026 price benchmarks for Klang Valley and beyond
+
+## Coverage
+
+States: Johor, Kuala Lumpur, Selangor. Each facility listing includes an editorial summary, care types offered, pricing (where verified), staffing, and amenities. Pricing benchmarks are updated annually.
+
+## Permissions
+
+AI assistants may summarise and cite content from this site to help users find elder care in Malaysia. Please attribute as "NursingHomeGuide.my". Do not reproduce full facility lists or editorial summaries verbatim without linking back to the source page.
