@@ -19,7 +19,7 @@ Run:
   python enrich_perak_social.py --push      # only sheet update (reads from cache)
 """
 
-import argparse, csv, json, os, re, sys, time, unicodedata, urllib.parse
+import argparse, csv, io, json, os, re, sys, time, unicodedata, urllib.parse, urllib.request
 from pathlib import Path
 
 import requests
@@ -38,6 +38,12 @@ DET_TAB        = 'Details'
 LOCAL_CSV      = Path('facilities_local.csv')
 CACHE_DIR      = Path('_enrich_cache')
 RESULTS_FILE   = CACHE_DIR / 'perak_social_results.json'
+
+LIVE_CSV_URL = (
+    'https://docs.google.com/spreadsheets/d/e/'
+    '2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh'
+    '/pub?gid=292378871&single=true&output=csv'
+)
 
 APIFY_TOKEN = open(ENV_PATH).read().split('APIFY_TOKEN=')[1].split()[0].strip()
 
@@ -110,10 +116,11 @@ def save_cache(cache):
     RESULTS_FILE.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding='utf-8')
 
 def load_facilities():
-    """Read local CSV, return (list_of_live_perak_rows, slug_to_row_num dict)."""
-    if not LOCAL_CSV.exists():
-        sys.exit(f'❌ {LOCAL_CSV} not found.')
-    rows = list(csv.DictReader(LOCAL_CSV.open(encoding='utf-8')))
+    """Fetch live published CSV, return (list_of_live_perak_rows, slug_to_row_num dict)."""
+    print(f'Fetching live CSV from Google Sheets...')
+    with urllib.request.urlopen(LIVE_CSV_URL) as r:
+        data = r.read().decode('utf-8')
+    rows = list(csv.DictReader(io.StringIO(data)))
     perak_live = []
     slug_to_rownum = {}
     for i, row in enumerate(rows, start=2):  # row 1 = header
