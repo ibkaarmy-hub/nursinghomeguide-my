@@ -428,7 +428,8 @@ def build_static_content(f, category):
 
 def build_head_inserts(f, slug, canonical, canonical_dir="nursing-homes"):
     title = f.get("title", "").strip()
-    page_title = f"{title} — NursingHomeGuide.my"
+    title_short = title if len(title) <= 50 else title[:47].rstrip() + "…"
+    page_title = f"{title_short} — NursingHomeGuide.my"
     desc = build_meta_description(f)
     img = f.get("hero_image", "").strip()
     twitter_card = "summary_large_image" if img else "summary"
@@ -462,7 +463,7 @@ def build_head_inserts(f, slug, canonical, canonical_dir="nursing-homes"):
 
 
 def transform_template(template, page_title, desc, head_inserts, static_content=''):
-    out = template
+    out = re.sub(r'\s*<meta name="robots" content="noindex, follow" />', '', template, count=1)
     out = re.sub(
         r'<title id="pageTitle">[^<]*</title>',
         f'<title id="pageTitle">{html_escape(page_title)}</title>',

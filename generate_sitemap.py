@@ -106,13 +106,23 @@ def main():
         entries.append(url_entry(f"{BASE}/guides/{g}.html", lastmod=today, changefreq="monthly", priority="0.8"))
 
     # Facility pages — category-prefixed canonical URLs only
+    # URL routing matches facUrl() in frontend state pages (uses care_types, not care_category)
     facility_count = 0
+    seen_slugs = set()
     for r in live:
         slug = (r.get("slug") or "").strip()
-        if not slug:
+        if not slug or slug in seen_slugs:
             continue
-        cat = (r.get("care_category") or "").strip() or DEFAULT_CATEGORY
-        cat_dir = CATEGORY_DIRS.get(cat, CATEGORY_DIRS[DEFAULT_CATEGORY])
+        seen_slugs.add(slug)
+        ct = (r.get("care_types") or "").lower().strip()
+        if "assisted living" in ct and "nursing home" not in ct:
+            cat_dir = "assisted-living"
+        elif "home care" in ct and "nursing home" not in ct:
+            cat_dir = "home-care"
+        elif "day care" in ct and "nursing home" not in ct:
+            cat_dir = "day-care"
+        else:
+            cat_dir = "nursing-homes"
         lastmod = parse_lastmod(r.get("last_updated", "")) or today
         entries.append(url_entry(
             f"{BASE}/{cat_dir}/{slug}/",
