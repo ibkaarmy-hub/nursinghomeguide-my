@@ -257,7 +257,7 @@
 <li>Medical nursing care (chronic conditions)</li>
 <li>Retirement care</li>
 <p style="margin:0 0 10px">The presence of a doctor visit service — rather than just nursing cover — means residents can receive medical review without repeated hospital trips, which matters for families managing chronic conditions from a distance. Residents also have access to organised activities including outdoor walks, board games (chess, mahjong, cards, and bingo), and social gatherings. Meals are personalised to individual health needs and dietary restrictions.</p>
-<p style="margin:0 0 10px">Pricing is not published. Visiting hours are not published — confirm when booking a viewing. Full details at **<a href="https://www.starshinecare.com/" target="_blank" rel="noopener">starshinecare.com</a><strong> and on Facebook at </strong><a href="https://www.facebook.com/61558588282494" target="_blank" rel="noopener">facebook.com/StarshineCareCentre</a>**. Families should also confirm which of the two registered locations a resident would be placed at.</p>
+<p style="margin:0 0 10px">Pricing is not published. Visiting hours are not published — confirm when booking a viewing. Full details at <a href="https://www.starshinecare.com/" target="_blank" rel="noopener"><strong>starshinecare.com</strong></a> and on Facebook at <a href="https://www.facebook.com/61558588282494" target="_blank" rel="noopener"><strong>facebook.com/StarshineCareCentre</strong></a>.</p>
 <p style="margin:0 0 6px;font-weight:700">What to ask on visit:</p>
 <li>What is the monthly fee for residential care, day care, and short-stay rehabilitation, and what is included?</li>
 <li>How frequently does the visiting doctor attend, and what triggers an emergency hospital referral?</li>
@@ -578,15 +578,22 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: links, bold
-      // Split on markdown links [text](url) to avoid escaping their contents
-      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+    function ri(s) { // render inline: bold-links, bold, links
+      // Match in priority order: **[text](url)**, **text**, [text](url)
+      const parts = s.split(/(\*\*\[[^\]]+\]\([^)]+\)\*\*|\*\*[^*\n]+\*\*|\[[^\]]+\]\([^)]+\))/g);
       return parts.map((p, i) => {
-        if (i % 2 === 1) { // matched link token
-          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        if (i % 2 === 1) {
+          if (p.startsWith('**[')) { // bold link
+            const m = p.match(/^\*\*\[([^\]]+)\]\(([^)]+)\)\*\*$/);
+            if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener"><strong>${escapeHtml(m[1])}</strong></a>`;
+          } else if (p.startsWith('**')) { // plain bold
+            return `<strong>${escapeHtml(p.slice(2,-2))}</strong>`;
+          } else { // plain link
+            const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+            if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+          }
         }
-        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        return escapeHtml(p);
       }).join('');
     }
     const lines = text.split('\n');
