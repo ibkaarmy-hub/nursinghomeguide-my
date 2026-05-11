@@ -132,19 +132,39 @@ Notes:
 - **100% editorial coverage** — every live facility has a 250+ word editorial in column AY
 - Editorial coverage confirmed: Johor 78/78, KL 66/66, Selangor 206/206 = 350/350
 
-## Editorial rules (locked 2026-05-02)
+## Editorial rules (locked 2026-05-02, updated 2026-05-11)
 
 Tone: knowledgeable friend, 3 paragraphs, 250–400 words, verified facts only.
 
-**Never use:**
+### Structure (locked 2026-05-11)
+1. **Para 1** — What the home is, location, operator background, licence, capacity. Prose only.
+2. **`**Services (from [domain.com]):**`** — bullet list verbatim from operator's own website (not third-party listings)
+3. **`**What reviewers say (Google, N reviews, X★):**`** — MANDATORY bullet block. Must run Apify `compass/crawler-google-places` before writing, even if Maps URL is raw lat/lng. For <5 reviews: prose mention only, no bullet block.
+4. **Para 3** — Pricing, visiting hours, bold-linked website and Facebook. Links formatted as `**[domain.com](url)**`.
+5. **`**What to ask on visit:**`** — 5–7 practical bullets. Plain-answer questions only.
+
+### Hard rules
+- **Never include negative review mentions.** If a concern from reviews is worth surfacing, reframe it as a neutral visit question only — without citing the negative review. The editorial is not a review site.
+- No phone/WhatsApp/email anywhere in editorial body — sidebar only.
+- Visiting hours: state explicitly if found; if not published: "Visiting hours are not published — confirm when booking a viewing."
+- Services list must come from operator's own website, not third-party listings.
+- Never cite operator self-ratings or "best of" content the operator publishes about themselves.
+
+**Never use in editorial body:**
 - "statistically unreliable", "warrants caution", "warrants scrutiny", "concerning rating"
 - "only/just/merely N reviews"
 - "not in directory X", "absence of any digital presence" (absence ≠ evidence)
-- Critical/undermining framing in the editorial body
+- Any negative review content or critical framing
 
-Frame unverified items as call-time questions. Red flags belong in `facts.red_flags` only (not in the published editorial). Always write a complete editorial — never leave it empty.
+Frame unverified items as call-time questions. Red flags belong in `facts.red_flags` only. Always write a complete editorial — never leave it empty.
 
 Skill: `.claude/commands/nh-profiles.md`
+
+## generate_facility_pages.py — critical notes
+
+- `transform_template()` must look for `<main id="profileContent">` (not `<div>`). Facility.html uses `<main>`. Using `<div>` silently skips all 786 pages without error.
+- After any edit to this function, verify a generated page contains `facility-static-data` before committing.
+- STATE_DIRS must include all 15 states — generator wipes state listing pages for any state not listed.
 
 ## Content strategy — read `_research/` first
 
