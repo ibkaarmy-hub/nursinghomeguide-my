@@ -188,15 +188,26 @@ def html_escape(s):
 
 
 def render_inline(s):
-    """Convert markdown links [text](url) and **bold** to HTML, escaping everything else."""
-    parts = re.split(r'(\[[^\]]+\]\([^)]+\))', str(s or ''))
+    """Convert markdown links [text](url), **bold**, and **[bold link](url)** to HTML."""
+    # Match in priority order: bold-link, plain bold, plain link
+    pattern = r'(\*\*\[[^\]]+\]\([^)]+\)\*\*|\*\*[^*\n]+\*\*|\[[^\]]+\]\([^)]+\))'
+    parts = re.split(pattern, str(s or ''))
     out = []
     for i, part in enumerate(parts):
         if i % 2 == 1:
-            m = re.match(r'^\[([^\]]+)\]\(([^)]+)\)$', part)
-            if m:
-                out.append(f'<a href="{html_escape(m.group(2))}" target="_blank" rel="noopener">{html_escape(m.group(1))}</a>')
+            if part.startswith('**['):  # bold link: **[text](url)**
+                m = re.match(r'^\*\*\[([^\]]+)\]\(([^)]+)\)\*\*$', part)
+                if m:
+                    out.append(f'<a href="{html_escape(m.group(2))}" target="_blank" rel="noopener"><strong>{html_escape(m.group(1))}</strong></a>')
+                    continue
+            elif part.startswith('**'):  # plain bold: **text**
+                out.append(f'<strong>{html_escape(part[2:-2])}</strong>')
                 continue
+            else:  # plain link: [text](url)
+                m = re.match(r'^\[([^\]]+)\]\(([^)]+)\)$', part)
+                if m:
+                    out.append(f'<a href="{html_escape(m.group(2))}" target="_blank" rel="noopener">{html_escape(m.group(1))}</a>')
+                    continue
         out.append(re.sub(r'\*\*([^*]+)\*\*', lambda b: f'<strong>{html_escape(b.group(1))}</strong>',
                           html_escape(part)))
     return ''.join(out)

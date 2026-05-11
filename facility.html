@@ -528,15 +528,22 @@ function render(f) {
 
   function renderEditorial(text) {
     if (!text) return '';
-    function ri(s) { // render inline: links, bold
-      // Split on markdown links [text](url) to avoid escaping their contents
-      const parts = s.split(/(\[[^\]]+\]\([^)]+\))/g);
+    function ri(s) { // render inline: bold-links, bold, links
+      // Match in priority order: **[text](url)**, **text**, [text](url)
+      const parts = s.split(/(\*\*\[[^\]]+\]\([^)]+\)\*\*|\*\*[^*\n]+\*\*|\[[^\]]+\]\([^)]+\))/g);
       return parts.map((p, i) => {
-        if (i % 2 === 1) { // matched link token
-          const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-          if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+        if (i % 2 === 1) {
+          if (p.startsWith('**[')) { // bold link
+            const m = p.match(/^\*\*\[([^\]]+)\]\(([^)]+)\)\*\*$/);
+            if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener"><strong>${escapeHtml(m[1])}</strong></a>`;
+          } else if (p.startsWith('**')) { // plain bold
+            return `<strong>${escapeHtml(p.slice(2,-2))}</strong>`;
+          } else { // plain link
+            const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+            if (m) return `<a href="${escapeHtml(m[2])}" target="_blank" rel="noopener">${escapeHtml(m[1])}</a>`;
+          }
         }
-        return escapeHtml(p).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        return escapeHtml(p);
       }).join('');
     }
     const lines = text.split('\n');
