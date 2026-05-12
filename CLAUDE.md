@@ -139,7 +139,7 @@ Notes:
 
 Summary of hard rules (never violate):
 - Fixed 5-part structure: Prose → Services block → What reviewers say → Practical para → Visit questions
-- Google reviews are MANDATORY before writing any editorial — run Apify even for raw lat/lng Maps URLs
+- Google reviews are MANDATORY before writing any editorial — pull via free Google Places API (see enrichment pipeline below)
 - Never include negative review content in the editorial body — reframe as neutral visit questions only
 - No phone/WhatsApp/email in editorial body — sidebar only
 - Services list verbatim from operator's own website, not third-party listings
@@ -147,6 +147,21 @@ Summary of hard rules (never violate):
 - 250–400 words, English, verified facts only
 
 Invoke with `/nh-profiles` (batch) or `/nh-profiles <slug>` (single facility — new or enrich).
+
+## Enrichment pipeline (locked 2026-05-12)
+
+Four-phase, zero-Apify-cost workflow. Full reference in `stages/02-enrich/CONTEXT.md`.
+
+| Phase | Script | Cost |
+|-------|--------|------|
+| 1. Foundation | `python enrich_places_free.py <State>` — placeId, address, phone, website, rating, reviews, photos | $0 (Places API) |
+| 2. Editorials | `/nh-profiles` skill | $0 |
+| 3. Auto-fill | `_tmp/enrich_whatsapp_clinical.py` — WhatsApp from mobile phones · care_* / medical_* flags parsed from editorial text | $0 (regex) |
+| 4. Publish | `generate_facility_pages.py` + `generate_sitemap.py` + commit/push | $0 |
+
+**Apify is deprecated** for new enrichment — Places API (free tier 10K Details + 5K Text Searches per month) covers the entire ~700-facility project. Existing Apify cache stays archived in `_enrich_cache/`. Key lives in `.env` as `GOOGLE_MAPS_KEY`.
+
+Perak ran the full pipeline end-to-end: 12% → 100% editorial coverage, 92/92 facilities, zero new Apify spend.
 
 ## generate_facility_pages.py — critical notes
 

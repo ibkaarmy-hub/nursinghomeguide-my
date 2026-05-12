@@ -11,6 +11,27 @@ Single skill for all facility profile work: writing new profiles, enriching exis
 
 ---
 
+## The full enrichment pipeline (zero Apify cost)
+
+This skill is **Phase 2** of a four-phase pipeline. Before writing editorials for a state, run Phase 1 to populate the foundation data, then run Phases 3+4 after editorials are written.
+
+| Phase | Tool | Populates | When |
+|-------|------|-----------|------|
+| 1. **Foundation** | `python enrich_places_free.py <State>` | placeId, address, phone, website, rating, review_count, photos, review snippets | Once per state, before editorial writing |
+| 2. **Editorials** | This skill (`/nh-profiles`) | `editorial_summary` (5-part structure) | Per facility or per batch of 10 |
+| 3. **Auto-fill** | Inline batch in `_tmp/enrich_whatsapp_clinical.py` | `whatsapp` from mobile phones · `care_*` / `medical_*` flags parsed from editorial text | After editorials are written |
+| 4. **Publish** | `python generate_facility_pages.py && python generate_sitemap.py` + commit + push | Static pages + sitemap | After every batch / state |
+
+Full pipeline reference: `stages/02-enrich/CONTEXT.md`.
+
+**Cost:** $0 — Places API free tier covers 10K Details + 5K Text Searches per month, more than enough for the entire ~700-facility project. Apify is deprecated for new enrichment work; existing Apify cache is archived in `_enrich_cache/`.
+
+### When editorial-writing data is thin
+
+If a facility has only Places-API data (no operator website), use the **template generator** pattern documented in `stages/02-enrich/CONTEXT.md` (Phase 2 Path B). The generator handles JKM licence + hospital-by-area matching + honest review framing + standard visit questions, all from cached Places data. See `_tmp/batch3_perak_generator.py` from the 2026-05-12 Perak completion for the canonical implementation.
+
+---
+
 ## Mode detection (single slug)
 
 1. Load the row from `facilities_local.csv` by slug
@@ -27,7 +48,8 @@ SPREADSHEET_ID = '1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk'
 TOKEN_PATH     = r'C:\Users\ibkaa\nursinghomeguide-my\Nursing Home Guide Malaysia\token_sheets.json'
 CSV_PATH       = r'C:\Users\ibkaa\nursinghomeguide-my\Nursing Home Guide Malaysia\facilities_local.csv'
 TAB            = 'google-sheets-facilities.csv'
-APIFY_TOKEN    = open(r'C:\Users\ibkaa\nursinghomeguide-my\Nursing Home Guide Malaysia\.env').read().split('APIFY_TOKEN=')[1].split()[0].strip()
+APIFY_TOKEN    = open(r'C:\Users\ibkaa\nursinghomeguide-my\Nursing Home Guide Malaysia\.env').read().split('APIFY_TOKEN=')[1].split()[0].strip()  # legacy
+GOOGLE_MAPS_KEY = open(r'C:\Users\ibkaa\nursinghomeguide-my\Nursing Home Guide Malaysia\.env').read().split('GOOGLE_MAPS_KEY=')[1].split()[0].strip()
 TODAY          = datetime.date.today().isoformat()
 ```
 
