@@ -1435,7 +1435,10 @@ body.da-page { background: var(--da-bg); }
 }
 .da-page .fac-price-badge {
   position: absolute;
-  top: 10px; left: 10px;
+  bottom: 10px;
+  left: 10px;
+  top: auto;
+  right: auto;
   background: rgba(255,255,255,.95);
   color: var(--da-good);
   padding: 5px 10px;
@@ -1443,8 +1446,9 @@ body.da-page { background: var(--da-bg); }
   font-size: 11.5px;
   font-weight: 700;
   box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  backdrop-filter: blur(4px);
 }
-.da-page .fac-price-badge.unknown { color: var(--da-body); }
+.da-page .fac-price-badge.unknown { color: var(--da-body); background: rgba(255,255,255,.92); }
 .da-page .fac-group-tag {
   position: absolute;
   top: 10px; right: 10px;
