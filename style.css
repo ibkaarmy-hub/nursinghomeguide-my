@@ -1624,3 +1624,201 @@ body.da-page { background: var(--da-bg); }
   .da-page #mapSidebar { max-height: 600px; overflow-y: auto; padding-right: 4px; }
   .da-page #leafletMap { height: 600px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   DIRECTION A — FACILITY PROFILE (Step 4)
+   Scoped via .da-page on <body>. Layers over the per-page inline CSS
+   in facility.html (deliberately additive — page-specific styles remain).
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Profile header — eyebrow + cleaner type, Direction A palette */
+.da-page .profile-header {
+  background: var(--da-surface);
+  border-bottom: 1px solid var(--da-line);
+  padding: 24px 16px 18px;
+}
+.da-page .profile-header-inner { max-width: 1240px; }
+.da-page .profile-header .hero-breadcrumb {
+  font-size: 11.5px;
+  color: var(--da-muted);
+  margin-bottom: 6px;
+}
+.da-page .profile-header .hero-breadcrumb a { color: var(--da-body); }
+.da-page .profile-header .hero-breadcrumb a:hover { color: var(--da-blue); }
+.da-page .profile-header .bc-sep { color: var(--da-line); }
+.da-page .profile-header h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--da-ink);
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+  margin: 4px 0 8px;
+}
+.da-page .profile-header .hero-meta {
+  font-size: 13px;
+  color: var(--da-body);
+}
+@media (min-width: 900px) {
+  .da-page .profile-header { padding: 32px 48px 22px; }
+  .da-page .profile-header h1 { font-size: 36px; letter-spacing: -.035em; }
+}
+
+/* Tabs nav — Direction A active treatment */
+.da-page .tabs-nav {
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--da-line);
+}
+.da-page .tab-btn {
+  color: var(--da-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 13px 14px;
+}
+.da-page .tab-btn:hover { color: var(--da-ink); }
+.da-page .tab-btn.active {
+  color: var(--da-blue);
+  font-weight: 700;
+  border-bottom-color: var(--da-blue);
+}
+
+/* Editor's note card — gradient top accent bar */
+.da-page .editor-note {
+  position: relative;
+  background: var(--da-surface);
+  border: 1px solid var(--da-line);
+  border-left: none;
+  border-radius: 14px;
+  padding: 22px 22px 20px;
+  color: var(--da-ink);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+  isolation: isolate;
+}
+.da-page .editor-note::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 22px; right: 22px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--da-coral), var(--da-blue));
+  border-radius: 2px;
+  z-index: 0;
+}
+.da-page .editor-note > * { position: relative; z-index: 1; }
+.da-page .editor-note .editorial-label {
+  color: var(--da-coral-deep);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.da-page .editor-note .eh { color: var(--da-ink); font-weight: 700; }
+
+/* Price band — Direction A treatment */
+.da-page .price-band {
+  background: linear-gradient(135deg, var(--da-bg), #eef2fa);
+  border: 1px solid var(--da-line);
+  border-radius: 14px;
+}
+.da-page .price-band-label {
+  color: var(--da-coral-deep);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+.da-page .price-band-value { color: var(--da-ink); }
+.da-page .price-band-note { color: var(--da-body); }
+.da-page .price-band.unknown {
+  background: #fffbeb;
+}
+
+/* Capability grid */
+.da-page .check-cell { border-radius: 10px; font-size: 13px; }
+.da-page .check-cell.yes { background: var(--da-good-bg); color: var(--da-good); }
+
+/* Includes/extras lists */
+.da-page .includes-col.included h4 { color: var(--da-good); border-color: var(--da-good); }
+.da-page .includes-col.extra h4 { color: var(--da-coral-deep); border-color: var(--da-coral); }
+.da-page .includes-list li { color: var(--da-ink); }
+.da-page .includes-col.included li::before { color: var(--da-good); }
+.da-page .includes-col.extra li::before { color: var(--da-coral-deep); }
+
+/* Amenity tags */
+.da-page .amenity-tag {
+  background: var(--da-good-bg);
+  color: var(--da-good);
+  border: 1px solid transparent;
+  font-size: 12px;
+}
+.da-page .amenity-tag.unverified {
+  background: var(--da-bg);
+  color: var(--da-muted);
+  border: 1px dashed var(--da-line);
+}
+
+/* Sidebar contact card */
+.da-page .contact-card {
+  background: var(--da-surface);
+  border: 1px solid var(--da-line);
+  border-radius: 14px;
+  box-shadow: var(--da-shadow-card);
+}
+.da-page .contact-card h3 {
+  color: var(--da-ink);
+  font-size: 15px;
+  letter-spacing: -.01em;
+}
+.da-page .cta-btn {
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 12px 16px;
+}
+.da-page .cta-call { background: var(--da-blue); }
+.da-page .cta-call:hover { background: var(--da-blue-dark); }
+.da-page .cta-maps { background: var(--da-bg); color: var(--da-ink); }
+.da-page .cta-web { background: var(--da-surface); color: var(--da-ink); border-color: var(--da-line); }
+.da-page .contact-meta { color: var(--da-body); border-top-color: var(--da-line); }
+
+/* Guides card (sidebar) */
+.da-page .guides-card {
+  background: var(--da-surface);
+  border-color: var(--da-line);
+  border-radius: 14px;
+}
+.da-page .guides-card h3 { color: var(--da-ink); }
+.da-page .guides-card ul li a { color: var(--da-blue); }
+.da-page .guides-card ul li { border-top-color: var(--da-line); }
+
+/* Mobile sticky CTA bar */
+.da-page .mobile-cta-bar {
+  background: rgba(255,255,255,.98);
+  border-top: 1px solid var(--da-line);
+  box-shadow: var(--da-shadow-float);
+}
+.da-page .mobile-cta-bar .m-call { background: var(--da-blue); }
+.da-page .mobile-cta-bar .m-call:hover { background: var(--da-blue-dark); }
+
+/* Photos */
+.da-page .photo-cats { gap: 6px; }
+.da-page .photo-cat {
+  background: var(--da-bg);
+  border: 1px solid var(--da-line);
+  font-size: 12.5px;
+  padding: 7px 14px;
+  color: var(--da-body);
+}
+.da-page .photo-cat.active { background: var(--da-ink); color: #fff; border-color: var(--da-ink); }
+
+/* Compare row hint */
+.da-page .compare-row {
+  background: #fff7f3;
+  border: 1px solid #fed7c4;
+  color: var(--da-coral-deep);
+  border-radius: 10px;
+}
+
+/* Tooltips */
+.da-page .term-tip { border-bottom-color: var(--da-muted); }
+.da-page .term-tip::after { background: var(--da-ink); }
