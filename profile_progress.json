@@ -39,12 +39,23 @@
     "golden-apple-senior-citizen-care-centre",
     "golden-eldercare-senior-living-care-centre-plt",
     "good-care-centre",
-    "green-gates-care-centre"
+    "green-gates-care-centre",
+    "grg-senior-care-centre",
+    "happy-old-folks-care-centre",
+    "ideal-care-centre",
+    "lovely-villa-care-centre",
+    "moonlight-care-centre",
+    "our-home-care-centre",
+    "pertubuhan-kebajikan-warga-tua-anning-teluk-intan-",
+    "pertubuhan-wa-khiew-yi-shea-sungai-siput-perak",
+    "pure-home-care-centre",
+    "pusat-jagaan-belaian-jiwa",
+    "pusat-jagaan-emas-ipoh"
   ],
   "skipped": [
     {
       "slug": "grace-care-centre",
-      "reason": "Website (amazinggracecarecentre.com) is for KL operation \u2014 cannot attribute to Perak branch without on-site confirmation"
+      "reason": "Website (amazinggracecarecentre.com) is for KL operation — cannot attribute to Perak branch without on-site confirmation"
     },
     {
       "slug": "pusat-jagaan-harian-chan",
@@ -52,7 +63,7 @@
     },
     {
       "slug": "pusat-jagaan-pertubuhan-pengurusan-rumah-warga-tua",
-      "reason": "Website URL is a Maxis internship job listing \u2014 wrong URL in sheet"
+      "reason": "Website URL is a Maxis internship job listing — wrong URL in sheet"
     },
     {
       "slug": "qualicare-senior-citizens-home-care-centre",
@@ -69,8 +80,16 @@
     {
       "slug": "golden-eldercare-senior-living-care-centre-plt",
       "reason": "Sheet data-quality issue: rows 489 (A/PJB WE 010/2025) and 490 (A/PJH WE 009/2025) share the same slug, address, phone, and Google place_id. Both rows now have editorials, but the duplicate slug should be resolved at the sheet level (assign distinct slugs or mark one row removed)."
+    },
+    {
+      "slug": "lotus-geriatric-care-centre",
+      "reason": "Sheet has duplicate slug — row 531 has full editorial (licence A/PJB WT 068/2021); row 532 is a duplicate with different licence A/PJB WT 004/2022 and remains empty. Resolve at sheet level (assign distinct slug or mark duplicate as removed)."
+    },
+    {
+      "slug": "ig-care-centre",
+      "reason": "Editorial was rewritten in batch 1 (2026-05-12) after previous version was lost from row 514; logged here to clarify it has been regenerated from Details tab and Places cache."
     }
   ],
   "last_batch": "2026-05-12",
-  "total_done": 40
+  "total_done": 51
 }
