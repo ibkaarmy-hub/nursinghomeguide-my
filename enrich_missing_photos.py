@@ -16,7 +16,23 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
-GOOGLE_KEY = 'AIzaSyByxYJcVmaRaqcKevouJX0QdK7VETV_9fg'
+ENV_PATH = r'C:\Users\ibkaa\nursinghomeguide-my\Nursing Home Guide Malaysia\.env'
+
+
+def _read_env(key):
+    """Read a single key from the gitignored .env file. Never hardcode secrets."""
+    with open(ENV_PATH, 'r', encoding='utf-8') as fh:
+        for line in fh:
+            line = line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            k, _, v = line.partition('=')
+            if k.strip() == key:
+                return v.strip().strip('"').strip("'")
+    raise RuntimeError(f"{key} not found in {ENV_PATH}")
+
+
+GOOGLE_KEY = _read_env('GOOGLE_MAPS_KEY')
 SPREADSHEET_ID = '1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk'
 TOKEN_PATH = r'C:\Users\ibkaa\nursinghomeguide-my\Nursing Home Guide Malaysia\token_sheets.json'
 TAB = 'google-sheets-facilities.csv'
