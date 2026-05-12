@@ -1,6 +1,30 @@
 # Stage 02 — Data Enrichment
 
-## Status: 🟢 Perak 100% complete · Johor/KL/Selangor 100% editorial · other 11 states pending
+## Status (audited 2026-05-12)
+
+Per-state editorial coverage (live facilities, status not in removed/unverified):
+
+| State | Live | Ed ≥800 | placeId | Photos |
+|-------|------|---------|---------|--------|
+| Selangor | 254 | 198 (78%) | 198 (78%) | 247 (97%) |
+| Johor | 128 | 76 (59%) | 72 (56%) | 127 (99%) |
+| **Perak** ✅ | **92** | **91 (99%)** | **91 (99%)** | **88 (96%)** |
+| Kuala Lumpur | 86 | 66 (77%) | 73 (85%) | 83 (97%) |
+| Negeri Sembilan | 34 | 3 (9%) | 27 (79%) | 33 (97%) |
+| (state column blank) | 31 | 0 | 5 | 28 |
+| Penang | 24 | 7 (29%) | 20 (83%) | 21 (88%) |
+| Pahang ✅ | 22 | 22 (100%) | 19 (86%) | 22 (100%) |
+| Kedah ✅ | 21 | 21 (100%) | 20 (95%) | 20 (95%) |
+| Melaka ✅ | 15 | 15 (100%) | 14 (93%) | 15 (100%) |
+| Sabah ✅ | 14 | 14 (100%) | 12 (86%) | 14 (100%) |
+| Sarawak ✅ | 7 | 7 (100%) | 6 (86%) | 7 (100%) |
+| Terengganu ✅ | 7 | 7 (100%) | 6 (86%) | 6 (86%) |
+| Kelantan ✅ | 4 | 4 (100%) | 4 (100%) | 3 (75%) |
+| Perlis ✅ | 2 | 2 (100%) | 2 (100%) | 2 (100%) |
+| Labuan ✅ | 1 | 1 (100%) | 1 (100%) | 1 (100%) |
+| **Total** | **742** | **534 (72%)** | **570 (77%)** | **717 (97%)** |
+
+**The real gaps:** Selangor (56 empty editorials), Johor (52 empty), Penang (17 empty), KL (20 empty), Negeri Sembilan (31 empty), and **31 facilities with blank `state` column** (state classification needed before any enrichment).
 
 ## The zero-cost enrichment pipeline (locked 2026-05-12)
 
@@ -99,23 +123,28 @@ git commit -m "<state> editorials + enrichment"
 git push origin main
 ```
 
-## What's done
+## Per-state achievements
 
-| State | Live | Editorial ≥800 | placeId | Photos | Reviews | WhatsApp | Capabilities |
-|-------|------|----------------|---------|--------|---------|----------|--------------|
-| Johor | 74 | 100% | high | high | high | pending | pending |
-| Kuala Lumpur | 66 | 100% | high | high | high | pending | pending |
-| Selangor | 206 | 100% | high | high | high | pending | pending |
-| **Perak** | **92** | **100%** | **98%** | **95%** | **85%** | **82%** | **86% (nursing)** |
-| 11 other states | ~270 | 0% | 0% | 0% | 0% | 0% | 0% |
+**Perak (Phase 1–4 complete, locked 2026-05-12):**
+- Editorial: 12% → 99% (91/92, the 1 outlier is data-quality issue)
+- Maps placeId: 91% → 99% (via Places API enrichment)
+- WhatsApp: 0% → 82% (auto-parsed from mobile phones)
+- care_nursing flag: 11% → 86% (regex over editorial text)
+- 359 cell writes + 158 Details rows from $0 Places API run
+- 46 unverified FB URLs cleared (false-positive cleanup from prior Apify run)
+
+**Johor/KL/Selangor:** Substantial editorial coverage from earlier sessions but **not yet at 100%**. None have had Phase 3 (WhatsApp + capability parse) run yet — easy wins waiting.
+
+**Smaller states (Pahang/Kedah/Melaka/Sabah/Sarawak/Terengganu/Kelantan/Perlis/Labuan):** All have 100% editorial coverage from earlier sessions (template-generator-style writing, likely). placeId coverage typically 85–100%. Ready for Phase 3 auto-fill.
 
 ## What's pending (priority order)
 
-1. **Other 11 states** — run `enrich_places_free.py` then editorials + auto-fill on each. Roughly 270 facilities across Penang, Kedah, Kelantan, Terengganu, Pahang, Negeri Sembilan, Melaka, Sabah, Sarawak, Perlis, Labuan, Putrajaya. ~$0 cost.
-2. **Johor/KL/Selangor WhatsApp + capability backfill** — run `enrich_whatsapp_clinical.py` against them (the script is state-agnostic; just change the filter).
-3. **Pricing outreach** — still the #1 data gap. 0% of any state has concrete monthly prices. Requires direct contact, not scrapeable.
-4. **JKM licence backfill** — most rows have licences via the JKM register import; a few facilities still blank. Bulk lookup pending.
-5. **Duplicate sheet hygiene** — same-slug rows with different JKM licences (e.g. Perak row 532/531 lotus; row 765/764 victory). Needs sheet-level dedup decision per pair.
+1. **Classify the 31 blank-state rows.** Until they have a state, they don't appear in any state listing page and can't be enriched per-state. Probably orphans from MDAC import or sheet edits — needs manual review.
+2. **Selangor / Johor / KL / Penang / N. Sembilan editorial backlog** — 176 total empty editorials. Highest-impact remaining write work. Same pipeline as Perak: `enrich_places_free.py <State>` → editorial generation → auto-fill.
+3. **Phase 3 backfill on all states** — `enrich_whatsapp_clinical.py` is state-agnostic; run against the full Facilities tab to populate WhatsApp + capability flags everywhere (zero cost, ~5 min).
+4. **Pricing outreach** — still the #1 data gap. 0% of any state has concrete monthly prices. Requires direct contact, not scrapeable.
+5. **JKM licence backfill** — most rows have licences via the JKM register import; a few facilities still blank.
+6. **Duplicate sheet hygiene** — same-slug rows with different JKM licences (Perak row 532/531 lotus; row 765/764 victory). Needs sheet-level dedup decision per pair.
 
 ## Hard rules
 
@@ -135,9 +164,10 @@ git push origin main
 | `generate_facility_pages.py` | Regenerate per-facility static pages | $0 |
 | `generate_sitemap.py` | Regenerate sitemap.xml | $0 |
 | `process_kl_selangor.py` | (legacy) Process Apify output → upload to sheet | – |
-| `upload_details_batch*.py` | Upload Details tab rows for specific facilities | $0 |
-| `merge_photos_oauth.py` | Merge photo URLs into Facilities tab | $0 |
-| `update_editorials.py` | Batch update editorial_summary column | $0 |
+| `upload_details_batch{2,5}.py` | (legacy) One-off Details tab uploaders, kept for reference | $0 |
+| `merge_photos_oauth.py` | (legacy) Merge photo URLs into Facilities tab | $0 |
+| `update_editorials.py` | (legacy) Batch update editorial_summary column | $0 |
+| `batch_maps_placeid.py` | (legacy Apify) Batch Maps placeId resolver — superseded by `enrich_places_free.py` | – |
 
 One-off batch scripts (in `_tmp/`, gitignored, deleted after use):
 
