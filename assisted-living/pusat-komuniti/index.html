@@ -7,12 +7,12 @@
 <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NursingHomeGuide.my">
-<meta property="og:title" content="PUSAT KOMUNITI — NursingHomeGuide.my">
+<meta property="og:title" content="Pusat Komuniti — NursingHomeGuide.my">
 <meta property="og:description" content="PUSAT KOMUNITI in Desa Vista. PUSAT KOMUNITI is a listing at Desa Vista in Selangor, categorised in Google Maps as an assisted living facility. Desa…">
 <meta property="og:url" content="https://nursinghomeguide.my/assisted-living/pusat-komuniti/">
 <meta property="og:image" content="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rupBmA7omMTdCysHwewoVA&amp;cb_client=search.gws-prod.gps&amp;w=408&amp;h=240&amp;yaw=198.55682&amp;pitch=0&amp;thumbfov=100">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PUSAT KOMUNITI — NursingHomeGuide.my">
+<meta name="twitter:title" content="Pusat Komuniti — NursingHomeGuide.my">
 <meta name="twitter:description" content="PUSAT KOMUNITI in Desa Vista. PUSAT KOMUNITI is a listing at Desa Vista in Selangor, categorised in Google Maps as an assisted living facility. Desa…">
 <meta name="twitter:image" content="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rupBmA7omMTdCysHwewoVA&amp;cb_client=search.gws-prod.gps&amp;w=408&amp;h=240&amp;yaw=198.55682&amp;pitch=0&amp;thumbfov=100">
 <script type="application/ld+json" id="ld-localbusiness">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://nursinghomeguide.my/assisted-living/pusat-komuniti/","name":"PUSAT KOMUNITI","url":"https://nursinghomeguide.my/assisted-living/pusat-komuniti/","address":{"@type":"PostalAddress","addressCountry":"MY","addressLocality":"Desa Vista","addressRegion":"Selangor"},"image":"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=rupBmA7omMTdCysHwewoVA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=198.55682&pitch=0&thumbfov=100","description":"PUSAT KOMUNITI is a listing at Desa Vista in Selangor, categorised in Google Maps as an assisted living facility. Desa Vista is a residential township development in the Sabak Bernam or northern Selangor corridor, and the name Pusat Komuniti — meaning Community Centre — is widely used in Malaysia for both government-supported community gathering spaces and privately run small care homes that market themselves to the local community. The listing carries no phone number, website, or Facebook page,","priceRange":"Call for pricing"}</script>
@@ -20,7 +20,7 @@
 <script>window.__FACILITY_SLUG="pusat-komuniti";</script>
 <script data-host="https://app.microanalytics.io" data-dnt="false" src="https://app.microanalytics.io/js/script.js" id="ZwSg9rf6GA" async defer></script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title id="pageTitle">PUSAT KOMUNITI — NursingHomeGuide.my</title>
+<title id="pageTitle">Pusat Komuniti — NursingHomeGuide.my</title>
 <meta name="description" id="pageDesc" content="PUSAT KOMUNITI in Desa Vista. PUSAT KOMUNITI is a listing at Desa Vista in Selangor, categorised in Google Maps as an assisted living facility. Desa…" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -241,7 +241,7 @@
 <div id="facility-static-data" style="display:none" aria-hidden="true">
 <div style="max-width:900px;margin:0 auto;padding:24px 20px;font-family:system-ui,sans-serif;color:#0f172a;line-height:1.65">
 <p style="font-size:.85rem;color:#64748b;margin:0 0 8px"><a href="/" style="color:#2563eb">Home</a> &rsaquo; <a href="/assisted-living/" style="color:#2563eb">Assisted Living</a> &rsaquo; <a href="/assisted-living/selangor/" style="color:#2563eb">Selangor</a></p>
-<h1 style="font-size:1.85rem;font-weight:800;margin:0 0 4px">PUSAT KOMUNITI</h1>
+<h1 style="font-size:1.85rem;font-weight:800;margin:0 0 4px">Pusat Komuniti</h1>
 <p style="color:#64748b;margin:0 0 12px">Desa Vista, Selangor, Malaysia</p>
 <p style="margin:0 0 20px"><strong>Care type:</strong> Assisted living facility</p>
 <section aria-label="About this facility" style="background:#f0f9ff;border-left:4px solid #2563eb;border-radius:8px;padding:20px 22px;margin:0 0 24px">
@@ -296,6 +296,39 @@ function isUnknownText(v) {
 }
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+/* smartTitleCase: convert ALL-CAPS facility names to Title Case for display.
+   Leaves mixed-case input untouched. Preserves acronyms and Malay particles.
+   Mirrors smart_title_case() in generate_facility_pages.py. */
+const _NHG_ALWAYS_UPPER = new Set([
+  'KL','PJ','JB','MOH','JKM','PAWE','PLT','MY','VCU','VCFU',
+  'II','III','IV','VI','VII','VIII','IX','XI','XII',
+  'TLC','FCC','EHA','KPJ','KS','JJ','YY','OT','RN',
+  'ZACC','GPPT','SMK','RTM'
+]);
+const _NHG_LOWER_PARTICLES = new Set([
+  'dan','di','ke','the','a','an','of','for','in','on','at',
+  'by','to','and','or','dari','untuk','atau','dengan'
+]);
+function smartTitleCase(s) {
+  if (!s) return s;
+  if (/[a-z]/.test(s)) return s;
+  const fixToken = (tok, isFirst) => {
+    const core = tok.replace(/[^A-Z]/g, '');
+    if (_NHG_ALWAYS_UPPER.has(core)) return tok;
+    if (!isFirst && _NHG_LOWER_PARTICLES.has(tok.toLowerCase())) return tok.toLowerCase();
+    if (tok.includes('-')) {
+      return tok.split('-').map(p => p ? p.charAt(0).toUpperCase() + p.slice(1).toLowerCase() : '').join('-');
+    }
+    if (tok.length > 2 && tok.startsWith('(') && tok.endsWith(')')) {
+      const inner = tok.slice(1, -1);
+      const innerCore = inner.replace(/[^A-Z]/g, '');
+      if (_NHG_ALWAYS_UPPER.has(innerCore)) return tok;
+      return '(' + inner.charAt(0).toUpperCase() + inner.slice(1).toLowerCase() + ')';
+    }
+    return tok.charAt(0).toUpperCase() + tok.slice(1).toLowerCase();
+  };
+  return s.split(' ').map((t, i) => fixToken(t, i === 0)).join(' ');
 }
 /* tipLabel: returns a pre-built HTML fragment safe to embed in checkCell labels */
 function tipLabel(text, tip) {
@@ -405,7 +438,7 @@ function setCanonical(href) {
   el.setAttribute('href', href);
 }
 function injectSocialMeta(f, canonicalUrl, description) {
-  const title = `${f.title} — NursingHomeGuide.my`;
+  const title = `${smartTitleCase(f.title)} — NursingHomeGuide.my`;
   const img = f.hero_image || '';
   setOrCreateMeta('property', 'og:type', 'website');
   setOrCreateMeta('property', 'og:site_name', 'NursingHomeGuide.my');
@@ -468,7 +501,7 @@ function injectStructuredData(f, canonicalUrl) {
 /* ── Main render ───────────────────────────────────── */
 function render(f) {
   const D = f._details || {};
-  document.title = `${f.title} — NursingHomeGuide.my`;
+  document.title = `${smartTitleCase(f.title)} — NursingHomeGuide.my`;
   const rawDesc = `${f.title} in ${f.area || 'Malaysia'}. ${f.shared_price ? 'From RM ' + f.shared_price + '/mo. ' : ''}${f.editorial_summary || ''}`.replace(/\s+/g, ' ').trim();
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
@@ -771,9 +804,9 @@ function render(f) {
           <span class="bc-sep">/</span>
           <span>${escapeHtml(f.area || 'Johor')}</span>
           <span class="bc-sep">/</span>
-          <span>${escapeHtml(f.title)}</span>
+          <span>${escapeHtml(smartTitleCase(f.title))}</span>
         </div>
-        <h1>${escapeHtml(f.title)}</h1>
+        <h1>${escapeHtml(smartTitleCase(f.title))}</h1>
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}

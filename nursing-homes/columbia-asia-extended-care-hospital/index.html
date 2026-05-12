@@ -321,6 +321,39 @@ function isUnknownText(v) {
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
+/* smartTitleCase: convert ALL-CAPS facility names to Title Case for display.
+   Leaves mixed-case input untouched. Preserves acronyms and Malay particles.
+   Mirrors smart_title_case() in generate_facility_pages.py. */
+const _NHG_ALWAYS_UPPER = new Set([
+  'KL','PJ','JB','MOH','JKM','PAWE','PLT','MY','VCU','VCFU',
+  'II','III','IV','VI','VII','VIII','IX','XI','XII',
+  'TLC','FCC','EHA','KPJ','KS','JJ','YY','OT','RN',
+  'ZACC','GPPT','SMK','RTM'
+]);
+const _NHG_LOWER_PARTICLES = new Set([
+  'dan','di','ke','the','a','an','of','for','in','on','at',
+  'by','to','and','or','dari','untuk','atau','dengan'
+]);
+function smartTitleCase(s) {
+  if (!s) return s;
+  if (/[a-z]/.test(s)) return s;
+  const fixToken = (tok, isFirst) => {
+    const core = tok.replace(/[^A-Z]/g, '');
+    if (_NHG_ALWAYS_UPPER.has(core)) return tok;
+    if (!isFirst && _NHG_LOWER_PARTICLES.has(tok.toLowerCase())) return tok.toLowerCase();
+    if (tok.includes('-')) {
+      return tok.split('-').map(p => p ? p.charAt(0).toUpperCase() + p.slice(1).toLowerCase() : '').join('-');
+    }
+    if (tok.length > 2 && tok.startsWith('(') && tok.endsWith(')')) {
+      const inner = tok.slice(1, -1);
+      const innerCore = inner.replace(/[^A-Z]/g, '');
+      if (_NHG_ALWAYS_UPPER.has(innerCore)) return tok;
+      return '(' + inner.charAt(0).toUpperCase() + inner.slice(1).toLowerCase() + ')';
+    }
+    return tok.charAt(0).toUpperCase() + tok.slice(1).toLowerCase();
+  };
+  return s.split(' ').map((t, i) => fixToken(t, i === 0)).join(' ');
+}
 /* tipLabel: returns a pre-built HTML fragment safe to embed in checkCell labels */
 function tipLabel(text, tip) {
   return { raw: `<span class="term-tip" data-tip="${escapeHtml(tip)}">${escapeHtml(text)}</span>` };
@@ -429,7 +462,7 @@ function setCanonical(href) {
   el.setAttribute('href', href);
 }
 function injectSocialMeta(f, canonicalUrl, description) {
-  const title = `${f.title} — NursingHomeGuide.my`;
+  const title = `${smartTitleCase(f.title)} — NursingHomeGuide.my`;
   const img = f.hero_image || '';
   setOrCreateMeta('property', 'og:type', 'website');
   setOrCreateMeta('property', 'og:site_name', 'NursingHomeGuide.my');
@@ -492,7 +525,7 @@ function injectStructuredData(f, canonicalUrl) {
 /* ── Main render ───────────────────────────────────── */
 function render(f) {
   const D = f._details || {};
-  document.title = `${f.title} — NursingHomeGuide.my`;
+  document.title = `${smartTitleCase(f.title)} — NursingHomeGuide.my`;
   const rawDesc = `${f.title} in ${f.area || 'Malaysia'}. ${f.shared_price ? 'From RM ' + f.shared_price + '/mo. ' : ''}${f.editorial_summary || ''}`.replace(/\s+/g, ' ').trim();
   const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\s+\S*$/, '') + '…' : rawDesc;
   document.getElementById('pageDesc').content = metaDesc;
@@ -795,9 +828,9 @@ function render(f) {
           <span class="bc-sep">/</span>
           <span>${escapeHtml(f.area || 'Johor')}</span>
           <span class="bc-sep">/</span>
-          <span>${escapeHtml(f.title)}</span>
+          <span>${escapeHtml(smartTitleCase(f.title))}</span>
         </div>
-        <h1>${escapeHtml(f.title)}</h1>
+        <h1>${escapeHtml(smartTitleCase(f.title))}</h1>
         <div class="hero-meta">
           <span>📍 ${escapeHtml(f.area || 'Johor')}</span>
           ${ratingMeta}
