@@ -240,7 +240,8 @@ def build_editorial(fac, places_data, services, themes, reviews):
             p1 += f" JKM Registered — licence number: {licence}."
     else:
         p1 += " The current JKM or MOH registration status should be confirmed on visit."
-    p1 += f" The operator publishes its own profile at {domain}."
+    if website:
+        p1 += f" The operator publishes its own profile at {domain}."
 
     # Part 2 — services (only if we have any)
     p2 = ""
@@ -263,11 +264,16 @@ def build_editorial(fac, places_data, services, themes, reviews):
 
     # Part 4 — practical
     p4 = "\n\nPricing is not published — contact for a quote. Visiting hours are not published — confirm when booking a viewing."
-    if facebook and 'facebook.com' in facebook:
+    if website and facebook and 'facebook.com' in facebook:
         fb_handle = facebook.rstrip('/').split('/')[-1]
         p4 += f" Full details at **[{domain}]({website})** and on Facebook at **[{fb_handle}]({facebook})**."
-    else:
+    elif website:
         p4 += f" Full details at **[{domain}]({website})**."
+    elif facebook and 'facebook.com' in facebook:
+        fb_handle = facebook.rstrip('/').split('/')[-1]
+        p4 += f" The operator's Facebook page is at **[{fb_handle}]({facebook})**."
+    else:
+        p4 += " The operator does not maintain a website at the time of writing; contact details are in the sidebar."
 
     # Part 5 — visit questions
     p5 = "\n\n**What to ask on visit:**\n"
@@ -294,7 +300,14 @@ def main():
     idx = {h: i for i, h in enumerate(headers)}
     g = lambda r, c: (r[idx[c]] if c in idx and idx[c] < len(r) else '').strip()
 
-    TARGET_STATES = {'Selangor', 'Kuala Lumpur'}
+    # States to process. Excluded:
+    #   Negeri Sembilan, Penang  — parallel session likely active there
+    #   Perak — just completed by parallel session
+    #   Pahang/Sabah/Sarawak/Kelantan/Labuan — already 100%
+    TARGET_STATES = {
+        'Selangor', 'Kuala Lumpur', 'Johor',
+        'Kedah', 'Melaka', 'Terengganu', 'Perlis',
+    }
     candidates = []
     for r in rows[1:]:
         slug = g(r, 'slug')
@@ -304,13 +317,18 @@ def main():
         ed = g(r, 'editorial_summary')
         if ed and len(ed.split()) >= 100: continue
         website = g(r, 'website')
-        if not website: continue
-        wl = website.lower()
-        if 'facebook.com' in wl or 'wa.me' in wl: continue
+        # Allow no-website candidates IF they likely have Maps reviews —
+        # Places API call will validate. FB-only listings (website pointing
+        # to facebook.com) are also accepted; the editorial gracefully
+        # omits the operator-website sentence.
+        if website:
+            wl = website.lower()
+            if 'wa.me' in wl: continue
         candidates.append({
             'slug': slug, 'title': g(r, 'title'), 'state': g(r, 'state'),
-            'area': g(r, 'area'), 'website': website,
-            'facebook': g(r, 'facebook'), 'licence_number': g(r, 'licence_number'),
+            'area': g(r, 'area'), 'website': website if (website and 'facebook.com' not in website.lower() and 'wa.me' not in website.lower()) else '',
+            'facebook': g(r, 'facebook') or (website if (website and 'facebook.com' in website.lower()) else ''),
+            'licence_number': g(r, 'licence_number'),
             'phone': g(r, 'phone'), 'rating': g(r, 'rating'),
             'review_count': g(r, 'review_count'),
         })
@@ -364,10 +382,22 @@ def main():
         time.sleep(0.3)
         positive = filter_positive_neutral_reviews(details.get('reviews'))
         themes = extract_themes_from_reviews(positive)
+        review_count = top.get('userRatingCount') or 0
 
-        # 3) Brief homepage fetch
-        homepage_text = fetch_homepage_text(fac['website'])
-        services = extract_services_from_homepage(homepage_text)
+        # Quality gate: if no website AND too few reviews, skip — an editorial
+        # built from name + address only is not useful enough to ship.
+        # Threshold: need either a website OR ≥3 reviews.
+        if not fac['website'] and review_count < 3:
+            skipped.append((slug, f'no website + only {review_count} reviews'))
+            print(f"  ✗ no website + only {review_count} reviews — skip")
+            continue
+
+        # 3) Brief homepage fetch (only if there's a real website)
+        if fac['website']:
+            homepage_text = fetch_homepage_text(fac['website'])
+            services = extract_services_from_homepage(homepage_text)
+        else:
+            services = []
 
         # 4) Render editorial
         editorial = build_editorial(fac, top, services, themes, positive)
