@@ -9,12 +9,32 @@
     "pusat-jagaan-rumah-orang-orang-tua-pkk-simee",
     "pusat-jagaan-yayasan-teratai",
     "starshine-care-centre",
-    "the-salvation-army-perak-home-for-the-aged-care-ce"
+    "the-salvation-army-perak-home-for-the-aged-care-ce",
+    "comfortable-home-care-centre",
+    "everlasting-senior-care-centre",
+    "global-village-care-centre",
+    "leisure-ville-care-centre",
+    "light-divine-old-folks-care-centre",
+    "pusat-jagaan-harian-pertubuhan-dimensia-perak",
+    "pusat-jagaan-hong-eng",
+    "serene-care-centre",
+    "vcare-geriatric-care-centre",
+    "zhen-seng-care-centre",
+    "pusat-jagaan-rumah-sejahtera-jelapang",
+    "verde-home-bercham-care-centre",
+    "lotus-geriatric-care-centre",
+    "pusat-jagaan-pertubuhan-kebajikan-rumah-orang-orang-tua-islam-titian-abadi",
+    "pusat-jagaan-mesra-intan-bandaraya",
+    "pusat-jagaan-nur-kasih-abadi",
+    "care-villa-care-centre",
+    "faith-care-centre",
+    "pusat-jagaan-sinar-berkat",
+    "recovering-home-care-centre"
   ],
   "skipped": [
     {
       "slug": "grace-care-centre",
-      "reason": "Website (amazinggracecarecentre.com) is for KL operation — cannot attribute to Perak branch without on-site confirmation"
+      "reason": "Website (amazinggracecarecentre.com) is for KL operation \u2014 cannot attribute to Perak branch without on-site confirmation"
     },
     {
       "slug": "pusat-jagaan-harian-chan",
@@ -22,13 +42,13 @@
     },
     {
       "slug": "pusat-jagaan-pertubuhan-pengurusan-rumah-warga-tua",
-      "reason": "Website URL is a Maxis internship job listing — wrong URL in sheet"
+      "reason": "Website URL is a Maxis internship job listing \u2014 wrong URL in sheet"
     },
     {
       "slug": "qualicare-senior-citizens-home-care-centre",
       "reason": "Website (linktr.ee/ModosInternational) is unrelated to facility"
     }
   ],
-  "last_batch": "2026-05-10",
-  "total_done": 10
+  "last_batch": "2026-05-12",
+  "total_done": 30
 }
