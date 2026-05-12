@@ -1822,3 +1822,191 @@ body.da-page { background: var(--da-bg); }
 /* Tooltips */
 .da-page .term-tip { border-bottom-color: var(--da-muted); }
 .da-page .term-tip::after { background: var(--da-ink); }
+
+/* ═══════════════════════════════════════════════════════════════
+   DIRECTION A — OPERATOR / CHAIN PAGE (Step 6)
+   Scoped via .da-page. Replaces the purple gradient with navy +
+   coral-glow, restyles cards.
+   ═══════════════════════════════════════════════════════════════ */
+.da-page .org-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--da-navy) 0%, var(--da-blue) 100%);
+  color: #fff;
+  padding: 44px 16px 36px;
+  isolation: isolate;
+}
+.da-page .org-hero::after {
+  content: '';
+  position: absolute;
+  top: -140px; right: -140px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(240,135,95,.32), transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+.da-page .org-hero > * { position: relative; z-index: 1; }
+.da-page .org-hero-inner { max-width: 1240px; }
+.da-page .org-hero .breadcrumb {
+  font-size: 11.5px;
+  color: rgba(255,255,255,.7);
+  margin-bottom: 14px;
+}
+.da-page .org-hero .breadcrumb a {
+  color: rgba(255,255,255,.85);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255,255,255,.35);
+}
+.da-page .org-hero-badge {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--da-coral);
+  background: transparent;
+  padding: 0;
+  margin-bottom: 8px;
+}
+.da-page .org-hero-inner h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  color: #fff;
+  text-wrap: balance;
+}
+.da-page .org-tagline {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.82);
+  margin: 8px 0 14px;
+  text-wrap: pretty;
+  max-width: 620px;
+}
+.da-page .org-hero-meta {
+  font-size: 12.5px;
+  color: rgba(255,255,255,.7);
+}
+.da-page .org-website-btn {
+  background: var(--da-coral);
+  border-color: var(--da-coral);
+  font-size: 13px;
+  padding: 10px 18px;
+  border-radius: 10px;
+}
+.da-page .org-website-btn:hover { background: var(--da-coral-deep); border-color: var(--da-coral-deep); }
+@media (min-width: 900px) {
+  .da-page .org-hero { padding: 64px 48px 56px; }
+  .da-page .org-hero::after { width: 420px; height: 420px; }
+  .da-page .org-hero-inner h1 { font-size: 42px; letter-spacing: -.035em; }
+  .da-page .org-tagline { font-size: 17px; }
+}
+
+/* Org body / cards */
+.da-page .org-body { max-width: 1240px; padding: 28px 16px 60px; }
+@media (min-width: 900px) {
+  .da-page .org-body { grid-template-columns: 1.55fr 1fr; gap: 32px; padding: 32px 48px 80px; }
+}
+.da-page .profile-card {
+  background: var(--da-surface);
+  border: 1px solid var(--da-line);
+  border-radius: 14px;
+  padding: 22px 22px;
+  box-shadow: var(--da-shadow-card);
+}
+.da-page .profile-card h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--da-ink);
+  border-bottom: 1px solid var(--da-line);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  letter-spacing: -.01em;
+}
+.da-page .org-branches-header { margin: 8px 4px; }
+.da-page .org-branches-header .section-title { font-size: 18px; font-weight: 700; color: var(--da-ink); letter-spacing: -.02em; }
+.da-page .org-branches-header .section-sub { color: var(--da-body); font-size: 13px; margin-top: 4px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   DIRECTION A — COMPARE PAGE (Step 7)
+   ═══════════════════════════════════════════════════════════════ */
+.da-page .cmp-page { max-width: 1240px; padding: 32px 16px 60px; }
+.da-page .cmp-header h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--da-ink);
+  letter-spacing: -.025em;
+  margin-bottom: 6px;
+}
+.da-page .cmp-header p { font-size: 14px; color: var(--da-body); }
+.da-page .cmp-btn-back {
+  background: var(--da-blue);
+  border-radius: 10px;
+  font-size: 13px;
+  padding: 9px 18px;
+}
+.da-page .cmp-btn-back:hover { background: var(--da-blue-dark); opacity: 1; }
+.da-page .cmp-btn-clear {
+  background: var(--da-surface);
+  border: 1px solid var(--da-line);
+  color: var(--da-body);
+  border-radius: 10px;
+  font-size: 13px;
+}
+.da-page .cmp-btn-clear:hover { background: var(--da-bg); color: var(--da-ink); }
+
+.da-page .cmp-card {
+  background: var(--da-surface);
+  border: 1px solid var(--da-line);
+  border-radius: 14px;
+  box-shadow: var(--da-shadow-card);
+  transition: transform 150ms, box-shadow 150ms;
+}
+.da-page .cmp-card:hover { transform: translateY(-2px); box-shadow: var(--da-shadow-hover); }
+.da-page .cmp-card-title a { color: var(--da-ink); }
+.da-page .cmp-card-title a:hover { color: var(--da-blue); }
+.da-page .cmp-card-area { color: var(--da-muted); }
+.da-page .cmp-row { border-bottom-color: var(--da-line); }
+.da-page .cmp-row-label { color: var(--da-muted); font-size: 10.5px; letter-spacing: .08em; }
+.da-page .cmp-row-value { color: var(--da-ink); }
+.da-page .cmp-row-value.unknown { color: var(--da-muted); }
+.da-page .cmp-care-tag { background: var(--da-good-bg); color: var(--da-good); }
+.da-page .cmp-cta { border-radius: 10px; }
+.da-page .cmp-cta-call { background: var(--da-blue); }
+.da-page .cmp-cta-call:hover { background: var(--da-blue-dark); opacity: 1; }
+.da-page .cmp-cta-view { background: var(--da-bg); color: var(--da-ink); border-color: var(--da-line); }
+
+.da-page .cmp-section { border-top: 1px solid var(--da-line); padding-top: 14px; margin-top: 16px; }
+.da-page .cmp-section-head { color: var(--da-coral-deep); letter-spacing: .08em; font-size: 10.5px; }
+.da-page .cmp-price-row { font-size: 13px; }
+.da-page .cmp-price-type { color: var(--da-body); }
+.da-page .cmp-price-val { color: var(--da-ink); }
+
+.da-page .cmp-empty h2 { color: var(--da-ink); font-size: 18px; font-weight: 700; }
+.da-page .cmp-empty p { color: var(--da-body); }
+.da-page .cmp-empty a {
+  background: var(--da-blue);
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 12px 22px;
+}
+.da-page .cmp-empty a:hover { background: var(--da-blue-dark); }
+
+.da-page .saved-section { border-top-color: var(--da-line); }
+.da-page .saved-section h2 { color: var(--da-ink); font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+.da-page .saved-item {
+  background: var(--da-surface);
+  border: 1px solid var(--da-line);
+  border-radius: 12px;
+}
+.da-page .saved-item-name a { color: var(--da-ink); }
+.da-page .saved-item-name a:hover { color: var(--da-blue); }
+.da-page .saved-item-area { color: var(--da-muted); }
+.da-page .saved-item-compare-btn {
+  background: #eef2fa;
+  border-color: #c7d2fe;
+  color: var(--da-blue);
+}
+.da-page .saved-item-remove-btn { border-color: var(--da-line); color: var(--da-muted); }
