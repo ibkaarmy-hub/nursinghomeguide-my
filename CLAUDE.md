@@ -62,6 +62,7 @@ Admin: `state` (Johor / Kuala Lumpur / Selangor), `status` (blank=live, unverifi
 
 - **Never invent facility data.** Only publish what is verified from a source.
 - **Don't fabricate pricing.** Show "Call for pricing" when unknown — that's honest and acceptable.
+- **🚨 Sheet writes: always look up the row by slug from the live sheet, never from a CSV index.** A CSV cache can drift the moment another job touches the sheet. Use `find_row_by_slug(svc, slug)` immediately before every write, then read column B back to verify. Full pattern in `.claude/commands/nh-profiles.md` Step 6. Run `verify_editorial_match.py` after any batch — it caught 52 corrupted rows from a 2026-05-11 incident where this rule was missing.
 - The Google Sheet is the single source of truth. Edits go there, not in code.
 - All user-facing content must eventually exist in EN + BM. **Exception: the landing page triage flow (`index.html` hero + condition strip) and `guides/which-care.html` are English-only.** Do not add Malay text to these pages.
 - Don't mock the site against fake data — fetch the live CSV.

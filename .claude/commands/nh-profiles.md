@@ -224,6 +224,63 @@ Links formatted as `**[text](url)**` render as bold hyperlinks in static pages.
 
 ## Step 6 — Update Google Sheet
 
+### 🚨 ALWAYS resolve target row by live slug lookup — NEVER by CSV index
+
+**This is the highest-priority rule in this skill. Violating it has corrupted 52 editorials across 7 states (2026-05-11 incident).**
+
+The local CSV (`facilities_local.csv` or any other snapshot) can drift from the live sheet at any time — rows get added, hidden, status-changed, or marked removed by other jobs while you're working. `data_row_index + 2` is **never safe**.
+
+Canonical pattern — call this immediately before every write:
+
+```python
+def find_row_by_slug(svc, slug):
+    """Return 1-based sheet row number for a given slug.
+    Reads column B live every time. Raises if the slug is missing."""
+    col_b = svc.spreadsheets().values().get(
+        spreadsheetId=SPREADSHEET_ID,
+        range=f"'{TAB}'!B:B"
+    ).execute().get('values', [])
+    for i, row in enumerate(col_b, start=1):
+        if row and row[0].strip() == slug:
+            return i
+    raise ValueError(f"Slug not found in sheet: {slug}")
+
+# Every write must do this:
+row = find_row_by_slug(svc, slug)
+svc.spreadsheets().values().batchUpdate(
+    spreadsheetId=SPREADSHEET_ID,
+    body={'valueInputOption': 'RAW', 'data': [
+        {'range': f"'{TAB}'!{col_letter(51)}{row}", 'values': [[editorial]]},
+        # ...
+    ]}
+).execute()
+```
+
+**Forbidden patterns:**
+```python
+# WRONG — CSV index drifts from sheet row
+row = data_row_index + 2
+
+# WRONG — caching the row from one lookup and reusing it later in the batch
+row_map = {slug: find_row_by_slug(svc, slug) for slug in batch}
+for slug in batch: write(row_map[slug], ...)   # rows may shift between writes
+
+# WRONG — trusting the row number returned by an earlier read in the same script
+```
+
+**Post-write verification (mandatory for batch jobs):**
+After writing, read column B at that row back and assert it still equals the slug. If not, the row shifted — restore and re-resolve.
+
+```python
+verify = svc.spreadsheets().values().get(
+    spreadsheetId=SPREADSHEET_ID,
+    range=f"'{TAB}'!B{row}"
+).execute().get('values', [['']])[0][0].strip()
+assert verify == slug, f"Row {row} drifted: expected {slug}, found {verify}"
+```
+
+**Regression check:** Run `python verify_editorial_match.py` after any batch enrichment job. It flags rows where the editorial mentions a wrong state or shares no words with the title.
+
 ### Always use `batchUpdate` per row — never individual `values().update()` calls
 Individual calls hit HTTP 429 rate-limit errors (quota: 60 writes/minute). Group all updates for one row:
 ```python
@@ -319,6 +376,9 @@ After each batch: append done slugs, append skipped with reasons, print summary 
 ---
 
 ## Reference: locked patterns
+
+### Row resolution (locked 2026-05-12) — slug-by-slug live lookup
+See **🚨 ALWAYS resolve target row by live slug lookup** in Step 6 above. This rule is non-negotiable. The 2026-05-11 multi-state batch corrupted 52 rows (mostly Perak, Selangor, Negeri Sembilan) when agents used CSV row indices that didn't match the live sheet. Pre-flight + post-flight slug verification is now mandatory for every write. Always run `verify_editorial_match.py` after any batch.
 
 ### License status in editorials (locked 2026-05-09)
 

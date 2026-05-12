@@ -25,6 +25,60 @@ import sys
 import urllib.request
 
 BASE = "https://nursinghomeguide.my"
+
+# --- Title casing for ALL-CAPS facility names ----------------------------
+# When operators register their facility name in ALL CAPS (common in JKM filings),
+# render it in display contexts as Title Case while preserving acronyms and
+# Malay particles. Mixed-case titles are left untouched.
+_ALWAYS_UPPER = {
+    "KL", "PJ", "JB", "MOH", "JKM", "PAWE", "PLT", "MY", "VCU", "VCFU",
+    "II", "III", "IV", "VI", "VII", "VIII", "IX", "XI", "XII",
+    "TLC", "FCC", "EHA", "KPJ", "KS", "JJ", "YY", "OT", "RN",
+    "ZACC", "GPPT", "SMK", "RTM",
+}
+_LOWER_PARTICLES = {
+    "dan", "di", "ke", "the", "a", "an", "of", "for", "in", "on", "at",
+    "by", "to", "and", "or", "dari", "untuk", "atau", "dengan",
+}
+
+
+def smart_title_case(s):
+    """Convert an ALL-CAPS string to Title Case; leave mixed-case input alone.
+    Preserves acronyms (PAWE, KL, II, etc.) and lowers Malay/English particles."""
+    if not s:
+        return s
+    # If any Latin lowercase letter is present, assume intentional casing
+    if any("a" <= c <= "z" for c in s):
+        return s
+
+    def fix_token(tok, is_first):
+        # Acronym preservation: if alphabetic core is in the allowlist, keep as-is
+        core = re.sub(r"[^A-Z]", "", tok)
+        if core in _ALWAYS_UPPER:
+            return tok
+        # Small particles lowercase (but never the first word)
+        if not is_first and tok.lower() in _LOWER_PARTICLES:
+            return tok.lower()
+        # Hyphenated word: capitalize each segment ("PERSATUAN-PERSATUAN" → "Persatuan-Persatuan")
+        if "-" in tok:
+            return "-".join(
+                (p[:1].upper() + p[1:].lower()) if p else ""
+                for p in tok.split("-")
+            )
+        # Parenthesised acronym preservation: "(PAWE)" stays "(PAWE)"
+        if tok.startswith("(") and tok.endswith(")") and len(tok) > 2:
+            inner = tok[1:-1]
+            inner_core = re.sub(r"[^A-Z]", "", inner)
+            if inner_core in _ALWAYS_UPPER:
+                return tok
+            return "(" + inner[:1].upper() + inner[1:].lower() + ")"
+        # Default: first letter upper, rest lower
+        return tok[:1].upper() + tok[1:].lower()
+
+    parts = s.split()
+    return " ".join(fix_token(t, i == 0) for i, t in enumerate(parts))
+
+
 FACILITIES_CSV_LOCAL = "existing_facilities.csv"
 FACILITIES_CSV = (
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub"
@@ -367,7 +421,7 @@ def build_static_content(f, category):
     )
 
     # H1
-    s.append(f'<h1 style="font-size:1.85rem;font-weight:800;margin:0 0 4px">{e(title)}</h1>')
+    s.append(f'<h1 style="font-size:1.85rem;font-weight:800;margin:0 0 4px">{e(smart_title_case(title))}</h1>')
     s.append(f'<p style="color:#64748b;margin:0 0 12px">{e(location)}</p>')
 
     # meta row
@@ -427,7 +481,7 @@ def build_static_content(f, category):
 
 
 def build_head_inserts(f, slug, canonical, canonical_dir="nursing-homes"):
-    title = f.get("title", "").strip()
+    title = smart_title_case(f.get("title", "").strip())
     title_short = title if len(title) <= 50 else title[:47].rstrip() + "…"
     page_title = f"{title_short} — NursingHomeGuide.my"
     desc = build_meta_description(f)
