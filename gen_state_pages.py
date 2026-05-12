@@ -90,9 +90,24 @@ def redirect_stub(canonical_path, page_title, desc):
 # Each entry: (category, state_val, slug, page_title, meta_desc, h1, intro,
 #              ld_name, ld_desc, breadcrumb_html)
 STATES = [
-    {'state_val': 'Johor', 'slug': 'johor', 'h1_state': 'Johor', 'state_short': 'Johor'},
-    {'state_val': 'Kuala Lumpur', 'slug': 'kuala-lumpur', 'h1_state': 'Kuala Lumpur', 'state_short': 'KL'},
-    {'state_val': 'Selangor', 'slug': 'selangor', 'h1_state': 'Selangor', 'state_short': 'Selangor'},
+    # state_val = exact value in Google Sheet `state` column
+    # lat/lng = initial Leaflet map centre (state capital or major area)
+    # zoom   = Leaflet initial zoom (urban states tighter than rural)
+    {'state_val': 'Johor',            'slug': 'johor',            'h1_state': 'Johor',            'state_short': 'Johor',     'lat': 1.8,    'lng': 103.5,    'zoom': 9},
+    {'state_val': 'Kuala Lumpur',     'slug': 'kuala-lumpur',     'h1_state': 'Kuala Lumpur',     'state_short': 'KL',        'lat': 3.139,  'lng': 101.6869, 'zoom': 11},
+    {'state_val': 'Selangor',         'slug': 'selangor',         'h1_state': 'Selangor',         'state_short': 'Selangor',  'lat': 3.07,   'lng': 101.5,    'zoom': 9},
+    {'state_val': 'Perak',            'slug': 'perak',            'h1_state': 'Perak',            'state_short': 'Perak',     'lat': 4.5921, 'lng': 101.0901, 'zoom': 8},
+    {'state_val': 'Penang',           'slug': 'penang',           'h1_state': 'Penang',           'state_short': 'Penang',    'lat': 5.4145, 'lng': 100.3292, 'zoom': 10},
+    {'state_val': 'Kedah',            'slug': 'kedah',            'h1_state': 'Kedah',            'state_short': 'Kedah',     'lat': 6.1184, 'lng': 100.3685, 'zoom': 9},
+    {'state_val': 'Melaka',           'slug': 'melaka',           'h1_state': 'Melaka',           'state_short': 'Melaka',    'lat': 2.1896, 'lng': 102.2501, 'zoom': 10},
+    {'state_val': 'Negeri Sembilan',  'slug': 'negeri-sembilan',  'h1_state': 'Negeri Sembilan',  'state_short': 'N. Sembilan', 'lat': 2.7297, 'lng': 101.9381, 'zoom': 9},
+    {'state_val': 'Pahang',           'slug': 'pahang',           'h1_state': 'Pahang',           'state_short': 'Pahang',    'lat': 3.8126, 'lng': 103.3256, 'zoom': 8},
+    {'state_val': 'Kelantan',         'slug': 'kelantan',         'h1_state': 'Kelantan',         'state_short': 'Kelantan',  'lat': 6.1254, 'lng': 102.2381, 'zoom': 9},
+    {'state_val': 'Terengganu',       'slug': 'terengganu',       'h1_state': 'Terengganu',       'state_short': 'Terengganu','lat': 5.3117, 'lng': 103.1324, 'zoom': 9},
+    {'state_val': 'Perlis',           'slug': 'perlis',           'h1_state': 'Perlis',           'state_short': 'Perlis',    'lat': 6.4449, 'lng': 100.2048, 'zoom': 11},
+    {'state_val': 'Sabah',            'slug': 'sabah',            'h1_state': 'Sabah',            'state_short': 'Sabah',     'lat': 5.9788, 'lng': 116.0753, 'zoom': 7},
+    {'state_val': 'Sarawak',          'slug': 'sarawak',          'h1_state': 'Sarawak',          'state_short': 'Sarawak',   'lat': 1.5533, 'lng': 110.3592, 'zoom': 7},
+    {'state_val': 'Labuan',           'slug': 'labuan',           'h1_state': 'Labuan',           'state_short': 'Labuan',    'lat': 5.2767, 'lng': 115.2417, 'zoom': 12},
 ]
 
 
@@ -169,6 +184,38 @@ def make_listing_page(category, state):
     html = re.sub(
         r'<link rel="canonical" href="[^"]*"',
         f'<link rel="canonical" href="{canonical}"',
+        html, count=1)
+
+    # ── OG / Twitter (per-state) ──
+    og_title_escaped = page_title.replace('&', '&amp;')
+    og_desc = meta_desc[:200]
+    html = re.sub(
+        r'<meta property="og:title" content="[^"]*"',
+        f'<meta property="og:title" content="{og_title_escaped}"',
+        html, count=1)
+    html = re.sub(
+        r'<meta property="og:description" content="[^"]*"',
+        f'<meta property="og:description" content="{og_desc}"',
+        html, count=1)
+    html = re.sub(
+        r'<meta property="og:url" content="[^"]*"',
+        f'<meta property="og:url" content="{canonical}"',
+        html, count=1)
+    html = re.sub(
+        r'<meta name="twitter:title" content="[^"]*"',
+        f'<meta name="twitter:title" content="{og_title_escaped}"',
+        html, count=1)
+    html = re.sub(
+        r'<meta name="twitter:description" content="[^"]*"',
+        f'<meta name="twitter:description" content="{og_desc}"',
+        html, count=1)
+
+    # ── State-hero eyebrow ──
+    eyebrow_text = ('Malaysia' if national
+                    else f'{h1_state} · Malaysia')
+    html = re.sub(
+        r'<div class="state-hero-eyebrow">[^<]*</div>',
+        f'<div class="state-hero-eyebrow">{eyebrow_text}</div>',
         html, count=1)
 
     # ── Add <base href="/"> after <meta charset> so all relative paths resolve from root ──
@@ -280,28 +327,33 @@ function facUrl(f) {
         f"currentArea ? `in ${{currentArea}}` : '{section_label}'"
     )
 
-    # ── Initial map view ── (johor.html sets [1.8, 103.5] for Johor; keep per-state)
-    if state_val == 'Kuala Lumpur':
-        html = html.replace('setView([1.8, 103.5], 9)', 'setView([3.139, 101.6869], 11)')
-    elif state_val == 'Selangor':
-        html = html.replace('setView([1.8, 103.5], 9)', 'setView([3.07, 101.5], 9)')
+    # ── Initial map view ── (template has [1.8, 103.5] for Johor; rewrite per-state)
+    if not national and state_val != 'Johor':
+        html = html.replace(
+            'setView([1.8, 103.5], 9)',
+            f"setView([{state['lat']}, {state['lng']}], {state['zoom']})"
+        )
 
     # ── State hero landmark photo ──
+    # Only 3 states have landmark photos. Others fall back to the
+    # Direction A navy/blue gradient (defined in style.css for .state-hero).
     photo_map = {
         'johor': '/img/states/johor.jpg',
         'kuala-lumpur': '/img/states/kuala-lumpur.jpg',
         'selangor': '/img/states/selangor.jpg',
     }
-    photo = photo_map.get(state_slug, '/img/states/kuala-lumpur.jpg')
-    hero_style = (
-        f"background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url('{photo}'); "
-        f"background-size: cover; background-position: center;"
-    )
-    html = html.replace(
-        '<section class="state-hero">',
-        f'<section class="state-hero" style="{hero_style}">',
-        1
-    )
+    photo = photo_map.get(state_slug)
+    if photo:
+        hero_style = (
+            f"background-image: linear-gradient(rgba(12,37,69,.78), rgba(29,78,216,.55)), url('{photo}'); "
+            f"background-size: cover; background-position: center;"
+        )
+        html = html.replace(
+            '<section class="state-hero">',
+            f'<section class="state-hero" style="{hero_style}">',
+            1
+        )
+    # else: leave plain — gradient applied by .da-page .state-hero CSS rule
 
     # ── Footer state-page links → category-prefixed ──
     # The footer points to johor.html etc; rewire to /nursing-homes/<state>/
@@ -440,13 +492,26 @@ def make_al_landing():
 # ── 5. Generate everything ───────────────────────────────────────────────
 written = []
 
-# Category state listing pages (NH + AL)
-for category in ('nursing-homes', 'assisted-living'):
-    for s in STATES:
-        page = make_listing_page(category, s)
-        path = f"{category}/{s['slug']}/index.html"
-        write_file(path, page)
-        written.append(path)
+# Category state listing pages
+# Nursing-home listings: all 15 states (most have at least a few facilities).
+# Assisted living: only the 3 states with AL inventory in the sheet — generating
+# empty AL pages for sparse states would be misleading. If AL data lands for
+# more states later, just add their slugs to AL_STATE_SLUGS.
+AL_STATE_SLUGS = {'johor', 'kuala-lumpur', 'selangor'}
+
+for s in STATES:
+    page = make_listing_page('nursing-homes', s)
+    path = f"nursing-homes/{s['slug']}/index.html"
+    write_file(path, page)
+    written.append(path)
+
+for s in STATES:
+    if s['slug'] not in AL_STATE_SLUGS:
+        continue
+    page = make_listing_page('assisted-living', s)
+    path = f"assisted-living/{s['slug']}/index.html"
+    write_file(path, page)
+    written.append(path)
 
 # National directories: home care + day care
 # Home care providers are typically multi-state (Homage, Care Concierge, Noble

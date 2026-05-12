@@ -1191,3 +1191,432 @@ body.da-page { background: var(--da-bg); }
 .da-page .footer-links a { color: rgba(255,255,255,.7); }
 .da-page .footer-links a:hover { color: #fff; }
 .da-page .footer-copy { color: rgba(255,255,255,.55); border-top-color: rgba(255,255,255,.12); }
+
+/* ═══════════════════════════════════════════════════════════════
+   DIRECTION A — STATE LISTING (Step 3)
+   Scoped via .da-page on <body>. Reuses existing JS-targeted class names
+   (.fac-card, .filter-pill, etc.) by overriding their styles in this scope.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── State hero ──────────────────────────────────────────────── */
+.da-page .state-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--da-navy) 0%, var(--da-blue) 100%);
+  color: #fff;
+  padding: 36px 16px 32px;
+}
+.da-page .state-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: .6;
+  pointer-events: none;
+}
+.da-page .state-hero-inner {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.da-page .state-hero .breadcrumb {
+  font-size: 12px;
+  color: rgba(255,255,255,.7);
+  margin-bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.da-page .state-hero .breadcrumb a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255,255,255,.4);
+}
+.da-page .state-hero .breadcrumb a:hover { text-decoration-color: #fff; }
+.da-page .state-hero .breadcrumb span { color: rgba(255,255,255,.5); }
+.da-page .state-hero-eyebrow {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--da-coral);
+  margin-bottom: 8px;
+}
+.da-page .state-hero h1 {
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: #fff;
+  margin-bottom: 8px;
+  text-wrap: balance;
+}
+.da-page .state-hero p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.82);
+  max-width: 620px;
+  margin-bottom: 16px;
+  text-wrap: pretty;
+}
+.da-page .state-hero p strong { color: #fff; }
+.da-page .state-hero-search {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 540px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+}
+.da-page .state-hero-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--da-ink);
+}
+.da-page .state-hero-search input::placeholder { color: var(--da-muted); }
+
+@media (min-width: 900px) {
+  .da-page .state-hero { padding: 56px 48px 48px; }
+  .da-page .state-hero h1 { font-size: 42px; letter-spacing: -.035em; }
+  .da-page .state-hero p { font-size: 16px; }
+}
+
+/* ── Filter bar ──────────────────────────────────────────────── */
+.da-page .filter-bar-wrap {
+  position: sticky;
+  top: 60px;
+  z-index: 50;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--da-line);
+  transition: box-shadow 150ms;
+}
+.da-page .filter-bar-wrap.stuck { box-shadow: 0 4px 16px rgba(15,23,42,.06); }
+.da-page .filter-bar-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.da-page .filter-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  flex: 1;
+  min-width: 0;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+}
+.da-page .filter-scroll::-webkit-scrollbar { display: none; }
+.da-page .filter-pill {
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--da-bg);
+  color: var(--da-body);
+  border: 1px solid var(--da-line);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 120ms, color 120ms, border-color 120ms;
+}
+.da-page .filter-pill:hover { background: #eef2fa; border-color: var(--da-blue); color: var(--da-ink); }
+.da-page .filter-pill.active {
+  background: var(--da-ink);
+  color: #fff;
+  border-color: var(--da-ink);
+}
+.da-page .filter-right {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.da-page .sort-select {
+  font: inherit;
+  font-size: 12.5px;
+  padding: 7px 28px 7px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--da-line);
+  background: var(--da-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%2394a3b8' d='M5 6 0 0h10z'/%3E%3C/svg%3E") no-repeat right 10px center;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  color: var(--da-ink);
+}
+.da-page .view-toggle {
+  display: flex;
+  border: 1px solid var(--da-line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.da-page .view-btn {
+  background: var(--da-surface);
+  border: none;
+  padding: 7px 9px;
+  cursor: pointer;
+  color: var(--da-muted);
+  display: flex; align-items: center;
+}
+.da-page .view-btn:hover { background: var(--da-bg); color: var(--da-ink); }
+.da-page .view-btn.active { background: var(--da-ink); color: #fff; }
+
+/* ── Results bar ─────────────────────────────────────────────── */
+.da-page .results-bar {
+  background: transparent;
+  padding: 14px 16px 6px;
+}
+.da-page .results-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--da-body);
+}
+.da-page #resultsCount { font-weight: 700; color: var(--da-ink); }
+.da-page #activeAreaLabel { color: var(--da-muted); }
+
+/* ── State content + grid ────────────────────────────────────── */
+.da-page .state-content {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 8px 16px 32px;
+}
+.da-page .fac-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 600px) { .da-page .fac-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+@media (min-width: 1000px) { .da-page .fac-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+
+/* ── Facility card (Direction A treatment of .fac-card) ──────── */
+.da-page .fac-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--da-surface);
+  border: 1px solid var(--da-line);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 150ms, box-shadow 150ms, border-color 150ms;
+  box-shadow: var(--da-shadow-card);
+}
+.da-page .fac-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--da-shadow-hover);
+  border-color: var(--da-blue);
+}
+.da-page .fac-card-img {
+  position: relative;
+  height: 160px;
+  background: linear-gradient(135deg, var(--da-navy), var(--da-blue));
+  overflow: hidden;
+}
+.da-page .fac-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.da-page .fac-card-img.no-photo {
+  background: linear-gradient(135deg, var(--da-navy), var(--da-blue));
+}
+.da-page .fac-price-badge {
+  position: absolute;
+  top: 10px; left: 10px;
+  background: rgba(255,255,255,.95);
+  color: var(--da-good);
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+.da-page .fac-price-badge.unknown { color: var(--da-body); }
+.da-page .fac-group-tag {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: rgba(124,58,237,.92);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.da-page .fac-card-body { padding: 14px; flex: 1; display: flex; flex-direction: column; }
+.da-page .fac-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--da-ink);
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.da-page .fac-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--da-body);
+  margin-bottom: 8px;
+}
+.da-page .fac-area { display: inline-flex; align-items: center; gap: 2px; }
+.da-page .fac-rating { color: var(--da-ink); font-weight: 600; display: inline-flex; align-items: center; gap: 3px; }
+.da-page .fac-rating::before { content: '★'; color: #f59e0b; }
+.da-page .fac-reviews { color: var(--da-muted); font-weight: 500; }
+.da-page .fac-excerpt {
+  font-size: 12.5px;
+  color: var(--da-body);
+  line-height: 1.55;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+.da-page .fac-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: auto;
+}
+.da-page .fac-card-tags .tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--da-bg);
+  color: var(--da-body);
+  border: 1px solid var(--da-line);
+}
+.da-page .card-trust-row {
+  padding: 8px 14px 0;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Skeleton */
+.da-page .fac-card-skeleton {
+  background: linear-gradient(90deg, #f0f3f8 0%, #e8edf5 50%, #f0f3f8 100%);
+  background-size: 200% 100%;
+  animation: daSkel 1.2s ease-in-out infinite;
+  border-radius: 14px;
+  height: 320px;
+}
+
+/* Empty state */
+.da-page .empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--da-body);
+  font-size: 14px;
+}
+.da-page .empty-state button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: var(--da-blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font: inherit; font-size: 13px; font-weight: 600;
+  cursor: pointer;
+}
+
+/* Hybrid need filter sections */
+.da-page .hybrid-section-head {
+  grid-column: 1 / -1;
+  padding: 16px 0 8px;
+  margin-top: 4px;
+}
+.da-page .hybrid-section-head .h-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--da-ink);
+  letter-spacing: -.01em;
+}
+.da-page .hybrid-section-head .h-sub {
+  font-size: 12.5px;
+  color: var(--da-body);
+  margin-top: 4px;
+}
+.da-page .hybrid-possible-banner {
+  grid-column: 1 / -1;
+  background: #fef3c7;
+  color: #78350f;
+  font-size: 12.5px;
+  line-height: 1.55;
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+/* ── Map view ────────────────────────────────────────────────── */
+.da-page #mapView {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 8px 16px 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.da-page #leafletMap {
+  height: 460px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--da-line);
+}
+.da-page #mapSidebar {
+  max-height: none;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.da-page .mc-card {
+  display: block;
+  background: var(--da-surface);
+  border: 1px solid var(--da-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 120ms, box-shadow 120ms;
+}
+.da-page .mc-card:hover { border-color: var(--da-blue); box-shadow: var(--da-shadow-hover); }
+.da-page .mc-card.mc-active { border-color: var(--da-blue); background: #eef2fa; }
+.da-page .mc-name { font-size: 13.5px; font-weight: 700; color: var(--da-ink); margin-bottom: 4px; }
+.da-page .mc-meta { font-size: 12px; color: var(--da-body); margin-bottom: 2px; }
+.da-page .mc-rating { color: var(--da-ink); font-weight: 600; }
+.da-page .mc-no-rating { color: var(--da-muted); }
+.da-page .mc-price { color: var(--da-good); font-weight: 600; }
+.da-page .mc-tags { margin-top: 6px; display: flex; gap: 4px; flex-wrap: wrap; }
+.da-page .mc-tags .tag { font-size: 10px; padding: 2px 7px; border-radius: 999px; background: var(--da-bg); color: var(--da-body); border: 1px solid var(--da-line); }
+.da-page .mc-empty { padding: 20px; text-align: center; color: var(--da-muted); font-size: 13px; }
+
+@media (min-width: 900px) {
+  .da-page #mapView { grid-template-columns: 300px 1fr; padding: 12px 48px 32px; gap: 16px; }
+  .da-page #mapSidebar { max-height: 600px; overflow-y: auto; padding-right: 4px; }
+  .da-page #leafletMap { height: 600px; }
+}

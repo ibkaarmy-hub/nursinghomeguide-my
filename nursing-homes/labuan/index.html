@@ -6,13 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nursing Homes in Labuan | Compare Prices & Reviews</title>
   <meta name="description" content="Browse licensed nursing homes in Labuan, Malaysia. Compare monthly fees, care types, RN coverage, and reviews. Detailed profiles to help your family choose with confidence." />
+  <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NursingHomeGuide.my" />
+  <meta property="og:title" content="Nursing Homes in Labuan | Compare Prices &amp; Reviews" />
+  <meta property="og:description" content="Browse licensed nursing homes in Labuan, Malaysia. Compare monthly fees, care types, RN coverage, and reviews. Detailed profiles to help your family choose with confidence." />
+  <meta property="og:url" content="https://nursinghomeguide.my/nursing-homes/labuan/" />
+  <meta property="og:image" content="https://nursinghomeguide.my/images/og-home.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nursing Homes in Labuan | Compare Prices &amp; Reviews" />
+  <meta name="twitter:description" content="Browse licensed nursing homes in Labuan, Malaysia. Compare monthly fees, care types, RN coverage, and reviews. Detailed profiles to help your family choose with confidence." />
+  <meta name="twitter:image" content="https://nursinghomeguide.my/images/og-home.png" />
   <link rel="canonical" href="https://nursinghomeguide.my/nursing-homes/labuan/" />
-  <link rel="stylesheet" href="style.css?v=10" />
+  <link rel="stylesheet" href="style.css?v=17" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <!-- Leaflet for map view -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M8 14h16v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14z' fill='white'/><path d='M6 14l10-8 10 8' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'/><rect x='13' y='18' width='6' height='8' rx='1' fill='%232563eb'/></svg>" />
+  <link rel="icon" href="/images/logo.jpg" type="image/jpeg" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -22,8 +33,9 @@
     "url": "https://nursinghomeguide.my/nursing-homes/labuan/"
   }
   </script>
+  <script data-host="https://app.microanalytics.io" data-dnt="false" src="https://app.microanalytics.io/js/script.js" id="ZwSg9rf6GA" async defer></script>
 </head>
-<body>
+<body class="da-page">
 
 <nav>
   <div class="nav-inner">
@@ -43,7 +55,7 @@
 </nav>
 
 <!-- State hero -->
-<section class="state-hero" style="background-image: url('/img/states/labuan.jpg'); background-size: cover; background-position: center;">
+<section class="state-hero">
   <div class="state-hero-inner">
     <nav class="breadcrumb" aria-label="breadcrumb">
       <a href="/">Malaysia</a>
@@ -52,6 +64,7 @@
       <span>›</span>
       <span>Labuan</span>
     </nav>
+    <div class="state-hero-eyebrow">Labuan · Malaysia</div>
     <h1>Nursing Homes in Labuan</h1>
     <p>Browse <strong id="heroCount">—</strong> licensed nursing homes in Labuan. Monthly fees, care types, and real reviews — all in one place.</p>
     <div class="state-hero-search">
@@ -148,7 +161,7 @@
       <a href="/home-care/">Home Care</a>
       <a href="/guides/which-care.html">Which Care?</a>
     </div>
-    <div class="footer-copy">© 2026 NursingHomeGuide.my — Not affiliated with JKM or any facility</div>
+    <div class="footer-copy">© 2026 NursingHomeGuide.my — Independent eldercare directory for Malaysia.</div>
   </div>
 </footer>
 
@@ -166,7 +179,34 @@ function facUrl(f) {
 }
 
 // ─── Area normalisation ────────────────────────────────────
-const AREA_NORMALIZE = {};
+const AREA_NORMALIZE = {
+  'JOHOR BAHRU': 'Johor Bahru',
+  'Taman Kebun Teh, Johor Bahru': 'Johor Bahru',
+  'Taman Perling, Johor Bahru': 'Johor Bahru',
+  'Kempas, Johor Bahru': 'Johor Bahru',
+  'Kempas Baru, Johor Bahru': 'Johor Bahru',
+  'Tampoi, Johor Bahru': 'Johor Bahru',
+  'Skudai, Johor Bahru': 'Johor Bahru',
+  'Skudai': 'Johor Bahru',
+  'Ulu Tiram': 'Johor Bahru',
+  'Gelang Patah, Johor Bahru': 'Johor Bahru',
+  'Johor Bahru (Medini / Iskandar Puteri)': 'Johor Bahru',
+  'Johor Bahru (Perling)': 'Johor Bahru',
+  'Batu Pahat, Johor': 'Batu Pahat',
+  'Kluang, Johor': 'Kluang',
+  'Kulai, Johor': 'Kulai',
+  'Senai': 'Kulai',
+  'Senai, Kulai, Johor': 'Kulai',
+  'Pontian District': 'Pontian',
+  'Segamat District': 'Segamat',
+  'Muar, Johor': 'Muar',
+  'Bukit Siput': 'Pontian',
+  'Bukit Gambir': 'Muar',
+  'Bukit Pasir': 'Batu Pahat',
+  'Sungai Mati': 'Muar',
+  'Kayu Ara Pasong': 'Pontian',
+  'Yong Peng': 'Batu Pahat',
+};
 
 function normArea(raw) {
   return AREA_NORMALIZE[raw] || raw || 'Other';
@@ -428,7 +468,7 @@ function setView(v) {
 // ─── Leaflet map ───────────────────────────────────────────
 function initMap() {
   if (leafletMap) { leafletMap.invalidateSize(); return; }
-  leafletMap = L.map('leafletMap').setView([5.28, 115.23], 12);
+  leafletMap = L.map('leafletMap').setView([5.2767, 115.2417], 12);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
