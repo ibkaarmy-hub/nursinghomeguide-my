@@ -59,21 +59,25 @@ def smart_title_case(s):
         # Small particles lowercase (but never the first word)
         if not is_first and tok.lower() in _LOWER_PARTICLES:
             return tok.lower()
-        # Hyphenated word: capitalize each segment ("PERSATUAN-PERSATUAN" → "Persatuan-Persatuan")
-        if "-" in tok:
-            return "-".join(
-                (p[:1].upper() + p[1:].lower()) if p else ""
-                for p in tok.split("-")
-            )
         # Parenthesised acronym preservation: "(PAWE)" stays "(PAWE)"
         if tok.startswith("(") and tok.endswith(")") and len(tok) > 2:
             inner = tok[1:-1]
             inner_core = re.sub(r"[^A-Z]", "", inner)
             if inner_core in _ALWAYS_UPPER:
                 return tok
-            return "(" + inner[:1].upper() + inner[1:].lower() + ")"
-        # Default: first letter upper, rest lower
-        return tok[:1].upper() + tok[1:].lower()
+        # Default: lowercase everything, then capitalise the first letter and
+        # any letter immediately following '(', '-' or '/'. Handles single
+        # tokens with internal punctuation like "(WARGA", "PERSATUAN-PERSATUAN",
+        # "LELAKI/BERPENYAKIT", "BETHEL(BETHEL".
+        out = []
+        prev = None
+        for c in tok.lower():
+            if c.isalpha() and (prev is None or prev in "(-/"):
+                out.append(c.upper())
+            else:
+                out.append(c)
+            prev = c
+        return "".join(out)
 
     parts = s.split()
     return " ".join(fix_token(t, i == 0) for i, t in enumerate(parts))
