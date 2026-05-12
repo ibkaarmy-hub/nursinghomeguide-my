@@ -29,7 +29,17 @@
     "care-villa-care-centre",
     "faith-care-centre",
     "pusat-jagaan-sinar-berkat",
-    "recovering-home-care-centre"
+    "recovering-home-care-centre",
+    "anson-home-care-centre",
+    "bougainvillea-care-centre",
+    "caring-heart-home-care-centre",
+    "de-elderly-care-centre",
+    "evergreen-care-centre",
+    "golden-apple-care-centre",
+    "golden-apple-senior-citizen-care-centre",
+    "golden-eldercare-senior-living-care-centre-plt",
+    "good-care-centre",
+    "green-gates-care-centre"
   ],
   "skipped": [
     {
@@ -47,8 +57,20 @@
     {
       "slug": "qualicare-senior-citizens-home-care-centre",
       "reason": "Website (linktr.ee/ModosInternational) is unrelated to facility"
+    },
+    {
+      "slug": "anson-senior-care-centre",
+      "reason": "Google Places matched same place_id as anson-home-care-centre (same Jalan Pasar Teluk Intan address); cannot uniquely attribute reviews/photos to this licence"
+    },
+    {
+      "slug": "de-home-care-centre",
+      "reason": "Google-verified address (Taman Mansion) does not match sheet address (Taman Ipoh Selatan); Places matched de-elderly-care-centre instead"
+    },
+    {
+      "slug": "golden-eldercare-senior-living-care-centre-plt",
+      "reason": "Sheet data-quality issue: rows 489 (A/PJB WE 010/2025) and 490 (A/PJH WE 009/2025) share the same slug, address, phone, and Google place_id. Both rows now have editorials, but the duplicate slug should be resolved at the sheet level (assign distinct slugs or mark one row removed)."
     }
   ],
   "last_batch": "2026-05-12",
-  "total_done": 30
+  "total_done": 40
 }
