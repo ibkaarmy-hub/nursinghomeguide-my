@@ -50,12 +50,47 @@
     "pertubuhan-wa-khiew-yi-shea-sungai-siput-perak",
     "pure-home-care-centre",
     "pusat-jagaan-belaian-jiwa",
-    "pusat-jagaan-emas-ipoh"
+    "pusat-jagaan-emas-ipoh",
+    "anson-senior-care-centre",
+    "de-home-care-centre",
+    "grace-care-centre",
+    "pusat-jagaan-harian-chan",
+    "pusat-jagaan-indah-harapan",
+    "pusat-jagaan-khang-foo",
+    "pusat-jagaan-mesra-pasir-putih",
+    "pusat-jagaan-orang-orang-tua-ikhtiar-selesa-villa",
+    "pusat-jagaan-papa-mama",
+    "pusat-jagaan-pertubuhan-kebajikan-warga-emas-emman",
+    "pusat-jagaan-pertubuhan-pengurusan-rumah-warga-tua",
+    "pusat-jagaan-pertubuhan-wa-khiew-yi-shea",
+    "pusat-jagaan-rapat",
+    "pusat-jagaan-rumah-sejahtera-mambang-diawan",
+    "pusat-jagaan-rumah-seri-bahagia-lucky-village-home",
+    "pusat-jagaan-rumah-warga-emas-marian",
+    "pusat-jagaan-seri-bercham",
+    "pusat-jagaan-seri-damai",
+    "pusat-jagaan-sutera",
+    "pusat-jagaan-waja-tulus",
+    "pusat-jagaan-warga-tua-manjung-perak",
+    "qualicare-senior-citizens-home-care-centre",
+    "serene-sanctuary-care-centre",
+    "sitiawan-lily-care-centre",
+    "sunrise-leisure-care-centre",
+    "sunshine-old-folks-care-centre",
+    "suzanne-home-aged-care-centre",
+    "top-perfect-care-centre",
+    "trinity-care-centre",
+    "twilight-care-centre",
+    "twilight-elderly-care-centre",
+    "twilight-rapat-care-centre",
+    "universal-love-home-care-centre",
+    "verde-home-care-centre",
+    "victory-care-centre"
   ],
   "skipped": [
     {
       "slug": "grace-care-centre",
-      "reason": "Website (amazinggracecarecentre.com) is for KL operation — cannot attribute to Perak branch without on-site confirmation"
+      "reason": "Website (amazinggracecarecentre.com) is for KL operation \u2014 cannot attribute to Perak branch without on-site confirmation"
     },
     {
       "slug": "pusat-jagaan-harian-chan",
@@ -63,7 +98,7 @@
     },
     {
       "slug": "pusat-jagaan-pertubuhan-pengurusan-rumah-warga-tua",
-      "reason": "Website URL is a Maxis internship job listing — wrong URL in sheet"
+      "reason": "Website URL is a Maxis internship job listing \u2014 wrong URL in sheet"
     },
     {
       "slug": "qualicare-senior-citizens-home-care-centre",
@@ -83,7 +118,7 @@
     },
     {
       "slug": "lotus-geriatric-care-centre",
-      "reason": "Sheet has duplicate slug — row 531 has full editorial (licence A/PJB WT 068/2021); row 532 is a duplicate with different licence A/PJB WT 004/2022 and remains empty. Resolve at sheet level (assign distinct slug or mark duplicate as removed)."
+      "reason": "Sheet has duplicate slug \u2014 row 531 has full editorial (licence A/PJB WT 068/2021); row 532 is a duplicate with different licence A/PJB WT 004/2022 and remains empty. Resolve at sheet level (assign distinct slug or mark duplicate as removed)."
     },
     {
       "slug": "ig-care-centre",
@@ -91,5 +126,5 @@
     }
   ],
   "last_batch": "2026-05-12",
-  "total_done": 51
+  "total_done": 86
 }

@@ -74,14 +74,13 @@
 /* Pricing source caption */
 .pricing-source-note { font-size: .8rem; color: var(--text-muted, #64748b); margin-top: 12px; padding-top: 10px; border-top: 1px solid #f1f5f9; font-style: italic; }
 
-.summary-box { max-width: 1200px; margin: 24px auto; padding: 0 20px; position: relative; z-index: 5; }
-.summary-card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.08); padding: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.summary-item .label { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted, #64748b); font-weight: 600; margin-bottom: 6px; }
-.summary-item .value { font-size: 1.05rem; font-weight: 700; color: var(--text, #0f172a); }
-.summary-item .value.unknown { color: #94a3b8; font-weight: 400; }
-.summary-item .sub { font-size: .8rem; color: var(--text-muted, #64748b); margin-top: 2px; }
-@media (max-width: 768px) { .summary-card { grid-template-columns: 1fr 1fr; gap: 16px; padding: 18px; } }
-@media (max-width: 400px) { .summary-card { grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; } .summary-item .value { font-size: .92rem; } }
+.guides-card { background: white; border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 16px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.05); margin-bottom: 14px; }
+.guides-card h3 { font-size: .9rem; font-weight: 700; margin-bottom: 10px; color: var(--text, #0f172a); }
+.guides-card ul { list-style: none; margin: 0; padding: 0; }
+.guides-card ul li { border-top: 1px solid #f1f5f9; }
+.guides-card ul li:first-child { border-top: none; }
+.guides-card ul li a { display: block; padding: 8px 0; font-size: .84rem; color: #2563eb; text-decoration: none; line-height: 1.35; }
+.guides-card ul li a:hover { text-decoration: underline; }
 
 .tabs-nav { background: white; border-bottom: 1px solid var(--border, #e2e8f0); position: sticky; top: 56px; z-index: 40; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; scroll-margin-top: 56px; }
 .tabs-nav::-webkit-scrollbar { display: none; }
@@ -513,33 +512,7 @@ function render(f) {
   const ratingMeta = f.rating
     ? `<span>⭐ ${parseFloat(f.rating).toFixed(1)} (${f.review_count || 0} Google reviews)</span>` : '';
 
-  /* Summary tiles */
   const isDayCare = catDir === 'day-care';
-  const priceVal = f.shared_price || f.private_price || f.pricing_display || 'Not published';
-  const priceUnknown = !f.shared_price && !f.private_price && (!f.pricing_display || isUnknownText(f.pricing_display));
-  const summaryTiles = `
-    <div class="summary-item">
-      <div class="label">${isDayCare ? 'Daily Rate' : 'Monthly Fees'}</div>
-      <div class="value${priceUnknown ? ' unknown' : ''}">${escapeHtml(priceVal || 'Not published')}</div>
-      <div class="sub">${priceUnknown ? 'Call to enquire' : isDayCare ? '/ day' : '/ month'}</div>
-    </div>
-    <div class="summary-item">
-      <div class="label">Google Rating</div>
-      <div class="value${!f.rating ? ' unknown' : ''}" style="display:flex;align-items:baseline;gap:6px">
-        ${f.rating ? `<span style="font-size:1.3rem">⭐</span><span>${parseFloat(f.rating).toFixed(1)}</span>` : 'No rating'}
-      </div>
-      <div class="sub">${f.review_count ? `${f.review_count} reviews` : ''}</div>
-    </div>
-    <div class="summary-item">
-      <div class="label">Languages</div>
-      <div class="value${!f.languages ? ' unknown' : ''}">${escapeHtml(f.languages || 'Not stated')}</div>
-      <div class="sub"></div>
-    </div>
-    <div class="summary-item">
-      <div class="label">Halal Status</div>
-      <div class="value${yn(f.halal) === null ? ' unknown' : ''}">${yn(f.halal) === true ? '✓ Yes' : yn(f.halal) === false ? '✗ No' : 'Not declared'}</div>
-      <div class="sub">${yn(f.halal) === null ? 'ask before visit' : ''}</div>
-    </div>`;
 
   /* Sidebar contact buttons */
   // WhatsApp number resolution: prefer explicit whatsapp column, else fall back
@@ -557,6 +530,17 @@ function render(f) {
   const waLink      = waNumber       ? `<a href="https://wa.me/${waNumber}?text=${waMsg}" target="_blank" class="cta-btn cta-wa">💬 WhatsApp</a>` : '';
   const mapsLink    = f.google_maps_url ? `<a href="${escapeHtml(f.google_maps_url)}" target="_blank" class="cta-btn cta-maps">📍 Google Maps</a>` : '';
   const webLink     = f.website && !f.website.includes('facebook') ? `<a href="${escapeHtml(f.website)}" target="_blank" class="cta-btn cta-web">🌐 Website</a>` : '';
+
+  /* Sidebar guides card */
+  const guidesCardHtml = `
+    <div class="guides-card">
+      <h3>Helpful guides</h3>
+      <ul>
+        <li><a href="/guides/which-care.html">Which care does my parent need?</a></li>
+        <li><a href="/guides/how-to-choose-nursing-home.html">How to choose a nursing home</a></li>
+        <li><a href="/guides/nursing-home-quality-standards.html">How nursing home quality is measured worldwide</a></li>
+      </ul>
+    </div>`;
 
   /* Sidebar ad slot — checklist hidden until we have an actionable version.
      Details `checklist` rows in the sheet are preserved for later reuse. */
@@ -817,8 +801,6 @@ function render(f) {
       </div>
     </div>
 
-    <div class="summary-box"><div class="summary-card">${summaryTiles}</div></div>
-
     <div class="tabs-nav">
       <div class="tabs-nav-inner">
         <button class="tab-btn active" data-tab="overview"  onclick="showTab('overview')">Overview</button>
@@ -898,6 +880,7 @@ function render(f) {
           <div class="compare-row" id="nhg-compare-btn">⚖️ Add to Compare (up to 3)</div>
           <div class="compare-row" style="background:#f1f5f9; color:var(--text,#0f172a); border-color:var(--border,#e2e8f0); margin-top:6px;" id="nhg-save-btn">❤️ Save this facility</div>
         </div>
+        ${guidesCardHtml}
         ${checklistHtml}
       </aside>
     </div>`;
