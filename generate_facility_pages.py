@@ -133,6 +133,24 @@ def trim_desc(s, limit=155):
     return cut + "…"
 
 
+TITLE_CAP = 60
+TITLE_MODIFIERS = [": Reviews, Fees & Visit Notes", ": Reviews & Fees", ""]
+
+
+def build_page_title(name):
+    """SEO title: try richest modifier that fits TITLE_CAP, falling back as needed.
+
+    No brand suffix — Google now auto-appends the site name in SERPs as a
+    separate element, so an explicit suffix wastes characters and reduces
+    space for differentiating modifiers.
+    """
+    for mod in TITLE_MODIFIERS:
+        candidate = f"{name}{mod}"
+        if len(candidate) <= TITLE_CAP:
+            return candidate
+    return name[:TITLE_CAP - 1].rstrip() + "…"
+
+
 def build_meta_description(f):
     title = f.get("title", "").strip()
     area = f.get("area", "").strip() or "Malaysia"
@@ -486,8 +504,7 @@ def build_static_content(f, category):
 
 def build_head_inserts(f, slug, canonical, canonical_dir="nursing-homes"):
     title = smart_title_case(f.get("title", "").strip())
-    title_short = title if len(title) <= 50 else title[:47].rstrip() + "…"
-    page_title = f"{title_short} — NursingHomeGuide.my"
+    page_title = build_page_title(title)
     desc = build_meta_description(f)
     img = f.get("hero_image", "").strip()
     twitter_card = "summary_large_image" if img else "summary"
