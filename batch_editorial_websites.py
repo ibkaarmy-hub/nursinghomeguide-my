@@ -300,14 +300,8 @@ def main():
     idx = {h: i for i, h in enumerate(headers)}
     g = lambda r, c: (r[idx[c]] if c in idx and idx[c] < len(r) else '').strip()
 
-    # States to process. Excluded:
-    #   Negeri Sembilan, Penang  — parallel session likely active there
-    #   Perak — just completed by parallel session
-    #   Pahang/Sabah/Sarawak/Kelantan/Labuan — already 100%
-    TARGET_STATES = {
-        'Selangor', 'Kuala Lumpur', 'Johor',
-        'Kedah', 'Melaka', 'Terengganu', 'Perlis',
-    }
+    # States to process on this pass: the two remaining big gaps.
+    TARGET_STATES = {'Negeri Sembilan', 'Penang'}
     candidates = []
     for r in rows[1:]:
         slug = g(r, 'slug')
