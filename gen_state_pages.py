@@ -527,9 +527,12 @@ for category in ('home-care', 'day-care'):
 write_file('assisted-living/index.html', make_al_landing())
 written.append('assisted-living/index.html')
 
-# NH landing → just redirect to homepage (the existing / IS the NH landing)
+# NH landing → redirect to the homepage's "Browse by state" section so the
+# user lands somewhere visibly nursing-home-relevant (the redirect to bare /
+# previously felt broken from the user's perspective — clicking Nursing
+# Homes appeared to do nothing because they ended up back at the top).
 write_file('nursing-homes/index.html', redirect_stub(
-    '/',
+    '/#by-state',
     'Nursing Homes Malaysia | NursingHomeGuide.my',
     'Browse licensed nursing homes across Malaysia. Detailed profiles, pricing, and reviews.'
 ))
