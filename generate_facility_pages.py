@@ -84,9 +84,12 @@ def smart_title_case(s):
 
 
 FACILITIES_CSV_LOCAL = "existing_facilities.csv"
+# Use the export endpoint (real-time) rather than the cached /pub endpoint —
+# /pub has a 5–10 minute publication delay that has bitten regen workflows
+# multiple times. /export reflects live sheet state immediately.
 FACILITIES_CSV = (
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_BgHIjnlgmITzjyUuGDpgpNzPL7MfjOY2069i0PtbVbXSxIAJk1tmBejwNo8aBBeLuRi62szF2sh/pub"
-    "?gid=292378871&single=true&output=csv"
+    "https://docs.google.com/spreadsheets/d/1HpAXH9aG1O27Cvhfu4MIOa9sRYhwIL4C_WUoFfC-9qk"
+    "/export?format=csv&gid=292378871"
 )
 TEMPLATE_PATH = "facility.html"
 
