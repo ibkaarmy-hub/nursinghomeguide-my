@@ -35,7 +35,9 @@
       "Bash(Expand-Archive -Path \"C:\\\\Users\\\\ibkaa\\\\Downloads\\\\files.zip\" -DestinationPath \"C:\\\\Users\\\\ibkaa\\\\Downloads\\\\files_extracted\" -Force)",
       "Read(//c/Users/ibkaa/Downloads/**)",
       "Bash(unzip -l \"/mnt/c/Users/ibkaa/Downloads/files.zip\")",
-      "Bash(python3 -c \"import zipfile; z=zipfile.ZipFile\\('/mnt/c/Users/ibkaa/Downloads/files.zip'\\); [print\\(i.filename\\) for i in z.infolist\\(\\)]\")"
+      "Bash(python3 -c \"import zipfile; z=zipfile.ZipFile\\('/mnt/c/Users/ibkaa/Downloads/files.zip'\\); [print\\(i.filename\\) for i in z.infolist\\(\\)]\")",
+      "Bash(git rebase *)",
+      "Bash(git stash *)"
     ]
   }
 }
