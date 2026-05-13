@@ -7,6 +7,8 @@ client_secret*.json
 .env.*
 config.py
 secrets.py
+.secrets/
+_gsc/
 
 # ── Apify raw data (large, not needed in repo) ────────────────
 *_raw.json
