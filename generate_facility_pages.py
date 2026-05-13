@@ -254,6 +254,124 @@ def build_jsonld(f, canonical):
     return ld
 
 
+_YES_TOKENS = {"yes", "y", "true", "1"}
+_NO_TOKENS = {"no", "n", "false", "0"}
+
+
+def _bool_flag(v):
+    """Return True/False/None for tri-state yes/no/unknown fields."""
+    if not v:
+        return None
+    s = str(v).strip().lower()
+    if s in _YES_TOKENS:
+        return True
+    if s in _NO_TOKENS:
+        return False
+    return None
+
+
+def build_faq_jsonld(f):
+    """Build FAQPage schema from existing sheet columns.
+
+    Only emits a Q&A when the underlying field is verifiable. Returns the
+    JSON-LD dict if >=2 Q&As pass the filter, else None. All answers map
+    to content visible on the page (via the facility-static-data div),
+    keeping us aligned with Google's FAQPage policy.
+    """
+    name = (f.get("title") or "").strip()
+    if not name:
+        return None
+
+    qa = []
+
+    state = (f.get("state") or "").strip()
+    area = (f.get("area") or "").strip()
+    if state:
+        where = f"{area}, {state}" if area else state
+        qa.append((f"Where is {name} located?",
+                   f"{name} is located in {where}, Malaysia."))
+
+    shared = (f.get("shared_price") or "").strip()
+    private = (f.get("private_price") or "").strip()
+    display = (f.get("pricing_display") or "").strip()
+    price_parts = []
+    if shared and not is_unknown(shared):
+        price_parts.append(f"Shared rooms from RM {shared}/month")
+    if private and not is_unknown(private):
+        price_parts.append(f"private rooms from RM {private}/month")
+    if price_parts:
+        qa.append((f"How much does {name} cost per month?",
+                   ". ".join(s.capitalize() if i == 0 else s
+                             for i, s in enumerate(price_parts)) + "."))
+    elif display and not is_unknown(display):
+        # "Call for pricing" or similar honest fallback
+        qa.append((f"How much does {name} cost per month?",
+                   f"{display}. Contact the facility directly for current rates."))
+
+    care_types = (f.get("care_types") or "").strip()
+    if care_types and not is_unknown(care_types):
+        qa.append((f"What types of care does {name} offer?",
+                   f"{name} offers {care_types}."))
+
+    dementia = _bool_flag(f.get("care_dementia")) or _bool_flag(f.get("medical_dementia_unit"))
+    dementia_raw = (f.get("care_dementia") or f.get("medical_dementia_unit") or "").strip().lower()
+    if dementia is True:
+        qa.append((f"Does {name} accept residents with dementia?",
+                   f"Yes, {name} provides dementia care."))
+    elif dementia is False and dementia_raw in _NO_TOKENS:
+        qa.append((f"Does {name} accept residents with dementia?",
+                   f"No, {name} does not currently offer dementia care."))
+
+    nursing = _bool_flag(f.get("care_nursing"))
+    if nursing is True:
+        qa.append((f"Does {name} provide skilled nursing care?",
+                   f"Yes, {name} provides nursing care with trained staff."))
+
+    wheelchair = _bool_flag(f.get("wheelchair"))
+    if wheelchair is True:
+        qa.append((f"Is {name} wheelchair accessible?",
+                   f"Yes, {name} is wheelchair accessible."))
+    elif wheelchair is False:
+        qa.append((f"Is {name} wheelchair accessible?",
+                   f"No, {name} is not wheelchair accessible."))
+
+    halal = _bool_flag(f.get("halal"))
+    if halal is True:
+        qa.append((f"Are meals at {name} halal?",
+                   f"Yes, {name} serves halal meals."))
+    elif halal is False:
+        qa.append((f"Are meals at {name} halal?",
+                   f"No, {name} does not serve halal-certified meals."))
+
+    languages = (f.get("languages") or "").strip()
+    if languages and not is_unknown(languages):
+        qa.append((f"What languages do staff at {name} speak?",
+                   f"Staff at {name} speak {languages}."))
+
+    licence = (f.get("licence_number") or "").strip()
+    if licence and not is_unknown(licence):
+        qa.append((f"Is {name} a licensed facility?",
+                   f"Yes, {name} is licensed (licence number on file with the operator)."))
+
+    visiting = (f.get("visiting_hours") or "").strip()
+    if visiting and not is_unknown(visiting):
+        qa.append((f"What are the visiting hours at {name}?",
+                   f"Visiting hours at {name}: {visiting}."))
+
+    if len(qa) < 2:
+        return None
+
+    return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer", "text": a}}
+            for q, a in qa
+        ],
+    }
+
+
 def html_escape(s):
     return (str(s or "")
             .replace("&", "&amp;")
@@ -532,6 +650,10 @@ def build_head_inserts(f, slug, canonical, canonical_dir="nursing-homes"):
         parts.append(f'<meta name="twitter:image" content="{html_escape(img)}">')
     parts.append(f'<script type="application/ld+json" id="ld-localbusiness">{ld_json}</script>')
     parts.append(f'<script type="application/ld+json" id="ld-breadcrumb">{bc_json}</script>')
+    faq_ld = build_faq_jsonld(f)
+    if faq_ld:
+        faq_json = json.dumps(faq_ld, ensure_ascii=False, separators=(",", ":"))
+        parts.append(f'<script type="application/ld+json" id="ld-faq">{faq_json}</script>')
     parts.append(f'<script>window.__FACILITY_SLUG={json.dumps(slug)};</script>')
     # Microanalytics is already in the facility.html template — no duplicate injection.
     return page_title, desc, "\n".join(parts)
