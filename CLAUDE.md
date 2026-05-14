@@ -155,7 +155,8 @@ Four-phase, zero-Apify-cost workflow. Full reference in `stages/02-enrich/CONTEX
 | Phase | Script | Cost |
 |-------|--------|------|
 | 1. Foundation | `python enrich_places_free.py <State>` — placeId, address, phone, website, rating, reviews, photos | $0 (Places API) |
-| 2. Editorials | `/nh-profiles` skill | $0 |
+| 1b. Website scrape (optional) | `python scrape_website.py --slug <slug>` — renders the operator's site with Apify (website-content-crawler, Playwright/JS) into `_scrape_cache/<slug>.json` for the editorial step to source services / branch lists from | Apify credits |
+| 2. Editorials | `/nh-profiles` skill (reads `_scrape_cache/` when present) | $0 |
 | 3. Auto-fill | `_tmp/enrich_whatsapp_clinical.py` — WhatsApp from mobile phones · care_* / medical_* flags parsed from editorial text | $0 (regex) |
 | 4. Publish | `generate_facility_pages.py` + `generate_sitemap.py` + commit/push | $0 |
 

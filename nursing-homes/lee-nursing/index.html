@@ -786,7 +786,7 @@ function render(f) {
       ${thumbs.map((u, i) => `
         <a href="${escAttr(u)}" target="_blank" class="thumb thumb-${i+1}">
           <img src="${escAttr(u)}" alt="${escapeHtml(f.title)} photo ${i+2}" loading="lazy" />
-          ${(i === thumbs.length - 1 && extra > 0) ? `<div class="show-all-overlay" onclick="event.preventDefault(); showTab('photos'); window.scrollTo({top:0,behavior:'smooth'}); return false;">+${extra} more photos</div>` : ''}
+          ${(i === thumbs.length - 1 && extra > 0) ? `<div class="show-all-overlay" onclick="event.preventDefault(); showTab('overview'); document.getElementById('all-photos')?.scrollIntoView({behavior:'smooth'}); return false;">+${extra} more photos</div>` : ''}
         </a>`).join('')}
     </div>`;
   })();
@@ -823,11 +823,7 @@ function render(f) {
       <div class="tabs-nav-inner">
         <button class="tab-btn active" data-tab="overview"  onclick="showTab('overview')">Overview</button>
         <button class="tab-btn"        data-tab="pricing"   onclick="showTab('pricing')">Pricing</button>
-        <button class="tab-btn"        data-tab="care"      onclick="showTab('care')">Medical</button>
-        <button class="tab-btn"        data-tab="amenities" onclick="showTab('amenities')">Amenities</button>
-        <button class="tab-btn"        data-tab="photos"    onclick="showTab('photos')">Photos</button>
-        <button class="tab-btn"        data-tab="reviews"   onclick="showTab('reviews')">Reviews</button>
-        <button class="tab-btn"        data-tab="map"       onclick="showTab('map')">Map</button>
+        <button class="tab-btn"        data-tab="care"      onclick="showTab('care')">Care &amp; Amenities</button>
       </div>
     </div>
 
@@ -851,6 +847,9 @@ function render(f) {
             ${overviewQuickFacts || '<p class="text-muted">Details not yet collected.</p>'}
           </div>
           ${policiesHtml}
+          ${reviewsTabHtml}
+          ${mapTabHtml}
+          <div id="all-photos">${photosTabHtml}</div>
         </div>
 
         <div class="tab-panel" id="tab-pricing">
@@ -868,16 +867,9 @@ function render(f) {
           ${medCells ? `<div class="profile-card"><h2>Medical Services</h2><div class="check-grid">${medCells}</div></div>` : '<div class="profile-card"><p class="text-muted">Medical service details not yet collected.</p></div>'}
           ${clinicalDetailHtml}
           ${staffingHtml}
-        </div>
-
-        <div class="tab-panel" id="tab-amenities">
           ${amenitiesHtml ? `<div class="profile-card"><h2>Amenities by Category</h2>${amenitiesHtml}</div>` : '<div class="profile-card"><p class="text-muted">Amenity details not yet collected.</p></div>'}
           ${scheduleHtml}
         </div>
-
-        <div class="tab-panel" id="tab-photos">${photosTabHtml}</div>
-        <div class="tab-panel" id="tab-reviews">${reviewsTabHtml}</div>
-        <div class="tab-panel" id="tab-map">${mapTabHtml}</div>
 
       </div>
 
