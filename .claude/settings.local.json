@@ -1,4 +1,13 @@
 {
+  "sandbox": {
+    "network": {
+      "allowedDomains": [
+        "docs.google.com",
+        "*.googleapis.com",
+        "*.googleusercontent.com"
+      ]
+    }
+  },
   "permissions": {
     "allow": [
       "Bash(git --version)",
