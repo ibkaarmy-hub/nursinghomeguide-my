@@ -36,7 +36,8 @@ CSV_PATH = 'facilities_local.csv'
 DATA_JS = 'data.js'
 REPORT_PATH = 'audit_report_2026-05-14.md'
 PLACES_CACHE = '_tmp/audit_places_cache.json'
-CSV_SNAPSHOT = '2026-05-12 13:56 +0800'
+CSV_SNAPSHOT = (time.strftime('%Y-%m-%d %H:%M %z', time.localtime(os.path.getmtime(CSV_PATH)))
+                if os.path.exists(CSV_PATH) else 'unknown')
 MAPS_KEY = os.environ.get('GOOGLE_MAPS_KEY', '').strip()
 
 # ── copied verbatim from verify_editorial_match.py lines 19-46 ──────────────
@@ -494,7 +495,7 @@ def write_report(rows, live, groups, g,
     c8_low = sum(1 for x in c8 if x[1] == 'LOW_CONFIDENCE')
 
     P('# Profile data audit — 2026-05-14\n')
-    P(f'**Source:** `facilities_local.csv` (snapshot {CSV_SNAPSHOT}, ~2 days stale at audit time).')
+    P(f'**Source:** `facilities_local.csv` (snapshot {CSV_SNAPSHOT}, refreshed from the live sheet for this run).')
     P(f'**Live rows audited:** {len(live)} (status blank). Hidden rows (`unverified`/`removed`) excluded.')
     P('**Caveat:** the street address lives in the *Details* tab (gid 1104748854), which is not cached '
       'in-repo and was unreachable this round. Check 2 is a *proxy* (place_id / area / state presence); '
