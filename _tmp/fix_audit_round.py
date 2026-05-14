@@ -101,9 +101,11 @@ def strict_match(sheet_title, g_name):
 def best_match(title, sheet_state, results):
     """Pick the best Places result for `title`: a name match (A.names_match) that
     also passes strict_match, preferring one whose address state matches the
-    sheet state. Returns the result dict or None."""
+    sheet state. CLOSED_PERMANENTLY / CLOSED_TEMPORARILY listings are rejected —
+    we never assign a closed place_id to a live row. Returns the result or None."""
     hits = [r for r in results
-            if A.names_match(title, r.get('name', ''))
+            if r.get('business_status', 'OPERATIONAL') == 'OPERATIONAL'
+            and A.names_match(title, r.get('name', ''))
             and strict_match(title, r.get('name', ''))]
     if not hits:
         return None

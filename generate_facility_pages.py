@@ -209,6 +209,8 @@ def build_breadcrumb_jsonld(f, slug, canonical_dir):
 def build_jsonld(f, canonical):
     title = f.get("title", "").strip()
     address = {"@type": "PostalAddress", "addressCountry": "MY"}
+    if f.get("address", "").strip():
+        address["streetAddress"] = f["address"].strip()
     if f.get("area", "").strip():
         address["addressLocality"] = f["area"].strip()
     if f.get("state", "").strip():
@@ -526,6 +528,9 @@ def build_static_content(f, category):
 
     # ── Contact ───────────────────────────────────────────────────────────
     contact_rows = []
+    addr = f.get('address', '').strip()
+    if addr and not is_unknown(addr):
+        contact_rows.append(('Address', addr))
     for col, label in [
         ('phone',          'Phone'),
         ('whatsapp',       'WhatsApp'),

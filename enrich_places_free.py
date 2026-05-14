@@ -112,7 +112,8 @@ def places_text_search(query, lat=None, lng=None, radius=10000):
             'X-Goog-Api-Key':KEY,
             'X-Goog-FieldMask':'places.id,places.displayName,places.formattedAddress,'
                                'places.websiteUri,places.nationalPhoneNumber,'
-                               'places.rating,places.userRatingCount,places.types',
+                               'places.rating,places.userRatingCount,places.types,'
+                               'places.businessStatus',
         },
         json=body, timeout=30
     )
@@ -127,7 +128,7 @@ def place_details(place_id):
             'X-Goog-Api-Key':KEY,
             'X-Goog-FieldMask':'id,displayName,formattedAddress,nationalPhoneNumber,'
                               'websiteUri,rating,userRatingCount,reviews,photos,'
-                              'regularOpeningHours,types',
+                              'regularOpeningHours,types,businessStatus',
         },
         timeout=30
     )
@@ -197,6 +198,14 @@ def process_facility(f, state, ci, force_photos=False):
         else:
             print(f'    SKIP — no match in {state}: top "{(results[0].get("displayName",{}) or {}).get("text")}"  / {results[0].get("formattedAddress","")[:80]}')
             return None
+
+    # Screen out permanently/temporarily closed listings — never enrich a row
+    # with a closed facility's identity.
+    bstatus = place.get('businessStatus', 'OPERATIONAL')
+    if bstatus not in ('OPERATIONAL', 'BUSINESS_STATUS_UNSPECIFIED', '', None):
+        print(f'    SKIP — Google reports businessStatus={bstatus} for '
+              f'"{(place.get("displayName",{}) or {}).get("text")}"')
+        return None
 
     pid = place['id']
     print(f'    placeId={pid[:30]}  rating={place.get("rating","?")}/{place.get("userRatingCount","?")}')

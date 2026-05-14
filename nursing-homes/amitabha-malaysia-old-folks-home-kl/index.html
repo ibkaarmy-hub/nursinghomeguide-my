@@ -479,6 +479,7 @@ function injectStructuredData(f, canonicalUrl) {
     url: canonicalUrl,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: f.address || undefined,
       addressLocality: f.area || undefined,
       addressRegion: f.state || undefined,
       addressCountry: 'MY',
@@ -581,7 +582,7 @@ function render(f) {
 
   /* OVERVIEW tab content */
   const overviewQuickFacts = [
-    infoRow('Address', [f.title ? '' : '', D.policies?.find(r => r.label.toLowerCase().includes('address'))?.value, f.area].filter(Boolean).join(', ')),
+    infoRow('Address', f.address || [D.policies?.find(r => r.label.toLowerCase().includes('address'))?.value, f.area].filter(Boolean).join(', ')),
     infoRow('Area', f.area),
     infoRow('Phone', f.phone),
     infoRow('Languages', f.languages),
@@ -783,7 +784,7 @@ function render(f) {
           <iframe src="https://maps.google.com/maps?q=${f.latitude},${f.longitude}&z=15&output=embed" allowfullscreen loading="lazy"></iframe>
         </div>` : '<p class="text-muted">Location not available.</p>'}
       ${D.nearby?.length ? `<h3 style="margin-top:18px;">Nearby landmarks</h3>${renderNearby(D.nearby)}` : ''}
-      <div style="margin-top:14px; font-size:.85rem;">${infoRow('Address', f.area, { showUnknown: true })}</div>
+      <div style="margin-top:14px; font-size:.85rem;">${infoRow('Address', f.address || f.area, { showUnknown: true })}</div>
     </div>`;
 
   /* Photo gallery — Booking.com-style: 1 large left + 4 thumbs in 2x2 right.
