@@ -8,6 +8,20 @@ const DETAILS_CSV_URL    = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4_
 // Each key is the org slug (used in org.html?slug=<key>)
 // branches: array of facility slugs that belong to this group
 const GROUPS = {
+  'mahligai-kasih-juju': {
+    slug: 'mahligai-kasih-juju',
+    name: 'Mahligai Kasih Juju',
+    tagline: 'Family-run elder care — 3 branches across Melaka and Selangor',
+    website: 'https://www.mahligaikasihjuju.com',
+    ownership: 'Private (Malaysian)',
+    state: 'Melaka, Selangor',
+    description: 'Pusat Jagaan Mahligai Kasih Juju is a family-run elder and patient care operator running three branches: two in Melaka (Bukit Baru and Bachang) and one in Hulu Langat, Selangor. Each branch offers 24-hour short-term, respite, and long-term residential care, centre-based day care, and mobile home and hospital nursing by licensed nurses. Pricing is not published — contact the operator for a quote.',
+    branches: [
+      'pusat-jagaan-mahligai-kasih-juju-bukit-baru',
+      'pusat-jagaan-mahligai-kasih-juju-bachang',
+      'pusat-jagaan-mahligai-kasih-juju-hulu-langat',
+    ],
+  },
   'eha-eldercare': {
     slug: 'eha-eldercare',
     name: 'EHA ElderCare',

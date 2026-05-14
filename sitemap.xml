@@ -3367,8 +3367,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-mahligai-kasih-juju-sdn-bhd/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-mahligai-kasih-juju-bukit-baru/</loc>
+    <lastmod>2026-05-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -4373,6 +4373,24 @@
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-mahligai-kasih-juju-bachang/</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-mahligai-kasih-juju-hulu-langat/</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=mahligai-kasih-juju</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://nursinghomeguide.my/org.html?slug=eha-eldercare</loc>
