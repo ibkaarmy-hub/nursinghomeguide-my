@@ -32,6 +32,7 @@ photo_*.json
 photo_files_list.txt
 audit_data.json
 mdac_*.csv
+_tmp/audit_places_cache.json
 
 # ── Downloaded photos ─────────────────────────────────────────
 photos/
