@@ -1,7 +1,7 @@
 # Profile data audit — 2026-05-14
 
-**Source:** `facilities_local.csv` (snapshot 2026-05-14 22:10 +0800, refreshed from the live sheet for this run).
-**Live rows audited:** 742 (status blank). Hidden rows (`unverified`/`removed`) excluded.
+**Source:** `facilities_local.csv` (snapshot 2026-05-17 22:53 +0800, refreshed from the live sheet for this run).
+**Live rows audited:** 725 (status blank). Hidden rows (`unverified`/`removed`) excluded.
 **Caveat:** the street address lives in the *Details* tab (gid 1104748854), which is not cached in-repo and was unreachable this round. Check 2 is a *proxy* (place_id / area / state presence); Check 7 surfaces Google's `formatted_address` for every place_id row — that is the dataset to seed real addresses from next round.
 **Scope:** read-only audit. No sheet writes, no fixes applied. Fixes happen in a follow-up round, by slug-lookup against the live sheet (per CLAUDE.md hard rule).
 
@@ -10,16 +10,16 @@
 | Check | What it means | Severity | Count |
 | --- | --- | --- | --- |
 | 7a. Wrong-facility place_id | `query_place_id` resolves to a *different* facility — the megaway-class bug | P0 | 0 |
-| 3. Website cross-leak | a website domain shared by unrelated facilities, or carrying another brand | P0 | 25 |
-| 4. Shared assets | same phone / place_id / hero / website across non-chain slugs | P0 | 101 groups |
+| 3. Website cross-leak | a website domain shared by unrelated facilities, or carrying another brand | P0 | 27 |
+| 4. Shared assets | same phone / place_id / hero / website across non-chain slugs | P0 | 88 groups |
 | 1. Editorial cross-leak | editorial text points at another facility or state | P0 | 0 |
 | 7b. Dead place_id | `query_place_id` returns NOT_FOUND / error | P1 | 0 |
-| 7c. Sheet state wrong | place_id is correct but the sheet’s `state` disagrees with Google | P1 | 0 |
-| 2. Address proxy | live row missing place_id / area / state | P1 | 120 |
-| 8. Address suggestions | top Places candidate for rows with no place_id (41 low-confidence) | P1 | 83 |
-| 7d. Phone / website drift | place_id + name + state OK, only contact field differs (likely Google more current) | P2 | 216 |
+| 7c. Sheet state wrong | place_id is correct but the sheet’s `state` disagrees with Google | P1 | 1 |
+| 2. Address proxy | live row missing place_id / area / state | P1 | 109 |
+| 8. Address suggestions | top Places candidate for rows with no place_id (39 low-confidence) | P1 | 70 |
+| 7d. Phone / website drift | place_id + name + state OK, only contact field differs (likely Google more current) | P2 | 204 |
 | 5. Unknown-state rows | live row with no usable `state` | P2 | 0 |
-| 6. Title vs slug incoherence | slug shares < 2 significant tokens with title | P2 | 323 |
+| 6. Title vs slug incoherence | slug shares < 2 significant tokens with title | P2 | 313 |
 
 ## Megaway vs Mega Senior Care — diagnosis
 
@@ -56,11 +56,13 @@ _None._
 
 ## Check 3 — Website cross-leak (P0)
 
-25 suspicious pairs. A website domain shared by unrelated facilities, or a domain carrying another facility’s brand name.
+27 suspicious pairs. A website domain shared by unrelated facilities, or a domain carrying another facility’s brand name.
 
 - **shared domain** `multicarehomes.com` — `multicare-nursing-home` (MultiCare Nursing Home) AND `multicare-nursing-home-johor` (Multicare Nursing Home Johor) — not a registered chain
 - **shared domain** `anzalettacarecentre.com` — `anzaletta-living-care-centre-old-age-home-in-johor-bahru-age` (Anzaletta Living Care Centre | Old Age Home in Johor Bahru | Aged Care Service | Nursing Home) AND `dementia-care-centre` (Dementia Care Centre) — not a registered chain
-- **shared domain** `gacc.com.my` — `golden-age-care-centre` (Golden Age Care Centre) AND `golden-age-care-centre-sdn-bhd` (Golden Age Care Centre Sdn. Bhd) — not a registered chain
+- **shared domain** `gacc.com.my` — `golden-age-care-centre-muar` (Golden Age Care Centre (Muar)) AND `golden-age-care-centre-tangkak` (Golden Age Care Centre Tangkak) — not a registered chain
+- **shared domain** `gacc.com.my` — `golden-age-care-centre-muar` (Golden Age Care Centre (Muar)) AND `golden-age-care-centre-sdn-bhd` (Golden Age Care Centre Sdn. Bhd) — not a registered chain
+- **shared domain** `gacc.com.my` — `golden-age-care-centre-batu-pahat` (Golden Age Care Centre Batu Pahat) AND `golden-age-care-centre-muar` (Golden Age Care Centre (Muar)) — not a registered chain
 - **shared domain** `gacc.com.my` — `golden-age-care-centre-batu-pahat` (Golden Age Care Centre Batu Pahat) AND `golden-age-care-centre-sdn-bhd` (Golden Age Care Centre Sdn. Bhd) — not a registered chain
 - **shared domain** `gacc.com.my` — `golden-age-care-centre-sdn-bhd` (Golden Age Care Centre Sdn. Bhd) AND `golden-age-care-centre-tangkak` (Golden Age Care Centre Tangkak) — not a registered chain
 - **shared domain** `mycareconcierge.com` — `care-concierge-care-luxe-ampang` (Care Concierge | Care Luxe Ampang) AND `care-concierge-malaysia` (Care Concierge Malaysia) — not a registered chain
@@ -88,13 +90,13 @@ _None._
 
 Same phone / place_id / hero image / website domain on slugs that are not in the same `GROUPS` chain. Legitimate chains are suppressed. A shared place_id or hero image almost always means a cross-write; a shared phone can be a real shared operator.
 
-### 4.place_id — 39 shared values
+### 4.place_id — 36 shared values
 
 - `ChIJF77T2Ttt2jERh1n1c085pSg` → `alda-homes-eldercare`, `alda-care-centre`, `alda-care-centre-cawangan`
 - `ChIJgzQuordLzDERG2T9gmLGFtE` → `elderlove-living-care-centre-puchong`, `elderlove-care-centre`, `elderlove-living-care-centre`
-- `ChIJG1IudIszzDERwkYjvG5bkiA` → `mintygreen-nursing-homesungai-long-kajang-eldercare-center-加影碧绿疗养院`, `mintygreen-nursing-home-eldercare-center`, `green-medicare-house-care-centre`
+- `ChIJG1IudIszzDERwkYjvG5bkiA` → `mintygreen-nursing-home-sungai-long-kajang-eldercare-center`, `mintygreen-nursing-home-eldercare-center`, `green-medicare-house-care-centre`
 - `ChIJFabS_nZz2jERtnSp8WcmI9U` → `eha-parkview-eldercare-perling-1-nursing-home-johor-bahru`, `seniora-johor-bahru`
-- `ChIJETwPzPxNzDERCS8JKnBanXI` → `golden-age-care-centre`, `golden-mansion-senior-care-centre`
+- `ChIJETwPzPxNzDERCS8JKnBanXI` → `golden-age-care-centre-muar`, `golden-mansion-senior-care-centre`
 - `ChIJrRjW78e50TERejhi-b0bvks` → `comfort-home-care-centre`, `comfort-old-folks-home-centre`
 - `ChIJQRlzguNR0DERcvLengrxrtM` → `golden-age-care-centre-batu-pahat`, `golden-age-care-centre-sdn-bhd`
 - `ChIJVVVVRXht2jERjux6i3VW_uE` → `pusat-sri-kenangan-3`, `rumah-seri-kenangan-johor-bahru`
@@ -102,9 +104,9 @@ Same phone / place_id / hero image / website domain on slugs that are not in the
 - `ChIJ65JPVonLzTER0zR4G6Jx1-0` → `kajang-nursing-home`, `kajang-nursing-home-selangor`
 - `ChIJ3wVElxpTzDER-5jAL9ltgjI` → `oasis-nursing-home-setia-alam`, `pusat-jagaan-warga-emas-oasis`
 - `ChIJJ2JpidY1zDERPuWGzPrlRx4` → `pusat-jagaan-en-yuan-plt-kg-cheras-baru`, `pusat-jagaan-en-yuan-cheras`
-- `ChIJdaq1rCxHzDERfVP4PjYn5d0` → `suria-care-homepusat-jagaan-warga-emas舒利亚乐龄休养中心`, `pusat-jagaan-warga-emas-suria-cahaya`
+- `ChIJdaq1rCxHzDERfVP4PjYn5d0` → `suria-care-home-pusat-jagaan-warga-emas`, `pusat-jagaan-warga-emas-suria-cahaya`
 - `ChIJaezHY7hHzDERrXsUK9IbHZk` → `pusat-jagaan-orang-tua-cahaya-maju`, `pusat-jagaan-rumah-warga-tua-cahaya`
-- `ChIJIxxeJQBHzDERtxpo13T8LPo` → `愛心樂齡休養中心-pusat-jagaan-warga-emas-cinta`, `pusat-jagaan-warga-emas-cinta`
+- `ChIJIxxeJQBHzDERtxpo13T8LPo` → `pusat-jagaan-warga-emas-cinta-2`, `pusat-jagaan-warga-emas-cinta`
 - `ChIJEQ46LhJJzDERRdzntFWUvGQ` → `st-marys-nursing-home`, `pusat-jagaan-st-marys-aged`
 - `ChIJW0nquCBFzDERonpZ91kD2wc` → `pusat-jagaan-warga-tua-sri-tanjung-muslim-women-only`, `pusat-jagaan-warga-tua-sri-tanjung`
 - `ChIJP9Kd9ZRNzDERFHk-ZbGg3zo` → `my-joyful-home-care-centre`, `joyful-home-elderly-care-centre`
@@ -119,33 +121,26 @@ Same phone / place_id / hero image / website domain on slugs that are not in the
 - `ChIJOz40GhxNzDER2XH7SZJyJkw` → `golden-roots-elder-care-centre`, `golden-roots-elder-care-centre-2`
 - `ChIJ_6fShDbnzTERprShALic5gQ` → `happy-life-care-centre`, `happy-life-care-centre-cawangan`
 - `ChIJF0uXOgDdzTER7lYm1OZKcMk` → `house-of-megaway-care-centre-caw`, `house-of-megaways-care-centre`
-- `ChIJi0VBtXxJzDERHai6pm1BZYc` → `my-comfort-home-care-centre`, `my-comfort-home-care-centre`
 - `ChIJX969b6bdzTERqgVzpMamItg` → `mercy-senior-care-centre`, `mercy-senior-care-centre-sdn-bhd`
-- `ChIJIRqnZTHv0TERgprAevREJCY` → `pusat-jagaan-mahligai-kasih-juju-sdn-bhd`, `pusat-jagaan-mahligai-kasih-juju-sdn-bhd`
-- `ChIJt1TYcm7ASjARIlabTPXKdeY` → `pusat-jagaan-persatuan-kebajikan-buddhist-than-hsi`, `pusat-jagaan-persatuan-kebajikan-buddhist-than-hsi`
-- `ChIJncNwMuFFzDERslj6jkPJHAk` → `pusat-jagaan-pertubuhan-kebajikan-chester-selangor`, `pusat-jagaan-pertubuhan-kebajikan-chester-selangor`
+- `ChIJncNwMuFFzDERslj6jkPJHAk` → `pusat-jagaan-pertubuhan-kebajikan-chester-selangor-1`, `pusat-jagaan-pertubuhan-kebajikan-chester-selangor-4`
 - `ChIJxcgWihTtyjERg7UYfkSiDa8` → `pusat-jagaan-rapat`, `twilight-rapat-care-centre`
 - `ChIJG6QW9z3LSjAR79ALlAJ6YlU` → `pusat-jagaan-rumah-mentari-warga-emas-lelaki-berpe`, `pusat-jagaan-rumah-mentari-warga-emas-lelakiberpen`
 - `ChIJef2pHrrnzTERpm6MM4L-bZc` → `pusat-jagaan-warga-emas-dan-terapi-fitrah`, `pusat-jagaan-warga-emas-dan-terapi-fitrah-cawangan`
 - `ChIJLxGwBFHASjARa11X63mFr58` → `pusat-jagaan-warga-emas-intan-cawangan`, `pusat-jagaan-warga-emas-intan`
 - `ChIJobUSQXjryjERkOEemMdcuoo` → `twilight-care-centre`, `twilight-elderly-care-centre`
 
-### 4.hero_image — 9 shared values
+### 4.hero_image — 5 shared values
 
-- `https://lh3.googleusercontent.com/p/AF1QipMCA_ahUl-WXhFrtmsEMqWNtE-…` → `komune-care`, `komune-care-cheras`
 - `https://mdac.my/wp-content/uploads/2021/03/WhatsApp-Image-2021-03-2…` → `sam-ching-kong-old-folks-home-hulu-langat`, `cherish-retirement-and-nursing-home`
 - `https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=Gi5Q…` → `wan-hing-care-center-sdn-bhd`, `wan-hing-care-center-psk-sdn-bhd`
 - `https://www.hati.my/wp-content/themes/Gizwiz/images/logo-hati.png` → `pusat-jagaan-rumah-nur-hasanah`, `sri-sayang-welfare-home`
 - `https://lh3.googleusercontent.com/places/ANXAkqHMpIZnieOiuDnEJ3Aoww…` → `alda-care-centre`, `alda-care-centre-cawangan`
-- `https://lh3.googleusercontent.com/place-photos/AJRVUZNaZIOy6OpxjILJ…` → `pertubuhan-pusat-aktiviti-warga-emas-bestari-macha`, `pusat-aktiviti-warga-emas-kuala-klawang`
-- `https://lh3.googleusercontent.com/place-photos/AJRVUZOKA2XUNlmNc8Mu…` → `pusat-jagaan-kenneth-care-home-rodway-plt`, `pusat-jagaan-orang-tua-lok-leng`
-- `https://lh3.googleusercontent.com/place-photos/AJRVUZMGSukepbABFjij…` → `pusat-jagaan-kuantan-care-home-for-the-aged-cawang`, `pusat-jagaan-lucky-care-home`
 - `https://lh3.googleusercontent.com/places/ANXAkqGb_7LJ5czKdajliLIlXJ…` → `pusat-jagaan-warga-emas-intan-cawangan`, `pusat-jagaan-warga-emas-intan`
 
 ### 4.website — 16 shared values
 
 - `elderlycare.my` → `merry-care-centre-jln-belinggai`, `merry-care-centre-jln-antoi`, `merry-care-kepong-baru-3`, `merry-care-kepong-baru-4`, `merry-care-selayang-baru`, `merry-care-desa-jaya-kepong`, `merry-care-centre`
-- `gacc.com.my` → `golden-age-care-centre`, `golden-age-care-centre-tangkak`, `golden-age-care-centre-batu-pahat`, `golden-age-care-centre-sdn-bhd`
+- `gacc.com.my` → `golden-age-care-centre-muar`, `golden-age-care-centre-tangkak`, `golden-age-care-centre-batu-pahat`, `golden-age-care-centre-sdn-bhd`
 - `mycareconcierge.com` → `care-concierge-care-luxe-ampang`, `care-concierge-malaysia`, `ara-woods-senior-care-centre`
 - `multicarehomes.com` → `multicare-nursing-home-johor`, `multicare-nursing-home`
 - `anzalettacarecentre.com` → `anzaletta-living-care-centre-old-age-home-in-johor-bahru-age`, `dementia-care-centre`
@@ -161,39 +156,33 @@ Same phone / place_id / hero image / website domain on slugs that are not in the
 - `thedementiasocietyperak.wordpress.com` → `pusat-jagaan-harian-pertubuhan-dimensia-perak`, `pusat-jagaan-mak-swee-cawangan-1`
 - `tbspinghe.org` → `pusat-jagaan-rumah-sejahtera-gopeng`, `harmopeace-oldfolks-home-gopeng`
 
-### 4.phone — 37 shared values
+### 4.phone — 31 shared values
 
-- `1155879788` → `haywood-senior-living-medini-johor-bahru`, `haywood-senior-living-bangsar`, `mintygreen-nursing-homesungai-long-kajang-eldercare-center-加影碧绿疗养院`, `mintygreen-nursing-retirement-home-kepong-and-pj-bandar-sri-damansara`, `mintygreen-care-suites-home-care-nursing-cheras-kl`, `mintygreen-care-centre-usj21-subang-jaya`
+- `1155879788` → `haywood-senior-living-medini-johor-bahru`, `haywood-senior-living-bangsar`, `mintygreen-nursing-home-sungai-long-kajang-eldercare-center`, `mintygreen-nursing-retirement-home-kepong-and-pj-bandar-sri-damansara`, `mintygreen-care-suites-home-care-nursing-cheras-kl`, `mintygreen-care-centre-usj21-subang-jaya`
 - `1110801805` → `master-care-centre`, `master-nursing-care-centre-daya`, `master-care-nursing-homesputeri-wangsa`
 - `1159919916` → `prestige-residence-care-group-sdn-bhd`, `green-acres-elderly-care-centre-managed-by-green-acres-resid`, `green-acres-home-care-centre-managed-by-green-acres-residenc`
 - `198811030` → `comfort-aged-care-centre`, `labuan-aged-care-centre`, `pusat-jagaan-kanaan-nursing-home`
-- `164388964` → `elaine-elderly-healthcare-centre`, `elaine-elderly-healthcare-centre`, `elaine-elderly-healthcare-centre`
 - `123495811` → `elderlove-care-centre`, `elderlove-living-care-centre`, `pusat-jagaan-complete-delight-sdn-bhd-2`
 - `195136661` → `our-home-care-centre`, `twilight-care-centre`, `twilight-elderly-care-centre`
 - `127776673` → `lee-nursing`, `hibiscus-serenity-care-centre-nursing-home-in-larkin-johor-b`
 - `126969403` → `comfort-home-care-centre`, `sincere-heart-care-centre`
-- `122583887` → `ks-care-centre-凯心安老院-shah-alam`, `ks-care-centre-凯心安老院-kajang`
-- `162515662` → `angel-best-centre-nursing-home-天使之家养老院-rawang-area-万挠区`, `协和开心之家安心养老庭院-甲洞安老院-kepong-nursing-home`
+- `122583887` → `ks-care-centre-shah-alam`, `ks-care-centre-kajang`
+- `162515662` → `angel-best-centre-nursing-home-rawang-area`, `kepong-nursing-home`
 - `327243828` → `care-concierge-care-luxe-ampang`, `care-concierge-malaysia`
 - `102383848` → `goldleaf-villa-care-centre`, `mega-senior-care-centre`
 - `172763551` → `st-marys-nursing-home`, `st-marys-nursing-home-2`
 - `102149701` → `sahana-old-folks-home`, `pusat-jagaan-warga-tua`
 - `123110411` → `wan-hing-care-center-sdn-bhd`, `wan-hing-care-center-psk-sdn-bhd`
 - `122908103` → `elders-home-care-centre`, `elders-home-plus-care-centre-sdn-bhd`
-- `149276960` → `golden-eldercare-senior-living-care-centre-plt`, `golden-eldercare-senior-living-care-centre-plt`
 - `165951750` → `happy-old-folks-care-centre`, `pusat-jagaan-papa-mama`
 - `196219723` → `house-of-megaway-care-centre-caw`, `house-of-megaways-care-centre`
 - `165570036` → `ideal-care-centre`, `pusat-jagaan-indah-harapan`
-- `126942882` → `ig-care-centre`, `golden-age-care-centre`
-- `162700469` → `joyhaven-senior-care-centre`, `pj-care-centre`
+- `126942882` → `ig-care-centre`, `golden-age-care-centre-selayang`
 - `124255695` → `keepers-dementia-care-centre-sdn-bhd`, `keepers-medi-care-centre-sdn-bhd`
 - `126702466` → `madam-yap-care-centre`, `orchids-well-care-centre`
 - `199866008` → `pusat-jagaan-kuantan-care-home-for-the-aged`, `pusat-jagaan-kuantan-care-home-for-the-aged-cawang`
-- `183714559` → `pusat-jagaan-mahligai-kasih-juju-sdn-bhd`, `pusat-jagaan-mahligai-kasih-juju-sdn-bhd`
 - `166383727` → `pusat-jagaan-mak-swee-cawangan-1`, `pusat-jagaan-orang-tua-mak-swee`
-- `194429023` → `pusat-jagaan-persatuan-kebajikan-buddhist-than-hsi`, `pusat-jagaan-persatuan-kebajikan-buddhist-than-hsi`
-- `126990893` → `pusat-jagaan-pertubuhan-kebajikan-chester-selangor`, `pusat-jagaan-pertubuhan-kebajikan-chester-selangor`
-- `194264381` → `pusat-jagaan-rumah-mentari-warga-emas-lelaki-berpe`, `pusat-jagaan-rumah-mentari-warga-emas-wanita`
+- `126990893` → `pusat-jagaan-pertubuhan-kebajikan-chester-selangor-2`, `pusat-jagaan-pertubuhan-kebajikan-chester-selangor-4`
 - `136649757` → `pusat-jagaan-warga-emas-dan-terapi-fitrah`, `pusat-jagaan-warga-emas-dan-terapi-fitrah-cawangan`
 - `194111923` → `pusat-jagaan-warga-emas-intan-cawangan`, `pusat-jagaan-warga-emas-intan`
 - `1139336294` → `pusat-jagaan-warga-emas-oasis-2`, `pusat-jagaan-warga-emas-oasis`
@@ -221,15 +210,17 @@ _None._
 
 ## Check 7c — Sheet state wrong (P1)
 
-0 live rows where the place_id is correct (name matches) but the sheet’s `state` column disagrees with the state in Google’s address. The facility is filed under the wrong state on the site.
+1 live rows where the place_id is correct (name matches) but the sheet’s `state` column disagrees with the state in Google’s address. The facility is filed under the wrong state on the site.
 
-### 7c. Sheet state wrong
+### 7c. Sheet state wrong (batch 1 of 1, items 1–1)
 
-_None._
+- **`golden-age-care-centre-muar`** (row 38) — Golden Age Care Centre (Muar)
+  - sheet state: **Johor** | Google says: **Selangor**
+  - Google address: No. 7, Jalan SS3/39, Taman Universiti, 47300 Petaling Jaya, Selangor, Malaysia
 
 ## Check 2 — Address completeness proxy (P1)
 
-120 live rows missing address signals (place_id / area / state). True street-address coverage needs the Details tab — see caveat at the top. For rows missing place_id, Check 8 below proposes a candidate.
+109 live rows missing address signals (place_id / area / state). True street-address coverage needs the Details tab — see caveat at the top. For rows missing place_id, Check 8 below proposes a candidate.
 
 ### 2. Address-incomplete rows (batch 1 of 2, items 1–100)
 
@@ -241,7 +232,6 @@ _None._
 - **`caregiver-in-kl`** (row 213, Selangor) — Caregiver in KL — missing: no place_id
 - **`sam-wound-and-home-nursing-care`** (row 216, Selangor) — Sam Wound And Home Nursing Care — missing: no place_id
 - **`jb-care-centre`** (row 324, Johor) — JB Care Centre — missing: no place_id
-- **`pusat-jagaan-rumah-sejahtera-batu-pahat`** (row 330, Johor) — Pusat Jagaan Rumah Sejahtera Batu Pahat — missing: no place_id
 - **`justlife-care-home`** (row 331, Johor) — Justlife Care Home — missing: no place_id
 - **`afh-elder-care`** (row 333, Kuala Lumpur) — AFH Elder Care — missing: no place_id
 - **`amitabha-malaysia-old-folks-home-kl`** (row 336, Kuala Lumpur) — Amitabha Malaysia Old Folks Home KL — missing: no place_id
@@ -267,20 +257,15 @@ _None._
 - **`blissful-heart-care-centre`** (row 441, Selangor) — Blissful Heart Care Centre — missing: no area
 - **`carefree-care-centre`** (row 445, Johor) — Carefree Care Centre — missing: no place_id
 - **`comfort-ville-care-centre`** (row 453, Johor) — Comfort Ville Care Centre — missing: no area
-- **`de-home-care-centre`** (row 461, Selangor) — DE HOME CARE CENTRE — missing: no place_id, no area
-- **`de-home-care-centre`** (row 462, Perak) — De Home Care Centre — missing: no place_id, no area
+- **`de-home-care-centre-selangor`** (row 461, Selangor) — DE HOME CARE CENTRE (Selangor) — missing: no place_id, no area
+- **`de-home-care-centre-perak`** (row 462, Perak) — De Home Care Centre (Perak) — missing: no place_id, no area
 - **`edelweiss-elderly-care-centre`** (row 464, Melaka) — Edelweiss Elderly Care Centre — missing: no place_id
-- **`elaine-elderly-healthcare-centre`** (row 466, Penang) — Elaine Elderly Healthcare Centre — missing: no place_id, no area
-- **`elaine-elderly-healthcare-centre`** (row 467, Penang) — Elaine Elderly Healthcare Centre — missing: no place_id, no area
-- **`elaine-elderly-healthcare-centre`** (row 468, Penang) — Elaine Elderly Healthcare Centre — missing: no place_id, no area
 - **`elders-home-care-centre`** (row 471, Melaka) — Elders Home Care Centre — missing: no area
 - **`evergreen-care-centre`** (row 474, Perak) — Evergreen Care Centre — missing: no area
 - **`evergreen-senior-living-care-centre`** (row 475, Selangor) — Evergreen Senior Living Care Centre — missing: no place_id, no area
 - **`faith-care-centre`** (row 479, Perak) — Faith Care Centre — missing: no area
 - **`families-care-centre`** (row 480, Selangor) — Families Care Centre — missing: no area
 - **`golden-apple-senior-citizen-care-centre`** (row 487, Perak) — Golden Apple Senior Citizen Care Centre — missing: no area
-- **`golden-eldercare-senior-living-care-centre-plt`** (row 489, Perak) — Golden Eldercare Senior Living Care Centre PLT — missing: no area
-- **`golden-eldercare-senior-living-care-centre-plt`** (row 490, Perak) — Golden Eldercare Senior Living Care Centre PLT — missing: no place_id
 - **`golden-roots-elder-care-centre`** (row 493, Selangor) — Golden Roots Elder Care Centre — missing: no area
 - **`green-medicare-house-care-centre`** (row 500, Selangor) — Green Medicare House Care Centre — missing: no area
 - **`house-of-megaway-care-centre-caw`** (row 508, Negeri Sembilan) — House of Megaway Care Centre (Caw) — missing: no area
@@ -288,7 +273,7 @@ _None._
 - **`i-home-care-center`** (row 512, Johor) — I Home Care Center — missing: no place_id, no area
 - **`jr-pro-care-centre`** (row 520, Kuala Lumpur) — JR Pro Care Centre — missing: no area
 - **`lotus-geriatric-care-centre`** (row 531, Perak) — Lotus Geriatric Care Centre — missing: no area
-- **`my-comfort-home-care-centre`** (row 536, Kuala Lumpur) — M.Y. Comfort Home Care Centre — missing: no area
+- **`my-comfort-home-care-centre-sek-17-1293`** (row 536, Selangor) — 1293 My Comfort Home Care Centre — missing: no area
 - **`mercy-senior-care-centre`** (row 542, Negeri Sembilan) — Mercy Senior Care Centre — missing: no area
 - **`my-kpj-home`** (row 551, Pahang) — MY KPJ Home — missing: no area
 - **`orchids-well-care-centre`** (row 555, Negeri Sembilan) — Orchids Well Care Centre — missing: no place_id, no area
@@ -314,17 +299,15 @@ _None._
 - **`pusat-jagaan-kuantan-care-home-for-the-aged-cawang`** (row 613, Pahang) — Pusat Jagaan Kuantan Care Home for the Aged (Cawangan) — missing: no place_id, no area
 - **`pusat-jagaan-laman-kasih-ayden`** (row 614, Johor) — Pusat Jagaan Laman Kasih Ayden — missing: no place_id
 - **`pusat-jagaan-lucky-care-home`** (row 617, Pahang) — Pusat Jagaan Lucky Care Home — missing: no area
-- **`pusat-jagaan-mahligai-kasih-juju-sdn-bhd`** (row 619, Melaka) — Pusat Jagaan Mahligai Kasih Juju Sdn. Bhd. — missing: no area
 - **`pusat-jagaan-noly`** (row 626, Johor) — Pusat Jagaan Noly — missing: no place_id
 - **`pusat-jagaan-orang-tua-en-teck`** (row 629, Johor) — Pusat Jagaan Orang Tua En Teck — missing: no place_id, no area
 - **`pusat-jagaan-orang-tua-grannies-cawangan`** (row 631, Pahang) — Pusat Jagaan Orang Tua Grannies (Cawangan) — missing: no area
 - **`pusat-jagaan-orang-tua-lok-leng`** (row 632, Selangor) — Pusat Jagaan Orang Tua Lok Leng — missing: no place_id, no area
 - **`pusat-jagaan-pawe-benoni`** (row 637, Sabah) — Pusat Jagaan PAWE Benoni — missing: no place_id
 - **`pusat-jagaan-pawe-papar`** (row 638, Sabah) — Pusat Jagaan PAWE Papar — missing: no place_id
-- **`pusat-jagaan-persatuan-kebajikan-buddhist-than-hsi`** (row 639, Penang) — PUSAT JAGAAN PERSATUAN KEBAJIKAN BUDDHIST THAN HSIANG KEDAH — missing: no area
 - **`pusat-jagaan-persatuan-kebajikan-warga-emas-permat`** (row 642, Johor) — Pusat Jagaan Persatuan Kebajikan Warga Emas Permata (Yan Xin Yuan) Muar Johor — missing: no place_id
-- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor`** (row 646, Kuala Lumpur) — PUSAT JAGAAN PERTUBUHAN KEBAJIKAN CHESTER SELANGOR (1) — missing: no area
-- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor`** (row 647, Selangor) — PUSAT JAGAAN PERTUBUHAN KEBAJIKAN CHESTER SELANGOR (2) — missing: no place_id, no area
+- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor-1`** (row 646, Kuala Lumpur) — PUSAT JAGAAN PERTUBUHAN KEBAJIKAN CHESTER SELANGOR (1) — missing: no area
+- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor-2`** (row 647, Selangor) — PUSAT JAGAAN PERTUBUHAN KEBAJIKAN CHESTER SELANGOR (2) — missing: no place_id, no area
 - **`pusat-jagaan-rumah-mentari-warga-emas-lelaki-berpe`** (row 660, Kedah) — Pusat Jagaan Rumah Mentari (Warga Emas Lelaki/ Berpenyakit) — missing: no area
 - **`pusat-jagaan-rumah-orang-tua-gabungan-persatuan-pe`** (row 664, Pahang) — Pusat Jagaan Rumah Orang Tua Gabungan Persatuan-Persatuan Tionghua Kuantan — missing: no area
 - **`pusat-jagaan-rumah-orang-tua-jubli-perak`** (row 665, Penang) — Pusat Jagaan Rumah Orang Tua Jubli Perak — missing: no place_id
@@ -333,9 +316,6 @@ _None._
 - **`pusat-jagaan-rumah-sejahtera-mambang-diawan`** (row 676, Perak) — Pusat Jagaan Rumah Sejahtera Mambang Diawan — missing: no place_id
 - **`pusat-jagaan-rumah-warga-emas-marian`** (row 681, Perak) — Pusat Jagaan Rumah Warga Emas Marian — missing: no place_id
 - **`pusat-jagaan-seavoy`** (row 683, Kuala Lumpur) — Pusat Jagaan Seavoy — missing: no area
-
-### 2. Address-incomplete rows (batch 2 of 2, items 101–120)
-
 - **`pusat-jagaan-warga-emas-impian-murni-kulim`** (row 703, Kedah) — Pusat Jagaan Warga Emas Impian Murni Kulim — missing: no place_id
 - **`pusat-jagaan-warga-emas-intan-cawangan`** (row 704, Penang) — Pusat Jagaan Warga Emas Intan (Cawangan) — missing: no area
 - **`pusat-jagaan-warga-emas-oasis-2`** (row 705, Selangor) — Pusat Jagaan Warga Emas Oasis (2) — missing: no place_id
@@ -344,31 +324,28 @@ _None._
 - **`pusat-jagaan-warga-tua-sinar-kebahagiaan`** (row 714, Johor) — Pusat Jagaan Warga Tua Sinar Kebahagiaan — missing: no place_id
 - **`sunny-residence-home-for-senior-citizens-care-cent`** (row 740, Perak) — Sunny Residence Home For Senior Citizens Care Centre — missing: no area
 - **`sutha-care-centre`** (row 743, Negeri Sembilan) — Sutha Care Centre — missing: no place_id, no area
+
+### 2. Address-incomplete rows (batch 2 of 2, items 101–109)
+
 - **`the-synod-of-the-diocese-of-west-malaysia-care-cen`** (row 749, Terengganu) — The Synod of the Diocese of West Malaysia Care Centre — missing: no place_id
 - **`theresa-home-care-centre-2`** (row 750, Selangor) — Theresa Home Care Centre (2) — missing: no place_id
 - **`victory-care-centre`** (row 764, Perak) — Victory Care Centre — missing: no area
 - **`pusat-jagaan-warga-emas-wcc`** (row 786, Johor) — Pusat Jagaan  Warga Emas Wcc — missing: no place_id
 - **`pusat-jagaan-warga-emas-seri-intan`** (row 789, Perak) — Pusat Jagaan Warga Emas Seri Intan — missing: no place_id
 - **`pusat-jagaan-warga-tua-sri-orkid`** (row 796, Perak) — Pusat Jagaan Warga Tua Sri Orkid — missing: no place_id
-- **`pusat-jagaan-rumah-sejahtera-batu-pahat`** (row 803, Johor) — Pusat Jagaan Rumah Sejahtera Batu Pahat — missing: no place_id
 - **`pusat-jagaan-warga-emas-banang`** (row 807, Johor) — Pusat Jagaan Warga Emas Banang — missing: no place_id
-- **`pj-care-centre`** (row 810, Selangor) — PJ CARE CENTRE — missing: no place_id, no area
-- **`pj-care-centre`** (row 811, Selangor) — PJ Care Centre — missing: no place_id
 - **`pusat-jagaan-warga-tua-elim`** (row 812, Perak) — Pusat Jagaan Warga Tua Elim — missing: no place_id, no area
-- **`golden-age-care-centre`** (row 814, Kuala Lumpur) — Golden Age Care Centre — missing: no place_id
+- **`golden-age-care-centre-selayang`** (row 814, Selangor) — Golden Age Care Centre (Selayang) — missing: no place_id
 
 ## Check 8 — Address recovery suggestions (P1)
 
-83 live rows have no `place_id`. Below is the top Places Text Search candidate for each — **suggestions only, not applied**. `LOW_CONFIDENCE` = candidate name does not clearly match the facility; verify before use.
+70 live rows have no `place_id`. Below is the top Places Text Search candidate for each — **suggestions only, not applied**. `LOW_CONFIDENCE` = candidate name does not clearly match the facility; verify before use.
 
-### 8. Address suggestions (batch 1 of 1, items 1–83)
+### 8. Address suggestions (batch 1 of 1, items 1–70)
 
 - **`blissful-senior-care-centre-licensed-and-certified-by-gover`** (row 35, Johor) — Blissful Care Centre — **OK**
   - suggested: name="居銮疗养院 - 悦年华养生苑 Blissful Senior Care Centre（ Licensed and Certified by Government）" | place_id=`ChIJhVzlDcJt0DEROPpRFCXNod4`
   - address: 29, Jalan 9, Taman Dato Amar Diraja 2, Taman Sri Paya, 86000 Kluang, Johor Darul Ta'zim, Malaysia
-- **`golden-age-care-centre`** (row 38, Kuala Lumpur) — Golden Age Care Centre — **OK**
-  - suggested: name="Golden Age Care Centre Malacca" | place_id=`ChIJ_3hCRSbv0TERmAoiCpkFEKE`
-  - address: Lot 643, Jalan Bukit Serindit, Taman Bukit Serindit, 75400 Melaka, Malaysia
 - **`caring-nursing-home`** (row 84, Johor) — Caring Nursing Home — **LOW_CONFIDENCE**
   - suggested: name="Nursing Home Johor Bahru | Loving Mansion Care Centre" | place_id=`ChIJA2JnGadr2jERIe49kBz4JeU`
   - address: 70, Jalan Kota 2/3, Kawasan Perindustrian Kota Puteri, 81750 Johor Bahru, Johor Darul Ta'zim, Malaysia
@@ -387,15 +364,9 @@ _None._
 - **`sam-wound-and-home-nursing-care`** (row 216, Selangor) — Sam Wound And Home Nursing Care — **NO_RESULT**
   - suggested: name="ZERO_RESULTS" | place_id=``
   - address: —
-- **`pj-care-centre`** (row 306, Kuala Lumpur) — PJ Care Centre — **OK**
-  - suggested: name="PJ Care Centre" | place_id=`ChIJd2Quf6BLzDERSTfpAk0kSaw`
-  - address: 20, Jalan 14/30, Seksyen 14, 46100 Petaling Jaya, Selangor, Malaysia
 - **`jb-care-centre`** (row 324, Johor) — JB Care Centre — **LOW_CONFIDENCE**
   - suggested: name="Nursing Care Centre" | place_id=`ChIJzxJuHyht2jER7lZDuFScwSI`
   - address: 6, Jalan Rentaka, Taman Sri Tebrau, 80050 Johor Bahru, Johor Darul Ta'zim, Malaysia
-- **`pusat-jagaan-rumah-sejahtera-batu-pahat`** (row 330, Johor) — Pusat Jagaan Rumah Sejahtera Batu Pahat — **LOW_CONFIDENCE**
-  - suggested: name="Rumah Sejahtera Yong Peng" | place_id=`ChIJFVNBfZ9G0DERSPXJkXQFmsA`
-  - address: 47, Jalan Ann Loh Yuan, Taman Selatan, 83700 Yong Peng, Johor Darul Ta'zim, Malaysia
 - **`justlife-care-home`** (row 331, Johor) — Justlife Care Home — **OK**
   - suggested: name="Genesis Life Care Centre JB" | place_id=`ChIJwXGcY6Nt2jERBOOAwwl3FLY`
   - address: Level 6, Holiday Plaza Tower, Jalan Dato Sulaiman, Taman Century, 80250 Johor Bahru, Johor Darul Ta'zim, Malaysia
@@ -447,33 +418,18 @@ _None._
 - **`carefree-care-centre`** (row 445, Johor) — Carefree Care Centre — **LOW_CONFIDENCE**
   - suggested: name="FCC Family Care Centre Johor Bahru" | place_id=`ChIJk_DuiRNv2jERKIfHDxs3Vck`
   - address: 17, Jalan Resam, Taman Bukit Tiram, 81800 Ulu Tiram, Johor Darul Ta'zim, Malaysia
-- **`de-home-care-centre`** (row 461, Selangor) — DE HOME CARE CENTRE — **LOW_CONFIDENCE**
-  - suggested: name="Ipoh D Palace Nursing Home" | place_id=`ChIJXc1RmkqSyjERcQHZ3GmqN9I`
-  - address: 18, Jalan Sri Klebang 4, Bandar Baru Sri Klebang, 31200 Ipoh, Perak, Malaysia
-- **`de-home-care-centre`** (row 462, Perak) — De Home Care Centre — **LOW_CONFIDENCE**
+- **`de-home-care-centre-selangor`** (row 461, Selangor) — DE HOME CARE CENTRE (Selangor) — **LOW_CONFIDENCE**
+  - suggested: name="D'Home Klang" | place_id=`ChIJrwUXyjhTzDERK0mTItTbI4c`
+  - address: 30, Jalan Merbuk, Kawasan 17, 41150 Klang, Selangor, Malaysia
+- **`de-home-care-centre-perak`** (row 462, Perak) — De Home Care Centre (Perak) — **LOW_CONFIDENCE**
   - suggested: name="Ipoh D Palace Nursing Home" | place_id=`ChIJXc1RmkqSyjERcQHZ3GmqN9I`
   - address: 18, Jalan Sri Klebang 4, Bandar Baru Sri Klebang, 31200 Ipoh, Perak, Malaysia
 - **`edelweiss-elderly-care-centre`** (row 464, Melaka) — Edelweiss Elderly Care Centre — **LOW_CONFIDENCE**
   - suggested: name="Elders Home Care Centre" | place_id=`ChIJaSeDHubw0TERw1xHJqwEZIQ`
   - address: 5219, Jalan Taman Muhibbah, Taman Muhibbah, 75200 Melaka, Malaysia
-- **`elaine-elderly-healthcare-centre`** (row 466, Penang) — Elaine Elderly Healthcare Centre — **OK**
-  - suggested: name="Elaine Health Care & Nursing Home" | place_id=`ChIJvT1gZ_DHSjARfZsrzsguk-4`
-  - address: 17, Lorong Cendana 27, Taman Cendana, Juru, 14100 Bukit Mertajam, Penang, Malaysia
-- **`elaine-elderly-healthcare-centre`** (row 467, Penang) — Elaine Elderly Healthcare Centre — **OK**
-  - suggested: name="Elaine Health Care & Nursing Home" | place_id=`ChIJvT1gZ_DHSjARfZsrzsguk-4`
-  - address: 17, Lorong Cendana 27, Taman Cendana, Juru, 14100 Bukit Mertajam, Penang, Malaysia
-- **`elaine-elderly-healthcare-centre`** (row 468, Penang) — Elaine Elderly Healthcare Centre — **OK**
-  - suggested: name="Elaine Health Care & Nursing Home" | place_id=`ChIJvT1gZ_DHSjARfZsrzsguk-4`
-  - address: 17, Lorong Cendana 27, Taman Cendana, Juru, 14100 Bukit Mertajam, Penang, Malaysia
 - **`evergreen-senior-living-care-centre`** (row 475, Selangor) — Evergreen Senior Living Care Centre — **OK**
   - suggested: name="Evergreen Retirement Villa" | place_id=`ChIJrTDyGbhLzDERtNJglYxA5_c`
   - address: No. 59, Seksyen 6/5, Anak Gasing Off Jalan Templer, Petaling Jaya, 46000, Petaling Jaya, Selangor, Pjs 6, 46000 Petaling Jaya, Selangor, Malaysia
-- **`golden-eldercare-senior-living-care-centre-plt`** (row 489, Perak) — Golden Eldercare Senior Living Care Centre PLT — **OK**
-  - suggested: name="Golden Age elderly care centre" | place_id=`ChIJVe7V3KjtyjER4L-LxSAAXKE`
-  - address: Taman Westpool, 31400 Ipoh, Perak, Malaysia
-- **`golden-eldercare-senior-living-care-centre-plt`** (row 490, Perak) — Golden Eldercare Senior Living Care Centre PLT — **OK**
-  - suggested: name="Golden Age elderly care centre" | place_id=`ChIJVe7V3KjtyjER4L-LxSAAXKE`
-  - address: Taman Westpool, 31400 Ipoh, Perak, Malaysia
 - **`hpy-old-folk-care-centre`** (row 510, Kuala Lumpur) — HPY Old Folk Care Centre — **LOW_CONFIDENCE**
   - suggested: name="Happy Old Folk Care Centre" | place_id=`ChIJj_95qXNIzDERE345d_GziMo`
   - address: Taman Million, 50546 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia
@@ -537,13 +493,7 @@ _None._
 - **`pusat-jagaan-persatuan-kebajikan-warga-emas-permat`** (row 642, Johor) — Pusat Jagaan Persatuan Kebajikan Warga Emas Permata (Yan Xin Yuan) Muar Johor — **LOW_CONFIDENCE**
   - suggested: name="PUSAT JAGAAN BAKTI MURNI WARGA EMAS DAN OKU" | place_id=`ChIJeWoMEqG50TER3uc5BwZHq_M`
   - address: Kampung Sri Amar Di Raja, 84000 Muar, Johor Darul Ta'zim, Malaysia
-- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor`** (row 646, Kuala Lumpur) — PUSAT JAGAAN PERTUBUHAN KEBAJIKAN CHESTER SELANGOR (1) — **OK**
-  - suggested: name="Pusat Jagaan Pertubuhan Kebajikan Chester Selangor" | place_id=`ChIJncNwMuFFzDERslj6jkPJHAk`
-  - address: 2 & 2A, Jalan Wangsa 3/4, Taman Wangsa Permai, 52200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia
-- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor`** (row 647, Selangor) — PUSAT JAGAAN PERTUBUHAN KEBAJIKAN CHESTER SELANGOR (2) — **OK**
-  - suggested: name="Pusat Jagaan Pertubuhan Kebajikan Chester Selangor" | place_id=`ChIJncNwMuFFzDERslj6jkPJHAk`
-  - address: 2 & 2A, Jalan Wangsa 3/4, Taman Wangsa Permai, 52200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia
-- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor`** (row 648, Kuala Lumpur) — Pusat Jagaan Pertubuhan Kebajikan Chester Selangor (4) — **OK**
+- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor-2`** (row 647, Selangor) — PUSAT JAGAAN PERTUBUHAN KEBAJIKAN CHESTER SELANGOR (2) — **OK**
   - suggested: name="Pusat Jagaan Pertubuhan Kebajikan Chester Selangor" | place_id=`ChIJncNwMuFFzDERslj6jkPJHAk`
   - address: 2 & 2A, Jalan Wangsa 3/4, Taman Wangsa Permai, 52200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia
 - **`pusat-jagaan-rumah-orang-tua-jubli-perak`** (row 665, Penang) — Pusat Jagaan Rumah Orang Tua Jubli Perak — **LOW_CONFIDENCE**
@@ -594,28 +544,19 @@ _None._
 - **`pusat-jagaan-warga-tua-sri-orkid`** (row 796, Perak) — Pusat Jagaan Warga Tua Sri Orkid — **OK**
   - suggested: name="Pusat Jagaan Warga Tua Sri Orkid" | place_id=`ChIJlVo7wX1z2jERAQZ_gm1n2vM`
   - address: 57, Jalan Seri Orkid 2, Taman Seri Orkid, 81300 Johor Bahru, Johor Darul Ta'zim, Malaysia
-- **`pusat-jagaan-rumah-sejahtera-batu-pahat`** (row 803, Johor) — Pusat Jagaan Rumah Sejahtera Batu Pahat — **LOW_CONFIDENCE**
-  - suggested: name="Rumah Sejahtera Yong Peng" | place_id=`ChIJFVNBfZ9G0DERSPXJkXQFmsA`
-  - address: 47, Jalan Ann Loh Yuan, Taman Selatan, 83700 Yong Peng, Johor Darul Ta'zim, Malaysia
 - **`pusat-jagaan-warga-emas-banang`** (row 807, Johor) — Pusat Jagaan Warga Emas Banang — **OK**
   - suggested: name="Pusat Jagaan Warga Emas Banang" | place_id=`ChIJw_MqmSxR0DER5FAw5vfI50Q`
   - address: 39, Jalan Tenggiri, Taman Banang, 83000 Batu Pahat, Johor Darul Ta'zim, Malaysia
-- **`pj-care-centre`** (row 810, Selangor) — PJ CARE CENTRE — **OK**
-  - suggested: name="PJ Care Centre" | place_id=`ChIJd2Quf6BLzDERSTfpAk0kSaw`
-  - address: 20, Jalan 14/30, Seksyen 14, 46100 Petaling Jaya, Selangor, Malaysia
-- **`pj-care-centre`** (row 811, Selangor) — PJ Care Centre — **OK**
-  - suggested: name="PJ Care Centre" | place_id=`ChIJd2Quf6BLzDERSTfpAk0kSaw`
-  - address: 20, Jalan 14/30, Seksyen 14, 46100 Petaling Jaya, Selangor, Malaysia
 - **`pusat-jagaan-warga-tua-elim`** (row 812, Perak) — Pusat Jagaan Warga Tua Elim — **LOW_CONFIDENCE**
   - suggested: name="Pusat Jagaan Warga Tua Elyon" | place_id=`ChIJFUIaUpjryjERfa93LaGMM7Y`
   - address: 140, Laluan Sungai Pari 4, Taman Mas, 30100 Ipoh, Perak, Malaysia
-- **`golden-age-care-centre`** (row 814, Kuala Lumpur) — Golden Age Care Centre — **OK**
-  - suggested: name="Golden Age Care Centre Malacca" | place_id=`ChIJ_3hCRSbv0TERmAoiCpkFEKE`
-  - address: Lot 643, Jalan Bukit Serindit, Taman Bukit Serindit, 75400 Melaka, Malaysia
+- **`golden-age-care-centre-selayang`** (row 814, Selangor) — Golden Age Care Centre (Selayang) — **OK**
+  - suggested: name="Gold Care Nursing Home Centre" | place_id=`ChIJ64bR5cBHzDERRQ_oh8NZrbQ`
+  - address: 81, Jalan Sri Selayang, Taman Sri Selayang, 68100 Batu Caves, Selangor, Malaysia
 
 ## Check 7d — Phone / website drift (P2, informational)
 
-216 live rows where the place_id, name and state all check out, but the phone or website differs from Google’s record. Often Google is simply more current, or the sheet holds a mobile/WhatsApp while Google holds the landline. Review, do not bulk-apply.
+204 live rows where the place_id, name and state all check out, but the phone or website differs from Google’s record. Often Google is simply more current, or the sheet holds a mobile/WhatsApp while Google holds the landline. Review, do not bulk-apply.
 
 ### 7d. Phone / website drift (batch 1 of 3, items 1–100)
 
@@ -628,9 +569,6 @@ _None._
 - **`lee-nursing`** (row 30, Johor) — Lee Nursing — **[WEBSITE]**
   - sheet: website=https://www.leenursinghome.com | phone=+60 12-777 6673
   - google: website=http://www.facebook.com/Lee-Nursing-Home-101030911675780 | phone=+60 12-777 6673
-- **`golden-age-care-centre`** (row 38, Kuala Lumpur) — Golden Age Care Centre — **[WEBSITE,PHONE]**
-  - sheet: website=https://gacc.com.my | phone=+60 6-952 7711
-  - google: website=https://www.goldenmansionseniorcarecentre.com/ | phone=+60 18-233 0817
 - **`master-nursing-care-centre-daya`** (row 51, Johor) — Master Nursing Care Centre @Daya — **[WEBSITE]**
   - sheet: website=https://www.masternursingcare.com | phone=+60 11-1080 1805
   - google: website=https://www.facebook.com/carecentrejbmsia/ | phone=—
@@ -736,9 +674,6 @@ _None._
 - **`evagayle-care-home`** (row 386, Selangor) — Evagayle Care Home — **[PHONE]**
   - sheet: website=— | phone=03-79575872
   - google: website=http://evagaylecarehome.com/ | phone=+60 12-334 9960
-- **`corning-elderly-care-centre`** (row 389, Selangor) — Corning Elderly Care Centre — **[PHONE]**
-  - sheet: website=https://www.facebook.com/Corning-Elderly-Care-Centre-CECC-Old-Klang-Road-108821406125953/timeline/ | phone=03-77730986
-  - google: website=https://www.facebook.com/Corning-Elderly-Care-Centre-CECC-Old-Klang-Road-108821406125953/timeline/ | phone=+60 19-217 1108
 - **`golden-cares-nursing-home`** (row 392, Selangor) — Golden Cares Nursing Home — **[PHONE]**
   - sheet: website=https://www.facebook.com/goldencaresnursing/ | phone=03-7955 6525
   - google: website=https://www.facebook.com/goldencaresnursing/ | phone=+60 13-393 9858
@@ -748,9 +683,6 @@ _None._
 - **`multicare-nursing-home`** (row 395, Selangor) — MultiCare Nursing Home — **[PHONE]**
   - sheet: website=https://www.multicarehomes.com/ | phone=03-79321621
   - google: website=https://www.multicarehomes.com/ | phone=+60 12-650 1805
-- **`pusat-jagaan-jivi`** (row 396, Selangor) — Pusat Jagaan Jivi — **[PHONE]**
-  - sheet: website=— | phone=03-7931 9497
-  - google: website=— | phone=+60 3-7931 9494
 - **`white-dove-retirement-nursing-home`** (row 397, Selangor) — White Dove Retirement Nursing Home — **[PHONE]**
   - sheet: website=http://www.whitedove.com.my/ | phone=03-74994943
   - google: website=— | phone=+60 3-7782 2413
@@ -865,9 +797,6 @@ _None._
 - **`golden-eldercare-senior-living-care-centre-plt`** (row 489, Perak) — Golden Eldercare Senior Living Care Centre PLT — **[PHONE]**
   - sheet: website=— | phone=+60149276960
   - google: website=— | phone=+60 18-789 5113
-- **`golden-eldercare-senior-living-care-centre-plt`** (row 490, Perak) — Golden Eldercare Senior Living Care Centre PLT — **[PHONE]**
-  - sheet: website=— | phone=+60149276960
-  - google: website=— | phone=+60 18-789 5113
 - **`golden-living-care-centre-sdn-bhd`** (row 492, Penang) — Golden Living Care Centre Sdn Bhd — **[PHONE]**
   - sheet: website=http://retirementhomepenang.com/index.php/contact-us/ | phone=+60124888868
   - google: website=http://retirementhomepenang.com/index.php/contact-us/ | phone=+60 12-476 7866
@@ -880,9 +809,6 @@ _None._
 - **`grace-care-centre`** (row 496, Perak) — Grace Care Centre — **[PHONE]**
   - sheet: website=— | phone=+60125063460
   - google: website=— | phone=+60 11-5282 6633
-- **`graceville-senior-care-centre`** (row 498, Johor) — Graceville Senior Care Centre — **[PHONE]**
-  - sheet: website=— | phone=+6069524950
-  - google: website=— | phone=+60 12-611 9093
 - **`green-gates-care-centre`** (row 499, Perak) — Green Gates Care Centre — **[PHONE]**
   - sheet: website=— | phone=+6055486838
   - google: website=— | phone=+60 12-468 8221
@@ -919,9 +845,6 @@ _None._
 - **`keepers-dementia-care-centre-sdn-bhd`** (row 522, Penang) — Keepers Dementia Care Centre Sdn Bhd — **[PHONE]**
   - sheet: website=http://www.myknc.com.my/ | phone=+60124255695
   - google: website=http://www.myknc.com.my/ | phone=+60 17-524 7998
-
-### 7d. Phone / website drift (batch 2 of 3, items 101–200)
-
 - **`keepers-medi-care-centre-sdn-bhd`** (row 523, Penang) — Keepers Medi Care Centre Sdn Bhd — **[PHONE]**
   - sheet: website=http://www.myknc.com.my/ | phone=+60124255695
   - google: website=http://www.myknc.com.my/ | phone=+60 4-526 2875
@@ -934,12 +857,12 @@ _None._
 - **`lotus-care-centre`** (row 530, Selangor) — Lotus Care Centre — **[WEBSITE,PHONE]**
   - sheet: website=https://www.facebook.com/lotuscharitycarecentre/ | phone=+60379491881
   - google: website=https://www.lotuscare.com.my/ | phone=+60 17-242 1881
-- **`my-comfort-home-care-centre`** (row 536, Kuala Lumpur) — M.Y. Comfort Home Care Centre — **[PHONE]**
-  - sheet: website=— | phone=+60123837741
-  - google: website=https://www.mycomforthomecarecentre.com/ | phone=+60 12-219 0637
 - **`madam-yap-care-centre`** (row 537, Negeri Sembilan) — Madam Yap Care Centre — **[PHONE]**
   - sheet: website=— | phone=+60126702466
   - google: website=— | phone=+60 6-632 0233
+
+### 7d. Phone / website drift (batch 2 of 3, items 101–200)
+
 - **`mama-papa-home-care-centre`** (row 539, Kuala Lumpur) — Mama Papa Home Care Centre — **[PHONE]**
   - sheet: website=https://ncmamamapapa0.godaddysites.com/ | phone=+60162107049
   - google: website=https://ncmamamapapa0.godaddysites.com/ | phone=+60 12-295 7696
@@ -985,7 +908,7 @@ _None._
 - **`pertubuhan-pengurusan-rumah-kebajikan-warga-emas-s`** (row 563, Pahang) — Pertubuhan Pengurusan Rumah Kebajikan Warga Emas Sang Riang — **[PHONE]**
   - sheet: website=https://www.facebook.com/sangriangoldfolks | phone=+6092556675
   - google: website=— | phone=+60 9-250 5379
-- **`pertubuhan-pusat-aktiviti-warga-emas-daerah-kuala-`** (row 564, Negeri Sembilan) — Pertubuhan Pusat Aktiviti Warga Emas Daerah Kuala Pilah — **[PHONE]**
+- **`pertubuhan-pusat-aktiviti-warga-emas-daerah-kuala-pilah`** (row 564, Negeri Sembilan) — Pertubuhan Pusat Aktiviti Warga Emas Daerah Kuala Pilah — **[PHONE]**
   - sheet: website=— | phone=+60196540079
   - google: website=— | phone=+60 6-483 1677
 - **`pertubuhan-pusat-aktiviti-warga-emas-daerah-rembau`** (row 565, Negeri Sembilan) — Pertubuhan Pusat Aktiviti Warga Emas Daerah Rembau — **[PHONE]**
@@ -1009,7 +932,7 @@ _None._
 - **`pusat-aktiviti-warga-emas-pawe-marang`** (row 575, Terengganu) — Pusat Aktiviti Warga Emas (PAWE) Marang — **[PHONE]**
   - sheet: website=— | phone=+60199455538
   - google: website=— | phone=+60 9-619 6813
-- **`pusat-aktiviti-warga-emas-pawe-kompleks-penyayang-`** (row 577, Pahang) — Pusat Aktiviti Warga Emas (PAWE) Kompleks Penyayang Kuantan — **[PHONE]**
+- **`pusat-aktiviti-warga-emas-pawe-kompleks-penyayang-kuantan`** (row 577, Pahang) — Pusat Aktiviti Warga Emas (PAWE) Kompleks Penyayang Kuantan — **[PHONE]**
   - sheet: website=— | phone=+60199521144
   - google: website=— | phone=+60 9-572 4225
 - **`pusat-aktiviti-warga-emas-hulu-terengganu`** (row 579, Terengganu) — Pusat Aktiviti Warga Emas Hulu Terengganu — **[PHONE]**
@@ -1057,10 +980,7 @@ _None._
 - **`pusat-jagaan-lucky-care-home`** (row 617, Pahang) — Pusat Jagaan Lucky Care Home — **[PHONE]**
   - sheet: website=— | phone=+60139217494
   - google: website=https://www.facebook.com/%E5%85%B3%E4%B8%B9%E5%B9%B8%E8%BF%90%E8%80%81%E4%BA%BA%E7%9C%8B%E6%8A%A4%E9%99%A2-1529037967353485/ | phone=+60 18-220 2218
-- **`pusat-jagaan-mahligai-kasih-juju-sdn-bhd`** (row 619, Melaka) — Pusat Jagaan Mahligai Kasih Juju Sdn. Bhd. — **[PHONE]**
-  - sheet: website=— | phone=+60183714559
-  - google: website=https://www.mahligaikasihjuju.com/ | phone=+60 12-373 2984
-- **`pusat-jagaan-mahligai-kasih-juju-sdn-bhd`** (row 620, Melaka) — Pusat Jagaan Mahligai Kasih Juju Sdn. Bhd. — **[PHONE]**
+- **`pusat-jagaan-mahligai-kasih-juju-bukit-baru`** (row 619, Melaka) — Pusat Jagaan Mahligai Kasih Juju (Bukit Baru) — **[PHONE]**
   - sheet: website=https://www.mahligaikasihjuju.com/ | phone=+60183714559
   - google: website=https://www.mahligaikasihjuju.com/ | phone=+60 12-373 2984
 - **`pusat-jagaan-mesra-intan-bandaraya`** (row 624, Perak) — Pusat Jagaan Mesra Intan Bandaraya — **[PHONE]**
@@ -1076,9 +996,6 @@ _None._
   - sheet: website=— | phone=+60165951750
   - google: website=— | phone=+60 5-323 3506
 - **`pusat-jagaan-persatuan-kebajikan-buddhist-than-hsi`** (row 639, Penang) — PUSAT JAGAAN PERSATUAN KEBAJIKAN BUDDHIST THAN HSIANG KEDAH — **[PHONE]**
-  - sheet: website=— | phone=+60194429023
-  - google: website=http://thanhsiang.org/en/wan-ching-yuan | phone=+60 4-641 4904
-- **`pusat-jagaan-persatuan-kebajikan-buddhist-than-hsi`** (row 640, Penang) — Pusat Jagaan Persatuan Kebajikan Buddhist Than Hsiang Kedah — **[PHONE]**
   - sheet: website=http://thanhsiang.org/en/wan-ching-yuan | phone=+60194429023
   - google: website=http://thanhsiang.org/en/wan-ching-yuan | phone=+60 4-641 4904
 - **`pusat-jagaan-persatuan-kebajikan-orang-orang-tua-b`** (row 641, Selangor) — Pusat Jagaan Persatuan Kebajikan Orang-Orang Tua Bahagia Selangor — **[PHONE]**
@@ -1090,13 +1007,10 @@ _None._
 - **`pusat-jagaan-persatuan-rumah-warga-emas-klang-sela`** (row 645, Selangor) — Pusat Jagaan Persatuan Rumah Warga Emas Klang, Selangor — **[PHONE]**
   - sheet: website=— | phone=+60166874879
   - google: website=— | phone=+60 12-969 6223
-- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor`** (row 646, Kuala Lumpur) — PUSAT JAGAAN PERTUBUHAN KEBAJIKAN CHESTER SELANGOR (1) — **[PHONE]**
+- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor-1`** (row 646, Kuala Lumpur) — PUSAT JAGAAN PERTUBUHAN KEBAJIKAN CHESTER SELANGOR (1) — **[PHONE]**
   - sheet: website=— | phone=+60367345839
   - google: website=https://pkcrs.wordpress.com/ | phone=+60 17-628 0893
-- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor`** (row 647, Selangor) — PUSAT JAGAAN PERTUBUHAN KEBAJIKAN CHESTER SELANGOR (2) — **[PHONE]**
-  - sheet: website=— | phone=+60126990893
-  - google: website=https://pkcrs.wordpress.com/ | phone=+60 17-628 0893
-- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor`** (row 648, Kuala Lumpur) — Pusat Jagaan Pertubuhan Kebajikan Chester Selangor (4) — **[PHONE]**
+- **`pusat-jagaan-pertubuhan-kebajikan-chester-selangor-4`** (row 648, Kuala Lumpur) — Pusat Jagaan Pertubuhan Kebajikan Chester Selangor (4) — **[PHONE]**
   - sheet: website=— | phone=+60126990893
   - google: website=https://pkcrs.wordpress.com/ | phone=+60 17-628 0893
 - **`pusat-jagaan-pertubuhan-kebajikan-rumah-orang-oran`** (row 651, Perak) — Pusat Jagaan Pertubuhan Kebajikan Rumah Orang-Orang Tua (Islam) Titian Abadi — **[PHONE]**
@@ -1105,16 +1019,10 @@ _None._
 - **`pusat-jagaan-pertubuhan-kebajikan-warga-emas-emman`** (row 652, Perak) — Pusat Jagaan Pertubuhan Kebajikan Warga Emas Emmanuel Larut Matang dan Selama Perak — **[PHONE]**
   - sheet: website=— | phone=+60175191924
   - google: website=— | phone=+60 12-512 1976
-- **`pusat-jagaan-pertubuhan-kebajikan-warga-tua-nurul-`** (row 654, Terengganu) — Pusat Jagaan Pertubuhan Kebajikan Warga Tua Nurul Saadah — **[PHONE]**
-  - sheet: website=— | phone=+601136397531
-  - google: website=— | phone=+60 9-692 0824
 - **`pusat-jagaan-pertubuhan-wa-khiew-yi-shea`** (row 656, Perak) — Pusat Jagaan Pertubuhan Wa Khiew Yi Shea — **[PHONE]**
   - sheet: website=— | phone=+60165231388
   - google: website=— | phone=+60 5-598 7195
 - **`pusat-jagaan-rumah-mentari-warga-emas-lelaki-berpe`** (row 660, Kedah) — Pusat Jagaan Rumah Mentari (Warga Emas Lelaki/ Berpenyakit) — **[PHONE]**
-  - sheet: website=— | phone=+60194264381
-  - google: website=— | phone=+60 4-493 1033
-- **`pusat-jagaan-rumah-mentari-warga-emas-wanita`** (row 662, Kedah) — Pusat Jagaan Rumah Mentari (Warga Emas Wanita) — **[PHONE]**
   - sheet: website=— | phone=+60194264381
   - google: website=— | phone=+60 4-493 1033
 - **`pusat-jagaan-rumah-orang-tua-bukit-bethelbethel-hi`** (row 663, Kedah) — Pusat Jagaan Rumah Orang Tua Bukit Bethel(Bethel Hill Old Folks Home) — **[PHONE]**
@@ -1222,9 +1130,6 @@ _None._
 - **`verde-home-care-centre`** (row 763, Perak) — Verde Home Care Centre — **[PHONE]**
   - sheet: website=— | phone=+60165218916
   - google: website=— | phone=+60 16-280 8916
-
-### 7d. Phone / website drift (batch 3 of 3, items 201–216)
-
 - **`victory-care-centre`** (row 764, Perak) — Victory Care Centre — **[PHONE]**
   - sheet: website=— | phone=+60165677565
   - google: website=— | phone=+60 16-590 0291
@@ -1246,18 +1151,21 @@ _None._
 - **`pusat-jagaan-warga-tua-sri-tanjung`** (row 797, Kuala Lumpur) — Pusat Jagaan Warga Tua Sri Tanjung — **[PHONE]**
   - sheet: website=— | phone=03-60386591
   - google: website=— | phone=+60 18-209 8986
-- **`pusat-jagaan-orang-tua-ceria`** (row 798, Johor) — Pusat Jagaan Orang Tua Ceria — **[PHONE]**
-  - sheet: website=— | phone=019-7785491
-  - google: website=— | phone=+60 7-558 5362
 - **`pusat-jagaan-orang-tua-tampin`** (row 801, Negeri Sembilan) — Pusat Jagaan Orang Tua Tampin — **[PHONE]**
   - sheet: website=— | phone=012-6016308
   - google: website=— | phone=+60 12-494 2066
 - **`pusat-jagaan-rumah-sejahtera-baitul-hannan`** (row 802, Perlis) — Pusat Jagaan Rumah Sejahtera Baitul Hannan — **[PHONE]**
   - sheet: website=— | phone=0124747882
   - google: website=— | phone=+60 4-980 6733
+- **`rumah-sejahtera-yong-peng`** (row 803, Johor) — Rumah Sejahtera Yong Peng — **[PHONE]**
+  - sheet: website=— | phone=07-4312915
+  - google: website=— | phone=+60 7-467 2517
 - **`pusat-jagaan-rumah-sejahtera-bertam`** (row 804, Kuala Lumpur) — Pusat Jagaan Rumah Sejahtera Bertam — **[PHONE]**
   - sheet: website=— | phone=0194478157/ 0458887080
   - google: website=http://pjscharityhomes.weebly.com/ | phone=+60 3-6035 5448
+
+### 7d. Phone / website drift (batch 3 of 3, items 201–204)
+
 - **`pusat-jagaan-rumah-sejahtera-rembau`** (row 805, Negeri Sembilan) — Pusat Jagaan Rumah Sejahtera Rembau — **[PHONE]**
   - sheet: website=— | phone=019-6608631
   - google: website=— | phone=+60 6-685 2210
@@ -1267,9 +1175,6 @@ _None._
 - **`pusat-jagaan-warga-tua-kp`** (row 813, Perak) — Pusat Jagaan Warga Tua KP — **[PHONE]**
   - sheet: website=https://m.facebook.com/puatwargatuakp/?locale2=ms_MY | phone=016-5981294
   - google: website=https://m.facebook.com/puatwargatuakp/?locale2=ms_MY | phone=+60 5-847 6766
-- **`golden-age-care-centre`** (row 814, Kuala Lumpur) — Golden Age Care Centre — **[WEBSITE,PHONE]**
-  - sheet: website=http://goldcarenursinghome.com/ | phone=012-6942882
-  - google: website=https://www.goldenmansionseniorcarecentre.com/ | phone=+60 18-233 0817
 - **`harmopeace-oldfolks-home-gopeng`** (row 816, Perak) — Harmopeace Oldfolks Home — **[PHONE]**
   - sheet: website=http://www.tbspinghe.org | phone=+6053595353
   - google: website=http://www.tbspinghe.org/ | phone=+60 5-359 2381
@@ -1284,7 +1189,7 @@ _None._
 
 ## Check 6 — Title vs slug incoherence (P2)
 
-323 rows where the slug shares < 2 significant tokens with the title. Most are harmless (slug generated before a title edit), but a few indicate a wrong slug.
+313 rows where the slug shares < 2 significant tokens with the title. Most are harmless (slug generated before a title edit), but a few indicate a wrong slug.
 
 ### 6. Title/slug mismatch (batch 1 of 4, items 1–100)
 
@@ -1368,7 +1273,7 @@ _None._
   - title tokens: well | slug tokens: well
 - **`elderlove-living-care-centre-sglong`** (row 172) — Elderlove Living Care Centre (Sg.Long)
   - title tokens: elderlove, long | slug tokens: elderlove, sglong
-- **`ks-care-centre-凯心安老院-kajang`** (row 173) — KS Care Centre 凯心安老院 Kajang
+- **`ks-care-centre-kajang`** (row 173) — KS Care Centre Kajang
   - title tokens: kajang | slug tokens: kajang
 - **`sincere-care-home`** (row 174) — Sincere Care Home
   - title tokens: sincere | slug tokens: sincere
@@ -1378,8 +1283,6 @@ _None._
   - title tokens: kajang | slug tokens: kajang
 - **`geriacare`** (row 180) — Geriacare
   - title tokens: geriacare | slug tokens: geriacare
-- **`woodrose-senior-residences`** (row 185) — Woodrose Senior Residences
-  - title tokens: woodrose | slug tokens: woodrose
 - **`canaan-home`** (row 186) — Canaan Home
   - title tokens: canaan | slug tokens: canaan
 - **`ampang-old-folks-home`** (row 193) — Ampang Old Folks Home
@@ -1394,9 +1297,9 @@ _None._
   - title tokens: sayang | slug tokens: sayang
 - **`avicenna-nursing-centre`** (row 205) — Avicenna Nursing Centre
   - title tokens: avicenna | slug tokens: avicenna
-- **`甲洞乐理护老之家-opulencecare-ii`** (row 210) — 甲洞乐理护老之家 OpulenceCARE II
+- **`opulencecare-ii`** (row 210) — OpulenceCARE II
   - title tokens: opulencecare | slug tokens: opulencecare
-- **`协和开心之家安心养老庭院-甲洞安老院-kepong-nursing-home`** (row 211) — 协和开心之家安心养老庭院 甲洞安老院 Kepong Nursing Home
+- **`kepong-nursing-home`** (row 211) — Kepong Nursing Home
   - title tokens: kepong | slug tokens: kepong
 - **`caregiver-in-kl`** (row 213) — Caregiver in KL
   - title tokens: caregiver | slug tokens: caregiver
@@ -1422,8 +1325,8 @@ _None._
   - title tokens: prowell | slug tokens: prowell
 - **`pusat-jagaan-warga-emas-penyayang`** (row 240) — Pusat Jagaan Warga Emas Penyayang
   - title tokens: penyayang | slug tokens: penyayang
-- **`suria-care-homepusat-jagaan-warga-emas舒利亚乐龄休养中心`** (row 243) — Suria Care Home/Pusat Jagaan Warga Emas/舒利亚乐龄休养中心
-  - title tokens: suria | slug tokens: homepusat, suria
+- **`suria-care-home-pusat-jagaan-warga-emas`** (row 243) — Suria Care Home / Pusat Jagaan Warga Emas
+  - title tokens: suria | slug tokens: suria
 - **`pusat-jagaan-persatuan-kebajikan-warga-emas-chan-kl`** (row 244) — Pusat Jagaan Persatuan Kebajikan Warga Emas Chan Kl
   - title tokens: chan | slug tokens: chan
 - **`pusat-jagaan-orang-tua-damai`** (row 246) — Pusat Jagaan Orang Tua Damai
@@ -1434,7 +1337,7 @@ _None._
   - title tokens: kangiten | slug tokens: kangiten
 - **`pusat-jagaan-warga-tua-sra`** (row 250) — Pusat Jagaan Warga Tua SRA
   - title tokens: sra | slug tokens: sra
-- **`愛心樂齡休養中心-pusat-jagaan-warga-emas-cinta`** (row 255) — 愛心樂齡休養中心 Pusat Jagaan Warga Emas Cinta
+- **`pusat-jagaan-warga-emas-cinta-2`** (row 255) — Pusat Jagaan Warga Emas Cinta
   - title tokens: cinta | slug tokens: cinta
 - **`pusat-jagaan-rumah-orang-tua-wesley`** (row 257) — Pusat Jagaan Rumah Orang Tua Wesley
   - title tokens: wesley | slug tokens: wesley
@@ -1452,8 +1355,6 @@ _None._
   - title tokens: guardian | slug tokens: guardian
 - **`ixora-senior-care`** (row 277) — Ixora Senior Care
   - title tokens: ixora | slug tokens: ixora
-- **`pusat-jagaan-warga-emas-suria`** (row 279) — Pusat Jagaan Warga Emas Suria
-  - title tokens: suria | slug tokens: suria
 - **`noble-care-nursing-home`** (row 281) — Noble Care Nursing Home
   - title tokens: noble | slug tokens: noble
 - **`pusat-jagaan-warga-emas-al-fattah`** (row 283) — Pusat Jagaan Warga Emas Al-Fattah
@@ -1468,8 +1369,6 @@ _None._
   - title tokens: damai | slug tokens: damai
 - **`synergy-care-centre`** (row 295) — Synergy Care Centre
   - title tokens: synergy | slug tokens: synergy
-- **`pusat-jagaan-warga-tua-impresif`** (row 296) — Pusat Jagaan Warga Tua Impresif
-  - title tokens: impresif | slug tokens: impresif
 - **`noble-care-malaysia`** (row 298) — Noble Care Malaysia Sdn Bhd
   - title tokens: noble | slug tokens: noble
 - **`my-peaceful-home-care-centre`** (row 299) — My Peaceful Home Care Centre
@@ -1488,15 +1387,15 @@ _None._
   - title tokens: unique | slug tokens: unique
 - **`my-aged-care-nursing-home-in-pj-old-town`** (row 310) — My Aged Care Nursing Home in PJ Old Town
   - title tokens: town | slug tokens: town
-
-### 6. Title/slug mismatch (batch 2 of 4, items 101–200)
-
 - **`pearl-care-elderly-center`** (row 314) — Pearl Care Elderly Center Sdn. Bhd.
   - title tokens: pearl | slug tokens: pearl
 - **`st-marys-nursing-home-2`** (row 317) — St. Mary's Nursing Home
   - title tokens: mary | slug tokens: marys
 - **`my-precious-home-care-retirement-home`** (row 320) — My Precious Home Care Retirement Home
   - title tokens: precious | slug tokens: precious
+
+### 6. Title/slug mismatch (batch 2 of 4, items 101–200)
+
 - **`pearl-care-elderly-home`** (row 322) — Pearl Care Elderly Home
   - title tokens: pearl | slug tokens: pearl
 - **`pusat-warga-emas-hillville`** (row 326) — Pusat Warga Emas Hillville
@@ -1553,16 +1452,10 @@ _None._
   - title tokens: felicity | slug tokens: felicity
 - **`evagayle-care-home`** (row 386) — Evagayle Care Home
   - title tokens: evagayle | slug tokens: evagayle
-- **`corning-elderly-care-centre`** (row 389) — Corning Elderly Care Centre
-  - title tokens: corning | slug tokens: corning
-- **`star-nursing-home`** (row 393) — Star Nursing Home
-  - title tokens: star | slug tokens: star
 - **`cherish-retirement-and-nursing-home`** (row 394) — Cherish Retirement And Nursing Home
   - title tokens: cherish | slug tokens: cherish
 - **`multicare-nursing-home`** (row 395) — MultiCare Nursing Home
   - title tokens: multicare | slug tokens: multicare
-- **`pusat-jagaan-jivi`** (row 396) — Pusat Jagaan Jivi
-  - title tokens: jivi | slug tokens: jivi
 - **`pusat-jagaan-rumah-kebajikan-warga-emas-st-mark`** (row 403) — Pusat Jagaan Rumah Kebajikan Warga Emas St Mark
   - title tokens: mark | slug tokens: mark
 - **`homage-malaysia`** (row 405) — Homage Malaysia
@@ -1631,6 +1524,10 @@ _None._
   - title tokens: aliff | slug tokens: aliff
 - **`d-palace-care-centre`** (row 458) — D Palace Care Centre
   - title tokens: palace | slug tokens: palace
+- **`de-home-care-centre-selangor`** (row 461) — DE HOME CARE CENTRE (Selangor)
+  - title tokens: selangor | slug tokens: selangor
+- **`de-home-care-centre-perak`** (row 462) — De Home Care Centre (Perak)
+  - title tokens: perak | slug tokens: perak
 - **`dr-thomas-care-centre`** (row 463) — Dr. Thomas Care Centre
   - title tokens: thomas | slug tokens: thomas
 - **`edelweiss-elderly-care-centre`** (row 464) — Edelweiss Elderly Care Centre
@@ -1669,8 +1566,6 @@ _None._
   - title tokens: grace | slug tokens: grace
 - **`grace-old-folks-home-care-centre`** (row 497) — Grace Old Folks Home Care Centre
   - title tokens: grace | slug tokens: grace
-- **`graceville-senior-care-centre`** (row 498) — Graceville Senior Care Centre
-  - title tokens: graceville | slug tokens: graceville
 - **`grg-senior-care-centre`** (row 501) — GRG Senior Care Centre
   - title tokens: grg | slug tokens: grg
 - **`happiness-home-care-centre-plt`** (row 502) — Happiness Home Care Centre PLT
@@ -1691,9 +1586,6 @@ _None._
   - title tokens: jawi | slug tokens: jawi
 - **`jj-blessing-care-centre`** (row 516) — JJ Blessing Care Centre
   - title tokens: blessing | slug tokens: blessing
-
-### 6. Title/slug mismatch (batch 3 of 4, items 201–300)
-
 - **`joyful-home-elderly-care-centre`** (row 517) — Joyful Home Elderly Care Centre
   - title tokens: joyful | slug tokens: joyful
 - **`joyhaven-senior-care-centre`** (row 518) — Joyhaven Senior Care Centre
@@ -1704,14 +1596,15 @@ _None._
   - title tokens: kindnest | slug tokens: kindnest
 - **`labuan-aged-care-centre`** (row 525) — Labuan Aged Care Centre
   - title tokens: labuan | slug tokens: labuan
+
+### 6. Title/slug mismatch (batch 3 of 4, items 201–300)
+
 - **`lotus-care-centre`** (row 530) — Lotus Care Centre
   - title tokens: lotus | slug tokens: lotus
 - **`loving-care-centre`** (row 534) — Loving Care Centre
   - title tokens: loving | slug tokens: loving
 - **`lyna-care-centre`** (row 535) — Lyna Care Centre
   - title tokens: lyna | slug tokens: lyna
-- **`my-comfort-home-care-centre`** (row 536) — M.Y. Comfort Home Care Centre
-  - title tokens: comfort | slug tokens: comfort
 - **`madre-care-centre`** (row 538) — Madre Care Centre
   - title tokens: madre | slug tokens: madre
 - **`mareea-care-centre`** (row 540) — Mareea Care Centre
@@ -1726,8 +1619,6 @@ _None._
   - title tokens: merry | slug tokens: merry
 - **`moonlight-care-centre`** (row 547) — Moonlight Care Centre
   - title tokens: moonlight | slug tokens: moonlight
-- **`my-comfort-home-care-centre`** (row 549) — MY Comfort Home Care Centre
-  - title tokens: comfort | slug tokens: comfort
 - **`my-fathers-home-care-centre`** (row 550) — MY Father's Home Care Centre
   - title tokens: father | slug tokens: fathers
 - **`my-kpj-home`** (row 551) — MY KPJ Home
@@ -1824,8 +1715,6 @@ _None._
   - title tokens: dan, emmanuel, larut, matang, perak, selama | slug tokens: emman
 - **`pusat-jagaan-pertubuhan-kebajikan-warga-emas-xiang`** (row 653) — Pusat Jagaan Pertubuhan Kebajikan Warga Emas Xiang an Kuantan Pahang
   - title tokens: kuantan, pahang, xiang | slug tokens: xiang
-- **`pusat-jagaan-pertubuhan-kebajikan-warga-tua-nurul-`** (row 654) — Pusat Jagaan Pertubuhan Kebajikan Warga Tua Nurul Saadah
-  - title tokens: nurul, saadah | slug tokens: nurul
 - **`pusat-jagaan-pertubuhan-pengurusan-rumah-warga-tua`** (row 655) — Pusat Jagaan Pertubuhan Pengurusan Rumah Warga Tua "Anning" Ipoh, Perak
   - title tokens: anning, ipoh, pengurusan, perak | slug tokens: pengurusan
 - **`pusat-jagaan-rapat`** (row 659) — Pusat Jagaan Rapat
@@ -1858,8 +1747,6 @@ _None._
   - title tokens: oasis | slug tokens: oasis
 - **`pusat-jagaan-warga-emas-vr-melodies`** (row 709) — Pusat Jagaan Warga Emas Vr Melodies
   - title tokens: melodies | slug tokens: melodies
-- **`rainbow-senior-care-centre`** (row 721) — Rainbow Senior Care Centre
-  - title tokens: rainbow | slug tokens: rainbow
 - **`recovering-home-care-centre`** (row 722) — Recovering Home Care Centre
   - title tokens: recovering | slug tokens: recovering
 - **`sahabats-care-centre-sdn-bhd`** (row 727) — Sahabats Care Centre Sdn Bhd
@@ -1894,9 +1781,6 @@ _None._
   - title tokens: tila | slug tokens: tila
 - **`trinity-care-centre`** (row 753) — Trinity Care Centre
   - title tokens: trinity | slug tokens: trinity
-
-### 6. Title/slug mismatch (batch 4 of 4, items 301–323)
-
 - **`true-home-care-centre`** (row 754) — True Home Care Centre
   - title tokens: true | slug tokens: true
 - **`twilight-care-centre`** (row 756) — Twilight Care Centre
@@ -1915,6 +1799,9 @@ _None._
   - title tokens: intan | slug tokens: intan
 - **`pusat-jagaan-warga-emas-wcc`** (row 786) — Pusat Jagaan  Warga Emas Wcc
   - title tokens: wcc | slug tokens: wcc
+
+### 6. Title/slug mismatch (batch 4 of 4, items 301–313)
+
 - **`pusat-jagaan-warga-emas-cinta`** (row 787) — Pusat Jagaan Warga Emas Cinta
   - title tokens: cinta | slug tokens: cinta
 - **`pusat-jagaan-warga-emas-oasis`** (row 788) — Pusat Jagaan Warga Emas Oasis
@@ -1927,8 +1814,6 @@ _None._
   - title tokens: rebina | slug tokens: rebina
 - **`pusat-jagaan-warga-tua-seremban`** (row 795) — Pusat Jagaan Warga Tua Seremban
   - title tokens: seremban | slug tokens: seremban
-- **`pusat-jagaan-orang-tua-ceria`** (row 798) — Pusat Jagaan Orang Tua Ceria
-  - title tokens: ceria | slug tokens: ceria
 - **`pusat-jagaan-orang-tua-jireh`** (row 799) — Pusat Jagaan Orang Tua Jireh
   - title tokens: jireh | slug tokens: jireh
 - **`pusat-jagaan-orang-tua-pantai`** (row 800) — Pusat Jagaan Orang Tua Pantai
