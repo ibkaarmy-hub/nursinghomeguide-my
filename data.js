@@ -46,14 +46,15 @@ const GROUPS = {
   'golden-age-care-centre': {
     slug: 'golden-age-care-centre',
     name: 'Golden Age Care Centre (GACC)',
-    tagline: 'Multi-branch private nursing home chain across southern Johor',
+    tagline: 'Multi-branch private nursing home chain — 4 branches across Johor and Melaka',
     website: 'https://gacc.com.my',
-    state: 'Johor',
-    description: 'Golden Age Care Centre (GACC) operates three branches across Johor — its headquarters in Muar (JKM 4-Star rated, 3.9★/8 reviews), a second branch in Tangkak, and a third in Batu Pahat. Care quality varies significantly by branch: the Muar HQ has a strong reputation while the Batu Pahat branch has attracted poor reviews (1.3★/3). GACC offers residential care, memory care, rehabilitation therapy, and palliative services across its network.',
+    state: 'Johor, Melaka',
+    description: 'Golden Age Care Centre (GACC) operates four branches: its headquarters in Muar (3.9★/8 reviews) and a Melaka branch (4★/9), plus two further Johor branches in Batu Pahat and Tangkak. Care quality varies by branch — the Muar HQ and Melaka branch have solid reputations, while the Batu Pahat branch has attracted poor reviews (1.3★/3). GACC offers residential nursing care, memory care, rehabilitation therapy, and palliative services across its network.',
     branches: [
-      'golden-age-care-centre',
-      'golden-age-care-centre-tangkak',
+      'golden-age-care-centre-muar',
+      'golden-age-care-centre-melaka',
       'golden-age-care-centre-batu-pahat',
+      'golden-age-care-centre-tangkak',
     ],
   },
 
