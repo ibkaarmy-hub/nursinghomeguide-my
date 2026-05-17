@@ -1933,12 +1933,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/nursing-homes/dementia-care-centre/</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://nursinghomeguide.my/nursing-homes/dhaalia-elderly-care-centre/</loc>
     <lastmod>2026-05-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -2642,7 +2636,7 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/nursing-homes/edelweiss-elderly-care-centre/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2882,7 +2876,7 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/nursing-homes/house-of-megaways-care-centre/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2924,12 +2918,6 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/nursing-homes/jj-blessing-care-centre/</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://nursinghomeguide.my/nursing-homes/joyful-home-elderly-care-centre/</loc>
     <lastmod>2026-05-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -3542,7 +3530,7 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-mak-swee-cawangan-1/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -3818,7 +3806,7 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-sejahtera-gopeng/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -4760,6 +4748,54 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/org.html?slug=merry-care-centre</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=multicare-nursing-home</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=care-concierge</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=seavoy-nursing-home</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=alexa-villa</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=elderlove</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=keepers</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=my-precious-home-care</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/org.html?slug=rumah-victory</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
