@@ -38,8 +38,8 @@ const GROUPS = {
       'eha-sunview-eldercare-kempas-1-nursing-home-johor-bahru',
       'eha-elder-care-home-kluang-licensed-and-certified-by-govern',
       'eha-grandview-titiwangsa-kl-elderly-care-post-surgery-recovery-stroke-rehabilita',
-      'eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip',
-      'eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl',
+      'eha-grandview-eldercare-1-nursing-home-kl-kepong-desa-parkcity-jalan-ipoh',
+      'eha-bayview-eldercare-cheras-sungai-long-kajang-1-nursing-home-kl',
     ],
   },
 
@@ -216,8 +216,8 @@ const GROUPS = {
     description: 'Oasis Nursing Home (安康之家疗养院) operates three branches in Selangor: two in Shah Alam (Setia Alam and the main Shah Alam branch) and one in Klang (Kapar). The group is Chinese-operated and caters primarily to Chinese-speaking residents. All branches are consistently well-reviewed (5.0★).',
     branches: [
       'oasis-nursing-home-setia-alam',
-      'oasis-nursing-home-shah-alam-安康之家疗养院',
-      'oasis-nursing-home-klang-安康之家巴生疗养院',
+      'oasis-nursing-home-shah-alam',
+      'oasis-nursing-home-klang',
     ],
   },
   'mona-elder-care': {
@@ -372,8 +372,8 @@ const GROUPS = {
     state: 'Selangor, Kuala Lumpur',
     description: 'Mintygreen (碧绿疗养院) is a private nursing home chain founded in 2017, operating multiple branches across the Klang Valley — Sungai Long & Kajang HQ, Cheras (Sungai Long), Subang Jaya USJ 21, Kepong/PJ Bandar Sri Damansara (Sphere Damansara), plus a home care/care suites arm in Cheras KL. The group is AgeCope-certified and integrates Traditional Chinese Medicine (acupuncture, Tui Na) alongside conventional nursing care, with bi-weekly GP visits and full nursing capabilities including NG, catheter, and PEG. Long-term care from RM 4,000/month, day care RM 220/day.',
     branches: [
-      'mintygreen-nursing-homesungai-long-kajang-eldercare-center-加影碧绿疗养院',
-      'mintygreen-senior-care-center-cherassungai-long-蕉赖碧绿疗养院',
+      'mintygreen-nursing-home-sungai-long-kajang-eldercare-center',
+      'mintygreen-senior-care-center-cheras-sungai-long',
       'mintygreen-nursing-retirement-home-kepong-and-pj-bandar-sri-damansara',
       'mintygreen-care-suites-home-care-nursing-cheras-kl',
       'mintygreen-care-centre-usj21-subang-jaya',
