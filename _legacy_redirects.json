@@ -1,0 +1,19 @@
+[
+  {"dir": "nursing-homes", "old": "eha-grandview-eldercare-甲洞温馨疗养别墅-1-nursing-home-kl-kepong-desa-parkcity-jalan-ip", "new": "eha-grandview-eldercare-1-nursing-home-kl-kepong-desa-parkcity-jalan-ipoh", "title": "EHA Grandview Eldercare - #1 Nursing Home KL"},
+  {"dir": "nursing-homes", "old": "ks-care-centre-凯心安老院-shah-alam", "new": "ks-care-centre-shah-alam", "title": "KS Care Centre Shah Alam"},
+  {"dir": "nursing-homes", "old": "angel-best-centre-nursing-home-天使之家养老院-rawang-area-万挠区", "new": "angel-best-centre-nursing-home-rawang-area", "title": "Angel Best Centre Nursing Home - Rawang Area"},
+  {"dir": "nursing-homes", "old": "ks-care-centre-凯心安老院-kajang", "new": "ks-care-centre-kajang", "title": "KS Care Centre Kajang"},
+  {"dir": "nursing-homes", "old": "mintygreen-senior-care-center-cherassungai-long-蕉赖碧绿疗养院", "new": "mintygreen-senior-care-center-cheras-sungai-long", "title": "Mintygreen Senior Care Center Cheras (Sungai Long)"},
+  {"dir": "nursing-homes", "old": "eha-bayview-eldercare-cheras-sungai-long-kajang-温馨疗养别墅-1-nursing-home-kl", "new": "eha-bayview-eldercare-cheras-sungai-long-kajang-1-nursing-home-kl", "title": "EHA Bayview Eldercare #1 Nursing Home KL"},
+  {"dir": "nursing-homes", "old": "mintygreen-nursing-homesungai-long-kajang-eldercare-center-加影碧绿疗养院", "new": "mintygreen-nursing-home-sungai-long-kajang-eldercare-center", "title": "Mintygreen Nursing Home (Sungai Long & Kajang)"},
+  {"dir": "nursing-homes", "old": "甲洞乐理护老之家-opulencecare-ii", "new": "opulencecare-ii", "title": "OpulenceCARE II"},
+  {"dir": "day-care", "old": "协和开心之家安心养老庭院-甲洞安老院-kepong-nursing-home", "new": "kepong-nursing-home", "title": "Kepong Nursing Home"},
+  {"dir": "nursing-homes", "old": "oasis-nursing-home-klang-安康之家巴生疗养院", "new": "oasis-nursing-home-klang", "title": "Oasis Nursing Home (Klang)"},
+  {"dir": "nursing-homes", "old": "suria-care-homepusat-jagaan-warga-emas舒利亚乐龄休养中心", "new": "suria-care-home-pusat-jagaan-warga-emas", "title": "Suria Care Home / Pusat Jagaan Warga Emas"},
+  {"dir": "nursing-homes", "old": "愛心樂齡休養中心-pusat-jagaan-warga-emas-cinta", "new": "pusat-jagaan-warga-emas-cinta-2", "title": "Pusat Jagaan Warga Emas Cinta"},
+  {"dir": "nursing-homes", "old": "sunway-home-healthcare-双威家庭护理", "new": "sunway-home-healthcare", "title": "Sunway Home Healthcare"},
+  {"dir": "nursing-homes", "old": "emerald-nursing-care-home-usj-subang-jaya-elderly-home-梳邦再也疗养院", "new": "emerald-nursing-care-home-usj-subang-jaya-elderly-home", "title": "Emerald Nursing Care Home (USJ & Subang Jaya)"},
+  {"dir": "nursing-homes", "old": "pertubuhan-kebajikan-warga-tua-anning-teluk-intan-", "new": "pertubuhan-kebajikan-warga-tua-anning-teluk-intan-perak", "title": "Pertubuhan Kebajikan Warga Tua \"Anning\" Teluk Intan, Perak"},
+  {"dir": "day-care", "old": "pertubuhan-pusat-aktiviti-warga-emas-daerah-kuala-", "new": "pertubuhan-pusat-aktiviti-warga-emas-daerah-kuala-pilah", "title": "Pertubuhan PAWE Daerah Kuala Pilah"},
+  {"dir": "day-care", "old": "pusat-aktiviti-warga-emas-pawe-kompleks-penyayang-", "new": "pusat-aktiviti-warga-emas-pawe-kompleks-penyayang-kuantan", "title": "PAWE Kompleks Penyayang Kuantan"}
+]

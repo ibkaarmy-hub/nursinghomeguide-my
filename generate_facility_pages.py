@@ -748,17 +748,32 @@ def main():
     # about to re-write anyway.
     valid_slugs = {(r.get("slug") or "").strip() for r in live}
 
+    # Legacy slug redirects (slug renames). Preserved on disk so old inbound
+    # links keep resolving via meta-refresh + canonical to the new URL. To
+    # retire a redirect: remove the entry from _legacy_redirects.json and the
+    # next regen wipes it (and you should drop it from the sitemap too).
+    legacy_redirects = []
+    legacy_path = "_legacy_redirects.json"
+    if os.path.exists(legacy_path):
+        with open(legacy_path, encoding="utf-8") as f:
+            legacy_redirects = json.load(f)
+    # Index legacy old-slugs per dir so wipe doesn't trample them.
+    legacy_by_dir = {}
+    for e in legacy_redirects:
+        legacy_by_dir.setdefault(e["dir"], set()).add(e["old"])
+
     for d in ("nursing-homes", "assisted-living", "home-care", "day-care", "facility"):
         if d == "facility":
             if os.path.isdir(d):
                 shutil.rmtree(d)
             continue
         if os.path.isdir(d):
+            keep_legacy = legacy_by_dir.get(d, set())
             for entry in os.listdir(d):
                 if entry in STATE_DIRS:
                     continue   # preserve state listing pages
                 p = os.path.join(d, entry)
-                if os.path.isdir(p) and entry not in valid_slugs:
+                if os.path.isdir(p) and entry not in valid_slugs and entry not in keep_legacy:
                     shutil.rmtree(p)
 
     counts = {"nursing-homes": 0, "assisted-living": 0, "home-care": 0, "day-care": 0, "redirects": 0, "mirrors": 0}
@@ -805,9 +820,20 @@ def main():
         write_file(os.path.join("facility", slug, "index.html"), legacy_stub)
         counts["redirects"] += 1
 
+    # Legacy slug-rename redirects. Each entry maps an old slug to the new
+    # canonical URL; we write a minimal meta-refresh + noindex stub so old
+    # inbound links keep working.
+    legacy_written = 0
+    for e in legacy_redirects:
+        new_canonical = f"{BASE}/{e['dir']}/{e['new']}/"
+        stub = build_redirect_stub(new_canonical, e.get("title", ""), "")
+        write_file(os.path.join(e["dir"], e["old"], "index.html"), stub)
+        legacy_written += 1
+
     summary = (f"Wrote: {counts['nursing-homes']} NH + {counts['assisted-living']} AL + "
                f"{counts['home-care']} HC + {counts['day-care']} DC canonical pages, "
-               f"{counts['mirrors']} mirror stubs, {counts['redirects']} legacy /facility/ redirects"
+               f"{counts['mirrors']} mirror stubs, {counts['redirects']} legacy /facility/ redirects, "
+               f"{legacy_written} slug-rename redirects"
                + (f" (skipped {skipped_invalid} invalid slugs)" if skipped_invalid else ""))
     print(summary, file=sys.stderr)
 
