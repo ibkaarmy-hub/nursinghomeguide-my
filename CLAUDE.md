@@ -164,6 +164,20 @@ Four-phase, zero-Apify-cost workflow. Full reference in `stages/02-enrich/CONTEX
 
 Perak ran the full pipeline end-to-end: 12% → 100% editorial coverage, 92/92 facilities, zero new Apify spend.
 
+## Pre-push gate — `python validate.py`
+
+🚨 **Run before every push of data changes.** Fast (no API calls — reads the published CSV), exits 1 on integrity violations that have repeatedly bitten the project:
+
+- Duplicate slugs across live rows (the "wrong row wins" silent bug — site renders first match)
+- Live row with a place_id but no `address` (the "column added, populate-step never wired" pattern)
+- Live row with photos/hero_image but no place_id (wrong-facility photo bleed-through)
+- Slug not in `[a-z0-9-]` (must be URL-safe ASCII, lowercase, dash-separated)
+- Invalid `status` value, malformed `google_maps_url`, missing title/slug
+
+Warnings (non-blocking) cover missing state/area/phone/editorial and title-slug token incoherence. Use `--strict` to promote warnings to errors. Use `--csv path.csv` to validate a local snapshot.
+
+Cron the script or hook it into a pre-push git hook locally — it takes seconds and would have caught every regression we hit this round (19 dup slugs, the empty addresses, the wrong-photo bleed-through, the closed-listing places).
+
 ## generate_facility_pages.py — critical notes
 
 - `transform_template()` must look for `<main id="profileContent">` (not `<div>`). Facility.html uses `<main>`. Using `<div>` silently skips all 786 pages without error.
