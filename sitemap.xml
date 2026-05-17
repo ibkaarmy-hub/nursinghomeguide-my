@@ -409,8 +409,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/nursing-homes/golden-age-care-centre/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <loc>https://nursinghomeguide.my/nursing-homes/golden-age-care-centre-muar/</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1897,8 +1897,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-sejahtera-batu-pahat/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <loc>https://nursinghomeguide.my/nursing-homes/san-chun-old-folks-home-batu-pahat/</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2623,8 +2623,14 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/nursing-homes/de-home-care-centre/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <loc>https://nursinghomeguide.my/nursing-homes/de-home-care-centre-selangor/</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/nursing-homes/de-home-care-centre-perak/</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2648,7 +2654,7 @@
   </url>
   <url>
     <loc>https://nursinghomeguide.my/nursing-homes/elaine-elderly-healthcare-centre/</loc>
-    <lastmod>2026-05-07</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -3037,8 +3043,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/nursing-homes/my-comfort-home-care-centre/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <loc>https://nursinghomeguide.my/nursing-homes/my-comfort-home-care-centre-sek-17-1293/</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -3111,6 +3117,12 @@
   <url>
     <loc>https://nursinghomeguide.my/nursing-homes/mother-maria-senior-care-centre/</loc>
     <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/nursing-homes/my-comfort-home-care-centre-sek-17-528/</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -3673,8 +3685,20 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-pertubuhan-kebajikan-chester-selangor/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-pertubuhan-kebajikan-chester-selangor-1/</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-pertubuhan-kebajikan-chester-selangor-2/</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-pertubuhan-kebajikan-chester-selangor-4/</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -4477,6 +4501,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://nursinghomeguide.my/nursing-homes/rumah-sejahtera-yong-peng/</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-rumah-sejahtera-bertam/</loc>
     <lastmod>2026-05-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -4521,6 +4551,12 @@
   <url>
     <loc>https://nursinghomeguide.my/nursing-homes/pusat-jagaan-warga-tua-kp/</loc>
     <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nursinghomeguide.my/nursing-homes/golden-age-care-centre-selayang/</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
