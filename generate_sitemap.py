@@ -105,6 +105,29 @@ def main():
     for g in ("which-care", "government-assistance"):
         entries.append(url_entry(f"{BASE}/guides/{g}.html", lastmod=today, changefreq="monthly", priority="0.8"))
 
+    # District pages — discovered from filesystem so we stay in sync with
+    # generate_district_pages.py output without hardcoding a list.
+    district_count = 0
+    import os
+    KNOWN_STATE_SLUGS = (
+        "johor", "kuala-lumpur", "selangor", "negeri-sembilan",
+        "penang", "perak", "kedah", "perlis", "kelantan", "terengganu",
+        "pahang", "melaka", "sabah", "sarawak", "labuan", "putrajaya",
+    )
+    for category in ("nursing-homes", "assisted-living", "day-care", "home-care"):
+        for state_slug in KNOWN_STATE_SLUGS:
+            state_dir = os.path.join(category, state_slug)
+            if not os.path.isdir(state_dir):
+                continue
+            for d in sorted(os.listdir(state_dir)):
+                d_path = os.path.join(state_dir, d, "index.html")
+                if os.path.isfile(d_path):
+                    entries.append(url_entry(
+                        f"{BASE}/{category}/{state_slug}/{d}/",
+                        lastmod=today, changefreq="weekly", priority="0.85",
+                    ))
+                    district_count += 1
+
     # Facility pages — category-prefixed canonical URLs only
     # URL routing matches facUrl() in frontend state pages (uses care_types, not care_category)
     facility_count = 0
@@ -149,7 +172,8 @@ def main():
         f.write(xml)
 
     print(f"Wrote sitemap.xml: {len(entries)} URLs total "
-          f"(2 landings + 6 state pages + 2 guides + {facility_count} facilities + {org_count} orgs)",
+          f"(2 landings + 6 state pages + 2 guides + {facility_count} facilities + "
+          f"{district_count} districts + {org_count} orgs)",
           file=sys.stderr)
 
 
