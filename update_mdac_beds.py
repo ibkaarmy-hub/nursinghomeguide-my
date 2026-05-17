@@ -92,12 +92,21 @@ else:
         print("Aborted.")
         exit()
 
+    def col_letter(idx):
+        # 1-based column index → A1 letters (handles A–ZZ).
+        n = idx
+        out = ''
+        while n > 0:
+            n, r = divmod(n - 1, 26)
+            out = chr(65 + r) + out
+        return out
+
     # Batch update
     body = {
         'valueInputOption': 'RAW',
         'data': [
             {
-                'range': f"'{TAB}'!{chr(64 + col)}{row}",
+                'range': f"'{TAB}'!{col_letter(col)}{row}",
                 'values': [[val]]
             }
             for row, col, val in updates

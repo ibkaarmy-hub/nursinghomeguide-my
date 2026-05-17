@@ -225,15 +225,23 @@ for query, fac_row in facility_by_query.items():
                item.get('subLocality') or
                item.get('city') or '')
 
+    def col_letter(idx):
+        # 0-based index → A1 column letters (handles A–ZZ correctly).
+        n = idx + 1
+        out = ''
+        while n > 0:
+            n, r = divmod(n - 1, 26)
+            out = chr(65 + r) + out
+        return out
+
     def cell(col_name, value):
         if not value:
             return None
         c = col.get(col_name)
         if c is None:
             return None
-        col_letter = chr(64 + c + 1)
         return {
-            'range': f"'{TAB}'!{col_letter}{row_num}",
+            'range': f"'{TAB}'!{col_letter(c)}{row_num}",
             'values': [[value]]
         }
 

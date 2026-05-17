@@ -109,6 +109,24 @@ def main():
     for s, rs in sorted(dup.items()):
         errors.append((rs[0], s, f'duplicate slug — also on rows {rs[1:]} (site renders first match silently)'))
 
+    # ── lat/lng numeric and in plausible Malaysia range ────────────────────
+    # Catches the 2026-05 incident where an editorial template was written to
+    # column S (longitude) due to a broken chr(64+idx+1) column-letter helper
+    # in write_*_editorials.py — 188 rows had prose in longitude before the fix.
+    def _num_or_none(v):
+        try: return float(v)
+        except (ValueError, TypeError): return None
+    for rn, r in live:
+        for col, lo, hi in [('latitude', 0.0, 8.0), ('longitude', 99.0, 120.0)]:
+            v = g(r, col)
+            if not v:
+                continue
+            x = _num_or_none(v)
+            if x is None:
+                errors.append((rn, g(r, 'slug'), f'{col} not numeric: {v[:60]!r}'))
+            elif not (lo <= x <= hi):
+                errors.append((rn, g(r, 'slug'), f'{col}={x} outside Malaysia range [{lo},{hi}]'))
+
     # ── google_maps_url format ──────────────────────────────────────────────
     for rn, r in live:
         u = g(r, 'google_maps_url')
