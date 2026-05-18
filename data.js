@@ -431,14 +431,15 @@ const GROUPS = {
   // ─── added in the cross-leak deep-research pass — see CROSSLEAK_REPORT.md ─
   'multicare-nursing-home': {
     slug: 'multicare-nursing-home',
-    name: 'MultiCare Nursing Home',
-    tagline: 'Two-branch nursing chain across the Klang Valley and Johor Bahru',
+    name: 'MultiCare / MCS Group',
+    tagline: 'Two nursing homes (PJ, JB) plus private home-care nursing across Malaysia',
     website: 'https://www.multicarehomes.com',
     state: 'Selangor, Johor',
-    description: 'MultiCare Nursing Home is a Petaling Jaya–headquartered group that opened its Johor Bahru branch in August 2025 (announced on the operator\'s Facebook). The chain publishes a full tiered pricing list ranging from RM 1,800/mo for a 6-bed shared room to RM 3,500/mo for a VIP single, with all rooms including AC, attached bathroom, meals in room, and 24-hour care. The site also lists a separate private-nursing service.',
+    description: 'MCS Group operates MultiCare Nursing Home — a Petaling Jaya–headquartered residential chain that opened its Johor Bahru branch in August 2025 (verified via the operator\'s Facebook announcement) — plus Malaysia Caregivers, a separate private-nursing and caregiver-dispatch service into clients\' homes or hospitals (RM 4,500–5,000/month, RM 40/hour hospital sitter). Residential rooms range RM 1,800–3,500/month all-in.',
     branches: [
       'multicare-nursing-home',
       'multicare-nursing-home-johor',
+      'malaysia-caregivers',
     ],
   },
   'care-concierge': {
