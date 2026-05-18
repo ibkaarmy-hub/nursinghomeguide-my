@@ -57,6 +57,25 @@ img { max-width: 100%; display: block; }
 .da-page h1 { text-wrap: balance; letter-spacing: -0.03em; }
 .da-page p  { text-wrap: pretty; color: var(--da-body); }
 
+/* Guides: dark-background heroes & CTAs must keep their white text.
+   The .da-page h1/h2/p rules above directly set a dark color on the heading/
+   paragraph elements, which beats the inherited white from parents like
+   .guide-hero / .guide-cta-section / .result-hero. These overrides restore it. */
+.da-page .guide-hero h1,
+.da-page .guide-hero h2,
+.da-page .guide-hero h3,
+.da-page .guide-hero p,
+.da-page .guide-cta-section h1,
+.da-page .guide-cta-section h2,
+.da-page .guide-cta-section h3,
+.da-page .guide-cta-section p,
+.da-page .result-hero h1,
+.da-page .result-hero h2,
+.da-page .result-hero h3,
+.da-page .result-hero p {
+  color: #fff;
+}
+
 /* ── Direction A — signature patterns ─────────────────────── */
 /* Eyebrow label: uppercase coral tag above section headings. */
 .da-eyebrow {
